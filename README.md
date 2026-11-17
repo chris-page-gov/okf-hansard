@@ -32,7 +32,7 @@ Start the read-only MCP stdio server with this repository as its working directo
 
     uv run --locked python scripts/mcp_server.py
 
-The tools are **hansard_find**, **hansard_trace**, **hansard_roles_as_of** and **hansard_read_passage**. The last retrieves public evidence from the official Hansard API. The other tools use local evidence. No AI API key or model calls are needed. A voice-enabled host can speak a short answer and pass the digest-bound view to a companion screen. See the [UI study](docs/voice-and-visual-ui.md) for host-specific support and limits.
+The tools are **hansard_find**, **hansard_trace**, **hansard_roles_as_of**, **hansard_member_as_of** and **hansard_read_passage**. A source-linked passage returns its Member ID where available. The member tool returns effective representations, posts, memberships and party records as of the requested day from cached biographies or the Members API. The passage tool reads the official Hansard API. No AI API key or model calls are needed. A voice-enabled host can speak a short answer and pass the digest-bound view to a companion screen. See the [UI study](docs/voice-and-visual-ui.md) for host-specific support and limits.
 
 ## Extend the collection
 

@@ -2,11 +2,13 @@
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
-from datetime import date
+from datetime import date, datetime, timezone
+from functools import lru_cache
 import json
 from pathlib import Path
+from urllib.request import Request, urlopen
 
-from capture import dump, fetch, now
+from capture import MAX_BYTES, dump, fetch, now, sha
 from model import checked_json, read_sittings, tokens
 
 MEMBERS_API = "https://members-api.parliament.uk/api"
@@ -93,6 +95,48 @@ def resolve_office(office_label, day, offices, appointments):
     return [row for row in appointments
             if (row["series"], row["entity_id"]) in candidates
             and active_on(row["start"], row["end"], day)]
+
+
+@lru_cache(maxsize=64)
+def current_biography(member_id, observation_hour):
+    url = f"{MEMBERS_API}/Members/{member_id}/Biography"
+    request = Request(url, headers={"Accept": "application/json", "User-Agent": "OKF-Hansard-Pilot/0.1"})
+    with urlopen(request, timeout=12) as response:
+        if response.url != url:
+            raise ValueError("The Members API endpoint redirected.")
+        raw = response.read(MAX_BYTES + 1)
+    if len(raw) > MAX_BYTES:
+        raise ValueError("Members API response exceeds the read limit.")
+    return json.loads(raw), {"url": url, "sha256": sha(raw), "retrieved_at": now()}
+
+
+def member_as_of(snapshot, member_id, day):
+    if type(member_id) is not int or not 1 <= member_id <= 100000:
+        raise ValueError("Use a source-assigned positive integer Member ID.")
+    requested = date.fromisoformat(day)
+    current = datetime.now(timezone.utc)
+    if requested > current.date():
+        raise ValueError("The requested effective date is in the future.")
+    manifest = json.loads((snapshot / "manifest.json").read_bytes())
+    receipt = manifest["biographies"].get(str(member_id))
+    if receipt and receipt["retrieved_at"][:10] >= day:
+        data = checked_json(snapshot, receipt)
+        mode = "captured biography"
+    else:
+        data, receipt = current_biography(member_id, current.isoformat(timespec="hours"))
+        mode = "official biography retrieved on demand"
+    series_rows = []
+    for series in ("representations", "houseMemberships", *POST_SERIES, "partyAffiliations", "committeeMemberships"):
+        for index, row in enumerate(data["value"].get(series, [])):
+            if active_on(row.get("startDate"), row.get("endDate"), day):
+                series_rows.append({"series": series, "id": row.get("id"), "label": row.get("name"),
+                                    "effective_from": row["startDate"], "effective_to": row.get("endDate"),
+                                    "house": row.get("house"), "source_field": f"/value/{series}/{index}",
+                                    "detail": row.get("additionalInfo"), "detail_source": row.get("additionalInfoLink")})
+    return {"schema": "hansard-member-as-of.v1", "member_id": member_id, "as_of": day, "mode": mode,
+            "status": "dated entries found" if series_rows else "no captured entries active on this date",
+            "profile_url": f"https://members.parliament.uk/member/{member_id}",
+            "source": receipt, "entries": series_rows}
 
 
 def main():

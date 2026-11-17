@@ -75,6 +75,7 @@ class Passages:
         end = min(offset + limit, len(text))
         return {"schema": "hansard-source-passage.v1", "id": route, "url": loc["url"],
                 "source_api": root_url, "source_field": loc["pointer"] + "/" + text_field,
+                "member_id": obj.get("MemberId"),
                 "status": "matches recorded version" if raw_hash == recorded_hash else "source text changed",
                 "source_value_sha256": raw_hash, "recorded_source_value_sha256": recorded_hash,
                 "characters": len(text), "offset": offset, "next_offset": end if end < len(text) else None,
