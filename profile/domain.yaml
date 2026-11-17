@@ -1,0 +1,68 @@
+schema: hansard-foundry-profile.v1
+title: A week in Parliament
+language: en-GB
+display_timezone: Europe/London
+status: local research pilot
+okf_version: "0.2"
+explorer_reference:
+  commit: e57e2c2e056bce326033fa576c4aa278dc437eb2
+  warm_up_prompt: docs/prompts/okf-domain-warm-up.md
+  build_prompt: docs/prompts/okf-bundle-build.md
+  semantic_schema: profiles/bundle-wiki/v1/semantic-assertion.schema.json
+  presentation: okf-learning-presentation.v1
+source_contract:
+  authority: UK Parliament
+  family: Hansard official report
+  unit: Text-bearing API Contribution with its own source position
+  layout_exclusions: Empty items, column marker tags and standalone date layout markers
+  other_kinds: Divisions as procedural records and timestamp counts in coverage
+  week_start: "2026-11-16"
+  initial_capture_end: "2026-11-17"
+  base_history_start: "2026-11-02"
+  extension_order: Reverse calendar order, both Houses, closed historical dates
+  coverage_denominator: Advertised House and date sections, section-tree IDs and API item counts
+  correction_policy: Use immutable capture receipts and compare recorded with current source hashes on read
+  source_licence: https://www.parliament.uk/site-information/copyright/open-parliament-licence/
+  publication: Local review
+  text_retention: Historical source responses remain in process memory. Retain source references, digests and matching spans.
+competency_questions:
+  - id: CQ1
+    question: Which Commons and Lords contribution records were available on a selected sitting day?
+  - id: CQ2
+    question: What mentions in earlier sittings can I follow from this contribution, by entity and facet?
+  - id: CQ3
+    question: Which person is named, which office is referenced and who held that office on the day?
+  - id: CQ4
+    question: Can I open an official source for each result and see whether it still matches the captured version?
+  - id: CQ5
+    question: Can the same result drive a spoken answer, accessible table and source-linked chart?
+presentation_contract:
+  consumer: OKF Explorer and structured AI clients
+  default_route: index.md
+  missing_value: Unrecorded
+  history: Separate temporal coverage metadata and an entity postings index
+  domain_facets:
+    - {key: sitting, label: Sitting date, values: ISO source dates, questions: [CQ1, CQ2]}
+    - {key: chamber, label: House, values: [Commons, Lords], questions: [CQ1]}
+    - {key: venue, label: Proceedings, values: Hansard section vocabulary, questions: [CQ1]}
+    - {key: business, label: Contribution type, values: Source item and tag mapping, questions: [CQ1]}
+    - {key: speaker_role, label: Speaker capacity, values: Ascription-derived categories, questions: [CQ3]}
+    - {key: people, label: People, values: Member identity labels and matched names, questions: [CQ2, CQ3]}
+    - {key: offices, label: Offices and roles, values: Parliament post identities and recorded capacities, questions: [CQ2, CQ3]}
+    - {key: places, label: Places, values: Country to constituency subtypes, questions: [CQ2]}
+    - {key: organisations, label: Organisations, values: Department to company subtypes, questions: [CQ2]}
+    - {key: things, label: Programmes reviews and technology, values: Pilot controlled vocabulary, questions: [CQ2]}
+    - {key: legislation, label: Legislation, values: Bill Act instrument and treaty subtypes, questions: [CQ2]}
+    - {key: subjects, label: Policy subjects, values: Pilot subject vocabulary, questions: [CQ2]}
+  metadata_dimensions:
+    - week record or earlier context
+    - date and House coverage
+    - assertion method and source digest
+    - identity membership or office period
+  theme_policy: Lexical evidence and labelled business headings with no unsupported substantive inference
+limits:
+  - The matching profile is a fixed dictionary of names and aliases. It has no measured recall across the archive.
+  - A populated facet describes the evidence found or recorded. Unrecorded means missing or unmatched.
+  - Source order supports a before relationship within the same section. Same-day matches in separate sections are reported as unordered.
+  - A reference to an office and an appointment record have different identities and assertion types.
+  - A stated opinion, claim or forecast is evidence of what was said in a recorded context.
