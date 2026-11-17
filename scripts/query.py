@@ -34,6 +34,13 @@ class Index:
         else:
             self.archive_profile_sha256 = self.receipt["artifacts"]["analysis-profile.json"]["sha256"]
             self.archive_keys = set(self.profile["entities"])
+        self.auxiliary = {}
+        supplemental = release / "supplemental"
+        if supplemental.is_dir():
+            for path in sorted(supplemental.glob("*.json")):
+                pkg = json.loads(path.read_bytes())
+                if pkg["entity"] in self.profile["entities"]:
+                    self.auxiliary[pkg["entity"]] = pkg
         self.database = database
         self.source_records = None
 
@@ -109,13 +116,22 @@ class Index:
             entries = self.base.get(key, [])
             prior_base = [row for row in reversed(entries) if prior(row)]
             same_day = sum(row["date"] == anchor["date"] and row["part"] != anchor["part"] for row in entries)
+            supplemental = self.auxiliary.get(key)
+            use_archive = db and key in self.archive_keys
+            if supplemental and not use_archive:
+                prior_base.extend(row for row in supplemental["items"] if prior(row))
             count = 0
-            if db and key in self.archive_keys:
+            if use_archive:
                 count = db.execute("SELECT count(*) FROM mention WHERE entity=? AND day<?",
                                    (key, anchor["date"])).fetchone()[0]
             summaries.append({"id": key, **self.history["entities"][key],
                               "earlier": len(prior_base) + count, "same_day_order_unknown": same_day,
-                              "extension_applied": bool(db and key in self.archive_keys)})
+                              "extension_applied": bool(use_archive),
+                              "supplemental_coverage": (
+                                  {"from": supplemental["from"], "through": supplemental["through"],
+                                   "method": supplemental["method"], "retrieved_at": supplemental["retrieved_at"]}
+                                  if supplemental and not use_archive else None
+                              )})
             if key != entity:
                 continue
             remaining = limit

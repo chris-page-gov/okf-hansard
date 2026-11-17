@@ -36,6 +36,10 @@ class Passages:
     def locator(self, route):
         if route in self.locators:
             return self.locators[route]
+        for package in self.index.auxiliary.values():
+            for row in package["items"]:
+                if row["contribution"] == route:
+                    return row
         db = self.index.connect()
         if not db:
             return None
@@ -50,23 +54,29 @@ class Passages:
         if not loc:
             raise ValueError("This contribution ID has no retained source locator.")
         root_url = loc["capture"]["url"]
-        if not re.fullmatch(re.escape(HANSARD) + r"/debates/debate/[A-Za-z0-9-]+\.json", root_url):
+        is_debate = re.fullmatch(re.escape(HANSARD) + r"/debates/debate/[A-Za-z0-9-]+\.json", root_url)
+        is_search = re.fullmatch(re.escape(HANSARD) + r"/search/contributions/Spoken\.json\?[a-zA-Z0-9=%_+&.-]+",
+                                 root_url)
+        if not is_debate and not is_search:
             raise ValueError("The retained Hansard endpoint is outside the allowlist.")
         obj = retrievable(root_url)
         for part in loc["pointer"].strip("/").split("/"):
             obj = obj[int(part)] if isinstance(obj, list) else obj[part]
-        if obj["ExternalId"] != loc["external_id"] or obj["ItemId"] != loc["source_item_id"]:
+        identifier_field = "ContributionExtId" if is_search else "ExternalId"
+        text_field = "ContributionTextFull" if is_search else "Value"
+        if obj[identifier_field] != loc["external_id"] or obj["ItemId"] != loc["source_item_id"]:
             return {"schema": "hansard-source-passage.v1", "id": route, "url": loc["url"],
                     "status": "source locator changed", "source_api": root_url}
-        raw_hash = sha(str(obj["Value"]).encode("utf-8"))
+        raw_hash = sha(str(obj[text_field]).encode("utf-8"))
+        recorded_hash = loc.get("source_value_sha256") or loc["value_sha256"]
         if expected_sha256 and raw_hash != expected_sha256:
             raise ValueError("The source version no longer matches the requested hash.")
-        text = plain(obj["Value"])
+        text = plain(obj[text_field])
         end = min(offset + limit, len(text))
         return {"schema": "hansard-source-passage.v1", "id": route, "url": loc["url"],
-                "source_api": root_url, "source_field": loc["pointer"] + "/Value",
-                "status": "matches recorded version" if raw_hash == loc["value_sha256"] else "source text changed",
-                "source_value_sha256": raw_hash, "recorded_source_value_sha256": loc["value_sha256"],
+                "source_api": root_url, "source_field": loc["pointer"] + "/" + text_field,
+                "status": "matches recorded version" if raw_hash == recorded_hash else "source text changed",
+                "source_value_sha256": raw_hash, "recorded_source_value_sha256": recorded_hash,
                 "characters": len(text), "offset": offset, "next_offset": end if end < len(text) else None,
                 "text": text[offset:end]}
 

@@ -22,7 +22,7 @@ Run from the repository root with Python 3.12 and the locked environment.
     uv run --locked python scripts/query.py trace CONTRIBUTION_ROUTE --entity ENTITY_ID --limit 25
     uv run --locked python scripts/roles.py "The Prime Minister" --as-of 2026-11-17 --kind office
 
-Use the exact route and entity IDs returned by search and trace. For a selected entity, follow **next_offset** with the returned **context_id**. The query includes the on-disk archive extension when available and exposes the dates and gaps it can see. Historical counts describe literal matches within the fixed alias profile. Same-day matches in separate sections have unknown order.
+Use the exact route and entity IDs returned by search and trace. For a selected entity, follow **next_offset** with the returned **context_id**. The query includes the on-disk archive extension when available and exposes the dates and gaps it can see. Historical counts describe literal matches within the fixed alias profile. Same-day matches in separate sections have unknown order. The response identifies targeted spoken-search supplements and their date coverage where a later capture adds a name to the pilot.
 
 An exact retained locator identifies the API field. The source read tool compares the live value with the recorded digest and labels changes. The archive index retains references, evidence spans and hashes. Full historical responses are processed in memory. The initial capture is local scratch for replay.
 
@@ -52,6 +52,15 @@ For a deadline-bound historic run, set an explicit time-zone offset. Create **.w
       --database /Volumes/ExtSSD-Data/okf-hansard-cache/history-v1.sqlite \
       --report releases/history-progress.json \
       --before 2026-11-02 --deadline 2026-11-18T07:00:00+00:00
+
+## Reuse a companion view or export older links
+
+The read-only evidence response can carry a view descriptor. Save the JSON, then render its digest-checked table and bars locally. Use the archive exporter for a portable YAML-LD slice of older relations.
+
+    uv run --locked python scripts/render_view.py EVIDENCE.json VIEW.html
+    uv run --locked python scripts/export_history.py --from-date 2026-10-01 --to-date 2026-10-31 --entity palantir --out OCTOBER.yamlld
+
+The extended archive uses the 569-entity matching profile from the first capture. The Tuesday refresh added Lord Londesborough. Its scoped official spoken-search supplement checked the recorded title against dated Lords membership periods.
 
 ## Source attribution
 
