@@ -6,6 +6,7 @@ from datetime import date, datetime, timezone
 from functools import lru_cache
 import json
 from pathlib import Path
+import shutil
 from urllib.request import Request, urlopen
 
 from capture import MAX_BYTES, dump, fetch, now, sha
@@ -28,7 +29,7 @@ def biography(snapshot, member_id):
                  f"{MEMBERS_API}/Members/{member_id}/Biography")
 
 
-def declarations(snapshot, source, first, last):
+def declarations(snapshot, source, first, last, previous=None):
     manifest = json.loads((source / "manifest.json").read_bytes())
     _, records, _, _ = read_sittings(source, manifest, first, last)
     member_ids = sorted({r["member"] for r in records.values()
@@ -40,8 +41,18 @@ def declarations(snapshot, source, first, last):
         _, receipt = fetch(snapshot, f"people/{name}.json", f"{MEMBERS_API}/Posts/{name}")
         manifest["registers"][name] = receipt
 
+    previous_assets = (json.loads((previous / "manifest.json").read_bytes())["biographies"]
+                       if previous else {})
+
     def retrieve(member_id):
         try:
+            previous_asset = previous_assets.get(str(member_id))
+            if previous_asset:
+                checked_json(previous, previous_asset)
+                destination = snapshot / previous_asset["path"]
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(previous / previous_asset["path"], destination)
+                return str(member_id), previous_asset, None
             _, receipt = biography(snapshot, member_id)
             return str(member_id), receipt, None
         except (OSError, ValueError) as exc:
@@ -145,8 +156,9 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--first", type=date.fromisoformat, required=True)
     parser.add_argument("--last", type=date.fromisoformat, required=True)
+    parser.add_argument("--reuse", type=Path)
     args = parser.parse_args()
-    manifest = declarations(args.output, args.snapshot, args.first.isoformat(), args.last.isoformat())
+    manifest = declarations(args.output, args.snapshot, args.first.isoformat(), args.last.isoformat(), args.reuse)
     print(f"{len(manifest['biographies'])} biographies, {len(manifest['errors'])} source errors.")
 
 

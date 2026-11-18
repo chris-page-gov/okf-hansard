@@ -104,7 +104,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--release", type=Path, default=DEFAULT_RELEASE)
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
-    parser.add_argument("--people", type=Path, default=Path(".snapshots/members-2026-11-17"))
+    parser.add_argument("--people", type=Path, default=Path(".snapshots/members-current"))
     args = parser.parse_args()
     index = Index(args.release, args.database)
     passages = Passages(index)

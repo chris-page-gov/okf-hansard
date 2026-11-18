@@ -63,7 +63,7 @@ def main():
     parser.add_argument("label")
     parser.add_argument("--as-of", required=True, type=date.fromisoformat)
     parser.add_argument("--kind", choices=("office", "constituency"), required=True)
-    parser.add_argument("--people", type=Path, default=Path(".snapshots/members-2026-11-17"))
+    parser.add_argument("--people", type=Path, default=Path(".snapshots/members-current"))
     args = parser.parse_args()
     print(json.dumps(resolve(args.people, args.label, args.as_of.isoformat(), args.kind),
                      ensure_ascii=False, indent=2))

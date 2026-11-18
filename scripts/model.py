@@ -222,6 +222,8 @@ def contribution_kind(item, section):
         return "Written statement" if item.get("MemberId") or item.get("UIN") else "Written statement record"
     if section == "Petitions":
         return "Petition"
+    if section == "Correction":
+        return "Correction"
     if tag in TAG_LABELS:
         return TAG_LABELS[tag]
     if "Amendment" in tag or tag == "hs_TabledBy":

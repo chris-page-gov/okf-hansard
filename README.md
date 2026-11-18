@@ -4,7 +4,7 @@ An experimental OKF+ bundle of Westminster Hansard for 16 and 17 November 2026, 
 
 ## Open the pilot
 
-- Load [the Explorer bundle](releases/current/okf-bundle.json) using **File** in OKF Explorer. The JSON build is close to Explorer’s 64 MiB ceiling.
+- Load [the Explorer bundle](releases/current/okf-bundle.json) using **File** in OKF Explorer. The compact JSON retains the week and its linked earlier examples. The YAML-LD graph retains the full initial assertion evidence.
 - Read [the YAML-LD graph](releases/current/okf-bundle.yamlld) or start with the [portable Markdown index](releases/current/markdown/index.md).
 - Check the [capture and build receipt](releases/current/receipt.json) and [rolling history coverage](releases/history-progress.json).
 - Read the [international comparison](docs/international-models.md), [domain profile](profile/domain.yaml) and [voice and visual UI study](docs/voice-and-visual-ui.md).
@@ -60,7 +60,7 @@ The read-only evidence response can carry a view descriptor. Save the JSON, then
     uv run --locked python scripts/render_view.py EVIDENCE.json VIEW.html
     uv run --locked python scripts/export_history.py --from-date 2026-10-01 --to-date 2026-10-31 --entity palantir --out OCTOBER.yamlld
 
-The extended archive uses the 569-entity matching profile from the first capture. The Tuesday refresh added Lord Londesborough. Its scoped official spoken-search supplement checked the recorded title against dated Lords membership periods.
+The extended archive uses the 569-entity matching profile from the first capture. The Tuesday refresh added entities to the pilot. Official spoken-search supplements use recorded membership, constituency representation and Bill stage dates to bound matches for new names and titles. Their coverage is shown beside each result.
 
 ## Source attribution
 

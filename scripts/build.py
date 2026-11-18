@@ -38,7 +38,8 @@ FACETS = {
 }
 VENUES = {"Debate": "Chamber", "WestHall": "Westminster Hall", "WMS": "Written statements",
           "Petitions": "Petitions", "GEN": "General Committees", "GrandCommittee": "Grand Committee",
-          "PBC": "Public Bill Committees"}
+          "PBC": "Public Bill Committees", "Correction": "Corrections to the record",
+          "Writtens": "Written answers"}
 PREDICATES = {
     "partOf": ("is recorded in", "records"),
     "sitting": ("took place on", "includes"),
@@ -160,11 +161,13 @@ def meta_for(first, last, dates, roots):
     }
 
 
-def runtime(graph, meta, finished):
+def runtime(graph, meta, finished, week_start):
     records = {}
     for route, record in graph.records.items():
         fields = {key: value for key, value in record.items()
                   if not key.startswith(("hansard:", "@", "details"))}
+        if record.get("url"):
+            fields["resource"] = record["url"]
         if record.get("section") == "Earlier record":
             fields["body"] = link(record["url"], "Read the earlier passage in Hansard")
         records[route] = {**fields, "id": route, "semantic_id": record["@id"],
@@ -172,14 +175,18 @@ def runtime(graph, meta, finished):
                           "status": "draft", "trust_tier": "working"}
     relationships = []
     for edge in graph.edges:
+        earlier = graph.records[edge["source_route"]].get("date", week_start) < week_start
+        omitted = {"source_artifact"}
+        if earlier:
+            omitted.update({"spans", "normalised_value_sha256", "normalization", "rationale",
+                            "source_sha256", "source_value_hash_canonicalization"})
         relationships.append({
             "id": edge["@id"], "source": edge["source_route"], "target": edge["target_route"],
-            "source_iri": edge["source"]["@id"], "target_iri": edge["target"]["@id"],
             "predicate": edge["predicate"]["@id"], "kind": edge["kind"], "label": edge["label"],
             "inverse_label": edge["inverse_label"], "assertion_status": edge["assertion_status"],
             "assertion_scope": edge["assertion_scope"], "observed_at": edge["observed_at"],
             "derivation": edge["derivation"], "authority": edge["authority"],
-            "evidence": [{k: v for k, v in item.items() if k != "source_artifact"}
+            "evidence": [{k: v for k, v in item.items() if k not in omitted}
                          for item in edge["evidence"]], "rights": edge["rights"],
         })
     return {
@@ -397,7 +404,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
         },
     }
     out.mkdir(parents=True, exist_ok=False)
-    compact(out / "okf-bundle.json", runtime(graph, meta, finished))
+    compact(out / "okf-bundle.json", runtime(graph, meta, finished, first))
     compact(out / "history.json", index)
     declarations = {key: {"kind": entities[key].kind, "label": entities[key].label,
                           "source": entities[key].source, "aliases": entities[key].aliases,

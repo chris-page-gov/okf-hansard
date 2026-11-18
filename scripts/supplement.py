@@ -1,13 +1,16 @@
-"""Backfill a new peer alias via bounded official spoken-contribution search."""
+"""Backfill new week entities with scoped official spoken-contribution searches."""
 
 import argparse
 from datetime import date
 import json
 from pathlib import Path
+import re
+from time import sleep
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 from build import digest
+from capture import dump
 from capture import HANSARD, MAX_BYTES, now, sha
 from model import Entity, Matcher, NS, debate_url, plain
 from people import MEMBERS_API, active_on
@@ -23,14 +26,41 @@ def get(url):
     return json.loads(raw), {"url": url, "sha256": sha(raw), "retrieved_at": now()}
 
 
+def scope(entity):
+    key, label = entity.key, entity.label
+    if entity.kind in {"Peer", "MP"}:
+        member_id = int(key.split("-")[-1])
+        biography, source = get(f"{MEMBERS_API}/Members/{member_id}/Biography")
+        periods = biography["value"]["houseMemberships"]
+        if entity.kind == "Peer":
+            return label.split()[-1], periods, source
+        text = re.sub(r"^(?:(?:Dr|Sir|Dame|Mr|Ms|Mrs|Miss|Rt Hon)\s+)+", "", label)
+        return f'"{text}"', periods, source
+    if entity.kind == "Constituency":
+        constituency_id = int(key.split("-")[-1])
+        identity, source = get(f"{MEMBERS_API}/Location/Constituency/{constituency_id}/Representations")
+        dates = [r["representation"]["membershipStartDate"]
+                 for r in identity["value"] if r["representation"]["membershipStartDate"]]
+        periods = [{"startDate": min(dates), "endDate": None}] if dates else []
+        return f'"{label}"', periods, source
+    if entity.kind == "Bill" and key.startswith("bill-"):
+        bill_id = int(key.split("-")[-1])
+        stages, source = get(f"https://bills-api.parliament.uk/api/v1/Bills/{bill_id}/Stages")
+        times = [sitting["date"] for stage in stages["items"] for sitting in stage["stageSittings"]]
+        periods = [{"startDate": min(times), "endDate": None}] if times else []
+        return f'"{label}"', periods, source
+    raise ValueError("This supplement requires a source-identified Member, constituency or Bill.")
+
+
 def supplement(release, key, since, until):
     roster = json.loads((release / "analysis-profile.json").read_bytes())["entities"]
     entity = Entity(key=key, **roster[key])
-    if entity.kind != "Peer" or not key.removeprefix("member-").isdigit():
-        raise ValueError("This supplement accepts a source-identified peer.")
-    search_term = entity.label.split()[-1]
-    biography, bio_source = get(f"{MEMBERS_API}/Members/{key.removeprefix('member-')}/Biography")
-    periods = [row for row in biography["value"]["houseMemberships"] if row["house"] == 2]
+    search_term, periods, identity_source = scope(entity)
+    if not periods:
+        raise ValueError("The source returned no effective dates for this entity.")
+    since = max(since, min(period["startDate"][:10] for period in periods if period.get("startDate")))
+    if until < since:
+        raise ValueError("The entity has no recorded effective dates in the requested window.")
     matcher = Matcher({key: entity})
     retained = {}
     sources = []
@@ -40,6 +70,7 @@ def supplement(release, key, since, until):
         query = urlencode({"searchTerm": search_term, "startDate": since, "endDate": until,
                            "skip": offset, "take": 20, "outputType": "List"})
         data, src = get(f"{HANSARD}/search/contributions/Spoken.json?{query}")
+        sleep(.5)
         sources.append(src)
         counts.append(data["TotalResultCount"])
         results = data["Results"]
@@ -74,11 +105,10 @@ def supplement(release, key, since, until):
         raise ValueError("Search result coverage changed between pages.")
     package = {"schema": "hansard-supplemental-history.v1", "entity": key, "method": "spoken contribution search",
                "from": since, "through": until, "retrieved_at": now(), "returned_candidates": offset,
-               "identity_source": bio_source, "periods": periods, "sources": sources,
+               "identity_source": identity_source, "periods": periods, "sources": sources,
                "items": sorted(retained.values(), key=lambda row: (row["date"], row["order"]), reverse=True)}
     output = release / "supplemental"
     output.mkdir(exist_ok=True)
-    from capture import dump
     dump(output / f"{key}.json", package)
     print(f"{key}: retained {len(retained)} of {offset} candidates.")
 
