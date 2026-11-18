@@ -9,6 +9,7 @@ import unittest
 from archive import Collector, StopRun, open_database
 from build import hansard_proceedings
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
+from demo import record, write_timeline
 from model import Entity, Matcher, plain, read_sittings
 from people import active_on
 from query import Index, view_for
@@ -16,6 +17,31 @@ from render_view import render
 
 
 class ModelTests(unittest.TestCase):
+    def test_demo_timeline_copies_exact_contribution_evidence_and_keeps_unmatched_dates(self):
+        day = "2026-11-17"
+        section = "section/debate.md"
+        debate = f"https://hansard.parliament.uk/Commons/{day}/debates/example"
+        url = f"{debate}#contribution-example"
+        marker = {"value": f"{day}T19:14:00", "source_item": 3, "source_field": "/Items/2/Value"}
+        proceedings = {"section_id": section, "source_item": 4, "contribution_time": f"{day}T19:15:00"}
+        summary = {"source": url, "text": "The speaker asked for a review."}
+        source_nodes = {
+            section: {"url": debate, "hansard_proceedings": {"markers": [marker], "source_api": "https://api.example.test"}},
+            "contribution/speech.md": {"url": url, "hansard_proceedings": proceedings, "hansard_summary": summary},
+        }
+        rows = [record(day, "Commons", "Example speech", "Worked example", url),
+                record(day, "Commons", "Example debate", "Debate record", debate)]
+        with tempfile.TemporaryDirectory() as temporary:
+            destination = Path(temporary)
+            write_timeline(destination, [{"title": "Example", "rows": rows}], {day: 1}, source_nodes)
+            nodes = json.loads((destination / "demo-timeline.json").read_bytes())["corpora"]["hansard"]["nodes"]
+        by_url = {node.get("url"): node for node in nodes.values()}
+        self.assertEqual(by_url[url]["hansard_proceedings"]["contribution_time"], f"{day}T19:15:00")
+        self.assertEqual(by_url[url]["hansard_proceedings"]["markers"], [marker])
+        self.assertEqual(by_url[url]["hansard_summary"], summary)
+        self.assertNotIn("hansard_proceedings", by_url[debate])
+        self.assertEqual(by_url[debate]["timestamp"], day)
+
     def test_relationship_shards_keep_a_hub_together_in_stable_order(self):
         hub = "entity/hub"
         edges = [

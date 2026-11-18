@@ -85,7 +85,7 @@ The week's Explorer projection records the sitting date at day precision, with a
 
 The small [curated summary file](profile/curated-summaries.json) contains editorial summaries of a speaker's position, keyed by the exact official contribution link. The build supplies a summary only when the link matches the captured record. The official link remains the source for the speech and its context.
 
-The demonstration companion links to an Explorer Timeline containing the three worked examples and links for each verified sitting. Open the full Explorer bundle from the homepage to browse all the week’s records.
+The demonstration companion links to an Explorer Timeline containing the three worked examples and links for each verified sitting. An exact contribution link carries its verified timecode, nearby section markers and editorial summary where supplied. The Explorer also keeps day-only dates for records without an individual time. Open the full Explorer bundle from the homepage to browse all the week’s records.
 
 The focused Graph link loads the selected record and its incident assertions from `graph/okf-explorer.json`. The route locator binds each incident set by assertion count and SHA-256. Each edge keeps its direction, endpoint labels, assertion identifier and evidence. The builder groups links for high-degree nodes into small shards and checks every route against Explorer’s transfer, row and retained-text limits. The full JSON bundle remains available for the learning paths.
 

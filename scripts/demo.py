@@ -156,10 +156,12 @@ def add_reference_links(example):
     ] + [{"title": f"{name} on TheyWorkForYou", "url": PEOPLE[name][1]} for name in people]
 
 
-def write_timeline(destination, examples, counts):
+def write_timeline(destination, examples, counts, source_nodes):
     title = "A week in Parliament · Demonstration timeline"
     nodes = {"index.md": {"id": "index.md", "title": title, "type": "Index",
                           "body": "Choose a sitting date or House, then open a record and follow its Hansard link."}}
+    verified = {node["url"]: node for node in source_nodes.values()
+                if node.get("url") and node.get("hansard_proceedings", {}).get("source_item")}
     groups = []
     for label, rows in [
         *[(example["title"], example["rows"]) for example in examples],
@@ -179,6 +181,17 @@ def write_timeline(destination, examples, counts):
                     "learning_facets": {"sitting": [row["date"]], "chamber": [row["house"]],
                                         "connection": [row["relation"]], "example": []},
                 }
+                source = verified.get(row["url"])
+                if source:
+                    proceedings = source["hansard_proceedings"]
+                    section = source_nodes.get(proceedings["section_id"], {}).get("hansard_proceedings", {})
+                    markers = section.get("markers")
+                    nodes[route]["hansard_proceedings"] = (
+                        {**proceedings, "markers": markers, "marker_source_api": section["source_api"]}
+                        if markers else proceedings
+                    )
+                    if "hansard_summary" in source:
+                        nodes[route]["hansard_summary"] = source["hansard_summary"]
             node = nodes[route]["learning_facets"]
             if label not in node["example"]:
                 node["example"].append(label)
@@ -215,7 +228,8 @@ def write_demo(release, destination, coverage, database=DEFAULT_DB, baseline=Non
         add_reference_links(example)
         example["rows"].sort(key=lambda r: (r["date"], r["house"], r["title"]), reverse=True)
     dump(destination / "demo.json", {"schema": "hansard-demo.v1", "sittings": counts, "examples": examples})
-    write_timeline(destination, examples, counts)
+    source_nodes = json.loads((release / "okf-bundle.json").read_bytes())["corpora"]["hansard"]["nodes"]
+    write_timeline(destination, examples, counts, source_nodes)
     lines = ["# A week in Parliament demonstration evidence", "",
              "This file contains links and selected matches from the verified release. A shared mention is a name or alias match.", ""]
     for example in examples:
