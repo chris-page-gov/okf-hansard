@@ -68,6 +68,8 @@ CONTEXT = {
     "rights": {"@id": "okf:rights", "@type": "@json"},
     "learning_facets": {"@id": "okf:learningFacets", "@type": "@json"},
     "details": {"@id": NS + "field:details", "@type": "@json"},
+    "hansard_proceedings": {"@id": NS + "field:hansard_proceedings", "@type": "@json"},
+    "hansard_summary": {"@id": NS + "field:hansard_summary", "@type": "@json"},
     "spans": {"@id": NS + "field:spans", "@type": "@json"},
     "meta": {"@id": NS + "field:meta", "@type": "@json"},
     "url": {"@id": "https://schema.org/url", "@type": "@id"},
@@ -163,6 +165,29 @@ def meta_for(first, last, dates, roots):
     }
 
 
+def hansard_proceedings(part, section_route, contribution=None):
+    info = {
+        "schema": "okf-hansard-proceedings.v1",
+        "section_id": section_route,
+        "section_title": part["title"],
+        "sitting_date": part["day"],
+        "house": part["house"],
+    }
+    if contribution is None:
+        if part["time_markers"]:
+            info["markers"] = part["time_markers"]
+            info["source_api"] = part["capture"]["url"]
+        return info
+    info.update({"source_item": contribution["order"] + 1, "speaker": contribution["attributed_to"]})
+    if contribution.get("timecode"):
+        info.update({
+            "contribution_time": contribution["timecode"],
+            "source_field": contribution["pointer"] + "/Timecode",
+            "source_api": contribution["capture"]["url"],
+        })
+    return info
+
+
 def runtime(graph, meta, finished, week_start, bounded_history=False):
     examples = set()
     if bounded_history:
@@ -181,7 +206,7 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
         fields = {key: value for key, value in record.items()
                   if not key.startswith(("hansard:", "@", "details"))}
         if record.get("date"):
-            # Explorer recognises the source record timestamp at day precision.
+            # Section markers and individual timecodes have separate provenance.
             fields["timestamp"] = record["date"]
         if record.get("url"):
             fields["resource"] = record["url"]
@@ -246,6 +271,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
     raw = (snapshot / "manifest.json").read_bytes()
     manifest = json.loads(raw)
     finished = manifest["finished_at"]
+    summaries = json.loads((Path(__file__).resolve().parents[1] / "profile" / "curated-summaries.json").read_text(encoding="utf-8"))
     parts, records, divisions, metrics = read_sittings(snapshot, manifest, first, last)
     entities = load_entities(snapshot, manifest, vocabulary)
     offices, appointments, people_manifest = office_evidence(people_snapshot)
@@ -299,6 +325,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
         title = part["title"] or "Untitled proceedings"
         graph.node(route, "Proceedings section", title, date=part["day"], section="Proceedings",
                    url=part["url"], body=f"# {safe_markdown(title)}\n\n" + link(part["url"], "Read in Hansard"),
+                   **({"hansard_proceedings": hansard_proceedings(part, route)} if part["day"] >= first else {}),
                    details={"date": part["day"], "house": part["house"], "venue": part["section"],
                             "external_id": part["ext_id"], "source_version": part["source_version"]})
     for route in sorted(used_parts):
@@ -318,7 +345,9 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
         row = records[route]
         part = parts[row["part"]]
         matched = {key: spans for key, spans in matches[route].items() if key in focus}
-        title = f"{row['attributed_to'] or row['kind']} · {part['title']} · {row['order'] + 1}"
+        title = f"{row['attributed_to'] or row['kind']} · {part['title']}"
+        if route not in current:
+            title += f" · {row['order'] + 1}"
         person_key = f"member-{row['member']}"
         if row["member"] and person_key not in entities:
             entities[person_key] = Entity(person_key, "Parliamentarian", row["attributed_to"] or person_key,
@@ -358,9 +387,14 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
             "value_sha256": row["value_sha256"], "normalised_sha256": row["normalised_sha256"],
             "source_version": part["source_version"], "classification": row["hrs_tag"],
         }
+        presentation = {}
+        if route in current:
+            presentation["hansard_proceedings"] = hansard_proceedings(part, row["part"], row)
+        if row["url"] in summaries:
+            presentation["hansard_summary"] = {"text": summaries[row["url"]], "source": row["url"]}
         graph.node(route, "Contribution", title, date=row["day"], section=row["scope"], url=row["url"],
                    body=body, description=f"{part['title']} · {row['house']}", details=details,
-                   learning_facets=facets)
+                   learning_facets=facets, **presentation)
         graph.edge(route, "partOf", row["part"], row["capture"], row["url"],
                    row["pointer"] + ("/ExternalId" if row["external_id"] else "/ItemId"),
                    row["external_id"] or row["source_item_id"])

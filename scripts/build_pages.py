@@ -7,10 +7,11 @@ from html import escape
 import json
 from pathlib import Path
 import re
-from urllib.parse import urlencode, urlparse
+from urllib.parse import quote, urlencode, urlparse
 
 from capture import sha
 from build import PAGES_BLOB_LIMIT
+from build_explorer_graph import build as build_explorer_graph, dataset_route
 from demo import write_demo
 from query import DEFAULT_DB
 
@@ -81,7 +82,7 @@ def voice_note(sample):
     return "\n".join(rows)
 
 
-def index_page(coverage, semantic_file):
+def index_page(coverage, semantic_file, graph_anchor):
     by_day = coverage["week_contributions_by_day"]
     days = sorted(by_day)
     dates = (fmt_date(days[0]) if len(days) == 1
@@ -91,6 +92,8 @@ def index_page(coverage, semantic_file):
     facets = coverage["pilot_graph"]["visible_facet_declarations"]
     oldest = fmt_date(coverage["archive"]["ranges"]["Commons"]["from"])
     query = urlencode({"bundle": SITE + "okf-bundle.json"})
+    graph_query = urlencode({"bundle": SITE + "graph/okf-explorer.json", "view": "graph"})
+    focused_graph = READER + "?" + graph_query + "#" + quote(dataset_route(graph_anchor))
     return f"""<!doctype html>
 <html lang="en-GB">
 <head>
@@ -113,6 +116,7 @@ def index_page(coverage, semantic_file):
 <h2>Microsoft 365 outage</h2>
 <p>Start with Ian Murray’s Commons statement and follow the named organisations and 19 earlier mentions back to Hansard.</p>
 <ul>
+<li><a href="{escape(focused_graph, quote=True)}">Open the focused graph in Explorer</a></li>
 <li><a href="voice-microsoft-365.html">Open the companion view</a></li>
 <li><a href="voice-microsoft-365.md">Read the evidence in plain text</a></li>
 <li><a href="voice-microsoft-365.json">Get the evidence as JSON</a></li>
@@ -211,7 +215,8 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
         "licence": {"url": LICENCE, "attribution": ATTRIBUTION},
     }
     (destination / "coverage.json").write_text(json.dumps(public_coverage, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-    (destination / "index.html").write_text(index_page(public_coverage, semantic_file), encoding="utf-8")
+    build_explorer_graph(release, destination / "graph")
+    (destination / "index.html").write_text(index_page(public_coverage, semantic_file, sample["anchor"]["id"]), encoding="utf-8")
     for name, title in GUIDES.items():
         (destination / name).write_text(guide_page(name, title), encoding="utf-8")
     for name in DEMO_ASSETS:
@@ -220,13 +225,14 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
     (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
     (destination / ".nojekyll").touch()
     manifest = {}
-    for file in sorted(destination.iterdir()):
+    for file in sorted(path for path in destination.rglob("*") if path.is_file()):
+        relative = file.relative_to(destination).as_posix()
         raw = file.read_bytes()
         if LOCAL_TEXT.search(raw):
-            raise ValueError(f"Local address or path in staged asset {file.name}")
+            raise ValueError(f"Local address or path in staged asset {relative}")
         if len(raw) >= PAGES_BLOB_LIMIT:
-            raise ValueError(f"Asset exceeds the GitHub blob limit: {file.name}")
-        manifest[file.name] = {"sha256": sha(raw), "bytes": len(raw)}
+            raise ValueError(f"Asset exceeds the GitHub blob limit: {relative}")
+        manifest[relative] = {"sha256": sha(raw), "bytes": len(raw)}
     (destination / "checksums.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(f"Staged {len(manifest)} public assets and a checksum catalogue.")
 
