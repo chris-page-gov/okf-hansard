@@ -173,6 +173,28 @@
           "relation": "Shared mention",
           "url": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000185"
         }
+      ],
+      "biographies": {
+        "Ian Murray": "https://members.parliament.uk/member/3966/career",
+        "Baroness Lloyd of Effra": "https://members.parliament.uk/member/5414/career"
+      },
+      "links": [
+        {
+          "title": "Digital sovereignty (Commons Library)",
+          "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10547/"
+        },
+        {
+          "title": "Cyber Security and Resilience Bill (Commons Library)",
+          "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10442/"
+        },
+        {
+          "title": "Ian Murray on TheyWorkForYou",
+          "url": "https://www.theyworkforyou.com/mp/24872/ian_murray/edinburgh_south"
+        },
+        {
+          "title": "Baroness Lloyd of Effra on TheyWorkForYou",
+          "url": "https://www.theyworkforyou.com/peer/26695/baroness_lloyd_of_effra"
+        }
       ]
     },
     {
@@ -245,6 +267,19 @@
           "relation": "Explicit reference",
           "url": "https://hansard.parliament.uk/Commons/2026-04-16/debates/2FDCA71C-D0C1-4738-BEE8-A4BDA311DB99/NHSFederatedDataPlatform"
         }
+      ],
+      "biographies": {
+        "Martin Wrigley": "https://members.parliament.uk/member/5111/career"
+      },
+      "links": [
+        {
+          "title": "NHS Federated Data Platform (Commons Library)",
+          "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-12264/"
+        },
+        {
+          "title": "Martin Wrigley on TheyWorkForYou",
+          "url": "https://www.theyworkforyou.com/mp/26484/martin_wrigley/newton_abbot"
+        }
       ]
     },
     {
@@ -267,6 +302,22 @@
         {
           "title": "Official Bill stages",
           "url": "https://bills.parliament.uk/bills/4030/stages"
+        },
+        {
+          "title": "Railways Bill progress (Commons Library)",
+          "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10538/"
+        },
+        {
+          "title": "Railways Bill (Lords Library)",
+          "url": "https://lordslibrary.parliament.uk/research-briefings/lln-2026-0031/"
+        },
+        {
+          "title": "Heidi Alexander on TheyWorkForYou",
+          "url": "https://www.theyworkforyou.com/mp/24953/heidi_alexander/swindon_south"
+        },
+        {
+          "title": "Lord Hendy of Richmond Hill on TheyWorkForYou",
+          "url": "https://www.theyworkforyou.com/peer/26114/lord_hendy_of_richmond_hill"
         }
       ],
       "rows": [
@@ -284,7 +335,11 @@
           "relation": "Formal Bill stage",
           "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill"
         }
-      ]
+      ],
+      "biographies": {
+        "Heidi Alexander": "https://members.parliament.uk/member/4038/career",
+        "Lord Hendy of Richmond Hill": "https://members.parliament.uk/member/4972/career"
+      }
     }
   ]
 }

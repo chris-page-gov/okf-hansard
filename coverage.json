@@ -51,8 +51,8 @@
     "exceptions": {}
   },
   "coverage_statement": "Observed published API sittings. Historical matches use a fixed alias profile and scoped spoken-search supplements.",
-  "observed_at": "2026-11-18T16:32:11+00:00",
-  "source_commit": "008334e01a36340013b70017b1181d9600e8ef21",
+  "observed_at": "2026-11-18T16:44:09+00:00",
+  "source_commit": "e62697a79d15cd2abcb24df62eb660211f4b6599",
   "licence": {
     "url": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
     "attribution": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
