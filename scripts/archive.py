@@ -92,7 +92,11 @@ class Collector:
             self.next_request = time.monotonic() + self.minimum_interval
             self.telemetry["requests"] += 1
             try:
-                with urlopen(request, timeout=10) as response:
+                # Some historical Written Answers trees are assembled slowly.
+                # Give those roots time without reducing the remaining deadline.
+                written_root = Path(relative).name.startswith("Writtens-") and "/debates/debate/" in url
+                remaining = max(0.05, (self.deadline - datetime.now(UTC)).total_seconds())
+                with urlopen(request, timeout=min(35 if written_root else 10, remaining)) as response:
                     target = urlparse(response.url)
                     if target.scheme != "https" or target.hostname != HANDLED_HOST:
                         raise ValueError(f"Unexpected redirect for {url}")
@@ -168,7 +172,7 @@ def collect_sitting(db, collector, matcher, day, house):
     entry = capture_day(None, day, house, retrieve=transient)
     records = {}
     metrics = {}
-    if not entry["errors"] and entry["roots"]:
+    if entry["roots"]:
         try:
             _, records, _, observed = read_sittings(
                 None, {"sittings": [entry]}, "9999-01-01", "9999-01-01",
@@ -199,8 +203,12 @@ def collect_sitting(db, collector, matcher, day, house):
     with db:
         db.execute("INSERT OR REPLACE INTO sitting VALUES (?,?,?,?,?,?,?)",
                    (day, house, status, attempts, len(records), len(bundles), brief(entry)))
-        # An errored day has no committed contributions. Successful days are immutable
-        # within an index revision, so a resume cannot create duplicates.
+        # Preserve successful sections of a partially available sitting. Any
+        # repeat capture atomically replaces that sitting's postings.
+        if previous:
+            db.execute("""DELETE FROM mention WHERE route IN (
+                SELECT route FROM contribution WHERE day=? AND house=?)""", (day, house))
+            db.execute("DELETE FROM contribution WHERE day=? AND house=?", (day, house))
         db.executemany("INSERT INTO contribution VALUES (?,?,?,?,?,?)", bundles)
         db.executemany("INSERT INTO mention VALUES (?,?,?,?)", mentions)
     collector.telemetry["sittings_checked"] += 1
@@ -211,7 +219,8 @@ def collect_sitting(db, collector, matcher, day, house):
 def progress(db, collector, before, start_time, state, month=None):
     statuses = dict(db.execute("SELECT status,count(*) FROM sitting GROUP BY status"))
     earliest, latest, passages, retained = db.execute("""
-        SELECT min(day),max(day),sum(passages),sum(retained) FROM sitting WHERE status='processed'
+        SELECT min(day),max(day),sum(passages),sum(retained) FROM sitting
+        WHERE status='processed' OR retained>0
     """).fetchone()
     counts = db.execute("SELECT count(*),count(DISTINCT entity) FROM mention").fetchone()
     gaps = [
@@ -253,6 +262,7 @@ def run(db, collector, matcher, before, floor, report):
         while month >= floor.replace(day=1):
             collector.check()
             current_month = month
+            checks_at_start = collector.telemetry["sittings_checked"]
             scheduled = []
             for house in HOUSES:
                 try:
@@ -270,9 +280,10 @@ def run(db, collector, matcher, before, floor, report):
             for day, house in gaps:
                 collector.check()
                 collect_sitting(db, collector, matcher, day, house)
-            p = checkpoint("running")
-            print(f"{p['current_month']} • {p['matched_contributions']} matched contributions • "
-                  f"{p['mentions']} mention links • {len(p['observed_gaps'])} unresolved sitting gaps", flush=True)
+            if collector.telemetry["sittings_checked"] > checks_at_start:
+                p = checkpoint("running")
+                print(f"{p['current_month']} • {p['matched_contributions']} matched contributions • "
+                      f"{p['mentions']} mention links • {len(p['observed_gaps'])} unresolved sitting gaps", flush=True)
             month = previous_month(month)
     except StopRun:
         state = "paused" if collector.pause_path.exists() or collector.asked_to_stop else "deadline reached"
