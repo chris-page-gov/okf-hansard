@@ -121,6 +121,23 @@
             "example": [
               "Microsoft 365 outage"
             ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/lords-2026-11-17-debate-3203e15d-a3ff-40f4-b48c-568bc40bd24f.md",
+            "section_title": "Cyber Security: Public Sector Dependence on Technology Providers",
+            "sitting_date": "2026-11-17",
+            "house": "Lords",
+            "source_item": 16,
+            "speaker": "Baroness Lloyd of Effra (Lab)",
+            "markers": [
+              {
+                "value": "2026-11-17T15:03:00",
+                "source_item": 2,
+                "source_field": "/ChildDebates/5/Items/1/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/1636c0c2-c490-4120-be14-f50f55b718e0.json"
           }
         },
         "source/fce3d9db0f07e254aefbd87f.md": {
@@ -145,6 +162,28 @@
             "example": [
               "Microsoft 365 outage"
             ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/commons-2026-11-16-debate-52fedf8f-7f19-47a6-9fb7-1930054c9061.md",
+            "section_title": "Microsoft 365 Outage",
+            "sitting_date": "2026-11-16",
+            "house": "Commons",
+            "source_item": 3,
+            "speaker": "The Minister for Creative Industries, Media and Online Safety (Ian Murray)",
+            "markers": [
+              {
+                "value": "2026-11-16T16:21:00",
+                "source_item": 2,
+                "source_field": "/ChildDebates/3/Items/1/Value"
+              },
+              {
+                "value": "2026-11-16T16:27:00",
+                "source_item": 5,
+                "source_field": "/ChildDebates/3/Items/4/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json"
           }
         },
         "source/2430bfa8a61e273c52fcf789.md": {
@@ -625,6 +664,40 @@
             "example": [
               "Palantir and the NHS"
             ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/commons-2026-11-17-debate-d1ea4bf2-2796-48dd-a144-b9675e614f2a.md",
+            "section_title": "NHS Federated Data Platform: Palantir",
+            "sitting_date": "2026-11-17",
+            "house": "Commons",
+            "source_item": 4,
+            "speaker": "Martin Wrigley (Newton Abbot) (LD)",
+            "contribution_time": "2026-11-17T19:15:00",
+            "source_field": "/ChildDebates/8/Items/3/Timecode",
+            "source_api": "https://hansard-api.parliament.uk/debates/debate/20947d00-bc04-4734-945a-1a20ac8bf487.json",
+            "markers": [
+              {
+                "value": "2026-11-17T19:14:00",
+                "source_item": 3,
+                "source_field": "/ChildDebates/8/Items/2/Value"
+              },
+              {
+                "value": "2026-11-17T19:29:00",
+                "source_item": 23,
+                "source_field": "/ChildDebates/8/Items/22/Value"
+              },
+              {
+                "value": "2026-11-17T19:41:00",
+                "source_item": 34,
+                "source_field": "/ChildDebates/8/Items/33/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/20947d00-bc04-4734-945a-1a20ac8bf487.json"
+          },
+          "hansard_summary": {
+            "text": "Wrigley asked for an independent audit of how widely the NHS uses the Federated Data Platform, how much it relies on it and what it would take to move away from it. He questioned whether the current contract helps the UK build its own capability.",
+            "source": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896"
           }
         },
         "source/1c618456b8c3e57b577e82a9.md": {
@@ -649,6 +722,31 @@
             "example": [
               "Palantir and the NHS"
             ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/commons-2026-11-16-debate-fbaaf525-ab23-4118-9750-2bc93ff9b428.md",
+            "section_title": "Health and Care: Digital Capability",
+            "sitting_date": "2026-11-16",
+            "house": "Commons",
+            "source_item": 39,
+            "speaker": "Gareth Snell (Stoke-on-Trent Central) (Lab/Co-op)",
+            "contribution_time": "2026-11-16T17:52:08",
+            "source_field": "/ChildDebates/4/Items/38/Timecode",
+            "source_api": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+            "markers": [
+              {
+                "value": "2026-11-16T17:08:00",
+                "source_item": 2,
+                "source_field": "/ChildDebates/4/Items/1/Value"
+              },
+              {
+                "value": "2026-11-16T17:18:00",
+                "source_item": 5,
+                "source_field": "/ChildDebates/4/Items/4/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json"
           }
         },
         "source/068309e208e7d9f781c8bbad.md": {
@@ -673,6 +771,28 @@
             "example": [
               "Palantir and the NHS"
             ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/commons-2026-11-16-debate-fbaaf525-ab23-4118-9750-2bc93ff9b428.md",
+            "section_title": "Health and Care: Digital Capability",
+            "sitting_date": "2026-11-16",
+            "house": "Commons",
+            "source_item": 26,
+            "speaker": "Mr Frith",
+            "markers": [
+              {
+                "value": "2026-11-16T17:08:00",
+                "source_item": 2,
+                "source_field": "/ChildDebates/4/Items/1/Value"
+              },
+              {
+                "value": "2026-11-16T17:18:00",
+                "source_item": 5,
+                "source_field": "/ChildDebates/4/Items/4/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json"
           }
         },
         "source/bac4873d9749e9e1847b031d.md": {
@@ -697,6 +817,28 @@
             "example": [
               "Palantir and the NHS"
             ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/commons-2026-11-16-debate-fbaaf525-ab23-4118-9750-2bc93ff9b428.md",
+            "section_title": "Health and Care: Digital Capability",
+            "sitting_date": "2026-11-16",
+            "house": "Commons",
+            "source_item": 21,
+            "speaker": "Dame Chi Onwurah (Newcastle upon Tyne Central and West) (Lab)",
+            "markers": [
+              {
+                "value": "2026-11-16T17:08:00",
+                "source_item": 2,
+                "source_field": "/ChildDebates/4/Items/1/Value"
+              },
+              {
+                "value": "2026-11-16T17:18:00",
+                "source_item": 5,
+                "source_field": "/ChildDebates/4/Items/4/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json"
           }
         },
         "source/dda13488020619d1246db2ca.md": {

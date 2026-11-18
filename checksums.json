@@ -8,7 +8,7 @@
     "bytes": 3154
   },
   "coverage.json": {
-    "sha256": "481f6f5503c6858c1ce0b079ac92bfae30de7c7365d68fe10aca6ec0e20d309b",
+    "sha256": "a898c02100cad3a8e1cafdb3e651d22c1d751edde6401bf1fd156c1324e9d7fe",
     "bytes": 1895
   },
   "demo-evidence.md": {
@@ -16,8 +16,8 @@
     "bytes": 9626
   },
   "demo-timeline.json": {
-    "sha256": "49eb4a64b770cbbe8a7145af81c4d453581d1a97cf5d81ccda4b60c7ccd8bc48",
-    "bytes": 41395
+    "sha256": "a97dc96ecc91fbba39b5e96f8e20d4c919ef1ae67dbecfca8c7b3d0c92f85780",
+    "bytes": 48210
   },
   "demo.html": {
     "sha256": "26c1de9b27088a556536089fe22d0d1ae7098fd088d5f5dccea629d7c59f67a5",
