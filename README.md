@@ -6,6 +6,8 @@ An experimental OKF+ bundle of Westminster Hansard for 16 and 17 November 2026, 
 
 Start at [A week in Parliament](https://chris-page-gov.github.io/okf-hansard/) for the Explorer import, YAML-LD graph and Microsoft 365 companion view. The [plain-text evidence](https://chris-page-gov.github.io/okf-hansard/voice-microsoft-365.md) is a compact input for a chat or voice conversation with web access.
 
+Use the [beginner’s guide](https://chris-page-gov.github.io/okf-hansard/beginners.html) to follow a contribution and check its source. The [methodology and prompts](https://chris-page-gov.github.io/okf-hansard/methodology.html) explain the collection, matching rules and Foundry templates.
+
 The public snapshot contains derived records, source links and a worked history example. The rolling archive database and raw captures are local inputs.
 
 ## Open a local build
@@ -78,5 +80,7 @@ Run the staging command from the repository root against a verified local releas
 The Pages site publishes the root of the generated gh-pages branch. The build stages a fixed set of assets, validates the bundle digests and writes a public checksum catalogue. Compare the served files with the catalogue after deployment.
 
 ## Source attribution
+
+Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning. The build log records the model and reasoning effort. The project owner set the scope and authorised publication.
 
 Contains Parliamentary information licensed under the Open Parliament Licence v3.0 where applicable. Follow the official record for the words and context. The graph’s matches are experimental and carry their own provenance. [Licence and exclusions](https://www.parliament.uk/site-information/copyright/open-parliament-licence/)

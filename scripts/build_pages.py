@@ -16,6 +16,11 @@ READER = "https://chris-page-gov.github.io/okf-explorer/explore/"
 SOURCE = "https://github.com/chris-page-gov/okf-hansard"
 LICENCE = "https://www.parliament.uk/site-information/copyright/open-parliament-licence/"
 ATTRIBUTION = "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
+BUILD_CREDIT = "Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning."
+GUIDES = {
+    "beginners.html": "Beginner’s guide",
+    "methodology.html": "Methodology and prompts",
+}
 PUBLIC_FILES = (
     "okf-bundle.json",
     "okf-bundle.yamlld",
@@ -85,30 +90,15 @@ def index_page(coverage):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A source-linked Hansard OKF+ pilot covering both Houses on 16 and 17 November 2026.">
 <title>A week in Parliament | Hansard OKF+</title>
-<style>
-  :root {{color-scheme:light;background:#f5f6f2;color:#202722;font:1rem/1.55 system-ui,sans-serif}}
-  body {{margin:0;border-top:6px solid #255a42}}
-  main {{max-width:66rem;margin:auto;padding:clamp(1rem,5vw,4rem)}}
-  h1 {{font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.02;letter-spacing:-.045em;margin:.35rem 0 1rem}}
-  h2 {{margin:0 0 .5rem;font-size:1.45rem;line-height:1.2}}
-  p {{max-width:68ch}}
-  .date {{font-weight:650;color:#3b5748;margin:0}}
-  .intro {{font-size:clamp(1.06rem,2.4vw,1.25rem)}}
-  a {{color:#174d3c;text-underline-offset:.17em}}
-  .primary {{display:inline-block;background:#174d3c;color:white;border-radius:.3rem;padding:.65rem 1rem;font-weight:650;text-decoration:none}}
-  :focus-visible {{outline:3px solid #8a5800;outline-offset:3px}}
-  .grid {{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem;margin:2rem 0}}
-  .grid section {{border:1px solid #c4d0c7;border-radius:.55rem;background:white;padding:1.15rem}}
-  .grid ul {{padding-left:1.25rem;margin-bottom:0}}
-  footer {{border-top:1px solid #bdcbc1;padding:1rem 0;color:#41554a}}
-</style>
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <main>
 <p class="date">House of Commons and House of Lords · 16 and 17 November 2026</p>
 <h1>A week in Parliament</h1>
 <p class="intro">Follow a Hansard contribution through related people, offices, organisations, places and legislation. This experimental OKF+ bundle contains {total:,} passages and {assertions:,} source-linked relationships.</p>
-<p><a class="primary" href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a></p>
+<p class="actions"><a class="primary" href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a>
+<a href="beginners.html">Beginner’s guide</a></p>
 <div class="grid">
 <section>
 <h2>Microsoft 365 outage</h2>
@@ -134,13 +124,40 @@ def index_page(coverage):
 <p>The local index reaches {oldest}. The site includes a week snapshot, coverage results and a worked example from the wider index.</p>
 <ul>
 <li><a href="coverage.json">Coverage and verification</a></li>
+<li><a href="methodology.html">Methodology and prompts</a></li>
 <li><a href="{SOURCE}">Source repository and research notes</a></li>
 </ul>
 </section>
 </div>
 <footer>
+<p>{BUILD_CREDIT}</p>
 <p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>
 <p>This independent pilot links to the official record. Earlier matches use a fixed vocabulary of names and aliases.</p>
+</footer>
+</main>
+</body>
+</html>
+"""
+
+
+def guide_page(name, title):
+    content = (ROOT / "docs" / "pages" / name).read_text(encoding="utf-8")
+    return f"""<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{escape(title)} | A week in Parliament</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="guide">
+<nav aria-label="Project"><a href="./">A week in Parliament</a></nav>
+<h1>{escape(title)}</h1>
+{content}
+<footer>
+<p>{BUILD_CREDIT}</p>
+<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>
 </footer>
 </main>
 </body>
@@ -181,6 +198,9 @@ def stage(release, coverage_path, destination):
     }
     (destination / "coverage.json").write_text(json.dumps(public_coverage, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     (destination / "index.html").write_text(index_page(public_coverage), encoding="utf-8")
+    for name, title in GUIDES.items():
+        (destination / name).write_text(guide_page(name, title), encoding="utf-8")
+    (destination / "site.css").write_bytes((ROOT / "docs" / "pages" / "site.css").read_bytes())
     (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
     (destination / ".nojekyll").touch()
     manifest = {}
