@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 from archive import Collector, StopRun, open_database
-from model import Entity, Matcher, plain
+from model import Entity, Matcher, plain, read_sittings
 from people import active_on
 from query import Index, view_for
 from render_view import render
@@ -31,6 +31,21 @@ class ModelTests(unittest.TestCase):
         self.assertEqual([], list(matcher.find("I visited Chorley.")))
         hit, = list(matcher.find("The Member for Chorley spoke."))
         self.assertEqual("seat", hit[0])
+
+    def test_repeated_public_section_ids_preserve_distinct_sections(self):
+        def section(number, key, title):
+            return {"Overview": {"Id": number, "ExtId": key, "Title": title}, "Items": [], "ChildDebates": []}
+
+        first = section(1, "shared", "A distinct sitting section")
+        second = section(2, "shared", "Another sitting section")
+        root = section(3, "root", "Chamber")
+        root["ChildDebates"] = [first, second, first]
+        entry = {"date": "2026-11-17", "house": "Commons", "roots": [{"section": "Debate"}]}
+        parts, _, _, metrics = read_sittings(None, {"sittings": [entry]}, "2026-11-16", "2026-11-17",
+                                               loader=lambda _root, _source: root)
+        self.assertEqual(3, len(parts))
+        self.assertEqual(1, metrics[entry["date"], entry["house"]]["shared_section_public_ids"])
+        self.assertEqual(1, metrics[entry["date"], entry["house"]]["repeated_section_copies"])
 
     def test_closed_appointment_dates(self):
         self.assertTrue(active_on("2026-07-20", None, "2026-11-17"))

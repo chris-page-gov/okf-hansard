@@ -254,6 +254,7 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
     """Read all source roots once and bind every retained atom to a JSON pointer."""
     parts, records, divisions = {}, {}, {}
     metrics = defaultdict(lambda: defaultdict(int))
+    versions = defaultdict(list)
 
     def visit(day, house, section, reference, tree, pointer, parent):
         overview = tree["Overview"]
@@ -261,9 +262,22 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
         key = f"{house.lower()}-{day}-{section.lower()}-{ext_id.lower()}"
         title = plain(overview["Title"])
         url = debate_url(house, day, ext_id, title)
+        prior = versions[key]
+        if prior:
+            # Historical exports sometimes repeat a section or reuse its public
+            # external ID for distinct adjacent sections. Check the payload,
+            # then retain genuine variants under their source numeric IDs.
+            if any(title == previous_title and tree["Items"] == previous["Items"]
+                   and tree["ChildDebates"] == previous["ChildDebates"] for previous_title, previous in prior):
+                metrics[(day, house)]["repeated_section_copies"] += 1
+                return
+            origin = overview.get("Id") or sha(pointer.encode())[:16]
+            key = f"{key}-section-{origin}"
+            metrics[(day, house)]["shared_section_public_ids"] += 1
+        prior.append((title, tree))
         route = f"debate/{key}.md"
         if route in parts:
-            raise ValueError(f"Discussion appears twice in capture: {route}")
+            raise ValueError(f"Distinct discussions have the same public and numeric identifiers: {route}")
         parts[route] = {"title": title, "house": house, "day": day, "section": section,
                         "parent": parent, "capture": reference, "pointer": pointer, "url": url,
                         "ext_id": ext_id, "raw_title": overview["Title"], "volume": overview.get("VolumeNo"),
