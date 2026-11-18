@@ -26,9 +26,15 @@ function showFacets(example) {
   const groups = Object.entries(example.facets).filter(([group, entries]) =>
     entries.length && (!facets.value || group === facets.value)
   );
-  byId("facets").replaceChildren(...groups.flatMap(([group, entries]) => [
-    make("dt", group), make("dd", entries.join(", ")),
-  ]));
+  byId("facets").replaceChildren(...groups.flatMap(([group, entries]) => {
+    const values = make("dd", "");
+    for (const [index, name] of entries.entries()) {
+      if (index) values.append(", ");
+      const biography = group === "People" ? example.biographies?.[name] : null;
+      values.append(biography ? link(name, biography) : name);
+    }
+    return [make("dt", group), values];
+  }));
 }
 
 function showTimeline(example) {
@@ -73,7 +79,11 @@ function render(data) {
     `Verified sittings from ${formatDate(days[0])} to ${formatDate(days.at(-1))} · ${total.toLocaleString("en-GB")} passages`;
   byId("example-title").textContent = example.title;
   byId("example-summary").textContent = example.summary;
-  byId("example-sources").replaceChildren(...(example.links ?? []).map((source) => link(source.title, source.url)));
+  byId("example-sources").replaceChildren(...(example.links ?? []).map((source) => {
+    const item = make("li", "");
+    item.append(link(source.title, source.url));
+    return item;
+  }));
   setOptions(facets, Object.keys(example.facets).filter((group) => example.facets[group].length), "All facets", params.get("facet"));
   for (const select of filters) {
     const values = [...new Set(example.rows.map((row) => row[select.id]))];

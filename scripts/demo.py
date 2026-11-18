@@ -17,6 +17,27 @@ FACETS = {
     "organisations": "Organisations", "things": "Things and programmes",
     "legislation": "Legislation", "subjects": "Policy subjects",
 }
+PEOPLE = {
+    "Ian Murray": (3966, "https://www.theyworkforyou.com/mp/24872/ian_murray/edinburgh_south"),
+    "Baroness Lloyd of Effra": (5414, "https://www.theyworkforyou.com/peer/26695/baroness_lloyd_of_effra"),
+    "Martin Wrigley": (5111, "https://www.theyworkforyou.com/mp/26484/martin_wrigley/newton_abbot"),
+    "Heidi Alexander": (4038, "https://www.theyworkforyou.com/mp/24953/heidi_alexander/swindon_south"),
+    "Lord Hendy of Richmond Hill": (4972, "https://www.theyworkforyou.com/peer/26114/lord_hendy_of_richmond_hill"),
+}
+READING = {
+    "microsoft-365": (
+        ("Digital sovereignty (Commons Library)", "https://commonslibrary.parliament.uk/research-briefings/cbp-10547/"),
+        ("Cyber Security and Resilience Bill (Commons Library)", "https://commonslibrary.parliament.uk/research-briefings/cbp-10442/"),
+    ),
+    "palantir-nhs": (
+        ("NHS Federated Data Platform (Commons Library)", "https://commonslibrary.parliament.uk/research-briefings/cbp-12264/"),
+    ),
+    "railways-bill": (
+        ("Official Bill stages", BILL_STAGES),
+        ("Railways Bill progress (Commons Library)", "https://commonslibrary.parliament.uk/research-briefings/cbp-10538/"),
+        ("Railways Bill (Lords Library)", "https://lordslibrary.parliament.uk/research-briefings/lln-2026-0031/"),
+    ),
+}
 
 
 def record(day, house, title, relation, url):
@@ -121,9 +142,18 @@ def railways(engine, new_days):
         "summary": "Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifier leads to the official Bill record and the associated Hansard proceedings.",
         "facets": {"People": ["Heidi Alexander", "Lord Hendy of Richmond Hill"],
                    "Organisations": ["Department for Transport"], "Legislation": ["Railways Bill"]},
-        "links": [{"title": "Official Bill stages", "url": BILL_STAGES}],
         "rows": rows,
     }
+
+
+def add_reference_links(example):
+    people = example["facets"]["People"]
+    example["biographies"] = {
+        name: f"https://members.parliament.uk/member/{PEOPLE[name][0]}/career" for name in people
+    }
+    example["links"] = [
+        {"title": title, "url": url} for title, url in READING[example["id"]]
+    ] + [{"title": f"{name} on TheyWorkForYou", "url": PEOPLE[name][1]} for name in people]
 
 
 def write_timeline(destination, examples, counts):
@@ -182,6 +212,7 @@ def write_demo(release, destination, coverage, database=DEFAULT_DB, baseline=Non
         stories["railways-bill"]["rows"].extend(row for row in railways(engine, new_days)["rows"]
                                                  if row["date"] in new_days)
     for example in examples:
+        add_reference_links(example)
         example["rows"].sort(key=lambda r: (r["date"], r["house"], r["title"]), reverse=True)
     dump(destination / "demo.json", {"schema": "hansard-demo.v1", "sittings": counts, "examples": examples})
     write_timeline(destination, examples, counts)
@@ -191,6 +222,8 @@ def write_demo(release, destination, coverage, database=DEFAULT_DB, baseline=Non
         lines.extend(["## " + example["title"], "", example["summary"], ""])
         for group, labels in example["facets"].items():
             if labels:
+                if group == "People":
+                    labels = [f"[{name}]({example['biographies'][name]})" for name in labels]
                 lines.append(f"- {group} — {', '.join(labels)}")
         lines.append("")
         for row in example["rows"]:
