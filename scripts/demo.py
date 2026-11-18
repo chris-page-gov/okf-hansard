@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from urllib.parse import urlsplit
 
-from capture import dump
+from capture import dump, sha
 from query import DEFAULT_DB, Index
 
 PALANTIR = "/D1EA4BF2-2796-48DD-A144-B9675E614F2A/"
@@ -126,6 +126,45 @@ def railways(engine, new_days):
     }
 
 
+def write_timeline(destination, examples, counts):
+    title = "A week in Parliament · Demonstration timeline"
+    nodes = {"index.md": {"id": "index.md", "title": title, "type": "Index",
+                          "body": "Choose a sitting date or House, then open a record and follow its Hansard link."}}
+    groups = []
+    for label, rows in [
+        *[(example["title"], example["rows"]) for example in examples],
+        ("Verified sittings", [record(day, house, f"{house} sitting", "Sitting record",
+                                     f"https://hansard.parliament.uk/{house}/{day}")
+                               for day in sorted(counts) for house in ("Commons", "Lords")]),
+    ]:
+        routes = []
+        for row in rows:
+            route = "source/" + sha(row["url"].encode())[:24] + ".md"
+            if route not in nodes:
+                nodes[route] = {
+                    "id": route, "title": row["title"], "type": row["relation"],
+                    "section": "Demonstration evidence", "timestamp": row["date"],
+                    "url": row["url"], "resource": row["url"],
+                    "body": f"{row['house']} · {row['relation']}\n\n[Read in Hansard]({row['url']})",
+                    "learning_facets": {"sitting": [row["date"]], "chamber": [row["house"]],
+                                        "connection": [row["relation"]], "example": []},
+                }
+            node = nodes[route]["learning_facets"]
+            if label not in node["example"]:
+                node["example"].append(label)
+            routes.append(route)
+        groups.append({"title": label, "routes": list(dict.fromkeys(routes))})
+    facets = {"sitting": "Sitting date", "chamber": "House", "connection": "Connection", "example": "Example"}
+    meta = {"title": title, "default_corpus": "hansard", "corpus_order": ["hansard"],
+            "learning_presentation": {"schema": "okf-learning-presentation.v1", "start_route": "index.md",
+                                      "groups": groups, "facets": [{"key": k, "label": v} for k, v in facets.items()]}}
+    dump(destination / "demo-timeline.json", {
+        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": "0.2", "meta": meta,
+        "corpora": {"hansard": {"id": "hansard", "title": title, "root": "index.md",
+                               "assertion_scope": "real-world", "nodes": nodes, "relationships": []}},
+    })
+
+
 def write_demo(release, destination, coverage, database=DEFAULT_DB):
     counts = coverage["week_contributions_by_day"]
     new_days = [day for day in counts if day > "2026-11-17"]
@@ -134,6 +173,7 @@ def write_demo(release, destination, coverage, database=DEFAULT_DB):
     for example in examples:
         example["rows"].sort(key=lambda r: (r["date"], r["house"], r["title"]), reverse=True)
     dump(destination / "demo.json", {"schema": "hansard-demo.v1", "sittings": counts, "examples": examples})
+    write_timeline(destination, examples, counts)
     lines = ["# A week in Parliament demonstration evidence", "",
              "This file contains links and selected matches from the verified release. A shared mention is a name or alias match.", ""]
     for example in examples:

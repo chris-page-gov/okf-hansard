@@ -81,6 +81,8 @@ The Pages site publishes the root of the generated gh-pages branch. The build st
 
 Use `scripts/prepare_demo_week.py --through YYYY-MM-DD --out .work/NEW-BUILD` to prepare an extended release against the local historical index. It reuses the cached sittings and Member biographies, checks both Houses and stages Pages only after verifying the full graph. Explorer uses recorded sitting dates as day-precision timestamps. When its JSON projection needs to be smaller, the week stays complete and earlier contributions are sampled. The full semantic graph is available as YAML-LD or as a gzip download.
 
+The demonstration companion links to an Explorer Timeline containing the three worked examples and links for each verified sitting. Open the full Explorer bundle from the homepage to browse all the week’s records.
+
 ## Source attribution
 
 Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning. The build log records the model and reasoning effort. The project owner set the scope and authorised publication.
