@@ -21,6 +21,8 @@ from people import POST_SERIES, office_evidence
 OKF = "https://chris-page-gov.github.io/okf-explorer/ns#"
 RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 TITLE = "A week in Parliament"
+EXPLORER_BYTE_LIMIT = 64 * 1024 * 1024
+PAGES_BLOB_LIMIT = 100 * 1024 * 1024
 FACETS = {
     "sitting": "Sitting date",
     "chamber": "House",
@@ -161,11 +163,26 @@ def meta_for(first, last, dates, roots):
     }
 
 
-def runtime(graph, meta, finished, week_start):
+def runtime(graph, meta, finished, week_start, bounded_history=False):
+    examples = set()
+    if bounded_history:
+        by_entity = defaultdict(list)
+        for edge in graph.edges:
+            source = edge["source_route"]
+            node = graph.records[source]
+            if node.get("section") == "Earlier record" and edge["kind"] == PREDICATES["mentions"][0]:
+                by_entity[edge["target_route"]].append((node["date"], source))
+        examples = {route for matches in by_entity.values() for _, route in sorted(matches, reverse=True)[:2]}
+        meta = {**meta, "history_projection": "Up to two recent matched contributions per entity. The YAML-LD graph retains all verified relationships."}
     records = {}
     for route, record in graph.records.items():
+        if bounded_history and record.get("section") == "Earlier record" and route not in examples:
+            continue
         fields = {key: value for key, value in record.items()
                   if not key.startswith(("hansard:", "@", "details"))}
+        if record.get("date"):
+            # Explorer recognises the source record timestamp at day precision.
+            fields["timestamp"] = record["date"]
         if record.get("url"):
             fields["resource"] = record["url"]
         if record.get("section") == "Earlier record":
@@ -175,12 +192,14 @@ def runtime(graph, meta, finished, week_start):
                           "status": "draft", "trust_tier": "working"}
     relationships = []
     for edge in graph.edges:
+        if edge["source_route"] not in records or edge["target_route"] not in records:
+            continue
         earlier = graph.records[edge["source_route"]].get("date", week_start) < week_start
         omitted = {"source_artifact"}
         if earlier:
             omitted.update({"spans", "normalised_value_sha256", "normalization", "rationale",
                             "source_sha256", "source_value_hash_canonicalization"})
-        relationships.append({
+        relationship = {
             "id": edge["@id"], "source": edge["source_route"], "target": edge["target_route"],
             "predicate": edge["predicate"]["@id"], "kind": edge["kind"], "label": edge["label"],
             "inverse_label": edge["inverse_label"], "assertion_status": edge["assertion_status"],
@@ -188,7 +207,14 @@ def runtime(graph, meta, finished, week_start):
             "derivation": edge["derivation"], "authority": edge["authority"],
             "evidence": [{k: v for k, v in item.items() if k not in omitted}
                          for item in edge["evidence"]], "rights": edge["rights"],
-        })
+        }
+        if bounded_history:
+            relationship["evidence"] = [
+                {key: item[key] for key in ("@id", "url", "resource", "source_field", "source_value_sha256", "spans")
+                 if key in item}
+                for item in relationship["evidence"]
+            ]
+        relationships.append(relationship)
     return {
         "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": "0.2",
         "generated_at": finished, "meta": meta,
@@ -404,7 +430,6 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
         },
     }
     out.mkdir(parents=True, exist_ok=False)
-    compact(out / "okf-bundle.json", runtime(graph, meta, finished, first))
     compact(out / "history.json", index)
     declarations = {key: {"kind": entities[key].kind, "label": entities[key].label,
                           "source": entities[key].source, "aliases": entities[key].aliases,
@@ -414,17 +439,24 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
                                              "ambiguities": matcher.ambiguities})
     # JSON syntax is a YAML 1.2 subset. Flow entries keep this YAML-LD
     # serialisation small while preserving a real, self-contained @context.
-    with (out / "okf-bundle.yamlld").open("w", encoding="utf-8") as stream:
+    semantic = out / "okf-bundle.yamlld"
+    with semantic.open("w", encoding="utf-8") as stream:
         stream.write('"@context": ' + json.dumps(CONTEXT, ensure_ascii=False) + "\n")
         stream.write("meta: " + json.dumps(meta, ensure_ascii=False) + "\n")
         stream.write('"@graph":\n')
         for item in list(graph.records.values()) + graph.edges:
             stream.write("- " + json.dumps(item, ensure_ascii=False, separators=(",", ":")) + "\n")
+    if semantic.stat().st_size >= PAGES_BLOB_LIMIT:
+        meta = {**meta, "semantic_descriptor": "okf-bundle.yamlld.gz"}
+    explorer_bundle = out / "okf-bundle.json"
+    compact(explorer_bundle, runtime(graph, meta, finished, first))
+    if explorer_bundle.stat().st_size >= EXPLORER_BYTE_LIMIT:
+        compact(explorer_bundle, runtime(graph, meta, finished, first, bounded_history=True))
     write_markdown(out, graph, first, last)
     receipt["artifacts"] = {name: {"bytes": (out / name).stat().st_size, "sha256": sha((out / name).read_bytes())}
                             for name in ("okf-bundle.json", "history.json", "okf-bundle.yamlld", "analysis-profile.json")}
     dump(out / "receipt.json", receipt)
-    if receipt["artifacts"]["okf-bundle.json"]["bytes"] >= 64 * 1024 * 1024:
+    if receipt["artifacts"]["okf-bundle.json"]["bytes"] >= EXPLORER_BYTE_LIMIT:
         raise ValueError("Explorer projection exceeds the reader byte ceiling")
     print(json.dumps({k: receipt[k] for k in ("week_contributions_by_day", "earlier_matched_contributions",
                                              "anchor_entities", "graph_records", "assertions", "artifacts")}, indent=2))

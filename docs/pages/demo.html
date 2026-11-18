@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demonstration companion | A week in Parliament</title>
+<link rel="stylesheet" href="site.css">
+<script type="module" src="demo.js"></script>
+</head>
+<body>
+<main class="demo">
+<nav aria-label="Project" class="actions">
+  <a href="./">A week in Parliament</a>
+  <a href="demo-evidence.md">Voice evidence</a>
+  <a id="explorer-timeline" href="https://chris-page-gov.github.io/okf-explorer/explore/?bundle=https%3A%2F%2Fchris-page-gov.github.io%2Fokf-hansard%2Fokf-bundle.json">Open OKF Explorer</a>
+</nav>
+<h1>Demonstration companion</h1>
+<p class="intro">Follow public technology and legislation through the parliamentary record.</p>
+<p id="coverage" role="status">Loading the verified sittings…</p>
+<section id="companion" hidden aria-labelledby="example-title">
+  <nav id="examples" class="examples" aria-label="Examples"></nav>
+  <h2 id="example-title"></h2>
+  <p id="example-summary"></p>
+  <div id="example-sources" class="actions"></div>
+  <details class="facet-panel" open>
+    <summary>Related facets</summary>
+    <label>Facet <select id="facet"></select></label>
+    <dl id="facets"></dl>
+  </details>
+  <h3>Timeline</h3>
+  <div class="filters">
+    <label>House <select id="house"></select></label>
+    <label>Connection <select id="relation"></select></label>
+    <label>Date <select id="date"></select></label>
+  </div>
+  <p id="row-count" role="status"></p>
+  <ol id="timeline" class="demo-timeline"></ol>
+  <p class="note">Shared mentions are name or alias matches. Explicit references are supported by what a speaker said. Formal Bill stages follow Parliament’s Bill record.</p>
+</section>
+<noscript><p><a href="demo-evidence.md">Read all three examples as plain text</a>.</p></noscript>
+<footer>
+  <p>Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning.</p>
+  <p>Contains Parliamentary information licensed under the Open Parliament Licence v3.0. <a href="https://www.parliament.uk/site-information/copyright/open-parliament-licence/">Licence and exclusions</a>.</p>
+</footer>
+</main>
+</body>
+</html>

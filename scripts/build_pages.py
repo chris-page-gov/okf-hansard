@@ -2,6 +2,7 @@
 
 import argparse
 from datetime import date
+import gzip
 from html import escape
 import json
 from pathlib import Path
@@ -9,6 +10,9 @@ import re
 from urllib.parse import urlencode, urlparse
 
 from capture import sha
+from build import PAGES_BLOB_LIMIT
+from demo import write_demo
+from query import DEFAULT_DB
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://chris-page-gov.github.io/okf-hansard/"
@@ -28,6 +32,7 @@ PUBLIC_FILES = (
     "voice-microsoft-365.html",
     "voice-microsoft-365.json",
 )
+DEMO_ASSETS = ("demo.html", "demo.js", "site.css")
 LOCAL_TEXT = re.compile(rb"(?:/Users/[a-z0-9._-]+/|/Volumes/[a-z0-9._-]+/|127\.0\.0\.1:8765|localhost:8765)", re.I)
 
 
@@ -76,8 +81,11 @@ def voice_note(sample):
     return "\n".join(rows)
 
 
-def index_page(coverage):
+def index_page(coverage, semantic_file):
     by_day = coverage["week_contributions_by_day"]
+    days = sorted(by_day)
+    dates = (fmt_date(days[0]) if len(days) == 1
+             else f"{fmt_date(days[0])} to {fmt_date(days[-1])}")
     total = sum(by_day.values())
     assertions = coverage["pilot_graph"]["assertions"]
     facets = coverage["pilot_graph"]["visible_facet_declarations"]
@@ -88,16 +96,17 @@ def index_page(coverage):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A source-linked Hansard OKF+ pilot covering both Houses on 16 and 17 November 2026.">
+<meta name="description" content="A source-linked Hansard OKF+ pilot covering both Houses from {dates}.">
 <title>A week in Parliament | Hansard OKF+</title>
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
 <main>
-<p class="date">House of Commons and House of Lords · 16 and 17 November 2026</p>
+<p class="date">House of Commons and House of Lords · {dates}</p>
 <h1>A week in Parliament</h1>
 <p class="intro">Follow a Hansard contribution through related people, offices, organisations, places and legislation. This experimental OKF+ bundle contains {total:,} passages and {assertions:,} source-linked relationships.</p>
-<p class="actions"><a class="primary" href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a>
+<p class="actions"><a class="primary" href="demo.html">Open the demonstration</a>
+<a href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a>
 <a href="beginners.html">Beginner’s guide</a></p>
 <div class="grid">
 <section>
@@ -114,7 +123,7 @@ def index_page(coverage):
 <p>Use {facets} facets in Explorer or reuse the evidence-bearing YAML-LD graph.</p>
 <ul>
 <li><a href="okf-bundle.json">Explorer bundle (JSON)</a></li>
-<li><a href="okf-bundle.yamlld">Semantic graph (YAML-LD)</a></li>
+<li><a href="{semantic_file}">Semantic graph ({"YAML-LD, gzip" if semantic_file.endswith(".gz") else "YAML-LD"})</a></li>
 <li><a href="example-earlier-mentions.yamlld">Microsoft 365 history slice (YAML-LD)</a></li>
 <li><a href="checksums.json">File checksums</a></li>
 </ul>
@@ -165,15 +174,16 @@ def guide_page(name, title):
 """
 
 
-def stage(release, coverage_path, destination):
+def stage(release, coverage_path, destination, database=DEFAULT_DB):
     final = json.loads(coverage_path.read_bytes())
     receipt = json.loads((release / "receipt.json").read_bytes())
     if final["local_release"] != release.resolve().name or not final["pilot_graph"]["passed"]:
         raise ValueError("The public snapshot must match the verified release.")
     sample = json.loads((release / "voice-microsoft-365.json").read_bytes())
-    if len(sample["earlier_mentions"]) != 19:
+    if not sample["earlier_mentions"] or len(sample["earlier_mentions"]) != sample["theme"]["earlier"]:
         raise ValueError("The public example requires the verified Microsoft 365 evidence.")
     destination.mkdir(parents=True, exist_ok=False)
+    semantic_file = "okf-bundle.yamlld"
     for name in PUBLIC_FILES:
         raw = (release / name).read_bytes()
         if LOCAL_TEXT.search(raw):
@@ -184,6 +194,10 @@ def stage(release, coverage_path, destination):
         if name == "voice-microsoft-365.html":
             note = f'<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>'
             raw = raw.replace(b"</main>", note.encode() + b"\n</main>")
+        if name == semantic_file and len(raw) >= PAGES_BLOB_LIMIT:
+            semantic_file += ".gz"
+            raw = gzip.compress(raw, compresslevel=6, mtime=0)
+            name = semantic_file
         (destination / name).write_bytes(raw)
     public_coverage = {
         "pilot_graph": final["pilot_graph"],
@@ -197,10 +211,12 @@ def stage(release, coverage_path, destination):
         "licence": {"url": LICENCE, "attribution": ATTRIBUTION},
     }
     (destination / "coverage.json").write_text(json.dumps(public_coverage, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-    (destination / "index.html").write_text(index_page(public_coverage), encoding="utf-8")
+    (destination / "index.html").write_text(index_page(public_coverage, semantic_file), encoding="utf-8")
     for name, title in GUIDES.items():
         (destination / name).write_text(guide_page(name, title), encoding="utf-8")
-    (destination / "site.css").write_bytes((ROOT / "docs" / "pages" / "site.css").read_bytes())
+    for name in DEMO_ASSETS:
+        (destination / name).write_bytes((ROOT / "docs" / "pages" / name).read_bytes())
+    write_demo(release, destination, public_coverage, database)
     (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
     (destination / ".nojekyll").touch()
     manifest = {}
@@ -208,7 +224,7 @@ def stage(release, coverage_path, destination):
         raw = file.read_bytes()
         if LOCAL_TEXT.search(raw):
             raise ValueError(f"Local address or path in staged asset {file.name}")
-        if len(raw) >= 100 * 1024 * 1024:
+        if len(raw) >= PAGES_BLOB_LIMIT:
             raise ValueError(f"Asset exceeds the GitHub blob limit: {file.name}")
         manifest[file.name] = {"sha256": sha(raw), "bytes": len(raw)}
     (destination / "checksums.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
@@ -220,5 +236,6 @@ if __name__ == "__main__":
     p.add_argument("--release", type=Path, default=ROOT / "releases/current")
     p.add_argument("--coverage", type=Path, default=ROOT / "releases/final-coverage.json")
     p.add_argument("--out", type=Path, required=True)
+    p.add_argument("--database", type=Path, default=DEFAULT_DB)
     args = p.parse_args()
-    stage(args.release, args.coverage, args.out)
+    stage(args.release, args.coverage, args.out, args.database)

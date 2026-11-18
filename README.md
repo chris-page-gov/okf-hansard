@@ -4,7 +4,7 @@ An experimental OKF+ bundle of Westminster Hansard for 16 and 17 November 2026, 
 
 ## Public snapshot
 
-Start at [A week in Parliament](https://chris-page-gov.github.io/okf-hansard/) for the Explorer import, YAML-LD graph and Microsoft 365 companion view. The [plain-text evidence](https://chris-page-gov.github.io/okf-hansard/voice-microsoft-365.md) is a compact input for a chat or voice conversation with web access.
+Start at [A week in Parliament](https://chris-page-gov.github.io/okf-hansard/) for the Explorer import and YAML-LD graph. The [demonstration companion](https://chris-page-gov.github.io/okf-hansard/demo.html) covers Microsoft 365, Palantir and the NHS, and the Railways Bill. The [plain-text evidence](https://chris-page-gov.github.io/okf-hansard/demo-evidence.md) gives chat and voice assistants the exact links.
 
 Use the [beginner’s guide](https://chris-page-gov.github.io/okf-hansard/beginners.html) to follow a contribution and check its source. The [methodology and prompts](https://chris-page-gov.github.io/okf-hansard/methodology.html) explain the collection, matching rules and Foundry templates.
 
@@ -78,6 +78,8 @@ Run the staging command from the repository root against a verified local releas
     uv run --locked python scripts/build_pages.py --out .work/pages-next
 
 The Pages site publishes the root of the generated gh-pages branch. The build stages a fixed set of assets, validates the bundle digests and writes a public checksum catalogue. Compare the served files with the catalogue after deployment.
+
+Use `scripts/prepare_demo_week.py --through YYYY-MM-DD --out .work/NEW-BUILD` to prepare an extended release against the local historical index. It reuses the cached sittings and Member biographies, checks both Houses and stages Pages only after verifying the full graph. Explorer uses recorded sitting dates as day-precision timestamps. When its JSON projection needs to be smaller, the week stays complete and earlier contributions are sampled. The full semantic graph is available as YAML-LD or as a gzip download.
 
 ## Source attribution
 

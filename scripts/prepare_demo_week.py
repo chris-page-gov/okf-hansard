@@ -1,0 +1,123 @@
+"""Prepare a verified week snapshot and an unpublished Pages directory."""
+
+import argparse
+from contextlib import closing
+from datetime import datetime, timedelta, time
+import json
+from pathlib import Path
+import shutil
+import subprocess
+from zoneinfo import ZoneInfo
+
+from build import build
+from build_pages import stage
+from capture import HOUSES, dump, now
+from passages import build_locators
+from people import declarations
+from query import DEFAULT_DB, Index
+from refresh import refresh
+from verify import check
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def read(path):
+    return json.loads(path.read_bytes())
+
+
+def carry_history(previous, release, database):
+    shutil.copyfile(previous / "archive-analysis-profile.json", release / "archive-analysis-profile.json")
+    old = read(previous / "analysis-profile.json")["entities"]
+    current = read(release / "analysis-profile.json")["entities"]
+    supplemental = release / "supplemental"
+    supplemental.mkdir()
+    for asset in (previous / "supplemental").glob("*.json"):
+        entity = read(asset)["entity"]
+        if entity in current and old.get(entity) == current[entity]:
+            shutil.copyfile(asset, supplemental / asset.name)
+    connection = Index(release, database).connect()
+    if connection is None:
+        raise ValueError("The verified historical cache is unavailable.")
+    with closing(connection):
+        count = connection.execute("SELECT count(*) FROM sitting WHERE status='processed'").fetchone()[0]
+    return count, len(list(supplemental.glob("*.json")))
+
+
+def prepare(args):
+    previous = args.base_release.resolve()
+    base = read(previous / "receipt.json")
+    dates = sorted(base["week_contributions_by_day"])
+    first, prior = dates[0], dates[-1]
+    if args.through < prior:
+        raise ValueError("The new snapshot must include the existing coverage.")
+    end = datetime.fromisoformat(args.through).date()
+    ready = datetime.combine(end + timedelta(days=1), time(6, 15), ZoneInfo("Europe/London"))
+    if args.through > prior and datetime.now(ZoneInfo("Europe/London")) < ready:
+        raise ValueError("Wait for the next morning’s published Hansard snapshot.")
+    args.out.mkdir(parents=True, exist_ok=False)
+    snapshot = args.snapshot or ROOT / ".snapshots" / base["capture"]
+    people = args.people or ROOT / ".snapshots" / base["people_capture"]
+    if args.through > prior:
+        last = datetime.fromisoformat(prior).date()
+        added = {(last + timedelta(days=offset)).isoformat() for offset in range(1, (end - last).days + 1)}
+        capture = args.out / "capture"
+        if not refresh(snapshot, capture, added):
+            raise ValueError("One or more advertised sources could not be retrieved.")
+        manifest = read(capture / "manifest.json")
+        observed = {(item["date"], item["house"]) for item in manifest["sittings"] if item["roots"]}
+        if {(day, house) for day in added for house in HOUSES} - observed:
+            raise ValueError("Both Houses must have published data for every added day.")
+        people_out = args.out / "people"
+        people_receipt = declarations(people_out, capture, first, args.through, previous=people)
+        if people_receipt["errors"]:
+            raise ValueError("One or more Member biographies could not be checked.")
+        snapshot, people = capture, people_out
+
+    release = args.out / "release"
+    build(snapshot, people, release, ROOT / "profile/vocabulary.yaml", first, args.through, args.explorer)
+    report = release / "verification.json"
+    if not check(release, snapshot, people, report):
+        raise ValueError("The full graph did not pass source and relationship verification.")
+    build_locators(snapshot, release)
+    archive_sittings, supplements = carry_history(previous, release, args.database)
+    final = read(args.base_coverage)
+    if archive_sittings != sum(row["processed_sittings"] for row in final["archive"]["ranges"].values()):
+        raise ValueError("The historical cache differs from its verified coverage.")
+    for asset in ("example-earlier-mentions.yamlld", "example-related-evidence.json",
+                  "example-related-view.html", "voice-microsoft-365.html", "voice-microsoft-365.json"):
+        shutil.copyfile(previous / asset, release / asset)
+    receipt = read(release / "receipt.json")
+    if sorted(receipt["week_contributions_by_day"]) != [
+        (datetime.fromisoformat(first).date() + timedelta(days=offset)).isoformat()
+        for offset in range((end - datetime.fromisoformat(first).date()).days + 1)
+    ]:
+        raise ValueError("The new build does not cover every intended sitting date.")
+    summary = {"requested": supplements, "successes": supplements, "exceptions": {}}
+    dump(release / "supplement-status.json", summary)
+    coverage = args.out / "coverage.json"
+    final.update({
+        "local_release": release.name,
+        "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "observed_at": now(),
+        "pilot_graph": read(report),
+        "week_contributions_by_day": receipt["week_contributions_by_day"],
+        "supplemental_searches": summary,
+        "core_artifacts": receipt["artifacts"],
+    })
+    dump(coverage, final)
+    stage(release, coverage, args.out / "site", args.database)
+    dump(args.out / "prepared.json", {"through": args.through, "snapshot": str(snapshot.resolve()),
+                                      "people": str(people.resolve()), "coverage": str(coverage.resolve())})
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--through", required=True)
+    parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--base-release", type=Path, default=ROOT / "releases/current")
+    parser.add_argument("--base-coverage", type=Path, default=ROOT / "releases/final-coverage.json")
+    parser.add_argument("--snapshot", type=Path)
+    parser.add_argument("--people", type=Path)
+    parser.add_argument("--database", type=Path, default=DEFAULT_DB)
+    parser.add_argument("--explorer", type=Path, default=ROOT.parent / "okf-explorer")
+    prepare(parser.parse_args())

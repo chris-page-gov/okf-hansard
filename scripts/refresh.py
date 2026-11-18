@@ -1,4 +1,4 @@
-"""Refresh selected sitting days and reuse unchanged verified capture files."""
+"""Refresh or add sitting days and reuse unchanged verified capture files."""
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import shutil
 
-from capture import capture_day, dump, fetch, now
+from capture import HOUSES, capture_day, dump, fetch, now
 from model import checked_json
 
 
@@ -33,6 +33,8 @@ def refresh(base, output, days):
         return checked_json(output, asset), asset
 
     def one_sitting(entry):
+        if not entry["sources"]:
+            return capture_day(output, entry["date"], entry["house"])
         if entry["date"] not in days:
             for asset in entry["sources"]:
                 copy(asset)
@@ -54,8 +56,12 @@ def refresh(base, output, days):
 
         return capture_day(output, entry["date"], entry["house"], retrieve=retrieve)
 
+    existing = {(entry["date"], entry["house"]) for entry in manifest["sittings"]}
+    added = [{"date": day, "house": house, "sources": []}
+             for day in sorted(days) for house in HOUSES if (day, house) not in existing]
     with ThreadPoolExecutor(max_workers=4) as pool:
-        manifest["sittings"] = list(pool.map(one_sitting, manifest["sittings"]))
+        manifest["sittings"] = sorted(pool.map(one_sitting, [*manifest["sittings"], *added]),
+                                      key=lambda entry: (entry["date"], entry["house"]))
     for directory in manifest["directories"]:
         for asset in directory["sources"]:
             copy(asset)
