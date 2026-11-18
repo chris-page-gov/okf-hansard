@@ -39,15 +39,17 @@ def export(index, from_day, to_day, entities, stream):
             line({"@id": iri(f"entity/{key}.md"), "@type": "hansard:Entity", "route": f"entity/{key}.md",
                   "type": row["kind"], "title": row["label"]})
         count = 0
-        cursor = db.execute("""
+        if not selected:
+            return 0
+        placeholders = ",".join("?" for _ in selected)
+        cursor = db.execute(f"""
             SELECT c.route,c.day,c.record, m.entity,m.evidence
-            FROM contribution c JOIN mention m ON m.route=c.route
-            WHERE c.day>=? AND c.day<=? ORDER BY c.day,c.route,m.entity
-        """, (from_day, to_day))
+            FROM mention m JOIN contribution c ON c.route=m.route
+            WHERE m.entity IN ({placeholders}) AND m.day>=? AND m.day<=?
+            ORDER BY m.day,c.route,m.entity
+        """, (*sorted(selected), from_day, to_day))
         current_route = None
         for route, day, record, entity, proof in cursor:
-            if entity not in selected:
-                continue
             if current_route != route:
                 if current_route is not None:
                     line(graph.records[current_route])

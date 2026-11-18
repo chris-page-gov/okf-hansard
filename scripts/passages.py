@@ -5,13 +5,15 @@ from functools import lru_cache
 import json
 from pathlib import Path
 import re
+from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
+from archive import unpack
 from capture import HANSARD, MAX_BYTES, sha
 from model import plain, read_sittings
 from query import DEFAULT_RELEASE, Index
 
-LOCATOR_FIELDS = ("external_id", "source_item_id", "value_sha256", "pointer", "url")
+LOCATOR_FIELDS = ("external_id", "source_item_id", "value_sha256", "pointer", "url", "section")
 
 
 def build_locators(snapshot, release):
@@ -59,11 +61,28 @@ class Passages:
                                  root_url)
         if not is_debate and not is_search:
             raise ValueError("The retained Hansard endpoint is outside the allowlist.")
-        obj = retrievable(root_url)
-        for part in loc["pointer"].strip("/").split("/"):
-            obj = obj[int(part)] if isinstance(obj, list) else obj[part]
         identifier_field = "ContributionExtId" if is_search else "ExternalId"
         text_field = "ContributionTextFull" if is_search else "Value"
+        source_url, pointer, obj = root_url, loc["pointer"], None
+        if is_debate and loc.get("section") == "Writtens":
+            # A subsection usually answers much faster than a whole historical
+            # Written Answers tree. Only accept an exact source item identity.
+            path = urlparse(loc["url"]).path
+            match = re.search(r"/debates/([A-Za-z0-9-]+)/", path)
+            if match:
+                candidate = f"{HANSARD}/debates/debate/{match.group(1)}.json"
+                try:
+                    result = retrievable(candidate, 8)
+                    hits = [(i, item) for i, item in enumerate(result["Items"])
+                            if item["ExternalId"] == loc["external_id"] and item["ItemId"] == loc["source_item_id"]]
+                    if len(hits) == 1:
+                        source_url, pointer, obj = candidate, f"/Items/{hits[0][0]}", hits[0][1]
+                except (OSError, ValueError, KeyError):
+                    pass
+        if obj is None:
+            obj = retrievable(root_url, 35 if loc.get("section") == "Writtens" else 12)
+            for part in pointer.strip("/").split("/"):
+                obj = obj[int(part)] if isinstance(obj, list) else obj[part]
         if obj[identifier_field] != loc["external_id"] or obj["ItemId"] != loc["source_item_id"]:
             return {"schema": "hansard-source-passage.v1", "id": route, "url": loc["url"],
                     "status": "source locator changed", "source_api": root_url}
@@ -74,7 +93,7 @@ class Passages:
         text = plain(obj[text_field])
         end = min(offset + limit, len(text))
         return {"schema": "hansard-source-passage.v1", "id": route, "url": loc["url"],
-                "source_api": root_url, "source_field": loc["pointer"] + "/" + text_field,
+                "source_api": source_url, "source_field": pointer + "/" + text_field,
                 "member_id": obj.get("MemberId"),
                 "status": "matches recorded version" if raw_hash == recorded_hash else "source text changed",
                 "source_value_sha256": raw_hash, "recorded_source_value_sha256": recorded_hash,
@@ -83,13 +102,13 @@ class Passages:
 
 
 @lru_cache(maxsize=6)
-def retrievable(url):
+def retrievable(url, timeout=12):
     # Source pages are held in process memory only. A restart observes a new version.
-    with urlopen(Request(url, headers={"Accept": "application/json",
-                                       "User-Agent": "OKF-Hansard-Pilot/0.1"}), timeout=12) as response:
+    with urlopen(Request(url, headers={"Accept": "application/json", "Accept-Encoding": "gzip",
+                                       "User-Agent": "OKF-Hansard-Pilot/0.1"}), timeout=timeout) as response:
         if response.url != url:
             raise ValueError("The official endpoint redirected.")
-        raw = response.read(MAX_BYTES + 1)
+        raw = unpack(response.read(MAX_BYTES + 1), response.headers.get("Content-Encoding", ""))
     if len(raw) > MAX_BYTES:
         raise ValueError("The contribution source exceeds the permitted read size.")
     return json.loads(raw)
