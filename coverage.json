@@ -4,7 +4,7 @@
     "passed": true,
     "assertions": 28863,
     "predicates": 11,
-    "rdf_sample_triples": 496,
+    "rdf_sample_triples": 498,
     "visible_facet_declarations": 12,
     "contributions": 3195,
     "failures": [],
@@ -51,8 +51,8 @@
     "exceptions": {}
   },
   "coverage_statement": "Observed published API sittings. Historical matches use a fixed alias profile and scoped spoken-search supplements.",
-  "observed_at": "2026-11-18T10:36:47+00:00",
-  "source_commit": "a33ec3c28fbec39ba80ef4bee43591462306f83f",
+  "observed_at": "2026-11-18T16:32:11+00:00",
+  "source_commit": "008334e01a36340013b70017b1181d9600e8ef21",
   "licence": {
     "url": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
     "attribution": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
