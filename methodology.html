@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Methodology and prompts | A week in Parliament</title>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<main class="guide">
+<nav aria-label="Project"><a href="./">A week in Parliament</a></nav>
+<h1>Methodology and prompts</h1>
+<p class="intro">This pilot makes the official record of Parliament easier to follow across sittings. Each link in the graph connects a contribution to a recorded speaker or to a person, office, organisation, place, piece of legislation or other entity found in its text.</p>
+
+<h2>What went into the bundle</h2>
+<p>The week snapshot covers 3,195 text-bearing passages published for the House of Commons and House of Lords on 16 and 17 November 2026. It includes statements and procedural items where Hansard supplies text. The build counted published section trees and API items, excluded layout markers and recorded divisions separately. <a href="coverage.json">Coverage and verification record</a> · <a href="https://hansard.parliament.uk/">Official Hansard</a></p>
+
+<h2>How the links were made</h2>
+<ol>
+  <li><strong>Identify the source.</strong> Preserve the House, sitting, section and contribution identifiers. Each assertion carries the source field and a digest of the retrieved data. Text matches also carry offsets into the normalised text so the evidence can be checked.</li>
+  <li><strong>Match names and relationships.</strong> Combine Parliament’s Member and Bill identifiers and recorded office titles with a curated list of names and aliases. Apply deterministic matching rules, preferring the longest unambiguous match. Keep a person, a constituency, an office and the dates of an appointment as distinct records.</li>
+  <li><strong>Trace earlier mentions.</strong> Use sitting calendars to fetch historical records. Index matching references, digests and text spans, discarding the fetched historical responses after analysis. Treat an earlier date, or an earlier position in the same section, as evidence of order. Contributions in separate sections on the same day have uncertain order.</li>
+  <li><strong>Package the evidence.</strong> Publish a browsable JSON bundle, a YAML-LD graph and a small worked example. The graph contains 28,863 checked relationship assertions. The local history extension covers 5,596 calendar-listed House sittings between 8 November 2007 and 29 October 2026. The initial capture and targeted searches cover more recent material.</li>
+</ol>
+<p>A shared-name link records where the matching rule found a name or alias. Read the surrounding Hansard debate to establish how the contributions relate. Indirect references and aliases outside the vocabulary can be missed. The historical date range describes the material checked, and the vocabulary determines what can be found within it.</p>
+<p>The design drew on Parliament’s controlled vocabulary, the European Parliament’s EPVOC and EuroVoc, Ireland’s use of Akoma Ntoso, the ParlaMint corpus and Canada’s LiPaD. <a href="https://github.com/chris-page-gov/okf-hansard/blob/main/docs/international-models.md">International comparison</a> · <a href="https://github.com/chris-page-gov/okf-hansard/tree/main/profile">Domain and vocabulary profiles</a></p>
+
+<h2>Prompts used</h2>
+<p>The build adapted two OKF Explorer Foundry templates. The warm-up informed the source catalogue, questions to test and filters. The build template informed the evidence graph, checks and release records. <a href="https://github.com/chris-page-gov/okf-explorer/blob/e57e2c2e056bce326033fa576c4aa278dc437eb2/docs/prompts/okf-domain-warm-up.md">Domain warm-up prompt</a> · <a href="https://github.com/chris-page-gov/okf-explorer/blob/e57e2c2e056bce326033fa576c4aa278dc437eb2/docs/prompts/okf-bundle-build.md">Bundle build prompt</a></p>
+<h3>Copyable reconstruction of the Hansard brief</h3>
+<p>This version combines the original brief and follow-up decisions into a prompt you can adapt for a different week.</p>
+<pre><code>Build an experimental OKF+ bundle called A week in Parliament. Use the OKF Explorer Foundry warm-up and build prompts as a starting point. Begin with Hansard for both Houses on 16 and 17 November 2026 and make it possible to add days without changing existing contribution identifiers.
+
+Start with every published text-bearing contribution. Identify people, offices, organisations, places, legislation, things and policy subjects. Use official identifiers and dated records to distinguish a person from the office or constituency associated with them. Research how the European Parliament and other legislatures model proceedings and controlled vocabularies.
+
+Link each contribution to its evidence and to earlier contributions that mention the same entities. Start with bounded history, then extend it within the time available. Use sitting calendars and cache progress, source references, digests and matching spans so historical responses can be discarded after analysis.
+
+Publish a faceted Explorer bundle and a linked YAML-LD graph with official Hansard links. Test the Microsoft 365 outage statement as a worked example for chat, voice and a visual companion. State the coverage, matching limits and what was verified.</code></pre>
+<p>The project owner set the scope and authorised public release. The Codex build log records the model and reasoning effort shown below.</p>
+<p><a href="beginners.html">Try the beginner’s guide</a></p>
+
+<footer>
+<p>Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning.</p>
+<p>Contains Parliamentary information licensed under the Open Parliament Licence v3.0. <a href="https://www.parliament.uk/site-information/copyright/open-parliament-licence/">Licence and exclusions</a>.</p>
+</footer>
+</main>
+</body>
+</html>
