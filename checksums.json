@@ -8,16 +8,20 @@
     "bytes": 3154
   },
   "coverage.json": {
-    "sha256": "b6f69736892108f64e59910012e9fbd6c474d2ac13ffbba7376ec7fd7007bb52",
+    "sha256": "26f9394906e38c82648af024661f2ecc27f19599c2f4417cb8ad25ee0270d791",
     "bytes": 1895
   },
   "demo-evidence.md": {
     "sha256": "cce69967d5e2643bfcc390ec2675586a2ab888ac984af2afabf8dc608f90237f",
     "bytes": 8246
   },
+  "demo-timeline.json": {
+    "sha256": "49eb4a64b770cbbe8a7145af81c4d453581d1a97cf5d81ccda4b60c7ccd8bc48",
+    "bytes": 41395
+  },
   "demo.html": {
-    "sha256": "1dd9a7c5c3bc12664b74ed6ab22017884cdd63ad2b15773dead6fa331ae33317",
-    "bytes": 2175
+    "sha256": "1ead8526c212bbe3ff014d5d3e992f4e0b4f9b0f1c93dc33c86a94b8600c35cf",
+    "bytes": 2178
   },
   "demo.js": {
     "sha256": "bb3fec65cf8cdb6609d056e0a4070ad53dd6e627a1a43542742c620df44b17f3",

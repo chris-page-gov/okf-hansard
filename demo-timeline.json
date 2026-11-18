@@ -1,0 +1,898 @@
+{
+  "schema": "okf-explorer-bundle.v0",
+  "kind": "okf-bundle",
+  "okf_version": "0.2",
+  "meta": {
+    "title": "A week in Parliament · Demonstration timeline",
+    "default_corpus": "hansard",
+    "corpus_order": [
+      "hansard"
+    ],
+    "learning_presentation": {
+      "schema": "okf-learning-presentation.v1",
+      "start_route": "index.md",
+      "groups": [
+        {
+          "title": "Microsoft 365 outage",
+          "routes": [
+            "source/ea9dbbc3c2cf00f6a3da4493.md",
+            "source/fce3d9db0f07e254aefbd87f.md",
+            "source/2430bfa8a61e273c52fcf789.md",
+            "source/5cf17fa9fb687c3cdb0fc01e.md",
+            "source/49f37a9a274361e87a621862.md",
+            "source/45eaeec2514f8ca4a79d0aa2.md",
+            "source/108fc4a3028183917e06d77a.md",
+            "source/3a2f9c3691f801711e07faf3.md",
+            "source/d468c7c4cc3675893a140b9b.md",
+            "source/83c4ce879941911996b6e6c7.md",
+            "source/2271c2f8cfdbeaf1d04708c6.md",
+            "source/6894bcb4e804ff88693141e2.md",
+            "source/a2dd3b89dcecd78e0706f6f6.md",
+            "source/ac32527574463d544f414e21.md",
+            "source/341105da3ee2b57f8c500334.md",
+            "source/87ca30d7811ca8f28dcf89f0.md",
+            "source/5b6d10ae5b5e6502935bdeeb.md",
+            "source/7e1248ab590b9c9e12f3030e.md",
+            "source/6e33b20b113b320caecc155d.md",
+            "source/e601bb6c9381a077f6d5b9b7.md",
+            "source/dbb1221276025403362166b3.md"
+          ]
+        },
+        {
+          "title": "Palantir and the NHS",
+          "routes": [
+            "source/841e0c91c1a87b016b50442f.md",
+            "source/1c618456b8c3e57b577e82a9.md",
+            "source/068309e208e7d9f781c8bbad.md",
+            "source/bac4873d9749e9e1847b031d.md",
+            "source/dda13488020619d1246db2ca.md",
+            "source/0f3818bce73670ad1751adf0.md"
+          ]
+        },
+        {
+          "title": "Railways Bill",
+          "routes": [
+            "source/bd16babe4e2cd32a3122c84f.md",
+            "source/96b539c84f43c43bb949dab2.md"
+          ]
+        },
+        {
+          "title": "Verified sittings",
+          "routes": [
+            "source/f1b9183e1ac40246f6e4ef0b.md",
+            "source/1ffefdce01e50300ea4e2e64.md",
+            "source/a8f829af27aaa7b96fbf9201.md",
+            "source/6232a925a3d953f61e229a05.md"
+          ]
+        }
+      ],
+      "facets": [
+        {
+          "key": "sitting",
+          "label": "Sitting date"
+        },
+        {
+          "key": "chamber",
+          "label": "House"
+        },
+        {
+          "key": "connection",
+          "label": "Connection"
+        },
+        {
+          "key": "example",
+          "label": "Example"
+        }
+      ]
+    }
+  },
+  "corpora": {
+    "hansard": {
+      "id": "hansard",
+      "title": "A week in Parliament · Demonstration timeline",
+      "root": "index.md",
+      "assertion_scope": "real-world",
+      "nodes": {
+        "index.md": {
+          "id": "index.md",
+          "title": "A week in Parliament · Demonstration timeline",
+          "type": "Index",
+          "body": "Choose a sitting date or House, then open a record and follow its Hansard link."
+        },
+        "source/ea9dbbc3c2cf00f6a3da4493.md": {
+          "id": "source/ea9dbbc3c2cf00f6a3da4493.md",
+          "title": "Baroness Lloyd of Effra · Public sector dependence on technology providers",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-17",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-17/debates/3203E15D-A3FF-40F4-B48C-568BC40BD24F/CyberSecurityPublicSectorDependenceonTechnologyProviders#contribution-13D79A9B-DE1F-45B7-9B87-6B4386D1F584",
+          "resource": "https://hansard.parliament.uk/Lords/2026-11-17/debates/3203E15D-A3FF-40F4-B48C-568BC40BD24F/CyberSecurityPublicSectorDependenceonTechnologyProviders#contribution-13D79A9B-DE1F-45B7-9B87-6B4386D1F584",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-11-17/debates/3203E15D-A3FF-40F4-B48C-568BC40BD24F/CyberSecurityPublicSectorDependenceonTechnologyProviders#contribution-13D79A9B-DE1F-45B7-9B87-6B4386D1F584)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-17"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/fce3d9db0f07e254aefbd87f.md": {
+          "id": "source/fce3d9db0f07e254aefbd87f.md",
+          "title": "Ian Murray · Microsoft 365 outage",
+          "type": "Starting contribution",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-16",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948",
+          "body": "Commons · Starting contribution\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-16"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Starting contribution"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/2430bfa8a61e273c52fcf789.md": {
+          "id": "source/2430bfa8a61e273c52fcf789.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-07-23",
+          "url": "https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-ED863356-5EDC-4D61-BADA-DCD4DA0F0416",
+          "resource": "https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-ED863356-5EDC-4D61-BADA-DCD4DA0F0416",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-ED863356-5EDC-4D61-BADA-DCD4DA0F0416)",
+          "learning_facets": {
+            "sitting": [
+              "2026-07-23"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/5cf17fa9fb687c3cdb0fc01e.md": {
+          "id": "source/5cf17fa9fb687c3cdb0fc01e.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-07-23",
+          "url": "https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-15AE010E-2CC6-4368-BE64-C145C4037573",
+          "resource": "https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-15AE010E-2CC6-4368-BE64-C145C4037573",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-15AE010E-2CC6-4368-BE64-C145C4037573)",
+          "learning_facets": {
+            "sitting": [
+              "2026-07-23"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/49f37a9a274361e87a621862.md": {
+          "id": "source/49f37a9a274361e87a621862.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2025-07-08",
+          "url": "https://hansard.parliament.uk/Commons/2025-07-08/debates/E575C8E9-9670-4FD2-8EE5-C810648AFC73/GenerativeArtificialIntelligenceSchools#contribution-DFB83BF5-FE83-4F9D-80AD-8A2786F3A163",
+          "resource": "https://hansard.parliament.uk/Commons/2025-07-08/debates/E575C8E9-9670-4FD2-8EE5-C810648AFC73/GenerativeArtificialIntelligenceSchools#contribution-DFB83BF5-FE83-4F9D-80AD-8A2786F3A163",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2025-07-08/debates/E575C8E9-9670-4FD2-8EE5-C810648AFC73/GenerativeArtificialIntelligenceSchools#contribution-DFB83BF5-FE83-4F9D-80AD-8A2786F3A163)",
+          "learning_facets": {
+            "sitting": [
+              "2025-07-08"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/45eaeec2514f8ca4a79d0aa2.md": {
+          "id": "source/45eaeec2514f8ca4a79d0aa2.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2025-06-02",
+          "url": "https://hansard.parliament.uk/Commons/2025-06-02/debates/25060251000013/ArtificialIntelligenceCross-GovernmentExperiment#contribution-03185EE4-924C-4DE8-9E1B-C0DBF91E3C04",
+          "resource": "https://hansard.parliament.uk/Commons/2025-06-02/debates/25060251000013/ArtificialIntelligenceCross-GovernmentExperiment#contribution-03185EE4-924C-4DE8-9E1B-C0DBF91E3C04",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2025-06-02/debates/25060251000013/ArtificialIntelligenceCross-GovernmentExperiment#contribution-03185EE4-924C-4DE8-9E1B-C0DBF91E3C04)",
+          "learning_facets": {
+            "sitting": [
+              "2025-06-02"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/108fc4a3028183917e06d77a.md": {
+          "id": "source/108fc4a3028183917e06d77a.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2024-12-18",
+          "url": "https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-CBA201DD-4548-4900-9D70-AD0F1C95D234",
+          "resource": "https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-CBA201DD-4548-4900-9D70-AD0F1C95D234",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-CBA201DD-4548-4900-9D70-AD0F1C95D234)",
+          "learning_facets": {
+            "sitting": [
+              "2024-12-18"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/3a2f9c3691f801711e07faf3.md": {
+          "id": "source/3a2f9c3691f801711e07faf3.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2024-12-18",
+          "url": "https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-9F9D6483-D6FC-452E-8DB8-5C0950BA7156",
+          "resource": "https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-9F9D6483-D6FC-452E-8DB8-5C0950BA7156",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-9F9D6483-D6FC-452E-8DB8-5C0950BA7156)",
+          "learning_facets": {
+            "sitting": [
+              "2024-12-18"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/d468c7c4cc3675893a140b9b.md": {
+          "id": "source/d468c7c4cc3675893a140b9b.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2024-10-08",
+          "url": "https://hansard.parliament.uk/Lords/2024-10-08/debates/958C7479-FE6A-4AEC-9F75-C5A4FB8AC212/PublicProcurementDataOffshoring#contribution-1F70C69D-3676-4782-98F4-0FE49A3BDF20",
+          "resource": "https://hansard.parliament.uk/Lords/2024-10-08/debates/958C7479-FE6A-4AEC-9F75-C5A4FB8AC212/PublicProcurementDataOffshoring#contribution-1F70C69D-3676-4782-98F4-0FE49A3BDF20",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2024-10-08/debates/958C7479-FE6A-4AEC-9F75-C5A4FB8AC212/PublicProcurementDataOffshoring#contribution-1F70C69D-3676-4782-98F4-0FE49A3BDF20)",
+          "learning_facets": {
+            "sitting": [
+              "2024-10-08"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/83c4ce879941911996b6e6c7.md": {
+          "id": "source/83c4ce879941911996b6e6c7.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2024-05-23",
+          "url": "https://hansard.parliament.uk/Commons/2024-05-23/debates/E0C0E97D-8851-46A3-892F-A9871C196407/DigitalToolsMembers#contribution-5A697C40-F243-44B6-A6D7-9A8BA7777130",
+          "resource": "https://hansard.parliament.uk/Commons/2024-05-23/debates/E0C0E97D-8851-46A3-892F-A9871C196407/DigitalToolsMembers#contribution-5A697C40-F243-44B6-A6D7-9A8BA7777130",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2024-05-23/debates/E0C0E97D-8851-46A3-892F-A9871C196407/DigitalToolsMembers#contribution-5A697C40-F243-44B6-A6D7-9A8BA7777130)",
+          "learning_facets": {
+            "sitting": [
+              "2024-05-23"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/2271c2f8cfdbeaf1d04708c6.md": {
+          "id": "source/2271c2f8cfdbeaf1d04708c6.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2024-03-27",
+          "url": "https://hansard.parliament.uk/Lords/2024-03-27/debates/1870CF5A-0B56-4C5C-A6CD-F38192C3CE35/DataProtectionandDigitalInformationBill#contribution-24032749000190",
+          "resource": "https://hansard.parliament.uk/Lords/2024-03-27/debates/1870CF5A-0B56-4C5C-A6CD-F38192C3CE35/DataProtectionandDigitalInformationBill#contribution-24032749000190",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2024-03-27/debates/1870CF5A-0B56-4C5C-A6CD-F38192C3CE35/DataProtectionandDigitalInformationBill#contribution-24032749000190)",
+          "learning_facets": {
+            "sitting": [
+              "2024-03-27"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/6894bcb4e804ff88693141e2.md": {
+          "id": "source/6894bcb4e804ff88693141e2.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2023-05-10",
+          "url": "https://hansard.parliament.uk/Commons/2023-05-10/debates/a3e435be-d416-41dd-832e-dab28622b152/DataProtectionandDigitalInformation(No2)Bill(Secondsitting)#contribution-AC5A06CB-9074-44CF-80ED-CCBFB12AAAB6",
+          "resource": "https://hansard.parliament.uk/Commons/2023-05-10/debates/a3e435be-d416-41dd-832e-dab28622b152/DataProtectionandDigitalInformation(No2)Bill(Secondsitting)#contribution-AC5A06CB-9074-44CF-80ED-CCBFB12AAAB6",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2023-05-10/debates/a3e435be-d416-41dd-832e-dab28622b152/DataProtectionandDigitalInformation(No2)Bill(Secondsitting)#contribution-AC5A06CB-9074-44CF-80ED-CCBFB12AAAB6)",
+          "learning_facets": {
+            "sitting": [
+              "2023-05-10"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/a2dd3b89dcecd78e0706f6f6.md": {
+          "id": "source/a2dd3b89dcecd78e0706f6f6.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2021-10-22",
+          "url": "https://hansard.parliament.uk/Commons/2021-10-22/debates/21102219000004/FurtherElectronicDevicesDisadvantagedChildrenandYoungPeople#contribution-FC41BC94-223F-46C8-8710-0372C348CBF6",
+          "resource": "https://hansard.parliament.uk/Commons/2021-10-22/debates/21102219000004/FurtherElectronicDevicesDisadvantagedChildrenandYoungPeople#contribution-FC41BC94-223F-46C8-8710-0372C348CBF6",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2021-10-22/debates/21102219000004/FurtherElectronicDevicesDisadvantagedChildrenandYoungPeople#contribution-FC41BC94-223F-46C8-8710-0372C348CBF6)",
+          "learning_facets": {
+            "sitting": [
+              "2021-10-22"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/ac32527574463d544f414e21.md": {
+          "id": "source/ac32527574463d544f414e21.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2020-12-07",
+          "url": "https://hansard.parliament.uk/Commons/2020-12-07/debates/4FFF63BD-3E7E-4CD6-A1B1-1A8400F88AD8/Covid-19ImpactonSchoolsandExams#contribution-FBA27512-7289-43C0-9789-D83AD96C4765",
+          "resource": "https://hansard.parliament.uk/Commons/2020-12-07/debates/4FFF63BD-3E7E-4CD6-A1B1-1A8400F88AD8/Covid-19ImpactonSchoolsandExams#contribution-FBA27512-7289-43C0-9789-D83AD96C4765",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2020-12-07/debates/4FFF63BD-3E7E-4CD6-A1B1-1A8400F88AD8/Covid-19ImpactonSchoolsandExams#contribution-FBA27512-7289-43C0-9789-D83AD96C4765)",
+          "learning_facets": {
+            "sitting": [
+              "2020-12-07"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/341105da3ee2b57f8c500334.md": {
+          "id": "source/341105da3ee2b57f8c500334.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2020-06-03",
+          "url": "https://hansard.parliament.uk/Lords/2020-06-03/debates/E0A76655-CD7D-4D1D-A339-42458DE3D9BE/Covid-19Schools#contribution-380C2830-D529-47F0-8180-5A0684F65639",
+          "resource": "https://hansard.parliament.uk/Lords/2020-06-03/debates/E0A76655-CD7D-4D1D-A339-42458DE3D9BE/Covid-19Schools#contribution-380C2830-D529-47F0-8180-5A0684F65639",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2020-06-03/debates/E0A76655-CD7D-4D1D-A339-42458DE3D9BE/Covid-19Schools#contribution-380C2830-D529-47F0-8180-5A0684F65639)",
+          "learning_facets": {
+            "sitting": [
+              "2020-06-03"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/87ca30d7811ca8f28dcf89f0.md": {
+          "id": "source/87ca30d7811ca8f28dcf89f0.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2020-03-19",
+          "url": "https://hansard.parliament.uk/Commons/2020-03-19/debates/06B43B77-F920-4955-915A-77C71970088C/Covid-19RemoteWorking#contribution-94648F4F-6C04-4769-ABC7-35CC3CD2F3DA",
+          "resource": "https://hansard.parliament.uk/Commons/2020-03-19/debates/06B43B77-F920-4955-915A-77C71970088C/Covid-19RemoteWorking#contribution-94648F4F-6C04-4769-ABC7-35CC3CD2F3DA",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2020-03-19/debates/06B43B77-F920-4955-915A-77C71970088C/Covid-19RemoteWorking#contribution-94648F4F-6C04-4769-ABC7-35CC3CD2F3DA)",
+          "learning_facets": {
+            "sitting": [
+              "2020-03-19"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/5b6d10ae5b5e6502935bdeeb.md": {
+          "id": "source/5b6d10ae5b5e6502935bdeeb.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2018-06-05",
+          "url": "https://hansard.parliament.uk/Lords/2018-06-05/debates/29CC19DD-5987-49C2-A469-CE1300B2CA9C/ElectronicCommunications(UniversalService)(Broadband)Order2018#contribution-F7633AD3-D29C-4401-8AC7-846DC5EFE1D1",
+          "resource": "https://hansard.parliament.uk/Lords/2018-06-05/debates/29CC19DD-5987-49C2-A469-CE1300B2CA9C/ElectronicCommunications(UniversalService)(Broadband)Order2018#contribution-F7633AD3-D29C-4401-8AC7-846DC5EFE1D1",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2018-06-05/debates/29CC19DD-5987-49C2-A469-CE1300B2CA9C/ElectronicCommunications(UniversalService)(Broadband)Order2018#contribution-F7633AD3-D29C-4401-8AC7-846DC5EFE1D1)",
+          "learning_facets": {
+            "sitting": [
+              "2018-06-05"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/7e1248ab590b9c9e12f3030e.md": {
+          "id": "source/7e1248ab590b9c9e12f3030e.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2014-10-20",
+          "url": "https://hansard.parliament.uk/Lords/2014-10-20/debates/14102017000403/ConsumerRightsBill#contribution-14102017000168",
+          "resource": "https://hansard.parliament.uk/Lords/2014-10-20/debates/14102017000403/ConsumerRightsBill#contribution-14102017000168",
+          "body": "Lords · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2014-10-20/debates/14102017000403/ConsumerRightsBill#contribution-14102017000168)",
+          "learning_facets": {
+            "sitting": [
+              "2014-10-20"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/6e33b20b113b320caecc155d.md": {
+          "id": "source/6e33b20b113b320caecc155d.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2014-07-10",
+          "url": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000189",
+          "resource": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000189",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000189)",
+          "learning_facets": {
+            "sitting": [
+              "2014-07-10"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/e601bb6c9381a077f6d5b9b7.md": {
+          "id": "source/e601bb6c9381a077f6d5b9b7.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2014-07-10",
+          "url": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000186",
+          "resource": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000186",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000186)",
+          "learning_facets": {
+            "sitting": [
+              "2014-07-10"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/dbb1221276025403362166b3.md": {
+          "id": "source/dbb1221276025403362166b3.md",
+          "title": "Microsoft 365",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2014-07-10",
+          "url": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000185",
+          "resource": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000185",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000185)",
+          "learning_facets": {
+            "sitting": [
+              "2014-07-10"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Microsoft 365 outage"
+            ]
+          }
+        },
+        "source/841e0c91c1a87b016b50442f.md": {
+          "id": "source/841e0c91c1a87b016b50442f.md",
+          "title": "Martin Wrigley · NHS Federated Data Platform: Palantir",
+          "type": "Starting contribution",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-17",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896",
+          "body": "Commons · Starting contribution\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-17"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Starting contribution"
+            ],
+            "example": [
+              "Palantir and the NHS"
+            ]
+          }
+        },
+        "source/1c618456b8c3e57b577e82a9.md": {
+          "id": "source/1c618456b8c3e57b577e82a9.md",
+          "title": "NHS Federated Data Platform",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-16",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-9567D857-1171-4BF0-90BC-F964C1ABFFAA",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-9567D857-1171-4BF0-90BC-F964C1ABFFAA",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-9567D857-1171-4BF0-90BC-F964C1ABFFAA)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-16"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Palantir and the NHS"
+            ]
+          }
+        },
+        "source/068309e208e7d9f781c8bbad.md": {
+          "id": "source/068309e208e7d9f781c8bbad.md",
+          "title": "NHS Federated Data Platform",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-16",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-2FB50706-6C6B-4AC2-A1FB-9400919593A3",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-2FB50706-6C6B-4AC2-A1FB-9400919593A3",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-2FB50706-6C6B-4AC2-A1FB-9400919593A3)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-16"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Palantir and the NHS"
+            ]
+          }
+        },
+        "source/bac4873d9749e9e1847b031d.md": {
+          "id": "source/bac4873d9749e9e1847b031d.md",
+          "title": "NHS Federated Data Platform",
+          "type": "Shared mention",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-16",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-C2F59A2A-34BF-48B9-A303-29A1E1FE414C",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-C2F59A2A-34BF-48B9-A303-29A1E1FE414C",
+          "body": "Commons · Shared mention\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-C2F59A2A-34BF-48B9-A303-29A1E1FE414C)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-16"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Shared mention"
+            ],
+            "example": [
+              "Palantir and the NHS"
+            ]
+          }
+        },
+        "source/dda13488020619d1246db2ca.md": {
+          "id": "source/dda13488020619d1246db2ca.md",
+          "title": "Health and Care: Digital Capability",
+          "type": "Explicit reference",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-16",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability",
+          "body": "Commons · Explicit reference\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-16"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Explicit reference"
+            ],
+            "example": [
+              "Palantir and the NHS"
+            ]
+          }
+        },
+        "source/0f3818bce73670ad1751adf0.md": {
+          "id": "source/0f3818bce73670ad1751adf0.md",
+          "title": "Martin Wrigley · NHS Federated Data Platform",
+          "type": "Explicit reference",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-04-16",
+          "url": "https://hansard.parliament.uk/Commons/2026-04-16/debates/2FDCA71C-D0C1-4738-BEE8-A4BDA311DB99/NHSFederatedDataPlatform",
+          "resource": "https://hansard.parliament.uk/Commons/2026-04-16/debates/2FDCA71C-D0C1-4738-BEE8-A4BDA311DB99/NHSFederatedDataPlatform",
+          "body": "Commons · Explicit reference\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-04-16/debates/2FDCA71C-D0C1-4738-BEE8-A4BDA311DB99/NHSFederatedDataPlatform)",
+          "learning_facets": {
+            "sitting": [
+              "2026-04-16"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Explicit reference"
+            ],
+            "example": [
+              "Palantir and the NHS"
+            ]
+          }
+        },
+        "source/bd16babe4e2cd32a3122c84f.md": {
+          "id": "source/bd16babe4e2cd32a3122c84f.md",
+          "title": "Railways Bill · Second Reading",
+          "type": "Formal Bill stage",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-07-07",
+          "url": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
+          "resource": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
+          "body": "Lords · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber)",
+          "learning_facets": {
+            "sitting": [
+              "2026-07-07"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Formal Bill stage"
+            ],
+            "example": [
+              "Railways Bill"
+            ]
+          }
+        },
+        "source/96b539c84f43c43bb949dab2.md": {
+          "id": "source/96b539c84f43c43bb949dab2.md",
+          "title": "Railways Bill · Third Reading",
+          "type": "Formal Bill stage",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-06-10",
+          "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill",
+          "resource": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill",
+          "body": "Commons · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill)",
+          "learning_facets": {
+            "sitting": [
+              "2026-06-10"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Formal Bill stage"
+            ],
+            "example": [
+              "Railways Bill"
+            ]
+          }
+        },
+        "source/f1b9183e1ac40246f6e4ef0b.md": {
+          "id": "source/f1b9183e1ac40246f6e4ef0b.md",
+          "title": "Commons sitting",
+          "type": "Sitting record",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-16",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-16",
+          "body": "Commons · Sitting record\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-16)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-16"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Sitting record"
+            ],
+            "example": [
+              "Verified sittings"
+            ]
+          }
+        },
+        "source/1ffefdce01e50300ea4e2e64.md": {
+          "id": "source/1ffefdce01e50300ea4e2e64.md",
+          "title": "Lords sitting",
+          "type": "Sitting record",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-16",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-16",
+          "resource": "https://hansard.parliament.uk/Lords/2026-11-16",
+          "body": "Lords · Sitting record\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-11-16)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-16"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Sitting record"
+            ],
+            "example": [
+              "Verified sittings"
+            ]
+          }
+        },
+        "source/a8f829af27aaa7b96fbf9201.md": {
+          "id": "source/a8f829af27aaa7b96fbf9201.md",
+          "title": "Commons sitting",
+          "type": "Sitting record",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-17",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-17",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-17",
+          "body": "Commons · Sitting record\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-17)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-17"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Sitting record"
+            ],
+            "example": [
+              "Verified sittings"
+            ]
+          }
+        },
+        "source/6232a925a3d953f61e229a05.md": {
+          "id": "source/6232a925a3d953f61e229a05.md",
+          "title": "Lords sitting",
+          "type": "Sitting record",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-17",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-17",
+          "resource": "https://hansard.parliament.uk/Lords/2026-11-17",
+          "body": "Lords · Sitting record\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-11-17)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-17"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Sitting record"
+            ],
+            "example": [
+              "Verified sittings"
+            ]
+          }
+        }
+      },
+      "relationships": []
+    }
+  }
+}
