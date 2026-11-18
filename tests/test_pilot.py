@@ -8,6 +8,7 @@ import unittest
 
 from archive import Collector, StopRun, open_database
 from build import hansard_proceedings
+from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
 from model import Entity, Matcher, plain, read_sittings
 from people import active_on
 from query import Index, view_for
@@ -15,6 +16,16 @@ from render_view import render
 
 
 class ModelTests(unittest.TestCase):
+    def test_relationship_shards_keep_a_hub_together_in_stable_order(self):
+        hub = "entity/hub"
+        edges = [
+            {"source": f"contribution/{index:03d}", "target": hub, "id": f"hub-{index:03d}"}
+            for index in range(HUB_MINIMUM_INCIDENT_ASSERTIONS)
+        ]
+        ordinary = {"source": "contribution/000", "target": "entity/other", "id": "ordinary"}
+        ordered = ordered_relationships([ordinary, *reversed(edges)])
+        self.assertEqual([*edges, ordinary], ordered)
+
     def test_ambiguous_names_do_not_resolve(self):
         entities = {
             "one": Entity("one", "MP", "Alex Example", None),

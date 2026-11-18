@@ -12,7 +12,13 @@ from capture import sha
 
 PROFILE = Path(__file__).resolve().parents[1] / "profile"
 RECORDS_PER_CHUNK = 32
-RELATIONSHIPS_PER_CHUNK = 512
+RELATIONSHIPS_PER_CHUNK = 96
+HUB_MINIMUM_INCIDENT_ASSERTIONS = 72
+MAX_ROUTE_CHUNKS = 64
+MAX_ROUTE_ROWS = 100_000
+MAX_ROUTE_COMPRESSED_BYTES = 64 * 1024 * 1024
+MAX_ROUTE_RETAINED_TEXT_UNITS = 32 * 1024 * 1024
+MAX_ROW_RETAINED_TEXT_UNITS = 32 * 1024
 PLANE = "recorded"
 PLANE_IRI = "urn:okf:hansard:relationship-plane:recorded"
 
@@ -75,12 +81,32 @@ def publish_records(root, records, snapshot):
     return chunks, locator
 
 
+def ordered_relationships(relationships):
+    degree = Counter(route for edge in relationships for route in {edge["source"], edge["target"]})
+
+    def shard_order(edge):
+        source, target = edge["source"], edge["target"]
+        hub = min((source, target), key=lambda route: (-degree[route], route))
+        if degree[hub] >= HUB_MINIMUM_INCIDENT_ASSERTIONS:
+            return 0, hub, source, target, edge["id"]
+        return 1, source, source, target, edge["id"]
+
+    return sorted(relationships, key=shard_order)
+
+
+def retained_text_bound(row):
+    # UTF-8 JSON bytes conservatively bound the UTF-16 length of the text it
+    # stores. The Reader also retains aliases for the source and target routes.
+    aliases = len(row["source"].encode("utf-8")) + len(row["target"].encode("utf-8"))
+    return len(json_bytes(row)) + aliases
+
+
 def publish_relationships(root, records, relationships, snapshot, generated):
     rows = []
     identifiers = set()
     row_schema = json.loads((PROFILE / "relationship-runtime-row.schema.json").read_bytes())
     validator = Draft202012Validator(row_schema)
-    for edge in sorted(relationships, key=lambda row: (row["source"], row["target"], row["id"])):
+    for edge in ordered_relationships(relationships):
         if edge["id"] in identifiers:
             raise ValueError(f"Duplicate assertion identity: {edge['id']}")
         identifiers.add(edge["id"])
@@ -95,12 +121,19 @@ def publish_relationships(root, records, relationships, snapshot, generated):
         })
     incidents = defaultdict(lambda: {"ids": set(), "chunks": set()})
     chunks = []
+    chunk_budgets = {}
     for start in range(0, len(rows), RELATIONSHIPS_PER_CHUNK):
         path = f"relationships/chunk-{len(chunks):04d}.json.gz"
         shard = rows[start:start + RELATIONSHIPS_PER_CHUNK]
+        retained_bound = 0
         for row in shard:
             validator.validate(row)
+            bound = retained_text_bound(row)
+            if bound > MAX_ROW_RETAINED_TEXT_UNITS:
+                raise ValueError(f"Assertion text exceeds the Reader limit for {row['id']}")
+            retained_bound += bound
         binding = write(root, path, shard, compressed=True)
+        chunk_budgets[path] = (len(shard), binding["bytes"], retained_bound)
         chunks.append({**binding, "id": f"urn:okf:hansard:{path}",
                        "count": len(shard), "media_type": "application/json", "content_encoding": "gzip"})
         for edge in shard:
@@ -111,8 +144,18 @@ def publish_relationships(root, records, relationships, snapshot, generated):
     for route, incident in sorted(incidents.items()):
         paths = sorted(incident["chunks"])
         identifiers = sorted(incident["ids"])
-        if len(paths) > 64 or len(identifiers) > 100_000:
-            raise ValueError(f"Assertion coverage exceeds the Reader limits for {route}")
+        shard_rows, compressed_bytes, retained_bound = map(sum, zip(*(chunk_budgets[path] for path in paths)))
+        if (
+            len(paths) > MAX_ROUTE_CHUNKS
+            or max(len(identifiers), shard_rows) > MAX_ROUTE_ROWS
+            or compressed_bytes > MAX_ROUTE_COMPRESSED_BYTES
+            or retained_bound > MAX_ROUTE_RETAINED_TEXT_UNITS
+        ):
+            raise ValueError(
+                f"Assertion coverage for {route} exceeds the Reader limits "
+                f"({len(paths)} shards, {shard_rows} shard rows, {compressed_bytes} compressed bytes, "
+                f"{retained_bound} retained text units at most)"
+            )
         counts = {"planes": 1, "incident_assertions": len(identifiers),
                   "active_incident_assertions": len(identifiers), "chunk_references": len(paths),
                   "active_chunk_references": len(paths)}
