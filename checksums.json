@@ -8,32 +8,48 @@
     "bytes": 3154
   },
   "coverage.json": {
-    "sha256": "652fcb5b9e4f54ff37945abf77eb19a5b17a7cf4fb24527c3497249f31bf61d6",
+    "sha256": "b6f69736892108f64e59910012e9fbd6c474d2ac13ffbba7376ec7fd7007bb52",
     "bytes": 1895
+  },
+  "demo-evidence.md": {
+    "sha256": "cce69967d5e2643bfcc390ec2675586a2ab888ac984af2afabf8dc608f90237f",
+    "bytes": 8246
+  },
+  "demo.html": {
+    "sha256": "1dd9a7c5c3bc12664b74ed6ab22017884cdd63ad2b15773dead6fa331ae33317",
+    "bytes": 2175
+  },
+  "demo.js": {
+    "sha256": "bb3fec65cf8cdb6609d056e0a4070ad53dd6e627a1a43542742c620df44b17f3",
+    "bytes": 4094
+  },
+  "demo.json": {
+    "sha256": "3f483b23f223141effe1100c50929ff9b0c7fd93273c9e0454d1a553246a8d82",
+    "bytes": 12408
   },
   "example-earlier-mentions.yamlld": {
     "sha256": "b4934d529e5c974eaa0a40398265196b1d44f7796d1b6cf83bad046aad231934",
     "bytes": 73864
   },
   "index.html": {
-    "sha256": "a4740f36717fffe43866fb9153d0fdb9b92cc84cb72df134dacd9d2d7355a6ea",
-    "bytes": 2684
+    "sha256": "6ff120574203a9f9034b194389ac0e115dd3a32e16013f4f0f5190c396c5e134",
+    "bytes": 2759
   },
   "methodology.html": {
-    "sha256": "ab1dfdfc1d0beaae7f03672475459aef1862412c391aa7bb8386cb1a46fd0f87",
-    "bytes": 5854
+    "sha256": "497c8a2fefba37e1d21b11704e2c3e797d2df760be932164e0d73d06d6f8737d",
+    "bytes": 5995
   },
   "okf-bundle.json": {
-    "sha256": "61c77d60c6a106100305074bc78c5cbab44026bbcfccf0dc1e0fd723764ef97c",
-    "bytes": 60261411
+    "sha256": "83955447c95d18976280b74e994b7233e622bad629c2d18581fc372c2e67b112",
+    "bytes": 60453211
   },
   "okf-bundle.yamlld": {
     "sha256": "991a5e02c0cbd0918b5d3cc727f3ddd29f4a87d30fc5027b87fd92332bb89c2e",
     "bytes": 81048465
   },
   "site.css": {
-    "sha256": "25dfb9dff073c775ef410c6a6eee5d3527d51023aa189295766d3e8cf2c81b58",
-    "bytes": 1657
+    "sha256": "f9280bc4b7ff5ef43f09ed3dc476f7659d5b330d95dd3b8291bc8032a86c8bae",
+    "bytes": 2908
   },
   "voice-microsoft-365.html": {
     "sha256": "52c03d75a860ff587043ff0cc36a0cf7c97250c598be5b21103922f10b6e32a2",

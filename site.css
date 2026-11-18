@@ -27,3 +27,20 @@ footer { border-top: 1px solid #bdcbc1; padding: 1rem 0; margin-top: 2rem; color
 .guide ol { padding-left: 1.5rem; }
 .guide li + li { margin-top: .75rem; }
 pre { background: white; border: 1px solid #c4d0c7; border-radius: .35rem; padding: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.demo h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); }
+.demo nav.actions { margin-bottom: 1.2rem; }
+.examples { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.4rem 0; }
+.examples a { background: white; border: 1px solid #b5c6bb; border-radius: .3rem; padding: .5rem .8rem; }
+.examples a[aria-current] { background: #174d3c; color: white; }
+.facet-panel { background: #fff; border: 1px solid #c4d0c7; border-radius: .35rem; padding: .75rem 1rem; margin-top: 1rem; }
+.facet-panel summary { cursor: pointer; font-weight: 650; }
+.facet-panel label { display: inline-block; margin-top: .75rem; }
+.facet-panel dt { font-weight: 650; }
+.facet-panel dd { margin: 0 0 .4rem; }
+.filters { display: flex; flex-wrap: wrap; gap: .75rem 1rem; }
+.filters label { display: flex; flex-direction: column; gap: .2rem; }
+.demo select { background: white; color: inherit; border: 1px solid #758d7c; border-radius: .2rem; min-height: 2.5rem; padding: .25rem .45rem; font: inherit; }
+.demo-timeline { list-style: none; margin: 0; padding: 0 0 0 1rem; border-left: 2px solid #66927b; }
+.demo-timeline li { padding: .45rem 0 .75rem; }
+.demo-timeline p { margin: 0; color: #41554a; font-size: .91rem; }
+.demo .note { border-left: 3px solid #9db7a6; padding-left: .75rem; }

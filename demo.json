@@ -1,0 +1,290 @@
+{
+  "schema": "hansard-demo.v1",
+  "sittings": {
+    "2026-11-16": 1250,
+    "2026-11-17": 1945
+  },
+  "examples": [
+    {
+      "id": "microsoft-365",
+      "title": "Microsoft 365 outage",
+      "summary": "Ian Murray’s Commons statement and the next day’s Lords question share a Microsoft mention. The index found 19 earlier matches for Microsoft 365 before the Commons statement.",
+      "facets": {
+        "People": [
+          "Ian Murray",
+          "Baroness Lloyd of Effra"
+        ],
+        "Offices and roles": [
+          "Minister for Creative Industries, Media and Online Safety"
+        ],
+        "Organisations": [
+          "Microsoft",
+          "Cabinet Office"
+        ],
+        "Things and programmes": [
+          "Microsoft 365"
+        ]
+      },
+      "rows": [
+        {
+          "date": "2026-11-17",
+          "house": "Lords",
+          "title": "Baroness Lloyd of Effra · Public sector dependence on technology providers",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-17/debates/3203E15D-A3FF-40F4-B48C-568BC40BD24F/CyberSecurityPublicSectorDependenceonTechnologyProviders#contribution-13D79A9B-DE1F-45B7-9B87-6B4386D1F584"
+        },
+        {
+          "date": "2026-11-16",
+          "house": "Commons",
+          "title": "Ian Murray · Microsoft 365 outage",
+          "relation": "Starting contribution",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948"
+        },
+        {
+          "date": "2026-07-23",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-ED863356-5EDC-4D61-BADA-DCD4DA0F0416"
+        },
+        {
+          "date": "2026-07-23",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-15AE010E-2CC6-4368-BE64-C145C4037573"
+        },
+        {
+          "date": "2025-07-08",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2025-07-08/debates/E575C8E9-9670-4FD2-8EE5-C810648AFC73/GenerativeArtificialIntelligenceSchools#contribution-DFB83BF5-FE83-4F9D-80AD-8A2786F3A163"
+        },
+        {
+          "date": "2025-06-02",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2025-06-02/debates/25060251000013/ArtificialIntelligenceCross-GovernmentExperiment#contribution-03185EE4-924C-4DE8-9E1B-C0DBF91E3C04"
+        },
+        {
+          "date": "2024-12-18",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-CBA201DD-4548-4900-9D70-AD0F1C95D234"
+        },
+        {
+          "date": "2024-12-18",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2024-12-18/debates/A1CA5CDE-6F55-42E6-8153-31F3FFB302E4/Data(UseandAccess)BillHL#contribution-9F9D6483-D6FC-452E-8DB8-5C0950BA7156"
+        },
+        {
+          "date": "2024-10-08",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2024-10-08/debates/958C7479-FE6A-4AEC-9F75-C5A4FB8AC212/PublicProcurementDataOffshoring#contribution-1F70C69D-3676-4782-98F4-0FE49A3BDF20"
+        },
+        {
+          "date": "2024-05-23",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2024-05-23/debates/E0C0E97D-8851-46A3-892F-A9871C196407/DigitalToolsMembers#contribution-5A697C40-F243-44B6-A6D7-9A8BA7777130"
+        },
+        {
+          "date": "2024-03-27",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2024-03-27/debates/1870CF5A-0B56-4C5C-A6CD-F38192C3CE35/DataProtectionandDigitalInformationBill#contribution-24032749000190"
+        },
+        {
+          "date": "2023-05-10",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2023-05-10/debates/a3e435be-d416-41dd-832e-dab28622b152/DataProtectionandDigitalInformation(No2)Bill(Secondsitting)#contribution-AC5A06CB-9074-44CF-80ED-CCBFB12AAAB6"
+        },
+        {
+          "date": "2021-10-22",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2021-10-22/debates/21102219000004/FurtherElectronicDevicesDisadvantagedChildrenandYoungPeople#contribution-FC41BC94-223F-46C8-8710-0372C348CBF6"
+        },
+        {
+          "date": "2020-12-07",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2020-12-07/debates/4FFF63BD-3E7E-4CD6-A1B1-1A8400F88AD8/Covid-19ImpactonSchoolsandExams#contribution-FBA27512-7289-43C0-9789-D83AD96C4765"
+        },
+        {
+          "date": "2020-06-03",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2020-06-03/debates/E0A76655-CD7D-4D1D-A339-42458DE3D9BE/Covid-19Schools#contribution-380C2830-D529-47F0-8180-5A0684F65639"
+        },
+        {
+          "date": "2020-03-19",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2020-03-19/debates/06B43B77-F920-4955-915A-77C71970088C/Covid-19RemoteWorking#contribution-94648F4F-6C04-4769-ABC7-35CC3CD2F3DA"
+        },
+        {
+          "date": "2018-06-05",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2018-06-05/debates/29CC19DD-5987-49C2-A469-CE1300B2CA9C/ElectronicCommunications(UniversalService)(Broadband)Order2018#contribution-F7633AD3-D29C-4401-8AC7-846DC5EFE1D1"
+        },
+        {
+          "date": "2014-10-20",
+          "house": "Lords",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Lords/2014-10-20/debates/14102017000403/ConsumerRightsBill#contribution-14102017000168"
+        },
+        {
+          "date": "2014-07-10",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000189"
+        },
+        {
+          "date": "2014-07-10",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000186"
+        },
+        {
+          "date": "2014-07-10",
+          "house": "Commons",
+          "title": "Microsoft 365",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000185"
+        }
+      ]
+    },
+    {
+      "id": "palantir-nhs",
+      "title": "Palantir and the NHS",
+      "summary": "Martin Wrigley points to Monday’s statement and his April Westminster Hall debate. The index also found 334 earlier matches for Palantir and 109 for the NHS Federated Data Platform.",
+      "facets": {
+        "People": [
+          "Martin Wrigley"
+        ],
+        "Offices and roles": [
+          "Member for Newton Abbot"
+        ],
+        "Places": [
+          "United Kingdom"
+        ],
+        "Organisations": [
+          "NHS England",
+          "National Health Service",
+          "Palantir"
+        ],
+        "Things and programmes": [
+          "NHS Federated Data Platform"
+        ],
+        "Legislation": [],
+        "Policy subjects": [
+          "Digital health"
+        ]
+      },
+      "rows": [
+        {
+          "date": "2026-11-17",
+          "house": "Commons",
+          "title": "Martin Wrigley · NHS Federated Data Platform: Palantir",
+          "relation": "Starting contribution",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896"
+        },
+        {
+          "date": "2026-11-16",
+          "house": "Commons",
+          "title": "NHS Federated Data Platform",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-9567D857-1171-4BF0-90BC-F964C1ABFFAA"
+        },
+        {
+          "date": "2026-11-16",
+          "house": "Commons",
+          "title": "NHS Federated Data Platform",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-2FB50706-6C6B-4AC2-A1FB-9400919593A3"
+        },
+        {
+          "date": "2026-11-16",
+          "house": "Commons",
+          "title": "NHS Federated Data Platform",
+          "relation": "Shared mention",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-C2F59A2A-34BF-48B9-A303-29A1E1FE414C"
+        },
+        {
+          "date": "2026-11-16",
+          "house": "Commons",
+          "title": "Health and Care: Digital Capability",
+          "relation": "Explicit reference",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability"
+        },
+        {
+          "date": "2026-04-16",
+          "house": "Commons",
+          "title": "Martin Wrigley · NHS Federated Data Platform",
+          "relation": "Explicit reference",
+          "url": "https://hansard.parliament.uk/Commons/2026-04-16/debates/2FDCA71C-D0C1-4738-BEE8-A4BDA311DB99/NHSFederatedDataPlatform"
+        }
+      ]
+    },
+    {
+      "id": "railways-bill",
+      "title": "Railways Bill",
+      "summary": "Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifier leads to the official Bill record and the associated Hansard proceedings.",
+      "facets": {
+        "People": [
+          "Heidi Alexander",
+          "Lord Hendy of Richmond Hill"
+        ],
+        "Organisations": [
+          "Department for Transport"
+        ],
+        "Legislation": [
+          "Railways Bill"
+        ]
+      },
+      "links": [
+        {
+          "title": "Official Bill stages",
+          "url": "https://bills.parliament.uk/bills/4030/stages"
+        }
+      ],
+      "rows": [
+        {
+          "date": "2026-07-07",
+          "house": "Lords",
+          "title": "Railways Bill · Second Reading",
+          "relation": "Formal Bill stage",
+          "url": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber"
+        },
+        {
+          "date": "2026-06-10",
+          "house": "Commons",
+          "title": "Railways Bill · Third Reading",
+          "relation": "Formal Bill stage",
+          "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill"
+        }
+      ]
+    }
+  ]
+}
