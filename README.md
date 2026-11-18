@@ -2,7 +2,13 @@
 
 An experimental OKF+ bundle of Westminster Hansard for 16 and 17 November 2026, with a rolling index of earlier contributions that share an identified person, office, place, organisation, thing, legislative instrument or subject.
 
-## Open the pilot
+## Public snapshot
+
+Start at [A week in Parliament](https://chris-page-gov.github.io/okf-hansard/) for the Explorer import, YAML-LD graph and Microsoft 365 companion view. The [plain-text evidence](https://chris-page-gov.github.io/okf-hansard/voice-microsoft-365.md) is a compact input for a chat or voice conversation with web access.
+
+The public snapshot contains derived records, source links and a worked history example. The rolling archive database and raw captures are local inputs.
+
+## Open a local build
 
 - Load [the Explorer bundle](releases/current/okf-bundle.json) using **File** in OKF Explorer. The compact JSON retains the week and its linked earlier examples. The YAML-LD graph retains the full initial assertion evidence.
 - Read [the YAML-LD graph](releases/current/okf-bundle.yamlld) or start with the [portable Markdown index](releases/current/markdown/index.md).
@@ -61,6 +67,15 @@ The read-only evidence response can carry a view descriptor. Save the JSON, then
     uv run --locked python scripts/export_history.py --from-date 2026-10-01 --to-date 2026-10-31 --entity palantir --out OCTOBER.yamlld
 
 The extended archive uses the 569-entity matching profile from the first capture. The Tuesday refresh added entities to the pilot. Official spoken-search supplements use recorded membership, constituency representation and Bill stage dates to bound matches for new names and titles. Their coverage is shown beside each result.
+
+## Build the Pages snapshot
+
+Run the staging command from the repository root against a verified local release. To regenerate the worked example, run the voice trial builder against the same release and archive first.
+
+    uv run --locked python scripts/build_voice_trial.py
+    uv run --locked python scripts/build_pages.py --out .work/pages-next
+
+The Pages site publishes the root of the generated gh-pages branch. The build stages a fixed set of assets, validates the bundle digests and writes a public checksum catalogue. Compare the served files with the catalogue after deployment.
 
 ## Source attribution
 

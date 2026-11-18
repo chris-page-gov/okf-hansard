@@ -1,0 +1,204 @@
+"""Stage the allowlisted, verified Hansard pilot for GitHub Pages."""
+
+import argparse
+from datetime import date
+from html import escape
+import json
+from pathlib import Path
+import re
+from urllib.parse import urlencode, urlparse
+
+from capture import sha
+
+ROOT = Path(__file__).resolve().parents[1]
+SITE = "https://chris-page-gov.github.io/okf-hansard/"
+READER = "https://chris-page-gov.github.io/okf-explorer/explore/"
+SOURCE = "https://github.com/chris-page-gov/okf-hansard"
+LICENCE = "https://www.parliament.uk/site-information/copyright/open-parliament-licence/"
+ATTRIBUTION = "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
+PUBLIC_FILES = (
+    "okf-bundle.json",
+    "okf-bundle.yamlld",
+    "example-earlier-mentions.yamlld",
+    "voice-microsoft-365.html",
+    "voice-microsoft-365.json",
+)
+LOCAL_TEXT = re.compile(rb"(?:/Users/[a-z0-9._-]+/|/Volumes/[a-z0-9._-]+/|127\.0\.0\.1:8765|localhost:8765)", re.I)
+
+
+def fmt_date(value):
+    day = date.fromisoformat(value)
+    return f"{day.day} {day:%B %Y}"
+
+
+def source_link(url):
+    parsed = urlparse(url)
+    if parsed.scheme != "https" or parsed.netloc != "hansard.parliament.uk":
+        raise ValueError("Expected an official Hansard evidence link.")
+    return url
+
+
+def voice_note(sample):
+    rows = [
+        "# Microsoft 365 outage",
+        "",
+        "House of Commons, 16 November 2026",
+        "",
+        f"Ian Murray made the statement as Minister for Creative Industries, Media and Online Safety. "
+        f"[Original statement]({source_link(sample['anchor']['url'])})",
+        "",
+        "## Organisations",
+        "",
+        "The statement mentions Microsoft and the Cabinet Office. The counts below group literal name "
+        "or alias matches across earlier contributions.",
+        "",
+    ]
+    for org in sample["organisations"]:
+        label = org["entity"]["label"]
+        count = org["entity"]["earlier"]
+        links = ", ".join(f"[{fmt_date(row['date'])} ({row['house']})]({source_link(row['url'])})"
+                          for row in org["examples"])
+        rows.append(f"- {label} has {count:,} earlier matched contributions. Recent examples include {links}.")
+    total = len(sample["earlier_mentions"])
+    rows += ["", "## Earlier mentions of Microsoft 365", "",
+             f"The index found {total} earlier contributions matching the product name or a recorded alias.", ""]
+    for row in sample["earlier_mentions"]:
+        rows.append(f"- [{fmt_date(row['date'])} · {row['house']}]({source_link(row['url'])})")
+    rows += ["", "The historical index starts on "
+             f"{fmt_date(sample['coverage']['extension_from'])}. The matches can relate to other parliamentary business.",
+             "", f"[Companion view]({SITE}voice-microsoft-365.html)", "",
+             f"{ATTRIBUTION} [Licence]({LICENCE})", ""]
+    return "\n".join(rows)
+
+
+def index_page(coverage):
+    by_day = coverage["week_contributions_by_day"]
+    total = sum(by_day.values())
+    assertions = coverage["pilot_graph"]["assertions"]
+    facets = coverage["pilot_graph"]["visible_facet_declarations"]
+    oldest = fmt_date(coverage["archive"]["ranges"]["Commons"]["from"])
+    query = urlencode({"bundle": SITE + "okf-bundle.json"})
+    return f"""<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A source-linked Hansard OKF+ pilot covering both Houses on 16 and 17 November 2026.">
+<title>A week in Parliament | Hansard OKF+</title>
+<style>
+  :root {{color-scheme:light;background:#f5f6f2;color:#202722;font:1rem/1.55 system-ui,sans-serif}}
+  body {{margin:0;border-top:6px solid #255a42}}
+  main {{max-width:66rem;margin:auto;padding:clamp(1rem,5vw,4rem)}}
+  h1 {{font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.02;letter-spacing:-.045em;margin:.35rem 0 1rem}}
+  h2 {{margin:0 0 .5rem;font-size:1.45rem;line-height:1.2}}
+  p {{max-width:68ch}}
+  .date {{font-weight:650;color:#3b5748;margin:0}}
+  .intro {{font-size:clamp(1.06rem,2.4vw,1.25rem)}}
+  a {{color:#174d3c;text-underline-offset:.17em}}
+  .primary {{display:inline-block;background:#174d3c;color:white;border-radius:.3rem;padding:.65rem 1rem;font-weight:650;text-decoration:none}}
+  :focus-visible {{outline:3px solid #8a5800;outline-offset:3px}}
+  .grid {{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem;margin:2rem 0}}
+  .grid section {{border:1px solid #c4d0c7;border-radius:.55rem;background:white;padding:1.15rem}}
+  .grid ul {{padding-left:1.25rem;margin-bottom:0}}
+  footer {{border-top:1px solid #bdcbc1;padding:1rem 0;color:#41554a}}
+</style>
+</head>
+<body>
+<main>
+<p class="date">House of Commons and House of Lords · 16 and 17 November 2026</p>
+<h1>A week in Parliament</h1>
+<p class="intro">Follow a Hansard contribution through related people, offices, organisations, places and legislation. This experimental OKF+ bundle contains {total:,} passages and {assertions:,} source-linked relationships.</p>
+<p><a class="primary" href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a></p>
+<div class="grid">
+<section>
+<h2>Microsoft 365 outage</h2>
+<p>Start with Ian Murray’s Commons statement and follow the named organisations and 19 earlier mentions back to Hansard.</p>
+<ul>
+<li><a href="voice-microsoft-365.html">Open the companion view</a></li>
+<li><a href="voice-microsoft-365.md">Read the evidence in plain text</a></li>
+<li><a href="voice-microsoft-365.json">Get the evidence as JSON</a></li>
+</ul>
+</section>
+<section>
+<h2>Download the bundle</h2>
+<p>Use {facets} facets in Explorer or reuse the evidence-bearing YAML-LD graph.</p>
+<ul>
+<li><a href="okf-bundle.json">Explorer bundle (JSON)</a></li>
+<li><a href="okf-bundle.yamlld">Semantic graph (YAML-LD)</a></li>
+<li><a href="example-earlier-mentions.yamlld">Microsoft 365 history slice (YAML-LD)</a></li>
+<li><a href="checksums.json">File checksums</a></li>
+</ul>
+</section>
+<section>
+<h2>Historical coverage</h2>
+<p>The local index reaches {oldest}. The site includes a week snapshot, coverage results and a worked example from the wider index.</p>
+<ul>
+<li><a href="coverage.json">Coverage and verification</a></li>
+<li><a href="{SOURCE}">Source repository and research notes</a></li>
+</ul>
+</section>
+</div>
+<footer>
+<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>
+<p>This independent pilot links to the official record. Earlier matches use a fixed vocabulary of names and aliases.</p>
+</footer>
+</main>
+</body>
+</html>
+"""
+
+
+def stage(release, coverage_path, destination):
+    final = json.loads(coverage_path.read_bytes())
+    receipt = json.loads((release / "receipt.json").read_bytes())
+    if final["local_release"] != release.resolve().name or not final["pilot_graph"]["passed"]:
+        raise ValueError("The public snapshot must match the verified release.")
+    sample = json.loads((release / "voice-microsoft-365.json").read_bytes())
+    if len(sample["earlier_mentions"]) != 19:
+        raise ValueError("The public example requires the verified Microsoft 365 evidence.")
+    destination.mkdir(parents=True, exist_ok=False)
+    for name in PUBLIC_FILES:
+        raw = (release / name).read_bytes()
+        if LOCAL_TEXT.search(raw):
+            raise ValueError(f"Local address or path in {name}")
+        expected = receipt["artifacts"].get(name)
+        if expected and (sha(raw) != expected["sha256"] or len(raw) != expected["bytes"]):
+            raise ValueError(f"Published bytes would differ from the verified source for {name}")
+        if name == "voice-microsoft-365.html":
+            note = f'<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>'
+            raw = raw.replace(b"</main>", note.encode() + b"\n</main>")
+        (destination / name).write_bytes(raw)
+    public_coverage = {
+        "pilot_graph": final["pilot_graph"],
+        "week_contributions_by_day": final["week_contributions_by_day"],
+        "archive": {k: v for k, v in final["archive"].items() if k != "path"},
+        "collector": final["collector"],
+        "supplemental_searches": final["supplemental_searches"],
+        "coverage_statement": final["coverage_statement"],
+        "observed_at": final["observed_at"],
+        "source_commit": final["code_commit"],
+        "licence": {"url": LICENCE, "attribution": ATTRIBUTION},
+    }
+    (destination / "coverage.json").write_text(json.dumps(public_coverage, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+    (destination / "index.html").write_text(index_page(public_coverage), encoding="utf-8")
+    (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
+    (destination / ".nojekyll").touch()
+    manifest = {}
+    for file in sorted(destination.iterdir()):
+        raw = file.read_bytes()
+        if LOCAL_TEXT.search(raw):
+            raise ValueError(f"Local address or path in staged asset {file.name}")
+        if len(raw) >= 100 * 1024 * 1024:
+            raise ValueError(f"Asset exceeds the GitHub blob limit: {file.name}")
+        manifest[file.name] = {"sha256": sha(raw), "bytes": len(raw)}
+    (destination / "checksums.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    print(f"Staged {len(manifest)} public assets and a checksum catalogue.")
+
+
+if __name__ == "__main__":
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--release", type=Path, default=ROOT / "releases/current")
+    p.add_argument("--coverage", type=Path, default=ROOT / "releases/final-coverage.json")
+    p.add_argument("--out", type=Path, required=True)
+    args = p.parse_args()
+    stage(args.release, args.coverage, args.out)
