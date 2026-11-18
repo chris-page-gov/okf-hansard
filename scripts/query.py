@@ -47,8 +47,22 @@ class Index:
     def connect(self):
         if not self.database or not self.database.is_file():
             return None
-        db = sqlite3.connect(self.database.resolve().as_uri() + "?mode=ro", uri=True, timeout=5)
-        profile = db.execute("SELECT value FROM metadata WHERE key='profile_sha256'").fetchone()
+        path = self.database.resolve()
+        uri = path.as_uri()
+        query = "SELECT value FROM metadata WHERE key='profile_sha256'"
+        db = None
+        try:
+            db = sqlite3.connect(uri + "?mode=ro", uri=True, timeout=5)
+            profile = db.execute(query).fetchone()
+        except sqlite3.OperationalError:
+            if db:
+                db.close()
+            # SQLite cannot create WAL sidecars on a read-only volume.
+            # Use a checkpointed file only when it has no active sidecars.
+            if any(Path(str(path) + suffix).exists() for suffix in ("-wal", "-shm", "-journal")):
+                raise
+            db = sqlite3.connect(uri + "?mode=ro&immutable=1", uri=True, timeout=5)
+            profile = db.execute(query).fetchone()
         if not profile or profile[0] != self.archive_profile_sha256:
             db.close()
             raise ValueError("The history extension does not match the pilot profile.")
