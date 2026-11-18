@@ -165,11 +165,22 @@ def write_timeline(destination, examples, counts):
     })
 
 
-def write_demo(release, destination, coverage, database=DEFAULT_DB):
+def write_demo(release, destination, coverage, database=DEFAULT_DB, baseline=None):
     counts = coverage["week_contributions_by_day"]
-    new_days = [day for day in counts if day > "2026-11-17"]
+    prior_days = baseline["sittings"] if baseline else ("2026-11-16", "2026-11-17")
+    new_days = [day for day in counts if day not in prior_days]
     engine = Index(release, database)
-    examples = [microsoft(engine, release, new_days), palantir(engine, new_days), railways(engine, new_days)]
+    if baseline is None:
+        examples = [microsoft(engine, release, new_days), palantir(engine, new_days), railways(engine, new_days)]
+    else:
+        # The anchor dates have passed. Keep their verified earlier evidence
+        # and append only results drawn from newly captured sittings.
+        examples = baseline["examples"]
+        stories = {story["id"]: story for story in examples}
+        add_week_matches(engine, stories["microsoft-365"]["rows"], new_days, "Microsoft", "microsoft")
+        add_week_matches(engine, stories["palantir-nhs"]["rows"], new_days, "Palantir", "palantir")
+        stories["railways-bill"]["rows"].extend(row for row in railways(engine, new_days)["rows"]
+                                                 if row["date"] in new_days)
     for example in examples:
         example["rows"].sort(key=lambda r: (r["date"], r["house"], r["title"]), reverse=True)
     dump(destination / "demo.json", {"schema": "hansard-demo.v1", "sittings": counts, "examples": examples})

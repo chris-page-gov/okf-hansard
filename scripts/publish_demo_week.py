@@ -21,7 +21,7 @@ PAGES_REMOTE = SOURCE + ".git"
 
 
 def git(checkout, *command):
-    return subprocess.check_output(["git", "-C", str(checkout), *command], text=True).strip()
+    return subprocess.check_output(["git", "-C", str(checkout), *command], text=True, timeout=300).strip()
 
 
 def matches_remote(name, size, digest):
@@ -81,6 +81,8 @@ def scheduled(args):
     base = args.prepared
     if not (base / "published.json").is_file():
         raise ValueError("The starting snapshot must have a verified publication receipt.")
+    if args.use_cached_demo:
+        print("Using verified historical demonstration evidence from the previous publication.", flush=True)
     for through in ("2026-11-18", "2026-11-19"):
         target = args.schedule / through
         target.mkdir(parents=True, exist_ok=True)
@@ -106,11 +108,12 @@ def scheduled(args):
                             through=through, out=pending, base_release=base / "release",
                             base_coverage=base / "coverage.json", snapshot=Path(previous["snapshot"]),
                             people=Path(previous["people"]), database=args.database, explorer=args.explorer,
+                            demo_from=base / "site" if args.use_cached_demo else None,
                         ))
                     publish(pending, args.checkout)
                     base = pending
                     break
-                except (OSError, ValueError, KeyError, RuntimeError, subprocess.CalledProcessError) as exc:
+                except (OSError, ValueError, KeyError, RuntimeError, subprocess.SubprocessError) as exc:
                     print(f"{now()} {through} attempt failed: {exc}", flush=True)
                     wait_until(min(stop, datetime.now(ZONE) + timedelta(minutes=15)))
             else:
@@ -126,6 +129,7 @@ if __name__ == "__main__":
     parser.add_argument("--checkout", type=Path, default=ROOT / ".work/pages-preview")
     parser.add_argument("--schedule", type=Path)
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
+    parser.add_argument("--use-cached-demo", action="store_true")
     parser.add_argument("--explorer", type=Path, default=ROOT.parent / "okf-explorer")
     arguments = parser.parse_args()
     if arguments.schedule:

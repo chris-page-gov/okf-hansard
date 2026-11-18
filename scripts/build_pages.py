@@ -174,7 +174,7 @@ def guide_page(name, title):
 """
 
 
-def stage(release, coverage_path, destination, database=DEFAULT_DB):
+def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_demo=None):
     final = json.loads(coverage_path.read_bytes())
     receipt = json.loads((release / "receipt.json").read_bytes())
     if final["local_release"] != release.resolve().name or not final["pilot_graph"]["passed"]:
@@ -216,7 +216,7 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB):
         (destination / name).write_text(guide_page(name, title), encoding="utf-8")
     for name in DEMO_ASSETS:
         (destination / name).write_bytes((ROOT / "docs" / "pages" / name).read_bytes())
-    write_demo(release, destination, public_coverage, database)
+    write_demo(release, destination, public_coverage, database, baseline_demo)
     (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
     (destination / ".nojekyll").touch()
     manifest = {}

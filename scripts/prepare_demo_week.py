@@ -11,7 +11,7 @@ from zoneinfo import ZoneInfo
 
 from build import build
 from build_pages import stage
-from capture import HOUSES, dump, now
+from capture import HOUSES, dump, now, sha
 from passages import build_locators
 from people import declarations
 from query import DEFAULT_DB, Index
@@ -35,6 +35,8 @@ def carry_history(previous, release, database):
         entity = read(asset)["entity"]
         if entity in current and old.get(entity) == current[entity]:
             shutil.copyfile(asset, supplemental / asset.name)
+    if database is None:
+        return None, len(list(supplemental.glob("*.json")))
     connection = Index(release, database).connect()
     if connection is None:
         raise ValueError("The verified historical cache is unavailable.")
@@ -43,9 +45,22 @@ def carry_history(previous, release, database):
     return count, len(list(supplemental.glob("*.json")))
 
 
+def cached_demo(site, expected_days):
+    raw = (site / "demo.json").read_bytes()
+    integrity = read(site / "checksums.json")["demo.json"]
+    if sha(raw) != integrity["sha256"] or len(raw) != integrity["bytes"]:
+        raise ValueError("The cached demonstration does not match its publication receipt.")
+    data = json.loads(raw)
+    if data["sittings"] != expected_days:
+        raise ValueError("The cached demonstration belongs to a different release.")
+    return data
+
+
 def prepare(args):
     previous = args.base_release.resolve()
     base = read(previous / "receipt.json")
+    baseline = cached_demo(args.demo_from, base["week_contributions_by_day"]) if args.demo_from else None
+    database = None if baseline else args.database
     dates = sorted(base["week_contributions_by_day"])
     first, prior = dates[0], dates[-1]
     if args.through < prior:
@@ -79,9 +94,11 @@ def prepare(args):
     if not check(release, snapshot, people, report):
         raise ValueError("The full graph did not pass source and relationship verification.")
     build_locators(snapshot, release)
-    archive_sittings, supplements = carry_history(previous, release, args.database)
+    archive_sittings, supplements = carry_history(previous, release, database)
     final = read(args.base_coverage)
-    if archive_sittings != sum(row["processed_sittings"] for row in final["archive"]["ranges"].values()):
+    if archive_sittings is not None and archive_sittings != sum(
+        row["processed_sittings"] for row in final["archive"]["ranges"].values()
+    ):
         raise ValueError("The historical cache differs from its verified coverage.")
     for asset in ("example-earlier-mentions.yamlld", "example-related-evidence.json",
                   "example-related-view.html", "voice-microsoft-365.html", "voice-microsoft-365.json"):
@@ -105,7 +122,7 @@ def prepare(args):
         "core_artifacts": receipt["artifacts"],
     })
     dump(coverage, final)
-    stage(release, coverage, args.out / "site", args.database)
+    stage(release, coverage, args.out / "site", database, baseline)
     dump(args.out / "prepared.json", {"through": args.through, "snapshot": str(snapshot.resolve()),
                                       "people": str(people.resolve()), "coverage": str(coverage.resolve())})
 
@@ -119,5 +136,6 @@ if __name__ == "__main__":
     parser.add_argument("--snapshot", type=Path)
     parser.add_argument("--people", type=Path)
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
+    parser.add_argument("--demo-from", type=Path, help="Reuse verified earlier evidence from a published Pages directory.")
     parser.add_argument("--explorer", type=Path, default=ROOT.parent / "okf-explorer")
     prepare(parser.parse_args())
