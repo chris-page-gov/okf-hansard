@@ -8,28 +8,28 @@
     "bytes": 3154
   },
   "coverage.json": {
-    "sha256": "26f9394906e38c82648af024661f2ecc27f19599c2f4417cb8ad25ee0270d791",
+    "sha256": "6a4c69b6cfa5a5f523d3320255a0f551df78e8f73d83609749826b4da04ee4da",
     "bytes": 1895
   },
   "demo-evidence.md": {
-    "sha256": "cce69967d5e2643bfcc390ec2675586a2ab888ac984af2afabf8dc608f90237f",
-    "bytes": 8246
+    "sha256": "287e79fcc9788356804001d4bfb5d352be502032d94de6b00390443afd7e90c3",
+    "bytes": 9626
   },
   "demo-timeline.json": {
     "sha256": "49eb4a64b770cbbe8a7145af81c4d453581d1a97cf5d81ccda4b60c7ccd8bc48",
     "bytes": 41395
   },
   "demo.html": {
-    "sha256": "1ead8526c212bbe3ff014d5d3e992f4e0b4f9b0f1c93dc33c86a94b8600c35cf",
-    "bytes": 2178
+    "sha256": "26c1de9b27088a556536089fe22d0d1ae7098fd088d5f5dccea629d7c59f67a5",
+    "bytes": 2187
   },
   "demo.js": {
-    "sha256": "bb3fec65cf8cdb6609d056e0a4070ad53dd6e627a1a43542742c620df44b17f3",
-    "bytes": 4094
+    "sha256": "da7229696a2f57f9f4a3aa2eedbee7665441934e3a7de9c3bdddc0f325fbbd38",
+    "bytes": 4429
   },
   "demo.json": {
-    "sha256": "3f483b23f223141effe1100c50929ff9b0c7fd93273c9e0454d1a553246a8d82",
-    "bytes": 12408
+    "sha256": "49a2d2ff4fb39bd14628f43ba98ffd2a9c672773ed9e099f2b28e17d09e0efee",
+    "bytes": 14650
   },
   "example-earlier-mentions.yamlld": {
     "sha256": "b4934d529e5c974eaa0a40398265196b1d44f7796d1b6cf83bad046aad231934",

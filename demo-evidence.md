@@ -6,7 +6,7 @@ This file contains links and selected matches from the verified release. A share
 
 Ian Murray’s Commons statement and the next day’s Lords question share a Microsoft mention. The index found 19 earlier matches for Microsoft 365 before the Commons statement.
 
-- People — Ian Murray, Baroness Lloyd of Effra
+- People — [Ian Murray](https://members.parliament.uk/member/3966/career), [Baroness Lloyd of Effra](https://members.parliament.uk/member/5414/career)
 - Offices and roles — Minister for Creative Industries, Media and Online Safety
 - Organisations — Microsoft, Cabinet Office
 - Things and programmes — Microsoft 365
@@ -32,12 +32,16 @@ Ian Murray’s Commons statement and the next day’s Lords question share a Mic
 - 2014-07-10 · Commons · Shared mention · [Microsoft 365](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000189)
 - 2014-07-10 · Commons · Shared mention · [Microsoft 365](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000186)
 - 2014-07-10 · Commons · Shared mention · [Microsoft 365](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000185)
+- [Digital sovereignty (Commons Library)](https://commonslibrary.parliament.uk/research-briefings/cbp-10547/)
+- [Cyber Security and Resilience Bill (Commons Library)](https://commonslibrary.parliament.uk/research-briefings/cbp-10442/)
+- [Ian Murray on TheyWorkForYou](https://www.theyworkforyou.com/mp/24872/ian_murray/edinburgh_south)
+- [Baroness Lloyd of Effra on TheyWorkForYou](https://www.theyworkforyou.com/peer/26695/baroness_lloyd_of_effra)
 
 ## Palantir and the NHS
 
 Martin Wrigley points to Monday’s statement and his April Westminster Hall debate. The index also found 334 earlier matches for Palantir and 109 for the NHS Federated Data Platform.
 
-- People — Martin Wrigley
+- People — [Martin Wrigley](https://members.parliament.uk/member/5111/career)
 - Offices and roles — Member for Newton Abbot
 - Places — United Kingdom
 - Organisations — NHS England, National Health Service, Palantir
@@ -50,17 +54,23 @@ Martin Wrigley points to Monday’s statement and his April Westminster Hall deb
 - 2026-11-16 · Commons · Shared mention · [NHS Federated Data Platform](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-C2F59A2A-34BF-48B9-A303-29A1E1FE414C)
 - 2026-11-16 · Commons · Explicit reference · [Health and Care: Digital Capability](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability)
 - 2026-04-16 · Commons · Explicit reference · [Martin Wrigley · NHS Federated Data Platform](https://hansard.parliament.uk/Commons/2026-04-16/debates/2FDCA71C-D0C1-4738-BEE8-A4BDA311DB99/NHSFederatedDataPlatform)
+- [NHS Federated Data Platform (Commons Library)](https://commonslibrary.parliament.uk/research-briefings/cbp-12264/)
+- [Martin Wrigley on TheyWorkForYou](https://www.theyworkforyou.com/mp/26484/martin_wrigley/newton_abbot)
 
 ## Railways Bill
 
 Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifier leads to the official Bill record and the associated Hansard proceedings.
 
-- People — Heidi Alexander, Lord Hendy of Richmond Hill
+- People — [Heidi Alexander](https://members.parliament.uk/member/4038/career), [Lord Hendy of Richmond Hill](https://members.parliament.uk/member/4972/career)
 - Organisations — Department for Transport
 - Legislation — Railways Bill
 
 - 2026-07-07 · Lords · Formal Bill stage · [Railways Bill · Second Reading](https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber)
 - 2026-06-10 · Commons · Formal Bill stage · [Railways Bill · Third Reading](https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill)
 - [Official Bill stages](https://bills.parliament.uk/bills/4030/stages)
+- [Railways Bill progress (Commons Library)](https://commonslibrary.parliament.uk/research-briefings/cbp-10538/)
+- [Railways Bill (Lords Library)](https://lordslibrary.parliament.uk/research-briefings/lln-2026-0031/)
+- [Heidi Alexander on TheyWorkForYou](https://www.theyworkforyou.com/mp/24953/heidi_alexander/swindon_south)
+- [Lord Hendy of Richmond Hill on TheyWorkForYou](https://www.theyworkforyou.com/peer/26114/lord_hendy_of_richmond_hill)
 
 Contains Parliamentary information licensed under the Open Parliament Licence v3.0.
