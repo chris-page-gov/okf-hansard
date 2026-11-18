@@ -17,6 +17,7 @@ PROFILE = "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/
 NS = "urn:okf:hansard:"
 TOKEN = re.compile(r"[^\W_]+", re.UNICODE)
 BREAK = re.compile(r"[.!?;]")
+CLOCK = r"(?:[01]\d|2[0-3]):[0-5]\d(?::[0-5]\d(?:\.\d+)?)?"
 TERM_TYPES = {
     "Legislation": ("Act", "Bill", "Statutory instrument", "Treaty"),
     "People": ("MP", "Peer", "Parliamentarian", "Public figure"),
@@ -283,10 +284,17 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
         parts[route] = {"title": title, "house": house, "day": day, "section": section,
                         "parent": parent, "capture": reference, "pointer": pointer, "url": url,
                         "ext_id": ext_id, "raw_title": overview["Title"], "volume": overview.get("VolumeNo"),
-                        "source_version": overview.get("ContentLastUpdated")}
+                        "source_version": overview.get("ContentLastUpdated"), "time_markers": []}
         scope = "Pilot week" if first_day <= day <= last_day else "Earlier record"
         for index, item in enumerate(tree["Items"]):
             item_type = item["ItemType"]
+            if item_type == "Timestamp":
+                clock = item.get("Value")
+                if isinstance(clock, str) and re.fullmatch(CLOCK, clock):
+                    parts[route]["time_markers"].append({
+                        "value": f"{day}T{clock}", "source_item": index + 1,
+                        "source_field": f"{pointer}/Items/{index}/Value",
+                    })
             if item_type == "Division":
                 division_id = item.get("ExternalId") or item["ItemId"]
                 if scope == "Pilot week":
@@ -327,6 +335,11 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
                 "value_sha256": sha(str(item["Value"]).encode()), "normalised_sha256": sha(text.encode()),
                 "url": url + (f"#contribution-{ext}" if ext else ""),
             }
+            timecode = item.get("Timecode")
+            if isinstance(timecode, str) and re.fullmatch(
+                rf"{re.escape(day)}T{CLOCK}(?:Z|[+-](?:[01]\d|2[0-3]):[0-5]\d)?", timecode,
+            ):
+                records[entry]["timecode"] = timecode
             metrics[(day, house)]["retained_passages"] += 1
         for index, child in enumerate(tree["ChildDebates"]):
             visit(day, house, section, reference, child, f"{pointer}/ChildDebates/{index}", route)

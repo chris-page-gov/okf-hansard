@@ -79,9 +79,19 @@ Run the staging command from the repository root against a verified local releas
 
 The Pages site publishes the root of the generated gh-pages branch. The build stages a fixed set of assets, validates the bundle digests and writes a public checksum catalogue. Compare the served files with the catalogue after deployment.
 
-Use `scripts/prepare_demo_week.py --through YYYY-MM-DD --out .work/NEW-BUILD` to prepare an extended release against the local historical index. It reuses the cached sittings and Member biographies, checks both Houses and stages Pages only after verifying the full graph. Explorer uses recorded sitting dates as day-precision timestamps. When its JSON projection needs to be smaller, the week stays complete and earlier contributions are sampled. The full semantic graph is available as YAML-LD or as a gzip download.
+Use `scripts/prepare_demo_week.py --through YYYY-MM-DD --out .work/NEW-BUILD` to prepare an extended release against the local historical index. It reuses the cached sittings and Member biographies, checks both Houses and stages Pages only after verifying the full graph. When its JSON projection needs to be smaller, the week stays complete and earlier contributions are sampled. The full semantic graph is available as YAML-LD or as a gzip download.
+
+The week's Explorer projection records the sitting date at day precision, with a separate `hansard_proceedings` field for the section title and one-based source item within that section. An individual contribution's `Timecode` is retained as supplied, with its source pointer and API URL. A time-zone-free value keeps its unrecorded zone. Published section markers come from `Timestamp` items and are attached to the section. A marker never supplies a time for an untimed contribution.
+
+The small [curated summary file](profile/curated-summaries.json) contains editorial summaries of a speaker's position, keyed by the exact official contribution link. The build supplies a summary only when the link matches the captured record. The official link remains the source for the speech and its context.
 
 The demonstration companion links to an Explorer Timeline containing the three worked examples and links for each verified sitting. Open the full Explorer bundle from the homepage to browse all the week’s records.
+
+The focused Graph link loads the selected record and its incident assertions from `graph/okf-explorer.json`. The route locator binds each incident set by assertion count and SHA-256. Each edge keeps its direction, endpoint labels, assertion identifier and evidence. The full JSON bundle remains available for the learning paths.
+
+On 18 November 2026, a local Chrome 158 test opened Ian Murray's statement in 224 ms after sending 328,938 bytes of corpus files over 10 requests. It rendered 12 incident edges and requested a new relationship shard when focus changed to Cyber security. In a fresh context on the same fixture host, the monolithic route transferred 60,261,411 bytes and did not meet the visible-graph check within 20 seconds. These are local observations using a warmed application server.
+
+The published graph schemas are byte-for-byte copies of the [Explorer assertion contract](https://github.com/chris-page-gov/okf-explorer/blob/e57e2c2e056bce326033fa576c4aa278dc437eb2/profiles/bundle-wiki/v1/semantic-assertion.schema.json) and the [UK Legislation runtime row contract](https://github.com/chris-page-gov/okf-uk-legislation/blob/9830fde2d32052f10713298f16b8ab1e321b1928/whole-law/schemas/relationship-runtime-row.schema.json).
 
 ## Source attribution
 

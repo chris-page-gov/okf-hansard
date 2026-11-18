@@ -7,6 +7,7 @@ import tempfile
 import unittest
 
 from archive import Collector, StopRun, open_database
+from build import hansard_proceedings
 from model import Entity, Matcher, plain, read_sittings
 from people import active_on
 from query import Index, view_for
@@ -46,6 +47,31 @@ class ModelTests(unittest.TestCase):
         self.assertEqual(3, len(parts))
         self.assertEqual(1, metrics[entry["date"], entry["house"]]["shared_section_public_ids"])
         self.assertEqual(1, metrics[entry["date"], entry["house"]]["repeated_section_copies"])
+
+    def test_timecode_and_marker_keep_different_source_pointers(self):
+        tree = {
+            "Overview": {"Id": 1, "ExtId": "debate", "Title": "Test debate"},
+            "Items": [
+                {"ItemType": "Timestamp", "Value": "19:14:00", "Timecode": None},
+                {"ItemType": "Contribution", "ExternalId": "aa", "Value": "A timed contribution.",
+                 "Timecode": "2026-11-17T19:15:00"},
+                {"ItemType": "Contribution", "ExternalId": "bb", "Value": "An untimed contribution."},
+            ],
+            "ChildDebates": [],
+        }
+        entry = {"date": "2026-11-17", "house": "Commons",
+                 "roots": [{"section": "Debate", "url": "https://hansard-api.parliament.uk/fixture"}]}
+        parts, records, _, _ = read_sittings(None, {"sittings": [entry]}, "2026-11-16", "2026-11-17",
+                                             loader=lambda _root, _source: tree)
+        section_route, part = next(iter(parts.items()))
+        timed, untimed = [hansard_proceedings(part, section_route, row) for row in records.values()]
+        self.assertEqual("2026-11-17T19:15:00", timed["contribution_time"])
+        self.assertEqual("/Items/1/Timecode", timed["source_field"])
+        self.assertEqual(2, timed["source_item"])
+        self.assertEqual(3, untimed["source_item"])
+        self.assertNotIn("contribution_time", untimed)
+        self.assertEqual([{"value": "2026-11-17T19:14:00", "source_item": 1,
+                           "source_field": "/Items/0/Value"}], hansard_proceedings(part, section_route)["markers"])
 
     def test_closed_appointment_dates(self):
         self.assertTrue(active_on("2026-07-20", None, "2026-11-17"))
