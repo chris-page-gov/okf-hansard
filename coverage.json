@@ -1,0 +1,60 @@
+{
+  "pilot_graph": {
+    "schema": "hansard-verification.v1",
+    "passed": true,
+    "assertions": 28863,
+    "predicates": 11,
+    "rdf_sample_triples": 496,
+    "visible_facet_declarations": 12,
+    "contributions": 3195,
+    "failures": [],
+    "failure_examples": []
+  },
+  "week_contributions_by_day": {
+    "2026-11-16": 1250,
+    "2026-11-17": 1945
+  },
+  "archive": {
+    "retained_contributions": 1279572,
+    "mention_links": 2588755,
+    "matched_entity_ids": 568,
+    "ranges": {
+      "Commons": {
+        "from": "2007-11-08",
+        "through": "2026-10-29",
+        "processed_sittings": 2788,
+        "calendar_sittings_in_range": 2788,
+        "missing_calendar_dates_in_range": []
+      },
+      "Lords": {
+        "from": "2007-11-08",
+        "through": "2026-10-29",
+        "processed_sittings": 2808,
+        "calendar_sittings_in_range": 2808,
+        "missing_calendar_dates_in_range": []
+      }
+    },
+    "profile_sha256": "5ff977cbbe963b5e0b7bbc0f404116aecae19087c5f5bcc590259b394d398547",
+    "bytes": 3848003584,
+    "integrity": "SQLite quick_check and foreign_key_check passed"
+  },
+  "collector": {
+    "state": "deadline reached",
+    "deadline": "2026-11-18T07:00:00+00:00",
+    "last_checkpoint": "2026-11-18T07:00:01+00:00",
+    "unresolved_source_gaps": [],
+    "calendar_gaps": []
+  },
+  "supplemental_searches": {
+    "requested": 41,
+    "successes": 41,
+    "exceptions": {}
+  },
+  "coverage_statement": "Observed published API sittings. Historical matches use a fixed alias profile and scoped spoken-search supplements.",
+  "observed_at": "2026-11-18T07:01:54+00:00",
+  "source_commit": "746f8872ca0b530481c471367b76144dd5d26c38",
+  "licence": {
+    "url": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
+    "attribution": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
+  }
+}

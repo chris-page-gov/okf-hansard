@@ -1,0 +1,38 @@
+{
+  ".nojekyll": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "coverage.json": {
+    "sha256": "652fcb5b9e4f54ff37945abf77eb19a5b17a7cf4fb24527c3497249f31bf61d6",
+    "bytes": 1895
+  },
+  "example-earlier-mentions.yamlld": {
+    "sha256": "b4934d529e5c974eaa0a40398265196b1d44f7796d1b6cf83bad046aad231934",
+    "bytes": 73864
+  },
+  "index.html": {
+    "sha256": "318246c1c9e0bea71e049e7fe0568779cae70f015b3a508b02807c057e62e285",
+    "bytes": 3536
+  },
+  "okf-bundle.json": {
+    "sha256": "61c77d60c6a106100305074bc78c5cbab44026bbcfccf0dc1e0fd723764ef97c",
+    "bytes": 60261411
+  },
+  "okf-bundle.yamlld": {
+    "sha256": "991a5e02c0cbd0918b5d3cc727f3ddd29f4a87d30fc5027b87fd92332bb89c2e",
+    "bytes": 81048465
+  },
+  "voice-microsoft-365.html": {
+    "sha256": "52c03d75a860ff587043ff0cc36a0cf7c97250c598be5b21103922f10b6e32a2",
+    "bytes": 8017
+  },
+  "voice-microsoft-365.json": {
+    "sha256": "4422f9c97e307cdbb57703c84ee688702dc8a67d8d7551ba57519cf04f211d92",
+    "bytes": 39505
+  },
+  "voice-microsoft-365.md": {
+    "sha256": "399ba149a59b38a65c305bb1e5ed36026d8c2ac768c6a60ef09c1d400fcfabe8",
+    "bytes": 6001
+  }
+}
