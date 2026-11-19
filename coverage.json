@@ -2,17 +2,18 @@
   "pilot_graph": {
     "schema": "hansard-verification.v1",
     "passed": true,
-    "assertions": 28863,
+    "assertions": 34224,
     "predicates": 11,
-    "rdf_sample_triples": 498,
+    "rdf_sample_triples": 506,
     "visible_facet_declarations": 12,
-    "contributions": 3195,
+    "contributions": 4326,
     "failures": [],
     "failure_examples": []
   },
   "week_contributions_by_day": {
     "2026-11-16": 1250,
-    "2026-11-17": 1945
+    "2026-11-17": 1945,
+    "2026-11-18": 1131
   },
   "archive": {
     "retained_contributions": 1279572,
@@ -51,8 +52,8 @@
     "exceptions": {}
   },
   "coverage_statement": "Observed published API sittings. Historical matches use a fixed alias profile and scoped spoken-search supplements.",
-  "observed_at": "2026-11-18T16:44:09+00:00",
-  "source_commit": "2c0052481626bd2588f88a43317fd83d13ee8b71",
+  "observed_at": "2026-11-19T11:35:35+00:00",
+  "source_commit": "00fb8c13a091f67e3512c06d9b1f62d302fb03fd",
   "licence": {
     "url": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
     "attribution": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."

@@ -65,6 +65,7 @@ Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifi
 - Organisations — Department for Transport
 - Legislation — Railways Bill
 
+- 2026-11-18 · Lords · Formal Bill stage · [Railways Bill · Report stage](https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill)
 - 2026-07-07 · Lords · Formal Bill stage · [Railways Bill · Second Reading](https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber)
 - 2026-06-10 · Commons · Formal Bill stage · [Railways Bill · Third Reading](https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill)
 - [Official Bill stages](https://bills.parliament.uk/bills/4030/stages)

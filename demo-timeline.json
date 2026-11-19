@@ -52,6 +52,7 @@
         {
           "title": "Railways Bill",
           "routes": [
+            "source/3d450bd31d02b83895ef2b20.md",
             "source/bd16babe4e2cd32a3122c84f.md",
             "source/96b539c84f43c43bb949dab2.md"
           ]
@@ -62,7 +63,9 @@
             "source/f1b9183e1ac40246f6e4ef0b.md",
             "source/1ffefdce01e50300ea4e2e64.md",
             "source/a8f829af27aaa7b96fbf9201.md",
-            "source/6232a925a3d953f61e229a05.md"
+            "source/6232a925a3d953f61e229a05.md",
+            "source/03a10e2ba076d22d110dc829.md",
+            "source/20c9a5b12ae6d037406cfd7a.md"
           ]
         }
       ],
@@ -889,6 +892,52 @@
             ]
           }
         },
+        "source/3d450bd31d02b83895ef2b20.md": {
+          "id": "source/3d450bd31d02b83895ef2b20.md",
+          "title": "Railways Bill · Report stage",
+          "type": "Formal Bill stage",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-18",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
+          "resource": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
+          "body": "Lords · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-18"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Formal Bill stage"
+            ],
+            "example": [
+              "Railways Bill"
+            ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/lords-2026-11-18-debate-5ee3bf1a-449e-4d6d-a0ce-f725ce734996.md",
+            "section_title": "Railways Bill",
+            "sitting_date": "2026-11-18",
+            "house": "Lords",
+            "source_item": 5,
+            "speaker": "",
+            "markers": [
+              {
+                "value": "2026-11-18T20:30:00",
+                "source_item": 2,
+                "source_field": "/ChildDebates/12/Items/1/Value"
+              },
+              {
+                "value": "2026-11-18T20:45:00",
+                "source_item": 13,
+                "source_field": "/ChildDebates/12/Items/12/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/8c154d52-8c83-4d69-b53f-360abada4a5c.json"
+          }
+        },
         "source/bd16babe4e2cd32a3122c84f.md": {
           "id": "source/bd16babe4e2cd32a3122c84f.md",
           "title": "Railways Bill · Second Reading",
@@ -1021,6 +1070,54 @@
           "learning_facets": {
             "sitting": [
               "2026-11-17"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Sitting record"
+            ],
+            "example": [
+              "Verified sittings"
+            ]
+          }
+        },
+        "source/03a10e2ba076d22d110dc829.md": {
+          "id": "source/03a10e2ba076d22d110dc829.md",
+          "title": "Commons sitting",
+          "type": "Sitting record",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-18",
+          "url": "https://hansard.parliament.uk/Commons/2026-11-18",
+          "resource": "https://hansard.parliament.uk/Commons/2026-11-18",
+          "body": "Commons · Sitting record\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-11-18)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-18"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Sitting record"
+            ],
+            "example": [
+              "Verified sittings"
+            ]
+          }
+        },
+        "source/20c9a5b12ae6d037406cfd7a.md": {
+          "id": "source/20c9a5b12ae6d037406cfd7a.md",
+          "title": "Lords sitting",
+          "type": "Sitting record",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-18",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-18",
+          "resource": "https://hansard.parliament.uk/Lords/2026-11-18",
+          "body": "Lords · Sitting record\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-11-18)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-18"
             ],
             "chamber": [
               "Lords"
