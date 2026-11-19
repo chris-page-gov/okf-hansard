@@ -10,6 +10,8 @@ Use the [beginner’s guide](https://chris-page-gov.github.io/okf-hansard/beginn
 
 The public snapshot contains derived records, source links and a worked history example. The rolling archive database and raw captures are local inputs.
 
+The public companion and published history work without the SSD. See the [Voice and storage matrix](docs/voice-and-visual-ui.md#voice-and-storage) for the web and local MCP options.
+
 ## Open a local build
 
 - Load [the Explorer bundle](releases/current/okf-bundle.json) using **File** in OKF Explorer. The compact JSON retains the week and its linked earlier examples. The YAML-LD graph retains the full initial assertion evidence.
@@ -45,6 +47,8 @@ The tools are **hansard_find**, **hansard_trace**, **hansard_roles_as_of**, **ha
 ## Extend the collection
 
 Capture to a fresh directory. The archive uses Parliament’s calendars to avoid polling non-sitting dates. It hashes the matching profile, indexes one House and sitting at a time and reuses processed sittings on restart. The default index path is on ExtSSD-Data. Use another database path when changing the matching profile. The active release can bind an older index by retaining its exact profile. Each entity’s response states whether the extension applies.
+
+The [pre-2007 archive runbook](docs/historic-archive-operations.md) gives the source checks, checkpoint location and commands to query, pause, resume or finish the separate collector.
 
     uv run --locked python scripts/capture.py .snapshots/CAPTURE_ID --from-date 2026-11-02 --to-date 2026-11-17
     uv run --locked python scripts/people.py --snapshot .snapshots/CAPTURE_ID --output .snapshots/PEOPLE_ID --first 2026-11-16 --last 2026-11-17

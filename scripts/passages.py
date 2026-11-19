@@ -43,13 +43,22 @@ class Passages:
                 if row["contribution"] == route:
                     return row
         db = self.index.connect()
-        if not db:
-            return None
-        try:
-            row = db.execute("SELECT record FROM contribution WHERE route=?", (route,)).fetchone()
-            return json.loads(row[0]) if row else None
-        finally:
-            db.close()
+        if db:
+            try:
+                row = db.execute("SELECT record FROM contribution WHERE route=?", (route,)).fetchone()
+                if row:
+                    return json.loads(row[0])
+            finally:
+                db.close()
+        older, _, _ = self.index.connect_older()
+        if older:
+            try:
+                row = older.execute("SELECT record FROM contribution WHERE route=?", (route,)).fetchone()
+                if row:
+                    return json.loads(row[0])
+            finally:
+                older.close()
+        return None
 
     def read(self, route, offset=0, limit=6000, expected_sha256=None):
         loc = self.locator(route)

@@ -5,8 +5,10 @@ from collections import Counter
 from datetime import UTC, date, datetime, timedelta
 import gzip
 from hashlib import sha256
+from http.client import HTTPException
 import json
 from pathlib import Path
+import re
 import signal
 import sqlite3
 import time
@@ -111,9 +113,11 @@ class Collector:
                         "etag": response.headers.get("ETag"), "last_modified": response.headers.get("Last-Modified"),
                     }
                     return obj, meta
-            except (HTTPError, URLError, TimeoutError) as exc:
+            except (HTTPError, URLError, HTTPException, TimeoutError) as exc:
                 self.telemetry["http_errors"] += 1
                 retryable = not isinstance(exc, HTTPError) or exc.code in (408, 429, 500, 502, 503, 504)
+                if attempt == 2 and isinstance(exc, HTTPException):
+                    raise OSError(f"{url}: {exc}") from exc
                 if not retryable or attempt == 2:
                     raise
                 header = exc.headers.get("Retry-After", "") if isinstance(exc, HTTPError) else ""
@@ -155,7 +159,17 @@ def read_calendar(db, collector, month, house):
     return days
 
 
-def collect_sitting(db, collector, matcher, day, house):
+def contribution_link(record):
+    external = str(record.get("external_id") or "")
+    url = urlparse(record["url"])
+    debate = re.match(r"^/(?:Commons|Lords)/\d{4}-\d\d-\d\d/debates/([A-Za-z0-9-]+)(?:/|$)", url.path, re.I)
+    if (re.fullmatch(r"[A-Za-z0-9-]+", external) and url.scheme == "https"
+            and url.netloc == "hansard.parliament.uk" and debate and url.fragment == f"contribution-{external}"):
+        return (debate[1].casefold(), url.fragment.casefold())
+    return None
+
+
+def collect_sitting(db, collector, matcher, day, house, links_only=False):
     previous = db.execute("SELECT status, attempts FROM sitting WHERE day=? AND house=?", (day, house)).fetchone()
     if previous and previous[0] in ("processed", "no published sections"):
         collector.telemetry["sittings_reused"] += 1
@@ -181,12 +195,22 @@ def collect_sitting(db, collector, matcher, day, house):
             metrics = observed[(day, house)]
         except (ValueError, KeyError, TypeError) as exc:
             entry["errors"].append(f"Normalisation: {exc}")
+    elif links_only and not entry["errors"]:
+        entry["errors"].append("The calendar lists a sitting and its section index is empty.")
+    link_counts = Counter(contribution_link(row) for row in records.values()) if links_only else {}
     bundles, mentions = [], []
     for route, record in records.items():
         collector.check()
         found = mention_roles(record, matcher)
         if not found:
             continue
+        if links_only:
+            link = contribution_link(record)
+            if not link or link_counts[link] != 1:
+                collector.telemetry["matched_passages_without_unique_contribution_link"] += 1
+                metrics["matched_passages_without_unique_contribution_link"] = (
+                    metrics.get("matched_passages_without_unique_contribution_link", 0) + 1)
+                continue
         meta = {k: record[k] for k in (
             "kind", "pointer", "url", "external_id", "source_item_id", "member",
             "attributed_to", "value_sha256", "normalised_sha256", "section",
@@ -244,7 +268,7 @@ def previous_month(month):
     return (month - timedelta(days=1)).replace(day=1)
 
 
-def run(db, collector, matcher, before, floor, report):
+def run(db, collector, matcher, before, floor, report, *, links_only=False, checkpoint_seconds=30):
     started = now()
     month = (date.fromisoformat(before) - timedelta(days=1)).replace(day=1)
     current_month = month
@@ -271,15 +295,16 @@ def run(db, collector, matcher, before, floor, report):
                     calendar_gaps.append({"month": month.isoformat()[:7], "house": house, "error": str(exc)})
             for day, house in sorted(scheduled, reverse=True):
                 if floor.isoformat() <= day < before:
-                    collect_sitting(db, collector, matcher, day, house)
-                    if time.monotonic() - last_checkpoint >= 30:
+                    collect_sitting(db, collector, matcher, day, house, links_only)
+                    if time.monotonic() - last_checkpoint >= checkpoint_seconds:
                         last_checkpoint = time.monotonic()
                         checkpoint("running")
             gaps = list(db.execute("SELECT day,house FROM sitting WHERE status='source gap' AND attempts=1 AND day LIKE ?",
                                    (month.isoformat()[:7] + "%",)))
             for day, house in gaps:
                 collector.check()
-                collect_sitting(db, collector, matcher, day, house)
+                if floor.isoformat() <= day < before:
+                    collect_sitting(db, collector, matcher, day, house, links_only)
             if collector.telemetry["sittings_checked"] > checks_at_start:
                 p = checkpoint("running")
                 print(f"{p['current_month']} • {p['matched_contributions']} matched contributions • "
@@ -292,7 +317,7 @@ def run(db, collector, matcher, before, floor, report):
         raise
     finally:
         db.execute("PRAGMA wal_checkpoint(PASSIVE)")
-    checkpoint(state)
+    return checkpoint(state)
 
 
 def main():

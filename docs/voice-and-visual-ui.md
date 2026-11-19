@@ -20,6 +20,17 @@ The built Explorer already assembles bounded evidence and has exact-read tools w
 
 OpenAI’s current guidance describes connected apps in Live where the account and workspace allow them. Voice in existing Codex chats is rolling out. The public Microsoft 365 example also provides ordinary web evidence that a ChatGPT conversation with web access can read. Native access to the local stdio server depends on the host and needs a live test. [Voice in Codex](https://learn.chatgpt.com/docs/features/voice) · [Connected apps in ChatGPT](https://help.openai.com/en/articles/11487775-connected-apps-in-chatgpt)
 
+## Voice and storage
+
+| Task | Storage or host required |
+| --- | --- |
+| Open the Friday companion, published history or Microsoft 365 evidence | GitHub Pages serves the files directly. A browser or Voice conversation with web access can use those URLs without the SSD. |
+| Run the local CLI or MCP server for the released week | The local release files provide search, graph and recent history. Member and passage tools also consult Parliament when they need live data. |
+| Trace the full local archive or read a contribution indexed there | Mount ExtSSD-Data or pass an equivalent index path. The pre-2007 extension also requires its pinned matching profile beside the database. If the database is absent, trace uses the available release evidence and reports the archive as unavailable. |
+| Continue collecting or reproduce the full archive-backed publication | The collector needs writable storage for its index. The publication build reads the archive to reproduce its full history. The published pages serve a self-contained snapshot. |
+
+ChatGPT web can use public evidence in eligible Live sessions. Its plugin tools use remote MCP. A local Codex host can run this repository’s stdio server and can query the SSD if the host can read it. Using speech in that session depends on Voice and tool availability there. The repository supplies the same evidence for both input methods. The demo’s web evidence and local MCP paths have been checked independently. An end-to-end Voice call into the local server still needs a test in the intended host. [ChatGPT Voice](https://help.openai.com/en/articles/20001274-chatgpt-voice) · [MCP by host](https://learn.chatgpt.com/docs/extend/mcp)
+
 ## A declarative visual contract
 
 The prototype implements a small **okf-view.v1** descriptor for the related-entity ranked bar chart and table. It binds the data, view and evidence context by digest. Each row carries an entity ID, a count of distinct contribution records and arguments for opening the supporting evidence through the same read-only tool. The companion renderer verifies the descriptor’s identity, dataset digest and evidence binding before it writes HTML.

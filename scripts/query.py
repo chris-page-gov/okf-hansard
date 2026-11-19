@@ -9,6 +9,8 @@ import sqlite3
 
 DEFAULT_RELEASE = Path("releases/current")
 DEFAULT_DB = Path("/Volumes/ExtSSD-Data/okf-hansard-cache/history-v1.sqlite")
+DEEP_DB = DEFAULT_DB.with_name("history-before-2007.sqlite")
+DEEP_BEFORE = "2007-01-01"
 
 
 def canonical_digest(value):
@@ -17,7 +19,7 @@ def canonical_digest(value):
 
 
 class Index:
-    def __init__(self, release, database=None):
+    def __init__(self, release, database=None, older_database=None):
         self.release = release
         self.history = json.loads((release / "history.json").read_bytes())
         self.profile = json.loads((release / "analysis-profile.json").read_bytes())
@@ -42,6 +44,7 @@ class Index:
                 if pkg["entity"] in self.profile["entities"]:
                     self.auxiliary[pkg["entity"]] = pkg
         self.database = database
+        self.older_database = older_database
         self.backfill = release / "backfill"
         self.source_records = None
 
@@ -55,9 +58,29 @@ class Index:
         return None
 
     def connect(self):
-        if not self.database or not self.database.is_file():
+        return self.connect_archive(self.database, self.archive_profile_sha256)
+
+    def connect_older(self):
+        if not self.older_database or not self.older_database.is_file():
+            return None, set(), None
+        raw = self.older_database.with_suffix(".profile.json").read_bytes()
+        profile = json.loads(raw)["entities"]
+        digest = hashlib.sha256(raw).hexdigest()
+        db = self.connect_archive(self.older_database, digest)
+        if db is None:
+            return None, set(), None
+        bounds = dict(db.execute("SELECT key,value FROM metadata WHERE key IN ('exclusive_before','contribution_link_policy')"))
+        if bounds != {"exclusive_before": DEEP_BEFORE, "contribution_link_policy": "unique-fragment-v1"}:
+            db.close()
+            raise ValueError("The pre-2007 archive is missing its expected link policy or date boundary.")
+        keys = {key for key, spec in self.profile["entities"].items() if profile.get(key) == spec}
+        return db, keys, digest
+
+    @staticmethod
+    def connect_archive(database, profile_sha256):
+        if not database or not database.is_file():
             return None
-        path = self.database.resolve()
+        path = database.resolve()
         uri = path.as_uri()
         query = "SELECT value FROM metadata WHERE key='profile_sha256'"
         db = None
@@ -73,10 +96,22 @@ class Index:
                 raise
             db = sqlite3.connect(uri + "?mode=ro&immutable=1", uri=True, timeout=5)
             profile = db.execute(query).fetchone()
-        if not profile or profile[0] != self.archive_profile_sha256:
+        if not profile or profile[0] != profile_sha256:
             db.close()
             raise ValueError("The history extension does not match the pilot profile.")
         return db
+
+    @staticmethod
+    def archive_rows(db, key, before, limit, offset, since="0001-01-01"):
+        rows = db.execute("""
+            SELECT m.route, m.day, c.house, c.debate, c.ordinal, c.record, m.evidence
+            FROM mention AS m JOIN contribution AS c ON c.route=m.route
+            WHERE m.entity=? AND m.day>=? AND m.day<?
+            ORDER BY m.day DESC, m.route DESC LIMIT ? OFFSET ?
+        """, (key, since, before, limit, offset))
+        return [{"contribution": route, "date": day, "house": house, "part": debate, "order": ordinal,
+                 **json.loads(document), **json.loads(proof)}
+                for route, day, house, debate, ordinal, document, proof in rows]
 
     def find(self, term="", day=None, house=None, limit=20, offset=0):
         if self.source_records is None:
@@ -110,15 +145,23 @@ class Index:
         if entity is not None and entity not in keys:
             raise ValueError("That entity is not an extracted textual match for this contribution.")
         db = self.connect()
+        deep = None
         try:
             if db:
                 db.execute("BEGIN")
-            return self._within_snapshot(db, anchor, route, keys, entity, limit, offset, expected_context)
+            deep, deep_keys, deep_sha = self.connect_older()
+            if deep:
+                deep.execute("BEGIN")
+            return self._within_snapshot(db, deep, deep_keys, deep_sha, anchor, route, keys, entity, limit, offset,
+                                         expected_context)
         finally:
             if db:
                 db.close()
+            if deep:
+                deep.close()
 
-    def _within_snapshot(self, db, anchor, route, keys, entity, limit, offset, expected_context):
+    def _within_snapshot(self, db, deep, deep_keys, deep_sha, anchor, route, keys, entity, limit, offset,
+                         expected_context):
         summaries = []
         actual_items = []
         extension_earliest = None
@@ -130,6 +173,15 @@ class Index:
                 SELECT min(day),max(day),count(*) FROM sitting WHERE status='processed'
             """).fetchone()
             gaps = db.execute("SELECT count(*) FROM sitting WHERE status='source gap'").fetchone()[0]
+        deep_before = min(DEEP_BEFORE, anchor["date"])
+        deep_status = {}
+        if deep:
+            deep_status = {
+                status: {"from": start, "through": stop, "sittings": total}
+                for status, start, stop, total in deep.execute("""
+                    SELECT status,min(day),max(day),count(*) FROM sitting WHERE day<? GROUP BY status
+                """, (deep_before,))
+            }
 
         def prior(row):
             return row["date"] < anchor["date"] or (
@@ -141,27 +193,35 @@ class Index:
             prior_base = [row for row in reversed(entries) if prior(row)]
             same_day = sum(row["date"] == anchor["date"] and row["part"] != anchor["part"] for row in entries)
             use_archive = db and key in self.archive_keys
+            use_deep = deep and key in deep_keys
             backfill = self.backfill_for(key)
             supplemental = None if backfill else self.auxiliary.get(key)
             if supplemental and not use_archive:
-                prior_base.extend(row for row in supplemental["items"] if prior(row))
+                prior_base.extend(row for row in supplemental["items"] if prior(row)
+                                  and (not use_deep or row["date"] >= deep_before))
             earlier_search = []
             if backfill:
                 for row in backfill["items"]:
-                    if not prior(row):
+                    if not prior(row) or (use_deep and row["date"] < deep_before):
                         continue
                     if not use_archive or row["date"] > extension_latest:
                         prior_base.append(row)
                     elif row["date"] < extension_earliest:
                         earlier_search.append(row)
             count = 0
+            archive_since = deep_before if use_deep else "0001-01-01"
             if use_archive:
-                count = db.execute("SELECT count(*) FROM mention WHERE entity=? AND day<?",
-                                   (key, anchor["date"])).fetchone()[0]
+                count = db.execute("SELECT count(*) FROM mention WHERE entity=? AND day>=? AND day<?",
+                                   (key, archive_since, anchor["date"])).fetchone()[0]
+            deep_count = deep.execute("SELECT count(*) FROM mention WHERE entity=? AND day<?",
+                                      (key, deep_before)).fetchone()[0] if use_deep else 0
+            recent_count = len(prior_base) + count + len(earlier_search)
             summaries.append({"id": key, **self.history["entities"][key],
-                              "earlier": len(prior_base) + count + len(earlier_search),
+                              "earlier": recent_count + deep_count,
                               "same_day_order_unknown": same_day,
                               "extension_applied": bool(use_archive),
+                              **({"older_archive_applied": bool(use_deep), "older_archive_matches": deep_count}
+                                 if self.older_database else {}),
                               **({"backfill_coverage": {"from": backfill["from"], "through": backfill["through"],
                                                         "method": backfill["method"], "errors": backfill["errors"],
                                                         "archive_unavailable": backfill["archive"] and not use_archive}}
@@ -177,27 +237,26 @@ class Index:
             if offset < len(prior_base):
                 actual_items.extend(prior_base[offset:offset + remaining])
                 remaining = limit - len(actual_items)
-            if db and remaining and key in self.archive_keys:
-                rows = db.execute("""
-                    SELECT m.route, m.day, c.house, c.debate, c.ordinal, c.record, m.evidence
-                    FROM mention AS m JOIN contribution AS c ON c.route=m.route
-                    WHERE m.entity=? AND m.day<?
-                    ORDER BY m.day DESC, m.route DESC LIMIT ? OFFSET ?
-                """, (key, anchor["date"], remaining, max(0, offset - len(prior_base))))
-                for contribution, day, house, debate, ordinal, document, proof in rows:
-                    actual_items.append({"contribution": contribution, "date": day, "house": house,
-                                         "part": debate, "order": ordinal, **json.loads(document),
-                                         **json.loads(proof)})
+            if use_archive and remaining:
+                actual_items.extend(self.archive_rows(db, key, anchor["date"], remaining,
+                                                      max(0, offset - len(prior_base)), archive_since))
             remaining = limit - len(actual_items)
             if earlier_search and remaining:
                 start = max(0, offset - len(prior_base) - count)
                 actual_items.extend(earlier_search[start:start + remaining])
+            remaining = limit - len(actual_items)
+            if use_deep and remaining:
+                actual_items.extend(self.archive_rows(deep, key, deep_before, remaining,
+                                                      max(0, offset - recent_count)))
         scope = {"base_from": min(row["date"] for row in self.receipt["day_denominators"]),
                  "base_through": anchor["date"], "extension_from": extension_earliest,
                  "extension_through": extension_latest, "extension_processed_sittings": extension_count,
                  "extension_source_gaps": gaps, "archive_profile_sha256": self.archive_profile_sha256,
                  "ordering": "earlier sitting dates or earlier source order in the same section",
                  "method": "literal match against a fixed governed alias profile"}
+        if self.older_database:
+            scope["older_archive"] = {"available": bool(deep), "exclusive_before": deep_before,
+                                      "sittings": deep_status, "profile_sha256": deep_sha}
         context = canonical_digest({"bundle": self.bundle_sha256, "scope": scope,
                                     "contribution": route, "entities": summaries})
         if expected_context and expected_context != context:
@@ -243,6 +302,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--release", type=Path, default=DEFAULT_RELEASE)
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
+    parser.add_argument("--older-database", type=Path, help="Read a verified, separate pre-2007 archive.")
     command = parser.add_subparsers(required=True, dest="command")
     search = command.add_parser("find")
     search.add_argument("term", nargs="?", default="")
@@ -258,7 +318,7 @@ def main():
     args = parser.parse_args()
     if args.offset < 0 or not 1 <= args.limit <= 500:
         parser.error("Use a non-negative offset and a page size of 1 to 500.")
-    index = Index(args.release, args.database)
+    index = Index(args.release, args.database, args.older_database)
     if args.command == "find":
         answer = index.find(args.term, args.date, args.house, args.limit, args.offset)
     else:

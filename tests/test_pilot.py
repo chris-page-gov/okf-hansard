@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 from urllib.parse import parse_qs, urlsplit
 
-from archive import Collector, StopRun, open_database
+from archive import Collector, StopRun, contribution_link, open_database
 from backfill import Search, search_aliases, search_periods
 from build import Graph, build, hansard_proceedings, runtime
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
@@ -21,6 +21,15 @@ from render_view import render
 
 
 class ModelTests(unittest.TestCase):
+    def test_historic_links_require_a_contribution_fragment_and_debate_id(self):
+        base = "https://hansard.parliament.uk/Lords/1803-11-22/debates/debate-12"
+        expected = ("debate-12", "contribution-speech-6")
+        self.assertEqual(contribution_link({"external_id": "Speech-6", "url": base + "/Debate#contribution-Speech-6"}),
+                         expected)
+        self.assertIsNone(contribution_link({"external_id": "Speech-6", "url": base + "/Debate"}))
+        self.assertIsNone(contribution_link({"external_id": "Speech-6", "url": base + "#contribution-Speech-7"}))
+        self.assertIsNone(contribution_link({"external_id": None, "url": base + "#contribution-Speech-6"}))
+
     def test_bounded_reader_preserves_required_relationship_evidence(self):
         graph = Graph()
         day = "2026-11-18"

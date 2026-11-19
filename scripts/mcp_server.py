@@ -104,9 +104,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--release", type=Path, default=DEFAULT_RELEASE)
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
+    parser.add_argument("--older-database", type=Path, help="Read a verified, separate pre-2007 archive.")
     parser.add_argument("--people", type=Path, default=Path(".snapshots/members-current"))
     args = parser.parse_args()
-    index = Index(args.release, args.database)
+    index = Index(args.release, args.database, args.older_database)
     passages = Passages(index)
     while raw := sys.stdin.buffer.readline(65537):
         if len(raw) > 65536:
