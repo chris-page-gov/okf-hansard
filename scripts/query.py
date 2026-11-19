@@ -42,7 +42,17 @@ class Index:
                 if pkg["entity"] in self.profile["entities"]:
                     self.auxiliary[pkg["entity"]] = pkg
         self.database = database
+        self.backfill = release / "backfill"
         self.source_records = None
+
+    def backfill_for(self, key):
+        path = self.backfill / f"{key}.json"
+        if path.is_file():
+            package = json.loads(path.read_bytes())
+            if package["entity"] != key or package["schema"] != "hansard-backfill.v1":
+                raise ValueError("The history search package has an unexpected identity.")
+            return package
+        return None
 
     def connect(self):
         if not self.database or not self.database.is_file():
@@ -130,17 +140,32 @@ class Index:
             entries = self.base.get(key, [])
             prior_base = [row for row in reversed(entries) if prior(row)]
             same_day = sum(row["date"] == anchor["date"] and row["part"] != anchor["part"] for row in entries)
-            supplemental = self.auxiliary.get(key)
             use_archive = db and key in self.archive_keys
+            backfill = self.backfill_for(key)
+            supplemental = None if backfill else self.auxiliary.get(key)
             if supplemental and not use_archive:
                 prior_base.extend(row for row in supplemental["items"] if prior(row))
+            earlier_search = []
+            if backfill:
+                for row in backfill["items"]:
+                    if not prior(row):
+                        continue
+                    if not use_archive or row["date"] > extension_latest:
+                        prior_base.append(row)
+                    elif row["date"] < extension_earliest:
+                        earlier_search.append(row)
             count = 0
             if use_archive:
                 count = db.execute("SELECT count(*) FROM mention WHERE entity=? AND day<?",
                                    (key, anchor["date"])).fetchone()[0]
             summaries.append({"id": key, **self.history["entities"][key],
-                              "earlier": len(prior_base) + count, "same_day_order_unknown": same_day,
+                              "earlier": len(prior_base) + count + len(earlier_search),
+                              "same_day_order_unknown": same_day,
                               "extension_applied": bool(use_archive),
+                              **({"backfill_coverage": {"from": backfill["from"], "through": backfill["through"],
+                                                        "method": backfill["method"], "errors": backfill["errors"],
+                                                        "archive_unavailable": backfill["archive"] and not use_archive}}
+                                 if backfill else {}),
                               "supplemental_coverage": (
                                   {"from": supplemental["from"], "through": supplemental["through"],
                                    "method": supplemental["method"], "retrieved_at": supplemental["retrieved_at"]}
@@ -163,6 +188,10 @@ class Index:
                     actual_items.append({"contribution": contribution, "date": day, "house": house,
                                          "part": debate, "order": ordinal, **json.loads(document),
                                          **json.loads(proof)})
+            remaining = limit - len(actual_items)
+            if earlier_search and remaining:
+                start = max(0, offset - len(prior_base) - count)
+                actual_items.extend(earlier_search[start:start + remaining])
         scope = {"base_from": min(row["date"] for row in self.receipt["day_denominators"]),
                  "base_through": anchor["date"], "extension_from": extension_earliest,
                  "extension_through": extension_latest, "extension_processed_sittings": extension_count,

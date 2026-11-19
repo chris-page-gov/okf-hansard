@@ -13,6 +13,7 @@ from capture import sha
 from build import PAGES_BLOB_LIMIT
 from build_explorer_graph import build as build_explorer_graph, dataset_route
 from demo import write_demo
+from history_pages import write as write_history
 from query import DEFAULT_DB
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -91,6 +92,8 @@ def index_page(coverage, semantic_file, graph_anchor):
     assertions = coverage["pilot_graph"]["assertions"]
     facets = coverage["pilot_graph"]["visible_facet_declarations"]
     oldest = fmt_date(coverage["archive"]["ranges"]["Commons"]["from"])
+    history_link = ('<li><a href="history.html">Browse earlier mentions by contribution and entity</a></li>'
+                    if "history_backfill" in coverage else "")
     query = urlencode({"bundle": SITE + "okf-bundle.json"})
     graph_query = urlencode({"bundle": SITE + "graph/okf-explorer.json", "view": "graph"})
     focused_graph = READER + "?" + graph_query + "#" + quote(dataset_route(graph_anchor))
@@ -129,6 +132,7 @@ def index_page(coverage, semantic_file, graph_anchor):
 <li><a href="okf-bundle.json">Explorer bundle (JSON)</a></li>
 <li><a href="{semantic_file}">Semantic graph ({"YAML-LD, gzip" if semantic_file.endswith(".gz") else "YAML-LD"})</a></li>
 <li><a href="example-earlier-mentions.yamlld">Microsoft 365 history slice (YAML-LD)</a></li>
+{history_link}
 <li><a href="checksums.json">File checksums</a></li>
 </ul>
 </section>
@@ -178,7 +182,7 @@ def guide_page(name, title):
 """
 
 
-def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_demo=None):
+def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_demo=None, history_cache=None):
     final = json.loads(coverage_path.read_bytes())
     receipt = json.loads((release / "receipt.json").read_bytes())
     if final["local_release"] != release.resolve().name or not final["pilot_graph"]["passed"]:
@@ -214,13 +218,19 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
         "source_commit": final["code_commit"],
         "licence": {"url": LICENCE, "attribution": ATTRIBUTION},
     }
+    if "history_backfill" in final:
+        public_coverage["history_backfill"] = final["history_backfill"]
+        write_history(release, destination, database, history_cache or destination.parent / "history-cache")
     (destination / "coverage.json").write_text(json.dumps(public_coverage, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     build_explorer_graph(release, destination / "graph")
     (destination / "index.html").write_text(index_page(public_coverage, semantic_file, sample["anchor"]["id"]), encoding="utf-8")
     for name, title in GUIDES.items():
         (destination / name).write_text(guide_page(name, title), encoding="utf-8")
     for name in DEMO_ASSETS:
-        (destination / name).write_bytes((ROOT / "docs" / "pages" / name).read_bytes())
+        raw = (ROOT / "docs" / "pages" / name).read_bytes()
+        if name == "demo.html" and "history_backfill" in final:
+            raw = raw.replace(b"</nav>", b'  <a href="history.html">Browse earlier mentions</a>\n</nav>', 1)
+        (destination / name).write_bytes(raw)
     write_demo(release, destination, public_coverage, database, baseline_demo)
     (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
     (destination / ".nojekyll").touch()

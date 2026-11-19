@@ -1,6 +1,6 @@
 """Regression checks for the deterministic Hansard pilot."""
 
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 import json
 from pathlib import Path
 import tempfile
@@ -8,6 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from archive import Collector, StopRun, open_database
+from backfill import search_aliases, search_periods
 from build import Graph, build, hansard_proceedings, runtime
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
 from capture import dump, sha
@@ -178,6 +179,24 @@ class ModelTests(unittest.TestCase):
 
 
 class QueryTests(unittest.TestCase):
+    def test_backfill_searches_dates_outside_the_common_archive(self):
+        ranges = {"Commons": ("2007-11-08", "2026-10-29", 2788),
+                  "Lords": ("2007-11-09", "2026-10-28", 2808)}
+        self.assertEqual(search_periods("2026-11-02", ranges), [
+            (date(2007, 1, 1), date(2007, 11, 8)),
+            (date(2026, 10, 29), date(2026, 11, 1)),
+        ])
+        self.assertEqual(search_periods("2026-11-02", {}), [
+            (date(2007, 1, 1), date(2026, 11, 1)),
+        ])
+        matcher = Matcher({"a": Entity("a", "Constituency", "Bicester", None, [], "fixture"),
+                           "b": Entity("b", "Organisation", "Department of Health", None,
+                                       ["The Department of Health", "DHSC"], "fixture")})
+        self.assertEqual(search_aliases(matcher), {
+            "a": ["constituency of bicester", "member for bicester", "constituency of the bicester"],
+            "b": ["dhsc", "department of health"],
+        })
+
     def test_trace_context_and_accessible_view(self):
         path = Path("releases/current")
         if not path.exists():

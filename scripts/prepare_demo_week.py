@@ -9,6 +9,7 @@ import shutil
 import subprocess
 from zoneinfo import ZoneInfo
 
+from backfill import collect
 from build import build
 from build_pages import stage
 from capture import HOUSES, dump, now, sha
@@ -35,6 +36,12 @@ def carry_history(previous, release, database):
         entity = read(asset)["entity"]
         if entity in current and old.get(entity) == current[entity]:
             shutil.copyfile(asset, supplemental / asset.name)
+    if (previous / "backfill" / "manifest.json").is_file():
+        backfill = release / "backfill"
+        backfill.mkdir()
+        for asset in (previous / "backfill").glob("*.json"):
+            if asset.stem in current and old.get(asset.stem) == current[asset.stem]:
+                shutil.copyfile(asset, backfill / asset.name)
     if database is None:
         return None, len(list(supplemental.glob("*.json")))
     connection = Index(release, database).connect()
@@ -120,6 +127,12 @@ def prepare(args):
         raise ValueError("The new build does not cover every intended sitting date.")
     summary = {"requested": supplements, "successes": supplements, "exceptions": {}}
     dump(release / "supplement-status.json", summary)
+    history_cache = getattr(args, "history_cache", None)
+    if history_cache:
+        historic_days = {day for day in receipt["week_contributions_by_day"] if day >= "2026-11-18"}
+        if historic_days:
+            final["history_backfill"] = collect(release, args.database, history_cache / "search", historic_days,
+                                                getattr(args, "history_deadline", None))
     coverage = args.out / "coverage.json"
     final.update({
         "local_release": release.name,
@@ -131,7 +144,8 @@ def prepare(args):
         "core_artifacts": receipt["artifacts"],
     })
     dump(coverage, final)
-    stage(release, coverage, args.out / "site", database, baseline)
+    stage(release, coverage, args.out / "site", args.database if history_cache else database, baseline,
+          history_cache / "public" if history_cache else None)
     dump(args.out / "prepared.json", {"through": args.through, "snapshot": str(snapshot.resolve()),
                                       "people": str(people.resolve()), "coverage": str(coverage.resolve())})
 
@@ -148,5 +162,6 @@ if __name__ == "__main__":
                         help="Use the supplied sitting and Member snapshots without retrieving them again.")
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--demo-from", type=Path, help="Reuse verified earlier evidence from a published Pages directory.")
+    parser.add_argument("--history-cache", type=Path, help="Cache targeted searches and prepare per-entity history.")
     parser.add_argument("--explorer", type=Path, default=ROOT.parent / "okf-explorer")
     prepare(parser.parse_args())

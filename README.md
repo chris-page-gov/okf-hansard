@@ -70,6 +70,12 @@ The read-only evidence response can carry a view descriptor. Save the JSON, then
 
 The extended archive uses the 569-entity matching profile from the first capture. The Tuesday refresh added entities to the pilot. Official spoken-search supplements use recorded membership, constituency representation and Bill stage dates to bound matches for new names and titles. Their coverage is shown beside each result.
 
+From the Wednesday snapshot, the [earlier mentions view](https://chris-page-gov.github.io/okf-hansard/history.html) lists earlier Hansard links by contribution and entity. The backfill reuses compatible SSD archive matches and checks the remaining dates and entities with official spoken and written search, starting on 1 January 2007. Its coverage receipt records incomplete searches. The published entity files carry links and the local index retains response digests and matching spans.
+
+Pass `--history-cache .work/history-cache` when preparing a refresh to reuse completed search windows and archive projections. The scheduled refresh carries forward completed results and checks newly encountered entities before staging the site.
+
+Use `scripts/export_history.py --include-backfill --release PATH` with the usual date and entity options to export the archive and verified search evidence together as YAML-LD.
+
 ## Build the Pages snapshot
 
 Run the staging command from the repository root against a verified local release. To regenerate the worked example, run the voice trial builder against the same release and archive first.

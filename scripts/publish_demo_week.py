@@ -91,7 +91,6 @@ def scheduled(args):
         ready_day = date.fromisoformat(through) + timedelta(days=1)
         start = datetime.combine(ready_day, time(6, 15), ZONE)
         stop = datetime.combine(ready_day, time(9, 30), ZONE)
-        previous = read(base / "prepared.json")
         for candidate in sorted(target.glob("attempt-*"), reverse=True):
             if (candidate / "published.json").is_file():
                 base = candidate
@@ -99,6 +98,12 @@ def scheduled(args):
         else:
             print(f"Waiting for {through}. First attempt {start.isoformat()}.", flush=True)
             wait_until(start)
+            updated = args.updated_base
+            if updated and (updated / "published.json").is_file() and (
+                read(updated / "published.json")["through"] == read(base / "published.json")["through"]
+            ):
+                base = updated
+            previous = read(base / "prepared.json")
             while datetime.now(ZONE) < stop:
                 pending = next((p for p in sorted(target.glob("attempt-*"), reverse=True)
                                 if (p / "prepared.json").is_file()), None)
@@ -112,6 +117,8 @@ def scheduled(args):
                             people=Path(previous["people"]), database=args.database, explorer=args.explorer,
                             demo_from=base / "site" if args.use_cached_demo else None,
                             reuse_capture=False,
+                            history_cache=args.history_cache,
+                            history_deadline=stop - timedelta(minutes=25),
                         ))
                     publish(pending, args.checkout)
                     base = pending
@@ -133,6 +140,8 @@ if __name__ == "__main__":
     parser.add_argument("--schedule", type=Path)
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--use-cached-demo", action="store_true")
+    parser.add_argument("--history-cache", type=Path)
+    parser.add_argument("--updated-base", type=Path, help="Use this snapshot if it has been published by refresh time.")
     parser.add_argument("--explorer", type=Path, default=ROOT.parent / "okf-explorer")
     arguments = parser.parse_args()
     if arguments.schedule:
