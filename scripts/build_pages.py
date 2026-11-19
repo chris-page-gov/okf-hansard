@@ -69,12 +69,17 @@ def voice_speaker_links(raw, sample):
 
 
 def voice_biography_status(raw):
+    timing = (b'<p class="note">In one demo test, the UK Parliament biography took '
+              b'about a minute to open.</p>')
     status = (
         b'<div class="note"><span id="biography-status" role="status"></span>'
         b'<span id="biography-elapsed" role="timer" aria-live="off"></span></div>'
     )
-    if status in raw:
+    feedback = timing + b"\n" + status
+    if feedback in raw:
         return raw
+    if status in raw:
+        return raw.replace(status, feedback, 1)
     section = b"<h2>Organisations</h2>"
     if raw.count(section) != 1 or raw.count(b"</body>") != 1:
         raise ValueError("The companion biography status could not be placed.")
@@ -110,7 +115,7 @@ window.addEventListener("pageshow", (event) => {
 });
 </script>
 """
-    return raw.replace(section, status + b"\n" + section, 1).replace(
+    return raw.replace(section, feedback + b"\n" + section, 1).replace(
         b"</body>", script.encode() + b"</body>", 1)
 
 
