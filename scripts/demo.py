@@ -156,6 +156,10 @@ def add_reference_links(example):
     ] + [{"title": f"{name} on TheyWorkForYou", "url": PEOPLE[name][1]} for name in people]
 
 
+def timeline_route(url):
+    return "source/" + sha(url.encode())[:24] + ".md"
+
+
 def write_timeline(destination, examples, counts, source_nodes):
     title = "A week in Parliament · Demonstration timeline"
     nodes = {"index.md": {"id": "index.md", "title": title, "type": "Index",
@@ -171,7 +175,7 @@ def write_timeline(destination, examples, counts, source_nodes):
     ]:
         routes = []
         for row in rows:
-            route = "source/" + sha(row["url"].encode())[:24] + ".md"
+            route = timeline_route(row["url"])
             if route not in nodes:
                 nodes[route] = {
                     "id": route, "title": row["title"], "type": row["relation"],

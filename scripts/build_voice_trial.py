@@ -8,7 +8,7 @@ import subprocess
 import sys
 from urllib.parse import urlparse
 
-from build_pages import voice_biography_status, voice_match_note
+from build_pages import voice_biography_status, voice_explorer_links, voice_match_note
 from people import member_career_url
 
 ROOT = Path.cwd()
@@ -124,7 +124,7 @@ markup = f"""<!doctype html>
 </body>
 </html>
 """
-(RELEASE / "voice-microsoft-365.html").write_bytes(voice_biography_status(markup.encode()))
+(RELEASE / "voice-microsoft-365.html").write_bytes(voice_explorer_links(voice_biography_status(markup.encode()), sample))
 print(json.dumps({"speaker": people[0]["label"], "organisations": [a["entity"]["label"] for a in sample["organisations"]],
                   "earlier_mentions": focus["total"], "source_version": source["status"],
                   "earliest_match": focus["items"][-1]["date"], "latest_match": focus["items"][0]["date"]}))

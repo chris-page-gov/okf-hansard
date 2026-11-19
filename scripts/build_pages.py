@@ -12,7 +12,7 @@ from urllib.parse import quote, urlencode, urlparse
 from capture import sha
 from build import PAGES_BLOB_LIMIT
 from build_explorer_graph import build as build_explorer_graph, dataset_route
-from demo import write_demo
+from demo import timeline_route, write_demo
 from history_pages import write as write_history
 from people import member_career_url
 from query import DEFAULT_DB
@@ -49,6 +49,25 @@ def source_link(url):
     if parsed.scheme != "https" or parsed.netloc != "hansard.parliament.uk":
         raise ValueError("Expected an official Hansard evidence link.")
     return url
+
+
+def explorer_record_url(asset, view, route):
+    query = urlencode({"bundle": SITE + asset, "view": view})
+    return f"{READER}?{query}#{quote(route)}"
+
+
+def voice_explorer_links(raw, sample):
+    anchor = sample["anchor"]
+    graph = explorer_record_url("graph/okf-explorer.json", "graph", dataset_route(anchor["id"]))
+    timeline = explorer_record_url("demo-timeline.json", "timeline", timeline_route(source_link(anchor["url"])))
+    links = (f'<p><a href="{escape(graph, quote=True)}">Open the statement graph in OKF Explorer</a>'
+             f' · <a href="{escape(timeline, quote=True)}">Open the demo timeline in OKF Explorer</a></p>').encode()
+    if links in raw:
+        return raw
+    heading = b"<h2>People</h2>"
+    if raw.count(heading) != 1:
+        raise ValueError("The companion Explorer links could not be placed.")
+    return raw.replace(heading, links + b"\n" + heading, 1)
 
 
 def voice_speaker_links(raw, sample):
@@ -188,8 +207,7 @@ def index_page(coverage, semantic_file, graph_anchor):
     history_link = ('<li><a href="history.html">Browse earlier mentions by contribution and entity</a></li>'
                     if "history_backfill" in coverage else "")
     query = urlencode({"bundle": SITE + "okf-bundle.json"})
-    graph_query = urlencode({"bundle": SITE + "graph/okf-explorer.json", "view": "graph"})
-    focused_graph = READER + "?" + graph_query + "#" + quote(dataset_route(graph_anchor))
+    focused_graph = explorer_record_url("graph/okf-explorer.json", "graph", dataset_route(graph_anchor))
     return f"""<!doctype html>
 <html lang="en-GB">
 <head>
@@ -294,7 +312,7 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
             raise ValueError(f"Published bytes would differ from the verified source for {name}")
         if name == "voice-microsoft-365.html":
             raw = voice_biography_status(voice_speaker_links(raw, sample))
-            raw = voice_coverage_note(raw, sample)
+            raw = voice_explorer_links(voice_coverage_note(raw, sample), sample)
             note = f'<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>'
             raw = raw.replace(b"</main>", note.encode() + b"\n</main>")
         if name == semantic_file and len(raw) >= PAGES_BLOB_LIMIT:
