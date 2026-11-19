@@ -235,7 +235,8 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
         }
         if bounded_history:
             relationship["evidence"] = [
-                {key: item[key] for key in ("@id", "url", "resource", "source_field", "source_value_sha256", "spans")
+                {key: item[key] for key in ("@id", "type", "url", "resource", "source_field",
+                                            "source_value_sha256", "retrieved_at", "spans")
                  if key in item}
                 for item in relationship["evidence"]
             ]

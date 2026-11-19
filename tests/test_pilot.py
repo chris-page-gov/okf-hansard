@@ -8,7 +8,7 @@ import unittest
 from unittest.mock import patch
 
 from archive import Collector, StopRun, open_database
-from build import build, hansard_proceedings
+from build import Graph, build, hansard_proceedings, runtime
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
 from capture import dump, sha
 from demo import record, write_timeline
@@ -19,6 +19,20 @@ from render_view import render
 
 
 class ModelTests(unittest.TestCase):
+    def test_bounded_reader_preserves_required_relationship_evidence(self):
+        graph = Graph()
+        day = "2026-11-18"
+        source = graph.node("contribution/sample.md", "Contribution", "Sample", date=day)
+        target = graph.node("debate/sample.md", "Proceedings section", "Debate", date=day)
+        url = "https://hansard-api.parliament.uk/fixture"
+        receipt = {"url": url, "path": "fixture.json", "sha256": sha(b"sample"), "retrieved_at": day + "T20:00:00Z"}
+        graph.edge(source, "partOf", target, receipt, url, "/ExternalId", "sample")
+        compact = runtime(graph, {}, receipt["retrieved_at"], day, bounded_history=True)
+        evidence = compact["corpora"]["hansard"]["relationships"][0]["evidence"][0]
+        profile = Path(__file__).resolve().parents[1] / "profile/relationship-runtime-row.schema.json"
+        required = json.loads(profile.read_bytes())["properties"]["evidence"]["items"]["required"]
+        self.assertFalse(set(required) - set(evidence))
+
     def test_demo_timeline_copies_exact_contribution_evidence_and_keeps_unmatched_dates(self):
         day = "2026-11-17"
         section = "section/debate.md"
