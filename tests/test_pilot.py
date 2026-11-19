@@ -6,9 +6,10 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
+from urllib.parse import parse_qs, urlsplit
 
 from archive import Collector, StopRun, open_database
-from backfill import search_aliases, search_periods
+from backfill import Search, search_aliases, search_periods
 from build import Graph, build, hansard_proceedings, runtime
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
 from capture import dump, sha
@@ -179,6 +180,28 @@ class ModelTests(unittest.TestCase):
 
 
 class QueryTests(unittest.TestCase):
+    def test_timed_out_search_is_split_and_cached(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            service = Search(Path(temporary))
+            calls = []
+
+            def request(url):
+                params = parse_qs(urlsplit(url).query)
+                window = (params["startDate"][0], params["endDate"][0])
+                calls.append(window)
+                if window == ("2007-01-01", "2007-02-28"):
+                    raise TimeoutError
+                return {"TotalResultCount": 0, "Results": []}, {"url": url}
+
+            args = ("entity", "alias", date(2007, 1, 1), date(2007, 2, 28), "Spoken", None, "profile")
+            with patch.object(service, "request", side_effect=request):
+                result = service.window(*args)
+                self.assertEqual(service.window(*args), result)
+            self.assertEqual(len(result["sources"]), 2)
+            self.assertEqual(calls, [("2007-01-01", "2007-02-28"),
+                                     ("2007-01-01", "2007-01-30"),
+                                     ("2007-01-31", "2007-02-28")])
+
     def test_backfill_searches_dates_outside_the_common_archive(self):
         ranges = {"Commons": ("2007-11-08", "2026-10-29", 2788),
                   "Lords": ("2007-11-09", "2026-10-28", 2808)}

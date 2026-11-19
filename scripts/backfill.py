@@ -104,21 +104,31 @@ class Search:
         path = self.cache / identity[:2] / f"{identity}.json"
         if path.is_file():
             return json.loads(path.read_bytes())
+
+        def divide():
+            middle = first + (last - first) // 2
+            left = self.window(key, term, first, middle, section, matcher, profile)
+            right = self.window(key, term, middle + timedelta(days=1), last, section, matcher, profile)
+            result = {"items": left["items"] + right["items"], "sources": left["sources"] + right["sources"]}
+            dump(path, result)
+            return result
+
         items, sources, seen = [], [], set()
         total, offset = None, 0
         while total is None or offset < total:
             url = query(f"/search/contributions/{section}.json", searchTerm=f'"{term}"',
                         startDate=first.isoformat(), endDate=last.isoformat(),
                         skip=offset, take=PAGE_SIZE, outputType="List")
-            data, evidence = self.request(url)
+            try:
+                data, evidence = self.request(url)
+            except TimeoutError:
+                self.check_deadline()
+                if (last - first).days >= 30:
+                    return divide()
+                raise
             count = data["TotalResultCount"]
             if total is None and count > 5_000 and first < last:
-                middle = first + (last - first) // 2
-                left = self.window(key, term, first, middle, section, matcher, profile)
-                right = self.window(key, term, middle + timedelta(days=1), last, section, matcher, profile)
-                result = {"items": left["items"] + right["items"], "sources": left["sources"] + right["sources"]}
-                dump(path, result)
-                return result
+                return divide()
             rows = data["Results"]
             if (total is not None and total != count) or offset + len(rows) > count or (not rows and offset < count):
                 raise ValueError("Hansard search pagination returned inconsistent totals.")

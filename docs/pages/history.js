@@ -26,9 +26,10 @@ function link(url, label) {
 async function read(path, gzip = false) {
   const response = await fetch(path);
   if (!response.ok) throw new Error("History evidence could not be loaded.");
-  return gzip
-    ? new Response(response.body.pipeThrough(new DecompressionStream("gzip"))).json()
-    : response.json();
+  if (!gzip) return response.json();
+  const bytes = new Uint8Array(await response.arrayBuffer());
+  if (bytes[0] !== 0x1f || bytes[1] !== 0x8b) return JSON.parse(new TextDecoder().decode(bytes));
+  return new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"))).json();
 }
 
 function eligible() {
