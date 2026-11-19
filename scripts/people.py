@@ -18,6 +18,12 @@ POST_SERIES = {"governmentPosts": "Government post", "oppositionPosts": "Opposit
 ROLES = {"Government post", "Opposition post", "Other parliamentary post", "Presiding office"}
 
 
+def member_career_url(member_id):
+    if type(member_id) is not int or member_id < 1:
+        raise ValueError("Expected a positive Parliament Member ID.")
+    return f"https://members.parliament.uk/member/{member_id}/career"
+
+
 def active_on(start, end, day):
     # Source dates have day precision. Exclude handover days with an end date
     # as safe evidence for a uniquely identified incumbent.

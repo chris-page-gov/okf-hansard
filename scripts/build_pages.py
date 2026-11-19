@@ -14,6 +14,7 @@ from build import PAGES_BLOB_LIMIT
 from build_explorer_graph import build as build_explorer_graph, dataset_route
 from demo import write_demo
 from history_pages import write as write_history
+from people import member_career_url
 from query import DEFAULT_DB
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,6 +49,19 @@ def source_link(url):
     if parsed.scheme != "https" or parsed.netloc != "hansard.parliament.uk":
         raise ValueError("Expected an official Hansard evidence link.")
     return url
+
+
+def voice_speaker_link(raw, sample):
+    speaker = sample["speaker"]
+    label = escape(speaker["label"])
+    statement = escape(source_link(speaker["url"]), quote=True)
+    legacy = f'<a href="{statement}">{label}</a>'.encode()
+    biography = f'<a href="{member_career_url(sample["speaker_member_id"])}">{label}</a>'.encode()
+    if raw.count(legacy) == 1 and biography not in raw:
+        return raw.replace(legacy, biography, 1)
+    if raw.count(biography) == 1 and legacy not in raw:
+        return raw
+    raise ValueError("The companion must have exactly one link on the speaker’s name.")
 
 
 def voice_note(sample):
@@ -200,6 +214,7 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
         if expected and (sha(raw) != expected["sha256"] or len(raw) != expected["bytes"]):
             raise ValueError(f"Published bytes would differ from the verified source for {name}")
         if name == "voice-microsoft-365.html":
+            raw = voice_speaker_link(raw, sample)
             note = f'<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>'
             raw = raw.replace(b"</main>", note.encode() + b"\n</main>")
         if name == semantic_file and len(raw) >= PAGES_BLOB_LIMIT:
