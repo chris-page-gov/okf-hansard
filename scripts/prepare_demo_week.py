@@ -75,18 +75,27 @@ def prepare(args):
     if args.through > prior:
         last = datetime.fromisoformat(prior).date()
         added = {(last + timedelta(days=offset)).isoformat() for offset in range(1, (end - last).days + 1)}
-        capture = args.out / "capture"
-        if not refresh(snapshot, capture, added):
-            raise ValueError("One or more advertised sources could not be retrieved.")
-        manifest = read(capture / "manifest.json")
+        if args.reuse_capture:
+            if not args.snapshot or not args.people:
+                raise ValueError("Pass both the retrieved sitting and Member snapshots.")
+            people_receipt = read(people / "manifest.json")
+        else:
+            capture = args.out / "capture"
+            if not refresh(snapshot, capture, added):
+                raise ValueError("One or more advertised sources could not be retrieved.")
+            snapshot = capture
+        manifest = read(snapshot / "manifest.json")
+        if any(item["errors"] for item in manifest["sittings"]):
+            raise ValueError("The sitting snapshot lists source errors.")
         observed = {(item["date"], item["house"]) for item in manifest["sittings"] if item["roots"]}
         if {(day, house) for day in added for house in HOUSES} - observed:
             raise ValueError("Both Houses must have published data for every added day.")
-        people_out = args.out / "people"
-        people_receipt = declarations(people_out, capture, first, args.through, previous=people)
+        if not args.reuse_capture:
+            people_out = args.out / "people"
+            people_receipt = declarations(people_out, snapshot, first, args.through, previous=people)
+            people = people_out
         if people_receipt["errors"]:
             raise ValueError("One or more Member biographies could not be checked.")
-        snapshot, people = capture, people_out
 
     release = args.out / "release"
     build(snapshot, people, release, ROOT / "profile/vocabulary.yaml", first, args.through, args.explorer)
@@ -135,6 +144,8 @@ if __name__ == "__main__":
     parser.add_argument("--base-coverage", type=Path, default=ROOT / "releases/final-coverage.json")
     parser.add_argument("--snapshot", type=Path)
     parser.add_argument("--people", type=Path)
+    parser.add_argument("--reuse-capture", action="store_true",
+                        help="Use the supplied sitting and Member snapshots without retrieving them again.")
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--demo-from", type=Path, help="Reuse verified earlier evidence from a published Pages directory.")
     parser.add_argument("--explorer", type=Path, default=ROOT.parent / "okf-explorer")

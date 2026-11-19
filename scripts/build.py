@@ -302,9 +302,9 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
                                     section="Sittings", body=f"# {day}\n\n" + "\n\n".join(
                                         link(f"{WEB}/{house}/{day}", f"{house} Hansard")
                                         for house in ("Commons", "Lords")))
-    used_parts = {records[route]["part"] for route in current}
     kept = current | {route for route in records if focus.intersection(matches[route])}
-    used_parts.update(records[route]["part"] for route in kept)
+    used_parts = {records[route]["part"] for route in kept}
+    used_parts.update(division["part"] for division in divisions.values())
     for route in list(used_parts):
         parent = parts[route]["parent"]
         while parent:
@@ -433,8 +433,9 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
         node = graph.node(route, "Division", f"Recorded division · {part['title']}", date=part["day"],
                           section="Divisions", url=part["url"],
                           body=f"# Recorded division\n\n{link(part['url'], 'Read proceedings and vote')}")
+        field = "/ExternalId" if division["item"].get("ExternalId") else "/ItemId"
         graph.edge(node, "divisionIn", division["part"], division["capture"], part["url"],
-                   division["pointer"] + "/ExternalId", division["id"])
+                   division["pointer"] + field, division["id"])
 
     add_appointments(graph, entities, appointments, entity_node)
     index = {"schema": "hansard-history.v1", "contributions": trace, "entities": {

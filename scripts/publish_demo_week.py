@@ -84,6 +84,8 @@ def scheduled(args):
     if args.use_cached_demo:
         print("Using verified historical demonstration evidence from the previous publication.", flush=True)
     for through in ("2026-11-18", "2026-11-19"):
+        if through <= read(base / "published.json")["through"]:
+            continue
         target = args.schedule / through
         target.mkdir(parents=True, exist_ok=True)
         ready_day = date.fromisoformat(through) + timedelta(days=1)
@@ -109,6 +111,7 @@ def scheduled(args):
                             base_coverage=base / "coverage.json", snapshot=Path(previous["snapshot"]),
                             people=Path(previous["people"]), database=args.database, explorer=args.explorer,
                             demo_from=base / "site" if args.use_cached_demo else None,
+                            reuse_capture=False,
                         ))
                     publish(pending, args.checkout)
                     base = pending

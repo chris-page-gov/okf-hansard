@@ -5,10 +5,12 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from archive import Collector, StopRun, open_database
-from build import hansard_proceedings
+from build import build, hansard_proceedings
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
+from capture import dump, sha
 from demo import record, write_timeline
 from model import Entity, Matcher, plain, read_sittings
 from people import active_on
@@ -109,6 +111,40 @@ class ModelTests(unittest.TestCase):
         self.assertNotIn("contribution_time", untimed)
         self.assertEqual([{"value": "2026-11-17T19:14:00", "source_item": 1,
                            "source_field": "/Items/0/Value"}], hansard_proceedings(part, section_route)["markers"])
+
+    def test_division_without_a_speech_keeps_its_section_and_ancestors(self):
+        day = "2026-11-18"
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+
+            def section(ext_id, title, items, children):
+                return {"Overview": {"ExtId": ext_id, "Title": title, "Date": day + "T00:00:00"},
+                        "Items": items, "ChildDebates": children}
+
+            division = section("vote", "Deferred vote", [{"ItemType": "Division", "ItemId": 3}], [])
+            division_group = section("deferred", "Deferred divisions", [], [division])
+            chamber = section("root", "Commons Chamber",
+                              [{"ItemType": "Contribution", "ItemId": 1, "Value": "A statement."}],
+                              [division_group])
+            dump(root / "chamber.json", chamber)
+            source = {"section": "Debate", "path": "chamber.json", "url": "https://hansard-api.parliament.uk/",
+                      "retrieved_at": day + "T20:00:00Z", "sha256": sha((root / "chamber.json").read_bytes())}
+            dump(root / "manifest.json", {"finished_at": source["retrieved_at"], "directories": [],
+                                         "directory_errors": [],
+                                         "sittings": [{"date": day, "house": "Commons", "roots": [source], "errors": []}]})
+            vocabulary = root / "vocabulary.yaml"
+            vocabulary.write_text("entities: []\n", encoding="utf-8")
+            output = root / "release"
+            with patch("build.validate", side_effect=lambda graph, _explorer: len(graph.edges)):
+                build(root, None, output, vocabulary, day, day, root)
+            corpus = json.loads((output / "okf-bundle.json").read_bytes())["corpora"]["hansard"]
+            edges = corpus["relationships"]
+            vote, = (edge for edge in edges if edge["kind"] == "is division in")
+            self.assertEqual("Deferred vote", corpus["nodes"][vote["target"]]["title"])
+            self.assertEqual("/ChildDebates/0/ChildDebates/0/Items/0/ItemId", vote["evidence"][0]["source_field"])
+            parent, = (edge for edge in edges
+                       if edge["source"] == vote["target"] and edge["predicate"].endswith(":partOf"))
+            self.assertEqual("Deferred divisions", corpus["nodes"][parent["target"]]["title"])
 
     def test_closed_appointment_dates(self):
         self.assertTrue(active_on("2026-07-20", None, "2026-11-17"))
