@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Earlier mentions | A week in Parliament</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="site.css">
+<script type="module" src="history.js"></script>
+</head>
+<body>
+<main class="demo history">
+<nav aria-label="Project" class="actions">
+  <a href="./">A week in Parliament</a>
+  <a href="demo.html">Demonstration companion</a>
+  <a href="methodology.html">Methodology</a>
+</nav>
+<h1>Earlier mentions</h1>
+<p class="intro">Select a sitting or contribution, then follow a person, office, place or subject back through Hansard.</p>
+<p id="status" role="status">Loading the history index…</p>
+<section id="controls" hidden aria-label="Filter earlier mentions">
+  <div class="filters">
+    <label>Sitting date <select id="day"></select></label>
+    <label>Contribution <select id="anchor"></select></label>
+    <label>Facet <select id="facet"></select></label>
+    <label>Entity <select id="entity"></select></label>
+  </div>
+  <p id="anchor-source"></p>
+  <p id="scope"></p>
+  <div class="filters">
+    <label>Year <select id="year"></select></label>
+    <label>House <select id="house"></select></label>
+  </div>
+  <p id="count" role="status"></p>
+  <ol id="links"></ol>
+  <div class="actions">
+    <button id="previous" type="button">Previous page</button>
+    <button id="next" type="button">Next page</button>
+  </div>
+</section>
+<p class="note">These are literal name and alias matches. A match can refer to unrelated business or another person with the same name. Read the source before drawing a conclusion.</p>
+<footer>
+  <p>Contains Parliamentary information licensed under the Open Parliament Licence v3.0. <a href="https://www.parliament.uk/site-information/copyright/open-parliament-licence/">Licence and exclusions</a>.</p>
+</footer>
+</main>
+</body>
+</html>

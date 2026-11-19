@@ -52,10 +52,39 @@
     "exceptions": {}
   },
   "coverage_statement": "Observed published API sittings. Historical matches use a fixed alias profile and scoped spoken-search supplements.",
-  "observed_at": "2026-11-19T11:35:35+00:00",
-  "source_commit": "00fb8c13a091f67e3512c06d9b1f62d302fb03fd",
+  "observed_at": "2026-11-19T12:41:10+00:00",
+  "source_commit": "38e7220385ef9c92c07893f34ace94f209631b72",
   "licence": {
     "url": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
     "attribution": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
+  },
+  "history_backfill": {
+    "schema": "hansard-backfill.v1",
+    "dates": [
+      "2026-11-18"
+    ],
+    "from": "2007-01-01",
+    "through": "2026-11-01",
+    "method": "Official Hansard spoken and written search, verified against the literal matching profile",
+    "archive": {
+      "Commons": [
+        "2007-11-08",
+        "2026-10-29",
+        2788
+      ],
+      "Lords": [
+        "2007-11-08",
+        "2026-10-29",
+        2808
+      ]
+    },
+    "entities": 309,
+    "archive_entities": 166,
+    "complete": 309,
+    "search_matches": 159515,
+    "exceptions": {},
+    "archive_mentions": 2223961,
+    "entities_with_archive_matches": 166,
+    "entities_with_earlier_matches": 309
   }
 }
