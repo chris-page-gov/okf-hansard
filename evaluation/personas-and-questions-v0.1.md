@@ -59,3 +59,31 @@ The published history UI at https://chris-page-gov.github.io/okf-hansard/history
 3. Evidence retrieval and answer synthesis are scored distinctly; missing access is not silently replaced with web research.
 4. All historical assertions are supported by explicit passages or labelled as candidate lexical matches.
 5. Results report coverage gaps, abstentions and failure categories alongside scores.
+
+
+## API discovery and evidence escalation (additional evaluation requirement)
+
+The OKF should publish a machine-readable **source-discovery contract**: authoritative service and endpoint references, accepted identifiers and parameters, operations, authentication/availability, licence, rate/error handling, source version and digest semantics, coverage bounds, and safe read-only escalation rules. Verify endpoint details against official documentation rather than assuming paths.
+
+Evaluate separately: (a) discoverability of available source APIs from the OKF; (b) ability to choose graph, exact source read or API discovery; (c) correctness of identifier translation and returned evidence; (d) transparent abstention, failure and gap reporting; (e) source trust, freshness and corrections. The existing `hansard_find`, `hansard_trace`, `hansard_read_passage`, `hansard_member_as_of`, and `hansard_roles_as_of` are local MCP capabilities, **not** evidence of a remotely exposed general-purpose historical search endpoint.
+
+**API test questions**
+- **API-Q1:** From the OKF alone, which official service and supported operation should an agent use to retrieve the full source text of a known contribution?
+- **API-Q2:** When the OKF has no evidence-backed SEND appeal-right history, can an agent discover a supported historical search route, record the query and coverage, and return source-linked results without treating them as confirmed semantic links?
+- **API-Q3:** When a captured passage has been corrected, can the agent identify the current official text, report the mismatch and preserve the capture provenance?
+
+## Graph and controlled-vocabulary/ontology fitness (additional evaluation requirement)
+
+Evaluate the **semantic model itself**, independently of the site and AI interface. First establish intended competency questions and a reviewed gold sample of contributions/relations across Commons/Lords, time, people/roles, legislation, programmes and subjects. Test the graph against those questions, including the SEND appeal-right scenario.
+
+**Graph checks:** source-to-node completeness; correct node identity and deduplication; direction and predicate meaning; evidence spans and assertion IDs; dated relations and change/correction handling; graph connectivity and relevant traversal paths; lexical versus semantic relationship distinction; false positives, false negatives, precision and recall on a labelled sample; ability to answer competency questions without unsupported leaps; deterministic regeneration and schema/SHACL or equivalent validation where appropriate.
+
+**Vocabulary/ontology checks:** coverage of necessary concepts (e.g. statutory entitlement, EHCP, independent tribunal appeal, proposed Individual Support Plan, school-level accountability); clear class/predicate definitions and domain/range; stable identifiers; synonym and ambiguity handling; appropriate granularity; distinction between person, office and role-at-date; distinctions among mention, claim, proposal, enacted rule, correction and evidence; mapping to external standards only where justified; extensibility without breaking old identifiers.
+
+**Graph test questions**
+- **GRAPH-Q1:** Can the model represent and distinguish a parent’s existing statutory appeal right, a proposed support plan and a minister’s statement *about* either, without implying the proposal is law?
+- **GRAPH-Q2:** For an earlier SEND contribution returned by traversal, what exact assertion, predicate, evidence span and temporal context justify its relevance? Is it merely an alias match?
+- **GRAPH-Q3:** Can the graph represent that a later correction supersedes or qualifies a recorded statement while retaining the original capture and its source digest?
+- **GRAPH-Q4:** What proportion of a stratified, manually adjudicated sample of relevant contributions and relationships is correctly modelled, and what important concepts or relations are missing?
+
+**Reporting:** Maintain a separate graph/ontology scorecard and error taxonomy. Do not infer precision/recall from raw assertion counts; establish a labelled denominator. Report graph quality independently from API discoverability, retrieval quality, answer quality and usability. Document ontology gaps as potential changes to the domain profile and matching rules, not as unreviewed modifications to the frozen baseline.
