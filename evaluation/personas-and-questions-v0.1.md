@@ -37,7 +37,11 @@ For every question, store: question ID; persona; reference answer; authoritative
 
 Run each question against both implementations under matched conditions. Repeat variable model-driven trials, retaining raw outputs. Include at least one negative/control query (a non-existent contribution or unsupported inference) to test abstention. Do not award credit for plausible but unsupported answers.
 
-## Scoring (each dimension 0–4, separately reported)
+## Scoring (superseded by additive rubric)
+
+**The following holistic 0–4 scheme is historical draft material and MUST NOT be used for baseline scoring.** The authoritative scoring specification is [additive-scoring-v0.2.md](additive-scoring-v0.2.md).
+
+### Previous proposal (retained for review)
 
 - **Correctness:** accuracy against independently verified source record.
 - **Provenance:** exact, accessible citations and evidence spans supporting claims.
