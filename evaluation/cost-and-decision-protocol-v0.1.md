@@ -2,21 +2,31 @@
 
 Status: methodology only; no measured cost or winning architecture claimed.
 
+## Primary comparison boundary: data-provider cost only
+
+**Decision metric:** the monetary cost borne by the Hansard knowledge/data provider. The user's personal AI subscription, inference, device and time are **excluded** from the primary cost total, regardless of whether the user pays a subscription or uses a free tier. This is an allocation boundary, **not** a claim that personal AI has zero economic cost. Record client-side calls and latency as non-monetary context where measurable, and report any costs passed through to users separately; do not add them to provider totals.
+
+Include provider-paid source acquisition, data processing, graph/ontology extraction and maintenance, embeddings and query inference, deterministic search, hosting, storage, bandwidth, API egress, licences where applicable, observability and operational labour. Distinguish upfront build costs, recurring fixed costs, update costs and marginal query costs. If a vendor subsidises infrastructure, report provider billed cost and an estimated unsubsidised resource cost separately where possible. Document the payer for each line item to avoid cost shifting.
+
+**Provider-only formula:** `Provider_TCO(T,N,U) = provider_initial_capture + provider_graph_and_index_build + provider_embedding_build + U*(provider_updates + reindexing + reembedding) + N*(provider_query_inference + provider_query_serving) + provider_fixed_hosting(T) + provider_operations(T)`.
+
+**Primary metrics:** provider £ per 1,000 queries; marginal provider £ per additional query; fixed provider £ per month; provider £ per corpus update; amortised provider £ per 1,000 queries at declared volume and update cadence. Compare matched retrieval effectiveness and coverage, not cost alone.
+
 ## Accounting boundaries
 
 Separate **personal-AI inference** (question interpretation, concept selection, answer synthesis), **provider-side inference** (query embeddings, server LLMs, reranking), **one-time corpus preparation** (source capture, extraction, graph construction, document embeddings), **ongoing updates** (corrections, new sittings, vocabulary revisions), and **non-inference serving** (API requests, storage, Qdrant/graph/keyword indexes, bandwidth, monitoring and operations). Record direct prices at observation date and estimated staff/hosting assumptions distinctly. Existing subscriptions are not zero economic cost; disclose both marginal billed cost and resource consumption.
 
 ## Per-run instrumentation
 
-Capture run ID, architecture, corpus revision, query, query length, client model and calls/tokens, provider model and calls/tokens, embedding calls and dimensions, cache status, request count, CPU/memory if observable, storage/transfer bytes, p50/p95 latency, retries, errors, source freshness, index update age and cost source. Measure cold and warm retrieval and cache effects. Confirm i.AI's actual deployed query path before claiming per-query inference cost: the public repository documents embeddings and Qdrant but not universal generative completion on every query.
+Capture run ID, architecture, corpus revision, query, query length, optional client model and calls/tokens (context only, excluded from provider cost), provider model and calls/tokens, embedding calls and dimensions, cache status, request count, CPU/memory if observable, storage/transfer bytes, p50/p95 latency, retries, errors, source freshness, index update age and cost source. Measure cold and warm retrieval and cache effects. Confirm i.AI's actual deployed query path before claiming per-query inference cost: the public repository documents embeddings and Qdrant but not universal generative completion on every query.
 
 ## Cost formulas
 
 For N queries and U update cycles over period T:
 
-`TCO(T,N,U) = initial_capture + extraction_build + embedding_build + index_build + U*(update_processing + reindex + reembedding) + N*(provider_query_inference + non_inference_serving + allocated_client_inference) + hosting_fixed(T) + operations(T)`.
+`TCO(T,N,U) = initial_capture + extraction_build + embedding_build + index_build + U*(update_processing + reindex + reembedding) + N*(provider_query_inference + non_inference_serving) + hosting_fixed(T) + operations(T)`.
 
-Also report provider-only TCO and marginal per-query cost; do not double-count shared client inference. Use measured cache-hit proportions and variable query lengths. Show break-even query volume under low, medium and high update rates with sensitivity to inference prices, graph construction cost and hosting utilisation. No assumed universal cost advantage.
+The formula above is provider-only; client inference is intentionally excluded from the primary financial comparison. Client resource consumption may be reported separately without monetising it in the provider total. Use measured cache-hit proportions and variable query lengths. Show break-even query volume under low, medium and high update rates with sensitivity to inference prices, graph construction cost and hosting utilisation. No assumed universal cost advantage.
 
 ## Comparison decisions
 
