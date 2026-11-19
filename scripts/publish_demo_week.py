@@ -50,11 +50,21 @@ def verify_public(site, commit):
         raise RuntimeError("The Pages checksum catalogue has not reached the deployed site.")
     def verify(item):
         name, info = item
-        if not matches_remote(name, info["bytes"], info["sha256"]):
-            raise RuntimeError(f"Published file differs from the prepared snapshot: {name}")
+        for attempt in range(4):
+            try:
+                if matches_remote(name, info["bytes"], info["sha256"]):
+                    return
+            except HTTPError as exc:
+                if exc.code not in {404, 408, 429, 500, 502, 503, 504}:
+                    raise RuntimeError(f"Could not read published file {name} (HTTP {exc.code}).") from exc
+            except (URLError, TimeoutError):
+                pass
+            if attempt < 3:
+                waiting.sleep(2 ** (attempt + 1))
+        raise RuntimeError(f"Could not verify the published bytes for {name}.")
 
     public_assets = [(name, info) for name, info in read(site / "checksums.json").items() if name != ".nojekyll"]
-    with ThreadPoolExecutor(max_workers=8) as workers:
+    with ThreadPoolExecutor(max_workers=4) as workers:
         list(workers.map(verify, public_assets))
     print(f"Verified the published Pages file hashes for {commit[:12]}.", flush=True)
 
