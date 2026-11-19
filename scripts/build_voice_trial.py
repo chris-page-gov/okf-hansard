@@ -111,7 +111,7 @@ markup = f"""<!doctype html>
 <p class="lede">House of Commons · {uk_day(focus['anchor']['date'])}</p>
 <p>{link(focus['anchor']['url'], 'Read the original statement in Hansard')}</p>
 <h2>People</h2>
-<p><a href="{member_career_url(sample['speaker_member_id'])}">{escape(people[0]['label'])}</a> made the statement as Minister for Creative Industries, Media and Online Safety.</p>
+<p><a href="{member_career_url(sample['speaker_member_id'])}">{escape(people[0]['label'])}</a> {link(people[0]['url'], 'made the statement')} as Minister for Creative Industries, Media and Online Safety.</p>
 <h2>Organisations</h2>
 <p>The statement mentions Microsoft and the Cabinet Office.</p>
 <div class="cards">{org_cards}</div>

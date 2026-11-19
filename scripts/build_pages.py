@@ -51,17 +51,21 @@ def source_link(url):
     return url
 
 
-def voice_speaker_link(raw, sample):
+def voice_speaker_links(raw, sample):
     speaker = sample["speaker"]
     label = escape(speaker["label"])
     statement = escape(source_link(speaker["url"]), quote=True)
     legacy = f'<a href="{statement}">{label}</a>'.encode()
     biography = f'<a href="{member_career_url(sample["speaker_member_id"])}">{label}</a>'.encode()
-    if raw.count(legacy) == 1 and biography not in raw:
-        return raw.replace(legacy, biography, 1)
-    if raw.count(biography) == 1 and legacy not in raw:
+    phrase = b" made the statement "
+    linked_phrase = f' <a href="{statement}">made the statement</a> '.encode()
+    updated = biography + linked_phrase
+    for previous in (legacy + phrase, biography + phrase):
+        if raw.count(previous) == 1 and updated not in raw:
+            return raw.replace(previous, updated, 1)
+    if raw.count(updated) == 1:
         return raw
-    raise ValueError("The companion must have exactly one link on the speaker’s name.")
+    raise ValueError("The companion speaker and statement links could not be identified.")
 
 
 def voice_note(sample):
@@ -214,7 +218,7 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
         if expected and (sha(raw) != expected["sha256"] or len(raw) != expected["bytes"]):
             raise ValueError(f"Published bytes would differ from the verified source for {name}")
         if name == "voice-microsoft-365.html":
-            raw = voice_speaker_link(raw, sample)
+            raw = voice_speaker_links(raw, sample)
             note = f'<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>'
             raw = raw.replace(b"</main>", note.encode() + b"\n</main>")
         if name == semantic_file and len(raw) >= PAGES_BLOB_LIMIT:

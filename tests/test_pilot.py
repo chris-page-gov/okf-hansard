@@ -12,6 +12,7 @@ from archive import Collector, StopRun, contribution_link, open_database
 from backfill import Search, search_aliases, search_periods
 from build import Graph, build, hansard_proceedings, runtime
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
+from build_pages import voice_speaker_links
 from capture import dump, sha
 from demo import record, write_timeline
 from model import Entity, Matcher, plain, read_sittings
@@ -21,6 +22,17 @@ from render_view import render
 
 
 class ModelTests(unittest.TestCase):
+    def test_voice_companion_distinguishes_the_speaker_and_statement_links(self):
+        source = "https://hansard.parliament.uk/Commons/2026-11-16/debates/example#contribution-1"
+        profile = "https://members.parliament.uk/member/3966/career"
+        sample = {"speaker": {"label": "Ian Murray", "url": source}, "speaker_member_id": 3966}
+        cta = f'<a href="{source}">Read the original statement in Hansard</a>'
+        expected = f'{cta}<p><a href="{profile}">Ian Murray</a> <a href="{source}">made the statement</a> as Minister.</p>'.encode()
+        for prior in (source, profile):
+            original = f'{cta}<p><a href="{prior}">Ian Murray</a> made the statement as Minister.</p>'.encode()
+            self.assertEqual(voice_speaker_links(original, sample), expected)
+        self.assertEqual(voice_speaker_links(expected, sample), expected)
+
     def test_historic_links_require_a_contribution_fragment_and_debate_id(self):
         base = "https://hansard.parliament.uk/Lords/1803-11-22/debates/debate-12"
         expected = ("debate-12", "contribution-speech-6")
