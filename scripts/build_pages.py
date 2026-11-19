@@ -68,6 +68,75 @@ def voice_speaker_links(raw, sample):
     raise ValueError("The companion speaker and statement links could not be identified.")
 
 
+def voice_biography_status(raw):
+    status = (
+        b'<div class="note"><span id="biography-status" role="status"></span>'
+        b'<span id="biography-elapsed" role="timer" aria-live="off"></span></div>'
+    )
+    if status in raw:
+        return raw
+    section = b"<h2>Organisations</h2>"
+    if raw.count(section) != 1 or raw.count(b"</body>") != 1:
+        raise ValueError("The companion biography status could not be placed.")
+    script = """
+<script>
+const biography = document.querySelector('a[href^="https://members.parliament.uk/member/"]');
+const biographyStatus = document.getElementById("biography-status");
+const biographyElapsed = document.getElementById("biography-elapsed");
+let stopwatch;
+biography.addEventListener("click", (event) => {
+  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey ||
+      event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  const started = performance.now();
+  window.clearInterval(stopwatch);
+  biographyStatus.textContent =
+    "Waiting for the UK Parliament website to open " + biography.textContent.trim() + "’s biography…";
+  const showElapsed = () => {
+    const seconds = Math.floor((performance.now() - started) / 1000);
+    biographyElapsed.textContent = " " + seconds + (seconds === 1 ? " second elapsed" : " seconds elapsed");
+  };
+  showElapsed();
+  stopwatch = window.setInterval(showElapsed, 1000);
+  // Give the current page time to show the status before handing off.
+  window.setTimeout(() => window.location.assign(biography.href), 100);
+});
+window.addEventListener("pagehide", () => window.clearInterval(stopwatch));
+window.addEventListener("pageshow", (event) => {
+  if (event.persisted) {
+    biographyStatus.textContent = "";
+    biographyElapsed.textContent = "";
+  }
+});
+</script>
+"""
+    return raw.replace(section, status + b"\n" + section, 1).replace(
+        b"</body>", script.encode() + b"</body>", 1)
+
+
+def voice_match_period(sample):
+    days = [item["date"] for item in sample["earlier_mentions"]]
+    first, last = fmt_date(min(days)), fmt_date(max(days))
+    return f"from {first} to {last}" if first != last else f"on {first}"
+
+
+def voice_match_note(sample):
+    return (f'<p class="note">The listed matches date {voice_match_period(sample)}. '
+            'See the <a href="coverage.json">published coverage</a> for the dates searched. '
+            'A name or alias match can relate to other parliamentary business.</p>')
+
+
+def voice_coverage_note(raw, sample):
+    note = voice_match_note(sample).encode()
+    if raw.count(note) == 1:
+        return raw
+    legacy = (f'<p class="note">The historical index starts on {fmt_date(sample["coverage"]["extension_from"])}. '
+              'Names and aliases can match other parliamentary business.</p>').encode()
+    if raw.count(legacy) != 1:
+        raise ValueError("The companion’s archive note could not be identified.")
+    return raw.replace(legacy, note, 1)
+
+
 def voice_note(sample):
     rows = [
         "# Microsoft 365 outage",
@@ -94,8 +163,9 @@ def voice_note(sample):
              f"The index found {total} earlier contributions matching the product name or a recorded alias.", ""]
     for row in sample["earlier_mentions"]:
         rows.append(f"- [{fmt_date(row['date'])} · {row['house']}]({source_link(row['url'])})")
-    rows += ["", "The historical index starts on "
-             f"{fmt_date(sample['coverage']['extension_from'])}. The matches can relate to other parliamentary business.",
+    rows += ["", f"The listed matches date {voice_match_period(sample)}. "
+             f"[Published coverage]({SITE}coverage.json) gives the dates searched. "
+             "A name or alias match can relate to other parliamentary business.",
              "", f"[Companion view]({SITE}voice-microsoft-365.html)", "",
              f"{ATTRIBUTION} [Licence]({LICENCE})", ""]
     return "\n".join(rows)
@@ -218,7 +288,8 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
         if expected and (sha(raw) != expected["sha256"] or len(raw) != expected["bytes"]):
             raise ValueError(f"Published bytes would differ from the verified source for {name}")
         if name == "voice-microsoft-365.html":
-            raw = voice_speaker_links(raw, sample)
+            raw = voice_biography_status(voice_speaker_links(raw, sample))
+            raw = voice_coverage_note(raw, sample)
             note = f'<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>'
             raw = raw.replace(b"</main>", note.encode() + b"\n</main>")
         if name == semantic_file and len(raw) >= PAGES_BLOB_LIMIT:

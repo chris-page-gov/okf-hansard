@@ -8,6 +8,7 @@ import subprocess
 import sys
 from urllib.parse import urlparse
 
+from build_pages import voice_biography_status, voice_match_note
 from people import member_career_url
 
 ROOT = Path.cwd()
@@ -118,12 +119,12 @@ markup = f"""<!doctype html>
 <h2>Earlier mentions of Microsoft 365</h2>
 <p>Open any of the {focus['total']} earlier contributions that match Microsoft 365 or a recorded alias.</p>
 <ol>{evidence_list(focus['items'])}</ol>
-<p class="note">The historical index starts on {uk_day(focus['coverage']['extension_from'])}. Names and aliases can match other parliamentary business.</p>
+{voice_match_note(sample)}
 </main>
 </body>
 </html>
 """
-(RELEASE / "voice-microsoft-365.html").write_text(markup, encoding="utf-8")
+(RELEASE / "voice-microsoft-365.html").write_bytes(voice_biography_status(markup.encode()))
 print(json.dumps({"speaker": people[0]["label"], "organisations": [a["entity"]["label"] for a in sample["organisations"]],
                   "earlier_mentions": focus["total"], "source_version": source["status"],
                   "earliest_match": focus["items"][-1]["date"], "latest_match": focus["items"][0]["date"]}))

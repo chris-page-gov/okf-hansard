@@ -12,7 +12,7 @@ from archive import Collector, StopRun, contribution_link, open_database
 from backfill import Search, search_aliases, search_periods
 from build import Graph, build, hansard_proceedings, runtime
 from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
-from build_pages import voice_speaker_links
+from build_pages import voice_coverage_note, voice_speaker_links
 from capture import dump, sha
 from demo import record, write_timeline
 from model import Entity, Matcher, plain, read_sittings
@@ -32,6 +32,16 @@ class ModelTests(unittest.TestCase):
             original = f'{cta}<p><a href="{prior}">Ian Murray</a> made the statement as Minister.</p>'.encode()
             self.assertEqual(voice_speaker_links(original, sample), expected)
         self.assertEqual(voice_speaker_links(expected, sample), expected)
+
+    def test_voice_companion_explains_match_dates_separately_from_archive_coverage(self):
+        sample = {"coverage": {"extension_from": "2007-11-08"},
+                  "earlier_mentions": [{"date": "2026-07-23"}, {"date": "2014-07-10"}]}
+        old = (b'<p class="note">The historical index starts on 8 November 2007. '
+               b'Names and aliases can match other parliamentary business.</p>')
+        updated = voice_coverage_note(old, sample)
+        self.assertIn(b"from 10 July 2014 to 23 July 2026", updated)
+        self.assertIn(b'href="coverage.json"', updated)
+        self.assertEqual(voice_coverage_note(updated, sample), updated)
 
     def test_historic_links_require_a_contribution_fragment_and_debate_id(self):
         base = "https://hansard.parliament.uk/Lords/1803-11-22/debates/debate-12"
