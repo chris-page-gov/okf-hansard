@@ -131,12 +131,16 @@ class Search:
                 return divide()
             rows = data["Results"]
             if (total is not None and total != count) or offset + len(rows) > count or (not rows and offset < count):
+                if first < last:
+                    return divide()
                 raise ValueError("Hansard search pagination returned inconsistent totals.")
             total = count
             sources.append({**evidence, "results": len(rows), "total": total})
             for row_index, row in enumerate(rows):
                 item_id = row["ItemId"]
                 if item_id in seen:
+                    if first < last:
+                        return divide()
                     raise ValueError("A Hansard search item was repeated across pages.")
                 seen.add(item_id)
                 day, house = row["SittingDate"][:10], row["House"]

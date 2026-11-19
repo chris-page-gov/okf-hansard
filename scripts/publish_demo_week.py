@@ -1,6 +1,7 @@
 """Publish a prepared demonstration or run the two dated refreshes."""
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, time, timedelta
 from hashlib import sha256
 from pathlib import Path
@@ -47,9 +48,14 @@ def verify_public(site, commit):
         waiting.sleep(10)
     else:
         raise RuntimeError("The Pages checksum catalogue has not reached the deployed site.")
-    for name, info in read(site / "checksums.json").items():
-        if name != ".nojekyll" and not matches_remote(name, info["bytes"], info["sha256"]):
+    def verify(item):
+        name, info = item
+        if not matches_remote(name, info["bytes"], info["sha256"]):
             raise RuntimeError(f"Published file differs from the prepared snapshot: {name}")
+
+    public_assets = [(name, info) for name, info in read(site / "checksums.json").items() if name != ".nojekyll"]
+    with ThreadPoolExecutor(max_workers=8) as workers:
+        list(workers.map(verify, public_assets))
     print(f"Verified the published Pages file hashes for {commit[:12]}.", flush=True)
 
 
