@@ -11,6 +11,7 @@ Date: 19 November 2026. **Status: design implemented in documentation; evidence 
 - [Personal AI and vocabulary](personal-ai-vocabulary-retrieval-v0.1.md): lexical, generic, personalised, resolved and expanded concept selection; 21-point **separate per-run** rubric.
 - [Extraction benchmark protocol](extraction-benchmark-v0.1.md): independently annotated source-to-graph comparison.
 - [Cost and decision protocol](cost-and-decision-protocol-v0.1.md): lifecycle accounting and evidence-based architecture decisions.
+- [Copyright and permitted evidence-return audit issue #5](https://github.com/chris-page-gov/okf-hansard/issues/5): licensing and rights assessment remains open; no legal clearance implied.
 - [Coverage issue #3](https://github.com/chris-page-gov/okf-hansard/issues/3): Monday history index and SEND appeal-right tracing.
 - [i.AI comparator](https://github.com/i-dot-ai/parliament-mcp): documented semantic search implementation; runtime equivalence and query costs unverified.
 
@@ -77,6 +78,7 @@ Hold corpus and personal-AI reasoning conditions constant for retrieval-only tes
 | Decision criteria and architecture trade-offs | [x] | [ ] No decision evidence |
 | GitHub Pages versus Sites | [x] | [ ] Sites not built |
 | Integrated scorecards, IDs and failure taxonomy | [x] | [ ] No run ledger populated |
+| Copyright, licensing and permitted evidence returns | [x] Issue #5 records audit scope | [ ] Rights audit and compliance tests outstanding |
 
 **Review outcome:** All major ideas discussed in the 19 November voice design session are represented in linked, version-controlled documents. This is a **documentation completeness assessment**, not a claim that experiments, code, reference verification or implementation are complete.
 
