@@ -9,6 +9,7 @@ Date: 19 November 2026. **Status: design implemented in documentation; evidence 
 - [Additive scoring](additive-scoring-v0.2.md): 16 tests, **246 available points** before N/A; no points yet awarded.
 - [Retrieval architectures](retrieval-architecture-comparison-v0.1.md): keyword, graph, deterministic MCP, semantic and hybrid; 17-point **separate per-query** rubric.
 - [Personal AI and vocabulary](personal-ai-vocabulary-retrieval-v0.1.md): lexical, generic, personalised, resolved and expanded concept selection; 21-point **separate per-run** rubric.
+- [Falsification, ablation, adversarial and pilot protocol](falsification-and-pilot-v0.1.md): proposed thresholds, independent review, maintenance and cross-model tests; no pilot run yet.
 - [Extraction benchmark protocol](extraction-benchmark-v0.1.md): independently annotated source-to-graph comparison.
 - [Cost and decision protocol](cost-and-decision-protocol-v0.1.md): lifecycle accounting and evidence-based architecture decisions.
 - [Copyright and permitted evidence-return audit issue #5](https://github.com/chris-page-gov/okf-hansard/issues/5): licensing and rights assessment remains open; no legal clearance implied.
@@ -79,6 +80,12 @@ Hold corpus and personal-AI reasoning conditions constant for retrieval-only tes
 | GitHub Pages versus Sites | [x] | [ ] Sites not built |
 | Integrated scorecards, IDs and failure taxonomy | [x] | [ ] No run ledger populated |
 | Copyright, licensing and permitted evidence returns | [x] Issue #5 records audit scope | [ ] Rights audit and compliance tests outstanding |
+| Falsifiable hypotheses and pre-registered thresholds | [x] Proposed in pilot protocol | [ ] Thresholds not approved or registered |
+| Ablation and simpler-system baselines | [x] Designed | [ ] No comparison run |
+| Adversarial security, contradictory evidence and corrections | [x] Designed | [ ] No tests executed |
+| Multiple personal AI models and user expression styles | [x] Designed | [ ] No cross-model study |
+| Ontology updates and maintenance cost | [x] Designed | [ ] No change replay |
+| Small frozen pilot and blinded disagreement adjudication | [x] Designed | [ ] No pilot or adjudication conducted |
 
 **Review outcome:** All major ideas discussed in the 19 November voice design session are represented in linked, version-controlled documents. This is a **documentation completeness assessment**, not a claim that experiments, code, reference verification or implementation are complete.
 
