@@ -1,0 +1,439 @@
+{
+  "dates": [
+    {
+      "date": "2026-11-19",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "provisional",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 3,
+          "contributions": 665
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 2,
+          "contributions": 196
+        }
+      },
+      "sections": 47,
+      "divisions": 10
+    },
+    {
+      "date": "2026-11-18",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 4,
+          "contributions": 685
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 446
+        }
+      },
+      "sections": 58,
+      "divisions": 5
+    },
+    {
+      "date": "2026-11-17",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 6,
+          "contributions": 1497
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 2,
+          "contributions": 448
+        }
+      },
+      "sections": 70,
+      "divisions": 32
+    },
+    {
+      "date": "2026-11-16",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 5,
+          "contributions": 791
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 459
+        }
+      },
+      "sections": 59,
+      "divisions": 1
+    },
+    {
+      "date": "2026-11-15",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 0,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-14",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 0,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-13",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 3,
+          "contributions": 265
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 17,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-12",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 5,
+          "contributions": 1172
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 173
+        }
+      },
+      "sections": 70,
+      "divisions": 4
+    },
+    {
+      "date": "2026-11-11",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 3,
+          "contributions": 766
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 2,
+          "contributions": 417
+        }
+      },
+      "sections": 62,
+      "divisions": 4
+    },
+    {
+      "date": "2026-11-10",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 6,
+          "contributions": 698
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 2,
+          "contributions": 378
+        }
+      },
+      "sections": 89,
+      "divisions": 2
+    },
+    {
+      "date": "2026-11-09",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 334
+        }
+      },
+      "sections": 9,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-08",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 0,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-07",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 0,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-06",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 0,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-05",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 0,
+      "divisions": 0
+    },
+    {
+      "date": "2026-11-04",
+      "verified_at": "2026-11-19T22:38:00+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 6,
+          "contributions": 490
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 382
+        }
+      },
+      "sections": 74,
+      "divisions": 5
+    },
+    {
+      "date": "2026-11-03",
+      "verified_at": "2026-11-19T22:38:01+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 6,
+          "contributions": 3400
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 2,
+          "contributions": 360
+        }
+      },
+      "sections": 73,
+      "divisions": 62
+    },
+    {
+      "date": "2026-11-02",
+      "verified_at": "2026-11-19T22:38:01+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 6,
+          "contributions": 617
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 352
+        }
+      },
+      "sections": 72,
+      "divisions": 1
+    },
+    {
+      "date": "2026-11-01",
+      "verified_at": "2026-11-19T22:38:01+00:00",
+      "as_published_at": "2026-11-19T22:36:19+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        },
+        "Lords": {
+          "status": "no calendar sitting",
+          "roots": 0,
+          "contributions": 0
+        }
+      },
+      "sections": 0,
+      "divisions": 0
+    }
+  ],
+  "contributions": 14991,
+  "graph_records": 22853,
+  "assertions": 50534,
+  "semantic_graph": {
+    "bytes": 151120853,
+    "sha256": "ca776b6511f5158f088fa95569d6dc341fafda9c5d3e26fa7b37a69545c90395"
+  },
+  "backfill": {
+    "schema": "hansard-backfill.v1",
+    "dates": [
+      "2026-11-02",
+      "2026-11-03",
+      "2026-11-04",
+      "2026-11-09",
+      "2026-11-10",
+      "2026-11-11",
+      "2026-11-12",
+      "2026-11-13",
+      "2026-11-16",
+      "2026-11-17",
+      "2026-11-18",
+      "2026-11-19"
+    ],
+    "from": "2007-01-01",
+    "through": "2026-11-01",
+    "method": "Official Hansard spoken and written search, verified against the literal matching profile",
+    "archive": {
+      "Commons": [
+        "2007-11-08",
+        "2026-10-29",
+        2788
+      ],
+      "Lords": [
+        "2007-11-08",
+        "2026-10-29",
+        2808
+      ]
+    },
+    "entities": 1402,
+    "archive_entities": 565,
+    "complete": 1402,
+    "search_matches": 457996,
+    "exceptions": {}
+  },
+  "verification": {
+    "schema": "hansard-verification.v1",
+    "passed": true,
+    "assertions": 50534,
+    "predicates": 11,
+    "rdf_sample_triples": 501,
+    "visible_facet_declarations": 12,
+    "contributions": 14991,
+    "failures": [],
+    "failure_examples": []
+  }
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "november-2026-history.tar",
+    "bytes": 1178306560,
+    "sha256": "593cc9c736b48282ddbf95a2c8392082e9886684333af90b9f14a5d6ec609e58",
+    "entities_checked": 1397,
+    "exported_partitions": 1398,
+    "historical_assertions": 3735354,
+    "label": "Initial historical YAML-LD snapshot",
+    "url": "https://github.com/chris-page-gov/okf-hansard/releases/download/november-2026-history/november-2026-history.tar"
+  },
+  {
+    "name": "history-through-2026-11-19-0a7935322013.tar",
+    "label": "Historical YAML-LD additions through 2026-11-19",
+    "url": "https://github.com/chris-page-gov/okf-hansard/releases/download/november-2026-history/history-through-2026-11-19-0a7935322013.tar",
+    "bytes": 583680,
+    "sha256": "9e0c5558b5ffa4d367dfa93ee015b4450a79af47aaf1a00541791d9de7c28294"
+  }
+]
