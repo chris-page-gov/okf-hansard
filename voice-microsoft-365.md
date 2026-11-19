@@ -35,7 +35,7 @@ The index found 19 earlier contributions matching the product name or a recorded
 - [10 July 2014 · Commons](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000186)
 - [10 July 2014 · Commons](https://hansard.parliament.uk/Commons/2014-07-10/debates/14071054000035/ParliamentaryICT#contribution-14071054000185)
 
-The historical index starts on 8 November 2007. The matches can relate to other parliamentary business.
+The listed matches date from 10 July 2014 to 23 July 2026. [Published coverage](https://chris-page-gov.github.io/okf-hansard/coverage.json) gives the dates searched. A name or alias match can relate to other parliamentary business.
 
 [Companion view](https://chris-page-gov.github.io/okf-hansard/voice-microsoft-365.html)
 
