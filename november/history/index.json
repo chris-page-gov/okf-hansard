@@ -115,6 +115,13 @@
       "route": "entity/member-4441.md",
       "captured_only": true
     },
+    "activity-01d108f6ca9d6d2644784765": {
+      "label": "Chinese Defence Minister Visit",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000009.md",
+      "captured_only": true
+    },
     "activity-022a97ede8770e4facf73d7e": {
       "label": "Coventry City Council contract with Palantir Technologies",
       "group": "Proceedings",
@@ -491,6 +498,13 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-3671.md",
+      "captured_only": true
+    },
+    "activity-0b70776c766a0ce6850e1ed2": {
+      "label": "Strategic Defence Review: Munitions Production",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000010.md",
       "captured_only": true
     },
     "activity-0b7ca145bdba1885ea8fce09": {
@@ -2838,6 +2852,13 @@
       "route": "entity/member-5107.md",
       "captured_only": true
     },
+    "activity-428e9d59c858f766e15423e8": {
+      "label": "UK Covid-19 Inquiry: Module 7 Report",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000016.md",
+      "captured_only": true
+    },
     "activity-428fd3469459a8030c61145b": {
       "label": "Baroness Doocey",
       "group": "Speakers",
@@ -3494,6 +3515,13 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-5077.md",
+      "captured_only": true
+    },
+    "activity-52bb56980b90977b2f559073": {
+      "label": "Schools Funding 2027-28",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000011.md",
       "captured_only": true
     },
     "activity-52f41ce1a9d545c00695dd22": {
@@ -4516,6 +4544,13 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-5434.md",
+      "captured_only": true
+    },
+    "activity-693b3823c30597fc0af436e0": {
+      "label": "Men’s Health Strategy: Annual Report",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000012.md",
       "captured_only": true
     },
     "activity-694fbc21475c7d6b103ed9be": {
@@ -5720,6 +5755,13 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-4300.md",
+      "captured_only": true
+    },
+    "activity-85d96c40c67efe30f478476c": {
+      "label": "US Statement on Countering Online Scams: UK Endorsement",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000014.md",
       "captured_only": true
     },
     "activity-864fa02adee46638dd5fcea4": {
@@ -7570,6 +7612,13 @@
       "route": "entity/member-4632.md",
       "captured_only": true
     },
+    "activity-b3d7893401999ad8374094f9": {
+      "label": "Wes Streeting",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-4504.md",
+      "captured_only": true
+    },
     "activity-b3f1a27fb2db702f13708fdb": {
       "label": "Budget Resolutions",
       "group": "Proceedings",
@@ -8093,6 +8142,13 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-3804.md",
+      "captured_only": true
+    },
+    "activity-bee0f4268437cdb8da9441aa": {
+      "label": "The Secretary of State for Defence",
+      "group": "Recorded capacities",
+      "type": "Recorded capacity",
+      "route": "role/a8bdea7fdbd7605f3ab6b7a6.md",
       "captured_only": true
     },
     "activity-bee9d0e2ba5c5eedef5173ab": {
@@ -9157,6 +9213,13 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4464.md",
+      "captured_only": true
+    },
+    "activity-dbb7f14a4b59b5533c2bd2cb": {
+      "label": "National Licensing Extensions Consultation",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000013.md",
       "captured_only": true
     },
     "activity-dbec901f5bc809e3e0e0bc4e": {
@@ -10424,6 +10487,13 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-4957.md",
+      "captured_only": true
+    },
+    "activity-f88b76029db353755e39c7bd": {
+      "label": "Commonhold and Leasehold Reform Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-19-wms-26111914000015.md",
       "captured_only": true
     },
     "activity-f8ac61f3190b0c667db226cd": {
@@ -26794,6 +26864,22 @@
       "complete": true,
       "errors": 0
     },
+    "member-4721": {
+      "label": "Baroness Hallett",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4721.md",
+      "archive_count": 0,
+      "search_count": 74,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
     "member-4723": {
       "label": "Lord Hendy",
       "type": "Peer",
@@ -35816,6 +35902,7 @@
     }
   },
   "focused_views": true,
+  "month_entity_shards": true,
   "older_archive": {
     "exclusive_before": "2007-01-01",
     "ranges": {
