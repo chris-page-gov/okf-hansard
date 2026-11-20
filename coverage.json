@@ -2,18 +2,19 @@
   "pilot_graph": {
     "schema": "hansard-verification.v1",
     "passed": true,
-    "assertions": 34224,
+    "assertions": 38213,
     "predicates": 11,
     "rdf_sample_triples": 506,
     "visible_facet_declarations": 12,
-    "contributions": 4326,
+    "contributions": 5195,
     "failures": [],
     "failure_examples": []
   },
   "week_contributions_by_day": {
     "2026-11-16": 1250,
     "2026-11-17": 1945,
-    "2026-11-18": 1131
+    "2026-11-18": 1131,
+    "2026-11-19": 869
   },
   "archive": {
     "retained_contributions": 1279572,
@@ -52,8 +53,8 @@
     "exceptions": {}
   },
   "coverage_statement": "Observed published API sittings. Historical matches use a fixed alias profile and scoped spoken-search supplements.",
-  "observed_at": "2026-11-19T12:41:10+00:00",
-  "source_commit": "38e7220385ef9c92c07893f34ace94f209631b72",
+  "observed_at": "2026-11-20T08:21:29+00:00",
+  "source_commit": "148ad5b4ce7db394c2af5fa6af8fa1f1255a0a81",
   "licence": {
     "url": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
     "attribution": "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
@@ -61,7 +62,8 @@
   "history_backfill": {
     "schema": "hansard-backfill.v1",
     "dates": [
-      "2026-11-18"
+      "2026-11-18",
+      "2026-11-19"
     ],
     "from": "2007-01-01",
     "through": "2026-11-01",
@@ -78,13 +80,27 @@
         2808
       ]
     },
-    "entities": 309,
-    "archive_entities": 166,
-    "complete": 309,
-    "search_matches": 159515,
-    "exceptions": {},
-    "archive_mentions": 2223961,
-    "entities_with_archive_matches": 166,
-    "entities_with_earlier_matches": 309
+    "entities": 508,
+    "archive_entities": 237,
+    "complete": 508,
+    "search_matches": 241256,
+    "exceptions": {}
+  },
+  "older_archive": {
+    "exclusive_before": "2007-01-01",
+    "ranges": {
+      "Commons": [
+        "2003-02-25",
+        "2006-12-19",
+        581
+      ],
+      "Lords": [
+        "2003-02-24",
+        "2006-12-19",
+        567
+      ]
+    },
+    "profile_sha256": "4aeb5583155d90a3b7813d32c021c525cd8b4582375fb6fb6a8388039de85268",
+    "source_gaps": 4
   }
 }

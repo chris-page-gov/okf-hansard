@@ -1,9 +1,33 @@
 [
   [
+    "2026-11-19",
+    "Lords",
+    "https://hansard.parliament.uk/Lords/2026-11-19/debates/ED554527-278D-4F3B-BADD-E8C1E8697580/HousingMarket#contribution-76F4CE50-2490-4ACE-B6A0-0002F13C1226",
+    "Lord Petterson (LD) (Maiden Speech)",
+    "debate/lords-2026-11-19-debate-ed554527-278d-4f3b-badd-e8c1e8697580.md",
+    14
+  ],
+  [
+    "2026-11-19",
+    "Commons",
+    "https://hansard.parliament.uk/Commons/2026-11-19/debates/89A0C295-273F-42B9-9910-B23D8F88DE68/BusinessoftheHouse#contribution-9406C01B-CF8A-4346-99C7-1F4CCC170F1B",
+    "Sir Alan Campbell",
+    "debate/commons-2026-11-19-debate-89a0c295-273f-42b9-9910-b23d8f88de68.md",
+    53
+  ],
+  [
+    "2026-11-19",
+    "Commons",
+    "https://hansard.parliament.uk/Commons/2026-11-19/debates/89A0C295-273F-42B9-9910-B23D8F88DE68/BusinessoftheHouse#contribution-94C5B12E-461F-4C03-AB26-A208AB6D40D5",
+    "Sarah Pochin (Runcorn and Helsby) (Reform)",
+    "debate/commons-2026-11-19-debate-89a0c295-273f-42b9-9910-b23d8f88de68.md",
+    52
+  ],
+  [
     "2026-11-18",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-18/debates/3C7D4FEC-28EC-497C-9B9A-8260A1EEE780/PointofOrder#contribution-C2129A64-0A7A-4082-B648-5046774F45DD",
-    "",
+    "Neil Duncan-Jordan (Poole) (Lab)",
     "debate/commons-2026-11-18-debate-3c7d4fec-28ec-497c-9b9a-8260a1eee780.md",
     2
   ],
@@ -11,7 +35,7 @@
     "2026-11-18",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-18/debates/2DBCEF66-88BF-4B32-A89D-4FAF9C05D38D/UK-EURelations#contribution-76606C78-5279-4C09-91C2-83CDD30D077B",
-    "",
+    "Priti Patel",
     "debate/commons-2026-11-18-debate-2dbcef66-88bf-4b32-a89d-4faf9c05d38d.md",
     120
   ],
@@ -19,7 +43,7 @@
     "2026-11-17",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-17/debates/21AE7296-CC4F-41C3-AECB-0519ED9DD23A/HealthBill#contribution-F317DF42-1356-46AB-B4EB-4CDD2A0FCC50",
-    "",
+    "Baroness Merron (Lab)",
     "debate/lords-2026-11-17-debate-21ae7296-cc4f-41c3-aecb-0519ed9dd23a.md",
     78
   ],
@@ -27,7 +51,7 @@
     "2026-11-17",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-17/debates/21AE7296-CC4F-41C3-AECB-0519ED9DD23A/HealthBill#contribution-394CD1A4-7F46-4C2E-A6E9-A564546FD6FB",
-    "",
+    "Baroness Merron (Lab)",
     "debate/lords-2026-11-17-debate-21ae7296-cc4f-41c3-aecb-0519ed9dd23a.md",
     76
   ],
@@ -35,7 +59,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/CDD4CFE0-5921-4D8C-BE16-B2873448E520/WalesPrisonsandSentencing#contribution-2E405635-B20D-4741-9031-7CBAFCE3979B",
-    "",
+    "Liz Saville Roberts (Dwyfor Meirionnydd) (PC)",
     "debate/commons-2026-11-17-westhall-cdd4cfe0-5921-4d8c-be16-b2873448e520.md",
     4
   ],
@@ -43,7 +67,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-B12E7A04-0F85-4E44-80F5-B4FA0BE9DD60",
-    "",
+    "Chris Philp (Croydon South) (Con)",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     433
   ],
@@ -51,7 +75,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-DC1A5CA0-DB37-488D-AB65-14AFA489D3DA",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     160
   ],
@@ -59,7 +83,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-9F35478D-8E4F-4ABA-9B13-F1E975BD82E2",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     152
   ],
@@ -67,7 +91,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-46B309E6-497D-4F2D-8ABC-D1C1898C9FD9",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     150
   ],
@@ -75,7 +99,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-EC5A131F-E7EF-4D7B-9B0F-1617E277AB37",
-    "",
+    "Tim Farron (Westmorland and Lonsdale) (LD)",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     145
   ],
@@ -83,7 +107,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-A93692A6-5AB1-4566-BE9D-1F651236CEAB",
-    "",
+    "Neil Duncan-Jordan (Poole) (Lab)",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     112
   ],
@@ -91,7 +115,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-A4C0AE2D-F5BF-492F-B488-8297C0B7DFBC",
-    "",
+    "Apsana Begum",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     102
   ],
@@ -99,7 +123,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-A366D845-513B-4E40-BC6E-AC452E532A2F",
-    "",
+    "Bell Ribeiro-Addy (Clapham and Brixton Hill) (Lab)",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     96
   ],
@@ -115,7 +139,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-223F3800-E829-4F22-85A5-494390309F6C",
-    "",
+    "Olivia Bailey (Reading West and Mid Berkshire) (Lab)",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     88
   ],
@@ -123,7 +147,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-8650AF79-A51A-406B-B200-8F38FA1A0E39",
-    "",
+    "Tony Vaughan (Folkestone and Hythe) (Lab)",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     75
   ],
@@ -131,7 +155,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-CC2C64E9-8B81-4133-9953-22824B3CDEB1",
-    "",
+    "Max Wilkinson",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     71
   ],
@@ -139,7 +163,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-88119ED5-E770-4669-A056-E842DF714654",
-    "",
+    "Max Wilkinson (Cheltenham) (LD)",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     67
   ],
@@ -155,7 +179,7 @@
     "2026-11-17",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-C43B597C-94BC-4CE8-B9FA-6A8B2D797CF8",
-    "",
+    "Blake Stephenson",
     "debate/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3.md",
     41
   ],
@@ -171,7 +195,7 @@
     "2026-11-16",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-16/debates/26111750000011/NewIndependentReviewerofStateThreatsandTerrorismLegislation#contribution-82357560-54CE-4751-9457-AB74978B5874",
-    "",
+    "The Minister for Security (Dan Jarvis)",
     "debate/commons-2026-11-16-wms-26111750000011.md",
     1
   ],
@@ -179,7 +203,7 @@
     "2026-11-16",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-16/debates/481B46BC-52A2-4A98-B45D-A1F3C527BBFB/MODBicesterAsylumAccommodation#contribution-510A64CD-1689-435D-81EF-40A25F4AC09C",
-    "",
+    "Sir Alec Shelbrooke (Wetherby and Easingwold) (Con)",
     "debate/commons-2026-11-16-debate-481b46bc-52a2-4a98-b45d-a1f3c527bbfb.md",
     33
   ],
@@ -187,7 +211,7 @@
     "2026-11-16",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-16/debates/481B46BC-52A2-4A98-B45D-A1F3C527BBFB/MODBicesterAsylumAccommodation#contribution-BC3F2849-1EB4-4593-868C-79570FE7FCAE",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-16-debate-481b46bc-52a2-4a98-b45d-a1f3c527bbfb.md",
     9
   ],
@@ -195,7 +219,7 @@
     "2026-11-16",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-16/debates/481B46BC-52A2-4A98-B45D-A1F3C527BBFB/MODBicesterAsylumAccommodation#contribution-C215FDDD-1132-4EB0-83FA-C0DF0E67D8B6",
-    "",
+    "Calum Miller (Bicester and Woodstock) (LD)",
     "debate/commons-2026-11-16-debate-481b46bc-52a2-4a98-b45d-a1f3c527bbfb.md",
     1
   ],
@@ -203,7 +227,7 @@
     "2026-11-16",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-16/debates/3AD28B91-E049-4C7A-98F1-9D4F68EDCC86/VisitorLevy(England)Bill#contribution-6A4A2F4C-15B8-4C86-B8FB-9A074683E93B",
-    "",
+    "Bell Ribeiro-Addy (Clapham and Brixton Hill) (Lab)",
     "debate/commons-2026-11-16-debate-3ad28b91-e049-4c7a-98f1-9d4f68edcc86.md",
     225
   ],
@@ -211,7 +235,7 @@
     "2026-11-12",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-12/debates/BC245FA8-B2E0-4500-ADB6-9919844E6837/AutumnBudget2026#contribution-2115C652-087F-4A5D-9701-33B51C2CFB61",
-    "",
+    "The Lord Bishop of Manchester",
     "debate/lords-2026-11-12-debate-bc245fa8-b2e0-4500-adb6-9919844e6837.md",
     12
   ],
@@ -219,7 +243,7 @@
     "2026-11-12",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-12/debates/E58E6EB3-F2D4-4E7C-A8C8-029FE03D8F18/BusinessoftheHouse#contribution-10296E49-3258-4A14-8322-FC03954FDC4E",
-    "",
+    "Apsana Begum (Poplar and Limehouse) (Lab)",
     "debate/commons-2026-11-12-debate-e58e6eb3-f2d4-4e7c-a8c8-029fe03d8f18.md",
     98
   ],
@@ -227,7 +251,7 @@
     "2026-11-11",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-11/debates/8D5B9E43-DEA4-4575-BD1C-52BDF52FEE48/RebuildingForensicScienceforCriminalJustice(ScienceandTechnologyCommitteeReport)#contribution-62D3311E-2EFF-41C5-9475-13E900BB4C28",
-    "",
+    "Lord Davies of Gower (Con)",
     "debate/lords-2026-11-11-grandcommittee-8d5b9e43-dea4-4575-bd1c-52bdf52fee48.md",
     18
   ],
@@ -243,7 +267,7 @@
     "2026-11-11",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-11/debates/694DFCBA-12CE-425D-86A9-790A7A785DC6/Employers#contribution-52D3B2BA-9CC3-4D5B-A35C-2A717BC56D15",
-    "",
+    "Nigel Huddleston (Droitwich and Evesham) (Con)",
     "debate/commons-2026-11-11-debate-694dfcba-12ce-425d-86a9-790a7a785dc6.md",
     135
   ],
@@ -251,7 +275,7 @@
     "2026-11-10",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-10/debates/196CF56B-7F14-4E08-9BA9-84AD022F45EC/TerrorismPreventionandInvestigationMeasuresAct2011(Continuation)Order2026#contribution-836245E1-0E44-47BA-A2DF-8211BF04F19B",
-    "",
+    "Lord Hanson of Flint (Lab)",
     "debate/lords-2026-11-10-grandcommittee-196cf56b-7f14-4e08-9ba9-84ad022f45ec.md",
     6
   ],
@@ -259,7 +283,7 @@
     "2026-11-10",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-10/debates/196CF56B-7F14-4E08-9BA9-84AD022F45EC/TerrorismPreventionandInvestigationMeasuresAct2011(Continuation)Order2026#contribution-643520AB-F0EB-4511-9615-126B4DA70C92",
-    "",
+    "Lord Cameron of Lochiel (Con)",
     "debate/lords-2026-11-10-grandcommittee-196cf56b-7f14-4e08-9ba9-84ad022f45ec.md",
     5
   ],
@@ -267,7 +291,7 @@
     "2026-11-10",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-10/debates/196CF56B-7F14-4E08-9BA9-84AD022F45EC/TerrorismPreventionandInvestigationMeasuresAct2011(Continuation)Order2026#contribution-B0AF3268-AD75-4D6E-A907-A8285C7E3C43",
-    "",
+    "The Minister of State, Home Office (Lord Hanson of Flint) (Lab)",
     "debate/lords-2026-11-10-grandcommittee-196cf56b-7f14-4e08-9ba9-84ad022f45ec.md",
     4
   ],
@@ -275,7 +299,7 @@
     "2026-11-10",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-10/debates/361B65B5-321D-497B-99BD-F7591FFA90F5/ChurchAppointments(RepealofDiscriminatoryProvision)Bill#contribution-8F65CAE7-9752-4765-94EF-237B42BE7E8A",
-    "",
+    "Baroness Bottomley of Nettlestone (Con)",
     "debate/lords-2026-11-10-debate-361b65b5-321d-497b-99bd-f7591ffa90f5.md",
     6
   ],
@@ -283,7 +307,7 @@
     "2026-11-10",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-10/debates/A8F5771F-C812-4A03-83B8-905A05436CFA/AntisocialBehaviour#contribution-2FE91F24-DED4-4F40-B941-7CFC90811B8A",
-    "",
+    "Sarah Jones",
     "debate/commons-2026-11-10-westhall-a8f5771f-c812-4a03-83b8-905a05436cfa.md",
     93
   ],
@@ -291,7 +315,7 @@
     "2026-11-10",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-10/debates/E43553F9-3D50-41D2-844C-D23E5DCFBF96/ChinaBreachofUKParliamentariansData#contribution-CA182344-B165-4B9F-9940-C7D19D7EE219",
-    "",
+    "Dan Jarvis",
     "debate/commons-2026-11-10-debate-e43553f9-3d50-41d2-844c-d23e5dcfbf96.md",
     23
   ],
@@ -299,7 +323,7 @@
     "2026-11-10",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-10/debates/E43553F9-3D50-41D2-844C-D23E5DCFBF96/ChinaBreachofUKParliamentariansData#contribution-41ABD9E6-EF08-409B-B204-F552B1BE46D1",
-    "",
+    "Luke Taylor (Sutton and Cheam) (LD)",
     "debate/commons-2026-11-10-debate-e43553f9-3d50-41d2-844c-d23e5dcfbf96.md",
     22
   ],
@@ -307,7 +331,7 @@
     "2026-11-10",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-10/debates/E43553F9-3D50-41D2-844C-D23E5DCFBF96/ChinaBreachofUKParliamentariansData#contribution-0A66C9F9-2591-439A-8CEC-149CCE336CB3",
-    "",
+    "Sir Iain Duncan Smith (Chingford and Woodford Green) (Con)",
     "debate/commons-2026-11-10-debate-e43553f9-3d50-41d2-844c-d23e5dcfbf96.md",
     2
   ],
@@ -315,7 +339,7 @@
     "2026-11-04",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-04/debates/68AD89D6-0717-47C9-A8E8-819647FB6A22/IllegalOff-roadBikesNorth-east#contribution-10206CE5-5A91-4685-A0C8-3905207AB4FC",
-    "",
+    "Sarah Jones",
     "debate/commons-2026-11-04-westhall-68ad89d6-0717-47c9-a8e8-819647fb6a22.md",
     37
   ],
@@ -323,7 +347,7 @@
     "2026-11-04",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-04/debates/68AD89D6-0717-47C9-A8E8-819647FB6A22/IllegalOff-roadBikesNorth-east#contribution-52D40974-1809-4254-98EA-FD08C02E13C8",
-    "",
+    "Sarah Jones",
     "debate/commons-2026-11-04-westhall-68ad89d6-0717-47c9-a8e8-819647fb6a22.md",
     31
   ],
@@ -331,7 +355,7 @@
     "2026-11-04",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-04/debates/4095eee1-f893-42b6-b3fa-e2a77ab05ed2/DraftTerrorismPreventionandInvestigationMeasuresAct2011(Continuation)Order2026#contribution-19DE296C-EBC2-4E3F-9ED0-D07E57C9B527",
-    "",
+    "The Parliamentary Under-Secretary of State for the Home Department (Jo White)",
     "debate/commons-2026-11-04-gen-4095eee1-f893-42b6-b3fa-e2a77ab05ed2.md",
     27
   ],
@@ -347,7 +371,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-BF664247-CC95-489F-A5CC-8F7A38D246A2",
-    "",
+    "Siân Berry",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     889
   ],
@@ -355,7 +379,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-E58D4AEA-8278-4079-AB0B-25F567EFDA19",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     880
   ],
@@ -363,7 +387,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-FC0E0161-6EE3-4F8D-9CD1-239A09A059DF",
-    "",
+    "Blake Stephenson",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     341
   ],
@@ -371,7 +395,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-0B06A3EE-690F-4971-A998-DEDC72AABBA5",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     266
   ],
@@ -379,7 +403,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-688F9D47-B82E-4B93-AE70-5736F204578F",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     173
   ],
@@ -387,7 +411,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-E0B9C6F8-F8C8-4FBB-9201-D5D70827A44E",
-    "",
+    "Blake Stephenson",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     172
   ],
@@ -395,7 +419,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-CA458362-0B87-422B-9B72-DDC707D296D5",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     129
   ],
@@ -403,7 +427,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-DED23162-3743-4DB7-B733-1F5FA72D8448",
-    "",
+    "Blake Stephenson",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     96
   ],
@@ -411,7 +435,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-1E06A1CA-7B44-4394-97BD-F25FC0ABF525",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     78
   ],
@@ -419,7 +443,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-6206F0DB-91EA-44E3-B20C-34EDF0DFCFB6",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     76
   ],
@@ -427,7 +451,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-1925EBFC-6213-45DC-A2EE-7D4C0C65B413",
-    "",
+    "Blake Stephenson",
     "debate/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b.md",
     75
   ],
@@ -443,7 +467,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-CD11FA0D-871A-4F6C-BB25-6BF324FDE70B",
-    "",
+    "Matt Vickers",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     259
   ],
@@ -451,7 +475,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-C5A3331A-6611-4992-A7E7-6B49D4EC2A0D",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     228
   ],
@@ -459,7 +483,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-02C531FC-98F1-49F6-838F-A751A1F915C8",
-    "",
+    "Matt Vickers",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     227
   ],
@@ -475,7 +499,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-0849AE34-1FFC-4A6A-9F6C-229D22E16F1B",
-    "",
+    "Matt Vickers",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     157
   ],
@@ -483,7 +507,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-4FBC3534-430E-4C54-864D-0A11B3F3E4F2",
-    "",
+    "Matt Vickers",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     126
   ],
@@ -491,7 +515,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-F709BCE5-5F7F-4047-B8E8-CFBA227B686F",
-    "",
+    "Anna Turley",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     80
   ],
@@ -499,7 +523,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-D2DAF869-9F9A-409D-BEBA-CE31CD02B1AB",
-    "",
+    "Blake Stephenson (Mid Bedfordshire) (Con)",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     67
   ],
@@ -507,7 +531,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/bf24d13e-3513-4670-9f6d-b6639f28a1ef/ImmigrationandAsylumBill(Fifteenthsitting)#contribution-C4C0C369-9869-4034-85D6-8C4B36FF1C8F",
-    "",
+    "Siân Berry",
     "debate/commons-2026-11-03-pbc-bf24d13e-3513-4670-9f6d-b6639f28a1ef.md",
     33
   ],
@@ -515,7 +539,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/B307797F-A47C-4325-879C-FB4A63E36090/TopicalQuestions#contribution-159D03A9-5E69-4C73-8ACB-C662445F14B1",
-    "",
+    "Greg Smith (Mid Buckinghamshire) (Con)",
     "debate/commons-2026-11-03-debate-b307797f-a47c-4325-879c-fb4a63e36090.md",
     36
   ],
@@ -523,7 +547,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/31AB917B-C6F4-41D2-B256-BAB5D978DA92/BudgetResolutions#contribution-1FE42ECE-1E0A-4D8B-A2DD-C0D4B78FB910",
-    "",
+    "Suella Braverman",
     "debate/commons-2026-11-03-debate-31ab917b-c6f4-41d2-b256-bab5d978da92.md",
     124
   ],
@@ -531,7 +555,7 @@
     "2026-11-03",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-03/debates/31AB917B-C6F4-41D2-B256-BAB5D978DA92/BudgetResolutions#contribution-CFF80B97-C442-4838-8A07-A06423DCFEF1",
-    "",
+    "Julia Lopez",
     "debate/commons-2026-11-03-debate-31ab917b-c6f4-41d2-b256-bab5d978da92.md",
     25
   ],
@@ -539,7 +563,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-3255BCB4-01F6-46DC-90B2-5BD7A0BCFA65",
-    "",
+    "Lord Collins of Highbury (Lab)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     15
   ],
@@ -547,7 +571,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-0382BE2C-2CA7-403C-8E34-FF4EC5057731",
-    "",
+    "Baroness Fox of Buckley (Non-Afl)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     14
   ],
@@ -555,7 +579,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-C74A38AE-750C-4373-98C9-3CE96FBD4BE6",
-    "",
+    "Lord Collins of Highbury (Lab)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     13
   ],
@@ -563,7 +587,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-2AE8A4B7-2B30-438D-B177-7D895DE6A55C",
-    "",
+    "Lord Collins of Highbury (Lab)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     11
   ],
@@ -571,7 +595,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-0681E679-F8C2-48A1-9C1E-54A4705E8C2E",
-    "",
+    "Lord Collins of Highbury (Lab)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     9
   ],
@@ -579,7 +603,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-0E603082-E649-4472-BD28-C8025A54BDB3",
-    "",
+    "Lord Collins of Highbury (Lab)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     6
   ],
@@ -587,7 +611,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-F2F12051-9CA0-47F9-8D15-5B316BE6F3EC",
-    "",
+    "Lord Davies of Gower (Con)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     4
   ],
@@ -595,7 +619,7 @@
     "2026-11-02",
     "Lords",
     "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-349124D4-1CB7-4B94-AB1D-2CB8CD994E54",
-    "",
+    "The Deputy Leader of the House of Lords (Lord Collins of Highbury) (Lab)",
     "debate/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9.md",
     2
   ],
@@ -603,7 +627,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/74A239AE-6ACF-4988-847E-F7B819989918/BudgetResolutions#contribution-60A2BBD6-B869-41D5-A6AD-556CFE1EF4D8",
-    "",
+    "Catherine Atkinson",
     "debate/commons-2026-11-02-debate-74a239ae-6acf-4988-847e-f7b819989918.md",
     59
   ],
@@ -611,7 +635,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-6B6D123A-9FC5-4711-8282-01ABFBE593E2",
-    "",
+    "Connor Naismith (Crewe and Nantwich) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     153
   ],
@@ -619,7 +643,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-8F09298C-1B56-4A2F-BCBD-C4304370A5CC",
-    "",
+    "Chris Hinchliff (North East Hertfordshire) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     150
   ],
@@ -627,7 +651,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-6270E27C-F948-49D6-B342-FF8926F53F33",
-    "",
+    "Josh Newbury (Cannock Chase) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     148
   ],
@@ -635,7 +659,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-E7235529-98E1-42F5-B4EC-2CE1B5B647D5",
-    "",
+    "Chris Curtis (Milton Keynes North) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     144
   ],
@@ -643,7 +667,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-06FA6334-8C26-46F8-A3E5-D44D7360D8C3",
-    "",
+    "Amanda Martin (Portsmouth North) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     142
   ],
@@ -651,7 +675,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-F2BA9B3E-B972-4AA7-86DC-762BF22DE445",
-    "",
+    "Markus Campbell-Savours (Penrith and Solway) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     135
   ],
@@ -659,7 +683,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-D9F33191-4BBA-4C70-812D-ADDA4CC31822",
-    "",
+    "Noah Law (St Austell and Newquay) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     133
   ],
@@ -667,7 +691,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-3D16C554-6130-476E-B0DD-5D126C718DED",
-    "",
+    "Jonathan Davies (Mid Derbyshire) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     131
   ],
@@ -675,7 +699,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-7B367F18-E50F-4FAB-85F5-9C032F0FCEC6",
-    "",
+    "Jim Shannon (Strangford) (DUP)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     129
   ],
@@ -683,7 +707,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-32EE1820-80E7-4F13-AE7C-C1345BCBB7E2",
-    "",
+    "Kirsteen Sullivan (Bathgate and Linlithgow) (Lab/Co-op)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     127
   ],
@@ -691,7 +715,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-1B58C8FF-8E91-4D6F-8C89-5C55A543B24E",
-    "",
+    "Gurinder Singh Josan (Smethwick) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     123
   ],
@@ -699,7 +723,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-8F76C328-077E-4EDA-B487-566CD93B1A0C",
-    "",
+    "Sarah Pochin (Runcorn and Helsby) (Reform)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     120
   ],
@@ -707,7 +731,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-CBA6EBA2-A159-4612-BE9D-4776D6007D88",
-    "",
+    "Kevin Bonavia (Stevenage) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     118
   ],
@@ -715,7 +739,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-EEB58065-B3E3-4B95-9F44-C1507EF049A3",
-    "",
+    "Tessa Munt (Wells and Mendip Hills) (LD)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     116
   ],
@@ -723,7 +747,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-E5CA5CCD-E33A-425C-9D3E-241579E03E0A",
-    "",
+    "Kerry McCarthy (Bristol East) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     114
   ],
@@ -731,7 +755,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-DBBD3E36-31A4-4BF5-B2E6-39C0E75A6E6E",
-    "",
+    "Shockat Adam (Leicester South) (Ind)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     111
   ],
@@ -739,7 +763,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-F68A0100-6CE2-45EB-BAF3-30DA03B5C0D2",
-    "",
+    "Rachael Maskell (York Central) (Lab/Co-op)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     109
   ],
@@ -747,7 +771,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-819F0778-FE1B-41D9-BD07-B5FC5DCBBE04",
-    "",
+    "Vikki Slade (Mid Dorset and North Poole) (LD)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     107
   ],
@@ -755,7 +779,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-1661D672-ACED-4B98-BB72-5126828258F2",
-    "",
+    "Dan Carden (Liverpool Walton) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     105
   ],
@@ -763,7 +787,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-699529D9-6CD2-4444-8E6A-76D0FB30FA68",
-    "",
+    "Sir Ashley Fox (Bridgwater) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     103
   ],
@@ -771,7 +795,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-FB315F14-951D-4068-B202-F53DDF55C896",
-    "",
+    "Pamela Nash (Motherwell, Wishaw and Carluke) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     101
   ],
@@ -779,7 +803,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-9BB8527A-E103-4081-82A6-4CE0846E154A",
-    "",
+    "Gareth Snell (Stoke-on-Trent Central) (Lab/Co-op)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     96
   ],
@@ -787,7 +811,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-B991F428-B23B-4A72-98A5-A8B7052B6061",
-    "",
+    "Ben Obese-Jecty (Huntingdon) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     93
   ],
@@ -795,7 +819,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-5461F8E4-85B4-40B8-9B8F-CCB722998763",
-    "",
+    "Barry Gardiner (Brent West) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     90
   ],
@@ -803,7 +827,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-266F093F-5094-4769-B7F2-C358D83428C5",
-    "",
+    "Robert Jenrick (Newark) (Reform)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     88
   ],
@@ -811,7 +835,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-FEFC8DE3-BAB8-40E3-BB83-DB592BCE4916",
-    "",
+    "Alex McIntyre (Gloucester) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     86
   ],
@@ -819,7 +843,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-2D0B3718-D001-4BDE-B609-53CD7356A004",
-    "",
+    "Dr Andrew Murrison (South West Wiltshire) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     84
   ],
@@ -827,7 +851,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-E4536113-405F-4ABD-8F23-BA9B9D959485",
-    "",
+    "Derek Twigg (Widnes and Halewood) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     81
   ],
@@ -835,7 +859,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-D18BD23B-90B9-4B7C-A9AF-0BD60EF6BBD4",
-    "",
+    "Ayoub Khan (Birmingham Perry Barr) (Ind)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     79
   ],
@@ -843,7 +867,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-33B64EC5-6DA2-45AA-AD97-FDCDBF78C76C",
-    "",
+    "Ms Julie Minns (Carlisle) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     77
   ],
@@ -851,7 +875,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-5F7EC5D9-3E8D-4D4A-81FF-EB4EFBD2C535",
-    "",
+    "Liz Saville Roberts (Dwyfor Meirionnydd) (PC)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     74
   ],
@@ -859,7 +883,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-F52B41F0-4396-4CAA-BD04-4F4F0AF8008D",
-    "",
+    "Manuela Perteghella (Stratford-on-Avon) (LD)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     70
   ],
@@ -867,7 +891,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-0CFEC1F7-7663-446E-BB89-ECF65E33AF7F",
-    "",
+    "Sir Alec Shelbrooke (Wetherby and Easingwold) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     66
   ],
@@ -875,7 +899,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-462D9256-54AA-4A7F-91FA-0C53252EA2C5",
-    "",
+    "Hannah Spencer (Gorton and Denton) (Green)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     62
   ],
@@ -883,7 +907,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-B27A32D5-56D9-4961-9632-9570583C98A2",
-    "",
+    "Ms Stella Creasy (Walthamstow) (Lab/Co-op)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     59
   ],
@@ -891,7 +915,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-4F6AF5B6-43E3-4C28-8189-82D79FB8C304",
-    "",
+    "Emily Thornberry (Islington South and Finsbury) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     55
   ],
@@ -899,7 +923,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-EC1C4EDE-0FCC-49D3-8772-02EAC1DDCD37",
-    "",
+    "Pete Wishart (Perth and Kinross-shire) (SNP)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     53
   ],
@@ -907,7 +931,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-2A13FD6E-D126-4D14-AA40-F296EBFC507F",
-    "",
+    "Ms Abena Oppong-Asare (Erith and Thamesmead) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     51
   ],
@@ -915,7 +939,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-3D807770-EB13-44F7-B1B8-E0E38DF1BBD0",
-    "",
+    "Wendy Morton (Aldridge-Brownhills) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     49
   ],
@@ -923,7 +947,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-C392F39E-22C8-4B5B-BB74-2F14DB8D2BB4",
-    "",
+    "Madam Deputy Speaker (Ms Nusrat Ghani)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     47
   ],
@@ -931,7 +955,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-24E5019E-12F6-49F8-9976-2E9B8D29ABC6",
-    "",
+    "Olivia Bailey (Reading West and Mid Berkshire) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     45
   ],
@@ -939,7 +963,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-E41BD7C2-C141-41C0-A37A-328D8BED3E9F",
-    "",
+    "Sarah Olney (Richmond Park) (LD)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     43
   ],
@@ -947,7 +971,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-81BF57BC-8400-4901-8D99-125BC54CFA0B",
-    "",
+    "Sir Julian Lewis (New Forest East) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     38
   ],
@@ -955,7 +979,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-5A8B38E7-8029-45B9-B961-3B9677592776",
-    "",
+    "Bradley Thomas (Bromsgrove) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     34
   ],
@@ -963,7 +987,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-58F31E62-5330-4BD2-8764-C582495B22FF",
-    "",
+    "Madam Deputy Speaker (Ms Nusrat Ghani)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     33
   ],
@@ -971,7 +995,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-AF312E5B-F6AF-4B15-B6A9-8310E96C26B7",
-    "",
+    "John McDonnell (Hayes and Harlington) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     30
   ],
@@ -979,7 +1003,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-9B731DF3-DD24-46AB-9375-77D6861FD458",
-    "",
+    "Mr Paul Kohler (Wimbledon) (LD)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     28
   ],
@@ -987,7 +1011,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-85595728-A24D-4D5D-A175-9BF73AFEE987",
-    "",
+    "Mike Tapp (Dover and Deal) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     26
   ],
@@ -995,7 +1019,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-1F1BEF9E-CE51-4921-844C-3197163F56D5",
-    "",
+    "Shabana Mahmood",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     25
   ],
@@ -1003,7 +1027,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-96BC7D6C-FF9C-40B6-B29D-24984D1E13B7",
-    "",
+    "Sir James Cleverly (Braintree) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     24
   ],
@@ -1011,7 +1035,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-7B480B09-D10F-4504-88B0-FE14FF5011FD",
-    "",
+    "Dame Karen Bradley (Staffordshire Moorlands) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     20
   ],
@@ -1019,7 +1043,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-52C35ADA-F61B-4190-B4BF-87126AEF9C36",
-    "",
+    "Dame Meg Hillier (Hackney South and Shoreditch) (Lab/Co-op)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     17
   ],
@@ -1027,7 +1051,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-0E98DAB9-1849-4127-A952-6A4E5D235B3E",
-    "",
+    "Sir Edward Leigh (Gainsborough) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     15
   ],
@@ -1035,7 +1059,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-A7ECAFBE-B3F4-4482-B2B2-1DE3D59F702C",
-    "",
+    "Dr Peter Prinsley (Bury St Edmunds and Stowmarket) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     13
   ],
@@ -1043,7 +1067,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-B09A1806-90F7-461C-88FC-1B3FF45EA9EF",
-    "",
+    "Max Wilkinson (Cheltenham) (LD)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     10
   ],
@@ -1051,7 +1075,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-EF6B7415-2D35-45E8-94C4-BB28AB9EDB4A",
-    "",
+    "Ms Diane Abbott (Hackney North and Stoke Newington) (Lab)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     7
   ],
@@ -1059,7 +1083,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-CCF84A26-2789-4A40-B0D0-46EABAB8BAC1",
-    "",
+    "Shabana Mahmood",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     6
   ],
@@ -1067,7 +1091,7 @@
     "2026-11-02",
     "Commons",
     "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-EA26E8AE-064F-4DA2-A1C8-082062E63324",
-    "",
+    "Chris Philp (Croydon South) (Con)",
     "debate/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e.md",
     5
   ],

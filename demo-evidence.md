@@ -11,6 +11,7 @@ Ian Murray’s Commons statement and the next day’s Lords question share a Mic
 - Organisations — Microsoft, Cabinet Office
 - Things and programmes — Microsoft 365
 
+- 2026-11-19 · Commons · Shared mention · [Jim Shannon (Strangford) (DUP)](https://hansard.parliament.uk/Commons/2026-11-19/debates/9E3A74F3-AAAE-46AB-A56B-60AC8748A01C/TopicalQuestions#contribution-4B0E9430-45FB-4AA9-8578-AFE802816B91)
 - 2026-11-17 · Lords · Shared mention · [Baroness Lloyd of Effra · Public sector dependence on technology providers](https://hansard.parliament.uk/Lords/2026-11-17/debates/3203E15D-A3FF-40F4-B48C-568BC40BD24F/CyberSecurityPublicSectorDependenceonTechnologyProviders#contribution-13D79A9B-DE1F-45B7-9B87-6B4386D1F584)
 - 2026-11-16 · Commons · Starting contribution · [Ian Murray · Microsoft 365 outage](https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948)
 - 2026-07-23 · Lords · Shared mention · [Microsoft 365](https://hansard.parliament.uk/Lords/2026-07-23/debates/0AD8A0A1-BA91-4F7A-BF32-58A2C4022746/DigitalandTechnologyPolicyNationalSovereignty#contribution-ED863356-5EDC-4D61-BADA-DCD4DA0F0416)
@@ -48,6 +49,7 @@ Martin Wrigley points to Monday’s statement and his April Westminster Hall deb
 - Things and programmes — NHS Federated Data Platform
 - Policy subjects — Digital health
 
+- 2026-11-19 · Commons · Shared mention · [Dawn Butler](https://hansard.parliament.uk/Commons/2026-11-19/debates/950A02CE-0D7C-4572-ACF6-11B7E5A8D258/AIEmergingRisks#contribution-02CD1838-6DFF-4566-A257-620FBA35B0C4)
 - 2026-11-17 · Commons · Starting contribution · [Martin Wrigley · NHS Federated Data Platform: Palantir](https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896)
 - 2026-11-16 · Commons · Shared mention · [NHS Federated Data Platform](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-9567D857-1171-4BF0-90BC-F964C1ABFFAA)
 - 2026-11-16 · Commons · Shared mention · [NHS Federated Data Platform](https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-2FB50706-6C6B-4AC2-A1FB-9400919593A3)
