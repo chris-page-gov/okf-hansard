@@ -108,3 +108,7 @@ The published graph schemas are byte-for-byte copies of the [Explorer assertion 
 Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning. The build log records the model and reasoning effort. The project owner set the scope and authorised publication.
 
 Contains Parliamentary information licensed under the Open Parliament Licence v3.0 where applicable. Follow the official record for the words and context. The graph’s matches are experimental and carry their own provenance. [Licence and exclusions](https://www.parliament.uk/site-information/copyright/open-parliament-licence/)
+
+## OKF standards and bundle discovery
+
+Use the [central current and historical standards register](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md) and [machine-readable register](https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json) for version-specific specifications and the public bundle catalogue.
