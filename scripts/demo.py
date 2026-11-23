@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from capture import dump, sha
+from okf_core import CORE_VERSION
 from query import DEFAULT_DB, Index
 
 PALANTIR = "/D1EA4BF2-2796-48DD-A144-B9675E614F2A/"
@@ -206,7 +207,7 @@ def write_timeline(destination, examples, counts, source_nodes):
             "learning_presentation": {"schema": "okf-learning-presentation.v1", "start_route": "index.md",
                                       "groups": groups, "facets": [{"key": k, "label": v} for k, v in facets.items()]}}
     dump(destination / "demo-timeline.json", {
-        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": "0.2", "meta": meta,
+        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": CORE_VERSION, "meta": meta,
         "corpora": {"hansard": {"id": "hansard", "title": title, "root": "index.md",
                                "assertion_scope": "real-world", "nodes": nodes, "relationships": []}},
     })

@@ -2,7 +2,9 @@
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
+from contextlib import contextmanager
 from datetime import date, datetime, time, timedelta
+import fcntl
 from hashlib import sha256
 from pathlib import Path
 import subprocess
@@ -19,6 +21,15 @@ from query import DEFAULT_DB
 
 ZONE = ZoneInfo("Europe/London")
 PAGES_REMOTE = SOURCE + ".git"
+PAGES_LOCK = ROOT / ".work/pages-publication.lock"
+GIT_AUTH = ("-c", "credential.helper=", "-c", "credential.helper=!gh auth git-credential")
+
+
+@contextmanager
+def pages_lock():
+    with PAGES_LOCK.open("a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        yield
 
 
 def git(checkout, *command):
@@ -72,17 +83,19 @@ def verify_public(site, commit):
 def publish(prepared, checkout):
     descriptor = read(prepared / "prepared.json")
     site = prepared / "site"
-    if git(checkout, "branch", "--show-current") != "gh-pages" or git(checkout, "status", "--porcelain"):
-        raise ValueError("The Pages checkout must be clean and on gh-pages.")
-    subprocess.run(["rsync", "-rc", "--delete", "--exclude=/.git", str(site) + "/", str(checkout) + "/"],
-                   check=True)
-    git(checkout, "add", "--all")
-    if git(checkout, "status", "--porcelain"):
-        git(checkout, "diff", "--cached", "--check")
-        git(checkout, "commit", "-m", f"Publish verified Hansard through {descriptor['through']}")
-    commit = git(checkout, "rev-parse", "HEAD")
-    git(checkout, "-c", "credential.helper=", "-c", "credential.helper=!gh auth git-credential",
-        "push", PAGES_REMOTE, "HEAD:refs/heads/gh-pages")
+    with pages_lock():
+        if git(checkout, "branch", "--show-current") != "gh-pages" or git(checkout, "status", "--porcelain"):
+            raise ValueError("The Pages checkout must be clean and on gh-pages.")
+        git(checkout, *GIT_AUTH, "fetch", PAGES_REMOTE, "gh-pages")
+        git(checkout, "rebase", "FETCH_HEAD")
+        subprocess.run(["rsync", "-rc", "--delete", "--exclude=/.git", "--exclude=/november/",
+                        str(site) + "/", str(checkout) + "/"], check=True)
+        git(checkout, "add", "--all")
+        if git(checkout, "status", "--porcelain"):
+            git(checkout, "diff", "--cached", "--check")
+            git(checkout, "commit", "-m", f"Publish verified Hansard through {descriptor['through']}")
+        commit = git(checkout, "rev-parse", "HEAD")
+        git(checkout, *GIT_AUTH, "push", PAGES_REMOTE, "HEAD:refs/heads/gh-pages")
     verify_public(site, commit)
     dump(prepared / "published.json", {"commit": commit, "through": descriptor["through"],
                                         "verified_at": now(), "url": SITE + "demo.html"})

@@ -229,6 +229,7 @@ def build(release, root):
     })
     write(root, "okf-explorer.json", {
         "schema": "okf-explorer-large-corpus.v1", "kind": "okf-large-corpus",
+        "okf_version": bundle["okf_version"],
         "title": title, "snapshot": snapshot, "counts": counts,
         "entrypoints": {"data_manifest": manifest, "overview_index": overview,
                         "record_locator": record_locator, "relationship_runtime": relationship_runtime},

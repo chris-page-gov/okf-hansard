@@ -16,6 +16,7 @@ from build_pages import voice_coverage_note, voice_speaker_links
 from capture import dump, sha
 from demo import record, write_timeline
 from model import Entity, Matcher, plain, read_sittings
+from okf_core import check_markdown
 from people import active_on
 from query import Index, view_for
 from render_view import render
@@ -184,7 +185,12 @@ class ModelTests(unittest.TestCase):
             output = root / "release"
             with patch("build.validate", side_effect=lambda graph, _explorer: len(graph.edges)):
                 build(root, None, output, vocabulary, day, day, root)
-            corpus = json.loads((output / "okf-bundle.json").read_bytes())["corpora"]["hansard"]
+            bundle = json.loads((output / "okf-bundle.json").read_bytes())
+            self.assertEqual("0.3", bundle["okf_version"])
+            self.assertEqual("0.3", check_markdown(output / "markdown")["version"])
+            semantic = (output / "okf-bundle.yamlld").read_text(encoding="utf-8").splitlines()[3:]
+            self.assertNotIn("index.md", [json.loads(line[2:]).get("route") for line in semantic])
+            corpus = bundle["corpora"]["hansard"]
             edges = corpus["relationships"]
             vote, = (edge for edge in edges if edge["kind"] == "is division in")
             self.assertEqual("Deferred vote", corpus["nodes"][vote["target"]]["title"])

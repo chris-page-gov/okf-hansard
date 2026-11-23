@@ -11,6 +11,7 @@ from rdflib import Graph, RDF, URIRef
 from build import canonical_field, digest
 from capture import dump, sha
 from model import plain
+from okf_core import CORE_VERSION, RESERVED, check_markdown
 
 
 def pointer(value, ref):
@@ -40,7 +41,8 @@ def check(release, source, people, report):
     samples = {}
     with (release / "okf-bundle.yamlld").open(encoding="utf-8") as stream:
         context = json.loads(stream.readline().split(": ", 1)[1])
-        if not stream.readline().startswith("meta: ") or stream.readline().strip() != '"@graph":':
+        header = stream.readline()
+        if not header.startswith("meta: ") or stream.readline().strip() != '"@graph":':
             raise ValueError("Unexpected YAML-LD layout")
         for line in stream:
             row = json.loads(line.removeprefix("- "))
@@ -94,6 +96,13 @@ def check(release, source, people, report):
               "contributions": len(week), "failures": [{"predicate": k, "error": e, "count": n}
                                                        for (k, e), n in failed.items()],
               "failure_examples": failures}
+    if receipt.get("okf_version") == CORE_VERSION:
+        if (bundle.get("okf_version") != CORE_VERSION
+                or json.loads(header.removeprefix("meta: "))["okf_core"]["version"] != CORE_VERSION
+                or len(graph_rows) != receipt["semantic_records"]
+                or any(Path(row["route"]).name in RESERVED for row in graph_rows.values())):
+            raise ValueError("OKF 0.3 version or semantic concept count differs from the build receipt")
+        result["okf_core"] = check_markdown(release / "markdown")
     dump(report, result)
     print(json.dumps({k: v for k, v in result.items() if k != "failure_examples"}, indent=2))
     return not failed
