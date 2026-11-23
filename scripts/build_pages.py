@@ -225,13 +225,13 @@ def index_page(coverage, semantic_file, graph_anchor):
 <p class="date">House of Commons and House of Lords · {dates}</p>
 <h1>A week in Parliament</h1>
 <p class="intro">Follow a Hansard contribution through related people, offices, organisations, places and legislation. This experimental OKF+ bundle contains {total:,} passages and {assertions:,} source-linked relationships.</p>
-<p class="actions"><a class="primary" href="demo.html">Open the demonstration</a>
+<p class="actions"><a class="primary" href="demo.html?example=railways-bill">Follow the Railways Bill</a>
 <a href="use-with-ai.html">Use Hansard with AI</a>
 <a href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a>
 <a href="beginners.html">Beginner’s guide</a></p>
 <div class="grid">
 <section>
-<h2>Microsoft 365 outage</h2>
+<h2>Commons statement on the Microsoft 365 outage</h2>
 <p>Start with Ian Murray’s Commons statement and follow the named organisations and 19 earlier mentions back to Hansard.</p>
 <ul>
 <li><a href="{escape(focused_graph, quote=True)}">Open the focused graph in Explorer</a></li>

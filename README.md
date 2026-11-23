@@ -4,7 +4,7 @@ An experimental OKF+ bundle of Westminster Hansard for 16 to 19 November 2026, w
 
 ## Public snapshot
 
-Start with the AI demonstration, companion or November contribution finder. The three examples cover Microsoft 365, Palantir and the NHS, and the Railways Bill. [Use Hansard with AI](https://chris-page-gov.github.io/okf-hansard/use-with-ai.html) · [Demonstration companion](https://chris-page-gov.github.io/okf-hansard/demo.html) · [November in Parliament](https://chris-page-gov.github.io/okf-hansard/november/)
+Start with the Railways Bill and follow its stages from the Commons to the Lords. The companion also covers Palantir and the NHS and the Commons statement on the Microsoft 365 outage. [Use Hansard with AI](https://chris-page-gov.github.io/okf-hansard/use-with-ai.html) · [Railways Bill companion](https://chris-page-gov.github.io/okf-hansard/demo.html?example=railways-bill) · [November in Parliament](https://chris-page-gov.github.io/okf-hansard/november/)
 
 Use the [beginner’s guide](https://chris-page-gov.github.io/okf-hansard/beginners.html) to follow a contribution and check its source. The [methodology and prompts](https://chris-page-gov.github.io/okf-hansard/methodology.html) explain the collection, matching rules and Foundry templates.
 
@@ -122,3 +122,9 @@ The local publisher runs through the 30 November snapshot without model calls. I
 Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning. The build log records the model and reasoning effort. The project owner set the scope and authorised publication.
 
 Contains Parliamentary information licensed under the Open Parliament Licence v3.0 where applicable. Follow the official record for the words and context. The graph’s matches are experimental and carry their own provenance. [Licence and exclusions](https://www.parliament.uk/site-information/copyright/open-parliament-licence/)
+
+## OKF standards and bundle discovery
+
+Use the [central current and historical standards register](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md) and [machine-readable register](https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json) for version-specific specifications and the public bundle catalogue.
+
+Pull requests to `main` run the locked Python test suite and browser-script syntax checks. The required `okf-hansard-ci` check validates these results; it does not acquire source material or publish a release.
