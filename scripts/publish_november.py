@@ -217,7 +217,7 @@ def write_downloads(site, downloads):
                     for row in downloads)
     (site / "historical-downloads.html").write_text(f"""<!doctype html>
 <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Historical YAML-LD downloads</title><link rel="stylesheet" href="site.css"></head>
+<title>Historical YAML-LD downloads</title><link rel="stylesheet" href="site.css"><link rel="icon" href="data:,"></head>
 <body><main class="demo"><p><a href="./">November in Parliament</a></p><h1>Historical YAML-LD downloads</h1>
 <p>Start with the initial snapshot. For entities included in a later download, use the newest partition. Each archive includes its own manifest.</p>
 <ul>{items}</ul><p><a href="historical-downloads.json">File sizes and checksums</a></p></main></body></html>

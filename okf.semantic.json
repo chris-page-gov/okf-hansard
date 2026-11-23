@@ -15,6 +15,7 @@
     "state": "generated-yaml-ld-sharded-graph",
     "authoritative_inputs": [
       ".work/okf-03/",
+      "compatibility/public-assets/",
       "profile/domain.yaml",
       "profile/vocabulary.yaml",
       "profile/curated-summaries.json",
@@ -35,7 +36,8 @@
       "docs/pages/",
       "scripts/audit_full_source.py",
       "scripts/verify_public.py",
-      "scripts/check_core_projection.py"
+      "scripts/check_core_projection.py",
+      "scripts/retained_public_assets.py"
     ],
     "outputs": [
       {"path": "releases/current/okf-bundle.yamlld", "role": "semantic-yaml-ld", "generated": true, "required": true},

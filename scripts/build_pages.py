@@ -14,6 +14,7 @@ from build import PAGES_BLOB_LIMIT
 from build_explorer_graph import build as build_explorer_graph, dataset_route
 from demo import timeline_route, write_demo
 from discovery import HEAD_LINKS, write_discovery
+from retained_public_assets import stage as retain_public_assets
 from history_pages import write as write_history
 from okf_core import CORE_VERSION
 from people import member_career_url
@@ -368,6 +369,7 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
     (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
     write_discovery(destination, "A week in Parliament", public_coverage["week_contributions_by_day"],
                     public_coverage["observed_at"], semantic_file)
+    retain_public_assets(destination, 'week')
     (destination / ".nojekyll").touch()
     manifest = {}
     for file in sorted(path for path in destination.rglob("*") if path.is_file()):
