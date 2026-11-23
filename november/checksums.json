@@ -1,19 +1,23 @@
 {
+  ".well-known/okf.json": {
+    "bytes": 3048,
+    "sha256": "d6c840f42e6a3315a636631be584a1b33b38d8fa2b2afa1ab29a66eab02ba0a8"
+  },
   "coverage.json": {
-    "bytes": 12195,
-    "sha256": "e76f58b55f5ad649c171acfdb979cb9a9a1dbe000e1f64487e03ccfbd4f173b2"
+    "bytes": 12288,
+    "sha256": "0ce92e317c493bdfddd779b3caf0ed07b18f997f1736200a8fea8a28a8f4da7e"
   },
   "graph/manifest.json": {
     "bytes": 109509,
-    "sha256": "0309e8169fc2a32a9dc3054d2edf3c327aacc0292108fa377095f7a0b82ab503"
+    "sha256": "f91c2c9f7a7e564d4490292904e9eda323d9d86a482c8ef8e12c28ed0501ba2d"
   },
   "graph/okf-explorer.json": {
-    "bytes": 857,
-    "sha256": "5ca6a69d89e03e6efdf39a95899baf170f9e0f840c328e13c922ded24f020567"
+    "bytes": 877,
+    "sha256": "e3ed2aad9220c2cd9d00ffd115cd6c0d1bf36f002cc3ba0f1d4fee3a92377689"
   },
   "graph/overview.json": {
     "bytes": 222,
-    "sha256": "524b8db4bd12ed1c380b575728488421227f323e916549e3e15d1fd4384f6e24"
+    "sha256": "ed673dca6a2c100436c67eb8827d38a7c0948b78474e40474cfe164bcd73aeff"
   },
   "graph/records/bucket-00.json": {
     "bytes": 8829,
@@ -3921,7 +3925,7 @@
   },
   "graph/records/locator.json": {
     "bytes": 51839,
-    "sha256": "9c2749dba2f6bf0f5d0f0e5cdcb5bdf1bac9d4b78667af3ef49affec3850acb5"
+    "sha256": "d85821a14ed507329c4ba3e7ebbc77af548efb8c428be362834fb223c0eb4b0c"
   },
   "graph/relationships/bucket-00.json.gz": {
     "bytes": 9034,
@@ -7081,7 +7085,7 @@
   },
   "graph/relationships/runtime.json": {
     "bytes": 138797,
-    "sha256": "644df059b1f8f20aaaf357cfabbad622a4ff4e9b55ac91012f5de098d3c49cef"
+    "sha256": "d6cea38a8aae5f71d0a1d9d33ef5e16db6d2156a13d936223e733f60f0fe8f51"
   },
   "graph/schemas/relationship-runtime-row.schema.json": {
     "bytes": 4536,
@@ -7093,7 +7097,7 @@
   },
   "graph/source.json": {
     "bytes": 565,
-    "sha256": "0dcabb30169ce05eed1076d68ac2e0e8bc3bcf2df2dc0fcb408b17d0e233905a"
+    "sha256": "0443ceaefff4dc83d7af213029c92e0a81367115ff4d63e091ff5c825535c7ba"
   },
   "historical-downloads.html": {
     "bytes": 1352,
@@ -29912,12 +29916,32 @@
     "sha256": "51c1a792473bbbb631c3c91d5d173ce7d11b46b64445ac8c49c43208ec78c794"
   },
   "index.html": {
-    "bytes": 2507,
-    "sha256": "ebfd45d774e28a067af93fb8736c67455e5dd905a58336034a9c59607092f5b7"
+    "bytes": 2703,
+    "sha256": "a4147ea530d07db126efdd51a9ab4e2d52e6fd9b8b739230c1f84d2d223023f5"
+  },
+  "llms.txt": {
+    "bytes": 744,
+    "sha256": "5f3f25f43e01dbc672c1a3043558f3dcfb1dba741f5bf1c089a94d8f4009d54c"
+  },
+  "okf/LICENSE.md": {
+    "bytes": 216,
+    "sha256": "feaf1de96ad0e7b7e1f9c35ce645ce4ddf4e8c077ff88bf59bcc674591646084"
+  },
+  "okf/index.md": {
+    "bytes": 796,
+    "sha256": "3a3b37ee1e0c392ddb21c9fd9b2749dc81eaba428242429bb35b822fbeb6a8bb"
+  },
+  "okf/sittings.md": {
+    "bytes": 1124,
+    "sha256": "bffd65e430a6628da65e0b4ad7e7af46b2920bf3ed0d81a6ef25506923dfd6b2"
   },
   "okf-bundle.yamlld.gz": {
-    "bytes": 11196444,
-    "sha256": "78b2cdb4ebfe133442e63a744565a4d9fbe3570e7c06036162fdcb2d33ad66b5"
+    "bytes": 11196401,
+    "sha256": "3295de039b2ddc3af9917619da48ed55cb7a3d3c6be08f3b42f9fd27851eba13"
+  },
+  "okf-public-access.json": {
+    "bytes": 3048,
+    "sha256": "d6c840f42e6a3315a636631be584a1b33b38d8fa2b2afa1ab29a66eab02ba0a8"
   },
   "site.css": {
     "bytes": 3110,

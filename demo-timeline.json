@@ -1,7 +1,7 @@
 {
   "schema": "okf-explorer-bundle.v0",
   "kind": "okf-bundle",
-  "okf_version": "0.2",
+  "okf_version": "0.3",
   "meta": {
     "title": "A week in Parliament · Demonstration timeline",
     "default_corpus": "hansard",
