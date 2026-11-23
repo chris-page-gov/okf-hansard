@@ -2,16 +2,16 @@
   "pilot_graph": {
     "schema": "hansard-verification.v1",
     "passed": true,
-    "assertions": 38213,
+    "assertions": 40943,
     "predicates": 11,
-    "rdf_sample_triples": 506,
+    "rdf_sample_triples": 526,
     "visible_facet_declarations": 12,
     "contributions": 5195,
     "failures": [],
     "failure_examples": [],
     "okf_core": {
       "version": "0.3",
-      "concepts": 10754,
+      "concepts": 12549,
       "indexes": 8
     }
   },
@@ -57,7 +57,7 @@
     "successes": 41,
     "exceptions": {}
   },
-  "coverage_statement": "Observed published API sittings. Historical matches use a fixed alias profile and scoped spoken-search supplements.",
+  "coverage_statement": "Observed published API sittings. The retained historical search records cover matching history through 1 November 2026; searches for 2–15 November are not present in this weekly bundle. The separate November bundle contains captured proceedings for its declared dates.",
   "observed_at": "2026-11-20T08:21:29+00:00",
   "source_commit": "7922c565c335ea8e1ca282ca8c631a6c32f6456a",
   "licence": {
@@ -87,9 +87,18 @@
     },
     "entities": 508,
     "archive_entities": 237,
-    "complete": 508,
-    "search_matches": 241256,
-    "exceptions": {}
+    "complete": 506,
+    "search_matches": 239085,
+    "exceptions": {
+      "office-governmentposts-1286": 1,
+      "office-otherposts-1072": 1
+    }
+  },
+  "history_backfill_gap": {
+    "from": "2026-11-02",
+    "through": "2026-11-15",
+    "status": "not-searched-in-weekly-bundle",
+    "reason": "No matching frozen cache receipt was found; no new source queries were made."
   },
   "older_archive": {
     "exclusive_before": "2007-01-01",

@@ -8391,15 +8391,10 @@
       "group": "Offices",
       "route": "entity/office-governmentposts-1286.md",
       "archive_count": 0,
-      "search_count": 463,
-      "search_windows": [
-        [
-          "2007-01-01",
-          "2026-11-01"
-        ]
-      ],
-      "complete": true,
-      "errors": 0
+      "search_count": 0,
+      "search_windows": [],
+      "complete": false,
+      "errors": null
     },
     "office-governmentposts-1306": {
       "label": "Minister for Intergovernmental Relations",
@@ -8725,15 +8720,10 @@
       "group": "Offices",
       "route": "entity/office-otherposts-1072.md",
       "archive_count": 0,
-      "search_count": 1708,
-      "search_windows": [
-        [
-          "2007-01-01",
-          "2026-11-01"
-        ]
-      ],
-      "complete": true,
-      "errors": 0
+      "search_count": 0,
+      "search_windows": [],
+      "complete": false,
+      "errors": null
     },
     "office-otherposts-785": {
       "label": "Leader of the Liberal Democrats",
