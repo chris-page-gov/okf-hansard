@@ -32,7 +32,10 @@
       "scripts/publish_november.py",
       "scripts/build_core_projection.py",
       "scripts/build_walkthrough.py",
-      "docs/pages/"
+      "docs/pages/",
+      "scripts/audit_full_source.py",
+      "scripts/verify_public.py",
+      "scripts/check_core_projection.py"
     ],
     "outputs": [
       {"path": "releases/current/okf-bundle.yamlld", "role": "semantic-yaml-ld", "generated": true, "required": true},
@@ -71,7 +74,7 @@
   },
   "tooling": {
     "build": ["uv run --locked python scripts/build.py", "uv run --locked python scripts/build_explorer_graph.py", "uv run --locked python scripts/build_core_projection.py"],
-    "check": ["uv run --locked python -m unittest discover -s tests", "uv run --locked python scripts/verify.py", "uv run --locked python scripts/build_core_projection.py --check", "uv run --locked python scripts/audit_full_source.py RELEASE --producer-commit COMMIT --output REPORT"],
+    "check": ["uv run --locked python -m unittest discover -s tests", "uv run --locked python scripts/verify.py", "uv run --locked python scripts/build_core_projection.py SITE/okf SITE --check", "uv run --locked python scripts/check_core_projection.py --projection PROJECTION --site SITE --output REPORT", "uv run --locked python scripts/audit_full_source.py RELEASE --producer-commit COMMIT --output REPORT"],
     "setup": ["uv sync --locked"]
   }
 }

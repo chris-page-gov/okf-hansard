@@ -1,5 +1,28 @@
 # Changelog
 
+## Unreleased — complete bundle publication checks, 23 November 2026
+
+- Give each compact week and November entry-point bundle its own source-bound
+  question, qualified answer, diagram and negative controls, alongside the two
+  full-graph walkthroughs. Keep compact answers within their zero-edge scope.
+- Preserve root metadata and exact licence bytes in compact projections, and
+  declare each document's actual published `okf/` path for Reader and AI access.
+- Reconcile each compact projection with an independent core import. Check all
+  concepts, reference pairs, frontmatter, bodies, source bytes and licence;
+  require a non-empty string `type` before treating a document as a concept.
+- Correct the November walkthrough's Reader link to the November bundle and
+  focus the source-linked proceedings route. Record the replayable mouse
+  journey for Reader 0.9.0, retaining keyboard access for earlier Readers.
+- Describe the static stage diagram accurately and keep official source links
+  separately accessible. Derive the weekly answer from its stage records,
+  require its reviewed three-stage scope and bind each full-graph walkthrough
+  to its own descriptor identity and digest. Label the monthly total accurately.
+  Avoid an unrelated host favicon request.
+- Implement the missing complete public-asset verifier with strict local
+  checksum coverage, bounded retrieval, exact empty Pages-marker handling,
+  source revision binding and a clean-checkout requirement. Keep public browser
+  and semantic acceptance separate from file retrieval.
+
 ## Unreleased — estate acceptance, 23 November 2026
 
 - Strengthen the independent full-source audit: require complete agreement

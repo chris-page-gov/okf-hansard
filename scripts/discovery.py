@@ -4,6 +4,7 @@ from hashlib import file_digest
 from html import escape
 import json
 from pathlib import Path
+import re
 from urllib.parse import quote, urlencode, urljoin
 
 from capture import dump
@@ -25,9 +26,22 @@ PROMPT = (
     "Say which sources you could open."
 )
 HEAD_LINKS = (
+    '<link rel="icon" href="data:,">\n'
     '<link rel="describedby" type="application/json" href="okf-public-access.json">\n'
     '<link rel="alternate" type="text/markdown" href="okf/index.md">'
 )
+
+
+def ensure_public_icons(site):
+    """Keep generated HTML from requesting an unrelated host-level favicon."""
+    for path in site.rglob("*.html"):
+        if path.is_symlink():
+            raise ValueError("Generated HTML contains a symlink")
+        text = path.read_text(encoding="utf-8")
+        if not re.search(r'<link\b[^>]*\brel\s*=\s*["\'][^"\']*\bicon\b', text, re.IGNORECASE):
+            if "</head>" not in text:
+                raise ValueError("Generated HTML has no head boundary")
+            path.write_text(text.replace("</head>", '<link rel="icon" href="data:,">\n</head>', 1), encoding="utf-8")
 
 
 def file_reference(site, base, name):
@@ -145,6 +159,7 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         f"- [Compact core Reader projection]({base}okf-core.json)",
         f"- [Full source core and graph records]({base}graph/okf-explorer.json)",
         f"- [Source-linked question walkthrough]({base}walkthrough.html)",
+        f"- [Compact-core question walkthrough]({base}core-walkthrough.html)",
         f"- [Open {('the contribution finder' if month else 'the AI demonstration')}]({base}{'history.html' if month else 'use-with-ai.html'})",
         f"- [Machine directory]({base}okf-public-access.json)",
         (f"- [Week examples]({SITE}okf/index.md)" if month else
@@ -152,6 +167,7 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
     ]))
     core_projection = build_core_projection(root, site)
     walkthrough = build_walkthrough(site, month=month)
+    ensure_public_icons(site)
     if not month:
         profile_output = site / "profile" / "hansard-domain-v2.json"
         profile_output.parent.mkdir(parents=True, exist_ok=True)
@@ -173,6 +189,9 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         "walkthrough": file_reference(site, base, "walkthrough.html"),
         "walkthrough_data": file_reference(site, base, "walkthrough.json"),
         "walkthrough_visual": file_reference(site, base, "walkthrough.svg"),
+        "compact_core_walkthrough": file_reference(site, base, "core-walkthrough.html"),
+        "compact_core_walkthrough_data": file_reference(site, base, "core-walkthrough.json"),
+        "compact_core_walkthrough_visual": file_reference(site, base, "core-walkthrough.svg"),
         "coverage": file_reference(site, base, "coverage.json"),
         "semantic_graph": {**semantic, "format": "YAML-LD", "compression": "gzip" if semantic_file.endswith(".gz") else None},
     }
@@ -232,6 +251,23 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
             "entrypoints": entrypoints,
         }],
     }
+    compact_descriptor = json.loads((site / "okf-core.json").read_bytes())
+    directory["bundles"].append({
+        "title": title + " compact entry point", "repository": REPOSITORY,
+        "home": base, "visibility": "public", "representation": "compact-markdown-core",
+        "descriptor": entrypoints["core_reader_projection"]["url"],
+        "descriptor_sha256": entrypoints["core_reader_projection"]["sha256"],
+        "descriptor_schema": compact_descriptor["schema"],
+        "expected_identity": {key: compact_descriptor[key] for key in ("schema", "id", "version", "snapshot")},
+        "declared_okf_version": CORE_VERSION, "semantic_profile": PROFILE,
+        "source_root": base + "okf/", "typed_concepts": core_projection["concepts"],
+        "graph_relationships": 0, "licence": LICENCE,
+        "walkthrough": walkthrough["compact_core_walkthrough"],
+        "entrypoints": {key: entrypoints[key] for key in
+                        ("markdown_index", "core_reader_projection", "compact_core_walkthrough",
+                         "compact_core_walkthrough_data", "compact_core_walkthrough_visual")},
+        "access_note": "Read this compact bundle's own question and exact Markdown sources. Its zero-edge graph does not contain the separate full graph's assertions.",
+    })
     dump(site / "okf-public-access.json", directory)
     (site / ".well-known").mkdir(exist_ok=True)
     dump(site / ".well-known/okf.json", directory)
@@ -240,6 +276,8 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         f"- [OKF 0.3 Markdown index]({base}okf/index.md): Open this small index first.",
         f"- [Machine directory]({base}okf-public-access.json): Coverage, endpoints and SHA-256 digests.",
         f"- [Coverage and verification]({base}coverage.json): Check dates and search limits before answering.",
+        f"- [Compact-core question walkthrough]({base}core-walkthrough.html): Answer from this entry point's own source scope.",
+        f"- [Full-graph question walkthrough]({base}walkthrough.html): Follow the separate graph evidence and its limits.",
         f"- [Companion and views]({base}{'history.html' if month else 'use-with-ai.html'}): See the evidence and its source links.",
         "", "Cite the exact Hansard passages. Treat shared name or alias matches as leads.", "",
     ]), encoding="utf-8")

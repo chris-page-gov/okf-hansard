@@ -18,11 +18,11 @@ The public companion and published history work without the SSD. See the [Voice 
 
 ## Open a local build
 
-- Load [the Explorer bundle](releases/current/okf-bundle.json) using **File** in OKF Explorer. The compact JSON retains the week and its linked earlier examples. The YAML-LD graph retains the full initial assertion evidence.
+- Open the full graph through the companion's Explorer link. Its sharded descriptor, `graph/okf-explorer.json`, loads bounded record and relationship files. The [intermediate JSON](releases/current/okf-bundle.json) remains available for compatible local workflows; larger captures can exceed the Reader's single-file transfer limit.
 - Read [the YAML-LD graph](releases/current/okf-bundle.yamlld) or start with the [portable Markdown index](releases/current/markdown/index.md).
 - Check the [capture and build receipt](releases/current/receipt.json) and [rolling history coverage](releases/history-progress.json).
 - Read the [international comparison](docs/international-models.md), [domain profile](profile/domain.yaml) and [voice and visual UI study](docs/voice-and-visual-ui.md).
-- The week and November stagers each generate a bundle-specific visual walkthrough with its own question, evidence trail and negative control.
+- The week and November stagers each generate separate compact-core and full-graph visual walkthroughs. Each has its own source-bound question, qualified answer and negative controls. Compact answers remain within their own evidence scope.
 
 The pilot comprises all text-bearing API contribution items observed in the published section trees at the cut-off. That includes some procedural passages, written statements and petitions. The receipt counts omitted layout-only items, timestamps and separately represented divisions. It records source availability at capture time.
 
@@ -128,7 +128,7 @@ Pass `--attempts-root` an existing directory on ExtSSD-Data to place new capture
 
 ## Source attribution
 
-Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning. The build log records the model and reasoning effort. The project owner set the scope and authorised publication.
+Built with OpenAI Codex. The retained build logs record the model and reasoning effort for each phase. The project owner set the scope and authorised publication.
 
 Contains Parliamentary information licensed under the Open Parliament Licence v3.0 where applicable. Follow the official record for the words and context. The graph’s matches are experimental and carry their own provenance. [Licence and exclusions](https://www.parliament.uk/site-information/copyright/open-parliament-licence/)
 
@@ -137,3 +137,20 @@ Contains Parliamentary information licensed under the Open Parliament Licence v3
 Use the [central current and historical standards register](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md) and [machine-readable register](https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json) for version-specific specifications and the public bundle catalogue.
 
 Pull requests to `main` run the locked Python test suite and browser-script syntax checks. The required `okf-hansard-ci` check validates these results; it does not acquire source material or publish a release.
+
+For each compact publication, use a clean, pinned Explorer checkout to run
+`scripts/check_okf_03_source.py SITE/okf --require-0.3 --output SOURCE_REPORT --projection PROJECTION`
+through Explorer's locked Python environment. Then run
+`uv run --locked python scripts/check_core_projection.py --projection PROJECTION --site SITE --output PARITY_REPORT`
+here. This independent comparison checks every typed concept, frontmatter,
+body, source byte and core reference pair. Keep both reports outside `SITE`.
+
+Replay each of the six manifests in `acceptance/` separately with
+`pnpm --dir EXPLORER/apps/okf-explorer acceptance:bundle -- --bundle-root SITE --journeys MANIFEST --output REPORT --port PORT`.
+Use the week or November site that matches the manifest. The canonical wrapper
+builds the pinned Reader before running the journey and records its exact
+revision and build identity. Keep that checkout idle during each invocation.
+The two `large-pointer` manifests require Reader 0.9.0 or a later verified
+revision containing its SVG hit-area correction.
+Run the source, browser and public-file checks separately; passing one does
+not establish the others.
