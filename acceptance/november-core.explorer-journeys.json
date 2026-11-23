@@ -5,7 +5,7 @@
     "schema": "okf-explorer-bundle.v0",
     "id": "urn:okf:hansard:public-core:november-in-parliament",
     "version": "0.3.0",
-    "snapshot": "hansard-markdown-sha256-0efbb1556ddc8d8648b19d2076a03689514bffb28f3449b920295f18004882c3"
+    "snapshot": "hansard-markdown-sha256-8ec132e4445f3f03194f1b2bdba34d13cb06594e3a2e7ceca387b74e902ff81c"
   },
   "journeys": [
     {

@@ -38,6 +38,7 @@ class ModelTests(unittest.TestCase):
         visual = walkthrough_svg(case, False)
         self.assertIn('role="img" aria-labelledby="title desc"', visual)
         self.assertNotIn("<a ", visual)
+        self.assertNotIn("each marker opens", visual)
 
     def test_voice_companion_distinguishes_the_speaker_and_statement_links(self):
         source = "https://hansard.parliament.uk/Commons/2026-11-16/debates/example#contribution-1"
@@ -222,9 +223,9 @@ class ModelTests(unittest.TestCase):
     def test_core_reader_projection_preserves_exact_markdown_and_separates_navigation(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            source = root / "okf"
             output = root / "public"
-            source.mkdir()
+            source = output / "okf"
+            source.mkdir(parents=True)
             index = b'---\n{"okf_version":"0.3","title":"Example","license":"LICENSE.md"}\n---\n\n# Example\n'
             concept = b'---\n{"type":"Evidence trail","title":"Example trail","resource":"https://example.test/source"}\n---\n\n# Evidence\n\nSource-linked body.\n'
             (source / "index.md").write_bytes(index)
@@ -241,6 +242,15 @@ class ModelTests(unittest.TestCase):
             self.assertEqual("extension", nodes["LICENSE.md"]["core_role"])
             self.assertEqual(concept.decode(), nodes["trail.md"]["source_markdown"])
             self.assertEqual(sha(concept), nodes["trail.md"]["source_sha256"])
+            self.assertEqual("okf/", descriptor["source_root"])
+            self.assertEqual("okf/trail.md", nodes["trail.md"]["source_path"])
+            self.assertEqual("LICENSE.md", descriptor["meta"]["license"])
+            self.assertEqual("LICENSE.md", descriptor["meta"]["license_asset"])
+            import base64
+            self.assertEqual(support, base64.b64decode(descriptor["meta"]["assets"]["LICENSE.md"]))
+            for row in descriptor["source_documents"]:
+                data = (output / row["source_path"]).read_bytes()
+                self.assertEqual((len(data), sha(data)), (row["bytes"], row["sha256"]))
             self.assertEqual([], descriptor["corpora"]["hansard"]["relationships"])
             self.assertIsNone(build_core_projection(source, output, check=True).get("error"))
 

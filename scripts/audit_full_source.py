@@ -198,6 +198,9 @@ if __name__ == '__main__':
         text=True).strip()
     if args.producer_commit != implementation:
         parser.error('producer commit must match the checked-out implementation revision')
+    if subprocess.check_output(['git', 'status', '--porcelain'],
+                               cwd=Path(__file__).resolve().parents[1], text=True).strip():
+        parser.error('source audit requires a clean implementation checkout')
     result = audit(args.release, args.producer_commit)
     args.output.write_text(json.dumps(result, indent=2)+'\n')
     args.output.chmod(0o600)

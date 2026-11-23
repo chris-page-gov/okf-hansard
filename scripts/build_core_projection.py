@@ -1,6 +1,7 @@
 """Build the small Reader bundle from the exact published OKF Markdown."""
 
 import argparse
+import base64
 import hashlib
 import json
 from pathlib import Path
@@ -29,7 +30,7 @@ def document(path, root):
             raise ValueError(f"Invalid frontmatter in {path.relative_to(root)}")
     route = path.relative_to(root).as_posix()
     role = "navigation" if path.name in RESERVED else (
-        "concept" if isinstance(fields.get("type"), str) else "extension")
+        "concept" if isinstance(fields.get("type"), str) and fields["type"].strip() else "extension")
     if "core_role" in fields and fields["core_role"] != role:
         raise ValueError(f"Markdown core_role differs from its typed source role: {path.relative_to(root)}")
     if role == "navigation" and path.name == "log.md":
@@ -48,6 +49,10 @@ def document(path, root):
 def build(source_root, output, *, check=False):
     if not source_root.is_dir():
         raise FileNotFoundError(source_root)
+    if source_root.is_symlink() or not source_root.resolve().is_relative_to(output.resolve()):
+        raise ValueError("The published Markdown source must be inside the output directory")
+    prefix = source_root.resolve().relative_to(output.resolve()).as_posix()
+    prefix = "" if prefix == "." else prefix + "/"
     files = sorted(source_root.rglob("*.md"), key=lambda item: item.relative_to(source_root).as_posix())
     if not files or any(path.is_symlink() or not path.is_file() for path in files):
         raise ValueError("The public Markdown root must contain regular files")
@@ -62,6 +67,14 @@ def build(source_root, output, *, check=False):
         [{"path": item["path"], "sha256": item["sha256"]} for item in docs],
         sort_keys=True, separators=(",", ":")).encode("utf-8")).hexdigest()
     title = roots[0]["frontmatter"].get("title", source_root.name)
+    root_fields = roots[0]["frontmatter"]
+    assets = {}
+    licence = root_fields.get("license")
+    if isinstance(licence, str) and licence in {item["path"] for item in docs}:
+        data = (source_root / licence).read_bytes()
+        if len(data) > 1024 * 1024:
+            raise ValueError("The compact licence asset exceeds its budget")
+        assets[licence] = base64.b64encode(data).decode("ascii")
     bundle_slug = re.sub(r"[^a-z0-9]+", "-", title.casefold()).strip("-")
     descriptor = {
         "schema": "okf-explorer-bundle.v0",
@@ -73,10 +86,16 @@ def build(source_root, output, *, check=False):
         "title": title,
         "core_specification": CORE_SPEC,
         "semantic_profile": PROFILE,
-        "source_documents": [{key: item[key] for key in ("path", "role", "sha256", "bytes")} for item in docs],
+        "source_root": prefix,
+        "source_documents": [{**{key: item[key] for key in ("path", "role", "sha256", "bytes")},
+                              "source_path": prefix + item["path"]} for item in docs],
         "meta": {
+            **root_fields,
             "title": title,
             "profile": PROFILE,
+            "source_root": prefix,
+            "assets": assets,
+            "license_asset": licence if isinstance(licence, str) and licence in assets else None,
             "okf_core": {"version": CORE_VERSION, "specification": CORE_SPEC},
             "source_document_count": len(docs),
             "core_concept_count": len(concepts),
@@ -103,6 +122,7 @@ def build(source_root, output, *, check=False):
                         "source_frontmatter": item["frontmatter"],
                         "source_sha256": item["sha256"],
                         "source_bytes": item["bytes"],
+                        "source_path": prefix + item["path"],
                         "resource": item["frontmatter"].get("resource"),
                         "sources": item["frontmatter"].get("sources", []),
                         "aliases": [],

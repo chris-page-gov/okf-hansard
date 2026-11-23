@@ -5,7 +5,7 @@
     "schema": "okf-explorer-bundle.v0",
     "id": "urn:okf:hansard:public-core:a-week-in-parliament",
     "version": "0.3.0",
-    "snapshot": "hansard-markdown-sha256-ff0b44a06be7e7ca9e20dcf440c9cee2f0966c54e7e3136524460dab61c3cf91"
+    "snapshot": "hansard-markdown-sha256-4f1f765d6b0c610ff7377e59d9370fa09a14d43ac0684875fca2e61f65ff33bb"
   },
   "journeys": [
     {
