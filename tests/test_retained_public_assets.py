@@ -7,9 +7,23 @@ import tempfile
 import unittest
 
 import retained_public_assets
+from stage_contribution_views import write_landing
 
 
 class RetainedPublicAssetTests(unittest.TestCase):
+    def test_month_landing_keeps_archive_and_no_sitting_distinctions(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            coverage = {'contributions': 2, 'dates': [
+                {'date': '2026-11-20', 'publication_status': 'observed',
+                 'houses': {'Commons': {'contributions': 2}}},
+                {'date': '2026-11-21', 'publication_status': 'observed', 'houses': {}}]}
+            write_landing(site, coverage, 'historical-downloads.html')
+            result = (site / 'index.html').read_text()
+            self.assertIn('href="historical-downloads.html"', result)
+            self.assertIn('2 captured contributions', result)
+            self.assertIn('21 November 2026 · No sitting', result)
+
     def test_all_declared_inputs_are_hash_bound_and_idempotent(self):
         manifest = json.loads((retained_public_assets.SOURCE / 'manifest.json').read_bytes())
         with tempfile.TemporaryDirectory() as directory:

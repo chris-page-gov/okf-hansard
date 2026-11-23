@@ -25,6 +25,50 @@ def read(path):
     return json.loads(path.read_bytes())
 
 
+def write_landing(output, coverage, archive_url):
+    days = coverage["dates"]
+    counts = {row["date"]: sum(house["contributions"] for house in row["houses"].values()) for row in days}
+    archive_link = (f'<a href="{escape(archive_url, quote=True)}">Download historical YAML-LD</a>'
+                    if archive_url else "")
+    items = []
+    for row in days:
+        value = row["date"]
+        day = date.fromisoformat(value)
+        label = f"{day.day} {day:%B %Y}"
+        count = counts[value]
+        count_label = f"{count:,} contributions" if count else "No sitting"
+        if count:
+            href = escape("history.html?" + urlencode({"day": value}), quote=True)
+            label = f'<a href="{href}">{label}</a>'
+        if row["publication_status"] == "provisional":
+            count_label += " (provisional)"
+        items.append(f"<li>{label} · {count_label}</li>")
+    (output / "index.html").write_text(f"""<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>November in Parliament</title>
+<link rel="stylesheet" href="site.css">
+{HEAD_LINKS}
+</head>
+<body><main class="demo">
+<h1>November in Parliament</h1>
+<p>{coverage["contributions"]:,} captured contributions from both Houses. Choose a date and contribution to open its graph or follow related passages over time.</p>
+<p class="actions"><a href="history.html">Open contribution timeline</a>
+<a href="walkthrough.html">View the source-linked coverage walkthrough</a>
+<a href="okf/index.md">Open the OKF index for AI</a>
+<a href="okf-bundle.yamlld.gz">Download the YAML-LD graph</a>
+{archive_link}
+<a href="coverage.json">Read the coverage and verification report</a></p>
+<h2>Sitting dates</h2>
+<ul>{''.join(items)}</ul>
+<p>Contains Parliamentary information licensed under the <a href="https://www.parliament.uk/site-information/copyright/open-parliament-licence/">Open Parliament Licence v3.0</a>.</p>
+<p>{escape(BUILD_CREDIT)}</p>
+</main></body></html>
+""", encoding="utf-8")
+
+
 def stage(release, checkpoints, output, database, older_database, cache, archive_url=None):
     if archive_url is None:
         archive_url = 'historical-downloads.html'
@@ -51,8 +95,6 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
         build_graph(release, graph)
     write_history(release, output, database, cache, older_database=older_database, focused_views=True)
     archive_manifest = output / "historical-yamlld/manifest.json"
-    archive_link = (f'<a href="{escape(archive_url, quote=True)}">Download historical YAML-LD</a>'
-                    if archive_url else "")
     if archive_manifest.is_file():
         partitions = read(archive_manifest)
         if partitions["bundle_sha256"] != receipt["artifacts"]["history.json"]["sha256"]:
@@ -63,7 +105,7 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
             if key in catalogue["entities"]:
                 catalogue["entities"][key]["yamlld"] = "historical-yamlld/" + item["path"]
         dump(history_index, catalogue)
-        archive_link = '<a href="historical-yamlld/manifest.json">Historical YAML-LD partitions</a>'
+        archive_url = "historical-yamlld/manifest.json"
     shutil.copyfile(ROOT / "docs/pages/site.css", output / "site.css")
     history = (output / "history.html").read_text(encoding="utf-8")
     history = history.replace('>A week in Parliament</a>', '>November in Parliament</a>')
@@ -78,43 +120,7 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
                 "backfill": backfill, "verification": verified}
     dump(output / "coverage.json", coverage)
 
-    items = []
-    for row in days:
-        value = row["date"]
-        day = date.fromisoformat(value)
-        label = f"{day.day} {day:%B %Y}"
-        count = counts[value]
-        count_label = f"{count:,} contributions" if count else "No sitting"
-        if count:
-            href = escape("history.html?" + urlencode({"day": value}), quote=True)
-            label = f'<a href="{href}">{label}</a>'
-        if row["publication_status"] == "provisional":
-            count_label += " (provisional)"
-        items.append(f"<li>{label} · {count_label}</li>")
-    (output / "index.html").write_text(f"""<!doctype html>
-<html lang="en-GB">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>November in Parliament</title>
-<link rel="stylesheet" href="site.css">
-{HEAD_LINKS}
-</head>
-<body><main class="demo">
-<h1>November in Parliament</h1>
-<p>{sum(expected.values()):,} captured contributions from both Houses. Choose a date and contribution to open its graph or follow related passages over time.</p>
-<p class="actions"><a href="history.html">Open contribution timeline</a>
-<a href="walkthrough.html">View the source-linked coverage walkthrough</a>
-<a href="okf/index.md">Open the OKF index for AI</a>
-<a href="okf-bundle.yamlld.gz">Download the YAML-LD graph</a>
-{archive_link}
-<a href="coverage.json">Read the coverage and verification report</a></p>
-<h2>Sitting dates</h2>
-<ul>{''.join(items)}</ul>
-<p>Contains Parliamentary information licensed under the <a href="https://www.parliament.uk/site-information/copyright/open-parliament-licence/">Open Parliament Licence v3.0</a>.</p>
-<p>{escape(BUILD_CREDIT)}</p>
-</main></body></html>
-""", encoding="utf-8")
+    write_landing(output, coverage, archive_url)
     write_discovery(output, "November in Parliament", expected, max(row["verified_at"] for row in days),
                     "okf-bundle.yamlld.gz", month=True)
     retain_public_assets(output, 'november')
