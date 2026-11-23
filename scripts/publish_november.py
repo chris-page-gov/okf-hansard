@@ -263,7 +263,7 @@ def prepare(work, previous, limit, today, initial_capture):
     return result
 
 
-def run(state, checkout, initial_capture=None, through=None):
+def run(state, checkout, initial_capture=None, through=None, *, attempts_root=None):
     today = datetime.now(ZONE).date()
     pointer = state / "publication.json"
     evening = state / "capture-2026-11-19-evening"
@@ -279,14 +279,16 @@ def run(state, checkout, initial_capture=None, through=None):
         return
     if limit.isoformat() < previous["through"]:
         return
+    if pointer.is_file() and previous["through"] == limit.isoformat() and not previous["provisional"]:
+        return
     provisional = limit == today
-    candidates = state / "publication-attempts" / limit.isoformat()
+    if attempts_root is not None and not attempts_root.is_dir():
+        raise ValueError(f"The configured publication staging directory is unavailable: {attempts_root}")
+    candidates = (attempts_root or state / "publication-attempts") / limit.isoformat()
     cached = next((candidate for p in sorted(candidates.glob("*/prepared.json"), reverse=True)
                    if (candidate := read(p)).get("format") == CORE_VERSION
                    and read(Path(candidate["days"]) / f"{limit.isoformat()}.json")["publication_status"]
                    == ("provisional" if provisional else "observed")), None)
-    if pointer.is_file() and previous["through"] == limit.isoformat() and not previous["provisional"]:
-        return
     if cached:
         current = read(cached)
     else:
@@ -317,8 +319,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--state", type=Path, default=STATE)
     parser.add_argument("--checkout", type=Path, default=STATE / "pages-checkout")
+    parser.add_argument("--attempts-root", type=Path,
+                        help="Stage new attempts in an existing directory, for example on the SSD.")
     parser.add_argument("--initial-capture", type=Path)
     parser.add_argument("--verified-through", type=date.fromisoformat,
                         help="Use the supplied capture through this date.")
     args = parser.parse_args()
-    run(args.state, args.checkout, args.initial_capture, args.verified_through)
+    run(args.state, args.checkout, args.initial_capture, args.verified_through, attempts_root=args.attempts_root)

@@ -117,6 +117,8 @@ The November publisher checks the official Commons and Lords calendars, caches e
 
 The local publisher runs through the 30 November snapshot without model calls. It saves the latest verified deployment in `.work/november-2026/publication.json` and logs failures in `.work/november-2026/publication-errors.log`. The SSD is required for rebuilding archive projections. The published views use static files.
 
+Pass `--attempts-root` an existing directory on ExtSSD-Data to place new captures, verification outputs and staged Pages files on the SSD. The publication checkpoint and shared lock stay in the repository’s ignored working directory. A refresh that needs to stage a new release waits for the configured directory to be available.
+
 ## Source attribution
 
 Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning. The build log records the model and reasoning effort. The project owner set the scope and authorised publication.
