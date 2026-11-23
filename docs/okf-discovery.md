@@ -50,6 +50,10 @@ one-record November question distinguishes its declared sitting interval from
 facts that require the separate coverage report or full graph. Each question
 binds the exact descriptor identity and every source document digest. It does
 not borrow the full graph's assertions. The full-graph walkthrough is separate.
+All four guides select a separate narrow-screen SVG below 600 pixels, retain
+source-bound diagram hashes and provide a full-size diagram link. Mobile step
+diagrams stack vertically; the monthly chart keeps its date and count labels
+readable.
 
 Compact descriptors retain the root frontmatter and licence bytes. Their
 `source_path` fields name the actual published files under `okf/`; concept

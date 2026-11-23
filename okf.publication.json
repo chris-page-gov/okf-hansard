@@ -103,7 +103,9 @@
       {"path": "site/checksums.json", "role": "checksum-manifest", "plane": "release", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["verify-release"]},
       {"path": "site/core-walkthrough.html", "role": "site", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
       {"path": "site/core-walkthrough.json", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
-      {"path": "site/core-walkthrough.svg", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]}
+      {"path": "site/core-walkthrough.svg", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
+      {"path": "site/core-walkthrough-mobile.svg", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
+      {"path": "site/walkthrough-mobile.svg", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]}
     ]
   },
   "planes": [

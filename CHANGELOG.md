@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — readable mobile walkthroughs, 23 November 2026
+
+- Give each compact and full-graph walkthrough a separate readable mobile
+  diagram. Stack the evidence steps vertically and retain legible date/count
+  labels in the November chart. Publish both diagram hashes, choose the layout
+  by viewport width and offer a full-size diagram link. Preserve source and
+  graph bytes.
+
 ## Unreleased — preserve existing public assets, 23 November 2026
 
 - Retain three small compatibility assets from the previous Pages revision,

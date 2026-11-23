@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from unittest import mock
 from urllib.parse import parse_qs, urlsplit
 
@@ -54,7 +55,8 @@ class BundleWalkthroughTests(unittest.TestCase):
                 with mock.patch.object(build_walkthrough, 'build_core_walkthrough', return_value={}), \
                         mock.patch.object(build_walkthrough, 'month_case', return_value=case), \
                         mock.patch.object(build_walkthrough, 'week_case', return_value=case), \
-                        mock.patch.object(build_walkthrough, 'svg', return_value='<svg></svg>'):
+                        mock.patch.object(build_walkthrough, 'svg', return_value='<svg></svg>'), \
+                        mock.patch.object(build_walkthrough, 'mobile_svg', return_value='<svg></svg>\n'):
                     build_walkthrough.build(site, month=month)
                 bound = json.loads((site / 'walkthrough.json').read_bytes())
                 self.assertEqual(bound['expected_identity']['snapshot'], 'fixture-source-sha256')
@@ -77,6 +79,21 @@ class BundleWalkthroughTests(unittest.TestCase):
                       'https://secret@hansard.parliament.uk/record']:
             with self.subTest(value=value), self.assertRaises(ValueError):
                 build_walkthrough.link(value, 'Source')
+
+    def test_mobile_diagrams_preserve_readable_steps_and_complete_dates(self):
+        compact = ET.fromstring(build_walkthrough.mobile_svg({'typed_concepts': 3}, False, compact=True))
+        ns = {'s': 'http://www.w3.org/2000/svg'}
+        self.assertEqual(compact.attrib['viewBox'], '0 0 340 520')
+        self.assertEqual(len(compact.findall('.//s:rect', ns)), 3)
+        self.assertEqual(compact.find('s:g', ns).attrib['font-size'], '16')
+        dates = [{'date': '2026-11-20', 'contributions': 74},
+                 {'date': '2026-11-21', 'contributions': 0}]
+        month = ET.fromstring(build_walkthrough.mobile_svg({'dates': dates}, True))
+        words = ''.join(month.itertext())
+        self.assertIn('2026-11-20', words)
+        self.assertIn('2026-11-21', words)
+        self.assertIn('74', words)
+        self.assertEqual(len(month.findall('.//s:rect', ns)), 2)
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import textwrap
 from urllib.parse import quote, urlencode, urlsplit
 
 from capture import sha
@@ -177,6 +178,49 @@ def svg(case, month):
     return f'<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 {width} {height}"><title id="title">Railways Bill stage trail</title><desc id="desc">Three retained records in chronological order. Official source links are listed below the diagram.</desc><line x1="100" y1="80" x2="720" y2="80" stroke="#777" stroke-width="3"/>{"".join(points)}</svg>'
 
 
+def mobile_svg(case, month, *, compact=False):
+    if month and not compact:
+        rows = case['dates']
+        maximum = max((row['contributions'] for row in rows), default=1) or 1
+        marks = []
+        for index, row in enumerate(rows):
+            y = 55 + index * 25
+            length = round(135 * row['contributions'] / maximum)
+            marks.append(f'<text x="8" y="{y+12}">{escape(row["date"])}</text><rect x="110" y="{y}" width="{length}" height="16" fill="#176b5b"/><text x="255" y="{y+12}">{row["contributions"]:,}</text>')
+        content = '<text x="8" y="25">Date</text><text x="110" y="25">Total contributions</text>' + ''.join(marks)
+        height = 75 + 25 * len(rows)
+        title = 'Daily contribution totals within this snapshot'
+    else:
+        if compact:
+            steps = [('Read the compact source', f'{case["typed_concepts"]} typed documents', 'Exact Markdown and digests'),
+                     ('Check the citations', 'Zero graph relationships', 'Keep the source scope'),
+                     ('Retrieve further evidence', 'Coverage or full graph', 'Declare the new scope')]
+            title = 'Read, check and extend the compact evidence'
+        else:
+            steps = [(row['date'] + ' · ' + row['house'], *textwrap.wrap(row['title'], width=29))
+                     for row in case['sources']]
+            title = 'Three captured Bill-stage sources in date order'
+        marks = []
+        for index, lines in enumerate(steps):
+            y = 15 + index * 180
+            marks.append(f'<rect x="10" y="{y}" width="320" height="135" rx="8" fill="#edf4fa" stroke="#172f4d"/>')
+            for position, line in enumerate(lines):
+                marks.append(f'<text x="170" y="{y+38+position*27}" text-anchor="middle">{escape(line)}</text>')
+            if index < len(steps)-1:
+                marks.append(f'<path d="M170 {y+135}V{y+173}m-6-8 6 8 6-8" fill="none" stroke="#172f4d" stroke-width="2"/>')
+        content = ''.join(marks)
+        height = 160 + (len(steps)-1)*180
+    font = 12 if month and not compact else 16
+    return f'<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 340 {height}"><title id="title">{title}</title><desc id="desc">Read the accompanying answer, source links and negative controls for the evidence boundary.</desc><g fill="#172f4d" font-family="system-ui" font-size="{font}">{content}</g></svg>\n'
+
+
+def responsive_picture(stem, alternative):
+    return (f'<picture><source media="(max-width: 600px)" srcset="{stem}-mobile.svg">'
+            f'<img src="{stem}.svg" alt="{escape(alternative, quote=True)}" '
+            'style="display:block;width:100%;height:auto"></picture>'
+            f'<p>{link(stem + ".svg", "Open the full-size diagram")}</p>')
+
+
 def build_core_walkthrough(site, *, month=False):
     raw = (site / "okf-core.json").read_bytes()
     descriptor = json.loads(raw)
@@ -238,11 +282,15 @@ def build_core_walkthrough(site, *, month=False):
             "scope": "Only the exact compact Markdown source and its explicit citations; full-graph assertions and linked external contents are outside this answer."}
     visual = f'''<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 900 210"><title id="title">Compact core question and evidence boundary</title><desc id="desc">Read {len(concepts)} typed entry-point documents, inspect their exact source citations, then retrieve separate evidence before making a graph claim.</desc><path d="M270 100H330M570 100H630" stroke="#172f4d" stroke-width="3"/><g fill="#edf4fa" stroke="#172f4d"><rect x="10" y="35" width="260" height="130" rx="8"/><rect x="330" y="35" width="240" height="130" rx="8"/><rect x="630" y="35" width="260" height="130" rx="8"/></g><g fill="#172f4d" font-family="system-ui" font-size="17" text-anchor="middle"><text x="140" y="75">Read the compact source</text><text x="140" y="110">{len(concepts)} typed documents</text><text x="140" y="140">Exact Markdown and digests</text><text x="450" y="75">Check the citations</text><text x="450" y="110">Zero graph relationships</text><text x="450" y="140">Preserve the source scope</text><text x="760" y="75">Retrieve further evidence</text><text x="760" y="110">Coverage or full graph</text><text x="760" y="140">Keep the new scope explicit</text></g></svg>\n'''
     case["svg_sha256"] = sha(visual.encode())
+    mobile = mobile_svg(case, month, compact=True)
+    case["mobile_svg_sha256"] = sha(mobile.encode())
+    (site / "core-walkthrough-mobile.svg").write_text(mobile)
     (site / "core-walkthrough.json").write_text(json.dumps(case, ensure_ascii=False, indent=2) + "\n")
     (site / "core-walkthrough.svg").write_text(visual)
     rows = "".join(f'<tr><th scope="row">{link(row["path"], row["path"])}</th><td>{escape(row["role"])}</td><td>{row["sha256"]}</td></tr>' for row in sources)
     official = "".join(f'<li>{link(row["url"], row["title"])} · {row["date"]} · {row["house"]}</li>' for row in stage_sources)
     html = f'''<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><link rel="icon" href="data:,"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hansard compact-core question walkthrough</title><style>body{{font:1rem/1.55 system-ui;margin:0;color:#172f4d}}main{{max-width:70rem;margin:2rem auto;padding:0 1rem}}svg{{width:100%;height:auto}}table{{border-collapse:collapse;table-layout:fixed;width:100%}}th,td{{text-align:left;vertical-align:top;border:1px solid #aaa;padding:.5rem;overflow-wrap:anywhere}}a{{color:#004b80}}.limit{{border-left:4px solid #7a3e00;background:#fff6e5;padding:1rem}}</style></head><body><main><p>{link("okf/index.md", "Compact Markdown index")} · {link("walkthrough.html", "Full-graph question walkthrough")}</p><h1>Question for this compact bundle</h1><p>{escape(question)}</p><h2>Answer from this bundle</h2><p>{escape(answer)}</p><p class="limit">{escape(case["scope"])}</p><h2>Visual evidence journey</h2>{visual}<h2>Exact source documents</h2><table><caption>All documents in this compact source root</caption><thead><tr><th scope="col">Document</th><th scope="col">Role</th><th scope="col">SHA-256</th></tr></thead><tbody>{rows}</tbody></table>{'<h2>Stage citations in the compact body</h2><ul>'+official+'</ul>' if official else ''}<h2>Negative controls</h2><ul>{''.join('<li>'+escape(value)+'</li>' for value in negative)}</ul><h2>Continue with a declared scope</h2><p>{link(explorer("okf-core.json", "reader", "sittings.md" if month else "railways-bill.md", base=SITE + ("november/" if month else "")), "Read this compact bundle in Explorer")} · {link("core-walkthrough.json", "Machine-readable question and source bindings")} · {link("coverage.json", "Retrieve the separate coverage report")} · {link("graph/okf-explorer.json", "Retrieve the separate full-graph descriptor")}</p></main></body></html>\n'''
+    html = html.replace(visual, responsive_picture('core-walkthrough', 'Read the compact source, check citations and retrieve separate evidence.'))
     (site / "core-walkthrough.html").write_text(html)
     return {"id": case["id"], "descriptor_sha256": case["descriptor_sha256"],
             "typed_concepts": len(concepts), "graph_relationships": 0}
@@ -264,6 +312,9 @@ def build(site, *, month=False):
     }
     case["reader_interaction"] = reader_interaction
     visual = svg(case, month) + "\n"
+    mobile = mobile_svg(case, month)
+    (site / "walkthrough-mobile.svg").write_text(mobile)
+    case["mobile_svg_sha256"] = sha(mobile.encode())
     case["svg_sha256"] = sha(visual.encode())
     case["source_projection_sha256"] = sha((site / "okf-core.json").read_bytes())
     (site / "walkthrough.json").write_text(json.dumps(case, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -278,6 +329,7 @@ def build(site, *, month=False):
     html = f'''<!doctype html>
 <html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Hansard source walkthrough</title><link rel="icon" href="data:,"><link rel="stylesheet" href="site.css"><style>main{{max-width:70rem;margin:2rem auto;padding:0 1rem;font:1rem/1.55 system-ui}}svg{{max-width:100%;height:auto}}svg text{{font:13px system-ui}}.negative{{border-left:4px solid #7a3e00;padding:.5rem 1rem;background:#fff6e5}}.sources li{{margin:.6rem 0}}</style></head>
 <body><main><p><a href="okf/index.md">OKF source index</a></p><h1>Question, evidence and coverage</h1><h2>Question</h2><p>{escape(case["question"])}</p><h2>Answer from the inspected bundle</h2><p>{escape(case["answer"])}</p><p><strong>Scope:</strong> {escape(case["scope"])}</p><h2>Visual source trail</h2>{visual}<h2>Sources</h2><ul class="sources">{"".join("<li>"+item+"</li>" for item in source_links)}</ul><h2>Graph and Reader</h2><p>{link(graph_url, "Open the graph in OKF Explorer")} · {link(other, "Open the related timeline or date finder")}</p><p>To follow the Bill 4030 graph node, focus it and press Enter. The browser journey checks the exact destination route.</p><p>{escape(reader_interaction["pointer_requirement"])}</p><p>{link("core-walkthrough.html", "Read the separate compact-core question walkthrough")}</p>{f'<p class="negative"><strong>Pointer limitation:</strong> {escape(reader_interaction["pointer_limitation"])}</p>' if reader_interaction.get("pointer_limitation") else ''}<p class="negative"><strong>Negative control:</strong> {escape(case["negative_control"])}</p><p>See the <a href="walkthrough.json">machine-readable walkthrough and source references</a>, <a href="okf-core.json">focused core Reader projection</a>, <a href="graph/okf-explorer.json">full source and graph descriptor</a> and <a href="coverage.json">coverage receipt</a>.</p></main></body></html>'''
+    html = html.replace(visual, responsive_picture('walkthrough', 'Daily captured contribution totals.' if month else 'Three captured Bill-stage records in date order.'))
     (site / "walkthrough.html").write_text(html, encoding="utf-8")
     return {"id": case["id"], "svg_sha256": case["svg_sha256"],
             "projection_sha256": case["source_projection_sha256"],
