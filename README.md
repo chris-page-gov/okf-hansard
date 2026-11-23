@@ -112,3 +112,5 @@ Contains Parliamentary information licensed under the Open Parliament Licence v3
 ## OKF standards and bundle discovery
 
 Use the [central current and historical standards register](https://github.com/chris-page-gov/okf-explorer/blob/main/docs/okf-standards.md) and [machine-readable register](https://raw.githubusercontent.com/chris-page-gov/okf-explorer/main/registry/okf-standards.json) for version-specific specifications and the public bundle catalogue.
+
+Pull requests to `main` run the locked Python test suite and browser-script syntax checks. The required `okf-hansard-ci` check validates these results; it does not acquire source material or publish a release.
