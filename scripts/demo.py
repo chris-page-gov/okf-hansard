@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from capture import dump, sha
+from okf_core import CORE_VERSION
 from query import DEFAULT_DB, Index
 
 PALANTIR = "/D1EA4BF2-2796-48DD-A144-B9675E614F2A/"
@@ -17,6 +18,7 @@ FACETS = {
     "organisations": "Organisations", "things": "Things and programmes",
     "legislation": "Legislation", "subjects": "Policy subjects",
 }
+MICROSOFT_TITLE = "Microsoft 365 outage statement"
 PEOPLE = {
     "Ian Murray": (3966, "https://www.theyworkforyou.com/mp/24872/ian_murray/edinburgh_south"),
     "Baroness Lloyd of Effra": (5414, "https://www.theyworkforyou.com/peer/26695/baroness_lloyd_of_effra"),
@@ -91,7 +93,7 @@ def microsoft(engine, release, new_days):
     ]
     add_week_matches(engine, rows, new_days, "Microsoft", "microsoft")
     return {
-        "id": "microsoft-365", "title": "Microsoft 365 outage",
+        "id": "microsoft-365", "title": MICROSOFT_TITLE,
         "summary": f"Ian Murray’s Commons statement and the next day’s Lords question share a Microsoft mention. The index found {len(sample['earlier_mentions'])} earlier matches for Microsoft 365 before the Commons statement.",
         "facets": {"People": ["Ian Murray", "Baroness Lloyd of Effra"],
                    "Offices and roles": ["Minister for Creative Industries, Media and Online Safety"],
@@ -206,7 +208,7 @@ def write_timeline(destination, examples, counts, source_nodes):
             "learning_presentation": {"schema": "okf-learning-presentation.v1", "start_route": "index.md",
                                       "groups": groups, "facets": [{"key": k, "label": v} for k, v in facets.items()]}}
     dump(destination / "demo-timeline.json", {
-        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": "0.2", "meta": meta,
+        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": CORE_VERSION, "meta": meta,
         "corpora": {"hansard": {"id": "hansard", "title": title, "root": "index.md",
                                "assertion_scope": "real-world", "nodes": nodes, "relationships": []}},
     })
@@ -224,10 +226,12 @@ def write_demo(release, destination, coverage, database=DEFAULT_DB, baseline=Non
         # and append only results drawn from newly captured sittings.
         examples = baseline["examples"]
         stories = {story["id"]: story for story in examples}
+        stories["microsoft-365"]["title"] = MICROSOFT_TITLE
         add_week_matches(engine, stories["microsoft-365"]["rows"], new_days, "Microsoft", "microsoft")
         add_week_matches(engine, stories["palantir-nhs"]["rows"], new_days, "Palantir", "palantir")
         stories["railways-bill"]["rows"].extend(row for row in railways(engine, new_days)["rows"]
                                                  if row["date"] in new_days)
+    examples.sort(key=lambda example: example["id"] != "railways-bill")
     for example in examples:
         add_reference_links(example)
         example["rows"].sort(key=lambda r: (r["date"], r["house"], r["title"]), reverse=True)

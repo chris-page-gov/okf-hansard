@@ -1,10 +1,10 @@
 # A week in Parliament
 
-An experimental OKF+ bundle of Westminster Hansard for 16 and 17 November 2026, with a rolling index of earlier contributions that share an identified person, office, place, organisation, thing, legislative instrument or subject.
+An experimental OKF+ bundle of Westminster Hansard for 16 to 19 November 2026, with a rolling index of earlier contributions that share a person, office, place, organisation, programme, legislative instrument or subject. The November companion adds sittings as they are verified.
 
 ## Public snapshot
 
-Start at [A week in Parliament](https://chris-page-gov.github.io/okf-hansard/) for the Explorer import and YAML-LD graph. The [demonstration companion](https://chris-page-gov.github.io/okf-hansard/demo.html) covers Microsoft 365, Palantir and the NHS, and the Railways Bill. The [plain-text evidence](https://chris-page-gov.github.io/okf-hansard/demo-evidence.md) gives chat and voice assistants the exact links.
+Start with the Railways Bill and follow its stages from the Commons to the Lords. The companion also covers Palantir and the NHS and the Commons statement on the Microsoft 365 outage. [Use Hansard with AI](https://chris-page-gov.github.io/okf-hansard/use-with-ai.html) · [Railways Bill companion](https://chris-page-gov.github.io/okf-hansard/demo.html?example=railways-bill) · [November in Parliament](https://chris-page-gov.github.io/okf-hansard/november/)
 
 Use the [beginner’s guide](https://chris-page-gov.github.io/okf-hansard/beginners.html) to follow a contribution and check its source. The [methodology and prompts](https://chris-page-gov.github.io/okf-hansard/methodology.html) explain the collection, matching rules and Foundry templates.
 
@@ -37,6 +37,8 @@ Use the exact route and entity IDs returned by search and trace. For a selected 
 An exact retained locator identifies the API field. The source read tool compares the live value with the recorded digest and labels changes. The archive index retains references, evidence spans and hashes. Full historical responses are processed in memory. The initial capture is local scratch for replay.
 
 ## Use an AI client
+
+Give a URL-capable assistant the small OKF 0.3 Markdown index and ask it to open one example. Attach the relevant Markdown file if the assistant works from files. Ask for the exact Hansard links, the graph and timeline, and which sources it could open. The static routes work without an account or the SSD. [Markdown index](https://chris-page-gov.github.io/okf-hansard/okf/index.md) · [Machine directory](https://chris-page-gov.github.io/okf-hansard/okf-public-access.json) · [Discovery and standards](docs/okf-discovery.md)
 
 Start the read-only MCP stdio server with this repository as its working directory, or pass absolute paths for the release, database and people snapshot.
 
@@ -102,6 +104,20 @@ The focused Graph link loads the selected record and its incident assertions fro
 On 18 November 2026, a fresh Chrome 158 context opened Ian Murray's statement in 134 ms after transferring 380,338 bytes of corpus files over 12 requests. It rendered all 12 incident edges, showed the exact contribution link for a selected assertion, and loaded a new shard on refocus. The NHS graph exposed its 572 incident relationships in pages of 72. The previously published export transferred 60,453,211 bytes and took 23.6 seconds to reach its focused graph on the same local host. Both observations used a warmed application server and fresh browser contexts.
 
 The published graph schemas are byte-for-byte copies of the [Explorer assertion contract](https://github.com/chris-page-gov/okf-explorer/blob/e57e2c2e056bce326033fa576c4aa278dc437eb2/profiles/bundle-wiki/v1/semantic-assertion.schema.json) and the [UK Legislation runtime row contract](https://github.com/chris-page-gov/okf-uk-legislation/blob/9830fde2d32052f10713298f16b8ab1e321b1928/whole-law/schemas/relationship-runtime-row.schema.json).
+
+### November contribution views
+
+For a larger date range, build with `--sharded-reader` and verify the release before staging it with `scripts/stage_contribution_views.py`. This stage needs the calendar-checked day receipts, the verified release, and the backfill manifest. Use a fresh output directory when restaging. The site serves the full YAML-LD graph as gzip and gives Explorer a digest-bound record and relationship locator. The intermediate JSON is an input to the sharded build.
+
+The contribution timeline loads one day of contribution choices and the selected entity's dated matches. It opens within the captured month and loads SSD archive projections when the user chooses an earlier period. Speaker, recorded capacity and proceedings filters follow source record links in the captured month. Earlier name and topic matches use the declared alias profile. The coverage report records provisional days and unfinished searches.
+
+`scripts/backfill.py` gives priority to entities from the latest selected sitting and saves each entity's results. Repeat the same command to reuse compatible results and completed search windows. Pass `--older-database` to the staging and YAML-LD export commands to include matches available in the pre-2007 index. The exporter streams the selected date and entity ranges from SQLite with source locators and assertion evidence.
+
+The November publisher checks the official Commons and Lords calendars, caches each verified day, and retries incomplete searches before publishing. It puts the graph, contribution timeline and core YAML-LD under [November in Parliament](https://chris-page-gov.github.io/okf-hansard/november/). Historical YAML-LD downloads use GitHub Releases, with additions uploaded separately. The month and week publishers share a publication lock and the week refresh preserves the November directory.
+
+The local publisher runs through the 30 November snapshot without model calls. It saves the latest verified deployment in `.work/november-2026/publication.json` and logs failures in `.work/november-2026/publication-errors.log`. The SSD is required for rebuilding archive projections. The published views use static files.
+
+Pass `--attempts-root` an existing directory on ExtSSD-Data to place new captures, verification outputs and staged Pages files on the SSD. The publication checkpoint and shared lock stay in the repository’s ignored working directory. A refresh that needs to stage a new release waits for the configured directory to be available.
 
 ## Source attribution
 

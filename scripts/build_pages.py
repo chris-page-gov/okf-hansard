@@ -13,7 +13,9 @@ from capture import sha
 from build import PAGES_BLOB_LIMIT
 from build_explorer_graph import build as build_explorer_graph, dataset_route
 from demo import timeline_route, write_demo
+from discovery import HEAD_LINKS, write_discovery
 from history_pages import write as write_history
+from okf_core import CORE_VERSION
 from people import member_career_url
 from query import DEFAULT_DB
 
@@ -216,18 +218,20 @@ def index_page(coverage, semantic_file, graph_anchor):
 <meta name="description" content="A source-linked Hansard OKF+ pilot covering both Houses from {dates}.">
 <title>A week in Parliament | Hansard OKF+</title>
 <link rel="stylesheet" href="site.css">
+{HEAD_LINKS}
 </head>
 <body>
 <main>
 <p class="date">House of Commons and House of Lords · {dates}</p>
 <h1>A week in Parliament</h1>
 <p class="intro">Follow a Hansard contribution through related people, offices, organisations, places and legislation. This experimental OKF+ bundle contains {total:,} passages and {assertions:,} source-linked relationships.</p>
-<p class="actions"><a class="primary" href="demo.html">Open the demonstration</a>
+<p class="actions"><a class="primary" href="demo.html?example=railways-bill">Follow the Railways Bill</a>
+<a href="use-with-ai.html">Use Hansard with AI</a>
 <a href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a>
 <a href="beginners.html">Beginner’s guide</a></p>
 <div class="grid">
 <section>
-<h2>Microsoft 365 outage</h2>
+<h2>Commons statement on the Microsoft 365 outage</h2>
 <p>Start with Ian Murray’s Commons statement and follow the named organisations and 19 earlier mentions back to Hansard.</p>
 <ul>
 <li><a href="{escape(focused_graph, quote=True)}">Open the focused graph in Explorer</a></li>
@@ -293,11 +297,14 @@ def guide_page(name, title):
 """
 
 
-def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_demo=None, history_cache=None):
+def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_demo=None, history_cache=None,
+          *, older_database=None):
     final = json.loads(coverage_path.read_bytes())
     receipt = json.loads((release / "receipt.json").read_bytes())
     if final["local_release"] != release.resolve().name or not final["pilot_graph"]["passed"]:
         raise ValueError("The public snapshot must match the verified release.")
+    if final["pilot_graph"].get("okf_core", {}).get("version") != CORE_VERSION:
+        raise ValueError("The public snapshot requires verified OKF 0.3 source.")
     sample = json.loads((release / "voice-microsoft-365.json").read_bytes())
     if not sample["earlier_mentions"] or len(sample["earlier_mentions"]) != sample["theme"]["earlier"]:
         raise ValueError("The public example requires the verified Microsoft 365 evidence.")
@@ -333,7 +340,11 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
     }
     if "history_backfill" in final:
         public_coverage["history_backfill"] = final["history_backfill"]
-        write_history(release, destination, database, history_cache or destination.parent / "history-cache")
+        write_history(release, destination, database, history_cache or destination.parent / "history-cache",
+                      older_database=older_database)
+        if older_database:
+            history_index = json.loads((destination / "history/index.json").read_bytes())
+            public_coverage["older_archive"] = history_index.get("older_archive")
     (destination / "coverage.json").write_text(json.dumps(public_coverage, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     build_explorer_graph(release, destination / "graph")
     (destination / "index.html").write_text(index_page(public_coverage, semantic_file, sample["anchor"]["id"]), encoding="utf-8")
@@ -346,6 +357,8 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
         (destination / name).write_bytes(raw)
     write_demo(release, destination, public_coverage, database, baseline_demo)
     (destination / "voice-microsoft-365.md").write_text(voice_note(sample), encoding="utf-8")
+    write_discovery(destination, "A week in Parliament", public_coverage["week_contributions_by_day"],
+                    public_coverage["observed_at"], semantic_file)
     (destination / ".nojekyll").touch()
     manifest = {}
     for file in sorted(path for path in destination.rglob("*") if path.is_file()):
