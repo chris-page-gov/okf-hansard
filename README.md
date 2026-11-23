@@ -2,6 +2,10 @@
 
 An experimental OKF+ bundle of Westminster Hansard for 16 to 19 November 2026, with a rolling index of earlier contributions that share a person, office, place, organisation, programme, legislative instrument or subject. The November companion adds sittings as they are verified.
 
+The current producer candidate is version 0.3.0 and declares OKF core 0.3. The
+Hansard domain profile is versioned separately from core and from the inherited
+Bundle Wiki structures. Historical release assets keep their original identity.
+
 ## Public snapshot
 
 Start with the Railways Bill and follow its stages from the Commons to the Lords. The companion also covers Palantir and the NHS and the Commons statement on the Microsoft 365 outage. [Use Hansard with AI](https://chris-page-gov.github.io/okf-hansard/use-with-ai.html) · [Railways Bill companion](https://chris-page-gov.github.io/okf-hansard/demo.html?example=railways-bill) · [November in Parliament](https://chris-page-gov.github.io/okf-hansard/november/)
@@ -18,6 +22,7 @@ The public companion and published history work without the SSD. See the [Voice 
 - Read [the YAML-LD graph](releases/current/okf-bundle.yamlld) or start with the [portable Markdown index](releases/current/markdown/index.md).
 - Check the [capture and build receipt](releases/current/receipt.json) and [rolling history coverage](releases/history-progress.json).
 - Read the [international comparison](docs/international-models.md), [domain profile](profile/domain.yaml) and [voice and visual UI study](docs/voice-and-visual-ui.md).
+- The week and November stagers each generate a bundle-specific visual walkthrough with its own question, evidence trail and negative control.
 
 The pilot comprises all text-bearing API contribution items observed in the published section trees at the cut-off. That includes some procedural passages, written statements and petitions. The receipt counts omitted layout-only items, timestamps and separately represented divisions. It records source availability at capture time.
 
@@ -77,6 +82,8 @@ The read-only evidence response can carry a view descriptor. Save the JSON, then
 The extended archive uses the 569-entity matching profile from the first capture. The Tuesday refresh added entities to the pilot. Official spoken-search supplements use recorded membership, constituency representation and Bill stage dates to bound matches for new names and titles. Their coverage is shown beside each result.
 
 From the Wednesday snapshot, the [earlier mentions view](https://chris-page-gov.github.io/okf-hansard/history.html) lists earlier Hansard links by contribution and entity. The backfill reuses compatible SSD archive matches and checks the remaining dates and entities with official spoken and written search, starting on 1 January 2007. Its coverage receipt records incomplete searches. The published entity files carry links and the local index retains response digests and matching spans.
+
+The current weekly candidate reuses verified search records only through 1 November 2026. It has no matching frozen search results for 2–15 November, so the weekly finder does not cover that interval. The separate November bundle contains captured proceedings for those dates; this does not fill the weekly finder’s search gap.
 
 Pass `--history-cache .work/history-cache` when preparing a refresh to reuse completed search windows and archive projections. The scheduled refresh carries forward completed results and checks newly encountered entities before staging the site.
 

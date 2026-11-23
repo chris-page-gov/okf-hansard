@@ -16,7 +16,7 @@ from model import (
     Entity, LICENCE, Matcher, NS, PROFILE, TERM_TYPES, WEB, capacity, display,
     load_entities, mention_roles, read_sittings,
 )
-from okf_core import CORE_SPEC, CORE_VERSION, RESERVED, write_release_markdown
+from okf_core import CORE_SPEC, CORE_VERSION, PROFILE, PRODUCT_VERSION, RESERVED, write_release_markdown
 from people import POST_SERIES, office_evidence
 
 OKF = "https://chris-page-gov.github.io/okf-explorer/ns#"
@@ -60,7 +60,8 @@ CONTEXT = {
     "@version": 1.1, "@vocab": NS + "field:", "hansard": NS + "vocab:",
     "rdf": RDF, "okf": OKF, "prov": "http://www.w3.org/ns/prov#",
     "dct": "http://purl.org/dc/terms/", "skos": "http://www.w3.org/2004/02/skos/core#",
-    "title": "dct:title", "date": {"@id": "dct:date", "@type": "http://www.w3.org/2001/XMLSchema#date"},
+    "title": "dct:title", "core_role": "okf:coreRole",
+    "date": {"@id": "dct:date", "@type": "http://www.w3.org/2001/XMLSchema#date"},
     "source": {"@id": "rdf:subject", "@type": "@id"},
     "predicate": {"@id": "rdf:predicate", "@type": "@id"},
     "target": {"@id": "rdf:object", "@type": "@id"},
@@ -155,7 +156,8 @@ class Graph:
 def meta_for(first, last, dates, roots, title=TITLE):
     return {
         "title": title, "default_corpus": "hansard", "corpus_order": ["hansard"],
-        "profile": PROFILE, "semantic_descriptor": "okf-bundle.yamlld",
+        "profile": PROFILE, "product_version": PRODUCT_VERSION,
+        "semantic_descriptor": "okf-bundle.yamlld",
         "okf_core": {"version": CORE_VERSION, "specification": CORE_SPEC},
         "learning_presentation": {
             "schema": "okf-learning-presentation.v1",
@@ -190,7 +192,17 @@ def hansard_proceedings(part, section_route, contribution=None):
     return info
 
 
+def assign_core_roles(graph, week_start):
+    for route, record in graph.records.items():
+        record["core_role"] = (
+            "navigation" if Path(route).name in RESERVED else
+            "extension" if record.get("date") and record["date"] < week_start else
+            "concept"
+        )
+
+
 def runtime(graph, meta, finished, week_start, bounded_history=False):
+    assign_core_roles(graph, week_start)
     examples = set()
     if bounded_history:
         by_entity = defaultdict(list)
@@ -216,6 +228,7 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
             fields["body"] = link(record["url"], "Read the earlier passage in Hansard")
         records[route] = {**fields, "id": route, "semantic_id": record["@id"],
                           "section": record.get("section", "Index"),
+                          "core_role": record["core_role"],
                           "status": "draft", "trust_tier": "working"}
     relationships = []
     for edge in graph.edges:
@@ -228,6 +241,8 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
                             "source_sha256", "source_value_hash_canonicalization"})
         relationship = {
             "id": edge["@id"], "source": edge["source_route"], "target": edge["target_route"],
+            "source_iri": graph.records[edge["source_route"]]["@id"],
+            "target_iri": graph.records[edge["target_route"]]["@id"],
             "predicate": edge["predicate"]["@id"], "kind": edge["kind"], "label": edge["label"],
             "inverse_label": edge["inverse_label"], "assertion_status": edge["assertion_status"],
             "assertion_scope": edge["assertion_scope"], "observed_at": edge["observed_at"],
@@ -244,7 +259,8 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
             ]
         relationships.append(relationship)
     return {
-        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": CORE_VERSION,
+        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle",
+        "version": PRODUCT_VERSION, "okf_version": CORE_VERSION,
         "generated_at": finished, "meta": meta,
         "corpora": {"hansard": {"id": "hansard", "title": meta.get("title", TITLE), "root": "index.md",
                                "assertion_scope": "real-world", "nodes": records,
@@ -430,6 +446,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer, *, 
     }, "mentions": {key: sorted(value, key=lambda r: (r["date"], r["part"], r["order"]))
                     for key, value in sorted(postings.items())}}
     meta = meta_for(first, last, sorted(day_routes), day_routes, title)
+    assign_core_roles(graph, first)
     checked = validate(graph, explorer)
     breakdown = [{"date": day, "house": house, **dict(counts)} for (day, house), counts in sorted(metrics.items())]
     counts = Counter(row["day"] for route, row in records.items() if route in current)

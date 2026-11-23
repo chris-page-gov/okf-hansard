@@ -1,0 +1,55 @@
+{
+  "schema": "okf-explorer-journeys.v1",
+  "bundle_descriptor": "graph/okf-explorer.json",
+  "expected_identity": {
+    "schema": "okf-explorer-large-corpus.v1",
+    "id": "urn:okf:hansard:bundle:november-in-parliament",
+    "version": "0.3.0",
+    "snapshot": "hansard-sha256-963792fec6c08c19ddded729abe49be83066e7a01248b48a19c2c9c906cc1193"
+  },
+  "journeys": [
+    {
+      "id": "november-large-source-linked-question",
+      "actions": [
+        {
+          "type": "goto",
+          "hash": "#dataset/debate/lords-2026-11-18-debate-5ee3bf1a-449e-4d6d-a0ce-f725ce734996.md",
+          "params": {
+            "view": "graph"
+          }
+        },
+        {
+          "type": "wait_for",
+          "selector": "svg.graph [data-route=\"dataset/entity/bill-4030.md\"]"
+        },
+        {
+          "type": "press",
+          "selector": "svg.graph [data-route=\"dataset/entity/bill-4030.md\"]",
+          "key": "Enter"
+        },
+        {
+          "type": "wait_for",
+          "selector": ".right-panel h2:has-text(\"Railways Bill\")"
+        }
+      ],
+      "assertions": [
+        {
+          "type": "text",
+          "selector": ".right-panel",
+          "includes": "Railways Bill"
+        },
+        {
+          "type": "console_clean"
+        },
+        {
+          "type": "requested",
+          "includes": "/bundle/graph/okf-explorer.json"
+        },
+        {
+          "type": "url_hash",
+          "equals": "#dataset/entity/bill-4030.md"
+        }
+      ]
+    }
+  ]
+}

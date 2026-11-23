@@ -25,7 +25,7 @@ READER = "https://chris-page-gov.github.io/okf-explorer/explore/"
 SOURCE = "https://github.com/chris-page-gov/okf-hansard"
 LICENCE = "https://www.parliament.uk/site-information/copyright/open-parliament-licence/"
 ATTRIBUTION = "Contains Parliamentary information licensed under the Open Parliament Licence v3.0."
-BUILD_CREDIT = "Built with OpenAI Codex, using GPT-6.2 Sol with Ultra reasoning."
+BUILD_CREDIT = "Built with OpenAI Codex."
 GUIDES = {
     "beginners.html": "Beginner’s guide",
     "methodology.html": "Methodology and prompts",
@@ -208,6 +208,12 @@ def index_page(coverage, semantic_file, graph_anchor):
     oldest = fmt_date(coverage["archive"]["ranges"]["Commons"]["from"])
     history_link = ('<li><a href="history.html">Browse earlier mentions by contribution and entity</a></li>'
                     if "history_backfill" in coverage else "")
+    history_scope = ""
+    if gap := coverage.get("history_backfill_gap"):
+        history_scope = (f'<p class="note"><strong>Historical search coverage:</strong> '
+                         f'checked through 1 November 2026. The weekly finder does not cover '
+                         f'{fmt_date(gap["from"])} to {fmt_date(gap["through"])}. '
+                         f'<a href="november/okf/index.md">Open the separate November source bundle</a>.</p>')
     query = urlencode({"bundle": SITE + "okf-bundle.json"})
     focused_graph = explorer_record_url("graph/okf-explorer.json", "graph", dataset_route(graph_anchor))
     return f"""<!doctype html>
@@ -254,6 +260,7 @@ def index_page(coverage, semantic_file, graph_anchor):
 <section>
 <h2>Historical coverage</h2>
 <p>The local index reaches {oldest}. The site includes a week snapshot, coverage results and a worked example from the wider index.</p>
+{history_scope}
 <ul>
 <li><a href="coverage.json">Coverage and verification</a></li>
 <li><a href="methodology.html">Methodology and prompts</a></li>
@@ -340,6 +347,8 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
     }
     if "history_backfill" in final:
         public_coverage["history_backfill"] = final["history_backfill"]
+        if "history_backfill_gap" in final:
+            public_coverage["history_backfill_gap"] = final["history_backfill_gap"]
         write_history(release, destination, database, history_cache or destination.parent / "history-cache",
                       older_database=older_database)
         if older_database:

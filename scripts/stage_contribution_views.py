@@ -101,6 +101,7 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
 <h1>November in Parliament</h1>
 <p>{sum(expected.values()):,} captured contributions from both Houses. Choose a date and contribution to open its graph or follow related passages over time.</p>
 <p class="actions"><a href="history.html">Open contribution timeline</a>
+<a href="walkthrough.html">View the source-linked coverage walkthrough</a>
 <a href="okf/index.md">Open the OKF index for AI</a>
 <a href="okf-bundle.yamlld.gz">Download the YAML-LD graph</a>
 {archive_link}

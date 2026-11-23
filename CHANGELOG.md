@@ -1,5 +1,32 @@
 # Changelog
 
+## Unreleased — estate acceptance, 23 November 2026
+
+- Strengthen the independent full-source audit: require complete agreement
+  between direct graph edges and reified assertions, check graph framing and
+  log dates, and accept only a non-empty string as a concept type. Hash ancillary
+  Markdown without treating it as a concept. Add negative controls for these
+  boundaries and bind each audit to the full implementation revision.
+- Correct the active domain profile's core declaration to match the implemented
+  OKF 0.3 writer. Document the upstream announcement and implementation dates.
+  Retain the pinned historical schema references and existing source identities.
+- Add a versioned Hansard domain profile and a repository semantic contract for
+  the full corpus graph and the smaller public entry-point bundles. Add an exact
+  Markdown-backed core Reader projection for each entry-point bundle, bind the
+  full generated Markdown source into the existing bounded graph record shards,
+  and add a separate graph-linked visual walkthrough for the week and November
+  coverage.
+- Set the producer version to 0.3.0 in package metadata and active descriptors;
+  retain the existing November historical-release tag and frozen assets.
+- Retain 506 compatible weekly history-search packages through 1 November and
+  mark the 2–15 November weekly search interval as uncovered. Two changed
+  profile records are excluded; no new Hansard API searches were run.
+- Add four portable, exact-identity Explorer journeys for the week and November
+  compact cores and full graphs. The graph journeys activate the focusable Bill
+  node with Enter and assert its exact route. Weekly pointer selection remains
+  unaccepted because an overlapping SVG label hit area intercepted the mouse
+  target; the visual walkthrough records this limitation.
+
 ## Unreleased
 
 - Link the central current and historical OKF standards register and public bundle catalogue.

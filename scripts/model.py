@@ -8,12 +8,12 @@ import re
 from urllib.parse import quote
 
 import yaml
+from okf_core import PROFILE
 
 from capture import HANSARD, sha
 
 WEB = "https://hansard.parliament.uk"
 LICENCE = "https://www.parliament.uk/site-information/copyright/open-parliament-licence/"
-PROFILE = "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/"
 NS = "urn:okf:hansard:"
 TOKEN = re.compile(r"[^\W_]+", re.UNICODE)
 BREAK = re.compile(r"[.!?;]")

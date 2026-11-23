@@ -1,0 +1,77 @@
+{
+  "schema": "okf-repository-semantic-contract.v2",
+  "repository": {
+    "name": "okf-hansard",
+    "role": "large-corpus-producer",
+    "root_index": "releases/current/markdown/index.md"
+  },
+  "okf_core": {
+    "version": "0.3",
+    "specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
+    "status": "migration"
+  },
+  "semantic_layer": {
+    "profile": "https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json",
+    "state": "generated-yaml-ld-sharded-graph",
+    "authoritative_inputs": [
+      ".work/okf-03/",
+      "profile/domain.yaml",
+      "profile/vocabulary.yaml",
+      "profile/curated-summaries.json",
+      "okf.publication.json",
+      "scripts/build.py",
+      "scripts/build_explorer_graph.py",
+      "scripts/okf_core.py",
+      "scripts/model.py",
+      "scripts/demo.py",
+      "scripts/discovery.py",
+      "scripts/build_pages.py",
+      "scripts/stage_contribution_views.py",
+      "scripts/verify.py",
+      "scripts/publish_demo_week.py",
+      "scripts/publish_november.py",
+      "scripts/build_core_projection.py",
+      "scripts/build_walkthrough.py",
+      "docs/pages/"
+    ],
+    "outputs": [
+      {"path": "releases/current/okf-bundle.yamlld", "role": "semantic-yaml-ld", "generated": true, "required": true},
+      {"path": "releases/current/okf-bundle.json", "role": "explorer-runtime", "generated": true, "required": true},
+      {"path": "releases/current/graph/source.json", "role": "semantic-manifest", "generated": true, "required": true},
+      {"path": "releases/current/graph/relationships/runtime.json", "role": "relationship-runtime", "generated": true, "required": true},
+      {"path": "releases/current/graph/relationships/locator.json", "role": "relationship-route-locator", "generated": true, "required": true},
+      {"path": "releases/current/graph/okf-explorer.json", "role": "explorer-runtime", "generated": true, "required": true},
+      {"path": "profile/semantic-assertion.schema.json", "role": "relationship-schema", "generated": false, "required": true},
+      {"path": "profile/relationship-runtime-row.schema.json", "role": "relationship-runtime-schema", "generated": false, "required": true},
+      {"path": "profile/hansard-domain-v2.json", "role": "semantic-context", "generated": false, "required": true},
+      {"path": "site/okf-core.json", "role": "semantic-manifest", "generated": true, "required": true},
+      {"path": "site/walkthrough.json", "role": "semantic-manifest", "generated": true, "required": true}
+    ],
+    "context_policy": "pinned-local-contexts-no-browser-remote-expansion",
+    "identity_policy": "absolute-semantic-iri-plus-validated-local-route",
+    "limitations": [
+      "The full generated Markdown tree is the core concept source for each captured release. The public week and November entry-point directories publish smaller, separately declared core projections; their concept counts must not be conflated with the full corpus graph.",
+      "The graph descriptor and sharded runtime are generated projections. Their complete dependency inventories and source digests must be checked against the exact release snapshot.",
+      "Name and alias matches are discovery leads and do not establish substantive relevance. Source context and coverage limits remain visible in answers.",
+      "The v1 relationship assertion and runtime row schemas remain pinned structural dependencies. The active core/profile declaration is OKF 0.3 and the Hansard domain profile v2.",
+      "A local source, test or HTTP check does not by itself establish Explorer, AI-client, public-release or deployment acceptance."
+    ]
+  },
+  "relationship_contract": {
+    "authoring": "generated-yaml-ld-sharded-assertion-graph",
+    "direct_triple_policy": "generated-from-one-assertion-source-across-pinned-shards",
+    "predicate_policy": "absolute-iri",
+    "required_fields": ["id", "source", "target", "source_iri", "target_iri", "predicate", "kind", "label", "inverse_label", "assertion_status", "assertion_scope", "authority", "derivation", "observed_at", "evidence", "rights"],
+    "schema": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/semantic-assertion.schema.json"
+  },
+  "reader": {
+    "consumer": "https://chris-page-gov.github.io/okf-explorer/",
+    "delivery": "json-large-corpus-chunks",
+    "preserves": ["direction", "semantic-identities", "local-routes", "predicate", "relationship-kind", "preferred-and-inverse-labels", "assertion-status-and-scope", "authority", "derivation", "supporting-assertions", "confidence", "review-status", "evidence", "rights", "freshness", "lifecycle"]
+  },
+  "tooling": {
+    "build": ["uv run --locked python scripts/build.py", "uv run --locked python scripts/build_explorer_graph.py", "uv run --locked python scripts/build_core_projection.py"],
+    "check": ["uv run --locked python -m unittest discover -s tests", "uv run --locked python scripts/verify.py", "uv run --locked python scripts/build_core_projection.py --check", "uv run --locked python scripts/audit_full_source.py RELEASE --producer-commit COMMIT --output REPORT"],
+    "setup": ["uv sync --locked"]
+  }
+}

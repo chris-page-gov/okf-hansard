@@ -10,6 +10,8 @@ import yaml
 
 
 CORE_VERSION = "0.3"
+PRODUCT_VERSION = "0.3.0"
+PROFILE = "https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json"
 CORE_SPEC = ("https://github.com/open-knowledge-format/open-knowledge-format/blob/"
              "527e81aff55992be21507e97004286789126f88c/SPEC.md")
 LICENCE = "https://www.parliament.uk/site-information/copyright/open-parliament-licence/"
@@ -25,7 +27,8 @@ def write_document(path, fields, body):
 def write_index(root, title, description, body):
     write_document(root / "index.md", {
         "okf_version": CORE_VERSION, "title": title, "description": description,
-        "license": "LICENSE.md", "x-hansard-specification": CORE_SPEC,
+        "license": "LICENSE.md", "semantic_profile": PROFILE,
+        "product_version": PRODUCT_VERSION, "x-hansard-specification": CORE_SPEC,
     }, body)
     (root / "LICENSE.md").write_text(
         "# Open Parliament Licence\n\n"
@@ -115,6 +118,8 @@ def check_markdown(root):
         elif frontmatter is not None and frontmatter.get("type"):
             if not isinstance(frontmatter["type"], str):
                 raise ValueError(f"Invalid concept type in {path.relative_to(root)}")
+            if frontmatter.get("core_role", "concept") != "concept":
+                raise ValueError(f"A typed Markdown concept must have core_role concept: {path.relative_to(root)}")
             concepts += 1
     if not (root / "index.md").is_file() or not concepts:
         raise ValueError("The OKF directory needs a root index and concepts")
