@@ -1,9 +1,10 @@
 """Independently audit every Markdown document and direct graph assertion."""
 import argparse
-from datetime import datetime, timezone
-from hashlib import sha256
+from datetime import date, datetime, timezone
+from hashlib import file_digest, sha256
 import json
 from pathlib import Path
+import re
 
 
 def unique(pairs):
@@ -16,6 +17,8 @@ def unique(pairs):
 
 
 def audit(release, producer_commit):
+    if not re.fullmatch(r'[0-9a-f]{40}', producer_commit):
+        raise ValueError('producer commit must be a full Git revision')
     release_receipt = (release / 'receipt.json').read_bytes()
     build_receipt = json.loads(release_receipt, object_pairs_hook=unique)
     if build_receipt.get('okf_version') != '0.3':
@@ -25,14 +28,24 @@ def audit(release, producer_commit):
         raise ValueError('graph exceeds the audit budget')
     nodes, assertions = {}, []
     with graph_file.open() as stream:
-        context = json.loads(stream.readline().split(': ', 1)[1], object_pairs_hook=unique)
-        stream.readline()
+        context_line = stream.readline()
+        metadata_line = stream.readline()
+        if not context_line.startswith('"@context": ') or not metadata_line.startswith('meta: '):
+            raise ValueError('unsupported graph header framing')
+        context = json.loads(context_line[len('"@context": '):], object_pairs_hook=unique)
+        metadata = json.loads(metadata_line[len('meta: '):], object_pairs_hook=unique)
+        if not isinstance(context, dict) or not isinstance(metadata, dict):
+            raise ValueError('graph context and metadata must be mappings')
         if stream.readline().strip() != '"@graph":':
             raise ValueError('unsupported graph framing')
         for line in stream:
             if len(line.encode()) > 2 * 1024 * 1024:
                 raise ValueError('graph row exceeds the audit budget')
-            row = json.loads(line.removeprefix('- '), object_pairs_hook=unique)
+            if not line.startswith('- '):
+                raise ValueError('unsupported graph row framing')
+            row = json.loads(line[2:], object_pairs_hook=unique)
+            if not isinstance(row, dict):
+                raise ValueError('graph rows must be mappings')
             if '@context' in row:
                 raise ValueError('unexpected row-local graph context')
             if 'predicate' in row:
@@ -63,15 +76,20 @@ def audit(release, producer_commit):
                 if isinstance(target, dict) and '@id' in target:
                     direct.add((identifier, expand(key), target['@id']))
     assertion_ids = set()
+    asserted_triples = set()
     for row in assertions:
         if row['@id'] in assertion_ids:
             raise ValueError('duplicate assertion identity')
         assertion_ids.add(row['@id'])
         triple = row['source']['@id'], row['predicate']['@id'], row['target']['@id']
+        asserted_triples.add(triple)
         if triple not in direct or triple[0] not in nodes or triple[2] not in nodes:
             raise ValueError('missing direct triple or semantic endpoint')
+    if asserted_triples != direct:
+        raise ValueError('direct graph and reified assertion coverage differ')
     markdown = release / 'markdown'
     source, concept_ids, navigation = {}, set(), []
+    non_concepts = []
     derived_fields = 0
     count = 0
     for directory, subdirectories, names in markdown.walk():
@@ -110,8 +128,17 @@ def audit(release, producer_commit):
                         raise ValueError('wrong source core declaration')
                 elif metadata is not None:
                     raise ValueError('frontmatter in reserved navigation')
+                if name == 'log.md':
+                    for line in body.splitlines():
+                        if line.startswith('## '):
+                            heading = line[3:].strip()
+                            if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', heading):
+                                raise ValueError('log date headings must be valid YYYY-MM-DD dates')
+                            date.fromisoformat(heading)
                 continue
-            if not metadata or not metadata.get('type'):
+            if (not metadata or not isinstance(metadata.get('type'), str)
+                    or not metadata['type'].strip()):
+                non_concepts.append(route)
                 continue
             identifier = metadata['@id']
             node = nodes[identifier]
@@ -138,6 +165,8 @@ def audit(release, producer_commit):
     if (any(nodes[identifier].get('core_role') != 'extension' for identifier in extension_ids)
             or any(nodes[identifier].get('route') in source for identifier in extension_ids)):
         raise ValueError('non-Markdown semantic records are not explicitly source-backed extensions')
+    with graph_file.open('rb') as stream:
+        graph_sha256 = file_digest(stream, 'sha256').hexdigest()
     return {'schema':'hansard-core-full-graph-audit.v1', 'status':'passed',
             'observed_at':datetime.now(timezone.utc).isoformat(),
             'producer_commit':producer_commit,
@@ -149,9 +178,10 @@ def audit(release, producer_commit):
             'core_concepts':len(concept_ids), 'extension_records_without_markdown':len(extension_ids),
             'assertions_checked':len(assertions),
             'distinct_direct_triples':len(direct), 'reserved_navigation':navigation,
+            'non_concept_markdown':non_concepts,
             'exact_url_derived_resource_and_source_aliases_checked':derived_fields,
             'body_comparison':'Display body after boundary whitespace trimming; exact source bytes are separately hashed.',
-            'graph_sha256':sha256(graph_file.read_bytes()).hexdigest(),
+            'graph_sha256':graph_sha256,
             'checker_sha256':sha256(Path(__file__).read_bytes()).hexdigest(), 'markdown':source}
 
 

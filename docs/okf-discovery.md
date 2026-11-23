@@ -34,6 +34,15 @@ Explorer’s standards register records the same OKF 0.3 specification pin and l
 
 The domain vocabulary, build code and curated summaries remain in the repository. The Markdown, YAML-LD, sharded Reader and discovery outputs are generated from verified snapshots. The week and month stagers regenerate discovery files as part of publication, with the discovery files included in each checksum catalogue. Each public site contains a focused entry-point projection and a full-source graph descriptor whose record-detail chunks preserve source text, frontmatter and paths for AI retrieval.
 
+The independent `scripts/audit_full_source.py` audit checks every generated
+Markdown document, including ancillary documents without a concept type. Only
+a non-empty string `type` creates a concept. The audit compares every concept's
+frontmatter and displayed body with the graph, requires complete agreement
+between direct edges and reified assertions, checks reserved log dates and
+graph framing, and records source hashes and the full implementation revision.
+This source audit does not certify public retrieval or browser behaviour; those
+have separate checks for each weekly and monthly bundle.
+
 The `okf-hansard-ci` GitHub Actions check runs the locked Python tests and checks the browser scripts on pull requests to `main`. The release stagers and public verification check the larger captures and deployed views separately.
 
 GitHub requires an up-to-date pull request, a passing `okf-hansard-ci` check and resolved conversations before merging into `main`. The protection applies to administrators and blocks force-pushes and branch deletion. Use squash or rebase to retain linear history.

@@ -2,6 +2,11 @@
 
 ## Unreleased — estate acceptance, 23 November 2026
 
+- Strengthen the independent full-source audit: require complete agreement
+  between direct graph edges and reified assertions, check graph framing and
+  log dates, and accept only a non-empty string as a concept type. Hash ancillary
+  Markdown without treating it as a concept. Add negative controls for these
+  boundaries and bind each audit to the full implementation revision.
 - Correct the active domain profile's core declaration to match the implemented
   OKF 0.3 writer. Document the upstream announcement and implementation dates.
   Retain the pinned historical schema references and existing source identities.
