@@ -8,8 +8,74 @@
   },
   "examples": [
     {
+      "id": "railways-bill",
+      "title": "Railways Bill",
+      "summary": "Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifier leads to the official Bill record and the associated Hansard proceedings.",
+      "facets": {
+        "People": [
+          "Heidi Alexander",
+          "Lord Hendy of Richmond Hill"
+        ],
+        "Organisations": [
+          "Department for Transport"
+        ],
+        "Legislation": [
+          "Railways Bill"
+        ]
+      },
+      "links": [
+        {
+          "title": "Official Bill stages",
+          "url": "https://bills.parliament.uk/bills/4030/stages"
+        },
+        {
+          "title": "Railways Bill progress (Commons Library)",
+          "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10538/"
+        },
+        {
+          "title": "Railways Bill (Lords Library)",
+          "url": "https://lordslibrary.parliament.uk/research-briefings/lln-2026-0031/"
+        },
+        {
+          "title": "Heidi Alexander on TheyWorkForYou",
+          "url": "https://www.theyworkforyou.com/mp/24953/heidi_alexander/swindon_south"
+        },
+        {
+          "title": "Lord Hendy of Richmond Hill on TheyWorkForYou",
+          "url": "https://www.theyworkforyou.com/peer/26114/lord_hendy_of_richmond_hill"
+        }
+      ],
+      "rows": [
+        {
+          "date": "2026-11-18",
+          "house": "Lords",
+          "title": "Railways Bill · Report stage",
+          "relation": "Formal Bill stage",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill"
+        },
+        {
+          "date": "2026-07-07",
+          "house": "Lords",
+          "title": "Railways Bill · Second Reading",
+          "relation": "Formal Bill stage",
+          "url": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber"
+        },
+        {
+          "date": "2026-06-10",
+          "house": "Commons",
+          "title": "Railways Bill · Third Reading",
+          "relation": "Formal Bill stage",
+          "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill"
+        }
+      ],
+      "biographies": {
+        "Heidi Alexander": "https://members.parliament.uk/member/4038/career",
+        "Lord Hendy of Richmond Hill": "https://members.parliament.uk/member/4972/career"
+      }
+    },
+    {
       "id": "microsoft-365",
-      "title": "Microsoft 365 outage",
+      "title": "Microsoft 365 outage statement",
       "summary": "Ian Murray’s Commons statement and the next day’s Lords question share a Microsoft mention. The index found 19 earlier matches for Microsoft 365 before the Commons statement.",
       "facets": {
         "People": [
@@ -297,72 +363,6 @@
           "url": "https://www.theyworkforyou.com/mp/26484/martin_wrigley/newton_abbot"
         }
       ]
-    },
-    {
-      "id": "railways-bill",
-      "title": "Railways Bill",
-      "summary": "Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifier leads to the official Bill record and the associated Hansard proceedings.",
-      "facets": {
-        "People": [
-          "Heidi Alexander",
-          "Lord Hendy of Richmond Hill"
-        ],
-        "Organisations": [
-          "Department for Transport"
-        ],
-        "Legislation": [
-          "Railways Bill"
-        ]
-      },
-      "links": [
-        {
-          "title": "Official Bill stages",
-          "url": "https://bills.parliament.uk/bills/4030/stages"
-        },
-        {
-          "title": "Railways Bill progress (Commons Library)",
-          "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10538/"
-        },
-        {
-          "title": "Railways Bill (Lords Library)",
-          "url": "https://lordslibrary.parliament.uk/research-briefings/lln-2026-0031/"
-        },
-        {
-          "title": "Heidi Alexander on TheyWorkForYou",
-          "url": "https://www.theyworkforyou.com/mp/24953/heidi_alexander/swindon_south"
-        },
-        {
-          "title": "Lord Hendy of Richmond Hill on TheyWorkForYou",
-          "url": "https://www.theyworkforyou.com/peer/26114/lord_hendy_of_richmond_hill"
-        }
-      ],
-      "rows": [
-        {
-          "date": "2026-11-18",
-          "house": "Lords",
-          "title": "Railways Bill · Report stage",
-          "relation": "Formal Bill stage",
-          "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill"
-        },
-        {
-          "date": "2026-07-07",
-          "house": "Lords",
-          "title": "Railways Bill · Second Reading",
-          "relation": "Formal Bill stage",
-          "url": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber"
-        },
-        {
-          "date": "2026-06-10",
-          "house": "Commons",
-          "title": "Railways Bill · Third Reading",
-          "relation": "Formal Bill stage",
-          "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill"
-        }
-      ],
-      "biographies": {
-        "Heidi Alexander": "https://members.parliament.uk/member/4038/career",
-        "Lord Hendy of Richmond Hill": "https://members.parliament.uk/member/4972/career"
-      }
     }
   ]
 }

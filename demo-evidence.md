@@ -2,7 +2,24 @@
 
 This file contains links and selected matches from the verified release. A shared mention is a name or alias match.
 
-## Microsoft 365 outage
+## Railways Bill
+
+Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifier leads to the official Bill record and the associated Hansard proceedings.
+
+- People — [Heidi Alexander](https://members.parliament.uk/member/4038/career), [Lord Hendy of Richmond Hill](https://members.parliament.uk/member/4972/career)
+- Organisations — Department for Transport
+- Legislation — Railways Bill
+
+- 2026-11-18 · Lords · Formal Bill stage · [Railways Bill · Report stage](https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill)
+- 2026-07-07 · Lords · Formal Bill stage · [Railways Bill · Second Reading](https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber)
+- 2026-06-10 · Commons · Formal Bill stage · [Railways Bill · Third Reading](https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill)
+- [Official Bill stages](https://bills.parliament.uk/bills/4030/stages)
+- [Railways Bill progress (Commons Library)](https://commonslibrary.parliament.uk/research-briefings/cbp-10538/)
+- [Railways Bill (Lords Library)](https://lordslibrary.parliament.uk/research-briefings/lln-2026-0031/)
+- [Heidi Alexander on TheyWorkForYou](https://www.theyworkforyou.com/mp/24953/heidi_alexander/swindon_south)
+- [Lord Hendy of Richmond Hill on TheyWorkForYou](https://www.theyworkforyou.com/peer/26114/lord_hendy_of_richmond_hill)
+
+## Microsoft 365 outage statement
 
 Ian Murray’s Commons statement and the next day’s Lords question share a Microsoft mention. The index found 19 earlier matches for Microsoft 365 before the Commons statement.
 
@@ -58,22 +75,5 @@ Martin Wrigley points to Monday’s statement and his April Westminster Hall deb
 - 2026-04-16 · Commons · Explicit reference · [Martin Wrigley · NHS Federated Data Platform](https://hansard.parliament.uk/Commons/2026-04-16/debates/2FDCA71C-D0C1-4738-BEE8-A4BDA311DB99/NHSFederatedDataPlatform)
 - [NHS Federated Data Platform (Commons Library)](https://commonslibrary.parliament.uk/research-briefings/cbp-12264/)
 - [Martin Wrigley on TheyWorkForYou](https://www.theyworkforyou.com/mp/26484/martin_wrigley/newton_abbot)
-
-## Railways Bill
-
-Follow Parliament’s Bill 4030 from the Commons to the Lords. The same identifier leads to the official Bill record and the associated Hansard proceedings.
-
-- People — [Heidi Alexander](https://members.parliament.uk/member/4038/career), [Lord Hendy of Richmond Hill](https://members.parliament.uk/member/4972/career)
-- Organisations — Department for Transport
-- Legislation — Railways Bill
-
-- 2026-11-18 · Lords · Formal Bill stage · [Railways Bill · Report stage](https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill)
-- 2026-07-07 · Lords · Formal Bill stage · [Railways Bill · Second Reading](https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber)
-- 2026-06-10 · Commons · Formal Bill stage · [Railways Bill · Third Reading](https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill)
-- [Official Bill stages](https://bills.parliament.uk/bills/4030/stages)
-- [Railways Bill progress (Commons Library)](https://commonslibrary.parliament.uk/research-briefings/cbp-10538/)
-- [Railways Bill (Lords Library)](https://lordslibrary.parliament.uk/research-briefings/lln-2026-0031/)
-- [Heidi Alexander on TheyWorkForYou](https://www.theyworkforyou.com/mp/24953/heidi_alexander/swindon_south)
-- [Lord Hendy of Richmond Hill on TheyWorkForYou](https://www.theyworkforyou.com/peer/26114/lord_hendy_of_richmond_hill)
 
 Contains Parliamentary information licensed under the Open Parliament Licence v3.0.

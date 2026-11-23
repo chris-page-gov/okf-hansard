@@ -13,7 +13,15 @@
       "start_route": "index.md",
       "groups": [
         {
-          "title": "Microsoft 365 outage",
+          "title": "Railways Bill",
+          "routes": [
+            "source/3d450bd31d02b83895ef2b20.md",
+            "source/bd16babe4e2cd32a3122c84f.md",
+            "source/96b539c84f43c43bb949dab2.md"
+          ]
+        },
+        {
+          "title": "Microsoft 365 outage statement",
           "routes": [
             "source/b7c5310bed6b943ec3e34fc4.md",
             "source/ea9dbbc3c2cf00f6a3da4493.md",
@@ -49,14 +57,6 @@
             "source/bac4873d9749e9e1847b031d.md",
             "source/dda13488020619d1246db2ca.md",
             "source/0f3818bce73670ad1751adf0.md"
-          ]
-        },
-        {
-          "title": "Railways Bill",
-          "routes": [
-            "source/3d450bd31d02b83895ef2b20.md",
-            "source/bd16babe4e2cd32a3122c84f.md",
-            "source/96b539c84f43c43bb949dab2.md"
           ]
         },
         {
@@ -106,6 +106,100 @@
           "type": "Index",
           "body": "Choose a sitting date or House, then open a record and follow its Hansard link."
         },
+        "source/3d450bd31d02b83895ef2b20.md": {
+          "id": "source/3d450bd31d02b83895ef2b20.md",
+          "title": "Railways Bill · Report stage",
+          "type": "Formal Bill stage",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-11-18",
+          "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
+          "resource": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
+          "body": "Lords · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill)",
+          "learning_facets": {
+            "sitting": [
+              "2026-11-18"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Formal Bill stage"
+            ],
+            "example": [
+              "Railways Bill"
+            ]
+          },
+          "hansard_proceedings": {
+            "schema": "okf-hansard-proceedings.v1",
+            "section_id": "debate/lords-2026-11-18-debate-5ee3bf1a-449e-4d6d-a0ce-f725ce734996.md",
+            "section_title": "Railways Bill",
+            "sitting_date": "2026-11-18",
+            "house": "Lords",
+            "source_item": 5,
+            "speaker": "",
+            "markers": [
+              {
+                "value": "2026-11-18T20:30:00",
+                "source_item": 2,
+                "source_field": "/ChildDebates/12/Items/1/Value"
+              },
+              {
+                "value": "2026-11-18T20:45:00",
+                "source_item": 13,
+                "source_field": "/ChildDebates/12/Items/12/Value"
+              }
+            ],
+            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/8c154d52-8c83-4d69-b53f-360abada4a5c.json"
+          }
+        },
+        "source/bd16babe4e2cd32a3122c84f.md": {
+          "id": "source/bd16babe4e2cd32a3122c84f.md",
+          "title": "Railways Bill · Second Reading",
+          "type": "Formal Bill stage",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-07-07",
+          "url": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
+          "resource": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
+          "body": "Lords · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber)",
+          "learning_facets": {
+            "sitting": [
+              "2026-07-07"
+            ],
+            "chamber": [
+              "Lords"
+            ],
+            "connection": [
+              "Formal Bill stage"
+            ],
+            "example": [
+              "Railways Bill"
+            ]
+          }
+        },
+        "source/96b539c84f43c43bb949dab2.md": {
+          "id": "source/96b539c84f43c43bb949dab2.md",
+          "title": "Railways Bill · Third Reading",
+          "type": "Formal Bill stage",
+          "section": "Demonstration evidence",
+          "timestamp": "2026-06-10",
+          "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill",
+          "resource": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill",
+          "body": "Commons · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill)",
+          "learning_facets": {
+            "sitting": [
+              "2026-06-10"
+            ],
+            "chamber": [
+              "Commons"
+            ],
+            "connection": [
+              "Formal Bill stage"
+            ],
+            "example": [
+              "Railways Bill"
+            ]
+          }
+        },
         "source/b7c5310bed6b943ec3e34fc4.md": {
           "id": "source/b7c5310bed6b943ec3e34fc4.md",
           "title": "Jim Shannon (Strangford) (DUP)",
@@ -126,7 +220,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           },
           "hansard_proceedings": {
@@ -159,7 +253,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           },
           "hansard_proceedings": {
@@ -200,7 +294,7 @@
               "Starting contribution"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           },
           "hansard_proceedings": {
@@ -246,7 +340,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -270,7 +364,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -294,7 +388,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -318,7 +412,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -342,7 +436,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -366,7 +460,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -390,7 +484,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -414,7 +508,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -438,7 +532,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -462,7 +556,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -486,7 +580,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -510,7 +604,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -534,7 +628,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -558,7 +652,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -582,7 +676,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -606,7 +700,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -630,7 +724,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -654,7 +748,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -678,7 +772,7 @@
               "Shared mention"
             ],
             "example": [
-              "Microsoft 365 outage"
+              "Microsoft 365 outage statement"
             ]
           }
         },
@@ -1050,100 +1144,6 @@
             ],
             "example": [
               "Palantir and the NHS"
-            ]
-          }
-        },
-        "source/3d450bd31d02b83895ef2b20.md": {
-          "id": "source/3d450bd31d02b83895ef2b20.md",
-          "title": "Railways Bill · Report stage",
-          "type": "Formal Bill stage",
-          "section": "Demonstration evidence",
-          "timestamp": "2026-11-18",
-          "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
-          "resource": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
-          "body": "Lords · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill)",
-          "learning_facets": {
-            "sitting": [
-              "2026-11-18"
-            ],
-            "chamber": [
-              "Lords"
-            ],
-            "connection": [
-              "Formal Bill stage"
-            ],
-            "example": [
-              "Railways Bill"
-            ]
-          },
-          "hansard_proceedings": {
-            "schema": "okf-hansard-proceedings.v1",
-            "section_id": "debate/lords-2026-11-18-debate-5ee3bf1a-449e-4d6d-a0ce-f725ce734996.md",
-            "section_title": "Railways Bill",
-            "sitting_date": "2026-11-18",
-            "house": "Lords",
-            "source_item": 5,
-            "speaker": "",
-            "markers": [
-              {
-                "value": "2026-11-18T20:30:00",
-                "source_item": 2,
-                "source_field": "/ChildDebates/12/Items/1/Value"
-              },
-              {
-                "value": "2026-11-18T20:45:00",
-                "source_item": 13,
-                "source_field": "/ChildDebates/12/Items/12/Value"
-              }
-            ],
-            "marker_source_api": "https://hansard-api.parliament.uk/debates/debate/8c154d52-8c83-4d69-b53f-360abada4a5c.json"
-          }
-        },
-        "source/bd16babe4e2cd32a3122c84f.md": {
-          "id": "source/bd16babe4e2cd32a3122c84f.md",
-          "title": "Railways Bill · Second Reading",
-          "type": "Formal Bill stage",
-          "section": "Demonstration evidence",
-          "timestamp": "2026-07-07",
-          "url": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
-          "resource": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
-          "body": "Lords · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber)",
-          "learning_facets": {
-            "sitting": [
-              "2026-07-07"
-            ],
-            "chamber": [
-              "Lords"
-            ],
-            "connection": [
-              "Formal Bill stage"
-            ],
-            "example": [
-              "Railways Bill"
-            ]
-          }
-        },
-        "source/96b539c84f43c43bb949dab2.md": {
-          "id": "source/96b539c84f43c43bb949dab2.md",
-          "title": "Railways Bill · Third Reading",
-          "type": "Formal Bill stage",
-          "section": "Demonstration evidence",
-          "timestamp": "2026-06-10",
-          "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill",
-          "resource": "https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill",
-          "body": "Commons · Formal Bill stage\n\n[Read in Hansard](https://hansard.parliament.uk/Commons/2026-06-10/debates/D04D1360-E0F8-4D80-B4B4-E9EF69FA9B39/RailwaysBill)",
-          "learning_facets": {
-            "sitting": [
-              "2026-06-10"
-            ],
-            "chamber": [
-              "Commons"
-            ],
-            "connection": [
-              "Formal Bill stage"
-            ],
-            "example": [
-              "Railways Bill"
             ]
           }
         },

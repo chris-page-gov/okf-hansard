@@ -4,24 +4,24 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   ".well-known/okf.json": {
-    "bytes": 3695,
-    "sha256": "8ad73756724ee70b839c4bf179dd53778ee0746090188eb15015f803abb89f68"
+    "sha256": "5617b14b2fbc19269ae9debdb0b2e520bc128820b4d4c4610ed84d68377d5220",
+    "bytes": 3695
   },
   "beginners.html": {
     "bytes": 3154,
     "sha256": "784ddc103a23b5118dc1254459db8cd10ffec2cd215e8d246dea41802c9be782"
   },
   "coverage.json": {
-    "bytes": 3000,
-    "sha256": "dd2787e696451449d2784f10ec5f86cac8bfe9241419d2c2ffc375c9791d7730"
+    "sha256": "c97818c3266f8ccaee957566fa5c995d8dda549f8dab8729497d4534e6e3edd2",
+    "bytes": 3000
   },
   "demo-evidence.md": {
-    "bytes": 10270,
-    "sha256": "c254fafbe3465785aeec84a411da84099d9595fd86f76436a4bb31e603975ef5"
+    "sha256": "372d9a03dc3f2a0c7fcfca365e26ddf0d6496d8450d624cc199b56b08098a825",
+    "bytes": 10280
   },
   "demo-timeline.json": {
-    "bytes": 60568,
-    "sha256": "aba72f2c360c6797af9e9fe455693cbe980272feaabdf22eecf89c0592577dfe"
+    "sha256": "a49892e89df7930b719ea1bc6bf5561ccc1dd41ccae148ab008e998e84aab51a",
+    "bytes": 60798
   },
   "demo.html": {
     "bytes": 2240,
@@ -32,8 +32,8 @@
     "sha256": "da7229696a2f57f9f4a3aa2eedbee7665441934e3a7de9c3bdddc0f325fbbd38"
   },
   "demo.json": {
-    "bytes": 15689,
-    "sha256": "f981e06f368485c86b429e0144b393009c157929747c3d4f35cfbb59a75bff01"
+    "sha256": "fb4a34d7133e51b6153eccd0813b11db29cc0d6840cd366eae12f9430fb3e8d1",
+    "bytes": 15699
   },
   "example-earlier-mentions.yamlld": {
     "bytes": 73864,
@@ -9252,8 +9252,8 @@
     "sha256": "51c1a792473bbbb631c3c91d5d173ce7d11b46b64445ac8c49c43208ec78c794"
   },
   "index.html": {
-    "bytes": 3389,
-    "sha256": "2c08547e897ea723ecb6dfd6558863119bdc22f93c5b9a9368d7e1d60a19771b"
+    "sha256": "a53c49928643ef484d728d01df13aaeb6c4de8d639e5396d8cbbc1539e186967",
+    "bytes": 3438
   },
   "llms.txt": {
     "bytes": 710,
@@ -9268,12 +9268,12 @@
     "sha256": "feaf1de96ad0e7b7e1f9c35ce645ce4ddf4e8c077ff88bf59bcc674591646084"
   },
   "okf/index.md": {
-    "bytes": 880,
-    "sha256": "d264957e4a4c910b0a02d2d58aef20717586c8d9e6c98a6e98eaf13b5b32f6e0"
+    "sha256": "394149381e5580c9a42c87838c235e9497bade54df96f12f6a47cf8aff50f77c",
+    "bytes": 890
   },
   "okf/microsoft-365.md": {
-    "bytes": 12759,
-    "sha256": "533a78a4e6865e684361f41aa580de56941ef7d7b70f40cbb3641d5b9a7a33d0"
+    "sha256": "9ec27b687378302f96b3625692d73c22cfca11dc68fbc21495528a7d757ef49f",
+    "bytes": 12779
   },
   "okf/palantir-nhs.md": {
     "bytes": 5305,
@@ -9292,16 +9292,16 @@
     "sha256": "3fe91860c7defba6b472ad387ccc39cb190988f966d26ef4823f8c724ba844bc"
   },
   "okf-public-access.json": {
-    "bytes": 3695,
-    "sha256": "8ad73756724ee70b839c4bf179dd53778ee0746090188eb15015f803abb89f68"
+    "sha256": "5617b14b2fbc19269ae9debdb0b2e520bc128820b4d4c4610ed84d68377d5220",
+    "bytes": 3695
   },
   "site.css": {
     "bytes": 3110,
     "sha256": "86d36070286949429ce43f9b62defaa5239b341a0eacdab7b72d7e712130f3b9"
   },
   "use-with-ai.html": {
-    "bytes": 2159,
-    "sha256": "1a87f5230626cd2156247f2a4e687d63339a8d3cf3fca42277e2a2155ab7c4be"
+    "sha256": "c293769fcb0c495e7bc76e417fc4b381218f699a9f9419cff0369d29d878a56b",
+    "bytes": 2163
   },
   "voice-microsoft-365.html": {
     "bytes": 10356,

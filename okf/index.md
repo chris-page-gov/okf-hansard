@@ -4,9 +4,9 @@
 
 # A week in Parliament
 
-- [Microsoft 365 outage](microsoft-365.md)
-- [Palantir and the NHS](palantir-nhs.md)
 - [Railways Bill](railways-bill.md)
+- [Microsoft 365 outage statement](microsoft-365.md)
+- [Palantir and the NHS](palantir-nhs.md)
 
 # Coverage and retrieval
 
