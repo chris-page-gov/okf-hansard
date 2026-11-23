@@ -13,7 +13,8 @@
     "2026-11-16",
     "2026-11-17",
     "2026-11-18",
-    "2026-11-19"
+    "2026-11-19",
+    "2026-11-20"
   ],
   "archive_through": "2026-10-29",
   "entities": {
@@ -260,6 +261,13 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/lords-2026-11-17-grandcommittee-9e865c58-3771-4237-8e5c-6dbe9fb4c18f.md",
+      "captured_only": true
+    },
+    "activity-05f42ff5465f8fbbe1e9063b": {
+      "label": "Baroness Miller of Chilthorne Domer",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-1934.md",
       "captured_only": true
     },
     "activity-0604b07b5cc73cee5c55ff3d": {
@@ -1088,6 +1096,13 @@
       "route": "debate/commons-2026-11-18-westhall-42bc47c9-b27d-4a6b-8de5-20ad0df5da20.md",
       "captured_only": true
     },
+    "activity-193f70cefe2e6db4ce8c490b": {
+      "label": "Lord Bew",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-3832.md",
+      "captured_only": true
+    },
     "activity-197ef9683c7d9abaae246690": {
       "label": "Andrew Cooper",
       "group": "Speakers",
@@ -1305,6 +1320,13 @@
       "route": "debate/commons-2026-11-10-petitions-26111091000019.md",
       "captured_only": true
     },
+    "activity-1e0b2412559ea5efcd6eec0c": {
+      "label": "Lord Dodds of Duncairn",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-1388.md",
+      "captured_only": true
+    },
     "activity-1e144256031d78b824a4f2ab": {
       "label": "Northern Ireland Affairs",
       "group": "Proceedings",
@@ -1366,6 +1388,13 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-333.md",
+      "captured_only": true
+    },
+    "activity-1f20e255867eada7d334e8d8": {
+      "label": "Complications from Abortions (Annual Report) Bill [HL]",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-20-debate-531f6dc9-0328-4e06-83be-56716d1f5c46.md",
       "captured_only": true
     },
     "activity-1f3b554681ef6356bd7cd399": {
@@ -3006,6 +3035,13 @@
       "route": "entity/member-3756.md",
       "captured_only": true
     },
+    "activity-45eed8916c5ed6bda2123a39": {
+      "label": "Lord Redesdale",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-3271.md",
+      "captured_only": true
+    },
     "activity-467e11ae4b462bfd92aa1312": {
       "label": "Lord Ponsonby of Shulbrede",
       "group": "Speakers",
@@ -3454,6 +3490,13 @@
       "route": "entity/member-5296.md",
       "captured_only": true
     },
+    "activity-518183efcccd33d674424ba8": {
+      "label": "Baroness Freeman of Steventon",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-5026.md",
+      "captured_only": true
+    },
     "activity-518a6e61836cd1fa24dc5827": {
       "label": "Kerry McCarthy",
       "group": "Speakers",
@@ -3676,6 +3719,13 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-17-correction-d7eaf79e-6765-4967-be36-f33294d75ddc.md",
+      "captured_only": true
+    },
+    "activity-5749b58b16014011b8ac195d": {
+      "label": "Corporate Waste Responsibility Bill [HL]",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-20-debate-7bdaf29c-366a-4240-b6d5-766046b7d6eb.md",
       "captured_only": true
     },
     "activity-57786bcfd6f44e16f991ceda": {
@@ -4845,6 +4895,13 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4597.md",
+      "captured_only": true
+    },
+    "activity-70cb2cc19be66959c536a725": {
+      "label": "House of Lords",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-20-debate-2611205000116.md",
       "captured_only": true
     },
     "activity-713bb3cfdcbe5b5c824648e8": {
@@ -8151,6 +8208,13 @@
       "route": "role/a8bdea7fdbd7605f3ab6b7a6.md",
       "captured_only": true
     },
+    "activity-bee39c7a31aa3c7e15d61d3d": {
+      "label": "Baroness Maclean of Redditch",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-4668.md",
+      "captured_only": true
+    },
     "activity-bee9d0e2ba5c5eedef5173ab": {
       "label": "Lord Carlile of Berriew",
       "group": "Speakers",
@@ -9880,6 +9944,13 @@
       "route": "entity/member-4533.md",
       "captured_only": true
     },
+    "activity-ec05e26c7dbba96424e7445d": {
+      "label": "European Union (Withdrawal Arrangements) Bill [HL]",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-20-debate-c781ca4c-83ae-481a-9518-d9ddcdc7fda7.md",
+      "captured_only": true
+    },
     "activity-ec0c59fd27944c87e8a17dc2": {
       "label": "Westminster Hall",
       "group": "Proceedings",
@@ -10298,6 +10369,13 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-5351.md",
+      "captured_only": true
+    },
+    "activity-f4b46a7fb0d3581b3cbf97c4": {
+      "label": "Lord Bourne of Aberystwyth",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-4282.md",
       "captured_only": true
     },
     "activity-f4dc9c288c3c26f7036bf950": {
@@ -21897,6 +21975,22 @@
       "complete": true,
       "errors": 0
     },
+    "member-1388": {
+      "label": "Lord Dodds of Duncairn",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-1388.md",
+      "archive_count": 0,
+      "search_count": 124,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
     "member-14": {
       "label": "Lord Redwood",
       "type": "Peer",
@@ -23102,6 +23196,22 @@
       "complete": true,
       "errors": 0
     },
+    "member-3271": {
+      "label": "Lord Redesdale",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-3271.md",
+      "archive_count": 0,
+      "search_count": 457,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
     "member-3275": {
       "label": "Lord Razzall",
       "type": "Peer",
@@ -23505,6 +23615,22 @@
       "errors": 0,
       "older_count": 13
     },
+    "member-3795": {
+      "label": "Lord Morrow",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-3795.md",
+      "archive_count": 0,
+      "search_count": 466,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
     "member-3798": {
       "label": "Lord Patel of Bradford",
       "type": "Peer",
@@ -23576,6 +23702,22 @@
       "route": "entity/member-3831.md",
       "archive_count": 0,
       "search_count": 52,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
+    "member-3832": {
+      "label": "Lord Bew",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-3832.md",
+      "archive_count": 0,
+      "search_count": 648,
       "search_windows": [
         [
           "2007-01-01",
@@ -24766,6 +24908,22 @@
       "route": "entity/member-4217.md",
       "archive_count": 0,
       "search_count": 82,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
+    "member-4233": {
+      "label": "Lord Stirrup",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4233.md",
+      "archive_count": 0,
+      "search_count": 591,
       "search_windows": [
         [
           "2007-01-01",
@@ -26279,6 +26437,22 @@
       "complete": true,
       "errors": 0
     },
+    "member-4581": {
+      "label": "Lord Caine",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4581.md",
+      "archive_count": 0,
+      "search_count": 245,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
     "member-4591": {
       "label": "Sarah Olney",
       "type": "MP",
@@ -27664,6 +27838,22 @@
       "complete": true,
       "errors": 0
     },
+    "member-4888": {
+      "label": "Lord Sharpe of Epsom",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4888.md",
+      "archive_count": 0,
+      "search_count": 338,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
     "member-489": {
       "label": "Lord Watts",
       "type": "Peer",
@@ -28154,6 +28344,22 @@
       "complete": true,
       "errors": 0
     },
+    "member-4970": {
+      "label": "Lord Weir of Ballyholme",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4970.md",
+      "archive_count": 0,
+      "search_count": 56,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
     "member-4972": {
       "label": "Lord Hendy of Richmond Hill",
       "type": "Peer",
@@ -28391,6 +28597,22 @@
       "route": "entity/member-5005.md",
       "archive_count": 0,
       "search_count": 24,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0
+    },
+    "member-5007": {
+      "label": "Lord Moynihan of Chelsea",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-5007.md",
+      "archive_count": 0,
+      "search_count": 88,
       "search_windows": [
         [
           "2007-01-01",
