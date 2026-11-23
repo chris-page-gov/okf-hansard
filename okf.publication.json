@@ -90,9 +90,9 @@
       {"path": "uv.lock", "role": "source-register"}
     ],
     "generated": [
-      {"path": "releases/current/okf-bundle.yamlld", "role": "semantic-yaml-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release"]},
-      {"path": "releases/current/okf-bundle.json", "role": "semantic-json-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release"]},
-      {"path": "releases/current/graph/okf-explorer.json", "role": "explorer-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
+      {"path": "releases/current/okf-bundle.yamlld", "role": "semantic-yaml-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release", "audit-full-source"]},
+      {"path": "releases/current/okf-bundle.json", "role": "semantic-json-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release", "audit-full-source"]},
+      {"path": "releases/current/graph/okf-explorer.json", "role": "explorer-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release", "audit-full-source"]},
       {"path": "releases/current/graph/relationships/runtime.json", "role": "relationship-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
       {"path": "releases/current/graph/relationships/locator.json", "role": "relationship-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
       {"path": "site/okf-core.json", "role": "explorer-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["check-markdown"]},
@@ -104,12 +104,12 @@
   },
   "planes": [
     {"id": "source", "depends_on": [], "paths": ["profile/*", ".work/okf-03/*"], "command_ids": ["build-core"]},
-    {"id": "semantic", "depends_on": ["source"], "paths": ["releases/current/okf-bundle.*", "profile/hansard-domain-v2.json", "okf.semantic.json"], "command_ids": ["build-core", "verify-release"]},
+    {"id": "semantic", "depends_on": ["source"], "paths": ["releases/current/okf-bundle.*", "profile/hansard-domain-v2.json", "okf.semantic.json"], "command_ids": ["build-core", "verify-release", "audit-full-source"]},
     {"id": "runtime", "depends_on": ["semantic"], "paths": ["releases/current/graph/*", "site/okf-core.json"], "command_ids": ["build-graph", "build-publication"]},
     {"id": "documentation", "depends_on": ["source", "semantic"], "paths": ["README.md", "docs/*", "CHANGELOG.md"], "command_ids": ["test-suite"]},
     {"id": "application", "depends_on": ["runtime", "documentation"], "paths": ["docs/pages/*", "site/walkthrough.*"], "command_ids": ["build-publication", "test-suite"]},
     {"id": "browser", "depends_on": ["application"], "paths": ["site/walkthrough.html", "site/graph/*"], "command_ids": ["verify-source"]},
-    {"id": "release", "depends_on": ["semantic", "runtime", "documentation", "application", "browser"], "paths": ["site/checksums.json", "site/okf-public-access.json"], "command_ids": ["verify-release"]},
+    {"id": "release", "depends_on": ["semantic", "runtime", "documentation", "application", "browser"], "paths": ["site/checksums.json", "site/okf-public-access.json"], "command_ids": ["verify-release", "audit-full-source"]},
     {"id": "deployment", "depends_on": ["release"], "paths": ["scripts/publish_demo_week.py", "scripts/publish_november.py"], "command_ids": ["verify-pages"]}
   ],
   "tooling": {
@@ -120,6 +120,7 @@
       {"id": "build-publication", "kind": "build", "planes": ["runtime", "application"], "command": "uv run --locked python scripts/build_pages.py --release RELEASE --coverage COVERAGE --out SITE", "source": "scripts/build_pages.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 60},
       {"id": "check-core-projection", "kind": "check", "planes": ["semantic", "runtime"], "command": "uv run --locked python scripts/build_core_projection.py SITE/okf SITE --check", "source": "scripts/build_core_projection.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
       {"id": "verify-release", "kind": "check", "planes": ["semantic", "runtime", "release"], "command": "uv run --locked python scripts/verify.py --release RELEASE --snapshot SNAPSHOT --people PEOPLE --report REPORT", "source": "scripts/verify.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 60},
+      {"id": "audit-full-source", "kind": "check", "planes": ["semantic", "runtime", "release"], "command": "uv run --locked python scripts/audit_full_source.py RELEASE --producer-commit COMMIT --output REPORT", "source": "scripts/audit_full_source.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "report-only", "timeout_minutes": 30},
       {"id": "test-suite", "kind": "test", "planes": ["source", "semantic", "application"], "command": "PYTHONPATH=scripts uv run --locked python -m unittest discover -s tests", "source": ".github/workflows/okf-hansard-ci.yml", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
       {"id": "verify-source", "kind": "verify", "planes": ["browser"], "command": "Use the shared Explorer's canonical external bundle acceptance runner with the four exact-identity manifests in `acceptance/`.", "source": "README.md", "review_status": "unreviewed", "network": "bounded-read", "mutates": "none", "timeout_minutes": 20},
       {"id": "verify-pages", "kind": "verify", "planes": ["deployment"], "command": "Use scripts/verify_public.py to compare the deployed checksum catalogue and selected routes with the exact reviewed candidate.", "source": "scripts/verify_public.py", "review_status": "reviewed-local-guidance", "network": "bounded-read", "mutates": "none", "timeout_minutes": 10}

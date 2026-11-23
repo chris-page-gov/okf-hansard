@@ -71,7 +71,7 @@
   },
   "tooling": {
     "build": ["uv run --locked python scripts/build.py", "uv run --locked python scripts/build_explorer_graph.py", "uv run --locked python scripts/build_core_projection.py"],
-    "check": ["uv run --locked python -m unittest discover -s tests", "uv run --locked python scripts/verify.py", "uv run --locked python scripts/build_core_projection.py --check"],
+    "check": ["uv run --locked python -m unittest discover -s tests", "uv run --locked python scripts/verify.py", "uv run --locked python scripts/build_core_projection.py --check", "uv run --locked python scripts/audit_full_source.py RELEASE --producer-commit COMMIT --output REPORT"],
     "setup": ["uv sync --locked"]
   }
 }
