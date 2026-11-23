@@ -5,7 +5,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from capture import dump, sha
-from okf_core import CORE_VERSION
+from okf_core import CORE_VERSION, PROFILE, PRODUCT_VERSION
 from query import DEFAULT_DB, Index
 
 PALANTIR = "/D1EA4BF2-2796-48DD-A144-B9675E614F2A/"
@@ -165,6 +165,7 @@ def timeline_route(url):
 def write_timeline(destination, examples, counts, source_nodes):
     title = "A week in Parliament · Demonstration timeline"
     nodes = {"index.md": {"id": "index.md", "title": title, "type": "Index",
+                          "core_role": "navigation",
                           "body": "Choose a sitting date or House, then open a record and follow its Hansard link."}}
     verified = {node["url"]: node for node in source_nodes.values()
                 if node.get("url") and node.get("hansard_proceedings", {}).get("source_item")}
@@ -182,6 +183,7 @@ def write_timeline(destination, examples, counts, source_nodes):
                 nodes[route] = {
                     "id": route, "title": row["title"], "type": row["relation"],
                     "section": "Demonstration evidence", "timestamp": row["date"],
+                    "core_role": "extension",
                     "url": row["url"], "resource": row["url"],
                     "body": f"{row['house']} · {row['relation']}\n\n[Read in Hansard]({row['url']})",
                     "learning_facets": {"sitting": [row["date"]], "chamber": [row["house"]],
@@ -205,10 +207,14 @@ def write_timeline(destination, examples, counts, source_nodes):
         groups.append({"title": label, "routes": list(dict.fromkeys(routes))})
     facets = {"sitting": "Sitting date", "chamber": "House", "connection": "Connection", "example": "Example"}
     meta = {"title": title, "default_corpus": "hansard", "corpus_order": ["hansard"],
+            "profile": PROFILE, "product_version": PRODUCT_VERSION,
             "learning_presentation": {"schema": "okf-learning-presentation.v1", "start_route": "index.md",
                                       "groups": groups, "facets": [{"key": k, "label": v} for k, v in facets.items()]}}
     dump(destination / "demo-timeline.json", {
-        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": CORE_VERSION, "meta": meta,
+        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle",
+        "id": "urn:okf:hansard:demo-timeline:v1", "version": PRODUCT_VERSION,
+        "snapshot": "hansard-demo-sha256-" + sha(json.dumps(nodes, sort_keys=True, ensure_ascii=False).encode("utf-8")),
+        "okf_version": CORE_VERSION, "meta": meta,
         "corpora": {"hansard": {"id": "hansard", "title": title, "root": "index.md",
                                "assertion_scope": "real-world", "nodes": nodes, "relationships": []}},
     })

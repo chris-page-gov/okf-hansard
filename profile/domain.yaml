@@ -1,13 +1,17 @@
-schema: hansard-foundry-profile.v1
+schema: hansard-foundry-profile.v2
+profile_version: "2"
+product_version: "0.3.0"
 title: A week in Parliament
 language: en-GB
 display_timezone: Europe/London
 status: local research pilot
-okf_version: "0.2"
+okf_version: "0.3"
 explorer_reference:
   commit: e57e2c2e056bce326033fa576c4aa278dc437eb2
   warm_up_prompt: docs/prompts/okf-domain-warm-up.md
   build_prompt: docs/prompts/okf-bundle-build.md
+  semantic_profile: https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json
+  structural_profile: https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/
   semantic_schema: profiles/bundle-wiki/v1/semantic-assertion.schema.json
   presentation: okf-learning-presentation.v1
 source_contract:

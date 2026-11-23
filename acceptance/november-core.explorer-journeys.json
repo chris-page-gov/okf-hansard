@@ -1,0 +1,39 @@
+{
+  "schema": "okf-explorer-journeys.v1",
+  "bundle_descriptor": "okf-core.json",
+  "expected_identity": {
+    "schema": "okf-explorer-bundle.v0",
+    "id": "urn:okf:hansard:public-core:november-in-parliament",
+    "version": "0.3.0",
+    "snapshot": "hansard-markdown-sha256-0efbb1556ddc8d8648b19d2076a03689514bffb28f3449b920295f18004882c3"
+  },
+  "journeys": [
+    {
+      "id": "november-core-source-linked-question",
+      "actions": [
+        {
+          "type": "goto",
+          "hash": "#sittings.md"
+        },
+        {
+          "type": "wait_for",
+          "selector": ".right-panel h2:has-text(\"Sittings\")"
+        }
+      ],
+      "assertions": [
+        {
+          "type": "text",
+          "selector": ".right-panel",
+          "includes": "2026-11-20"
+        },
+        {
+          "type": "console_clean"
+        },
+        {
+          "type": "requested",
+          "includes": "/bundle/okf-core.json"
+        }
+      ]
+    }
+  ]
+}

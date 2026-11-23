@@ -1,0 +1,179 @@
+{
+  "schema": "okf-repository-publication-contract.v1",
+  "modified": "2026-11-23",
+  "locale": "en-GB",
+  "time_zone": "Europe/London",
+  "repository": {
+    "name": "okf-hansard",
+    "url": "https://github.com/chris-page-gov/okf-hansard",
+    "role": "large-corpus-producer",
+    "root_index": "releases/current/markdown/index.md",
+    "lifecycle": "migration"
+  },
+  "semantic_contract": {
+    "path": "okf.semantic.json",
+    "profile": "https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json"
+  },
+  "source_families": [
+    {
+      "id": "captured-hansard",
+      "label": "Captured Parliament source records",
+      "description": "Immutable, checksummed Hansard API captures and Members API evidence used to build the week and November corpus snapshots.",
+      "kind": "mixed",
+      "paths": [".work/okf-03/week/", ".work/okf-03/november/"],
+      "formats": ["application/json", "text/markdown", "application/yaml"],
+      "origin": "acquired",
+      "authority": "official",
+      "snapshot_policy": "immutable-checksummed",
+      "inventory": {
+        "method": "content-addressed-manifest",
+        "manifest_path": ".work/okf-03/november/receipt.json",
+        "identity": ["relative-path", "bytes", "sha256", "source-version", "observed-at"]
+      },
+      "rights": {
+        "status": "mixed",
+        "evidence": ["https://www.parliament.uk/site-information/copyright/open-parliament-licence/"],
+        "limitations": ["The Open Parliament Licence has exclusions. Retained API fields, source text, personal data and third-party references keep their own rights and context."]
+      },
+      "sensitivity": {
+        "status": "contains-personal-data",
+        "assessment": "The official parliamentary record names members and other people. Public availability does not remove personal-data considerations; only the declared public source fields are used.",
+        "evidence": ["https://www.parliament.uk/site-information/copyright/open-parliament-licence/"]
+      },
+      "extraction": {
+        "mode": "deterministic-local",
+        "network_access": "prohibited",
+        "command_ids": ["build-core", "verify-release"],
+        "limitations": ["Capture and source acquisition are separate from local bundle generation. A missing or unavailable capture is not silently replaced by a live response."]
+      },
+      "invalidates": ["source", "semantic", "runtime", "documentation", "release", "deployment"],
+      "limitations": ["Frozen historical releases and older source snapshots retain their original version, identity and bytes."]
+    },
+    {
+      "id": "domain-and-rules",
+      "label": "Hansard domain model and generator rules",
+      "description": "The authored domain profile, matching vocabulary, curated summaries, source readers, deterministic generators, tests and publication documentation.",
+      "kind": "mixed",
+      "paths": ["profile/domain.yaml", "profile/vocabulary.yaml", "profile/curated-summaries.json", "profile/hansard-domain-v2.json", "scripts/", "tests/", "acceptance/", "docs/", "README.md", "CHANGELOG.md"],
+      "formats": ["text/yaml", "application/json", "text/x-python", "text/markdown"],
+      "origin": "authored",
+      "authority": "editorial",
+      "snapshot_policy": "pinned-revision",
+      "inventory": {
+        "method": "deterministic-file-inventory",
+        "manifest_path": "okf.semantic.json",
+        "identity": ["relative-path", "bytes", "sha256", "source-version"]
+      },
+      "rights": {"status": "approved", "evidence": ["https://github.com/chris-page-gov/okf-hansard"]},
+      "sensitivity": {"status": "assessed-no-personal-data", "assessment": "The source files describe the producer and published public-domain method; source records remain classified separately."},
+      "extraction": {"mode": "deterministic-local", "network_access": "prohibited", "command_ids": ["build-core", "build-graph", "build-publication", "test-suite"]},
+      "invalidates": ["source", "semantic", "runtime", "documentation", "application", "browser", "release", "deployment"],
+      "limitations": ["Human-authored labels, alias lists and summaries are editorial inputs and are not claims of measured recall or substantive relevance."]
+    }
+  ],
+  "boundaries": {
+    "authored": [
+      {"path": "profile/domain.yaml", "role": "profile", "source_family_id": "domain-and-rules"},
+      {"path": "profile/vocabulary.yaml", "role": "source-register", "source_family_id": "domain-and-rules"},
+      {"path": "profile/curated-summaries.json", "role": "content", "source_family_id": "domain-and-rules"},
+      {"path": "profile/hansard-domain-v2.json", "role": "profile", "source_family_id": "domain-and-rules"},
+      {"path": "scripts/*", "role": "generator", "source_family_id": "domain-and-rules"},
+      {"path": "tests/*", "role": "test", "source_family_id": "domain-and-rules"},
+      {"path": "docs/*", "role": "documentation", "source_family_id": "domain-and-rules"},
+      {"path": "README.md", "role": "documentation", "source_family_id": "domain-and-rules"},
+      {"path": "AGENTS.md", "role": "policy"},
+      {"path": "okf.semantic.json", "role": "policy"},
+      {"path": "okf.publication.json", "role": "publication-contract"},
+      {"path": "CHANGELOG.md", "role": "changelog"},
+      {"path": ".github/workflows/okf-hansard-ci.yml", "role": "workflow"},
+      {"path": "pyproject.toml", "role": "source-register"},
+      {"path": "uv.lock", "role": "source-register"}
+    ],
+    "generated": [
+      {"path": "releases/current/okf-bundle.yamlld", "role": "semantic-yaml-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release"]},
+      {"path": "releases/current/okf-bundle.json", "role": "semantic-json-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release"]},
+      {"path": "releases/current/graph/okf-explorer.json", "role": "explorer-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
+      {"path": "releases/current/graph/relationships/runtime.json", "role": "relationship-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
+      {"path": "releases/current/graph/relationships/locator.json", "role": "relationship-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
+      {"path": "site/okf-core.json", "role": "explorer-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["check-markdown"]},
+      {"path": "site/walkthrough.html", "role": "site", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
+      {"path": "site/walkthrough.svg", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
+      {"path": "site/okf-public-access.json", "role": "other", "plane": "release", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["verify-release"]},
+      {"path": "site/checksums.json", "role": "checksum-manifest", "plane": "release", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["verify-release"]}
+    ]
+  },
+  "planes": [
+    {"id": "source", "depends_on": [], "paths": ["profile/*", ".work/okf-03/*"], "command_ids": ["build-core"]},
+    {"id": "semantic", "depends_on": ["source"], "paths": ["releases/current/okf-bundle.*", "profile/hansard-domain-v2.json", "okf.semantic.json"], "command_ids": ["build-core", "verify-release"]},
+    {"id": "runtime", "depends_on": ["semantic"], "paths": ["releases/current/graph/*", "site/okf-core.json"], "command_ids": ["build-graph", "build-publication"]},
+    {"id": "documentation", "depends_on": ["source", "semantic"], "paths": ["README.md", "docs/*", "CHANGELOG.md"], "command_ids": ["test-suite"]},
+    {"id": "application", "depends_on": ["runtime", "documentation"], "paths": ["docs/pages/*", "site/walkthrough.*"], "command_ids": ["build-publication", "test-suite"]},
+    {"id": "browser", "depends_on": ["application"], "paths": ["site/walkthrough.html", "site/graph/*"], "command_ids": ["verify-source"]},
+    {"id": "release", "depends_on": ["semantic", "runtime", "documentation", "application", "browser"], "paths": ["site/checksums.json", "site/okf-public-access.json"], "command_ids": ["verify-release"]},
+    {"id": "deployment", "depends_on": ["release"], "paths": ["scripts/publish_demo_week.py", "scripts/publish_november.py"], "command_ids": ["verify-pages"]}
+  ],
+  "tooling": {
+    "commands": [
+      {"id": "setup", "kind": "setup", "planes": ["source"], "command": "uv sync --locked", "source": "AGENTS.md", "review_status": "reviewed-local-guidance", "network": "dependency-install", "mutates": "none", "timeout_minutes": 10},
+      {"id": "build-core", "kind": "build", "planes": ["semantic"], "command": "uv run --locked python scripts/build.py --snapshot SNAPSHOT --people PEOPLE --out RELEASE --first YYYY-MM-DD --last YYYY-MM-DD", "source": "scripts/build.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 60},
+      {"id": "build-graph", "kind": "build", "planes": ["runtime"], "command": "uv run --locked python scripts/build_explorer_graph.py --release RELEASE --out GRAPH", "source": "scripts/build_explorer_graph.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 30},
+      {"id": "build-publication", "kind": "build", "planes": ["runtime", "application"], "command": "uv run --locked python scripts/build_pages.py --release RELEASE --coverage COVERAGE --out SITE", "source": "scripts/build_pages.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 60},
+      {"id": "check-core-projection", "kind": "check", "planes": ["semantic", "runtime"], "command": "uv run --locked python scripts/build_core_projection.py SITE/okf SITE --check", "source": "scripts/build_core_projection.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
+      {"id": "verify-release", "kind": "check", "planes": ["semantic", "runtime", "release"], "command": "uv run --locked python scripts/verify.py --release RELEASE --snapshot SNAPSHOT --people PEOPLE --report REPORT", "source": "scripts/verify.py", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "generated-only", "timeout_minutes": 60},
+      {"id": "test-suite", "kind": "test", "planes": ["source", "semantic", "application"], "command": "PYTHONPATH=scripts uv run --locked python -m unittest discover -s tests", "source": ".github/workflows/okf-hansard-ci.yml", "review_status": "reviewed-local-guidance", "network": "none", "mutates": "none", "timeout_minutes": 10},
+      {"id": "verify-source", "kind": "verify", "planes": ["browser"], "command": "Use the shared Explorer's canonical external bundle acceptance runner with the four exact-identity manifests in `acceptance/`.", "source": "README.md", "review_status": "unreviewed", "network": "bounded-read", "mutates": "none", "timeout_minutes": 20},
+      {"id": "verify-pages", "kind": "verify", "planes": ["deployment"], "command": "Use scripts/verify_public.py to compare the deployed checksum catalogue and selected routes with the exact reviewed candidate.", "source": "scripts/verify_public.py", "review_status": "reviewed-local-guidance", "network": "bounded-read", "mutates": "none", "timeout_minutes": 10}
+    ]
+  },
+  "lockstep": {
+    "controlled_paths": ["profile/*", "scripts/*", "tests/*", "docs/*", "README.md", "AGENTS.md", "CHANGELOG.md", "okf.semantic.json", "okf.publication.json", "pyproject.toml", "uv.lock", ".github/workflows/*"],
+    "documentation_paths": ["README.md", "AGENTS.md", "docs/*"],
+    "changelog_path": "CHANGELOG.md",
+    "check_command_id": "test-suite",
+    "dependency_update_policy": "assess-release-bound-bytes-no-blanket-exemption",
+    "unknown_path_policy": "fail-closed"
+  },
+  "ci": {
+    "provider": "github-actions",
+    "workflow_paths": [".github/workflows/okf-hansard-ci.yml"],
+    "impact_routing": "full-suite",
+    "parallelism": "serial",
+    "unknown_path_policy": "full-suite",
+    "browser": {
+      "ordinary": {"policy": "not-applicable", "engines": [], "command_ids": []},
+      "cross_engine": {"policy": "not-applicable", "engines": [], "command_ids": [], "installation": {"policy": "none", "command_ids": []}}
+    }
+  },
+  "publication": {
+    "mode": "manual",
+    "scope": "candidate",
+    "authority": {
+      "decision": "The existing demonstrator has public publication history. This core and profile migration remains an unpublished candidate until its exact source revision, generated assets, Reader journeys and live publication are separately reviewed and verified.",
+      "evidence_paths": ["README.md", "docs/okf-discovery.md"]
+    },
+    "candidate_policy": "promote-exact-assured-bytes-without-rebuild",
+    "targets": [{"id": "github-pages", "kind": "github-pages", "workflow_path": "scripts/publish_demo_week.py", "public_base_url": "https://chris-page-gov.github.io/okf-hansard/", "exact_commit_required": true, "promote_without_rebuild": true}]
+  },
+  "verification": {
+    "required": true,
+    "browser": "real-browser",
+    "exact_commit_required": true,
+    "identity_checks": ["descriptor", "snapshot", "sha256", "record-count", "route"],
+    "journeys": [
+      {"id": "week-core-and-bill-trail", "manifest": "acceptance/week-core.explorer-journeys.json", "url": "https://chris-page-gov.github.io/okf-hansard/", "expected_identity": "The exact core 0.3.0 descriptor and graph snapshot from the candidate; all three public Markdown concepts remain accessible.", "steps": ["Open the small core Reader projection and one exact typed Markdown source.", "Follow the 18 November Lords graph source to the focusable Railways Bill node, press Enter and verify the exact Bill 4030 route.", "Open the visual walkthrough, read all cited Hansard records and state that the selected trail is not a complete legal history.", "Check the explicit weekly history-search gap for 2–15 November 2026 and do not imply that the separate monthly bundle fills it." ]},
+      {"id": "week-full-graph", "manifest": "acceptance/week-large.explorer-journeys.json", "url": "https://chris-page-gov.github.io/okf-hansard/", "expected_identity": "The full 12,549-concept weekly source graph and its 40,943 existing assertions.", "steps": ["Open the 18 November Lords graph source and its full relationship neighbourhood.", "Focus the Railways Bill node, press Enter and verify `dataset/entity/bill-4030.md`.", "Pointer selection is not accepted: the weekly target hit area was intercepted by an overlapping SVG label hit area."]},
+      {"id": "november-core", "manifest": "acceptance/november-core.explorer-journeys.json", "url": "https://chris-page-gov.github.io/okf-hansard/november/", "expected_identity": "The exact November 0.3.0 compact core descriptor and the typed sittings source.", "steps": ["Open the November core Reader projection and sitting index.", "Compare its 20 November authored source cutoff with the separate 22 November coverage date roster."]},
+      {"id": "november-coverage-and-graph", "manifest": "acceptance/november-large.explorer-journeys.json", "url": "https://chris-page-gov.github.io/okf-hansard/november/", "expected_identity": "The November 0.3.0 full graph, 23,015 core Markdown concepts and 51,010 checked assertions from the exact source snapshot.", "steps": ["Open the 18 November Lords Railways Bill section and its recorded graph assertion.", "Focus the Railways Bill node, press Enter and verify the exact Bill 4030 route.", "Compare the date-by-date House counts with the source-linked visual; distinguish a no-calendar-sitting entry from a date beyond the snapshot.", "Exercise the declared negative control and retain the exact coverage cutoff."]}
+    ],
+    "console_policy": "no-errors",
+    "command_ids": ["verify-source", "verify-pages"]
+  },
+  "limitations": [
+    "The original `.work/okf-03` source roots and generated captures are retained read-only; the migrated checkout must bind every regenerated artifact to their exact source revision and digests.",
+    "The small public core Reader projections preserve their exact typed Markdown source files and frontmatter but intentionally assert no new graph edges; use the separate large-corpus descriptor for evidence-bearing graph traversal.",
+    "The November visual reports coverage through the latest date in its exact staged coverage file. It does not infer events on later dates.",
+    "The weekly historical finder reuses compatible frozen search results only through 1 November 2026. Two source-profile changes remain unmatched and the 2–15 November interval has no validated weekly search cache. No new Hansard API acquisition was made for this migration; the separate monthly source bundle carries its own captured proceedings.",
+    "The deterministic test workflow does not run the separate real-browser acceptance, AI-client retrieval or live deployment verification planes.",
+    "Source name matching and editorial summaries are not measured recall or specialist interpretation."
+  ]
+}
