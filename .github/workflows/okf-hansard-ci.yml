@@ -1,0 +1,47 @@
+name: OKF Hansard CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core:
+    name: Core validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.12.2"
+          python-version: "3.12"
+          enable-cache: false
+      - name: Run locked Python tests
+        env:
+          PYTHONPATH: scripts
+        run: uv run --locked python -m unittest discover -s tests
+      - name: Check browser script syntax
+        run: |
+          for script in docs/pages/*.js; do
+            node --input-type=module --check < "$script"
+          done
+
+  validate:
+    name: okf-hansard-ci
+    needs: core
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require successful core validation
+        env:
+          CORE_RESULT: ${{ needs.core.result }}
+        run: test "$CORE_RESULT" = success
