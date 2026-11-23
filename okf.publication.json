@@ -20,7 +20,7 @@
       "label": "Captured Parliament source records",
       "description": "Immutable, checksummed Hansard API captures and Members API evidence used to build the week and November corpus snapshots.",
       "kind": "mixed",
-      "paths": [".work/okf-03/week/", ".work/okf-03/november/"],
+      "paths": [".work/okf-03/week/", ".work/okf-03/november/", "compatibility/public-assets/"],
       "formats": ["application/json", "text/markdown", "application/yaml"],
       "origin": "acquired",
       "authority": "official",
@@ -47,7 +47,7 @@
         "limitations": ["Capture and source acquisition are separate from local bundle generation. A missing or unavailable capture is not silently replaced by a live response."]
       },
       "invalidates": ["source", "semantic", "runtime", "documentation", "release", "deployment"],
-      "limitations": ["Frozen historical releases and older source snapshots retain their original version, identity and bytes."]
+      "limitations": ["Frozen historical releases and older source snapshots retain their original version, identity and bytes.", "The separate compatibility/public-assets/manifest.json binds three acquired assets to the prior Pages revision. They preserve existing URLs and historical references, outside the active graph."]
     },
     {
       "id": "domain-and-rules",
@@ -78,6 +78,7 @@
       {"path": "profile/curated-summaries.json", "role": "content", "source_family_id": "domain-and-rules"},
       {"path": "profile/hansard-domain-v2.json", "role": "profile", "source_family_id": "domain-and-rules"},
       {"path": "scripts/*", "role": "generator", "source_family_id": "domain-and-rules"},
+      {"path": "compatibility/public-assets/*", "role": "source-register", "source_family_id": "captured-hansard"},
       {"path": "tests/*", "role": "test", "source_family_id": "domain-and-rules"},
       {"path": "docs/*", "role": "documentation", "source_family_id": "domain-and-rules"},
       {"path": "README.md", "role": "documentation", "source_family_id": "domain-and-rules"},
@@ -131,7 +132,7 @@
     ]
   },
   "lockstep": {
-    "controlled_paths": ["profile/*", "scripts/*", "tests/*", "docs/*", "README.md", "AGENTS.md", "CHANGELOG.md", "okf.semantic.json", "okf.publication.json", "pyproject.toml", "uv.lock", ".github/workflows/*"],
+    "controlled_paths": ["profile/*", "scripts/*", "tests/*", "docs/*", "compatibility/public-assets/*", "README.md", "AGENTS.md", "CHANGELOG.md", "okf.semantic.json", "okf.publication.json", "pyproject.toml", "uv.lock", ".github/workflows/*"],
     "documentation_paths": ["README.md", "AGENTS.md", "docs/*"],
     "changelog_path": "CHANGELOG.md",
     "check_command_id": "test-suite",

@@ -16,6 +16,7 @@ from discovery import HEAD_LINKS, write_discovery
 from history_pages import write as write_history
 from okf_core import CORE_VERSION
 from query import DEFAULT_DB
+from retained_public_assets import stage as retain_public_assets
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -25,6 +26,8 @@ def read(path):
 
 
 def stage(release, checkpoints, output, database, older_database, cache, archive_url=None):
+    if archive_url is None:
+        archive_url = 'historical-downloads.html'
     receipt = read(release / "receipt.json")
     verified = read(release / "verification.json")
     backfill = read(release / "backfill" / "manifest.json")
@@ -114,6 +117,7 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
 """, encoding="utf-8")
     write_discovery(output, "November in Parliament", expected, max(row["verified_at"] for row in days),
                     "okf-bundle.yamlld.gz", month=True)
+    retain_public_assets(output, 'november')
 
 
 if __name__ == "__main__":

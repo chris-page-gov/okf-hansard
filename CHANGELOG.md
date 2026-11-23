@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — preserve existing public assets, 23 November 2026
+
+- Retain three small compatibility assets from the previous Pages revision,
+  including the catalogue of frozen historical downloads. Keep their acquired
+  input bytes, prior publication revision and digests in the source repository.
+  Restore the November archive link and suppress an unrelated favicon request.
+- Refuse altered inputs or collisions with later public material. These assets
+  retain historical context; they do not become part of the active 0.3 graph.
+
 ## Unreleased — complete bundle publication checks, 23 November 2026
 
 - Give each compact week and November entry-point bundle its own source-bound

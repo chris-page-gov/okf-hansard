@@ -98,6 +98,11 @@ Run the staging command from the repository root against a verified local releas
 
 The Pages site publishes the root of the generated gh-pages branch. The build stages a fixed set of assets, validates the bundle digests and writes a public checksum catalogue. Compare the served files with the catalogue after deployment.
 
+The [retained public-asset manifest](compatibility/public-assets/manifest.json)
+preserves three small earlier URLs and their source digests. Historical archive
+references keep their original version and verification status; they are not
+added to the active 0.3 graph.
+
 Use `scripts/prepare_demo_week.py --through YYYY-MM-DD --out .work/NEW-BUILD` to prepare an extended release against the local historical index. It reuses the cached sittings and Member biographies, checks both Houses and stages Pages only after verifying the full graph. When its JSON projection needs to be smaller, the week stays complete and earlier contributions are sampled. The full semantic graph is available as YAML-LD or as a gzip download.
 
 The week's Explorer projection records the sitting date at day precision, with a separate `hansard_proceedings` field for the section title and one-based source item within that section. An individual contribution's `Timecode` is retained as supplied, with its source pointer and API URL. A time-zone-free value keeps its unrecorded zone. Published section markers come from `Timestamp` items and are attached to the section. A marker never supplies a time for an untimed contribution.

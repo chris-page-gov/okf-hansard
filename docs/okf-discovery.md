@@ -75,4 +75,13 @@ source import and the browser runner must record their pinned Reader revision.
 
 The `okf-hansard-ci` GitHub Actions check runs the locked Python tests and checks the browser scripts on pull requests to `main`. The release stagers and public verification check the larger captures and deployed views separately.
 
+The source repository retains three small compatibility assets under
+`compatibility/public-assets/`, with the exact previous Pages revision and
+input digests in its manifest. Staging preserves the historical-download
+catalogue and an earlier empty history response at their existing URLs. The
+HTML adds only a local empty favicon declaration. Historical archives keep
+their original version and acceptance status; this does not migrate their
+contents or add them to the active graph. A changed retained asset requires a
+reviewed manifest update rather than silent replacement.
+
 GitHub requires an up-to-date pull request, a passing `okf-hansard-ci` check and resolved conversations before merging into `main`. The protection applies to administrators and blocks force-pushes and branch deletion. Use squash or rebase to retain linear history.
