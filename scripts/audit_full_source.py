@@ -5,6 +5,7 @@ from hashlib import file_digest, sha256
 import json
 from pathlib import Path
 import re
+import subprocess
 
 
 def unique(pairs):
@@ -192,6 +193,11 @@ if __name__ == '__main__':
                         help='Full implementation commit, separate from the source capture identity')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
+    implementation = subprocess.check_output(
+        ['git', 'rev-parse', 'HEAD'], cwd=Path(__file__).resolve().parents[1],
+        text=True).strip()
+    if args.producer_commit != implementation:
+        parser.error('producer commit must match the checked-out implementation revision')
     result = audit(args.release, args.producer_commit)
     args.output.write_text(json.dumps(result, indent=2)+'\n')
     args.output.chmod(0o600)
