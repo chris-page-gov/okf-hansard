@@ -189,9 +189,11 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         "walkthrough": file_reference(site, base, "walkthrough.html"),
         "walkthrough_data": file_reference(site, base, "walkthrough.json"),
         "walkthrough_visual": file_reference(site, base, "walkthrough.svg"),
+        "walkthrough_mobile_visual": file_reference(site, base, "walkthrough-mobile.svg"),
         "compact_core_walkthrough": file_reference(site, base, "core-walkthrough.html"),
         "compact_core_walkthrough_data": file_reference(site, base, "core-walkthrough.json"),
         "compact_core_walkthrough_visual": file_reference(site, base, "core-walkthrough.svg"),
+        "compact_core_walkthrough_mobile_visual": file_reference(site, base, "core-walkthrough-mobile.svg"),
         "coverage": file_reference(site, base, "coverage.json"),
         "semantic_graph": {**semantic, "format": "YAML-LD", "compression": "gzip" if semantic_file.endswith(".gz") else None},
     }
@@ -265,7 +267,8 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         "walkthrough": walkthrough["compact_core_walkthrough"],
         "entrypoints": {key: entrypoints[key] for key in
                         ("markdown_index", "core_reader_projection", "compact_core_walkthrough",
-                         "compact_core_walkthrough_data", "compact_core_walkthrough_visual")},
+                         "compact_core_walkthrough_data", "compact_core_walkthrough_visual",
+                         "compact_core_walkthrough_mobile_visual")},
         "access_note": "Read this compact bundle's own question and exact Markdown sources. Its zero-edge graph does not contain the separate full graph's assertions.",
     })
     dump(site / "okf-public-access.json", directory)
