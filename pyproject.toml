@@ -6,3 +6,4 @@ dependencies = ["PyYAML==6.0.3", "rdflib==7.6.0", "jsonschema==4.26.0"]
 
 [tool.uv]
 package = false
+required-version = "==0.13.4"

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — patched uv certificate trust, 24 November 2026
+
+- Require uv 0.13.4 for local project commands and CI. This removes the
+  compromised emSign root from the build tool’s bundled certificate store
+  ([GHSA-hq85-5cpj-mr62](https://github.com/astral-sh/uv/security/advisories/GHSA-hq85-5cpj-mr62)).
+  Preserve the dependency lock, source captures, generated bundle bytes and
+  published 0.3.0 release. This correction governs future builds; it does not
+  change the frozen publication.
+
 ## Unreleased — readable mobile walkthroughs, 23 November 2026
 
 - Give each compact and full-graph walkthrough a separate readable mobile
