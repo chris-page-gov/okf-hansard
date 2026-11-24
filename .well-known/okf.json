@@ -98,33 +98,43 @@
         },
         "walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/walkthrough.html",
-          "sha256": "5828acfaf4d0ba93579a43e29e3e5f9778cebc5ae9fdf09906c4a78d3efc92f8",
-          "bytes": 4308
+          "sha256": "588259e4345181172144bd23432ba89ca8094c69e7ca16f27a981a6f84544ccb",
+          "bytes": 3617
         },
         "walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/walkthrough.json",
-          "sha256": "ab21b4af8ea9e3accb8e85477102593928936b1b5089e842611d1a86e79fe7b5",
-          "bytes": 2900
+          "sha256": "fd13a393fd575c005dd6b8d687bed410472f1acd24dd3be31432f9fe15eca135",
+          "bytes": 2991
         },
         "walkthrough_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/walkthrough.svg",
           "sha256": "e853dc108e60b2af842dbfcbda1355b9531f42466f0e1e093256357760dc2b94",
           "bytes": 967
         },
+        "walkthrough_mobile_visual": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/walkthrough-mobile.svg",
+          "sha256": "4bf19964b127258aa5db0db13d7265395fd49bf331d0f393856da05506dda2ef",
+          "bytes": 1276
+        },
         "compact_core_walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough.html",
-          "sha256": "3f74f1faa96ed6929aca2284f90cad473cc41624c0d597d4a17a51b3c34cc8c4",
-          "bytes": 5185
+          "sha256": "9db4c9dc1c38c8006a5c556df789607b19a97e16b1bcc9a918bbc6dd016f7255",
+          "bytes": 4347
         },
         "compact_core_walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough.json",
-          "sha256": "0d2ecbcb09986134d42404814c4358f3f9986220e313f6f6dd9c723c583dd9a4",
-          "bytes": 3432
+          "sha256": "6172c62ebff25916d8e166f905a809d5e42aae12d55d80524cd382f7d21d2928",
+          "bytes": 3523
         },
         "compact_core_walkthrough_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough.svg",
           "sha256": "8f36ae6818338840b1366667df0e2bdc503da4254307ba4de812039e0802854f",
           "bytes": 1153
+        },
+        "compact_core_walkthrough_mobile_visual": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough-mobile.svg",
+          "sha256": "64a5f0128d88113c5f5034fc617db7521af4587a23eed78504cff8876ba032d3",
+          "bytes": 1422
         },
         "coverage": {
           "url": "https://chris-page-gov.github.io/okf-hansard/coverage.json",
@@ -225,18 +235,23 @@
         },
         "compact_core_walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough.html",
-          "sha256": "3f74f1faa96ed6929aca2284f90cad473cc41624c0d597d4a17a51b3c34cc8c4",
-          "bytes": 5185
+          "sha256": "9db4c9dc1c38c8006a5c556df789607b19a97e16b1bcc9a918bbc6dd016f7255",
+          "bytes": 4347
         },
         "compact_core_walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough.json",
-          "sha256": "0d2ecbcb09986134d42404814c4358f3f9986220e313f6f6dd9c723c583dd9a4",
-          "bytes": 3432
+          "sha256": "6172c62ebff25916d8e166f905a809d5e42aae12d55d80524cd382f7d21d2928",
+          "bytes": 3523
         },
         "compact_core_walkthrough_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough.svg",
           "sha256": "8f36ae6818338840b1366667df0e2bdc503da4254307ba4de812039e0802854f",
           "bytes": 1153
+        },
+        "compact_core_walkthrough_mobile_visual": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/core-walkthrough-mobile.svg",
+          "sha256": "64a5f0128d88113c5f5034fc617db7521af4587a23eed78504cff8876ba032d3",
+          "bytes": 1422
         }
       },
       "access_note": "Read this compact bundle's own question and exact Markdown sources. Its zero-edge graph does not contain the separate full graph's assertions."

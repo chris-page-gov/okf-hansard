@@ -89,33 +89,43 @@
         },
         "walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough.html",
-          "sha256": "2b68b6250f1ba556dd4f8af06561d3699f9d8a7ccfebc2066b21bfe949104f08",
-          "bytes": 6867
+          "sha256": "08371c70d39ca6f04946abb464c0f366690b839774765e3efac4e6d26961acf7",
+          "bytes": 3547
         },
         "walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough.json",
-          "sha256": "045b0c6ec645882ee93e3e57c6884d349c9c8ec1f398cbfc718baca0ceb9c649",
-          "bytes": 7354
+          "sha256": "b1a61c6c3ec880801da7372b62b5f9d00e7f39ec432bd7ec1173454e14c14c42",
+          "bytes": 7445
         },
         "walkthrough_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough.svg",
           "sha256": "3dbf87d85020836ac87da26a10938abe3d1612afbfd8111f355eb15bb2a15946",
           "bytes": 3583
         },
+        "walkthrough_mobile_visual": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough-mobile.svg",
+          "sha256": "73f88471094a14e23aded00e4869ba2b0f3e5d27bc884c81b0b8902cfd655ce3",
+          "bytes": 3273
+        },
         "compact_core_walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.html",
-          "sha256": "28c4785ea06d80ec8c4e38f4286250a871515fcb3f8adb06ab451e9a2d1491d1",
-          "bytes": 4167
+          "sha256": "1f2db51de7ca8217607637697cca00b8c57e3ef40455d564ab9cb76b2267eb6f",
+          "bytes": 3329
         },
         "compact_core_walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.json",
-          "sha256": "978f03b34c95c83c511a66e2b108c6ddb608e8d653726f43370187e5b4769402",
-          "bytes": 2223
+          "sha256": "5f4f162b76343fdca0b9de98a7b870d820bb2cd4c5af221baee6244f215161c4",
+          "bytes": 2314
         },
         "compact_core_walkthrough_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.svg",
           "sha256": "61a8c3e72f5de31fce2c0f2c29cff263958be930110276ec38fbb6e05f8d6a89",
           "bytes": 1153
+        },
+        "compact_core_walkthrough_mobile_visual": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough-mobile.svg",
+          "sha256": "ede6d8238b5ab7db5b18bf222fd74485d9ae8c758e305d7b4654759289875854",
+          "bytes": 1422
         },
         "coverage": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/coverage.json",
@@ -201,18 +211,23 @@
         },
         "compact_core_walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.html",
-          "sha256": "28c4785ea06d80ec8c4e38f4286250a871515fcb3f8adb06ab451e9a2d1491d1",
-          "bytes": 4167
+          "sha256": "1f2db51de7ca8217607637697cca00b8c57e3ef40455d564ab9cb76b2267eb6f",
+          "bytes": 3329
         },
         "compact_core_walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.json",
-          "sha256": "978f03b34c95c83c511a66e2b108c6ddb608e8d653726f43370187e5b4769402",
-          "bytes": 2223
+          "sha256": "5f4f162b76343fdca0b9de98a7b870d820bb2cd4c5af221baee6244f215161c4",
+          "bytes": 2314
         },
         "compact_core_walkthrough_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.svg",
           "sha256": "61a8c3e72f5de31fce2c0f2c29cff263958be930110276ec38fbb6e05f8d6a89",
           "bytes": 1153
+        },
+        "compact_core_walkthrough_mobile_visual": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough-mobile.svg",
+          "sha256": "ede6d8238b5ab7db5b18bf222fd74485d9ae8c758e305d7b4654759289875854",
+          "bytes": 1422
         }
       },
       "access_note": "Read this compact bundle's own question and exact Markdown sources. Its zero-edge graph does not contain the separate full graph's assertions."

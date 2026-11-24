@@ -226,6 +226,7 @@
     "pointer_selection": "replayable-with-reader-0.9.0",
     "pointer_requirement": "The Bill card mouse journey was replayed with Reader 0.9.0. Use keyboard activation with an earlier Reader that intercepts the click."
   },
+  "mobile_svg_sha256": "73f88471094a14e23aded00e4869ba2b0f3e5d27bc884c81b0b8902cfd655ce3",
   "svg_sha256": "3dbf87d85020836ac87da26a10938abe3d1612afbfd8111f355eb15bb2a15946",
   "source_projection_sha256": "2c108d91752ba86ab3d8f9680273ac1b5249b653c59161d156822bc300ee7161"
 }

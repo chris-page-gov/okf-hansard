@@ -75,5 +75,6 @@
     }
   ],
   "scope": "Only the exact compact Markdown source and its explicit citations; full-graph assertions and linked external contents are outside this answer.",
-  "svg_sha256": "8f36ae6818338840b1366667df0e2bdc503da4254307ba4de812039e0802854f"
+  "svg_sha256": "8f36ae6818338840b1366667df0e2bdc503da4254307ba4de812039e0802854f",
+  "mobile_svg_sha256": "64a5f0128d88113c5f5034fc617db7521af4587a23eed78504cff8876ba032d3"
 }

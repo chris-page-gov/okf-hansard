@@ -4,20 +4,24 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   ".well-known/okf.json": {
-    "bytes": 11540,
-    "sha256": "842f6c0bb67b13a478fdcc5639ab8e561ea7f1530c6a0e482f70b61dc13e2856"
+    "bytes": 12326,
+    "sha256": "215240adf69b325450aa093c0cec2efca05ed83dcdc4405d823802b8ac9ebffc"
   },
   "beginners.html": {
     "bytes": 3146,
     "sha256": "40bcd0ebaf431f159bcdf28febba613fa990420abc6ed5d73ae3306297ee01f7"
   },
+  "core-walkthrough-mobile.svg": {
+    "bytes": 1422,
+    "sha256": "64a5f0128d88113c5f5034fc617db7521af4587a23eed78504cff8876ba032d3"
+  },
   "core-walkthrough.html": {
-    "bytes": 5185,
-    "sha256": "3f74f1faa96ed6929aca2284f90cad473cc41624c0d597d4a17a51b3c34cc8c4"
+    "bytes": 4347,
+    "sha256": "9db4c9dc1c38c8006a5c556df789607b19a97e16b1bcc9a918bbc6dd016f7255"
   },
   "core-walkthrough.json": {
-    "bytes": 3432,
-    "sha256": "0d2ecbcb09986134d42404814c4358f3f9986220e313f6f6dd9c723c583dd9a4"
+    "bytes": 3523,
+    "sha256": "6172c62ebff25916d8e166f905a809d5e42aae12d55d80524cd382f7d21d2928"
   },
   "core-walkthrough.svg": {
     "bytes": 1153,
@@ -10612,8 +10616,8 @@
     "sha256": "be285082c41180015a1f10292e8e479db8fe9339acb1f4be0d566f9a43a54221"
   },
   "okf-public-access.json": {
-    "bytes": 11540,
-    "sha256": "842f6c0bb67b13a478fdcc5639ab8e561ea7f1530c6a0e482f70b61dc13e2856"
+    "bytes": 12326,
+    "sha256": "215240adf69b325450aa093c0cec2efca05ed83dcdc4405d823802b8ac9ebffc"
   },
   "profile/domain.yaml": {
     "bytes": 4535,
@@ -10643,13 +10647,17 @@
     "bytes": 6129,
     "sha256": "7269f8bf1f18df73247462a3e044df53b5943c01867a749c43c14da58c92673d"
   },
+  "walkthrough-mobile.svg": {
+    "bytes": 1276,
+    "sha256": "4bf19964b127258aa5db0db13d7265395fd49bf331d0f393856da05506dda2ef"
+  },
   "walkthrough.html": {
-    "bytes": 4308,
-    "sha256": "5828acfaf4d0ba93579a43e29e3e5f9778cebc5ae9fdf09906c4a78d3efc92f8"
+    "bytes": 3617,
+    "sha256": "588259e4345181172144bd23432ba89ca8094c69e7ca16f27a981a6f84544ccb"
   },
   "walkthrough.json": {
-    "bytes": 2900,
-    "sha256": "ab21b4af8ea9e3accb8e85477102593928936b1b5089e842611d1a86e79fe7b5"
+    "bytes": 2991,
+    "sha256": "fd13a393fd575c005dd6b8d687bed410472f1acd24dd3be31432f9fe15eca135"
   },
   "walkthrough.svg": {
     "bytes": 967,
