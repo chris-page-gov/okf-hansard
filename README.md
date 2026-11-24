@@ -28,7 +28,10 @@ The pilot comprises all text-bearing API contribution items observed in the publ
 
 ## Trace earlier mentions
 
-Run from the repository root with Python 3.12 and the locked environment.
+Run from the repository root with Python 3.12, uv 0.13.4 and the locked environment.
+The project rejects other uv versions before running a command. This patched
+version removes the compromised emSign root described in
+[GHSA-hq85-5cpj-mr62](https://github.com/astral-sh/uv/security/advisories/GHSA-hq85-5cpj-mr62).
 
     export UV_CACHE_DIR="$PWD/.work/uv-cache"
     uv sync --locked
