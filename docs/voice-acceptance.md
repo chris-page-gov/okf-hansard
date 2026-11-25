@@ -4,7 +4,7 @@
 
 1. Open the [Hansard evidence finder](https://chris-page-gov.github.io/okf-hansard/november/ask.html). It opens without a project account or connector installation.
 2. Copy the prompt into your AI app. Continue by voice if your app offers it. Ask the assistant to say which capture, dates and files it opened.
-3. If the app cannot fetch the links, select a concept in the finder, copy its plain-text evidence and paste that into the same chat. You can then ask follow-up questions about the evidence it received.
+3. If the app cannot fetch the links, select a concept in the finder, copy its plain-text evidence and paste that into the same chat. The copied evidence gives dates, attributions and links. To discuss what was said, open a relevant contribution and paste the passage into that chat too.
 
 The visitor needs a browser and an internet connection. Voice depends on the app, account and microphone permission. Clipboard access can prompt on some phones. The page lets visitors select and copy the text by hand in that case.
 
@@ -45,6 +45,38 @@ The client list starts with the MCP-Geo tracks (Codex, Claude Code, Gemini CLI a
 Use these acceptance cases in each available AI. Connect the named server or paste the public entry before starting the test. A user should reach a cited answer in three minutes using either route. Record any app, authentication or copy steps that exceed that time.
 
 1. **Discovery.** Ask what Hansard contains. The reply must report the current verified capture, the history search ending on **1 November 2026**, known gaps and the distinction between captured passages and retained alias matches.
-2. **History.** Ask for every retained Synergy programme link through a stated date. Compare the total and independently spot-check one October link and one November link against the replay output. Ask to show the companion timeline.
-3. **Capture search.** Ask what was said about the Civil Service pension scheme in the captured sittings. Check exact source anchors returned by passage search. Verify that the same capture-only query before 2 November 2026 reports no evidence in scope.
+2. **History.** Ask for every retained Synergy programme link through the last verified sitting. Ask for the total, a copyable list in the chat and the companion timeline. Independently spot-check one October and one November link against the replay output.
+3. **Capture search.** Ask for the first three full-text matches for “Civil Service pension scheme”. Check exact source anchors returned by passage search. Verify that the same capture-only query before 2 November 2026 reports no evidence in scope. A phone app may need a connected MCP client for this query.
 4. **Fallback.** Block link retrieval or use a client without web access. Copy evidence from the phone page, paste it and verify that the response states its supplied scope. Check an unknown concept returns no configured match with the contribution finder still accessible.
+
+### Score a client session
+
+Save one JSON array with an entry per observed client, mode and case. Use the client names in the replay report and `text` or `voice` for the mode. The runner reads manually recorded observations so mobile clients can use the same checks as the command-line clients. Record only what the assistant actually said or showed. Keep the transcript and any account information outside the receipt.
+
+```json
+[
+  {
+    "client": "ChatGPT mobile",
+    "mode": "voice",
+    "case": "discovery",
+    "seconds": 74,
+    "observed": {
+      "snapshot": "<snapshot identifier reported by the assistant>",
+      "capture_from": "2026-11-02",
+      "capture_through": "2026-11-24",
+      "contributions": 18364,
+      "history_through": "2026-11-01",
+      "scope_gaps": 0,
+      "disclosed_alias_scope": true
+    }
+  }
+]
+```
+
+Record `snapshot` in every answered case. For `history`, record `total`, `timeline`, `links` as an array of exact URLs and `disclosed_alias_scope`. For `capture`, record `links` and `out_of_scope_results`. For `fallback`, record `links`, `disclosed_supplied_scope` and `unknown_concept_reported`. Where sign-in, link retrieval or another product barrier stops the case, give a `blocker` instead of an observation. The report records that case as blocked and unobserved cases as pending.
+
+```sh
+uv run --locked python scripts/check_voice_clients.py --publication .work/november-2026/publication.json --receipts .work/voice-session.json --out .work/voice-acceptance.json
+```
+
+The runner exits with an error for any failed observed answer. The JSON report retains passed, blocked and pending cases separately.

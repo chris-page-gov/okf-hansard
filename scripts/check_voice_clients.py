@@ -21,6 +21,20 @@ from hansard_access import BUNDLE_ID, read
 
 SERVER = Path(__file__).resolve().with_name("mcp_server.py")
 PROTOCOL = "2025-11-25"
+CLIENTS = {
+    "ChatGPT mobile": {"text", "voice"},
+    "Codex desktop": {"text", "voice"},
+    "Codex CLI": {"text"},
+    "Claude mobile": {"text", "voice"},
+    "Claude Code": {"text"},
+    "Gemini mobile": {"text", "voice"},
+    "Gemini CLI": {"text"},
+    "VS Code": {"text"},
+    "GitHub Copilot CLI": {"text"},
+    "Microsoft Copilot mobile": {"text", "voice"},
+    "Microsoft 365 Copilot": {"text", "voice"},
+}
+CASES = {"discovery", "history", "capture", "fallback"}
 
 
 def request(number, method, params=None):
@@ -66,8 +80,62 @@ def journey(exchange, expected):
     negative = call(401, "hansard_search_passages", query="Civil Service pension scheme", through="2026-11-01")
     check(negative["total"] == 0, "Capture-only query leaked into an out-of-scope date.")
     return {"protocol": PROTOCOL, "snapshot": scope["snapshot"], "capture": scope["capture"],
+            "history_through": scope["historical_search"]["through"],
             "scope_gaps": (scope["older_archive"] or {}).get("source_gaps"), "mentions": len(links),
-            "first_mention": links[0], "text_search_total": search["total"], "tools": sorted(listed)}
+            "first_mention": links[0], "history_links": links, "timeline": first["timeline"],
+            "capture_examples": [row["hansard"] for row in search["items"]],
+            "text_search_total": search["total"], "tools": sorted(listed)}
+
+
+def assess(receipts, expected):
+    """Check observed client answers against the same evidence served by MCP."""
+    outcomes = {}
+    for row in receipts:
+        client, mode, case = row["client"], row["mode"], row["case"]
+        if mode not in CLIENTS.get(client, ()) or case not in CASES:
+            raise ValueError(f"Unknown client, mode or case: {client}, {mode}, {case}")
+        key = (client, mode, case)
+        if key in outcomes:
+            raise ValueError(f"Repeated client case: {key}")
+        if row.get("blocker"):
+            outcomes[key] = {"status": "blocked", "details": [row["blocker"]]}
+            continue
+
+        evidence = row.get("observed", {})
+        failures = []
+        elapsed = row.get("seconds")
+        if not isinstance(elapsed, (float, int)) or isinstance(elapsed, bool) or not 0 < elapsed <= 180:
+            failures.append("Time to cited answer must be positive and at most 180 seconds.")
+        if evidence.get("snapshot") != expected["snapshot"]:
+            failures.append("Answer did not identify the verified snapshot.")
+
+        links = evidence.get("links", [])
+        if case == "discovery":
+            wanted = {"capture_from": expected["capture"]["from"], "capture_through": expected["capture"]["through"],
+                      "contributions": expected["capture"]["contributions"],
+                      "history_through": expected["history_through"], "scope_gaps": expected["scope_gaps"],
+                      "disclosed_alias_scope": True}
+        elif case == "history":
+            wanted = {"total": expected["mentions"], "timeline": expected["timeline"], "disclosed_alias_scope": True}
+            if set(links) != set(expected["history_links"]) or len(links) != expected["mentions"]:
+                failures.append("The cited Hansard links differ from the complete retained results.")
+        elif case == "capture":
+            wanted = {"out_of_scope_results": 0}
+            if not set(links).intersection(expected["capture_examples"]):
+                failures.append("Cite at least one of the three requested capture results.")
+        else:
+            wanted = {"disclosed_supplied_scope": True, "unknown_concept_reported": True}
+            if not links or not set(links).issubset(expected["history_links"]):
+                failures.append("The fallback must cite links from the supplied evidence.")
+
+        failures.extend(f"Incorrect or missing {field}." for field, value in wanted.items()
+                        if evidence.get(field) != value)
+        outcomes[key] = {"status": "failed" if failures else "passed", "details": failures}
+    return [
+        {"client": client, "mode": mode, "case": case,
+         **outcomes.get((client, mode, case), {"status": "pending", "details": []})}
+        for client, modes in CLIENTS.items() for mode in sorted(modes) for case in sorted(CASES)
+    ]
 
 
 @contextmanager
@@ -162,10 +230,10 @@ def installed_clients(url, scratch):
                 connected = probe(binary, ["mcp", "-c", f'mcp_servers.{name}.url="{url}"', "get", name, "--json"], directory)
                 report["readiness"] = "HTTP configuration accepted" if not connected.returncode and url in connected.stdout else "HTTP configuration unconfirmed"
             elif executable == "copilot":
-                subprocess.run(["git", "init", "--quiet", str(directory)], check=True, capture_output=True)
-                dump(directory / ".mcp.json", {"mcpServers": {name: {"type": "http", "url": url, "tools": ["*"]}}})
-                connected = probe(binary, ["mcp", "get", name, "--json"], directory)
-                report["readiness"] = "workspace HTTP configuration accepted" if not connected.returncode and url in connected.stdout else "workspace HTTP configuration unconfirmed"
+                dump(directory / "mcp-config.json", {"mcpServers": {name: {"type": "http", "url": url, "tools": ["*"]}}})
+                connected = probe(binary, ["mcp", "get", name, "--json"], directory,
+                                  {**os.environ, "COPILOT_HOME": str(directory)})
+                report["readiness"] = "isolated HTTP configuration accepted" if not connected.returncode and url in connected.stdout else "isolated HTTP configuration unconfirmed"
         except subprocess.TimeoutExpired:
             report["readiness"] = "project MCP probe timed out"
         outcomes[label] = report
@@ -176,6 +244,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--publication", type=Path, required=True)
     parser.add_argument("--probe-clients", action="store_true", help="Check installed clients without asking models to answer.")
+    parser.add_argument("--receipts", type=Path, help="Score recorded text and voice answers against the publication.")
     parser.add_argument("--out", type=Path)
     args = parser.parse_args()
     pointer = args.publication.resolve()
@@ -188,10 +257,13 @@ def main():
         http = check_http(url, expected)
         check(http == stdio, "HTTP and stdio evidence differ.")
         clients = installed_clients(url, Path(scratch)) if args.probe_clients else {}
-    result = {"stdio": stdio, "streamable_http": http, "clients": clients}
+    answers = assess(read(args.receipts) if args.receipts else [], stdio)
+    result = {"stdio": stdio, "streamable_http": http, "clients": clients, "answers": answers}
     if args.out:
         dump(args.out, result)
     print(json.dumps(result, indent=2))
+    if any(row["status"] == "failed" for row in answers):
+        sys.exit(1)
 
 
 if __name__ == "__main__":
