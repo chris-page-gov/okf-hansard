@@ -1,6 +1,5 @@
 """Pinned static Reader descriptor limits shared by publication checks."""
 
-import stat
 from pathlib import Path
 
 MAX_DESCRIPTOR_BYTES = 16 * 1024 * 1024

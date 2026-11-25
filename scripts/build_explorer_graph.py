@@ -276,7 +276,7 @@ def build(release, root):
     core_manifest = [{"path": item["path"], "role": item["role"], "sha256": item["sha256"],
                       "bytes": item["bytes"],
                       "record_route": dataset_route(item["path"]) if item["role"] == "concept" or item["path"] in nodes else None,
-                      "access": "record_chunks" if item["role"] == "concept" or item["path"] in nodes else "descriptor"}
+                      "access": "record_chunks" if item["role"] == "concept" or item["path"] in nodes else "source_manifest"}
                      for item in (core_documents[path] for path in sorted(core_documents))]
     core_snapshot = sha(json_bytes(core_manifest))
     source_only_rows = []

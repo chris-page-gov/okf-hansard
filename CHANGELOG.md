@@ -9,7 +9,9 @@
   record shards and all graph assertions unchanged.
 - Reject oversized full-graph descriptors before either Pages publisher takes
   its lock or replaces assets. Validate the external Core binding schema and
-  expose its plain JSON URL through the public access directory.
+  expose its plain JSON URL through the public access directory. Mark source
+  documents served by that manifest as `source_manifest`, retaining
+  `record_chunks` for records.
 
 ## Unreleased — fail-closed November publication assets, 25 November 2026
 

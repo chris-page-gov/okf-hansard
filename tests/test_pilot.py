@@ -318,6 +318,10 @@ class ModelTests(unittest.TestCase):
             self.assertEqual("okf-core-source-binding-details.v1", detail["schema"])
             self.assertEqual(source["snapshot"], detail["snapshot"])
             self.assertEqual(4, len(detail["documents"]))
+            self.assertTrue(all(row["access"] == "record_chunks"
+                                for row in detail["documents"] if row["role"] == "concept"))
+            self.assertEqual("source_manifest", next(row["access"] for row in detail["documents"]
+                                                      if row["path"] == "section/index.md"))
             self.assertEqual(["section/index.md"], [row["path"] for row in detail["support_documents"]])
             support_source = detail["support_documents"][0]
             self.assertEqual(subindex.read_text(encoding="utf-8"), support_source["markdown"])

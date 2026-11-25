@@ -20,7 +20,7 @@
         "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
         "bytes": {"type": "integer", "minimum": 0},
         "record_route": {"type": ["string", "null"]},
-        "access": {"enum": ["record_chunks", "descriptor"]}
+        "access": {"enum": ["record_chunks", "source_manifest"]}
       },
       "required": ["path", "role", "sha256", "bytes", "record_route", "access"],
       "additionalProperties": false
