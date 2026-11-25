@@ -316,7 +316,7 @@ class ModelTests(unittest.TestCase):
         }
         page = index_page(coverage, "okf-bundle.yamlld.gz", "entity/bill-4030.md")
         self.assertIn("2 November 2026 to 15 November 2026", page)
-        self.assertIn("separate November source bundle", page)
+        self.assertIn('<a href="november/ask.html">Search these dates in the Hansard collection</a>', page)
 
     def test_closed_appointment_dates(self):
         self.assertTrue(active_on("2026-07-20", None, "2026-11-17"))

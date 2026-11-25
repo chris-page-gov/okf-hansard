@@ -214,7 +214,7 @@ def index_page(coverage, semantic_file, graph_anchor):
         history_scope = (f'<p class="note"><strong>Historical search coverage:</strong> '
                          f'checked through 1 November 2026. The weekly finder does not cover '
                          f'{fmt_date(gap["from"])} to {fmt_date(gap["through"])}. '
-                         f'<a href="november/okf/index.md">Open the separate November source bundle</a>.</p>')
+                         f'<a href="november/ask.html">Search these dates in the Hansard collection</a>.</p>')
     query = urlencode({"bundle": SITE + "okf-bundle.json"})
     focused_graph = explorer_record_url("graph/okf-explorer.json", "graph", dataset_route(graph_anchor))
     return f"""<!doctype html>

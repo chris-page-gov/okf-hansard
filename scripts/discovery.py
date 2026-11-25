@@ -108,6 +108,7 @@ def write_ai_guide(site):
 <body><main class="guide">
 <nav aria-label="Project"><a href="./">A week in Parliament</a></nav>
 <h1>Use Hansard with AI</h1>
+<p><a href="november/ask.html">Ask your AI about the full Hansard capture</a> or try the worked example below.</p>
 <p>Give an AI assistant that can open public links the prompt below. Check that it names the sources it read and links to the exact Hansard passages.</p>
 <label for="demo-prompt">Ask about the Railways Bill</label>
 <textarea id="demo-prompt" readonly rows="6" style="display:block; width:100%; font:inherit; margin:.5rem 0">{escape(PROMPT)}</textarea>
@@ -250,7 +251,7 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
             "licence": LICENCE, "coverage": {"from": min(dates), "through": max(dates), "observed_at": observed_at},
             **({"history_finder": {"state": "partial", "search_through": coverage_receipt["history_backfill"]["through"],
                                    "unsearched_interval": coverage_receipt["history_backfill_gap"],
-                                   "detail": "The separate November bundle contains the captured proceedings for these dates."}}
+                                   "detail": "The Hansard collection contains the captured proceedings for these dates."}}
                if not month and coverage_receipt.get("history_backfill_gap") else {}),
             "access_note": "Start with the Markdown index. Retrieve focused records or history by need. Follow official links when citing parliamentary evidence.",
             "entrypoints": entrypoints,
@@ -279,7 +280,9 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
     dump(site / ".well-known/okf.json", directory)
     (site / "llms.txt").write_text("\n".join([
         "# " + title, "", "> " + coverage, "", "## Start here", "",
-        f"- [OKF 0.3 Markdown index]({base}okf/index.md): Open this small index first.",
+        f"- [Hansard collection]({SITE}november/hansard.json): Start here for all captured sittings and historical matches.",
+        f"- [Ask your AI about Hansard]({SITE}november/ask.md): Copy the voice prompt and find evidence.",
+        f"- [OKF 0.3 Markdown index]({base}okf/index.md): Open the Markdown source for this view.",
         f"- [Machine directory]({base}okf-public-access.json): Coverage, endpoints and SHA-256 digests.",
         f"- [Coverage and verification]({base}coverage.json): Check dates and search limits before answering.",
         f"- [Compact-core question walkthrough]({base}core-walkthrough.html): Answer from this entry point's own source scope.",

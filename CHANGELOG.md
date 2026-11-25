@@ -2,6 +2,7 @@
 
 ## Unified Hansard and voice access
 
+- Link the home page and worked examples directly to the Hansard collection.
 - Add a shared scoring runner for recorded text and voice answers from ChatGPT,
   Codex, Claude, Gemini, VS Code and Copilot. Keep pending cases separate from
   recorded blockers and failed answers.
