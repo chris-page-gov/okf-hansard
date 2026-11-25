@@ -77,7 +77,7 @@
           "status": "not-searched-in-weekly-bundle",
           "reason": "No matching frozen cache receipt was found; no new source queries were made."
         },
-        "detail": "The separate November bundle contains the captured proceedings for these dates."
+        "detail": "The Hansard collection contains the captured proceedings for these dates."
       },
       "access_note": "Start with the Markdown index. Retrieve focused records or history by need. Follow official links when citing parliamentary evidence.",
       "entrypoints": {
@@ -256,5 +256,6 @@
       },
       "access_note": "Read this compact bundle's own question and exact Markdown sources. Its zero-edge graph does not contain the separate full graph's assertions."
     }
-  ]
+  ],
+  "collection": "https://chris-page-gov.github.io/okf-hansard/november/hansard.json"
 }

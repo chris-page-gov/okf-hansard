@@ -4,8 +4,8 @@
     "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   ".well-known/okf.json": {
-    "bytes": 12326,
-    "sha256": "215240adf69b325450aa093c0cec2efca05ed83dcdc4405d823802b8ac9ebffc"
+    "bytes": 12406,
+    "sha256": "4548c85c6320819c8a98987ad152cf00b3d85300402724d4ca7343a2b41a0c11"
   },
   "beginners.html": {
     "bytes": 3146,
@@ -10572,12 +10572,12 @@
     "sha256": "51c1a792473bbbb631c3c91d5d173ce7d11b46b64445ac8c49c43208ec78c794"
   },
   "index.html": {
-    "bytes": 3676,
-    "sha256": "0cafd3e25bf28f35e04097f51bd8b98b6554ae084559a75445d388f80785b522"
+    "bytes": 3683,
+    "sha256": "57435dc30c90e9637017105f5364c2bca95aa778173672aacb5c5d781d958dd8"
   },
   "llms.txt": {
-    "bytes": 1017,
-    "sha256": "10f899c2687b946948312d17ace44f1bdb249993a5ffc55d030024a19d3a7b36"
+    "bytes": 1305,
+    "sha256": "7e3bf1ad7ad1c96feb80b98759f046220f98982f4351c6df78a8e70b51825f93"
   },
   "methodology.html": {
     "bytes": 6460,
@@ -10616,8 +10616,8 @@
     "sha256": "be285082c41180015a1f10292e8e479db8fe9339acb1f4be0d566f9a43a54221"
   },
   "okf-public-access.json": {
-    "bytes": 12326,
-    "sha256": "215240adf69b325450aa093c0cec2efca05ed83dcdc4405d823802b8ac9ebffc"
+    "bytes": 12406,
+    "sha256": "4548c85c6320819c8a98987ad152cf00b3d85300402724d4ca7343a2b41a0c11"
   },
   "profile/domain.yaml": {
     "bytes": 4535,
@@ -10632,8 +10632,8 @@
     "sha256": "86d36070286949429ce43f9b62defaa5239b341a0eacdab7b72d7e712130f3b9"
   },
   "use-with-ai.html": {
-    "bytes": 2405,
-    "sha256": "36330b755eb3a4fdeb47d07afa7af3fd1077e9eab56f833a4985d6f36cbdb2cc"
+    "bytes": 2520,
+    "sha256": "9bd3e49769d33bb10684ed949367ac6ea8324a1c1e59dfb3cf49af04e0da1e6b"
   },
   "voice-microsoft-365.html": {
     "bytes": 10388,

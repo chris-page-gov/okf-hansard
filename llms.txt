@@ -4,6 +4,9 @@
 
 ## Start here
 
+- [Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json): Start here for all captured sittings and historical matches.
+- [Ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.md): Copy the voice prompt and find evidence.
+
 - [OKF 0.3 Markdown index](https://chris-page-gov.github.io/okf-hansard/okf/index.md): Open this small index first.
 - [Machine directory](https://chris-page-gov.github.io/okf-hansard/okf-public-access.json): Coverage, endpoints and SHA-256 digests.
 - [Coverage and verification](https://chris-page-gov.github.io/okf-hansard/coverage.json): Check dates and search limits before answering.
