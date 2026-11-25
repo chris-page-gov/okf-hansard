@@ -13,7 +13,7 @@
       "core_specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
       "home": "https://chris-page-gov.github.io/okf-hansard/november/ask.html",
       "descriptor": "https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json",
-      "descriptor_sha256": "731ee3814ed6cd4e7e990da6a304f692fc3633dd41fa8bb561f9797c97679a08",
+      "descriptor_sha256": "f7e0665b485d299b4815fba0e2e274c3c3b7a1c34b49823b5973e0e627767800",
       "descriptor_schema": "okf-explorer-large-corpus.v1",
       "visibility": "public",
       "repository": "https://github.com/chris-page-gov/okf-hansard",
@@ -69,8 +69,8 @@
       "entrypoints": {
         "okf_index": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/index.md",
-          "bytes": 796,
-          "sha256": "bc7593f8b0344b24f91af98925ec39be5f534b76b41e249f1f43cf75e7ce3d28"
+          "bytes": 1708,
+          "sha256": "f3257ba19d99332b86f5a585be3d6b9543f4e0ac514485fc16d91493cde99d3e"
         },
         "coverage": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/coverage.json",

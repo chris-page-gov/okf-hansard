@@ -4,12 +4,14 @@
 
 ## Start here
 
-- [One Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json): Capture, historical concept mentions and graphs.
-- [Ask an AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.md): Voice prompt and copyable evidence.
-
-- [OKF 0.3 Markdown index](https://chris-page-gov.github.io/okf-hansard/november/okf/index.md): Open this small index first.
+- [Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json): Start here for all captured sittings and historical matches.
+- [Ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.md): Copy the voice prompt and find evidence.
+- [OKF 0.3 Markdown index](https://chris-page-gov.github.io/okf-hansard/november/okf/index.md): Open the Markdown source for this view.
 - [Machine directory](https://chris-page-gov.github.io/okf-hansard/november/okf-public-access.json): Coverage, endpoints and SHA-256 digests.
+- [Core source-path inventory and non-record Markdown](https://chris-page-gov.github.io/okf-hansard/november/graph/core-source-binding.json): Plain JSON bound by the full-graph descriptor and checksum catalogue.
 - [Coverage and verification](https://chris-page-gov.github.io/okf-hansard/november/coverage.json): Check dates and search limits before answering.
+- [Compact-core question walkthrough](https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.html): Answer from this entry point's own source scope.
+- [Full-graph question walkthrough](https://chris-page-gov.github.io/okf-hansard/november/walkthrough.html): Follow the separate graph evidence and its limits.
 - [Companion and views](https://chris-page-gov.github.io/okf-hansard/november/history.html): See the evidence and its source links.
 
 Cite the exact Hansard passages. Treat shared name or alias matches as leads.
