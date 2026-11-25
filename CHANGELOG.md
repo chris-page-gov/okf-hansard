@@ -2,6 +2,9 @@
 
 ## Unified Hansard and voice access
 
+- Add a shared scoring runner for recorded text and voice answers from ChatGPT,
+  Codex, Claude, Gemini, VS Code and Copilot. Keep pending cases separate from
+  recorded blockers and failed answers.
 - Added a single collection entry for the verified capture, earlier matches and demonstration views.
 - Added an account-free phone evidence finder, plain-text prompt and followable source links.
 - Added capture search, concept resolution, complete paged mention lookup and read-only MCP access over stdio or Streamable HTTP. A project server can pin the latest verified publication at start-up.

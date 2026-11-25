@@ -7,6 +7,7 @@ import tempfile
 import unittest
 
 from capture import dump
+from check_voice_clients import assess
 from hansard_access import Access, BUNDLE_ID
 from mcp_server import rpc
 from voice_pages import publish_voice
@@ -81,6 +82,27 @@ class VoiceTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in publication["bundles"]], [BUNDLE_ID])
         self.assertIn("1 November 2026 inclusive", (self.site / "ask.md").read_text())
         self.assertIn('data-copy="evidence"', (self.site / "ask.html").read_text())
+
+
+class AnswerReceiptTests(unittest.TestCase):
+    def test_receipts_separate_pass_failure_blocker_and_pending(self):
+        first, second = [f"https://hansard.parliament.uk/Commons/#contribution-{i}" for i in (1, 2)]
+        timeline = "https://example.test/timeline"
+        expected = {"snapshot": "verified", "timeline": timeline, "history_links": [first, second], "mentions": 2}
+        answer = {"snapshot": "verified", "timeline": timeline, "links": [first, second],
+                  "disclosed_alias_scope": True, "total": 2}
+        records = [
+            {"client": "ChatGPT mobile", "mode": "voice", "case": "history", "seconds": 74, "observed": answer},
+            {"client": "Gemini mobile", "mode": "voice", "case": "history", "seconds": 48,
+             "observed": {**answer, "links": [first, first]}},
+            {"client": "Claude mobile", "mode": "voice", "case": "history", "blocker": "Voice unavailable"},
+        ]
+        states = {row["client"]: row["status"] for row in assess(records, expected)
+                  if row["mode"] == "voice" and row["case"] == "history"}
+        self.assertEqual(states["ChatGPT mobile"], "passed")
+        self.assertEqual(states["Gemini mobile"], "failed")
+        self.assertEqual(states["Claude mobile"], "blocked")
+        self.assertEqual(states["Microsoft Copilot mobile"], "pending")
 
 
 if __name__ == "__main__":
