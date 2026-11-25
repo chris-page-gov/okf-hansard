@@ -1,6 +1,6 @@
 {
   "schema": "okf-repository-publication-contract.v1",
-  "modified": "2026-11-23",
+  "modified": "2026-11-25",
   "locale": "en-GB",
   "time_zone": "Europe/London",
   "repository": {
@@ -77,6 +77,8 @@
       {"path": "profile/vocabulary.yaml", "role": "source-register", "source_family_id": "domain-and-rules"},
       {"path": "profile/curated-summaries.json", "role": "content", "source_family_id": "domain-and-rules"},
       {"path": "profile/hansard-domain-v2.json", "role": "profile", "source_family_id": "domain-and-rules"},
+      {"path": "profile/core-source-binding.schema.json", "role": "runtime-schema", "source_family_id": "domain-and-rules"},
+      {"path": "profile/core-source-binding-details.schema.json", "role": "runtime-schema", "source_family_id": "domain-and-rules"},
       {"path": "scripts/*", "role": "generator", "source_family_id": "domain-and-rules"},
       {"path": "compatibility/public-assets/*", "role": "source-register", "source_family_id": "captured-hansard"},
       {"path": "tests/*", "role": "test", "source_family_id": "domain-and-rules"},
@@ -94,9 +96,11 @@
       {"path": "releases/current/okf-bundle.yamlld", "role": "semantic-yaml-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release", "audit-full-source"]},
       {"path": "releases/current/okf-bundle.json", "role": "semantic-json-ld", "plane": "semantic", "required": true, "build_command_ids": ["build-core"], "check_command_ids": ["verify-release", "audit-full-source"]},
       {"path": "releases/current/graph/okf-explorer.json", "role": "explorer-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release", "audit-full-source"]},
+      {"path": "releases/current/graph/core-source-binding.json", "role": "source-binding-details", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release", "audit-full-source"]},
       {"path": "releases/current/graph/relationships/runtime.json", "role": "relationship-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
       {"path": "releases/current/graph/relationships/locator.json", "role": "relationship-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-graph"], "check_command_ids": ["verify-release"]},
       {"path": "site/okf-core.json", "role": "explorer-runtime", "plane": "runtime", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["check-core-projection", "reconcile-core"]},
+      {"path": "site/graph/core-source-binding.json", "role": "source-binding-details", "plane": "runtime", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["verify-release", "audit-full-source"]},
       {"path": "site/walkthrough.html", "role": "site", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
       {"path": "site/walkthrough.svg", "role": "other", "plane": "application", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["test-suite"]},
       {"path": "site/okf-public-access.json", "role": "other", "plane": "release", "required": true, "build_command_ids": ["build-publication"], "check_command_ids": ["verify-release"]},

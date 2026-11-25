@@ -22,6 +22,7 @@ MAX_ROUTE_ROWS = 100_000
 MAX_ROUTE_COMPRESSED_BYTES = 64 * 1024 * 1024
 MAX_ROUTE_RETAINED_TEXT_UNITS = 32 * 1024 * 1024
 MAX_ROW_RETAINED_TEXT_UNITS = 32 * 1024
+CORE_SOURCE_DETAILS_PATH = "core-source-binding.json"
 PLANE = "recorded"
 PLANE_IRI = "urn:okf:hansard:relationship-plane:recorded"
 
@@ -275,7 +276,7 @@ def build(release, root):
     core_manifest = [{"path": item["path"], "role": item["role"], "sha256": item["sha256"],
                       "bytes": item["bytes"],
                       "record_route": dataset_route(item["path"]) if item["role"] == "concept" or item["path"] in nodes else None,
-                      "access": "record_chunks" if item["role"] == "concept" or item["path"] in nodes else "descriptor"}
+                      "access": "record_chunks" if item["role"] == "concept" or item["path"] in nodes else "source_manifest"}
                      for item in (core_documents[path] for path in sorted(core_documents))]
     core_snapshot = sha(json_bytes(core_manifest))
     source_only_rows = []
@@ -308,30 +309,43 @@ def build(release, root):
         "chunks": {"datasets": [chunk["path"] for chunk in chunks], "relationships": [], "publishers": [], "resources": []},
         "shards": {"datasets": chunks},
     })
+    support_manifest = [{key: item[key] for key in
+                         ("path", "role", "sha256", "bytes", "markdown", "frontmatter", "body")}
+                        for item in support_documents]
+    details_document = {
+        "schema": "okf-core-source-binding-details.v1",
+        "snapshot": "hansard-markdown-sha256-" + core_snapshot,
+        "documents": core_manifest,
+        "support_documents": support_manifest,
+    }
+    details_schema = json.loads((PROFILE / "core-source-binding-details.schema.json").read_bytes())
+    Draft202012Validator(details_schema).validate(details_document)
+    source_details = write(root, CORE_SOURCE_DETAILS_PATH, details_document)
+    source_details.update({"media_type": "application/json", "content_encoding": "identity"})
+    core_source = {
+        "schema": "okf-core-source-binding.v2", "snapshot": "hansard-markdown-sha256-" + core_snapshot,
+        "core_specification": bundle["meta"]["okf_core"]["specification"],
+        "semantic_profile": bundle["meta"].get("profile"),
+        "source_documents": len(core_manifest),
+        "concepts": sum(item["role"] == "concept" for item in core_manifest),
+        "concept_records": sum(item["role"] == "concept" for item in core_manifest),
+        "source_only_concept_records": len(source_only_concepts),
+        "navigation_documents": sum(item["role"] == "navigation" for item in core_manifest),
+        "extension_documents": sum(item["role"] == "extension" for item in core_manifest),
+        "extension_records_without_markdown": len(set(nodes) - set(core_documents)),
+        "relationship_assertions": len(edges), "detail_resource": "record_chunks",
+        "source_manifest": source_details,
+        "relationship_limit": "All concepts, navigation documents and extensions are preserved as exact Markdown in record detail shards. The existing graph relationship shards retain the complete assertion set.",
+    }
+    binding_schema = json.loads((PROFILE / "core-source-binding.schema.json").read_bytes())
+    Draft202012Validator(binding_schema).validate(core_source)
     write(root, "okf-explorer.json", {
         "schema": "okf-explorer-large-corpus.v1", "kind": "okf-large-corpus",
         "id": "urn:okf:hansard:bundle:" + "".join(ch.lower() if ch.isalnum() else "-" for ch in title).strip("-"),
         "version": PRODUCT_VERSION,
         "okf_version": bundle["okf_version"],
         "title": title, "snapshot": snapshot, "counts": counts,
-        "core_source": {
-            "schema": "okf-core-source-binding.v1", "snapshot": "hansard-markdown-sha256-" + core_snapshot,
-            "core_specification": bundle["meta"]["okf_core"]["specification"],
-            "semantic_profile": bundle["meta"].get("profile"),
-            "source_documents": len(core_manifest),
-            "concepts": sum(item["role"] == "concept" for item in core_manifest),
-            "concept_records": sum(item["role"] == "concept" for item in core_manifest),
-            "source_only_concept_records": len(source_only_concepts),
-            "navigation_documents": sum(item["role"] == "navigation" for item in core_manifest),
-            "extension_documents": sum(item["role"] == "extension" for item in core_manifest),
-            "extension_records_without_markdown": len(set(nodes) - set(core_documents)),
-            "relationship_assertions": len(edges), "detail_resource": "record_chunks",
-            "documents": core_manifest,
-            "support_documents": [{key: item[key] for key in
-                                   ("path", "role", "sha256", "bytes", "markdown", "frontmatter", "body")}
-                                  for item in support_documents],
-            "relationship_limit": "All concepts, navigation documents and extensions are preserved as exact Markdown in record detail shards. The existing graph relationship shards retain the complete assertion set.",
-        },
+        "core_source": core_source,
         "entrypoints": {"data_manifest": manifest, "overview_index": overview,
                         "record_locator": record_locator, "relationship_runtime": relationship_runtime},
     })

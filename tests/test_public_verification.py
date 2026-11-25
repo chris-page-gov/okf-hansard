@@ -13,10 +13,13 @@ import verify_public
 
 class PublicAssetVerificationTests(unittest.TestCase):
     def fixture(self, root):
-        files = {'index.html': b'<h1>Frozen source</h1>', '.nojekyll': b''}
+        files = {'index.html': b'<h1>Frozen source</h1>', '.nojekyll': b'',
+                 'graph/okf-explorer.json': b'{}'}
         rows = {}
         for name, data in files.items():
-            (root / name).write_bytes(data)
+            path = root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
             rows[name] = {'bytes': len(data), 'sha256': sha256(data).hexdigest()}
         (root / 'checksums.json').write_text(json.dumps(rows))
         return rows
@@ -26,7 +29,7 @@ class PublicAssetVerificationTests(unittest.TestCase):
             root = Path(directory)
             self.fixture(root)
             raw, rows = verify_public.catalogue(root)
-            self.assertEqual(set(rows), {'index.html', '.nojekyll', 'checksums.json'})
+            self.assertEqual(set(rows), {'index.html', '.nojekyll', 'graph/okf-explorer.json', 'checksums.json'})
             self.assertEqual(rows['checksums.json']['sha256'], sha256(raw).hexdigest())
             (root / 'index.html').write_text('Changed')
             with self.assertRaisesRegex(ValueError, 'local asset differs'):
@@ -47,6 +50,7 @@ class PublicAssetVerificationTests(unittest.TestCase):
     def test_duplicate_catalogue_keys_are_rejected(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            self.fixture(root)
             (root / 'checksums.json').write_text('{"same":{},"same":{}}')
             with self.assertRaisesRegex(ValueError, 'duplicate'):
                 verify_public.catalogue(root)

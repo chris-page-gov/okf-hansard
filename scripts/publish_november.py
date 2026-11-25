@@ -17,6 +17,7 @@ from backfill import collect
 from build import build
 from build_pages import LOCAL_TEXT, SITE
 from capture import HOUSES, dump, fetch, now, query, sha
+from descriptor_policy import validate_descriptor_size
 from export_history import export_file
 from model import checked_json, read_sittings
 from okf_core import CORE_VERSION
@@ -91,6 +92,7 @@ def validate_november_site(site, through=None, expected_release=None, expected_i
     site = Path(site)
     if site.is_symlink() or not site.is_dir():
         raise ValueError("The November site must be a real directory.")
+    validate_descriptor_size(site)
     manifest_path = site / "checksums.json"
     if manifest_path.is_symlink() or not manifest_path.is_file():
         raise ValueError("The November site has no regular checksum catalogue.")

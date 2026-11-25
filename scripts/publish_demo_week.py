@@ -16,6 +16,7 @@ from zoneinfo import ZoneInfo
 
 from build_pages import SITE, SOURCE
 from capture import dump, now
+from descriptor_policy import validate_descriptor_size
 from prepare_demo_week import ROOT, prepare, read
 from query import DEFAULT_DB
 
@@ -83,6 +84,7 @@ def verify_public(site, commit):
 def publish(prepared, checkout):
     descriptor = read(prepared / "prepared.json")
     site = prepared / "site"
+    validate_descriptor_size(site)
     with pages_lock():
         if git(checkout, "branch", "--show-current") != "gh-pages" or git(checkout, "status", "--porcelain"):
             raise ValueError("The Pages checkout must be clean and on gh-pages.")

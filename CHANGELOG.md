@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased — bound full-source descriptor size, 25 November 2026
+
+- Keep the deployed Reader's 16 MiB descriptor limit. Move the complete Core
+  source roster and non-record Markdown to a separate plain JSON asset, bound
+  from the small descriptor by SHA-256 and byte count and included in the
+  public checksum catalogue. Retain all concept Markdown in the existing
+  record shards and all graph assertions unchanged.
+- Reject oversized full-graph descriptors before either Pages publisher takes
+  its lock or replaces assets. Validate the external Core binding schema and
+  expose its plain JSON URL through the public access directory. Mark source
+  documents served by that manifest as `source_manifest`, retaining
+  `record_chunks` for records.
+
 ## Unreleased — fail-closed November publication assets, 25 November 2026
 
 - Include every authored profile and static page input in the November cache
