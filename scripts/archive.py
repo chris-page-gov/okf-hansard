@@ -94,11 +94,12 @@ class Collector:
             self.next_request = time.monotonic() + self.minimum_interval
             self.telemetry["requests"] += 1
             try:
-                # Some historical Written Answers trees are assembled slowly.
-                # Give those roots time without reducing the remaining deadline.
+                # Some historical Written Answers roots take over a minute
+                # to assemble. Their 35s timeout produced retryable gaps even
+                # when the official API returned a complete response.
                 written_root = Path(relative).name.startswith("Writtens-") and "/debates/debate/" in url
                 remaining = max(0.05, (self.deadline - datetime.now(UTC)).total_seconds())
-                with urlopen(request, timeout=min(35 if written_root else 10, remaining)) as response:
+                with urlopen(request, timeout=min(120 if written_root else 10, remaining)) as response:
                     target = urlparse(response.url)
                     if target.scheme != "https" or target.hostname != HANDLED_HOST:
                         raise ValueError(f"Unexpected redirect for {url}")
@@ -170,7 +171,8 @@ def contribution_link(record):
 
 
 def collect_sitting(db, collector, matcher, day, house, links_only=False):
-    previous = db.execute("SELECT status, attempts FROM sitting WHERE day=? AND house=?", (day, house)).fetchone()
+    previous = db.execute("SELECT status, attempts, passages, retained FROM sitting WHERE day=? AND house=?",
+                          (day, house)).fetchone()
     if previous and previous[0] in ("processed", "no published sections"):
         collector.telemetry["sittings_reused"] += 1
         return
@@ -224,17 +226,33 @@ def collect_sitting(db, collector, matcher, day, house, links_only=False):
             mentions.append((key, day, route, brief({"assertion": assertion, "spans": spans})))
     status = "source gap" if entry["errors"] else ("processed" if entry["roots"] else "no published sections")
     entry["metrics"] = dict(metrics)
+    # A retry that still has source errors is only a partial observation. Keep
+    # the last successful postings and receipts intact until a complete capture
+    # can replace them atomically. This also keeps network timeouts retryable.
+    replace_postings = not entry["errors"]
+    source = entry
+    if previous:
+        old = db.execute("SELECT source FROM sitting WHERE day=? AND house=?", (day, house)).fetchone()
+        prior_source = json.loads(old[0]) if old else {}
+        attempts_history = list(prior_source.get("retry_attempts", []))
+        attempts_history.append(entry)
+        source = {**prior_source,
+                  "sources": prior_source.get("sources", []) + entry.get("sources", []),
+                  "roots": prior_source.get("roots", []) + entry.get("roots", []),
+                  "errors": entry["errors"], "retry_attempts": attempts_history,
+                  "last_retry_errors": entry["errors"]}
     with db:
         db.execute("INSERT OR REPLACE INTO sitting VALUES (?,?,?,?,?,?,?)",
-                   (day, house, status, attempts, len(records), len(bundles), brief(entry)))
-        # Preserve successful sections of a partially available sitting. Any
-        # repeat capture atomically replaces that sitting's postings.
-        if previous:
-            db.execute("""DELETE FROM mention WHERE route IN (
-                SELECT route FROM contribution WHERE day=? AND house=?)""", (day, house))
-            db.execute("DELETE FROM contribution WHERE day=? AND house=?", (day, house))
-        db.executemany("INSERT INTO contribution VALUES (?,?,?,?,?,?)", bundles)
-        db.executemany("INSERT INTO mention VALUES (?,?,?,?)", mentions)
+                   (day, house, status, attempts, len(records) if replace_postings else previous[2],
+                    len(bundles) if replace_postings else previous[3], brief(source)))
+        if replace_postings:
+            # A complete repeat capture atomically replaces that sitting's postings.
+            if previous:
+                db.execute("""DELETE FROM mention WHERE route IN (
+                    SELECT route FROM contribution WHERE day=? AND house=?)""", (day, house))
+                db.execute("DELETE FROM contribution WHERE day=? AND house=?", (day, house))
+            db.executemany("INSERT INTO contribution VALUES (?,?,?,?,?,?)", bundles)
+            db.executemany("INSERT INTO mention VALUES (?,?,?,?)", mentions)
     collector.telemetry["sittings_checked"] += 1
     if entry["errors"]:
         print(f"{day} {house} source gap ({attempts}): {'; '.join(entry['errors'])}", flush=True)

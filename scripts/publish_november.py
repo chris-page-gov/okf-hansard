@@ -112,7 +112,8 @@ def publish(site, checkout, through, assets):
         git(checkout, *GIT_AUTH, "push", PAGES_REMOTE, "HEAD:refs/heads/gh-pages")
     checks = ["checksums.json", "index.html", "coverage.json", "history.html", "history.js", "history/index.json",
               "graph/okf-explorer.json", "okf-bundle.yamlld.gz", f"history/days/{through}.json",
-              "okf-public-access.json", ".well-known/okf.json", "llms.txt", "okf/index.md", "okf/sittings.md"]
+              "okf-public-access.json", ".well-known/okf.json", "llms.txt", "okf/index.md", "okf/sittings.md",
+              "hansard.json", "ask.html", "ask.md", "ask.js", "concepts.json"]
     checks = [name for name in checks if name in assets or name == "checksums.json"]
     catalogue = site / "checksums.json"
     with catalogue.open("rb") as stream:

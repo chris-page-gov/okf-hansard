@@ -1,4 +1,4 @@
-"""Local, read-only MCP stdio interface for the Hansard OKF+ pilot."""
+"""Serve verified Hansard evidence over MCP stdio or Streamable HTTP."""
 
 import argparse
 from datetime import date
@@ -8,16 +8,21 @@ import sys
 
 from jsonschema import Draft202012Validator, ValidationError
 
+from hansard_access import Access
 from passages import Passages
 from people import member_as_of
 from query import DEFAULT_DB, DEFAULT_RELEASE, Index, view_for
 from roles import resolve
 
 PROTOCOL = "2025-11-25"
+PROTOCOLS = {PROTOCOL, "2025-06-18", "2025-03-26", "2024-11-05"}
 STRING = {"type": "string", "maxLength": 400}
 LIMIT = {"type": "integer", "minimum": 1, "maximum": 30}
 OFFSET = {"type": "integer", "minimum": 0, "maximum": 100000000}
 HASH = {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+DAY = {"type": "string", "format": "date"}
+HOUSE = {"enum": ["Commons", "Lords"]}
+WINDOW = {"start": DAY, "through": DAY, "house": HOUSE, "limit": LIMIT, "offset": OFFSET}
 
 
 def tool(name, description, properties, required=()):
@@ -49,6 +54,18 @@ TOOLS = {
               "limit": {"type": "integer", "minimum": 1, "maximum": 8000}}, ("contribution",)),
     ]
 }
+ACCESS_TOOLS = {
+    item["name"]: item for item in (
+        tool("hansard_describe_bundle", "Start here. Report the verified snapshot, captured sittings, history coverage and source gaps.", {}),
+        tool("hansard_resolve_concept", "Resolve a spoken label, alias or concept ID before requesting indexed mentions.",
+             {"query": STRING, "limit": LIMIT}, ("query",)),
+        tool("hansard_mentions", "Page all retained mentions for a resolved concept within optional dates and House. Distinct source links, not every historical use of the phrase.",
+             {**WINDOW, "key": {"type": "string", "maxLength": 100, "pattern": "^[A-Za-z0-9_-]+$"},
+              "snapshot": {"type": "string", "maxLength": 160}}, ("key",)),
+        tool("hansard_search_passages", "Search full text in the captured sittings. Return excerpts, exact Hansard links and timeline links.",
+             {**WINDOW, "query": STRING}, ("query",)),
+    )
+}
 
 
 def tool_result(value, error=False):
@@ -75,7 +92,7 @@ def invoke(name, args, index, people, passages):
                          args.get("expected_sha256"))
 
 
-def rpc(request, index, people, passages):
+def rpc(request, index, people, passages, access=None):
     method = request.get("method")
     request_id = request.get("id")
     if "id" not in request:
@@ -83,13 +100,25 @@ def rpc(request, index, people, passages):
     response = {"jsonrpc": "2.0", "id": request_id}
     params = request.get("params") or {}
     if method == "initialize":
-        result = {"protocolVersion": PROTOCOL, "capabilities": {"tools": {"listChanged": False}},
+        requested = params.get("protocolVersion")
+        result = {"protocolVersion": requested if requested in PROTOCOLS else PROTOCOL,
+                  "capabilities": {"tools": {"listChanged": False}},
                   "serverInfo": {"name": "okf-hansard", "version": "0.1.0"},
                   "instructions": "Use official source links, distinguish aliases from identity proof and disclose coverage."}
     elif method == "ping":
         result = {}
     elif method == "tools/list":
-        result = {"tools": list(TOOLS.values())}
+        result = {"tools": list(TOOLS.values()) + (list(ACCESS_TOOLS.values()) if access else [])}
+    elif method == "tools/call" and access and params.get("name") in ACCESS_TOOLS:
+        name = params["name"]
+        arguments = params.get("arguments", {})
+        try:
+            Draft202012Validator(ACCESS_TOOLS[name]["inputSchema"]).validate(arguments)
+            handler = {"hansard_describe_bundle": access.describe, "hansard_resolve_concept": access.concepts,
+                       "hansard_mentions": access.mentions, "hansard_search_passages": access.search}[name]
+            result = tool_result(handler(**arguments))
+        except (OSError, TypeError, ValueError, KeyError, ValidationError) as exc:
+            result = tool_result({"message": str(exc)[:350]}, error=True)
     elif method == "tools/call" and params.get("name") in TOOLS:
         try:
             result = tool_result(invoke(params["name"], params.get("arguments", {}), index, people, passages))
@@ -102,13 +131,23 @@ def rpc(request, index, people, passages):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--release", type=Path, default=DEFAULT_RELEASE)
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--release", type=Path)
+    source.add_argument("--publication", type=Path, help="Pin the latest verified release from a publication receipt at startup.")
+    parser.add_argument("--http", type=int, metavar="PORT", help="Listen on 127.0.0.1 at /mcp using Streamable HTTP.")
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--older-database", type=Path, help="Read a verified, separate pre-2007 archive.")
-    parser.add_argument("--people", type=Path, default=Path(".snapshots/members-current"))
+    parser.add_argument("--people", type=Path)
     args = parser.parse_args()
-    index = Index(args.release, args.database, args.older_database)
+    access = Access(args.publication) if args.publication else None
+    release = access.release if access else args.release or DEFAULT_RELEASE
+    people = args.people or (Path(access.pointer["people"]) if access else Path(".snapshots/members-current"))
+    index = Index(release, args.database, args.older_database)
     passages = Passages(index)
+    if args.http is not None:
+        from mcp_http import serve
+        serve(args.http, PROTOCOLS, lambda request: rpc(request, index, people, passages, access))
+        return
     while raw := sys.stdin.buffer.readline(65537):
         if len(raw) > 65536:
             print(json.dumps({"jsonrpc": "2.0", "id": None, "error": {
@@ -120,7 +159,7 @@ def main():
             request = json.loads(raw)
             if not isinstance(request, dict) or request.get("jsonrpc") != "2.0":
                 raise ValueError("Invalid request")
-            response = rpc(request, index, args.people, passages)
+            response = rpc(request, index, people, passages, access)
         except (TypeError, AttributeError, ValueError):
             response = {"jsonrpc": "2.0", "id": None, "error": {"code": -32600, "message": "Invalid request"}}
         if response is not None:

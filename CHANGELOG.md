@@ -1,5 +1,13 @@
 # Changelog
 
+## Unified Hansard and voice access
+
+- Added a single collection entry for the verified capture, earlier matches and demonstration views.
+- Added an account-free phone evidence finder, plain-text prompt and followable source links.
+- Added capture search, concept resolution, complete paged mention lookup and read-only MCP access over stdio or Streamable HTTP. A project server can pin the latest verified publication at start-up.
+- Added cross-client evidence and transport tests, with separate readiness, assistant answer and voice checks.
+- Recovered the four Commons written-answer timeouts in the pre-2007 archive. Retry attempts keep previously captured records until a complete replacement is verified.
+
 ## Unreleased — patched uv certificate trust, 24 November 2026
 
 - Require uv 0.13.4 for local project commands and CI. This removes the

@@ -1,5 +1,7 @@
 # A week in Parliament
 
+For the full capture, history and voice entry point, open the [Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) or [ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.html). The week examples are guided views into the project. See [voice and cross-client tests](docs/voice-acceptance.md) for connection setup, limits and repeatable checks.
+
 An experimental OKF+ bundle of Westminster Hansard for 16 to 19 November 2026, with a rolling index of earlier contributions that share a person, office, place, organisation, programme, legislative instrument or subject. The November companion adds sittings as they are verified.
 
 The current producer candidate is version 0.3.0 and declares OKF core 0.3. The
