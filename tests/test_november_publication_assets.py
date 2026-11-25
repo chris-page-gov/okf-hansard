@@ -18,7 +18,7 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
             raw = ("asset:" + name).encode()
             path.write_bytes(raw)
         graph = {"schema": "okf-explorer-large-corpus.v1", "kind": "okf-large-corpus",
-                 "id": "urn:test", "version": "0.3.0", "snapshot": "sha256-test", "okf_version": "0.3"}
+                 "id": "urn:test", "version": "0.3.0", "snapshot": "hansard-sha256-test", "okf_version": "0.3"}
         graph_raw = json.dumps(graph, sort_keys=True).encode()
         (root / "graph/okf-explorer.json").write_bytes(graph_raw)
         core = {"okf_version": "0.3", "snapshot": "core-test"}
@@ -26,6 +26,8 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
         (root / "okf-core.json").write_bytes(core_raw)
         (root / "core-walkthrough.json").write_text(json.dumps({
             "descriptor_sha256": publish_november.sha(core_raw)}), encoding="utf-8")
+        coverage = {"semantic_graph": {"sha256": "yaml-test"}}
+        (root / "coverage.json").write_text(json.dumps(coverage), encoding="utf-8")
         (root / "walkthrough.json").write_text(json.dumps({
             "descriptor_sha256": publish_november.sha(graph_raw),
             "expected_identity": {key: graph[key] for key in ("schema", "id", "version", "snapshot")}}),
@@ -37,6 +39,19 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
         (root / "checksums.json").write_text(json.dumps(catalogue), encoding="utf-8")
         for name in omit:
             (root / name).unlink(missing_ok=True)
+
+    def release(self, path):
+        path.mkdir(parents=True, exist_ok=True)
+        (path / "receipt.json").write_text(json.dumps({"artifacts": {
+            "okf-bundle.json": {"sha256": "test"},
+            "okf-bundle.yamlld": {"sha256": "yaml-test"}}}), encoding="utf-8")
+        return path
+
+    def builder_root(self, root):
+        scripts = root / "scripts"
+        scripts.mkdir(parents=True, exist_ok=True)
+        (scripts / "site_generator.py").write_text("VERSION = 1\n", encoding="utf-8")
+        return root
 
     def test_complete_site_requires_and_checks_every_entry_point(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -71,11 +86,10 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
             site = root / "site"
             site.mkdir()
             self.site(site)
-            release = root / "release"
-            release.mkdir()
-            (release / "receipt.json").write_text(json.dumps({"artifacts": {
-                "okf-bundle.json": {"sha256": "different"},
-                "okf-bundle.yamlld": {"sha256": "different"}}}), encoding="utf-8")
+            release = self.release(root / "release")
+            receipt = json.loads((release / "receipt.json").read_bytes())
+            receipt["artifacts"]["okf-bundle.json"]["sha256"] = "different"
+            (release / "receipt.json").write_text(json.dumps(receipt), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "different verified release"):
                 publish_november.validate_november_site(site, "2026-11-24", release)
 
@@ -86,6 +100,54 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
             (root / "stale.html").write_text("unlisted", encoding="utf-8")
             with self.assertRaisesRegex(ValueError, r"unlisted=\['stale.html'\]"):
                 publish_november.validate_november_site(root, "2026-11-24")
+
+    def test_missing_prepared_cache_identity_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.site(root)
+            with self.assertRaisesRegex(ValueError, "no site cache identity"):
+                publish_november.validate_november_site(root, "2026-11-24", expected_identity=None,
+                                                        require_identity=True)
+
+    def test_builder_source_change_invalidates_saved_cache_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site = root / "site"
+            site.mkdir()
+            self.site(site)
+            release = self.release(root / "release")
+            self.builder_root(root)
+            identity = publish_november.site_cache_identity(site, release, "2026-11-24", root=root)
+            (root / "scripts/site_generator.py").write_text("VERSION = 2\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "cache identity"):
+                publish_november.validate_november_site(site, "2026-11-24", release, identity, root=root)
+
+    def test_unchanged_site_cache_identity_passes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site = root / "site"
+            site.mkdir()
+            self.site(site)
+            release = self.release(root / "release")
+            self.builder_root(root)
+            identity = publish_november.site_cache_identity(site, release, "2026-11-24", root=root)
+            checked = publish_november.validate_november_site(
+                site, "2026-11-24", release, identity, require_identity=True, root=root)
+            self.assertEqual(len(checked), len(publish_november.REQUIRED_NOVEMBER_ASSETS))
+
+    def test_asset_edit_with_recomputed_catalogue_invalidates_saved_identity(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site = root / "site"
+            site.mkdir()
+            self.site(site)
+            release = self.release(root / "release")
+            self.builder_root(root)
+            identity = publish_november.site_cache_identity(site, release, "2026-11-24", root=root)
+            (site / "index.html").write_text("edited but recatalogued", encoding="utf-8")
+            publish_november.checksums(site)
+            with self.assertRaisesRegex(ValueError, "cache identity"):
+                publish_november.validate_november_site(site, "2026-11-24", release, identity, root=root)
 
 
 if __name__ == "__main__":

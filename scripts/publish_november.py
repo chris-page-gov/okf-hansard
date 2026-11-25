@@ -47,7 +47,43 @@ REQUIRED_NOVEMBER_ASSETS = (
 )
 
 
-def validate_november_site(site, through=None, expected_release=None):
+def builder_fingerprint(root=ROOT):
+    """Hash Python generators, profiles and static inputs used to render a site."""
+    root = Path(root)
+    paths = set((root / "scripts").rglob("*.py"))
+    paths.update(path for path in (
+        root / "docs/pages/site.css", root / "profile/domain.yaml", root / "profile/hansard-domain-v2.json",
+        root / "pyproject.toml", root / "uv.lock", root / "compatibility/public-assets/manifest.json",
+    ) if path.exists())
+    compat = root / "compatibility/public-assets/november"
+    if compat.exists():
+        paths.update(path for path in compat.rglob("*") if path.is_file())
+    rows = []
+    for path in sorted(paths, key=lambda item: item.relative_to(root).as_posix()):
+        if path.is_symlink() or not path.is_file():
+            raise ValueError(f"Unsafe November builder input: {path.relative_to(root)}")
+        rows.append({"path": path.relative_to(root).as_posix(), "sha256": sha(path.read_bytes())})
+    commitment = sha(json.dumps(rows, sort_keys=True, separators=(",", ":")).encode("utf-8"))
+    return {"sha256": commitment, "files": rows}
+
+
+def site_cache_identity(site, release, through, *, root=ROOT):
+    site = Path(site)
+    receipt = Path(release) / "receipt.json"
+    catalogue = site / "checksums.json"
+    if any(path.is_symlink() or not path.is_file() for path in (receipt, catalogue)):
+        raise ValueError("Cannot bind the November cache to missing or unsafe inputs.")
+    return {
+        "schema": "hansard-november-site-cache.v1",
+        "through": through,
+        "release_receipt_sha256": sha(receipt.read_bytes()),
+        "builder": builder_fingerprint(root),
+        "checksums_sha256": sha(catalogue.read_bytes()),
+    }
+
+
+def validate_november_site(site, through=None, expected_release=None, expected_identity=None,
+                           require_identity=False, root=ROOT):
     """Fail closed unless every required November entry point is checksummed and intact."""
     site = Path(site)
     if site.is_symlink() or not site.is_dir():
@@ -113,6 +149,13 @@ def validate_november_site(site, through=None, expected_release=None):
             or full_case.get("expected_identity") != {
                 key: descriptor[key] for key in ("schema", "id", "version", "snapshot")}):
         raise ValueError("The full walkthrough is not bound to the published graph descriptor.")
+    if require_identity and not isinstance(expected_identity, dict):
+        raise ValueError("The prepared attempt has no site cache identity.")
+    if expected_identity is not None:
+        if expected_release is None or not through:
+            raise ValueError("Cache identity verification requires its selected release and through-date.")
+        if expected_identity != site_cache_identity(site, expected_release, through, root=root):
+            raise ValueError("The November site cache identity differs from the prepared attempt.")
     if through:
         day = site / "history" / "days" / f"{through}.json"
         if not day.is_file():
@@ -174,8 +217,8 @@ def checksums(site):
     return result
 
 
-def publish(site, checkout, through, assets):
-    catalogue = validate_november_site(site, through)
+def publish(site, checkout, through, assets, expected_release=None, expected_identity=None):
+    catalogue = validate_november_site(site, through, expected_release, expected_identity, require_identity=True)
     if assets != catalogue:
         raise ValueError("The supplied November asset list differs from the validated catalogue.")
     checks = ["checksums.json", *REQUIRED_NOVEMBER_ASSETS, f"history/days/{through}.json"]
@@ -377,9 +420,11 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
                    == ("provisional" if provisional else "observed")), None)
     if cached:
         current = read(cached)
+        prepared_path = cached
     else:
         work = (candidates / datetime.now(ZONE).strftime("%H%M%S")).resolve()
         current = prepare(work, previous, limit, today, initial_capture)
+        prepared_path = work / "prepared.json"
     release = Path(current["release"])
     days = set(read(release / "receipt.json")["week_contributions_by_day"])
     previous_result = release / "backfill/manifest.json"
@@ -390,18 +435,24 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
             raise RuntimeError(f"History incomplete for {len(history['exceptions'])} entities. Saved results are reusable.")
     site = Path(current["site"])
     try:
-        validate_november_site(site, current["through"], release)
+        validate_november_site(site, current["through"], release, current.get("site_identity"),
+                               require_identity=True)
     except ValueError:
-        output = site.with_name("staging-" + datetime.now(ZONE).strftime("%H%M%S") + "-" + uuid4().hex[:8])
+        attempt = site.parent / ("staging-" + datetime.now(ZONE).strftime("%H%M%S") + "-" + uuid4().hex[:8])
+        attempt.mkdir(parents=True, exist_ok=False)
+        output = attempt / "site"
         stage(release, Path(current["days"]), output, DEFAULT_DB, DEEP_DB, CACHE / "public", "historical-downloads.html")
         write_downloads(output, history_downloads(release, state, current["through"]))
         checksums(output)
-        validate_november_site(output, current["through"], release)
         current["site"] = str(output)
+        current["site_identity"] = site_cache_identity(output, release, current["through"])
+        prepared_path = attempt / "prepared.json"
+        dump(prepared_path, current)
         site = output
-    manifest = site / "checksums.json"
-    assets = validate_november_site(site, current["through"], release)
-    remote = publish(site, checkout, current["through"], assets)
+    assets = validate_november_site(site, current["through"], release, current.get("site_identity"),
+                                    require_identity=True)
+    dump(prepared_path, current)
+    remote = publish(site, checkout, current["through"], assets, release, current.get("site_identity"))
     dump(pointer, {**current, **remote, "provisional": provisional})
     print(f"{now()} Published and verified November through {current['through']}.", flush=True)
 

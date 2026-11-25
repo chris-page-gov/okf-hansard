@@ -7,7 +7,10 @@
   cache is restaged under a fresh path; the compact descriptor and both
   source-linked walkthroughs are mandatory publication assets. Recheck the
   full and compact bundle identities and their walkthrough bindings before
-  publication.
+  publication. Bind each prepared site to its through-date, release receipt,
+  builder and profile inputs, and exact checksum catalogue so stale caches are
+  restaged even when their files are internally consistent. Keep the prior
+  frozen archive links in the expanded current download index.
 
 ## Unified Hansard and voice access
 
