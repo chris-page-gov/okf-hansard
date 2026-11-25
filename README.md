@@ -134,6 +134,8 @@ The November publisher checks the official Commons and Lords calendars, caches e
 
 The local publisher runs through the 30 November snapshot without model calls. It saves the latest verified deployment in `.work/november-2026/publication.json` and logs failures in `.work/november-2026/publication-errors.log`. The SSD is required for rebuilding archive projections. The published views use static files.
 
+Before replacing the November Pages directory, the publisher verifies the prepared site's identity against the through-date, selected release receipt, builder/profile inputs and exact checksum catalogue. It requires the compact Reader descriptor plus both full-graph and compact-core walkthroughs and their diagrams, and checks that each walkthrough binds to the matching current descriptor. A missing or stale identity, required file or digest causes a fresh staging attempt before publication.
+
 Pass `--attempts-root` an existing directory on ExtSSD-Data to place new captures, verification outputs and staged Pages files on the SSD. The publication checkpoint and shared lock stay in the repository’s ignored working directory. A refresh that needs to stage a new release waits for the configured directory to be available.
 
 ## Source attribution

@@ -11,6 +11,7 @@ import subprocess
 import tarfile
 import time
 from urllib.error import URLError
+from uuid import uuid4
 
 from backfill import collect
 from build import build
@@ -36,6 +37,133 @@ ARCHIVE_URL = ("https://github.com/chris-page-gov/okf-hansard/releases/download/
                "november-2026-history/november-2026-history.tar")
 REPO = "chris-page-gov/okf-hansard"
 ARCHIVE_TAG = "november-2026-history"
+REQUIRED_NOVEMBER_ASSETS = (
+    "index.html", "coverage.json", "history.html", "history.js", "history/index.json",
+    "graph/okf-explorer.json", "okf-core.json", "walkthrough.html", "walkthrough.json",
+    "walkthrough.svg", "walkthrough-mobile.svg", "core-walkthrough.html", "core-walkthrough.json",
+    "core-walkthrough.svg", "core-walkthrough-mobile.svg", "okf/index.md", "okf/sittings.md",
+    "okf-public-access.json", "checksums.json", "okf-bundle.yamlld.gz", ".well-known/okf.json",
+    "llms.txt", "historical-downloads.html", "historical-downloads.json",
+)
+
+
+def builder_fingerprint(root=ROOT):
+    """Hash Python generators, profiles and static inputs used to render a site."""
+    root = Path(root)
+    paths = set((root / "scripts").rglob("*.py"))
+    for directory in (root / "profile", root / "docs/pages"):
+        paths.update(path for path in directory.rglob("*") if path.is_file())
+    paths.update(path for path in (
+        root / "docs/pages/site.css", root / "profile/domain.yaml", root / "profile/hansard-domain-v2.json",
+        root / "pyproject.toml", root / "uv.lock", root / "compatibility/public-assets/manifest.json",
+    ) if path.exists())
+    compat = root / "compatibility/public-assets/november"
+    if compat.exists():
+        paths.update(path for path in compat.rglob("*") if path.is_file())
+    rows = []
+    for path in sorted(paths, key=lambda item: item.relative_to(root).as_posix()):
+        if (path.is_symlink() or not path.is_file()
+                or not path.resolve().is_relative_to(root.resolve())):
+            raise ValueError(f"Unsafe November builder input: {path.relative_to(root)}")
+        rows.append({"path": path.relative_to(root).as_posix(), "sha256": sha(path.read_bytes())})
+    commitment = sha(json.dumps(rows, sort_keys=True, separators=(",", ":")).encode("utf-8"))
+    return {"sha256": commitment, "files": rows}
+
+
+def site_cache_identity(site, release, through, *, root=ROOT):
+    site = Path(site)
+    receipt = Path(release) / "receipt.json"
+    catalogue = site / "checksums.json"
+    if any(path.is_symlink() or not path.is_file() for path in (receipt, catalogue)):
+        raise ValueError("Cannot bind the November cache to missing or unsafe inputs.")
+    return {
+        "schema": "hansard-november-site-cache.v1",
+        "through": through,
+        "release_receipt_sha256": sha(receipt.read_bytes()),
+        "builder": builder_fingerprint(root),
+        "checksums_sha256": sha(catalogue.read_bytes()),
+    }
+
+
+def validate_november_site(site, through=None, expected_release=None, expected_identity=None,
+                           require_identity=False, root=ROOT):
+    """Fail closed unless every required November entry point is checksummed and intact."""
+    site = Path(site)
+    if site.is_symlink() or not site.is_dir():
+        raise ValueError("The November site must be a real directory.")
+    manifest_path = site / "checksums.json"
+    if manifest_path.is_symlink() or not manifest_path.is_file():
+        raise ValueError("The November site has no regular checksum catalogue.")
+    try:
+        catalogue = read(manifest_path)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        raise ValueError("The November checksum catalogue is invalid.") from exc
+    if not isinstance(catalogue, dict):
+        raise ValueError("The November checksum catalogue must be an object.")
+    actual = set()
+    for path in site.rglob("*"):
+        if path.is_symlink():
+            raise ValueError(f"The November site contains a symbolic link: {path.relative_to(site)}")
+        if path.is_file() and path.relative_to(site).as_posix() != "checksums.json":
+            actual.add(path.relative_to(site).as_posix())
+    if actual != set(catalogue):
+        unlisted = sorted(actual - set(catalogue))
+        absent = sorted(set(catalogue) - actual)
+        raise ValueError(f"The November checksum catalogue does not cover the site (unlisted={unlisted}, absent={absent}).")
+    required = list(REQUIRED_NOVEMBER_ASSETS)
+    if through:
+        required.append(f"history/days/{through}.json")
+    missing = [name for name in required if name != "checksums.json" and name not in catalogue]
+    if missing:
+        raise ValueError("The November site is missing required checksummed assets: " + ", ".join(missing))
+    for name, entry in catalogue.items():
+        rel = Path(name)
+        if rel.is_absolute() or ".." in rel.parts or not isinstance(entry, dict):
+            raise ValueError("The November checksum catalogue contains an unsafe asset reference.")
+        path = site / rel
+        if path.is_symlink() or not path.is_file() or not path.resolve().is_relative_to(site.resolve()):
+            raise ValueError(f"The November asset is missing or unsafe: {name}")
+        raw = path.read_bytes()
+        if entry.get("bytes") != len(raw) or entry.get("sha256") != sha(raw):
+            raise ValueError(f"The November asset differs from its checksum catalogue: {name}")
+    descriptor = read(site / "graph/okf-explorer.json")
+    if (descriptor.get("schema") != "okf-explorer-large-corpus.v1"
+            or descriptor.get("kind") != "okf-large-corpus"
+            or not all(isinstance(descriptor.get(key), str) and descriptor[key]
+                       for key in ("id", "version", "snapshot", "okf_version"))):
+        raise ValueError("The November graph descriptor has no complete published identity.")
+    if descriptor["okf_version"] != "0.3":
+        raise ValueError("The November graph descriptor is not verified OKF 0.3.")
+    if expected_release is not None:
+        receipt = read(Path(expected_release) / "receipt.json")
+        if descriptor["snapshot"] != "hansard-sha256-" + receipt["artifacts"]["okf-bundle.json"]["sha256"]:
+            raise ValueError("The November graph descriptor belongs to a different verified release.")
+        coverage = read(site / "coverage.json")
+        if coverage.get("semantic_graph", {}).get("sha256") != receipt["artifacts"]["okf-bundle.yamlld"]["sha256"]:
+            raise ValueError("The November coverage report belongs to a different verified release.")
+    core = read(site / "okf-core.json")
+    if core.get("okf_version") != "0.3" or not core.get("snapshot"):
+        raise ValueError("The November compact descriptor has no verified Core 0.3 identity.")
+    compact_case = read(site / "core-walkthrough.json")
+    if compact_case.get("descriptor_sha256") != sha((site / "okf-core.json").read_bytes()):
+        raise ValueError("The compact walkthrough is not bound to the published compact descriptor.")
+    full_case = read(site / "walkthrough.json")
+    if (full_case.get("descriptor_sha256") != sha((site / "graph/okf-explorer.json").read_bytes())
+            or full_case.get("expected_identity") != {
+                key: descriptor[key] for key in ("schema", "id", "version", "snapshot")}):
+        raise ValueError("The full walkthrough is not bound to the published graph descriptor.")
+    if require_identity and not isinstance(expected_identity, dict):
+        raise ValueError("The prepared attempt has no site cache identity.")
+    if expected_identity is not None:
+        if expected_release is None or not through:
+            raise ValueError("Cache identity verification requires its selected release and through-date.")
+        if expected_identity != site_cache_identity(site, expected_release, through, root=root):
+            raise ValueError("The November site cache identity differs from the prepared attempt.")
+    if through:
+        day = site / "history" / "days" / f"{through}.json"
+        if not day.is_file():
+            raise ValueError(f"The November site is missing the through-date record: {day.name}")
+    return catalogue
 
 
 def calendar(output):
@@ -92,7 +220,15 @@ def checksums(site):
     return result
 
 
-def publish(site, checkout, through, assets):
+def publish(site, checkout, through, assets, expected_release=None, expected_identity=None):
+    catalogue = validate_november_site(site, through, expected_release, expected_identity, require_identity=True)
+    if assets != catalogue:
+        raise ValueError("The supplied November asset list differs from the validated catalogue.")
+    checks = ["checksums.json", *REQUIRED_NOVEMBER_ASSETS, f"history/days/{through}.json"]
+    checks = list(dict.fromkeys(checks))
+    absent = [name for name in checks if name != "checksums.json" and name not in assets]
+    if absent:
+        raise ValueError("The November publication catalogue omits required assets: " + ", ".join(absent))
     with pages_lock():
         if git(checkout, "status", "--porcelain"):
             raise ValueError("The November Pages checkout contains other changes.")
@@ -110,11 +246,6 @@ def publish(site, checkout, through, assets):
             raise ValueError(f"The site exceeds the Pages size limit ({total:,} bytes).")
         commit = git(checkout, "rev-parse", "HEAD")
         git(checkout, *GIT_AUTH, "push", PAGES_REMOTE, "HEAD:refs/heads/gh-pages")
-    checks = ["checksums.json", "index.html", "coverage.json", "history.html", "history.js", "history/index.json",
-              "graph/okf-explorer.json", "okf-bundle.yamlld.gz", f"history/days/{through}.json",
-              "okf-public-access.json", ".well-known/okf.json", "llms.txt", "okf/index.md", "okf/sittings.md",
-              "hansard.json", "ask.html", "ask.md", "ask.js", "concepts.json"]
-    checks = [name for name in checks if name in assets or name == "checksums.json"]
     catalogue = site / "checksums.json"
     with catalogue.open("rb") as stream:
         assets["checksums.json"] = {"bytes": catalogue.stat().st_size,
@@ -292,9 +423,11 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
                    == ("provisional" if provisional else "observed")), None)
     if cached:
         current = read(cached)
+        prepared_path = cached
     else:
         work = (candidates / datetime.now(ZONE).strftime("%H%M%S")).resolve()
         current = prepare(work, previous, limit, today, initial_capture)
+        prepared_path = work / "prepared.json"
     release = Path(current["release"])
     days = set(read(release / "receipt.json")["week_contributions_by_day"])
     previous_result = release / "backfill/manifest.json"
@@ -304,14 +437,25 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
         if history["exceptions"]:
             raise RuntimeError(f"History incomplete for {len(history['exceptions'])} entities. Saved results are reusable.")
     site = Path(current["site"])
-    if not (site / "index.html").is_file():
-        output = site.with_name("staging-" + datetime.now(ZONE).strftime("%H%M%S"))
+    try:
+        validate_november_site(site, current["through"], release, current.get("site_identity"),
+                               require_identity=True)
+    except ValueError:
+        attempt = site.parent / ("staging-" + datetime.now(ZONE).strftime("%H%M%S") + "-" + uuid4().hex[:8])
+        attempt.mkdir(parents=True, exist_ok=False)
+        output = attempt / "site"
         stage(release, Path(current["days"]), output, DEFAULT_DB, DEEP_DB, CACHE / "public", "historical-downloads.html")
         write_downloads(output, history_downloads(release, state, current["through"]))
-        output.replace(site)
-    manifest = site / "checksums.json"
-    assets = read(manifest) if manifest.is_file() else checksums(site)
-    remote = publish(site, checkout, current["through"], assets)
+        checksums(output)
+        current["site"] = str(output)
+        current["site_identity"] = site_cache_identity(output, release, current["through"])
+        prepared_path = attempt / "prepared.json"
+        dump(prepared_path, current)
+        site = output
+    assets = validate_november_site(site, current["through"], release, current.get("site_identity"),
+                                    require_identity=True)
+    dump(prepared_path, current)
+    remote = publish(site, checkout, current["through"], assets, release, current.get("site_identity"))
     dump(pointer, {**current, **remote, "provisional": provisional})
     print(f"{now()} Published and verified November through {current['through']}.", flush=True)
 
