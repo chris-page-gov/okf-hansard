@@ -155,6 +155,8 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         write_ai_guide(site)
     write_index(root, title, coverage, "\n".join([
         "# " + title, "", *entries, "", "# Coverage and retrieval", "",
+        f"- [Start with the Hansard collection]({SITE}november/hansard.json)",
+        f"- [Ask your AI about Hansard]({SITE}november/ask.html)",
         f"- [Coverage and verification]({base}coverage.json)",
         f"- [Compact core Reader projection]({base}okf-core.json)",
         f"- [Full source core and graph records]({base}graph/okf-explorer.json)",
@@ -224,6 +226,7 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         "schema": "okf-public-access-directory.v1", "title": title, "locale": "en-GB",
         "time_zone": "Europe/London", "observed_on": observed_at[:10],
         "scope": "Independent public Hansard evidence. Supplemental discovery metadata.",
+        "collection": SITE + "november/hansard.json",
         "related_directory": SITE + ("okf-public-access.json" if month else "november/okf-public-access.json"),
         "bundles": [{
             "title": title, "repository": REPOSITORY, "home": base, "visibility": "public",

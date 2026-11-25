@@ -110,8 +110,11 @@ def write(release, destination, database, cache, *, older_database=None, focused
             older.execute("BEGIN")
             older_ranges = archive_ranges(older)
             older_identity = archive_identity(older_database, older_profile, older_ranges)
+            missing = [{"date": day, "house": house, "retained": retained}
+                       for day, house, retained in older.execute(
+                           "SELECT day,house,retained FROM sitting WHERE status='source gap' ORDER BY day,house")]
             older_scope = {"ranges": older_ranges, "profile_sha256": older_profile,
-                           "source_gaps": older.execute("SELECT count(*) FROM sitting WHERE status='source gap'").fetchone()[0]}
+                           "source_gaps": len(missing), "gaps": missing}
         for key in sorted(keys):
             if key in extra_entities:
                 dump(assets / f"{key}.json", sorted(extra_postings[key], key=lambda row: (row[0], row[4], row[5]),

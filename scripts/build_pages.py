@@ -233,7 +233,7 @@ def index_page(coverage, semantic_file, graph_anchor):
 <h1>A week in Parliament</h1>
 <p class="intro">Follow a Hansard contribution through related people, offices, organisations, places and legislation. This experimental OKF+ bundle contains {total:,} passages and {assertions:,} source-linked relationships.</p>
 <p class="actions"><a class="primary" href="demo.html?example=railways-bill">Follow the Railways Bill</a>
-<a href="use-with-ai.html">Use Hansard with AI</a>
+<a href="november/ask.html">Ask your AI about Hansard</a>
 <a href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a>
 <a href="beginners.html">Beginner’s guide</a></p>
 <div class="grid">

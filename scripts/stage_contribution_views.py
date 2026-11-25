@@ -17,6 +17,7 @@ from history_pages import write as write_history
 from okf_core import CORE_VERSION
 from query import DEFAULT_DB
 from retained_public_assets import stage as retain_public_assets
+from voice_pages import publish_voice
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -55,7 +56,8 @@ def write_landing(output, coverage, archive_url):
 <body><main class="demo">
 <h1>November in Parliament</h1>
 <p>{coverage["contributions"]:,} captured contributions from both Houses. Choose a date and contribution to open its graph or follow related passages over time.</p>
-<p class="actions"><a href="history.html">Open contribution timeline</a>
+<p class="actions"><a href="ask.html">Ask your AI about Hansard</a>
+<a href="history.html">Open contribution timeline</a>
 <a href="walkthrough.html">View the source-linked coverage walkthrough</a>
 <a href="okf/index.md">Open the OKF index for AI</a>
 <a href="okf-bundle.yamlld.gz">Download the YAML-LD graph</a>
@@ -123,6 +125,7 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
     write_landing(output, coverage, archive_url)
     write_discovery(output, "November in Parliament", expected, max(row["verified_at"] for row in days),
                     "okf-bundle.yamlld.gz", month=True)
+    publish_voice(output, release)
     retain_public_assets(output, 'november')
 
 
