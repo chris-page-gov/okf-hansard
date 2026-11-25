@@ -3,7 +3,7 @@
   "title": "November in Parliament",
   "locale": "en-GB",
   "time_zone": "Europe/London",
-  "observed_on": "2026-11-24",
+  "observed_on": "2026-11-25",
   "scope": "Independent public Hansard evidence. Supplemental discovery metadata.",
   "related_directory": "https://chris-page-gov.github.io/okf-hansard/okf-public-access.json",
   "bundles": [
@@ -13,7 +13,7 @@
       "home": "https://chris-page-gov.github.io/okf-hansard/november/",
       "visibility": "public",
       "descriptor": "https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json",
-      "descriptor_sha256": "d28d89c2ca75a7ecaa77aa81fc05e2cc07b65ef0b394c434927c130a00be3568",
+      "descriptor_sha256": "731ee3814ed6cd4e7e990da6a304f692fc3633dd41fa8bb561f9797c97679a08",
       "descriptor_schema": "okf-explorer-large-corpus.v1",
       "declared_okf_version": "0.3",
       "core_specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
@@ -27,36 +27,36 @@
       "licence": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
       "coverage": {
         "from": "2026-11-02",
-        "through": "2026-11-23",
-        "observed_at": "2026-11-24T07:15:10+00:00"
+        "through": "2026-11-24",
+        "observed_at": "2026-11-25T04:53:30+00:00"
       },
       "access_note": "Start with the Markdown index. Retrieve focused records or history by need. Follow official links when citing parliamentary evidence.",
       "entrypoints": {
         "markdown_index": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/index.md",
-          "sha256": "a34fa149a6a33ac33b20974d5c1a8e3d199bf147cb9aedfadfdb654ab770dee7",
+          "sha256": "bc7593f8b0344b24f91af98925ec39be5f534b76b41e249f1f43cf75e7ce3d28",
           "bytes": 796
         },
         "coverage": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/coverage.json",
-          "sha256": "8f61fcc98f6d208565489126bab8d5c163cbae0bd97466740a4f01d42027a941",
-          "bytes": 12794
+          "sha256": "1588e57c0e8c14c61395bc3e4e738bf70b6966a74372f4740e76bddecc91006d",
+          "bytes": 13302
         },
         "semantic_graph": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf-bundle.yamlld.gz",
-          "sha256": "0582b3dd78b83f092a7979a9f9fb8cb9981d0bacebf75188b7bcc1f7785fea96",
-          "bytes": 12143097,
+          "sha256": "f100d48cc15ffbb6d2e03e71fbbf2a5273f629335c50023bdbff5d1214243011",
+          "bytes": 13406981,
           "format": "YAML-LD",
           "compression": "gzip"
         },
         "history/index.json": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/history/index.json",
-          "sha256": "4aedcec0c772cfa1f92d47e5a81c7c6df1b5339df3dcf8fc3edf8596ee096fc6",
-          "bytes": 941836
+          "sha256": "a134e00b9b9e0c235ea08b03a37b55648cc7e5a9bdcc1fdea4b573c6e25face6",
+          "bytes": 975928
         },
         "okf/sittings.md": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/sittings.md",
-          "sha256": "6e2976d3862ea78ed5e60538e31c44f6297349fe31652dfcbc6e42254b4ea259",
+          "sha256": "f5908af0446bba68ea19f808826cf227b431735a3cd4b63661cad5b59bf71b16",
           "bytes": 1124
         }
       }
