@@ -4,6 +4,9 @@
 
 ## Start here
 
+- [One Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json): Capture, historical concept mentions and graphs.
+- [Ask an AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.md): Voice prompt and copyable evidence.
+
 - [OKF 0.3 Markdown index](https://chris-page-gov.github.io/okf-hansard/november/okf/index.md): Open this small index first.
 - [Machine directory](https://chris-page-gov.github.io/okf-hansard/november/okf-public-access.json): Coverage, endpoints and SHA-256 digests.
 - [Coverage and verification](https://chris-page-gov.github.io/okf-hansard/november/coverage.json): Check dates and search limits before answering.

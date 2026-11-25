@@ -43,5 +43,13 @@
     "url": "https://github.com/chris-page-gov/okf-hansard/releases/download/november-2026-history/history-through-2026-11-24-726e372269fb.tar",
     "bytes": 4044800,
     "sha256": "46d85baf745ded204c0471325b6772e5a6861ae99af49a1de5e429782a80ae5d"
+  },
+  {
+    "name": "commons-written-answer-corrections-2004-to-2006.tar",
+    "label": "Commons written-answer corrections, 2004 to 2006",
+    "scope": "sitting corrections",
+    "bytes": 2816000,
+    "sha256": "2c404f07b1dfb70d76a7e54eb5a7e76a8bcc98c30c0bcb0ba42fc44cb778deee",
+    "url": "https://github.com/chris-page-gov/okf-hansard/releases/download/november-2026-history/commons-written-answer-corrections-2004-to-2006.tar"
   }
 ]

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask your AI about Hansard</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="site.css"><link rel="describedby" href="hansard.json" type="application/json">
+<script src="ask.js" defer></script>
+</head>
+<body><main class="guide">
+<nav aria-label="Hansard"><a href="./">November in Parliament</a></nav>
+<h1>Ask your AI about Hansard</h1>
+<p id="coverage-summary">18,364 contributions from Commons and Lords sittings, 2 November 2026 to 24 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.</p>
+<h2>Try it on your phone</h2>
+<p>Copy the prompt into your AI chat, then use voice if your app offers it. If the app cannot open links, find a concept here and copy its evidence instead. The finder opens without signing in.</p>
+<label for="prompt">Prompt to copy</label>
+<textarea id="prompt" readonly rows="5" style="display:block;width:100%;font:inherit">Use the Hansard OKF bundle at https://chris-page-gov.github.io/okf-hansard/november/hansard.json. Tell me the dates covered, the historical search window and the known gaps. Then trace mentions of the Synergy programme and give me exact Hansard links and the timeline. Say which evidence files you opened.</textarea>
+<button type="button" data-copy="prompt">Copy prompt</button>
+<h2>Find and copy evidence</h2>
+<form id="lookup">
+<label for="concept">Concept name or alias</label>
+<input id="concept" value="Synergy programme" required>
+<button>Find mentions</button>
+</form>
+<p id="status" role="status"></p><p id="choices"></p>
+<section id="results" hidden>
+<p id="count"></p><p id="timeline"></p><ol id="links"></ol>
+<button type="button" id="previous">Previous matches</button><button type="button" id="next">Next matches</button>
+<p><label for="evidence">Evidence to paste into your AI chat</label></p>
+<textarea id="evidence" readonly rows="10" style="display:block;width:100%;font:inherit"></textarea>
+<button type="button" data-copy="evidence">Copy evidence</button>
+</section>
+<p><a href="ask.md">Plain-text guide</a> · <a href="hansard.json">Collection directory</a> · <a href="history.html">Contribution timeline</a> · <a href="coverage.json">Coverage</a></p>
+</main></body></html>

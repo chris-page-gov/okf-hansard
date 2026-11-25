@@ -1,0 +1,110 @@
+{
+  "schema": "okf-public-access-directory.v1",
+  "title": "Hansard",
+  "locale": "en-GB",
+  "time_zone": "Europe/London",
+  "scope": "18,364 contributions from Commons and Lords sittings, 2 November 2026 to 24 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.",
+  "bundles": [
+    {
+      "id": "urn:okf:hansard",
+      "title": "Hansard",
+      "snapshot": "hansard-collection-sha256-2b4b53c1dde44a1eefe539b927a254e192405d751d5374eecb77a3dfb0611453",
+      "declared_okf_version": "0.3",
+      "core_specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
+      "home": "https://chris-page-gov.github.io/okf-hansard/november/ask.html",
+      "descriptor": "https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json",
+      "descriptor_sha256": "731ee3814ed6cd4e7e990da6a304f692fc3633dd41fa8bb561f9797c97679a08",
+      "descriptor_schema": "okf-explorer-large-corpus.v1",
+      "visibility": "public",
+      "repository": "https://github.com/chris-page-gov/okf-hansard",
+      "access_directory": "https://chris-page-gov.github.io/okf-hansard/november/okf-public-access.json",
+      "capture": {
+        "from": "2026-11-02",
+        "through": "2026-11-24",
+        "contributions": 18364,
+        "sitting_dates": [
+          "2026-11-02",
+          "2026-11-03",
+          "2026-11-04",
+          "2026-11-09",
+          "2026-11-10",
+          "2026-11-11",
+          "2026-11-12",
+          "2026-11-13",
+          "2026-11-16",
+          "2026-11-17",
+          "2026-11-18",
+          "2026-11-19",
+          "2026-11-20",
+          "2026-11-23",
+          "2026-11-24"
+        ]
+      },
+      "historical_search": {
+        "from": "2007-01-01",
+        "through": "2026-11-01",
+        "method": "Official Hansard spoken and written search, verified against the literal matching profile",
+        "entities": 1484,
+        "complete": 1484,
+        "exceptions": {}
+      },
+      "older_archive": {
+        "exclusive_before": "2007-01-01",
+        "ranges": {
+          "Commons": [
+            "2003-02-25",
+            "2006-12-19",
+            585
+          ],
+          "Lords": [
+            "2003-02-24",
+            "2006-12-19",
+            567
+          ]
+        },
+        "profile_sha256": "4aeb5583155d90a3b7813d32c021c525cd8b4582375fb6fb6a8388039de85268",
+        "source_gaps": 0,
+        "gaps": []
+      },
+      "entrypoints": {
+        "okf_index": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/index.md",
+          "bytes": 796,
+          "sha256": "bc7593f8b0344b24f91af98925ec39be5f534b76b41e249f1f43cf75e7ce3d28"
+        },
+        "coverage": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/coverage.json",
+          "bytes": 13302,
+          "sha256": "1588e57c0e8c14c61395bc3e4e738bf70b6966a74372f4740e76bddecc91006d"
+        },
+        "history_index": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/history/index.json",
+          "bytes": 975945,
+          "sha256": "baa6ee4fa7294a899d55b272463c7a6ba44178bc55c20999a5c82b9ecd8ebee9"
+        },
+        "timeline": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/history.html",
+          "bytes": 2293,
+          "sha256": "0cad63b81cd685ef24a0c638e51cfc3a51ed948d5d3feb37b7b06661591dfa6e"
+        },
+        "semantic_graph": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/okf-bundle.yamlld.gz",
+          "bytes": 13406981,
+          "sha256": "f100d48cc15ffbb6d2e03e71fbbf2a5273f629335c50023bdbff5d1214243011"
+        }
+      },
+      "concept_index": "https://chris-page-gov.github.io/okf-hansard/november/concepts.json",
+      "voice_quick_start": "https://chris-page-gov.github.io/okf-hansard/november/ask.md",
+      "historical_exports": "https://chris-page-gov.github.io/okf-hansard/november/historical-downloads.html",
+      "mention_resources": {
+        "recent_and_search": "https://chris-page-gov.github.io/okf-hansard/november/history/{concept}.json",
+        "archive": "https://chris-page-gov.github.io/okf-hansard/november/history/{concept}.archive.json.gz",
+        "older_archive": "https://chris-page-gov.github.io/okf-hansard/november/history/{concept}.older.json.gz"
+      },
+      "views": {
+        "week_examples": "https://chris-page-gov.github.io/okf-hansard/demo.html",
+        "worked_evidence": "https://chris-page-gov.github.io/okf-hansard/okf/index.md"
+      }
+    }
+  ]
+}

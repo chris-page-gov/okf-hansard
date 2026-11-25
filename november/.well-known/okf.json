@@ -61,5 +61,6 @@
         }
       }
     }
-  ]
+  ],
+  "collection": "https://chris-page-gov.github.io/okf-hansard/november/hansard.json"
 }
