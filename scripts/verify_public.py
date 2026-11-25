@@ -13,6 +13,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlsplit
 from urllib.request import Request, urlopen
 
+from descriptor_policy import validate_descriptor_size
+
 PUBLIC = 'https://chris-page-gov.github.io/okf-hansard/'
 EMPTY_SHA256 = sha256(b'').hexdigest()
 
@@ -27,6 +29,7 @@ def unique(pairs):
 
 
 def catalogue(site):
+    validate_descriptor_size(site)
     raw = (site / 'checksums.json').read_bytes()
     if len(raw) > 32 * 1024 * 1024:
         raise ValueError('checksum catalogue exceeds its budget')

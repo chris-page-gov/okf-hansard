@@ -11,13 +11,14 @@ from urllib.parse import parse_qs, urlsplit
 from archive import Collector, StopRun, contribution_link, open_database
 from backfill import Search, search_aliases, search_periods
 from build import Graph, build, hansard_proceedings, runtime
-from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, fnv_bucket, ordered_relationships
+from build_explorer_graph import CORE_SOURCE_DETAILS_PATH, HUB_MINIMUM_INCIDENT_ASSERTIONS, fnv_bucket, ordered_relationships
 from build_explorer_graph import build as build_explorer_graph
 from build_core_projection import build as build_core_projection
 from build_walkthrough import svg as walkthrough_svg
 from build_pages import index_page, voice_coverage_note, voice_speaker_links
 from capture import dump, sha
 from demo import record, write_timeline
+from discovery import core_source_reference
 from model import Entity, Matcher, plain, read_sittings
 from okf_core import check_markdown
 from people import active_on
@@ -260,6 +261,9 @@ class ModelTests(unittest.TestCase):
             release = root / "release"
             markdown = release / "markdown"
             markdown.mkdir(parents=True)
+            subindex = markdown / "section/index.md"
+            subindex.parent.mkdir(parents=True)
+            subindex.write_bytes(b"# Section index\n\nA separate navigation source.\n")
             index = b'---\n{"okf_version":"0.3","title":"Example"}\n---\n\n# Example\n'
             concept = b'---\n{"type":"Evidence trail","title":"Example trail"}\n---\n\n# Evidence\nSource body.\n'
             extension = b"# Licence\n\nRights information.\n"
@@ -287,15 +291,45 @@ class ModelTests(unittest.TestCase):
                                        for row in semantic_graph))
             (release / "okf-bundle.yamlld").write_text(semantic_bytes, encoding="utf-8")
             dump(release / "receipt.json", {"artifacts": {"okf-bundle.json": {"sha256": sha(raw), "bytes": len(raw)}}})
-            output = root / "graph"
+            site = root / "site"
+            site.mkdir()
+            output = site / "graph"
             build_explorer_graph(release, output)
-            descriptor = json.loads((output / "okf-explorer.json").read_bytes())
+            descriptor_raw = (output / "okf-explorer.json").read_bytes()
+            self.assertLess(len(descriptor_raw), 16 * 1024 * 1024)
+            descriptor = json.loads(descriptor_raw)
             source = descriptor["core_source"]
-            self.assertEqual((3, 1, 1, 1), (source["source_documents"], source["concepts"],
+            self.assertEqual((4, 1, 2, 1), (source["source_documents"], source["concepts"],
                                            source["navigation_documents"], source["extension_documents"]))
+            self.assertEqual("okf-explorer-large-corpus.v1", descriptor["schema"])
+            self.assertEqual("okf-core-source-binding.v2", source["schema"])
+            self.assertNotIn("documents", source)
+            self.assertNotIn("support_documents", source)
+            reference = source["source_manifest"]
+            self.assertEqual(CORE_SOURCE_DETAILS_PATH, reference["path"])
+            detail_raw = (output / reference["path"]).read_bytes()
+            self.assertEqual((len(detail_raw), sha(detail_raw)), (reference["bytes"], reference["sha256"]))
+            self.assertEqual("application/json", reference["media_type"])
+            self.assertEqual("identity", reference["content_encoding"])
+            access_reference = core_source_reference(site, "https://example.test/november/", source)
+            self.assertEqual(reference["sha256"], access_reference["sha256"])
+            self.assertEqual("identity", access_reference["content_encoding"])
+            detail = json.loads(detail_raw)
+            self.assertEqual("okf-core-source-binding-details.v1", detail["schema"])
+            self.assertEqual(source["snapshot"], detail["snapshot"])
+            self.assertEqual(4, len(detail["documents"]))
+            self.assertEqual(["section/index.md"], [row["path"] for row in detail["support_documents"]])
+            support_source = detail["support_documents"][0]
+            self.assertEqual(subindex.read_text(encoding="utf-8"), support_source["markdown"])
+            self.assertEqual(sha(subindex.read_bytes()), support_source["sha256"])
+            self.assertEqual(sha(extension), next(row["sha256"] for row in detail["documents"]
+                                                  if row["path"] == "LICENSE.md"))
+            (output / reference["path"]).write_bytes(b"tampered")
+            with self.assertRaisesRegex(ValueError, "differs from its descriptor reference"):
+                core_source_reference(site, "https://example.test/november/", source)
             self.assertEqual(0, source["relationship_assertions"])
-            reference = next(item for item in source["documents"] if item["path"] == "trail.md")
-            self.assertEqual(sha(concept), reference["sha256"])
+            concept_reference = next(item for item in detail["documents"] if item["path"] == "trail.md")
+            self.assertEqual(sha(concept), concept_reference["sha256"])
             locator = json.loads((output / "records/locator.json").read_bytes())
             bucket = locator["buckets"][fnv_bucket("dataset/trail.md")]
             location = json.loads((output / bucket["path"]).read_bytes())["dataset/trail.md"]

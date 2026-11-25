@@ -5,6 +5,7 @@ import unittest
 from unittest import mock
 
 import publish_november
+from descriptor_policy import MAX_DESCRIPTOR_BYTES
 
 
 class NovemberPublicationAssetsTests(unittest.TestCase):
@@ -77,6 +78,20 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
                     mock.patch.object(publish_november, "git") as git:
                 with self.assertRaisesRegex(ValueError, "walkthrough.html"):
                     publish_november.publish(root, Path(directory) / "checkout", "2026-11-24", {})
+                lock.assert_not_called()
+                git.assert_not_called()
+
+    def test_oversized_descriptor_is_rejected_before_publication_side_effects(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            descriptor = root / "graph/okf-explorer.json"
+            descriptor.parent.mkdir(parents=True)
+            with descriptor.open("wb") as stream:
+                stream.truncate(MAX_DESCRIPTOR_BYTES + 1)
+            with mock.patch.object(publish_november, "pages_lock") as lock, \
+                    mock.patch.object(publish_november, "git") as git:
+                with self.assertRaisesRegex(ValueError, "pinned Reader limit"):
+                    publish_november.publish(root, root / "checkout", "2026-11-24", {})
                 lock.assert_not_called()
                 git.assert_not_called()
 

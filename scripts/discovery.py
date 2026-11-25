@@ -8,7 +8,7 @@ import re
 from urllib.parse import quote, urlencode, urljoin
 
 from capture import dump
-from build_explorer_graph import dataset_route
+from build_explorer_graph import CORE_SOURCE_DETAILS_PATH, dataset_route
 from demo import timeline_route
 from model import PROFILE
 from build_core_projection import build as build_core_projection
@@ -49,6 +49,24 @@ def file_reference(site, base, name):
     with path.open("rb") as stream:
         digest = file_digest(stream, "sha256").hexdigest()
     return {"url": urljoin(base, name), "sha256": digest, "bytes": path.stat().st_size}
+
+
+def core_source_reference(site, base, core_source):
+    """Return the checked public reference to the external v2 source binding."""
+    reference = core_source.get("source_manifest") if isinstance(core_source, dict) else None
+    if (not isinstance(core_source, dict)
+            or core_source.get("schema") != "okf-core-source-binding.v2"
+            or not isinstance(reference, dict)
+            or reference.get("path") != CORE_SOURCE_DETAILS_PATH
+            or reference.get("media_type") != "application/json"
+            or reference.get("content_encoding") != "identity"
+            or type(reference.get("bytes")) is not int
+            or not re.fullmatch(r"[0-9a-f]{64}", str(reference.get("sha256", "")))):
+        raise ValueError("The full-source descriptor has no valid external v2 source binding.")
+    result = file_reference(site, base, "graph/" + CORE_SOURCE_DETAILS_PATH)
+    if (result["bytes"] != reference["bytes"] or result["sha256"] != reference["sha256"]):
+        raise ValueError("The external v2 source binding differs from its descriptor reference.")
+    return {**result, "media_type": "application/json", "content_encoding": "identity"}
 
 
 def explorer_link(asset, view, route=""):
@@ -161,6 +179,7 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         f"- [Coverage and verification]({base}coverage.json)",
         f"- [Compact core Reader projection]({base}okf-core.json)",
         f"- [Full source core and graph records]({base}graph/okf-explorer.json)",
+        f"- [Core source-path inventory and non-record Markdown]({base}graph/{CORE_SOURCE_DETAILS_PATH})",
         f"- [Source-linked question walkthrough]({base}walkthrough.html)",
         f"- [Compact-core question walkthrough]({base}core-walkthrough.html)",
         f"- [Open {('the contribution finder' if month else 'the AI demonstration')}]({base}{'history.html' if month else 'use-with-ai.html'})",
@@ -184,11 +203,13 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
     descriptor = file_reference(site, base, "graph/okf-explorer.json")
     large_descriptor = json.loads(graph_path.read_bytes())
     full_core = large_descriptor.get("core_source", {})
+    core_source_manifest = core_source_reference(site, base, full_core)
     semantic = file_reference(site, base, semantic_file)
     entrypoints = {
         "markdown_index": file_reference(site, base, "okf/index.md"),
         "core_reader_projection": file_reference(site, base, "okf-core.json"),
         "full_source_core_and_graph": file_reference(site, base, "graph/okf-explorer.json"),
+        "full_core_source_manifest": core_source_manifest,
         "walkthrough": file_reference(site, base, "walkthrough.html"),
         "walkthrough_data": file_reference(site, base, "walkthrough.json"),
         "walkthrough_visual": file_reference(site, base, "walkthrough.svg"),
@@ -245,6 +266,7 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
                 "extension_documents": full_core.get("extension_documents"),
                 "relationship_assertions": full_core.get("relationship_assertions"),
                 "detail_resource": full_core.get("detail_resource"),
+                "source_manifest": core_source_manifest,
             },
             "walkthrough": walkthrough,
             "semantic_descriptor": semantic["url"], "core_markdown": core,
@@ -284,6 +306,7 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
         f"- [Ask your AI about Hansard]({SITE}november/ask.md): Copy the voice prompt and find evidence.",
         f"- [OKF 0.3 Markdown index]({base}okf/index.md): Open the Markdown source for this view.",
         f"- [Machine directory]({base}okf-public-access.json): Coverage, endpoints and SHA-256 digests.",
+        f"- [Core source-path inventory and non-record Markdown]({base}graph/{CORE_SOURCE_DETAILS_PATH}): Plain JSON bound by the full-graph descriptor and checksum catalogue.",
         f"- [Coverage and verification]({base}coverage.json): Check dates and search limits before answering.",
         f"- [Compact-core question walkthrough]({base}core-walkthrough.html): Answer from this entry point's own source scope.",
         f"- [Full-graph question walkthrough]({base}walkthrough.html): Follow the separate graph evidence and its limits.",
