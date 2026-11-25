@@ -59,3 +59,11 @@ Use a release that contains the current contribution and pass the older database
     uv run --locked python scripts/mcp_server.py --release RELEASE --older-database /Volumes/ExtSSD-Data/okf-hansard-cache/history-before-2007.sqlite
 
 A laptop can open the public companion and existing published history without this disk. See the [Voice and storage matrix](voice-and-visual-ui.md#voice-and-storage) for the local-host and web distinction.
+
+## Recover timed-out sittings
+
+The large historic written-answer roots can take longer to assemble than other Hansard responses. The collector gives those roots a longer read window and retries them. A failed retry records the new error and keeps the earlier partial contribution and match rows. The repair command works on an isolated SQLite copy and leaves unresolved dates available for another retry.
+
+Run `scripts/historic_archive.py --retry-gaps` with the archived `--database` and `--profile`, a separate `--staged-database`, a `--report` path and an ISO deadline with a time-zone offset. Review the report and its source receipts. Then run `scripts/apply_archive_repair.py` with `--database`, `--staged`, `--backup` and `--report`. Use a new backup path. It applies only verified replacements for currently unresolved House sittings, in one transaction. Regenerate the history projection so the public index and downloadable evidence reflect the repaired rows.
+
+The repair on 25 November 2026 covered Commons written answers on 18 November 2004, 12 September 2005, 27 February 2006 and 18 April 2006. The older archive's date range and alias profile still specify which historical questions it can answer.

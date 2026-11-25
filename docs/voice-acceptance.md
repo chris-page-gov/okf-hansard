@@ -6,6 +6,8 @@
 2. Copy the prompt into your AI app. Continue by voice if your app offers it. Ask the assistant to say which capture, dates and files it opened.
 3. If the app cannot fetch the links, select a concept in the finder, copy its plain-text evidence and paste that into the same chat. You can then ask follow-up questions about the evidence it received.
 
+The visitor needs a browser and an internet connection. Voice depends on the app, account and microphone permission. Clipboard access can prompt on some phones. The page lets visitors select and copy the text by hand in that case.
+
 The [single collection directory](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) links the OKF 0.3 Markdown index, full capture, verified historical matches and the week examples. The historical results are contributions matching configured names and aliases. Ask for dated Hansard links, an exact total of retained matches and the timeline. The companion lets you page through the results.
 
 ## Connect an MCP client

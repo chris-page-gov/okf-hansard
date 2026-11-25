@@ -132,7 +132,7 @@ def installed_clients(url, scratch):
     def probe(binary, operands, directory, env=None):
         return subprocess.run([binary, *operands], cwd=directory, env=env, capture_output=True, text=True, timeout=35)
 
-    name = "hansard_voice_test"
+    name = "hansard-voice-test"
     outcomes = {}
     for label, executable in (("Codex CLI", "codex"), ("Claude Code", "claude"), ("Gemini CLI", "gemini"),
                               ("GitHub Copilot CLI", "copilot"), ("VS Code", "code")):
@@ -162,6 +162,7 @@ def installed_clients(url, scratch):
                 connected = probe(binary, ["mcp", "-c", f'mcp_servers.{name}.url="{url}"', "get", name, "--json"], directory)
                 report["readiness"] = "HTTP configuration accepted" if not connected.returncode and url in connected.stdout else "HTTP configuration unconfirmed"
             elif executable == "copilot":
+                subprocess.run(["git", "init", "--quiet", str(directory)], check=True, capture_output=True)
                 dump(directory / ".mcp.json", {"mcpServers": {name: {"type": "http", "url": url, "tools": ["*"]}}})
                 connected = probe(binary, ["mcp", "get", name, "--json"], directory)
                 report["readiness"] = "workspace HTTP configuration accepted" if not connected.returncode and url in connected.stdout else "workspace HTTP configuration unconfirmed"
@@ -181,7 +182,9 @@ def main():
     expected = read(Path(read(pointer)["site"]) / "coverage.json")["contributions"]
     command = [sys.executable, str(SERVER), "--publication", str(pointer)]
     stdio = check_stdio(command, expected)
-    with serve(command) as url, tempfile.TemporaryDirectory(prefix="hansard-client-") as scratch:
+    workspace = args.out.resolve().parent if args.out else Path.cwd() / ".work"
+    workspace.mkdir(parents=True, exist_ok=True)
+    with serve(command) as url, tempfile.TemporaryDirectory(dir=workspace, prefix="hansard-client-") as scratch:
         http = check_http(url, expected)
         check(http == stdio, "HTTP and stdio evidence differ.")
         clients = installed_clients(url, Path(scratch)) if args.probe_clients else {}
