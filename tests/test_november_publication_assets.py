@@ -135,6 +135,23 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
                 site, "2026-11-24", release, identity, require_identity=True, root=root)
             self.assertEqual(len(checked), len(publish_november.REQUIRED_NOVEMBER_ASSETS))
 
+    def test_profile_and_static_input_changes_invalidate_saved_identity(self):
+        for relative in ("profile/vocabulary.yaml", "docs/pages/additional.css"):
+            with self.subTest(relative=relative), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                site = root / "site"
+                site.mkdir()
+                self.site(site)
+                release = self.release(root / "release")
+                self.builder_root(root)
+                changed = root / relative
+                changed.parent.mkdir(parents=True, exist_ok=True)
+                changed.write_text("original", encoding="utf-8")
+                identity = publish_november.site_cache_identity(site, release, "2026-11-24", root=root)
+                changed.write_text("changed", encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "cache identity"):
+                    publish_november.validate_november_site(site, "2026-11-24", release, identity, root=root)
+
     def test_asset_edit_with_recomputed_catalogue_invalidates_saved_identity(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

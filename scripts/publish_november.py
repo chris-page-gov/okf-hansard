@@ -51,6 +51,8 @@ def builder_fingerprint(root=ROOT):
     """Hash Python generators, profiles and static inputs used to render a site."""
     root = Path(root)
     paths = set((root / "scripts").rglob("*.py"))
+    for directory in (root / "profile", root / "docs/pages"):
+        paths.update(path for path in directory.rglob("*") if path.is_file())
     paths.update(path for path in (
         root / "docs/pages/site.css", root / "profile/domain.yaml", root / "profile/hansard-domain-v2.json",
         root / "pyproject.toml", root / "uv.lock", root / "compatibility/public-assets/manifest.json",
@@ -60,7 +62,8 @@ def builder_fingerprint(root=ROOT):
         paths.update(path for path in compat.rglob("*") if path.is_file())
     rows = []
     for path in sorted(paths, key=lambda item: item.relative_to(root).as_posix()):
-        if path.is_symlink() or not path.is_file():
+        if (path.is_symlink() or not path.is_file()
+                or not path.resolve().is_relative_to(root.resolve())):
             raise ValueError(f"Unsafe November builder input: {path.relative_to(root)}")
         rows.append({"path": path.relative_to(root).as_posix(), "sha256": sha(path.read_bytes())})
     commitment = sha(json.dumps(rows, sort_keys=True, separators=(",", ":")).encode("utf-8"))

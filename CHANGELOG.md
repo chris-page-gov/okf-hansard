@@ -2,6 +2,9 @@
 
 ## Unreleased — fail-closed November publication assets, 25 November 2026
 
+- Include every authored profile and static page input in the November cache
+  fingerprint, including vocabulary and additional stylesheets. A change to
+  these inputs invalidates an otherwise intact prepared site.
 - Validate the cached November site and every required entry point against its
   checksum catalogue before replacing the published directory. An incomplete
   cache is restaged under a fresh path; the compact descriptor and both
