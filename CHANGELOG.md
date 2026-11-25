@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — fail-closed November publication assets, 25 November 2026
+
+- Validate the cached November site and every required entry point against its
+  checksum catalogue before replacing the published directory. An incomplete
+  cache is restaged under a fresh path; the compact descriptor and both
+  source-linked walkthroughs are mandatory publication assets. Recheck the
+  full and compact bundle identities and their walkthrough bindings before
+  publication.
+
 ## Unified Hansard and voice access
 
 - Link the home page and worked examples directly to the Hansard collection.

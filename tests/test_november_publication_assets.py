@@ -1,0 +1,92 @@
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest import mock
+
+import publish_november
+
+
+class NovemberPublicationAssetsTests(unittest.TestCase):
+    def site(self, root, *, omit=()):
+        names = [name for name in publish_november.REQUIRED_NOVEMBER_ASSETS
+                 if name not in {"checksums.json", *omit}]
+        names.append("history/days/2026-11-24.json")
+        for name in names:
+            path = root / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            raw = ("asset:" + name).encode()
+            path.write_bytes(raw)
+        graph = {"schema": "okf-explorer-large-corpus.v1", "kind": "okf-large-corpus",
+                 "id": "urn:test", "version": "0.3.0", "snapshot": "sha256-test", "okf_version": "0.3"}
+        graph_raw = json.dumps(graph, sort_keys=True).encode()
+        (root / "graph/okf-explorer.json").write_bytes(graph_raw)
+        core = {"okf_version": "0.3", "snapshot": "core-test"}
+        core_raw = json.dumps(core, sort_keys=True).encode()
+        (root / "okf-core.json").write_bytes(core_raw)
+        (root / "core-walkthrough.json").write_text(json.dumps({
+            "descriptor_sha256": publish_november.sha(core_raw)}), encoding="utf-8")
+        (root / "walkthrough.json").write_text(json.dumps({
+            "descriptor_sha256": publish_november.sha(graph_raw),
+            "expected_identity": {key: graph[key] for key in ("schema", "id", "version", "snapshot")}}),
+            encoding="utf-8")
+        catalogue = {}
+        for name in names:
+            raw = (root / name).read_bytes()
+            catalogue[name] = {"bytes": len(raw), "sha256": publish_november.sha(raw)}
+        (root / "checksums.json").write_text(json.dumps(catalogue), encoding="utf-8")
+        for name in omit:
+            (root / name).unlink(missing_ok=True)
+
+    def test_complete_site_requires_and_checks_every_entry_point(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.site(root)
+            catalogue = publish_november.validate_november_site(root, "2026-11-24")
+            self.assertIn("core-walkthrough.html", catalogue)
+            self.assertIn("history/days/2026-11-24.json", catalogue)
+
+    def test_incomplete_cached_site_missing_compact_and_walkthroughs_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.site(root, omit=("okf-core.json", "walkthrough.html", "core-walkthrough.html"))
+            with self.assertRaisesRegex(ValueError, "okf-core.json.*walkthrough.html.*core-walkthrough.html"):
+                publish_november.validate_november_site(root, "2026-11-24")
+
+    def test_tampered_required_asset_is_rejected_before_publication_side_effects(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.site(root)
+            (root / "walkthrough.html").write_text("changed", encoding="utf-8")
+            with mock.patch.object(publish_november, "pages_lock") as lock, \
+                    mock.patch.object(publish_november, "git") as git:
+                with self.assertRaisesRegex(ValueError, "walkthrough.html"):
+                    publish_november.publish(root, Path(directory) / "checkout", "2026-11-24", {})
+                lock.assert_not_called()
+                git.assert_not_called()
+
+    def test_valid_files_from_a_different_release_are_not_reused(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            site = root / "site"
+            site.mkdir()
+            self.site(site)
+            release = root / "release"
+            release.mkdir()
+            (release / "receipt.json").write_text(json.dumps({"artifacts": {
+                "okf-bundle.json": {"sha256": "different"},
+                "okf-bundle.yamlld": {"sha256": "different"}}}), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "different verified release"):
+                publish_november.validate_november_site(site, "2026-11-24", release)
+
+    def test_unlisted_site_file_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.site(root)
+            (root / "stale.html").write_text("unlisted", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, r"unlisted=\['stale.html'\]"):
+                publish_november.validate_november_site(root, "2026-11-24")
+
+
+if __name__ == "__main__":
+    unittest.main()
