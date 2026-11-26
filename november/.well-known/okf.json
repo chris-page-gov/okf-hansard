@@ -3,7 +3,7 @@
   "title": "November in Parliament",
   "locale": "en-GB",
   "time_zone": "Europe/London",
-  "observed_on": "2026-11-25",
+  "observed_on": "2026-11-26",
   "scope": "Independent public Hansard evidence. Supplemental discovery metadata.",
   "collection": "https://chris-page-gov.github.io/okf-hansard/november/hansard.json",
   "related_directory": "https://chris-page-gov.github.io/okf-hansard/okf-public-access.json",
@@ -14,7 +14,7 @@
       "home": "https://chris-page-gov.github.io/okf-hansard/november/",
       "visibility": "public",
       "descriptor": "https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json",
-      "descriptor_sha256": "f7e0665b485d299b4815fba0e2e274c3c3b7a1c34b49823b5973e0e627767800",
+      "descriptor_sha256": "3973267c05befc07a963605125fb7f685ab29251600ea54039ffb3d07cb8d94a",
       "descriptor_schema": "okf-explorer-large-corpus.v1",
       "declared_okf_version": "0.3",
       "core_specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
@@ -24,44 +24,44 @@
         "concepts": 1,
         "indexes": 1,
         "documents": 3,
-        "snapshot": "hansard-markdown-sha256-9f646da1e032e4b326b1387fc4cad67b39d4a999a8f5fd147f52aa7c42902768",
-        "sha256": "d3725953c44357a10dd388a464e9c8f8e0a595b4de53f6eb95dfc0a5b3feb965",
+        "snapshot": "hansard-markdown-sha256-939a403b30cffbfd6f5d8586b681b8d85a4c009c5f29975a0d3f21eec1d0483b",
+        "sha256": "83ace899612f20467d34c1fe366958f7bea02477b3f23dd35242e598b8e55120",
         "bytes": 10108
       },
       "full_source_access": {
         "schema": "okf-core-source-binding.v2",
         "descriptor": "https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json",
-        "descriptor_sha256": "f7e0665b485d299b4815fba0e2e274c3c3b7a1c34b49823b5973e0e627767800",
-        "snapshot": "hansard-markdown-sha256-87ff30134d3531ca0ca7ce880d916bc71643fc0ad776b72d54c6b067ff37b6d9",
-        "source_documents": 26788,
-        "concepts": 26779,
+        "descriptor_sha256": "3973267c05befc07a963605125fb7f685ab29251600ea54039ffb3d07cb8d94a",
+        "snapshot": "hansard-markdown-sha256-87895ddb550d898dbe598e0ba9f0471f5f948f592d4222fc832860cfdb263c19",
+        "source_documents": 28330,
+        "concepts": 28321,
         "navigation_documents": 8,
         "extension_documents": 1,
-        "relationship_assertions": 60870,
+        "relationship_assertions": 65131,
         "detail_resource": "record_chunks",
         "source_manifest": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/graph/core-source-binding.json",
-          "sha256": "bebf73ad7cd47832963253c82d0d732fa5c0a5121e677f1e7689b9ce937be8da",
-          "bytes": 18755522,
+          "sha256": "a60011828929a0083c2a70ba0b923173ef0c401a839567f3f562d2a8275e4715",
+          "bytes": 19943762,
           "media_type": "application/json",
           "content_encoding": "identity"
         }
       },
       "walkthrough": {
         "id": "hansard-november-coverage-v1",
-        "svg_sha256": "0195c47d8a2a63cb76dfbbce0b503f7388d0731fa4c4d15baab61961e64a1cf2",
-        "projection_sha256": "d3725953c44357a10dd388a464e9c8f8e0a595b4de53f6eb95dfc0a5b3feb965",
+        "svg_sha256": "d24a5b1175911e4139430efb69f6ffdab0608214227befd17cacb0607300ff30",
+        "projection_sha256": "83ace899612f20467d34c1fe366958f7bea02477b3f23dd35242e598b8e55120",
         "source_count": 3,
         "coverage": {
           "from": "2026-11-01",
-          "through": "2026-11-24",
-          "contributions": 18364,
-          "graph_records": 26780,
-          "assertions": 60870
+          "through": "2026-11-25",
+          "contributions": 19715,
+          "graph_records": 28322,
+          "assertions": 65131
         },
         "compact_core_walkthrough": {
           "id": "hansard-november-compact-core",
-          "descriptor_sha256": "d3725953c44357a10dd388a464e9c8f8e0a595b4de53f6eb95dfc0a5b3feb965",
+          "descriptor_sha256": "83ace899612f20467d34c1fe366958f7bea02477b3f23dd35242e598b8e55120",
           "typed_concepts": 1,
           "graph_relationships": 0
         }
@@ -75,61 +75,61 @@
       "licence": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
       "coverage": {
         "from": "2026-11-02",
-        "through": "2026-11-24",
-        "observed_at": "2026-11-25T04:53:30+00:00"
+        "through": "2026-11-25",
+        "observed_at": "2026-11-26T07:17:45+00:00"
       },
       "access_note": "Start with the Markdown index. Retrieve focused records or history by need. Follow official links when citing parliamentary evidence.",
       "entrypoints": {
         "markdown_index": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/index.md",
-          "sha256": "f3257ba19d99332b86f5a585be3d6b9543f4e0ac514485fc16d91493cde99d3e",
+          "sha256": "80be59b5319c89354efbb648daaaef032c1f71a5730ccd87f79ee3097d9b2c0d",
           "bytes": 1708
         },
         "core_reader_projection": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf-core.json",
-          "sha256": "d3725953c44357a10dd388a464e9c8f8e0a595b4de53f6eb95dfc0a5b3feb965",
+          "sha256": "83ace899612f20467d34c1fe366958f7bea02477b3f23dd35242e598b8e55120",
           "bytes": 10108
         },
         "full_source_core_and_graph": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json",
-          "sha256": "f7e0665b485d299b4815fba0e2e274c3c3b7a1c34b49823b5973e0e627767800",
-          "bytes": 2000
+          "sha256": "3973267c05befc07a963605125fb7f685ab29251600ea54039ffb3d07cb8d94a",
+          "bytes": 2006
         },
         "full_core_source_manifest": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/graph/core-source-binding.json",
-          "sha256": "bebf73ad7cd47832963253c82d0d732fa5c0a5121e677f1e7689b9ce937be8da",
-          "bytes": 18755522,
+          "sha256": "a60011828929a0083c2a70ba0b923173ef0c401a839567f3f562d2a8275e4715",
+          "bytes": 19943762,
           "media_type": "application/json",
           "content_encoding": "identity"
         },
         "walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough.html",
-          "sha256": "7d857d7d583928fc9495a7ec6b5d5e8ceb6dd8f223e29d12bcdbe2380e80c460",
+          "sha256": "ce1e51cd5a2bfc1f0f7481132d65be757120157ab99cab563f4c412c00f784b4",
           "bytes": 3547
         },
         "walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough.json",
-          "sha256": "f4166170874185fdf4f56f8dcb8cd8945cfad23884a42bfd1c5786a490aad5bc",
-          "bytes": 7808
+          "sha256": "f10b5f55987d6f9b0da9796d68b5136c86da2fee6a1b0a5220c590d8bee74d20",
+          "bytes": 7989
         },
         "walkthrough_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough.svg",
-          "sha256": "0195c47d8a2a63cb76dfbbce0b503f7388d0731fa4c4d15baab61961e64a1cf2",
-          "bytes": 3879
+          "sha256": "d24a5b1175911e4139430efb69f6ffdab0608214227befd17cacb0607300ff30",
+          "bytes": 4027
         },
         "walkthrough_mobile_visual": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/walkthrough-mobile.svg",
-          "sha256": "1153d59e6577eb1410bb0bd41bf473d9ed08dc2b47c5ac36fc2558bf542480f0",
-          "bytes": 3537
+          "sha256": "c16a7fe76a82acfabf842e2bddbbd289ffdb853e8b4372da6031814a1c687b6e",
+          "bytes": 3669
         },
         "compact_core_walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.html",
-          "sha256": "5d1b2078739268685d1fd093f4f19ad53ffbd36093a8a979722603130a21debb",
+          "sha256": "e49cc7a44d5bd3e2bfbca9a64d99f29c19cc67c6a8b90e5de31f4da7cc378dea",
           "bytes": 3329
         },
         "compact_core_walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.json",
-          "sha256": "4bb43ab32075000b660b7cb2e9b043b82b04746abc515c712fe2825c1efbb3c3",
+          "sha256": "7d3c13fd3764fa0c806a8f70a5e4888d2a60e4439cb97a846a312e3a1a4c370d",
           "bytes": 2314
         },
         "compact_core_walkthrough_visual": {
@@ -144,13 +144,13 @@
         },
         "coverage": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/coverage.json",
-          "sha256": "1588e57c0e8c14c61395bc3e4e738bf70b6966a74372f4740e76bddecc91006d",
-          "bytes": 13302
+          "sha256": "04f916542144bb283405e22dfb4265ac6f0eb40bab895b1aa587ce51ea6557b8",
+          "bytes": 13808
         },
         "semantic_graph": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf-bundle.yamlld.gz",
-          "sha256": "f100d48cc15ffbb6d2e03e71fbbf2a5273f629335c50023bdbff5d1214243011",
-          "bytes": 13406981,
+          "sha256": "76db775009ac04a7ecd52ded78fb2444c04aa8c2bd4f9b6f65aa6e95239823e8",
+          "bytes": 12528453,
           "format": "YAML-LD",
           "compression": "gzip"
         },
@@ -171,18 +171,18 @@
         },
         "okf/index.md": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/index.md",
-          "sha256": "f3257ba19d99332b86f5a585be3d6b9543f4e0ac514485fc16d91493cde99d3e",
+          "sha256": "80be59b5319c89354efbb648daaaef032c1f71a5730ccd87f79ee3097d9b2c0d",
           "bytes": 1708
         },
         "okf/sittings.md": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/sittings.md",
-          "sha256": "f5908af0446bba68ea19f808826cf227b431735a3cd4b63661cad5b59bf71b16",
+          "sha256": "c3ac907956944800a576b9786bb5a610d5b304a34d3d78ff628aba6a74b4cf63",
           "bytes": 1124
         },
         "history/index.json": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/history/index.json",
-          "sha256": "baa6ee4fa7294a899d55b272463c7a6ba44178bc55c20999a5c82b9ecd8ebee9",
-          "bytes": 975945
+          "sha256": "b23d7417396e60a1ac9c7ae934c97523181255e827d6a119d38c560d0caa1c2c",
+          "bytes": 1010467
         }
       }
     },
@@ -193,13 +193,13 @@
       "visibility": "public",
       "representation": "compact-markdown-core",
       "descriptor": "https://chris-page-gov.github.io/okf-hansard/november/okf-core.json",
-      "descriptor_sha256": "d3725953c44357a10dd388a464e9c8f8e0a595b4de53f6eb95dfc0a5b3feb965",
+      "descriptor_sha256": "83ace899612f20467d34c1fe366958f7bea02477b3f23dd35242e598b8e55120",
       "descriptor_schema": "okf-explorer-bundle.v0",
       "expected_identity": {
         "schema": "okf-explorer-bundle.v0",
         "id": "urn:okf:hansard:public-core:november-in-parliament",
         "version": "0.3.0",
-        "snapshot": "hansard-markdown-sha256-9f646da1e032e4b326b1387fc4cad67b39d4a999a8f5fd147f52aa7c42902768"
+        "snapshot": "hansard-markdown-sha256-939a403b30cffbfd6f5d8586b681b8d85a4c009c5f29975a0d3f21eec1d0483b"
       },
       "declared_okf_version": "0.3",
       "semantic_profile": "https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json",
@@ -209,29 +209,29 @@
       "licence": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
       "walkthrough": {
         "id": "hansard-november-compact-core",
-        "descriptor_sha256": "d3725953c44357a10dd388a464e9c8f8e0a595b4de53f6eb95dfc0a5b3feb965",
+        "descriptor_sha256": "83ace899612f20467d34c1fe366958f7bea02477b3f23dd35242e598b8e55120",
         "typed_concepts": 1,
         "graph_relationships": 0
       },
       "entrypoints": {
         "markdown_index": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/index.md",
-          "sha256": "f3257ba19d99332b86f5a585be3d6b9543f4e0ac514485fc16d91493cde99d3e",
+          "sha256": "80be59b5319c89354efbb648daaaef032c1f71a5730ccd87f79ee3097d9b2c0d",
           "bytes": 1708
         },
         "core_reader_projection": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf-core.json",
-          "sha256": "d3725953c44357a10dd388a464e9c8f8e0a595b4de53f6eb95dfc0a5b3feb965",
+          "sha256": "83ace899612f20467d34c1fe366958f7bea02477b3f23dd35242e598b8e55120",
           "bytes": 10108
         },
         "compact_core_walkthrough": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.html",
-          "sha256": "5d1b2078739268685d1fd093f4f19ad53ffbd36093a8a979722603130a21debb",
+          "sha256": "e49cc7a44d5bd3e2bfbca9a64d99f29c19cc67c6a8b90e5de31f4da7cc378dea",
           "bytes": 3329
         },
         "compact_core_walkthrough_data": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/core-walkthrough.json",
-          "sha256": "4bb43ab32075000b660b7cb2e9b043b82b04746abc515c712fe2825c1efbb3c3",
+          "sha256": "7d3c13fd3764fa0c806a8f70a5e4888d2a60e4439cb97a846a312e3a1a4c370d",
           "bytes": 2314
         },
         "compact_core_walkthrough_visual": {

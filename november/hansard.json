@@ -3,25 +3,25 @@
   "title": "Hansard",
   "locale": "en-GB",
   "time_zone": "Europe/London",
-  "scope": "18,364 contributions from Commons and Lords sittings, 2 November 2026 to 24 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.",
+  "scope": "19,715 contributions from Commons and Lords sittings, 2 November 2026 to 25 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.",
   "bundles": [
     {
       "id": "urn:okf:hansard",
       "title": "Hansard",
-      "snapshot": "hansard-collection-sha256-2b4b53c1dde44a1eefe539b927a254e192405d751d5374eecb77a3dfb0611453",
+      "snapshot": "hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e",
       "declared_okf_version": "0.3",
       "core_specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md",
       "home": "https://chris-page-gov.github.io/okf-hansard/november/ask.html",
       "descriptor": "https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json",
-      "descriptor_sha256": "f7e0665b485d299b4815fba0e2e274c3c3b7a1c34b49823b5973e0e627767800",
+      "descriptor_sha256": "3973267c05befc07a963605125fb7f685ab29251600ea54039ffb3d07cb8d94a",
       "descriptor_schema": "okf-explorer-large-corpus.v1",
       "visibility": "public",
       "repository": "https://github.com/chris-page-gov/okf-hansard",
       "access_directory": "https://chris-page-gov.github.io/okf-hansard/november/okf-public-access.json",
       "capture": {
         "from": "2026-11-02",
-        "through": "2026-11-24",
-        "contributions": 18364,
+        "through": "2026-11-25",
+        "contributions": 19715,
         "sitting_dates": [
           "2026-11-02",
           "2026-11-03",
@@ -37,15 +37,16 @@
           "2026-11-19",
           "2026-11-20",
           "2026-11-23",
-          "2026-11-24"
+          "2026-11-24",
+          "2026-11-25"
         ]
       },
       "historical_search": {
         "from": "2007-01-01",
         "through": "2026-11-01",
         "method": "Official Hansard spoken and written search, verified against the literal matching profile",
-        "entities": 1484,
-        "complete": 1484,
+        "entities": 1523,
+        "complete": 1523,
         "exceptions": {}
       },
       "older_archive": {
@@ -70,17 +71,17 @@
         "okf_index": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf/index.md",
           "bytes": 1708,
-          "sha256": "f3257ba19d99332b86f5a585be3d6b9543f4e0ac514485fc16d91493cde99d3e"
+          "sha256": "80be59b5319c89354efbb648daaaef032c1f71a5730ccd87f79ee3097d9b2c0d"
         },
         "coverage": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/coverage.json",
-          "bytes": 13302,
-          "sha256": "1588e57c0e8c14c61395bc3e4e738bf70b6966a74372f4740e76bddecc91006d"
+          "bytes": 13808,
+          "sha256": "04f916542144bb283405e22dfb4265ac6f0eb40bab895b1aa587ce51ea6557b8"
         },
         "history_index": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/history/index.json",
-          "bytes": 975945,
-          "sha256": "baa6ee4fa7294a899d55b272463c7a6ba44178bc55c20999a5c82b9ecd8ebee9"
+          "bytes": 1010467,
+          "sha256": "b23d7417396e60a1ac9c7ae934c97523181255e827d6a119d38c560d0caa1c2c"
         },
         "timeline": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/history.html",
@@ -89,8 +90,8 @@
         },
         "semantic_graph": {
           "url": "https://chris-page-gov.github.io/okf-hansard/november/okf-bundle.yamlld.gz",
-          "bytes": 13406981,
-          "sha256": "f100d48cc15ffbb6d2e03e71fbbf2a5273f629335c50023bdbff5d1214243011"
+          "bytes": 12528453,
+          "sha256": "76db775009ac04a7ecd52ded78fb2444c04aa8c2bd4f9b6f65aa6e95239823e8"
         }
       },
       "concept_index": "https://chris-page-gov.github.io/okf-hansard/november/concepts.json",

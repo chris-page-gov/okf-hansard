@@ -1,5 +1,5 @@
 {
-  "snapshot": "hansard-collection-sha256-2b4b53c1dde44a1eefe539b927a254e192405d751d5374eecb77a3dfb0611453",
+  "snapshot": "hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e",
   "concepts": {
     "activity-000f0db6c03fca2ef65747f4": {
       "label": "Susan Murray",
@@ -14,6 +14,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-1576.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-00328b6a357fc762c8535fd4": {
+      "label": "Medomsley Detention Centre: Youth Custody Safeguarding",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-1a028263-3bd2-4f29-a477-0cb5e1793ab1.md",
       "captured_only": true,
       "aliases": []
     },
@@ -166,6 +174,22 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-2000.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-02cd4f77344d3fe66d1adb57": {
+      "label": "Driverless Road Vehicles: Regulation",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-westhall-848aa805-bb39-4ccf-812c-db2373b0b219.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-0336b4021c7b36f671aa94b2": {
+      "label": "Other Correction",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-correction-26112525000001.md",
       "captured_only": true,
       "aliases": []
     },
@@ -462,6 +486,14 @@
       "group": "Recorded capacities",
       "type": "Recorded capacity",
       "route": "role/07f3442682af36dbd44bab6b.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-0941a376703dd9ffbb27af8b": {
+      "label": "Sir Jeremy Wright",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-1560.md",
       "captured_only": true,
       "aliases": []
     },
@@ -830,6 +862,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-10-debate-86e30977-1f17-4a5f-8cd7-f505c648e6b5.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-0fa825f6b1a38487d6f014c1": {
+      "label": "Victoria Atkins",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-4399.md",
       "captured_only": true,
       "aliases": []
     },
@@ -1278,6 +1318,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4790.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-1791a282570ad703fe1082da": {
+      "label": "Digital Markets, Competition and Consumers Act 2024 (Subscription Contracts) (Consequential Amendments) Regulations 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-717f1aff-f2f5-43ce-8104-5ca26ca417c7.md",
       "captured_only": true,
       "aliases": []
     },
@@ -1849,6 +1897,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-2239840663cc915cf5da8019": {
+      "label": "Armed Forces Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-bb897261-7488-4ec7-ae99-8c32a004e527.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-226b24093d0012b416b0ecbc": {
       "label": "Lord Baker of Dorking",
       "group": "Speakers",
@@ -1862,6 +1918,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4607.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-22e891afe887a3ed5301e28c": {
+      "label": "Baroness Whitaker",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-2510.md",
       "captured_only": true,
       "aliases": []
     },
@@ -1958,6 +2022,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/lords-2026-11-19-grandcommittee-2ac9d021-df7a-4a81-b5e7-bafaa9c00ae6.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-24a659935cf5e4e7762c2e86": {
+      "label": "Myanmar",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-12240249-e72a-410c-aa23-3e06742eb80f.md",
       "captured_only": true,
       "aliases": []
     },
@@ -2177,6 +2249,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-29c3383fd4f95ee2f399df6d": {
+      "label": "Floods and Emergencies: Access to Remote Locations",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-westhall-5df83ef1-b28d-4c35-b7ac-61ed3321eac5.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-2a155bfc86fe13050881a695": {
       "label": "Tom Tugendhat",
       "group": "Speakers",
@@ -2262,6 +2342,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-5333.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-2b67ead0466828d36fc77d9e": {
+      "label": "Independent Commission for Reconciliation and Information Recovery",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-52708f9c-d1bc-41f9-9900-b730c8397198.md",
       "captured_only": true,
       "aliases": []
     },
@@ -2409,6 +2497,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-2e69268a343a8779bdd22797": {
+      "label": "Lord Boateng",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-147.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-2ec3e891c4e58c87483631bc": {
       "label": "Baroness Hollins",
       "group": "Speakers",
@@ -2430,6 +2526,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-04-correction-a0ef7ff2-1b6b-41ee-a0c5-4734d7d421af.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-2ef05ce47577f0866a6b58e9": {
+      "label": "Baroness Blackstone",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-3561.md",
       "captured_only": true,
       "aliases": []
     },
@@ -2558,6 +2662,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4513.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-30c142ba86cc696431581cf6": {
+      "label": "Baroness Monckton of Dallington Forest",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-5020.md",
       "captured_only": true,
       "aliases": []
     },
@@ -2841,6 +2953,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-34acad939c02601d7c5e9fae": {
+      "label": "Local Council Improvements: Update",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-wms-26112539000006.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-34bb1a76f146f4fbea7b9415": {
       "label": "Changes to the UK Designs Framework: Consultation Response",
       "group": "Proceedings",
@@ -2961,6 +3081,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-3748388f143a55ebeb6d7666": {
+      "label": "Kirsty McNeill",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-5114.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-37e8ad7427ef9b5780279392": {
       "label": "Sarah Bool",
       "group": "Speakers",
@@ -2974,6 +3102,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4736.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-3838e521c3588b9df451f72f": {
+      "label": "Drumcree: Garvaghy Road",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-bf0287c5-97f8-43de-a9da-071ff247e264.md",
       "captured_only": true,
       "aliases": []
     },
@@ -3041,6 +3177,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-399ae4a667b1954b14fc6dcc": {
+      "label": "Alberto Costa",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-4439.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-3a4892f0efd7bc9178c23bbb": {
       "label": "NHS Dentistry",
       "group": "Proceedings",
@@ -3086,6 +3230,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-738.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-3ad2dc463e7c6151869e9abc": {
+      "label": "Restoration and Renewal of the Palace of Westminster",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-60bb272e-12a5-42f6-a4d9-677b3d516eb9.md",
       "captured_only": true,
       "aliases": []
     },
@@ -3230,6 +3382,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/lords-2026-11-10-grandcommittee-b887947a-5a6b-4438-a3e7-33dc65fe9511.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-3d1b7cd38f323c9109957c5e": {
+      "label": "Speed limits in Torwood Village",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-petitions-26112565000105.md",
       "captured_only": true,
       "aliases": []
     },
@@ -3665,6 +3825,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-4499c99241daed64c86f137b": {
+      "label": "The Parliamentary Under-Secretary of State for Northern Ireland",
+      "group": "Recorded capacities",
+      "type": "Recorded capacity",
+      "route": "role/75813c382d10286b78c2c931.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-44d587e68f981b4169540027": {
       "label": "Baroness Harding of Winscombe",
       "group": "Speakers",
@@ -3790,6 +3958,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4020.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-47e1cf82891bd50513b44178": {
+      "label": "House of Commons",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-f91be30a-3d53-40bb-9f0f-875e9648261a.md",
       "captured_only": true,
       "aliases": []
     },
@@ -4041,6 +4217,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-4dd72d59fb10714a1cadc6cd": {
+      "label": "Cyber Security and Resilience (Network and Information Systems) Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-07625124-e2ff-412a-ab57-8d73a767a0ba.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-4df60869be0bb0d46c5d906d": {
       "label": "Mark Ferguson",
       "group": "Speakers",
@@ -4129,6 +4313,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-4f18064cd0b3d7a8de0f9bbc": {
+      "label": "Lord German",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-4163.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-4f22997fc8a560efbbd0d87a": {
       "label": "Chris Philp",
       "group": "Speakers",
@@ -4142,6 +4334,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-16-debate-afb2059e-8b46-40a3-bc13-f87c710c0f5a.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-4f4db5e952b68bcee86b1978": {
+      "label": "Social Security (Persons Detained in Hospital) (Amendment) Regulations 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-3f98463d-bb0f-4428-ad9e-5d568032a1d5.md",
       "captured_only": true,
       "aliases": []
     },
@@ -4206,6 +4406,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-13-correction-16d7e0bc-4d1c-4c39-ba8c-b2e92a0601cb.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-503356135938fb1aff086118": {
+      "label": "Consumer Subscription Contracts (Cancellation and Information) Regulations 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-3480f87c-d958-4740-b8ac-6f264ffc9dda.md",
       "captured_only": true,
       "aliases": []
     },
@@ -4657,6 +4865,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-586692ab0e80b28e40b4ba5c": {
+      "label": "Business without Debate",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-089f444b-36a2-4ef0-a2ad-84e46e61e9a1.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-58a5bc1dcc1992112beeb31d": {
       "label": "The Lord Bishop of Norwich",
       "group": "Speakers",
@@ -4737,6 +4953,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-59c5dd284d5205f0421c4879": {
+      "label": "Courts and Tribunals Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-bbcc270b-1370-47de-a3fb-2d2b19fac5cd.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-59cb42abe3e1b2e8ab7d0ff5": {
       "label": "Dave Robertson",
       "group": "Speakers",
@@ -4814,6 +5038,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-02-debate-e157c589-2b0d-448f-8744-d9a631fca6ca.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-5aebba6b43f5d69d5157740c": {
+      "label": "Technical Education: Secondary Schools",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-50656398-ef47-49d1-9a5e-ba50f4f52d9a.md",
       "captured_only": true,
       "aliases": []
     },
@@ -4961,6 +5193,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-5d289f6824cc72cfc7652f85": {
+      "label": "Sale of Electric Personal Vehicles",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-b776c0fa-dd37-437f-910b-8e592493adcf.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-5d425d9e9c377505adce2b5e": {
       "label": "Creative Industries: Participation",
       "group": "Proceedings",
@@ -5006,6 +5246,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-5283.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-5df228cfbe32606fc5a95621": {
+      "label": "Sir Mark Tami",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-1383.md",
       "captured_only": true,
       "aliases": []
     },
@@ -5401,6 +5649,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-63f0671abb96d1e7ac147283": {
+      "label": "The Collective Old Oak",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-f485bdcc-56c7-437c-b9da-bbca9375f755.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-643ed62a363f0eecc3b10be4": {
       "label": "Debbie Abrahams",
       "group": "Speakers",
@@ -5505,6 +5761,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-6699cab415016011561ef63c": {
+      "label": "Northern Ireland Troubles (Legacy and Reconciliation) Act 2023",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-aa5b3347-4b02-4ebf-8e3f-7a26ffa85218.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-66bc74e50c0921f7b678c1fa": {
       "label": "COP31",
       "group": "Proceedings",
@@ -5542,6 +5806,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-4354.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-67891af1a2844614c9c3e7a7": {
+      "label": "Health Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-3cb1723c-9ae0-42ea-bf3c-2440f4e35968.md",
       "captured_only": true,
       "aliases": []
     },
@@ -5822,6 +6094,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/lords-2026-11-23-debate-149d24bc-a539-44fc-9744-31ce6de2fa32.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-6d7add3f17689311d24b34db": {
+      "label": "Code of Practice for Public Authorities Sharing Information with Digital Verification Services",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-cc477cb5-d81a-420e-a224-0abdc1ec74ec.md",
       "captured_only": true,
       "aliases": []
     },
@@ -6142,6 +6422,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-805.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-72c041434a0e125df1da2230": {
+      "label": "The Minister for International Development",
+      "group": "Recorded capacities",
+      "type": "Recorded capacity",
+      "route": "role/76941c30ca0b7623380addb8.md",
       "captured_only": true,
       "aliases": []
     },
@@ -6553,6 +6841,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-79b18660041da844219e199b": {
+      "label": "Lobbying Transparency and Public Confidence",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-westhall-6ba90508-6e3e-49e8-9fc0-eafdd956fcd1.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-79c2c4583d7e6b6dc408f558": {
       "label": "Lord Frost",
       "group": "Speakers",
@@ -6774,6 +7070,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4359.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-7df453c9ccd7f6b65e705849": {
+      "label": "Tahir Ali",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-4747.md",
       "captured_only": true,
       "aliases": []
     },
@@ -7681,6 +7985,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-903ba73744d6d27b99045d76": {
+      "label": "Business of the House (Today)",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-803dee5e-b949-4fc3-9fe5-5c2dbb140cc4.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-908b8e5ad3e5d711061a9fc9": {
       "label": "Financial Services and Markets Act 2000 (Cryptoassets) (Miscellaneous Amendments) Regulations 2026",
       "group": "Proceedings",
@@ -7769,6 +8081,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-925e399e9477986bd7370c9a": {
+      "label": "ADHD Taskforce",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-4e9c5a08-c640-4736-9072-627db4e1c65e.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-927ea779f5ea956b8d906324": {
       "label": "Prisons: Rehabilitative Programmes",
       "group": "Proceedings",
@@ -7814,6 +8134,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-5347.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-936e0e0402fee68e47d06ba0": {
+      "label": "The Parliamentary Under-Secretary of State, Home Office, and Ministry of Housing, Communities and Local Government",
+      "group": "Recorded capacities",
+      "type": "Recorded capacity",
+      "route": "role/9bb4183aee73699192b5a813.md",
       "captured_only": true,
       "aliases": []
     },
@@ -8081,6 +8409,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-98e4f444c91fce03516e27b7": {
+      "label": "Sarah Owen",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-4777.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-9952eb526e2568d053c634f3": {
       "label": "Baroness Bloomfield of Hinton Waldrist",
       "group": "Speakers",
@@ -8246,6 +8582,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-4922.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-9bdfbe8896728c7ea22174bf": {
+      "label": "Baroness Helic",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-4331.md",
       "captured_only": true,
       "aliases": []
     },
@@ -8478,6 +8822,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4631.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-a10ecddbe504dc0ea59664a4": {
+      "label": "Westminster Hall",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-westhall-efc23daa-fd0a-44c5-933f-64fbac4aa914.md",
       "captured_only": true,
       "aliases": []
     },
@@ -8718,6 +9070,22 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-5403.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-a5c930ca22293f2b3bfa2a91": {
+      "label": "House of Lords",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-26112538000252.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-a5e5b3b2eccdc0038dff461f": {
+      "label": "Draft AWE Pension Scheme (Transfer of Assets) Regulations 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-gen-fd00c717-5e76-4933-bf47-c72226a490cf.md",
       "captured_only": true,
       "aliases": []
     },
@@ -9033,11 +9401,27 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-ab10296e832bc0677415cead": {
+      "label": "Engagements",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-53075982-f523-4408-a7c7-2bbda7734ab0.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-ab3b1f9ac070f7dc192daa02": {
       "label": "Commonwealth Heads of Government Meeting",
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-10-debate-98bed7da-2baa-487c-9be5-eb7cd6c6657c.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-ab44606002d2bbe6019c23c9": {
+      "label": "Ofgem Energy Price Cap",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-e5d253e0-376a-41bc-8889-9785c3e593e5.md",
       "captured_only": true,
       "aliases": []
     },
@@ -9150,6 +9534,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-4523.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-ad98495e9b0771f3366f92a6": {
+      "label": "Rights of Rohingya People",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-westhall-ca30ef71-0af4-4a1b-a5e9-302148ec58a7.md",
       "captured_only": true,
       "aliases": []
     },
@@ -9382,6 +9774,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-3783.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-b171fb0d9d6e31709b6aa1cd": {
+      "label": "Drink driving, drug driving and dangerous driving laws",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-petitions-26112565000103.md",
       "captured_only": true,
       "aliases": []
     },
@@ -9969,6 +10369,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-bcdaba027f2d526e645fc41e": {
+      "label": "EDITH Trial: Breast Cancers",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-a935cf74-0d7e-463a-b2a9-a44a3679587c.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-bcdb12f6a78d858c67b03bf0": {
       "label": "House Building",
       "group": "Proceedings",
@@ -9982,6 +10390,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-02-debate-117f4075-d869-424b-b582-ef2e3b3fc49d.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-bceb795b4753e00b0e50830e": {
+      "label": "Arrangement of Business",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-2ae1d26b-6f80-4afb-83d2-aa250237c7d8.md",
       "captured_only": true,
       "aliases": []
     },
@@ -10113,6 +10529,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-be7816568731bf2bc3a2c732": {
+      "label": "International Day for the Elimination of Violence against Women",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-e8ee2841-6182-4b27-8088-3f3fc123d431.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-be8467dcda3b8c59809ba5e3": {
       "label": "The Minister for Women and Equalities",
       "group": "Recorded capacities",
@@ -10238,6 +10662,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-12-debate-6a61d4eb-0bad-40e2-a559-0a41d8e9e912.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-c05f6a37dd35abb35402b830": {
+      "label": "Marine Licensing (Notices Appeals) (Amendment) Regulations 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-c79ffff7-4cf1-446a-b0c2-be5c414c4412.md",
       "captured_only": true,
       "aliases": []
     },
@@ -10473,6 +10905,22 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-c4cd124ce4e8a8aef1545a81": {
+      "label": "Draft International Claims Commission for Ukraine (Immunities and Privileges) Order 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-gen-099d8a38-3d3a-43e0-9c62-5216b7a4dbab.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-c4d705f271a52f012d31c7f5": {
+      "label": "Opposition Day",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-5a823d7a-0134-41be-9df2-9677dd91aba5.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-c522ee0c7077cb593384dc7f": {
       "label": "Jewish Community Buildings: Security",
       "group": "Proceedings",
@@ -10553,6 +11001,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-c776b8c7030b5f65ec63047e": {
+      "label": "Lord Hamilton of Epsom",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-100.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-c78ccf4e6436bf33790a0647": {
       "label": "Richard Fuller",
       "group": "Speakers",
@@ -10609,6 +11065,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-c8f99665d9c31d1d235aa478": {
+      "label": "Licensing Knife Sales: Government Response to Consultation",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-wms-26112539000005.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-c8f9cb658d42f4303b66eaac": {
       "label": "The Minister of State, Department for Environment, Food and Rural Affairs",
       "group": "Recorded capacities",
@@ -10654,6 +11118,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-5433.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-c9b0b6006d8b045a451ed30f": {
+      "label": "Baroness Amos",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-3477.md",
       "captured_only": true,
       "aliases": []
     },
@@ -10718,6 +11190,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/lords-2026-11-18-debate-f7f1dd30-664b-4e4e-8035-d7c359f2c0fa.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-ca923c541b0944a3d8525705": {
+      "label": "Violence against Women and Girls",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-010a365f-eb8f-49a2-9933-41d0d222f7b4.md",
       "captured_only": true,
       "aliases": []
     },
@@ -10857,6 +11337,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-cceb78608228db9b9369ecae": {
+      "label": "Sentencing Act 2020 (Prison Sanctions) Regulations 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-7eff4072-63d2-42ef-b418-64a59ebd408a.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-cd423feac3210a697e1f9aac": {
       "label": "Baroness O'Neill of Bexley",
       "group": "Speakers",
@@ -10910,6 +11398,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-4962.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-cf1a60f70fe11001ca0a8c93": {
+      "label": "Nuclear Test Veterans",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-614a2324-bfe2-40d7-a4a9-6a3e1aed8ed5.md",
       "captured_only": true,
       "aliases": []
     },
@@ -10969,6 +11465,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-d04c57ccd4e09948ee56309c": {
+      "label": "RFA Sir Galahad Board of Inquiry: Records Management and Disclosure",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-westhall-eb3e2554-4a3c-4f0f-942c-f7aafe796d11.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-d04d03da474623120a030f33": {
       "label": "Equality Act 2010 Guidance: Gynaecological Conditions",
       "group": "Proceedings",
@@ -10982,6 +11486,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-12-debate-1d152f44-fcde-4bfe-b7d1-b7a75f0323ce.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-d0583588cf98c979b5f23ed0": {
+      "label": "Maureen Burke",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-5137.md",
       "captured_only": true,
       "aliases": []
     },
@@ -11361,6 +11873,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-d6de43158e308c7f6ff30db8": {
+      "label": "Foreign Investment in Northern Ireland",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-51301b95-d2dc-496a-8bd2-f46fa2cd2553.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-d70148776245628735c4d170": {
       "label": "Poundland",
       "group": "Proceedings",
@@ -11374,6 +11894,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-23-debate-2e17f68e-bece-4d36-ba0a-b433d310c5af.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-d72607ad9d01e7bd1d32b6ee": {
+      "label": "Home Office English Language Test",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-dd6ff376-c072-42bd-b7cd-fa1f0a1c983b.md",
       "captured_only": true,
       "aliases": []
     },
@@ -11473,6 +12001,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-da27e46b1ee9601b1888d5dc": {
+      "label": "Health Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-bc803094-624e-42b3-a9af-370651f70f25.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-da92f2b2189aac1b97d67908": {
       "label": "Stormont Brake Notification: Union Customs Code",
       "group": "Proceedings",
@@ -11550,6 +12086,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/lords-2026-11-23-debate-d1c83146-16e5-4578-a662-3a14e32d8fb9.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-dc2bf2e472837cb65b21fc19": {
+      "label": "Northern Ireland Executive Budget",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-3e471b35-39e3-4814-8d99-dd9a097435f9.md",
       "captured_only": true,
       "aliases": []
     },
@@ -11945,6 +12489,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-e18ded9ae04647a470ea5ac5": {
+      "label": "Health Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-669fcb10-88ef-4670-949b-af2eeb59b8f5.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-e1a5e10d01f88484c8954c2e": {
       "label": "Justin Madders",
       "group": "Speakers",
@@ -12209,6 +12761,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-e8a6e726bf0b24304122c476": {
+      "label": "Environmental Permitting (England and Wales) (Amendment) (England) Regulations 2026",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-grandcommittee-a5df6bc3-93a4-43d8-b9cb-b016b063c241.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-e8b76ee94680ff28199bbc7b": {
       "label": "Martin McCluskey",
       "group": "Speakers",
@@ -12294,6 +12854,14 @@
       "group": "Speakers",
       "type": "MP",
       "route": "entity/member-5093.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-ea09a4400deab40acbcf99d0": {
+      "label": "Point of Order",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-131e9753-15a1-4873-8db3-5f05936df95d.md",
       "captured_only": true,
       "aliases": []
     },
@@ -12817,6 +13385,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-f370425022a1e7a4ec5786a9": {
+      "label": "Public Office (Accountability) Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/lords-2026-11-25-debate-144f9b4f-90af-4ad7-8201-131dd515527e.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-f37c87861a56f982eacb12a6": {
       "label": "Baroness Watkins of Tavistock",
       "group": "Speakers",
@@ -12838,6 +13414,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-2005.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-f3cca359319d06e473d6784e": {
+      "label": "Stuart Anderson",
+      "group": "Speakers",
+      "type": "MP",
+      "route": "entity/member-4742.md",
       "captured_only": true,
       "aliases": []
     },
@@ -13193,6 +13777,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-f94c619427c899962933f7e4": {
+      "label": "Lord McNicol of West Kilbride",
+      "group": "Speakers",
+      "type": "Peer",
+      "route": "entity/member-4702.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-f963dcea9263e0ddef0ecd6f": {
       "label": "National Risk Assessment of Proliferation Financing",
       "group": "Proceedings",
@@ -13425,6 +14017,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-fe8ad01beff33e5e3378b9e8": {
+      "label": "Economic Growth",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-debate-5343797d-bd0e-4b69-bcf2-ef5c12a066a9.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-feab7f492c852a90f89bd6ec": {
       "label": "Science and Technology",
       "group": "Proceedings",
@@ -13494,6 +14094,14 @@
       "group": "Recorded capacities",
       "type": "Recorded capacity",
       "route": "role/46e5703c976b02507702fcfc.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-ffa649ece02699e12df3ae1d": {
+      "label": "Road safety in Werrington",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-25-petitions-26112565000104.md",
       "captured_only": true,
       "aliases": []
     },
@@ -15004,6 +15612,23 @@
       "older_count": 84,
       "aliases": []
     },
+    "constituency-3892": {
+      "label": "Basildon and Billericay",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-3892.md",
+      "archive_count": 0,
+      "search_count": 865,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-3893": {
       "label": "Basingstoke",
       "type": "Constituency",
@@ -15542,6 +16167,23 @@
       "errors": 0,
       "aliases": []
     },
+    "constituency-3928": {
+      "label": "Bootle",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-3928.md",
+      "archive_count": 0,
+      "search_count": 513,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-3929": {
       "label": "Boston and Skegness",
       "type": "Constituency",
@@ -15606,6 +16248,23 @@
       "route": "entity/constituency-3932.md",
       "archive_count": 0,
       "search_count": 546,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-3933": {
+      "label": "Bradford East",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-3933.md",
+      "archive_count": 0,
+      "search_count": 554,
       "search_windows": [
         [
           "2007-01-01",
@@ -15812,6 +16471,23 @@
       "route": "entity/constituency-3947.md",
       "archive_count": 0,
       "search_count": 1388,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-3948": {
+      "label": "Bristol North East",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-3948.md",
+      "archive_count": 0,
+      "search_count": 59,
       "search_windows": [
         [
           "2007-01-01",
@@ -16546,6 +17222,23 @@
       "route": "entity/constituency-3994.md",
       "archive_count": 0,
       "search_count": 168,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-3995": {
+      "label": "Coventry East",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-3995.md",
+      "archive_count": 0,
+      "search_count": 52,
       "search_windows": [
         [
           "2007-01-01",
@@ -17701,6 +18394,23 @@
       "errors": 0,
       "aliases": []
     },
+    "constituency-4065": {
+      "label": "Goole and Pocklington",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4065.md",
+      "archive_count": 0,
+      "search_count": 110,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-4066": {
       "label": "Gorton and Denton",
       "type": "Constituency",
@@ -18437,6 +19147,23 @@
       "errors": 0,
       "aliases": []
     },
+    "constituency-4111": {
+      "label": "Hove and Portslade",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4111.md",
+      "archive_count": 0,
+      "search_count": 54,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-4113": {
       "label": "Huntingdon",
       "type": "Constituency",
@@ -19102,6 +19829,23 @@
       "route": "entity/constituency-4159.md",
       "archive_count": 0,
       "search_count": 140,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-4160": {
+      "label": "Luton North",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4160.md",
+      "archive_count": 0,
+      "search_count": 1391,
       "search_windows": [
         [
           "2007-01-01",
@@ -20292,6 +21036,23 @@
       "errors": 0,
       "aliases": []
     },
+    "constituency-4238": {
+      "label": "Penistone and Stocksbridge",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4238.md",
+      "archive_count": 0,
+      "search_count": 1003,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-4239": {
       "label": "Penrith and Solway",
       "type": "Constituency",
@@ -20782,6 +21543,23 @@
       "route": "entity/constituency-4273.md",
       "archive_count": 0,
       "search_count": 158,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-4274": {
+      "label": "Salford",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4274.md",
+      "archive_count": 0,
+      "search_count": 748,
       "search_windows": [
         [
           "2007-01-01",
@@ -23142,6 +23920,23 @@
       "errors": 0,
       "aliases": []
     },
+    "constituency-4421": {
+      "label": "Belfast East",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4421.md",
+      "archive_count": 0,
+      "search_count": 952,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-4425": {
       "label": "East Antrim",
       "type": "Constituency",
@@ -24255,6 +25050,40 @@
       "older_count": 84,
       "aliases": []
     },
+    "constituency-4497": {
+      "label": "Alyn and Deeside",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4497.md",
+      "archive_count": 0,
+      "search_count": 431,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-4499": {
+      "label": "Blaenau Gwent and Rhymney",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4499.md",
+      "archive_count": 0,
+      "search_count": 53,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-4500": {
       "label": "Brecon, Radnor and Cwm Tawe",
       "type": "Constituency",
@@ -24457,6 +25286,23 @@
       "errors": 0,
       "aliases": []
     },
+    "constituency-4513": {
+      "label": "Llanelli",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4513.md",
+      "archive_count": 0,
+      "search_count": 549,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "constituency-4514": {
       "label": "Merthyr Tydfil and Aberdare",
       "type": "Constituency",
@@ -24502,6 +25348,40 @@
       "route": "entity/constituency-4517.md",
       "archive_count": 0,
       "search_count": 86,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-4518": {
+      "label": "Neath and Swansea East",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4518.md",
+      "archive_count": 0,
+      "search_count": 55,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-4519": {
+      "label": "Newport East",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-4519.md",
+      "archive_count": 0,
+      "search_count": 820,
       "search_windows": [
         [
           "2007-01-01",
@@ -25772,6 +26652,25 @@
         "medical device"
       ]
     },
+    "member-100": {
+      "label": "Lord Hamilton of Epsom",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-100.md",
+      "archive_count": 0,
+      "search_count": 165,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Rt Hon. the Lord Hamilton of Epsom"
+      ]
+    },
     "member-1137": {
       "label": "Lord Patten",
       "type": "Peer",
@@ -25889,6 +26788,26 @@
       "errors": 0,
       "aliases": [
         "The Rt Hon. the Lord Naseby PC"
+      ]
+    },
+    "member-1383": {
+      "label": "Sir Mark Tami",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-1383.md",
+      "archive_count": 0,
+      "search_count": 518,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Rt Hon Sir Mark Tami MP",
+        "Mark Tami"
       ]
     },
     "member-1387": {
@@ -26390,6 +27309,26 @@
       "aliases": [
         "Rt Hon Dame Diana Johnson MP",
         "Diana Johnson"
+      ]
+    },
+    "member-1541": {
+      "label": "Dame Nia Griffith",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-1541.md",
+      "archive_count": 0,
+      "search_count": 646,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Dame Nia Griffith MP",
+        "Nia Griffith"
       ]
     },
     "member-1547": {
@@ -27272,6 +28211,25 @@
         "The Lord Birt"
       ]
     },
+    "member-2554": {
+      "label": "Baroness Noakes",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-2554.md",
+      "archive_count": 0,
+      "search_count": 72,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Baroness Noakes DBE"
+      ]
+    },
     "member-2732": {
       "label": "Lord Hollick",
       "type": "Peer",
@@ -27718,6 +28676,25 @@
         "The Lord Grantchester"
       ]
     },
+    "member-360": {
+      "label": "Lord Coaker",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-360.md",
+      "archive_count": 0,
+      "search_count": 1578,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Lord Coaker"
+      ]
+    },
     "member-3605": {
       "label": "Lord Best",
       "type": "Peer",
@@ -27773,6 +28750,26 @@
       "errors": 0,
       "aliases": [
         "The Rt Hon. the Baroness Hale of Richmond DBE"
+      ]
+    },
+    "member-373": {
+      "label": "David Davis",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-373.md",
+      "archive_count": 0,
+      "search_count": 785,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Rt Hon David Davis MP",
+        "David Davis"
       ]
     },
     "member-3736": {
@@ -28150,6 +29147,26 @@
       "errors": 0,
       "aliases": [
         "The Lord Walney"
+      ]
+    },
+    "member-3928": {
+      "label": "Nick Smith",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-3928.md",
+      "archive_count": 0,
+      "search_count": 389,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Nick Smith MP",
+        "Nick Smith"
       ]
     },
     "member-3935": {
@@ -29345,6 +30362,25 @@
         "The Lord Liddle"
       ]
     },
+    "member-4163": {
+      "label": "Lord German",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4163.md",
+      "archive_count": 0,
+      "search_count": 1091,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Lord German OBE"
+      ]
+    },
     "member-4171": {
       "label": "Lord Black of Brentwood",
       "type": "Peer",
@@ -30218,6 +31254,26 @@
         "Stephen Kinnock"
       ]
     },
+    "member-4360": {
+      "label": "Gavin Robinson",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-4360.md",
+      "archive_count": 0,
+      "search_count": 626,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Rt Hon Gavin Robinson MP",
+        "Gavin Robinson"
+      ]
+    },
     "member-4366": {
       "label": "Sir James Cleverly",
       "type": "MP",
@@ -30337,6 +31393,26 @@
       "aliases": [
         "Ruth Cadbury MP",
         "Ruth Cadbury"
+      ]
+    },
+    "member-4394": {
+      "label": "Imran Hussain",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-4394.md",
+      "archive_count": 0,
+      "search_count": 336,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Imran Hussain MP",
+        "Imran Hussain"
       ]
     },
     "member-4396": {
@@ -31673,6 +32749,26 @@
         "John Lamont"
       ]
     },
+    "member-4610": {
+      "label": "Bambos Charalambous",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-4610.md",
+      "archive_count": 0,
+      "search_count": 394,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Bambos Charalambous MP",
+        "Bambos Charalambous"
+      ]
+    },
     "member-4612": {
       "label": "Jamie Stone",
       "type": "MP",
@@ -32234,6 +33330,25 @@
         "The Lord Anderson of Ipswich KBE KC"
       ]
     },
+    "member-4715": {
+      "label": "Lord Ravensdale",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4715.md",
+      "archive_count": 0,
+      "search_count": 398,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Lord Ravensdale"
+      ]
+    },
     "member-4716": {
       "label": "Ruth Jones",
       "type": "MP",
@@ -32523,6 +33638,26 @@
       "aliases": [
         "Munira Wilson MP",
         "Munira Wilson"
+      ]
+    },
+    "member-4777": {
+      "label": "Sarah Owen",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-4777.md",
+      "archive_count": 0,
+      "search_count": 406,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Sarah Owen MP",
+        "Sarah Owen"
       ]
     },
     "member-4778": {
@@ -33330,6 +34465,25 @@
         "The Lord Watts"
       ]
     },
+    "member-4893": {
+      "label": "Lord Davies of Brixton",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4893.md",
+      "archive_count": 0,
+      "search_count": 437,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Lord Davies of Brixton"
+      ]
+    },
     "member-4897": {
       "label": "Lord Woodley",
       "type": "Peer",
@@ -33470,6 +34624,25 @@
       "errors": 0,
       "aliases": [
         "The Lord Khan of Burnley"
+      ]
+    },
+    "member-4914": {
+      "label": "Lord Morse",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-4914.md",
+      "archive_count": 0,
+      "search_count": 120,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Lord Morse KCB"
       ]
     },
     "member-4918": {
@@ -34221,6 +35394,26 @@
       "aliases": [
         "Alistair Strathern MP",
         "Alistair Strathern"
+      ]
+    },
+    "member-5001": {
+      "label": "Sarah Edwards",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-5001.md",
+      "archive_count": 0,
+      "search_count": 78,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Sarah Edwards MP",
+        "Sarah Edwards"
       ]
     },
     "member-5005": {
@@ -35490,6 +36683,26 @@
         "Nigel Farage"
       ]
     },
+    "member-5094": {
+      "label": "Ms Julie Minns",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-5094.md",
+      "archive_count": 0,
+      "search_count": 18,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Ms Julie Minns MP",
+        "Julie Minns"
+      ]
+    },
     "member-5096": {
       "label": "Ian Sollom",
       "type": "MP",
@@ -36497,6 +37710,26 @@
       "aliases": [
         "Michael Payne MP",
         "Michael Payne"
+      ]
+    },
+    "member-5147": {
+      "label": "Luke Myer",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-5147.md",
+      "archive_count": 0,
+      "search_count": 74,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Luke Myer MP",
+        "Luke Myer"
       ]
     },
     "member-5148": {
@@ -38514,6 +39747,26 @@
       "aliases": [
         "Louise Sandher-Jones MP",
         "Louise Sandher-Jones"
+      ]
+    },
+    "member-5259": {
+      "label": "Dr Jeevun Sandher",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-5259.md",
+      "archive_count": 0,
+      "search_count": 14,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Dr Jeevun Sandher MP",
+        "Jeevun Sandher"
       ]
     },
     "member-5260": {
@@ -41377,6 +42630,25 @@
         "The Rt Hon. the Lord Howard of Lympne CH KC"
       ]
     },
+    "member-830": {
+      "label": "Baroness Fookes",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-830.md",
+      "archive_count": 0,
+      "search_count": 19,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Baroness Fookes DBE"
+      ]
+    },
     "member-863": {
       "label": "Lord Hayward",
       "type": "Peer",
@@ -41959,6 +43231,23 @@
       "route": "entity/office-governmentposts-1207.md",
       "archive_count": 0,
       "search_count": 236,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "office-governmentposts-1208": {
+      "label": "Minister for Women",
+      "type": "Government post",
+      "group": "Offices",
+      "route": "entity/office-governmentposts-1208.md",
+      "archive_count": 0,
+      "search_count": 886,
       "search_windows": [
         [
           "2007-01-01",
@@ -42755,6 +44044,26 @@
         "Shadow Chancellor of the Duchy of Lancaster"
       ]
     },
+    "office-oppositionposts-1667": {
+      "label": "Shadow Minister for Women and Equalities",
+      "type": "Opposition post",
+      "group": "Offices",
+      "route": "entity/office-oppositionposts-1667.md",
+      "archive_count": 0,
+      "search_count": 29,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Shadow Minister for Women and Equalities",
+        "Shadow Minister for Women and Equalities"
+      ]
+    },
     "office-oppositionposts-869": {
       "label": "Shadow Secretary of State for Environment, Food and Rural Affairs",
       "type": "Opposition post",
@@ -42843,6 +44152,23 @@
       "route": "entity/office-otherposts-1072.md",
       "archive_count": 0,
       "search_count": 1708,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "office-otherposts-1114": {
+      "label": "Second Church Estates Commissioner",
+      "type": "Other parliamentary post",
+      "group": "Offices",
+      "route": "entity/office-otherposts-1114.md",
+      "archive_count": 0,
+      "search_count": 328,
       "search_windows": [
         [
           "2007-01-01",
