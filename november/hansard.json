@@ -96,6 +96,15 @@
       },
       "concept_index": "https://chris-page-gov.github.io/okf-hansard/november/concepts.json",
       "voice_quick_start": "https://chris-page-gov.github.io/okf-hansard/november/ask.md",
+      "voice_evidence": {
+        "synergy-dwp": {
+          "url": "https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e",
+          "bytes": 12535,
+          "sha256": "9b85eaabe8197b99098c85158c41791f3c08de6a487c57f69b2e9f92fdca84f8",
+          "format": "text/plain",
+          "snapshot": "hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e"
+        }
+      },
       "historical_exports": "https://chris-page-gov.github.io/okf-hansard/november/historical-downloads.html",
       "mention_resources": {
         "recent_and_search": "https://chris-page-gov.github.io/okf-hansard/november/history/{concept}.json",

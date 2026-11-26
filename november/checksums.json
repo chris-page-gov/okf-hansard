@@ -4,16 +4,16 @@
     "sha256": "92d07a578ab9735ec84e7f0ab6492b1701449c47f751b2f57ae58dbcad2baf46"
   },
   "ask.html": {
-    "bytes": 2528,
-    "sha256": "7a19f14ab7576de94c86efd7e0885f2f7c86776148bdcde2c5933ec55eca6301"
+    "bytes": 15992,
+    "sha256": "5d9c247b1533fbcfb98827da9cc7653f02164bd1ebdfbcab1e9f13088fab5658"
   },
   "ask.js": {
     "bytes": 5788,
     "sha256": "1f2be0c1d1141f1496ed2366ed46441ffeab1ac31aed851ca8190091ad12313c"
   },
   "ask.md": {
-    "bytes": 1391,
-    "sha256": "23c5672b258496b44f67cc19149e564807c45ea55b1b15866e0a6fcc63756f1f"
+    "bytes": 1939,
+    "sha256": "92c8cc948848fd0b340e48b816635f6570eabdfe2d2d7b2f065081f2fba0d898"
   },
   "concepts.json": {
     "bytes": 1128945,
@@ -8388,8 +8388,8 @@
     "sha256": "7e136d7521358afcc872761eebb5bd6cdce59b75a625a3ddf1e1ce0b6b04e3e3"
   },
   "hansard.json": {
-    "bytes": 4787,
-    "sha256": "b6a9b1182ec5bcc4a6bdb8f632209ede427204ec51eabe63d2c72652f837082c"
+    "bytes": 5315,
+    "sha256": "d22446a2062fadca1f57593d8d91635cb695c5eb2a4fd445252be4b23b50c78f"
   },
   "historical-downloads.html": {
     "bytes": 2192,
@@ -33006,6 +33006,10 @@
   "site.css": {
     "bytes": 3110,
     "sha256": "86d36070286949429ce43f9b62defaa5239b341a0eacdab7b72d7e712130f3b9"
+  },
+  "synergy-evidence.txt": {
+    "bytes": 12535,
+    "sha256": "9b85eaabe8197b99098c85158c41791f3c08de6a487c57f69b2e9f92fdca84f8"
   },
   "walkthrough-mobile.svg": {
     "bytes": 3669,
