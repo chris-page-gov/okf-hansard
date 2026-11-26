@@ -115,7 +115,7 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
         history = history.replace(f'href="{page}"', f'href="https://chris-page-gov.github.io/okf-hansard/{page}"')
     (output / "history.html").write_text(history, encoding="utf-8")
     with (release / "okf-bundle.yamlld").open("rb") as source, (output / "okf-bundle.yamlld.gz").open("wb") as raw:
-        with gzip.GzipFile(fileobj=raw, mode="wb", compresslevel=4, mtime=0) as stream:
+        with gzip.GzipFile(fileobj=raw, mode="wb", compresslevel=9, mtime=0) as stream:
             shutil.copyfileobj(source, stream)
     coverage = {"dates": days, "contributions": sum(expected.values()), "graph_records": receipt["graph_records"],
                 "assertions": receipt["assertions"], "semantic_graph": receipt["artifacts"]["okf-bundle.yamlld"],

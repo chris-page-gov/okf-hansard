@@ -450,8 +450,6 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
         checksums(output)
         current["site"] = str(output)
         current["site_identity"] = site_cache_identity(output, release, current["through"])
-        prepared_path = attempt / "prepared.json"
-        dump(prepared_path, current)
         site = output
     assets = validate_november_site(site, current["through"], release, current.get("site_identity"),
                                     require_identity=True)
