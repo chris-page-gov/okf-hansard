@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — resume the November publisher, 26 November 2026
+
+- Resume a verified prepared attempt after an interrupted refresh. Retain the
+  attempt's receipt path so publishing can save the checked site and restart
+  from the same point.
+- Compress the November YAML-LD export at gzip level 9 to keep the
+  25 November release within the GitHub Pages size limit.
+
 ## Unreleased — bound full-source descriptor size, 25 November 2026
 
 - Keep the deployed Reader's 16 MiB descriptor limit. Move the complete Core

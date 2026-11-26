@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 from pathlib import Path
 import tempfile
@@ -123,6 +124,33 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "no site cache identity"):
                 publish_november.validate_november_site(root, "2026-11-24", expected_identity=None,
                                                         require_identity=True)
+
+    def test_refresh_resumes_from_a_prepared_release(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory)
+            through = "2026-11-25"
+            work = state / "publication-attempts" / through / "071500"
+            release, days, site = work / "release", work / "days", work / "site"
+            identity = {"fixture": True}
+            current = {"format": publish_november.CORE_VERSION, "through": through, "days": str(days),
+                       "release": str(release), "site": str(site), "site_identity": identity}
+            pointer = state / "publication.json"
+            publish_november.dump(pointer, {"through": "2026-11-24", "provisional": False})
+            publish_november.dump(work / "prepared.json", current)
+            publish_november.dump(days / f"{through}.json", {"publication_status": "observed"})
+            publish_november.dump(release / "receipt.json", {"week_contributions_by_day": {through: 1}})
+            publish_november.dump(release / "backfill/manifest.json", {"exceptions": {}})
+            catalogue = {"index.html": {"bytes": 10}}
+            checkout = state / "pages-checkout"
+            with mock.patch.object(publish_november, "datetime") as clock, \
+                    mock.patch.object(publish_november, "prepare") as prepare, \
+                    mock.patch.object(publish_november, "validate_november_site", return_value=catalogue), \
+                    mock.patch.object(publish_november, "publish", return_value={"commit": "verified"}) as publish:
+                clock.now.return_value = datetime(2026, 11, 26, tzinfo=publish_november.ZONE)
+                publish_november.run(state, checkout)
+            prepare.assert_not_called()
+            publish.assert_called_once_with(site, checkout, through, catalogue, release, identity)
+            self.assertEqual(publish_november.read(pointer), {**current, "commit": "verified", "provisional": False})
 
     def test_builder_source_change_invalidates_saved_cache_identity(self):
         with tempfile.TemporaryDirectory() as directory:
