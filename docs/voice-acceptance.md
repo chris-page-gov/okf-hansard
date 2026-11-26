@@ -10,7 +10,7 @@ The visitor needs a browser and an internet connection. Voice depends on the app
 
 The [single collection directory](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) links the OKF 0.3 Markdown index, full capture, verified historical matches and the week examples. The historical results are contributions matching configured names and aliases. Ask for dated Hansard links, an exact total of retained matches and the timeline. The companion lets you page through the results.
 
-For the Synergy phone example, use the single plain-text file linked by the finder prompt. It gives the expected snapshot and latest sitting date, includes captured passages and historical links, and explains the date ranges. Check both fields before interpreting the evidence. The finder embeds the same text under **Copy the Synergy evidence if your AI cannot open the link**. This route works with a plain-text paste when the assistant cannot read the website, large indexes or compressed files.
+The finder’s **Copy GitHub prompt** button points the assistant to `HANSARD-EVIDENCE.md` on `main`. Ask it to report the capture-through date and snapshot from the file. The detailed Synergy text is also linked from the finder. It includes captured passages, historical links and coverage. To paste it directly, open **Copy the Synergy evidence if your AI cannot open the link**. [GitHub evidence index](https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md)
 
 ## Connect an MCP client
 

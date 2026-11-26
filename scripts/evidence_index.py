@@ -12,6 +12,7 @@ from model import read_sittings
 
 
 INDEX = "HANSARD-EVIDENCE.md"
+REPOSITORY_INDEX = f"https://github.com/chris-page-gov/okf-hansard/blob/main/{INDEX}"
 MAX_BYTES = 32 * 1024
 LICENCE = "https://www.parliament.uk/site-information/copyright/open-parliament-licence/"
 

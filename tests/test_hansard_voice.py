@@ -9,9 +9,10 @@ from unittest.mock import patch
 
 from capture import dump, sha
 from check_voice_clients import assess
+from evidence_index import REPOSITORY_INDEX
 from hansard_access import Access, BUNDLE_ID
 from mcp_server import rpc
-from voice_pages import publish_voice
+from voice_pages import publish_voice, refresh_finder
 
 
 class VoiceTests(unittest.TestCase):
@@ -83,6 +84,9 @@ class VoiceTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in publication["bundles"]], [BUNDLE_ID])
         self.assertIn("1 November 2026 inclusive", (self.site / "ask.md").read_text())
         self.assertIn('data-copy="evidence"', (self.site / "ask.html").read_text())
+        self.assertIn(REPOSITORY_INDEX, (self.site / "ask.md").read_text())
+        self.assertIn("Copy GitHub prompt", (self.site / "ask.html").read_text())
+        self.assertEqual(publication["bundles"][0]["repository_evidence"], REPOSITORY_INDEX)
 
     def test_phone_demo_binds_small_text_and_copyable_evidence_to_one_snapshot(self):
         for name in ("okf/index.md", "history.html", "okf-bundle.yamlld.gz"):
@@ -110,6 +114,10 @@ class VoiceTests(unittest.TestCase):
         self.assertIn(passage["text"], text)
         self.assertIn(url, text)
         self.assertIn('data-copy="synergy-evidence"', (self.site / "ask.html").read_text())
+        html = (self.site / "ask.html").read_bytes()
+        refresh_finder(self.site)
+        self.assertEqual((self.site / "ask.html").read_bytes(), html)
+        self.assertEqual((self.site / "synergy-evidence.txt").read_bytes(), raw)
 
 
 class AnswerReceiptTests(unittest.TestCase):
