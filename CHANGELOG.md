@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — Synergy evidence for phone assistants, 26 November 2026
+
+- Publish one small plain-text Synergy example with a snapshot identifier,
+  exact source links, captured extracts and downloaded historical alias matches.
+  Embed the same evidence in the phone finder for direct copying.
+- Explain why the configured historical search dates differ from the main
+  archive and what a House-day with no calendar sitting means.
+
 ## Unreleased — resume the November publisher, 26 November 2026
 
 - Resume a verified prepared attempt after an interrupted refresh. Retain the

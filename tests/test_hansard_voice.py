@@ -5,8 +5,9 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
-from capture import dump
+from capture import dump, sha
 from check_voice_clients import assess
 from hansard_access import Access, BUNDLE_ID
 from mcp_server import rpc
@@ -82,6 +83,33 @@ class VoiceTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in publication["bundles"]], [BUNDLE_ID])
         self.assertIn("1 November 2026 inclusive", (self.site / "ask.md").read_text())
         self.assertIn('data-copy="evidence"', (self.site / "ask.html").read_text())
+
+    def test_phone_demo_binds_small_text_and_copyable_evidence_to_one_snapshot(self):
+        for name in ("okf/index.md", "history.html", "okf-bundle.yamlld.gz"):
+            target = self.site / name
+            target.parent.mkdir(exist_ok=True)
+            target.write_text("fixture", encoding="utf-8")
+        capture = self.work / "capture"
+        manifest = capture / "manifest.json"
+        dump(manifest, {})
+        dump(self.release / "receipt.json", {"manifest_sha256": sha(manifest.read_bytes())})
+        url = self.hansard + "2026-11-24/#contribution-1"
+        passage = {"text": "The Synergy programme was discussed.", "url": url,
+                   "section": "Debate", "part": "section", "order": 1}
+        with patch("voice_evidence.read_sittings", return_value=(
+                {"section": {"title": "Pensions"}}, {"route": passage}, {}, {})):
+            publish_voice(self.site, self.release, capture)
+        bundle = json.loads((self.site / "hansard.json").read_bytes())["bundles"][0]
+        evidence = bundle["voice_evidence"]["synergy-dwp"]
+        raw = (self.site / "synergy-evidence.txt").read_bytes()
+        self.assertEqual(evidence["sha256"], sha(raw))
+        self.assertEqual(evidence["snapshot"], bundle["snapshot"])
+        self.assertIn("synergy-evidence.txt?snapshot=" + bundle["snapshot"], evidence["url"])
+        text = raw.decode()
+        self.assertIn("1 captured contributions and 1 historical alias matches", text)
+        self.assertIn(passage["text"], text)
+        self.assertIn(url, text)
+        self.assertIn('data-copy="synergy-evidence"', (self.site / "ask.html").read_text())
 
 
 class AnswerReceiptTests(unittest.TestCase):

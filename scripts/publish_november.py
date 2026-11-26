@@ -29,6 +29,7 @@ from query import DEFAULT_DB, DEEP_DB, Index
 from refresh import refresh
 from stage_contribution_views import stage
 from verify import check
+from voice_evidence import EVIDENCE
 
 FIRST = date(2026, 11, 1)
 LAST = date(2026, 11, 30)
@@ -45,6 +46,7 @@ REQUIRED_NOVEMBER_ASSETS = (
     "core-walkthrough.svg", "core-walkthrough-mobile.svg", "okf/index.md", "okf/sittings.md",
     "okf-public-access.json", "checksums.json", "okf-bundle.yamlld.gz", ".well-known/okf.json",
     "llms.txt", "historical-downloads.html", "historical-downloads.json",
+    "hansard.json", "ask.html", "ask.md", "ask.js",
 )
 
 
@@ -227,6 +229,8 @@ def publish(site, checkout, through, assets, expected_release=None, expected_ide
     if assets != catalogue:
         raise ValueError("The supplied November asset list differs from the validated catalogue.")
     checks = ["checksums.json", *REQUIRED_NOVEMBER_ASSETS, f"history/days/{through}.json"]
+    if EVIDENCE in assets:
+        checks.append(EVIDENCE)
     checks = list(dict.fromkeys(checks))
     absent = [name for name in checks if name != "checksums.json" and name not in assets]
     if absent:
@@ -445,7 +449,8 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
         attempt = site.parent / ("staging-" + datetime.now(ZONE).strftime("%H%M%S") + "-" + uuid4().hex[:8])
         attempt.mkdir(parents=True, exist_ok=False)
         output = attempt / "site"
-        stage(release, Path(current["days"]), output, DEFAULT_DB, DEEP_DB, CACHE / "public", "historical-downloads.html")
+        stage(release, Path(current["days"]), output, DEFAULT_DB, DEEP_DB, CACHE / "public",
+              "historical-downloads.html", snapshot=Path(current["snapshot"]))
         write_downloads(output, history_downloads(release, state, current["through"]))
         checksums(output)
         current["site"] = str(output)
