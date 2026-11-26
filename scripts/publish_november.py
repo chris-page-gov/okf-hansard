@@ -419,13 +419,12 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
     if attempts_root is not None and not attempts_root.is_dir():
         raise ValueError(f"The configured publication staging directory is unavailable: {attempts_root}")
     candidates = (attempts_root or state / "publication-attempts") / limit.isoformat()
-    cached = next((candidate for p in sorted(candidates.glob("*/prepared.json"), reverse=True)
-                   if (candidate := read(p)).get("format") == CORE_VERSION
+    cached = next(((path, candidate) for path in sorted(candidates.glob("*/prepared.json"), reverse=True)
+                   if (candidate := read(path)).get("format") == CORE_VERSION
                    and read(Path(candidate["days"]) / f"{limit.isoformat()}.json")["publication_status"]
                    == ("provisional" if provisional else "observed")), None)
     if cached:
-        current = read(cached)
-        prepared_path = cached
+        prepared_path, current = cached
     else:
         work = (candidates / datetime.now(ZONE).strftime("%H%M%S")).resolve()
         current = prepare(work, previous, limit, today, initial_capture)
