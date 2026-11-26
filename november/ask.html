@@ -11,11 +11,13 @@
 <h1>Ask your AI about Hansard</h1>
 <p id="coverage-summary">19,715 contributions from Commons and Lords sittings, 2 November 2026 to 25 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.</p>
 <h2>Try it on your phone</h2>
-<p>Copy the prompt into your AI chat, then use voice if your app offers it. If the app cannot open links, find a concept here and copy its evidence instead. The finder opens without signing in.</p>
-<label for="prompt">Prompt to copy</label>
-<textarea id="prompt" readonly rows="6" style="display:block;width:100%;font:inherit">Open this single text file directly. https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e
-Use the evidence headed Snapshot hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e. Check it says Latest sitting 2026-11-25. If you cannot read those fields, ask me to paste the evidence. Explain what Synergy is, how the discussion changed, and which statements were commitments. Cite the linked Hansard contributions and distinguish earlier alias matches from captured passages.</textarea>
-<button type="button" data-copy="prompt">Copy prompt</button>
+<p>Copy the GitHub prompt into your AI chat, then use voice if your app offers it.</p>
+<p><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md">Open the GitHub evidence index</a></p>
+<label for="prompt">GitHub prompt</label>
+<textarea id="prompt" readonly rows="6" style="display:block;width:100%;font:inherit">Read HANSARD-EVIDENCE.md directly from the main branch of chris-page-gov/okf-hansard. https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md
+Give the verified capture-through date and snapshot from the file. Use the excerpts and exact Hansard links in the file to answer. If you cannot open it, ask me to paste its text.
+Explain what Synergy is, how the discussion changed, and which statements were commitments. Distinguish historical alias matches from captured contributions.</textarea>
+<button type="button" data-copy="prompt">Copy GitHub prompt</button>
 <p><a href="https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e">Read the Synergy evidence and passages</a></p>
 <details><summary>Copy the Synergy evidence if your AI cannot open the link</summary>
 <label for="synergy-evidence">Synergy evidence</label>
