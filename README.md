@@ -18,6 +18,8 @@ The public snapshot contains derived records, source links and a worked history 
 
 The public companion and published history work without the SSD. See the [Voice and storage matrix](docs/voice-and-visual-ui.md#voice-and-storage) for the web and local MCP options.
 
+Use the [secure briefing connector](docs/secure-briefing.md) to query a signed-in person's configured portfolio from a phone assistant that supports remote MCP.
+
 ## Open a local build
 
 - Open the full graph through the companion's Explorer link. Its sharded descriptor, `graph/okf-explorer.json`, loads bounded record and relationship files. The complete Core source-path inventory and non-record Markdown remain in the plain JSON sibling `graph/core-source-binding.json`; the descriptor binds its exact bytes and digest, and the publication checksum catalogue covers it. The deployed Reader's 16 MiB descriptor limit remains in force. The [intermediate JSON](releases/current/okf-bundle.json) remains available for compatible local workflows; larger captures can exceed the Reader's single-file transfer limit.
