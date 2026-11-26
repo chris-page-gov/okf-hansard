@@ -71,7 +71,7 @@ def write_landing(output, coverage, archive_url):
 """, encoding="utf-8")
 
 
-def stage(release, checkpoints, output, database, older_database, cache, archive_url=None):
+def stage(release, checkpoints, output, database, older_database, cache, archive_url=None, *, snapshot=None):
     if archive_url is None:
         archive_url = 'historical-downloads.html'
     receipt = read(release / "receipt.json")
@@ -125,7 +125,7 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
     write_landing(output, coverage, archive_url)
     write_discovery(output, "November in Parliament", expected, max(row["verified_at"] for row in days),
                     "okf-bundle.yamlld.gz", month=True)
-    publish_voice(output, release)
+    publish_voice(output, release, snapshot)
     retain_public_assets(output, 'november')
 
 
@@ -133,9 +133,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--release", type=Path, required=True)
     parser.add_argument("--checkpoints", type=Path, required=True)
+    parser.add_argument("--snapshot", type=Path, help="Verified Hansard capture used for the voice evidence passages.")
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--older-database", type=Path)
     parser.add_argument("--cache", type=Path, required=True)
     args = parser.parse_args()
-    stage(args.release, args.checkpoints, args.out, args.database, args.older_database, args.cache)
+    stage(args.release, args.checkpoints, args.out, args.database, args.older_database, args.cache, snapshot=args.snapshot)

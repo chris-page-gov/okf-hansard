@@ -41,6 +41,23 @@ def snapshot_id(site, graph):
     return "hansard-collection-sha256-" + sha(b"\0".join(parts))
 
 
+def mention_postings(site, key, metadata):
+    recent = read(site / "history" / (key + ".json"))
+    rows = [(row, "captured" if len(row) == 7 else "historical search") for row in recent]
+    for field, suffix, layer in (("archive_count", "archive", "archive"),
+                                 ("older_count", "older", "older archive")):
+        if metadata.get(field):
+            with gzip.open(site / "history" / f"{key}.{suffix}.json.gz", "rt", encoding="utf-8") as stream:
+                rows.extend((row, layer) for row in json.load(stream))
+    by_url = {}
+    for row, layer in sorted(rows, key=lambda pair: pair[0][0], reverse=True):
+        day, house, url, speaker, *_ = row
+        by_url.setdefault(official(url), {"date": day, "house": house, "hansard": url,
+                                         "speaker": speaker, "layer": layer,
+                                         **({"id": row[6]} if len(row) == 7 else {})})
+    return tuple(by_url.values())
+
+
 class Access:
     def __init__(self, pointer):
         self.pointer = read(pointer)
@@ -101,22 +118,7 @@ class Access:
     def postings(self, key):
         if not ENTITY.fullmatch(key) or key not in self.history["entities"]:
             raise ValueError("Choose a concept ID returned by concept search.")
-        metadata = self.history["entities"][key]
-        recent = read(self.site / "history" / (key + ".json"))
-        rows = [(row, "captured" if len(row) == 7 else "historical search") for row in recent]
-        for field, tag in (("archive_count", "archive"), ("older_count", "older archive")):
-            if metadata.get(field):
-                suffix = ".older.json.gz" if tag == "older archive" else ".archive.json.gz"
-                with gzip.open(self.site / "history" / (key + suffix), "rt", encoding="utf-8") as stream:
-                    rows.extend((row, tag) for row in json.load(stream))
-        ordered = sorted(rows, key=lambda pair: pair[0][0], reverse=True)
-        by_url = {}
-        for row, layer in ordered:
-            day, house, url, speaker, *_ = row
-            by_url.setdefault(official(url), {"date": day, "house": house, "hansard": url,
-                                             "speaker": speaker, "layer": layer,
-                                             **({"id": row[6]} if len(row) == 7 else {})})
-        return tuple(by_url.values())
+        return mention_postings(self.site, key, self.history["entities"][key])
 
     def mentions(self, key, start=None, through=None, house=None, limit=20, offset=0, snapshot=None):
         if snapshot is not None and snapshot != self.snapshot:

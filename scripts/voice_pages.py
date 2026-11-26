@@ -1,13 +1,14 @@
 """Publish a portable phone entry point for the Hansard collection."""
 
-from datetime import date
 from html import escape
 from pathlib import Path
 import shutil
+from urllib.parse import urlencode
 
 from capture import dump, sha
 from hansard_access import BUNDLE_ID, HOME, NOVEMBER, read, snapshot_id
 from okf_core import CORE_SPEC, CORE_VERSION
+from voice_evidence import CONCEPT, EVIDENCE, human_date as day, write_evidence
 
 
 PAGE = Path(__file__).resolve().parents[1] / "docs/pages/ask.js"
@@ -17,12 +18,7 @@ PROMPT = (f"Use the Hansard OKF bundle at {NOVEMBER}hansard.json. "
           "Say which evidence files you opened.")
 
 
-def day(value):
-    parsed = date.fromisoformat(value)
-    return f"{parsed.day} {parsed:%B %Y}"
-
-
-def publish_voice(site, release):
+def publish_voice(site, release, capture=None):
     history = read(site / "history/index.json")
     coverage = read(site / "coverage.json")
     profile = read(release / "analysis-profile.json")["entities"]
@@ -39,9 +35,31 @@ def publish_voice(site, release):
         latest = max(row[1] for row in older["ranges"].values())
         scope += f" The older indexed archive spans {day(earliest)} to {day(latest)} and lists {older['source_gaps']} source gaps."
     scope += " Counts of historical matches depend on the configured names and aliases."
+
     def reference(name):
         raw = (site / name).read_bytes()
         return {"url": NOVEMBER + name, "bytes": len(raw), "sha256": sha(raw)}
+
+    prompt = PROMPT
+    evidence, evidence_link, evidence_details = {}, "", ""
+    if capture is not None and CONCEPT in history["entities"]:
+        content = write_evidence(site, release, capture, coverage, history, snapshot)
+        entry = reference(EVIDENCE)
+        url = entry["url"] + "?" + urlencode({"snapshot": snapshot})
+        evidence[CONCEPT] = {**entry, "url": url, "format": "text/plain", "snapshot": snapshot}
+        prompt = (f"Open this single text file directly. {url}\n"
+                  f"Use the evidence headed Snapshot {snapshot}. Check it says Latest sitting {max(dates)}. "
+                  "If you cannot read those fields, ask me to paste the evidence. "
+                  "Explain what Synergy is, how the discussion changed, and which statements were commitments. "
+                  "Cite the linked Hansard contributions and distinguish earlier alias matches from captured passages.")
+        evidence_link = f"- [Read the Synergy evidence and passages]({url})\n"
+        evidence_details = f"""<p><a href="{escape(url, quote=True)}">Read the Synergy evidence and passages</a></p>
+<details><summary>Copy the Synergy evidence if your AI cannot open the link</summary>
+<label for="synergy-evidence">Synergy evidence</label>
+<textarea id="synergy-evidence" readonly rows="8" style="display:block;width:100%;font:inherit">{escape(content)}</textarea>
+<button type="button" data-copy="synergy-evidence">Copy Synergy evidence</button>
+</details>"""
+    markdown_prompt = "\n".join("> " + line for line in prompt.splitlines())
 
     dump(site / "hansard.json", {
         "schema": "okf-public-access-directory.v1", "title": "Hansard", "locale": "en-GB",
@@ -61,6 +79,7 @@ def publish_voice(site, release):
                             "history_index": reference("history/index.json"), "timeline": reference("history.html"),
                             "semantic_graph": reference("okf-bundle.yamlld.gz")},
             "concept_index": NOVEMBER + "concepts.json", "voice_quick_start": NOVEMBER + "ask.md",
+            **({"voice_evidence": evidence} if evidence else {}),
             "historical_exports": NOVEMBER + "historical-downloads.html",
             "mention_resources": {"recent_and_search": NOVEMBER + "history/{concept}.json",
                                   "archive": NOVEMBER + "history/{concept}.archive.json.gz",
@@ -80,9 +99,9 @@ def publish_voice(site, release):
 2. If the assistant cannot open the links, use the evidence finder and paste its plain-text evidence into the same chat.
 3. Check that the answer cites specific Hansard contributions and gives the date range used.
 
-> {PROMPT}
+{markdown_prompt}
 
-- [Find and copy evidence]({NOVEMBER}ask.html)
+{evidence_link}- [Find and copy evidence]({NOVEMBER}ask.html)
 - [Hansard collection directory]({NOVEMBER}hansard.json)
 - [Capture and historical coverage]({NOVEMBER}coverage.json)
 - [OKF 0.3 source index]({NOVEMBER}okf/index.md)
@@ -102,8 +121,9 @@ def publish_voice(site, release):
 <h2>Try it on your phone</h2>
 <p>Copy the prompt into your AI chat, then use voice if your app offers it. If the app cannot open links, find a concept here and copy its evidence instead. The finder opens without signing in.</p>
 <label for="prompt">Prompt to copy</label>
-<textarea id="prompt" readonly rows="5" style="display:block;width:100%;font:inherit">{escape(PROMPT)}</textarea>
+<textarea id="prompt" readonly rows="6" style="display:block;width:100%;font:inherit">{escape(prompt)}</textarea>
 <button type="button" data-copy="prompt">Copy prompt</button>
+{evidence_details}
 <h2>Find and copy evidence</h2>
 <form id="lookup">
 <label for="concept">Concept name or alias</label>
