@@ -2,6 +2,8 @@
 
 For the full capture, history and voice entry point, open the [Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) or [ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.html). The week examples are guided views into the project. See [voice and cross-client tests](docs/voice-acceptance.md) for connection setup, limits and repeatable checks.
 
+For a phone assistant that can read GitHub, open [the Markdown evidence index on main](HANSARD-EVIDENCE.md). It gives the verified date range, selected passages and exact Hansard links in one file. The scheduled publisher refreshes it through a checked pull request after validating the capture.
+
 An experimental OKF+ bundle of Westminster Hansard for 16 to 19 November 2026, with a rolling index of earlier contributions that share a person, office, place, organisation, programme, legislative instrument or subject. The November companion adds sittings as they are verified.
 
 The current producer candidate is version 0.3.0 and declares OKF core 0.3. The

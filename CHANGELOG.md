@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — GitHub evidence index, 26 November 2026
+
+- Add a small Markdown evidence index on the repository's main branch for
+  assistants that can read GitHub. Include verified dates, recent excerpts
+  and the Synergy worked example.
+- Refresh the index through protected pull requests before attempting Pages
+  deployment and retry a pending index on the next scheduled run.
+
 ## Unreleased — signed-in Hansard portfolio briefings, 26 November 2026
 
 - Add an OAuth-protected MCP briefing for a signed-in member's dated portfolio.

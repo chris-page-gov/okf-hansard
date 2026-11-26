@@ -401,7 +401,7 @@ def prepare(work, previous, limit, today, initial_capture):
     return result
 
 
-def run(state, checkout, initial_capture=None, through=None, *, attempts_root=None):
+def run(state, checkout, initial_capture=None, through=None, *, attempts_root=None, evidence_sync=None):
     today = datetime.now(ZONE).date()
     pointer = state / "publication.json"
     evening = state / "capture-2026-11-19-evening"
@@ -412,12 +412,12 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
     limit = through or min(LAST, today if initial else today - timedelta(days=1))
     if through and (not initial_capture or not FIRST <= through <= min(LAST, today)):
         raise ValueError("Provide a verified snapshot and a November date through today.")
-    if limit < FIRST or (pointer.is_file() and previous["through"] == LAST.isoformat()
-                         and not previous["provisional"] and today > LAST):
+    if limit < FIRST:
         return
-    if limit.isoformat() < previous["through"]:
-        return
-    if pointer.is_file() and previous["through"] == limit.isoformat() and not previous["provisional"]:
+    observed = pointer.is_file() and not previous["provisional"]
+    if limit.isoformat() < previous["through"] or (observed and limit.isoformat() == previous["through"]):
+        if evidence_sync and observed:
+            evidence_sync(previous)
         return
     provisional = limit == today
     if attempts_root is not None and not attempts_root.is_dir():
@@ -459,9 +459,18 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
     assets = validate_november_site(site, current["through"], release, current.get("site_identity"),
                                     require_identity=True)
     dump(prepared_path, current)
+    evidence_failure = None
+    if evidence_sync and not provisional:
+        try:
+            evidence_sync(current)
+        except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as exc:
+            evidence_failure = exc
+            print(f"{now()} Repository evidence index pending. Continuing with Pages publication.", flush=True)
     remote = publish(site, checkout, current["through"], assets, release, current.get("site_identity"))
     dump(pointer, {**current, **remote, "provisional": provisional})
     print(f"{now()} Published and verified November through {current['through']}.", flush=True)
+    if evidence_failure:
+        raise RuntimeError("The verified publication needs a repository evidence index retry.") from evidence_failure
 
 
 if __name__ == "__main__":
@@ -474,4 +483,10 @@ if __name__ == "__main__":
     parser.add_argument("--verified-through", type=date.fromisoformat,
                         help="Use the supplied capture through this date.")
     args = parser.parse_args()
-    run(args.state, args.checkout, args.initial_capture, args.verified_through, attempts_root=args.attempts_root)
+    index_sync = None
+    if args.state.resolve() == STATE.resolve():
+        from evidence_index import update_index
+
+        index_sync = update_index
+    run(args.state, args.checkout, args.initial_capture, args.verified_through,
+        attempts_root=args.attempts_root, evidence_sync=index_sync)
