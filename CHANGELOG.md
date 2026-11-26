@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — signed-in Hansard portfolio briefings, 26 November 2026
+
+- Add an OAuth-protected MCP briefing for a signed-in member's dated portfolio.
+  Return verified excerpts and exact contribution links from the latest
+  published capture and distinguish the member's contributions from others.
+- Reopen the verified publication when its receipt is replaced so a long-running
+  briefing connector can answer against a new snapshot.
+
 ## Unreleased — Synergy evidence for phone assistants, 26 November 2026
 
 - Publish one small plain-text Synergy example with a snapshot identifier,

@@ -41,14 +41,16 @@ def snapshot_id(site, graph):
     return "hansard-collection-sha256-" + sha(b"\0".join(parts))
 
 
-def mention_postings(site, key, metadata):
+def mention_postings(site, key, metadata, *, captured_only=False):
     recent = read(site / "history" / (key + ".json"))
-    rows = [(row, "captured" if len(row) == 7 else "historical search") for row in recent]
-    for field, suffix, layer in (("archive_count", "archive", "archive"),
-                                 ("older_count", "older", "older archive")):
-        if metadata.get(field):
-            with gzip.open(site / "history" / f"{key}.{suffix}.json.gz", "rt", encoding="utf-8") as stream:
-                rows.extend((row, layer) for row in json.load(stream))
+    rows = [(row, "captured" if len(row) == 7 else "historical search") for row in recent
+            if not captured_only or len(row) == 7]
+    if not captured_only:
+        for field, suffix, layer in (("archive_count", "archive", "archive"),
+                                     ("older_count", "older", "older archive")):
+            if metadata.get(field):
+                with gzip.open(site / "history" / f"{key}.{suffix}.json.gz", "rt", encoding="utf-8") as stream:
+                    rows.extend((row, layer) for row in json.load(stream))
     by_url = {}
     for row, layer in sorted(rows, key=lambda pair: pair[0][0], reverse=True):
         day, house, url, speaker, *_ = row
@@ -74,6 +76,7 @@ class Access:
                 or max(row["date"] for row in self.coverage["dates"]) != self.pointer["through"]):
             raise ValueError("The staged coverage and publication receipt disagree.")
         self.snapshot = snapshot_id(self.site, proof)
+        self._capture_rows = None
         self.search_db = None
 
     def describe(self):
@@ -115,10 +118,10 @@ class Access:
             for _, _, key, row, aliases in ordered[:limit]]}
 
     @lru_cache(maxsize=8)
-    def postings(self, key):
+    def postings(self, key, *, captured_only=False):
         if not ENTITY.fullmatch(key) or key not in self.history["entities"]:
             raise ValueError("Choose a concept ID returned by concept search.")
-        return mention_postings(self.site, key, self.history["entities"][key])
+        return mention_postings(self.site, key, self.history["entities"][key], captured_only=captured_only)
 
     def mentions(self, key, start=None, through=None, house=None, limit=20, offset=0, snapshot=None):
         if snapshot is not None and snapshot != self.snapshot:
@@ -150,17 +153,12 @@ class Access:
         if start > through:
             raise ValueError("The start date must be on or before the end date.")
         if self.search_db is None:
-            receipt = read(self.release / "receipt.json")
-            manifest = (self.capture / "manifest.json").read_bytes()
-            if sha(manifest) != receipt["manifest_sha256"]:
-                raise ValueError("The captured passages differ from the verified build.")
-            dates = self.history["days"]
-            parts, rows, _, _ = read_sittings(self.capture, json.loads(manifest), min(dates), max(dates))
+            parts, rows = self.capture_rows()
             db = sqlite3.connect(":memory:")
             db.execute("CREATE VIRTUAL TABLE passages USING fts5(text,title,speaker,day UNINDEXED,house UNINDEXED,route UNINDEXED,url UNINDEXED)")
             db.executemany("INSERT INTO passages VALUES (?,?,?,?,?,?,?)", (
                 (row["text"], parts[row["part"]]["title"], row["attributed_to"], row["day"], row["house"], route, row["url"])
-                for route, row in rows.items() if row["day"] in dates))
+                for route, row in rows.items()))
             self.search_db = db
         match = " AND ".join(f'"{word}"' for word in words)
         where = "FROM passages WHERE passages MATCH ? AND day BETWEEN ? AND ?"
@@ -178,3 +176,15 @@ class Access:
                            "timeline": NOVEMBER + "history.html?" + urlencode({"day": day, "anchor": route})}
                           for route, day, house, title, speaker, url, excerpt in results],
                 "next_offset": offset + limit if offset + limit < count else None}
+
+    def capture_rows(self):
+        """Return the debate parts and text records from the verified capture."""
+        if self._capture_rows is None:
+            receipt = read(self.release / "receipt.json")
+            manifest = (self.capture / "manifest.json").read_bytes()
+            if sha(manifest) != receipt["manifest_sha256"]:
+                raise ValueError("The captured passages differ from the verified build.")
+            dates = set(self.history["days"])
+            parts, rows, _, _ = read_sittings(self.capture, json.loads(manifest), min(dates), max(dates))
+            self._capture_rows = parts, {route: row for route, row in rows.items() if row["day"] in dates}
+        return self._capture_rows
