@@ -12,7 +12,7 @@ from check_voice_clients import assess
 from evidence_index import REPOSITORY_INDEX
 from hansard_access import Access, BUNDLE_ID
 from mcp_server import rpc
-from voice_pages import publish_voice
+from voice_pages import publish_voice, refresh_finder
 
 
 class VoiceTests(unittest.TestCase):
@@ -114,6 +114,10 @@ class VoiceTests(unittest.TestCase):
         self.assertIn(passage["text"], text)
         self.assertIn(url, text)
         self.assertIn('data-copy="synergy-evidence"', (self.site / "ask.html").read_text())
+        html = (self.site / "ask.html").read_bytes()
+        refresh_finder(self.site)
+        self.assertEqual((self.site / "ask.html").read_bytes(), html)
+        self.assertEqual((self.site / "synergy-evidence.txt").read_bytes(), raw)
 
 
 class AnswerReceiptTests(unittest.TestCase):

@@ -42,24 +42,12 @@ def publish_voice(site, release, capture=None):
         raw = (site / name).read_bytes()
         return {"url": NOVEMBER + name, "bytes": len(raw), "sha256": sha(raw)}
 
-    question = "Summarise the selected evidence from the latest sitting."
-    evidence, evidence_link, evidence_details = {}, "", ""
+    evidence = {}
     if capture is not None and CONCEPT in history["entities"]:
-        content = write_evidence(site, release, capture, coverage, history, snapshot)
+        write_evidence(site, release, capture, coverage, history, snapshot)
         entry = reference(EVIDENCE)
         url = entry["url"] + "?" + urlencode({"snapshot": snapshot})
         evidence[CONCEPT] = {**entry, "url": url, "format": "text/plain", "snapshot": snapshot}
-        question = ("Explain what Synergy is, how the discussion changed, and which statements were commitments. "
-                    "Distinguish historical alias matches from captured contributions.")
-        evidence_link = f"- [Read the Synergy evidence and passages]({url})\n"
-        evidence_details = f"""<p><a href="{escape(url, quote=True)}">Read the Synergy evidence and passages</a></p>
-<details><summary>Copy the Synergy evidence if your AI cannot open the link</summary>
-<label for="synergy-evidence">Synergy evidence</label>
-<textarea id="synergy-evidence" readonly rows="8" style="display:block;width:100%;font:inherit">{escape(content)}</textarea>
-<button type="button" data-copy="synergy-evidence">Copy Synergy evidence</button>
-</details>"""
-    prompt = PROMPT + "\n" + question
-    markdown_prompt = "\n".join("> " + line for line in prompt.splitlines())
 
     dump(site / "hansard.json", {
         "schema": "okf-public-access-directory.v1", "title": "Hansard", "locale": "en-GB",
@@ -92,6 +80,39 @@ def publish_voice(site, release, capture=None):
         key: {**record, "aliases": profile.get(key, {}).get("aliases", [])}
         for key, record in history["entities"].items()
     }})
+    write_finder(site, scope, evidence)
+    shutil.copyfile(PAGE, site / "ask.js")
+
+
+def refresh_finder(site):
+    """Re-render a verified published finder without reopening its capture."""
+    directory = read(site / "hansard.json")
+    bundle = directory["bundles"][0]
+    bundle["repository_evidence"] = REPOSITORY_INDEX
+    write_finder(site, directory["scope"], bundle.get("voice_evidence", {}))
+    dump(site / "hansard.json", directory)
+
+
+def write_finder(site, scope, evidence):
+    question = "Summarise the selected evidence from the latest sitting."
+    evidence_link, evidence_details = "", ""
+    if entry := evidence.get(CONCEPT):
+        raw = (site / EVIDENCE).read_bytes()
+        if len(raw) != entry["bytes"] or sha(raw) != entry["sha256"]:
+            raise ValueError("The finder requires its verified Synergy evidence.")
+        content, url = raw.decode("utf-8"), entry["url"]
+        question = ("Explain what Synergy is, how the discussion changed, and which statements were commitments. "
+                    "Distinguish historical alias matches from captured contributions.")
+        evidence_link = f"- [Read the Synergy evidence and passages]({url})\n"
+        evidence_details = f"""<p><a href="{escape(url, quote=True)}">Read the Synergy evidence and passages</a></p>
+<details><summary>Copy the Synergy evidence if your AI cannot open the link</summary>
+<label for="synergy-evidence">Synergy evidence</label>
+<textarea id="synergy-evidence" readonly rows="8" style="display:block;width:100%;font:inherit">{escape(content)}</textarea>
+<button type="button" data-copy="synergy-evidence">Copy Synergy evidence</button>
+</details>"""
+    prompt = PROMPT + "\n" + question
+    markdown_prompt = "\n".join("> " + line for line in prompt.splitlines())
+
     (site / "ask.md").write_text(f"""# Ask your AI about Hansard
 
 {scope}
@@ -144,4 +165,3 @@ def publish_voice(site, release, capture=None):
 <p><a href="ask.md">Plain-text guide</a> · <a href="hansard.json">Collection directory</a> · <a href="history.html">Contribution timeline</a> · <a href="coverage.json">Coverage</a></p>
 </main></body></html>
 """, encoding="utf-8")
-    shutil.copyfile(PAGE, site / "ask.js")
