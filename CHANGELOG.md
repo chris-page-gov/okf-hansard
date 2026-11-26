@@ -7,6 +7,8 @@
   and the Synergy worked example.
 - Refresh the index through protected pull requests before attempting Pages
   deployment and retry a pending index on the next scheduled run.
+- Point the phone finder's copyable prompt and collection directory to the
+  GitHub evidence index. Keep the worked example available to read or copy.
 
 ## Unreleased — signed-in Hansard portfolio briefings, 26 November 2026
 
