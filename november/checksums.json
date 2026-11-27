@@ -4,16 +4,16 @@
     "sha256": "92d07a578ab9735ec84e7f0ab6492b1701449c47f751b2f57ae58dbcad2baf46"
   },
   "ask.html": {
-    "bytes": 15882,
-    "sha256": "5a703e06bffb246bfcbdae4395c8ac96c90fd7f17536826898c8f1a1fc3c7880"
+    "bytes": 17565,
+    "sha256": "079b53a7e4971dc4c6500112e27213117555a51c2d11014333a8173e8c1baa97"
   },
   "ask.js": {
     "bytes": 5788,
     "sha256": "1f2be0c1d1141f1496ed2366ed46441ffeab1ac31aed851ca8190091ad12313c"
   },
   "ask.md": {
-    "bytes": 1881,
-    "sha256": "735591695e277862eff376176d6a4b1d1cdfe344f04c062cd2d9b3fe4c5b04d3"
+    "bytes": 3350,
+    "sha256": "bb9f2ee050329fabdf31476b015e0cbdde61c0496e52bf5ba781462c3969b992"
   },
   "concepts.json": {
     "bytes": 1128945,
@@ -8388,8 +8388,8 @@
     "sha256": "7e136d7521358afcc872761eebb5bd6cdce59b75a625a3ddf1e1ce0b6b04e3e3"
   },
   "hansard.json": {
-    "bytes": 5423,
-    "sha256": "a6e628793cc541060924a4598659c35217001937ae3f099b3589d2e7bcac3a4c"
+    "bytes": 5526,
+    "sha256": "a7828ec8fb61a5bedaeb7022ba7559de032d860a2cc19640c0fd5603cf8ef28e"
   },
   "historical-downloads.html": {
     "bytes": 2192,
@@ -8398,6 +8398,14 @@
   "historical-downloads.json": {
     "bytes": 3140,
     "sha256": "3ef670ce6b69ebfda11bceba4a486b1c8cab0cc56ea8b8344a468aa397db8b40"
+  },
+  "history.html": {
+    "bytes": 2293,
+    "sha256": "0cad63b81cd685ef24a0c638e51cfc3a51ed948d5d3feb37b7b06661591dfa6e"
+  },
+  "history.js": {
+    "bytes": 9653,
+    "sha256": "51c1a792473bbbb631c3c91d5d173ce7d11b46b64445ac8c49c43208ec78c794"
   },
   "history/activity-000f0db6c03fca2ef65747f4.json": {
     "bytes": 2765,
@@ -32963,33 +32971,13 @@
     "bytes": 373,
     "sha256": "3e4e02cf43efc80663e1ba5735390d6c2a88a982fd84c624927c61784824ce0e"
   },
-  "history.html": {
-    "bytes": 2293,
-    "sha256": "0cad63b81cd685ef24a0c638e51cfc3a51ed948d5d3feb37b7b06661591dfa6e"
-  },
-  "history.js": {
-    "bytes": 9653,
-    "sha256": "51c1a792473bbbb631c3c91d5d173ce7d11b46b64445ac8c49c43208ec78c794"
-  },
   "index.html": {
     "bytes": 3089,
     "sha256": "fc9f9f2acbcd3389cdfd2373f3ca3173ecbf38b3367040e71a7e938a298a8844"
   },
   "llms.txt": {
-    "bytes": 1579,
-    "sha256": "51e88c1454d983c003fc07db9f5612e66d99ddbec5a926ef94795d57bdac811a"
-  },
-  "okf/LICENSE.md": {
-    "bytes": 216,
-    "sha256": "feaf1de96ad0e7b7e1f9c35ce645ce4ddf4e8c077ff88bf59bcc674591646084"
-  },
-  "okf/index.md": {
-    "bytes": 1708,
-    "sha256": "80be59b5319c89354efbb648daaaef032c1f71a5730ccd87f79ee3097d9b2c0d"
-  },
-  "okf/sittings.md": {
-    "bytes": 1124,
-    "sha256": "c3ac907956944800a576b9786bb5a610d5b304a34d3d78ff628aba6a74b4cf63"
+    "bytes": 1741,
+    "sha256": "7f80810fbe082bade47ee1a4c92fabb0a128bcdb81b7e41082197eec73a00580"
   },
   "okf-bundle.yamlld.gz": {
     "bytes": 12528453,
@@ -33003,13 +32991,37 @@
     "bytes": 12271,
     "sha256": "92d07a578ab9735ec84e7f0ab6492b1701449c47f751b2f57ae58dbcad2baf46"
   },
+  "okf/LICENSE.md": {
+    "bytes": 216,
+    "sha256": "feaf1de96ad0e7b7e1f9c35ce645ce4ddf4e8c077ff88bf59bcc674591646084"
+  },
+  "okf/index.md": {
+    "bytes": 1708,
+    "sha256": "80be59b5319c89354efbb648daaaef032c1f71a5730ccd87f79ee3097d9b2c0d"
+  },
+  "okf/sittings.md": {
+    "bytes": 1124,
+    "sha256": "c3ac907956944800a576b9786bb5a610d5b304a34d3d78ff628aba6a74b4cf63"
+  },
   "site.css": {
-    "bytes": 3110,
-    "sha256": "86d36070286949429ce43f9b62defaa5239b341a0eacdab7b72d7e712130f3b9"
+    "bytes": 3492,
+    "sha256": "be580b3096315bc6249a40ab50ab0437150435775d1113336917f73a83edf5e0"
+  },
+  "skills/read-okf-plus/SKILL.md": {
+    "bytes": 2890,
+    "sha256": "2e7f21d96d0f5b39b1544e2bcaab9555f1ecaeecae06303122d603645b511167"
+  },
+  "skills/read-okf-plus/references/retrieval.md": {
+    "bytes": 2093,
+    "sha256": "553993b2002482371a1592a157b93a879d9ab07a0f58195574b31dabe5ed1dd3"
   },
   "synergy-evidence.txt": {
     "bytes": 12535,
     "sha256": "9b85eaabe8197b99098c85158c41791f3c08de6a487c57f69b2e9f92fdca84f8"
+  },
+  "voice-retrieval.json": {
+    "bytes": 1918,
+    "sha256": "539e898d7ce38f3d1297e08da88775d95e36f3b4e5b09068bc910754cd919087"
   },
   "walkthrough-mobile.svg": {
     "bytes": 3669,

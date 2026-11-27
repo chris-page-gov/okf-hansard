@@ -5,7 +5,8 @@
 ## Start here
 
 - [Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json): Start here for all captured sittings and historical matches.
-- [Ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.md): Copy the voice prompt and find evidence.
+- [Ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.md): Copy the full-collection voice setup or selected evidence.
+- [Voice retrieval contract](https://chris-page-gov.github.io/okf-hansard/november/voice-retrieval.json): Spoken shortcut, skill and protocols.
 - [OKF 0.3 Markdown index](https://chris-page-gov.github.io/okf-hansard/november/okf/index.md): Open the Markdown source for this view.
 - [Machine directory](https://chris-page-gov.github.io/okf-hansard/november/okf-public-access.json): Coverage, endpoints and SHA-256 digests.
 - [Core source-path inventory and non-record Markdown](https://chris-page-gov.github.io/okf-hansard/november/graph/core-source-binding.json): Plain JSON bound by the full-graph descriptor and checksum catalogue.

@@ -115,7 +115,8 @@
         "week_examples": "https://chris-page-gov.github.io/okf-hansard/demo.html",
         "worked_evidence": "https://chris-page-gov.github.io/okf-hansard/okf/index.md"
       },
-      "repository_evidence": "https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md"
+      "repository_evidence": "https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md",
+      "voice_retrieval": "https://chris-page-gov.github.io/okf-hansard/november/voice-retrieval.json"
     }
   ]
 }

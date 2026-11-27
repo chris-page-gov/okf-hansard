@@ -6,22 +6,33 @@
 <link rel="stylesheet" href="site.css"><link rel="describedby" href="hansard.json" type="application/json">
 <script src="ask.js" defer></script>
 </head>
-<body><main class="guide">
+<body><main class="guide finder">
 <nav aria-label="Hansard"><a href="./">November in Parliament</a></nav>
 <h1>Ask your AI about Hansard</h1>
 <p id="coverage-summary">19,715 contributions from Commons and Lords sittings, 2 November 2026 to 25 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.</p>
 <h2>Try it on your phone</h2>
-<p>Copy the GitHub prompt into your AI chat, then use voice if your app offers it.</p>
+<ol>
+<li>Copy the full collection instructions into your own AI chat. Save them as a preference if your app supports it.</li>
+<li>Start voice and say “chat to GTM Hansard”. Ask it to confirm the snapshot and latest sitting.</li>
+<li>Ask a question, then open a cited contribution and its graph or timeline from the chat.</li>
+</ol>
+<label for="launch-prompt">Full collection instructions</label>
+<textarea id="launch-prompt" readonly rows="7">When I say ‘chat to GTM Hansard’, use the approved Hansard connection and the read-okf-plus skill if available. Otherwise open https://chris-page-gov.github.io/okf-hansard/november/hansard.json. Check the verified snapshot and latest sitting before answering. Use my context to choose public topics and send only the terms and dates needed. Ask if my portfolio is unclear. Give a short spoken answer and put the exact Hansard links and a graph or timeline link in chat. If you cannot read the collection, try https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md or ask me for pasted evidence. Explain the scope of the evidence you could access.</textarea>
+<button type="button" data-copy="launch-prompt">Copy full collection instructions</button>
+<p>Try “What changed in the discussion of the Synergy programme? Show the source passages and give me the timeline.”</p>
+<p><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/docs/mobile-demonstration.md">Follow the full phone demonstration</a> · <a href="https://github.com/chris-page-gov/okf-hansard/blob/main/docs/learn-hansard-okf.md">Learn OKF 0.3 with Hansard</a></p>
+<h2>If the full collection is unavailable</h2>
+<p>Copy the GitHub prompt to use the small evidence index. You can also paste evidence directly from this page.</p>
 <p><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md">Open the GitHub evidence index</a></p>
 <label for="prompt">GitHub prompt</label>
-<textarea id="prompt" readonly rows="6" style="display:block;width:100%;font:inherit">Read HANSARD-EVIDENCE.md directly from the main branch of chris-page-gov/okf-hansard. https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md
+<textarea id="prompt" readonly rows="6">Read HANSARD-EVIDENCE.md directly from the main branch of chris-page-gov/okf-hansard. https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md
 Give the verified capture-through date and snapshot from the file. Use the excerpts and exact Hansard links in the file to answer. If you cannot open it, ask me to paste its text.
 Explain what Synergy is, how the discussion changed, and which statements were commitments. Distinguish historical alias matches from captured contributions.</textarea>
 <button type="button" data-copy="prompt">Copy GitHub prompt</button>
 <p><a href="https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e">Read the Synergy evidence and passages</a></p>
 <details><summary>Copy the Synergy evidence if your AI cannot open the link</summary>
 <label for="synergy-evidence">Synergy evidence</label>
-<textarea id="synergy-evidence" readonly rows="8" style="display:block;width:100%;font:inherit">Synergy programme in Hansard
+<textarea id="synergy-evidence" readonly rows="8">Synergy programme in Hansard
 Snapshot hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e
 Latest sitting 2026-11-25
 17 distinct retained Hansard links. 6 captured contributions and 11 historical alias matches.
@@ -115,8 +126,8 @@ Contains Parliamentary information licensed under the Open Parliament Licence v3
 <p id="count"></p><p id="timeline"></p><ol id="links"></ol>
 <button type="button" id="previous">Previous matches</button><button type="button" id="next">Next matches</button>
 <p><label for="evidence">Evidence to paste into your AI chat</label></p>
-<textarea id="evidence" readonly rows="10" style="display:block;width:100%;font:inherit"></textarea>
+<textarea id="evidence" readonly rows="10"></textarea>
 <button type="button" data-copy="evidence">Copy evidence</button>
 </section>
-<p><a href="ask.md">Plain-text guide</a> · <a href="hansard.json">Collection directory</a> · <a href="history.html">Contribution timeline</a> · <a href="coverage.json">Coverage</a></p>
+<p><a href="ask.md">Plain-text guide</a> · <a href="hansard.json">Collection directory</a> · <a href="history.html">Contribution timeline</a> · <a href="coverage.json">Coverage</a> · <a href="skills/read-okf-plus/SKILL.md">Read the OKF+ skill</a> · <a href="voice-retrieval.json">Retrieval contract</a></p>
 </main></body></html>

@@ -1,0 +1,53 @@
+{
+  "schema": "hansard-voice-retrieval.v1",
+  "alias": "chat to GTM Hansard",
+  "collection": "https://chris-page-gov.github.io/okf-hansard/november/hansard.json",
+  "finder": "https://chris-page-gov.github.io/okf-hansard/november/ask.html",
+  "repository_evidence": "https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md",
+  "skill": {
+    "name": "read-okf-plus",
+    "uri": "skill://read-okf-plus/SKILL.md",
+    "files": [
+      "SKILL.md",
+      "references/retrieval.md"
+    ],
+    "extension": "io.modelcontextprotocol/skills",
+    "specification": "https://skills.extensions.modelcontextprotocol.io/specification/beta/skills",
+    "public_files": {
+      "SKILL.md": {
+        "url": "https://chris-page-gov.github.io/okf-hansard/november/skills/read-okf-plus/SKILL.md",
+        "bytes": 2890,
+        "sha256": "2e7f21d96d0f5b39b1544e2bcaab9555f1ecaeecae06303122d603645b511167"
+      },
+      "references/retrieval.md": {
+        "url": "https://chris-page-gov.github.io/okf-hansard/november/skills/read-okf-plus/references/retrieval.md",
+        "bytes": 2093,
+        "sha256": "553993b2002482371a1592a157b93a879d9ab07a0f58195574b31dabe5ed1dd3"
+      }
+    }
+  },
+  "mcp": {
+    "revision": "2026-07-28",
+    "compatibility_revisions": [
+      "2025-11-25",
+      "2025-06-18",
+      "2025-03-26",
+      "2024-11-05"
+    ],
+    "describe_tool": "hansard_describe_bundle",
+    "search_tool": "hansard_search_passages",
+    "resolve_tool": "hansard_resolve_concept",
+    "mentions_tool": "hansard_mentions"
+  },
+  "data_policy": {
+    "public_query_inputs": [
+      "topic",
+      "date range",
+      "House",
+      "snapshot",
+      "result offset"
+    ],
+    "personal_context": "Keep private context in the user's assistant. Use only approved public search filters in public requests.",
+    "identity": "A spoken alias is a personal shortcut and does not authenticate the user."
+  }
+}
