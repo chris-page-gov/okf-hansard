@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — two-phase reference consumer
+
+- Pin a complete compact Hansard bundle, an OKF+ relationship example and a
+  local model for a matched-evidence comparison.
+- Verify source bytes before generating synthetic private documents in a
+  network-denied worker. Record controlled network traces, supported answers,
+  citation accuracy, model tokens and latency.
+
 ## Unreleased — bring your own AI to Hansard
 
 - Add beginner guides to Hansard and OKF 0.3, a full mobile demonstration and
