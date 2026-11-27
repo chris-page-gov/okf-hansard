@@ -326,10 +326,12 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
                 if entry in records:
                     raise ValueError(f"Reused contribution identity: {entry}")
                 metrics[(day, house)]["repeated_external_id"] += 1
+            attribution = item.get("AttributedTo")
             records[entry] = {
                 "part": route, "scope": scope, "capture": reference, "pointer": locator, "day": day,
                 "house": house, "section": section, "kind": contribution_kind(item, section),
-                "member": item.get("MemberId"), "attributed_to": display(item.get("AttributedTo")),
+                "member": item.get("MemberId"), "attributed_to": display(attribution),
+                "raw_attribution": attribution,
                 "external_id": ext, "source_item_id": item_id, "hrs_tag": item.get("HRSTag"),
                 "uint": item.get("UIN"), "order": index, "text": text,
                 "value_sha256": sha(str(item["Value"]).encode()), "normalised_sha256": sha(text.encode()),

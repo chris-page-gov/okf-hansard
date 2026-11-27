@@ -1,0 +1,27 @@
+{
+  "schema": "hansard-voice-retrieval.v1",
+  "alias": "chat to GTM Hansard",
+  "collection": "https://chris-page-gov.github.io/okf-hansard/november/hansard.json",
+  "finder": "https://chris-page-gov.github.io/okf-hansard/november/ask.html",
+  "repository_evidence": "https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md",
+  "skill": {
+    "name": "read-okf-plus",
+    "uri": "skill://read-okf-plus/SKILL.md",
+    "files": ["SKILL.md", "references/retrieval.md"],
+    "extension": "io.modelcontextprotocol/skills",
+    "specification": "https://skills.extensions.modelcontextprotocol.io/specification/beta/skills"
+  },
+  "mcp": {
+    "revision": "2026-07-28",
+    "compatibility_revisions": ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"],
+    "describe_tool": "hansard_describe_bundle",
+    "search_tool": "hansard_search_passages",
+    "resolve_tool": "hansard_resolve_concept",
+    "mentions_tool": "hansard_mentions"
+  },
+  "data_policy": {
+    "public_query_inputs": ["topic", "date range", "House", "snapshot", "result offset"],
+    "personal_context": "Keep private context in the user's assistant. Use only approved public search filters in public requests.",
+    "identity": "A spoken alias is a personal shortcut and does not authenticate the user."
+  }
+}

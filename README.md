@@ -1,10 +1,21 @@
-# A week in Parliament
+# GTM Hansard
+
+Explore what the UK Parliament said, follow related material over time and bring your own AI to the evidence. The full November collection is the main entry point. The original week remains a set of guided examples.
+
+| Start here | Guide |
+| --- | --- |
+| Ask questions on your phone | [Run the full voice demonstration](docs/mobile-demonstration.md) · [Open the finder](https://chris-page-gov.github.io/okf-hansard/november/ask.html) |
+| Learn Hansard and OKF 0.3 | [Beginner’s guide to Parliament, the data and how to read it](docs/learn-hansard-okf.md) |
+| Inspect the full collection | [Coverage, sittings and timeline](https://chris-page-gov.github.io/okf-hansard/november/) · [Full graph descriptor](https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json) |
+| Connect an AI client | [Read OKF+ skill](skills/read-okf-plus/SKILL.md) · [Retrieval contract](profile/voice-retrieval.json) · [Repeatable client tests](docs/voice-acceptance.md) |
+| Maintain or reuse the project | [Architecture, algorithms, vocabulary and zero-token publishing](docs/maintainer-guide.md) · [Discovery and specifications](docs/okf-discovery.md) |
+
 
 For the full capture, history and voice entry point, open the [Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) or [ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.html). The week examples are guided views into the project. See [voice and cross-client tests](docs/voice-acceptance.md) for connection setup, limits and repeatable checks.
 
 For a phone assistant that can read GitHub, open [the Markdown evidence index on main](HANSARD-EVIDENCE.md). It gives the verified date range, selected passages and exact Hansard links in one file. The scheduled publisher refreshes it through a checked pull request after validating the capture.
 
-An experimental OKF+ bundle of Westminster Hansard for 16 to 19 November 2026, with a rolling index of earlier contributions that share a person, office, place, organisation, programme, legislative instrument or subject. The November companion adds sittings as they are verified.
+The guided week covers Westminster Hansard from 16 to 19 November 2026, with a rolling index of earlier contributions that share a person, office, place, organisation, programme, legislative instrument or subject. The November companion adds sittings as they are verified.
 
 The current producer candidate is version 0.3.0 and declares OKF core 0.3. The
 Hansard domain profile is versioned separately from core and from the inherited
@@ -54,9 +65,9 @@ An exact retained locator identifies the API field. The source read tool compare
 
 Give a URL-capable assistant the small OKF 0.3 Markdown index and ask it to open one example. Attach the relevant Markdown file if the assistant works from files. Ask for the exact Hansard links, the graph and timeline, and which sources it could open. The static routes work without an account or the SSD. [Markdown index](https://chris-page-gov.github.io/okf-hansard/okf/index.md) · [Machine directory](https://chris-page-gov.github.io/okf-hansard/okf-public-access.json) · [Discovery and standards](docs/okf-discovery.md)
 
-Start the read-only MCP stdio server with this repository as its working directory, or pass absolute paths for the release, database and people snapshot.
+Start the read-only MCP stdio server with a verified November publication receipt. It implements the July 2026 revision and the beta MCP Skills extension, with a compatibility route for earlier clients. See [transport and setup](docs/voice-acceptance.md).
 
-    uv run --locked python scripts/mcp_server.py
+    uv run --locked python scripts/mcp_server.py --publication .work/november-2026/publication.json
 
 The tools are **hansard_find**, **hansard_trace**, **hansard_roles_as_of**, **hansard_member_as_of** and **hansard_read_passage**. A source-linked passage returns its Member ID where available. The member tool returns effective representations, posts, memberships and party records as of the requested day from cached biographies or the Members API. The passage tool reads the official Hansard API. No AI API key or model calls are needed. A voice-enabled host can speak a short answer and pass the digest-bound view to a companion screen. See the [UI study](docs/voice-and-visual-ui.md) for host-specific support and limits.
 

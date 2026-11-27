@@ -19,10 +19,11 @@ HOUSES = ("Commons", "Lords")
 MAX_BYTES = 20 * 1024 * 1024
 
 
-def dump(path, value):
+def dump(path, value, *, compact=False):
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    formatting = {"separators": (",", ":")} if compact else {"indent": 2}
+    tmp.write_text(json.dumps(value, ensure_ascii=False, **formatting) + "\n", encoding="utf-8")
     tmp.replace(path)
 
 

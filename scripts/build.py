@@ -414,7 +414,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer, *, 
             graph.node(role, "Recorded capacity", actor_label, section="Offices and roles",
                        body=f"# {safe_markdown(actor_label)}\n\nCapacity recorded by Hansard.")
             graph.edge(route, "hasRecordedCapacity", role, row["capture"], row["url"],
-                       row["pointer"] + "/AttributedTo", row["attributed_to"])
+                       row["pointer"] + "/AttributedTo", row["raw_attribution"])
         if route in current:
             trace[route] = {"entities": sorted(matched), "date": row["day"], "part": row["part"],
                             "order": row["order"], "url": row["url"]}

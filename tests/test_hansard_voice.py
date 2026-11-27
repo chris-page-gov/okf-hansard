@@ -86,6 +86,13 @@ class VoiceTests(unittest.TestCase):
         self.assertIn('data-copy="evidence"', (self.site / "ask.html").read_text())
         self.assertIn(REPOSITORY_INDEX, (self.site / "ask.md").read_text())
         self.assertIn("Copy GitHub prompt", (self.site / "ask.html").read_text())
+        self.assertIn("Copy full collection instructions", (self.site / "ask.html").read_text())
+        self.assertIn("chat to GTM Hansard", (self.site / "ask.md").read_text())
+        retrieval = json.loads((self.site / "voice-retrieval.json").read_bytes())
+        for name, reference in retrieval["skill"]["public_files"].items():
+            data = (self.site / "skills/read-okf-plus" / name).read_bytes()
+            self.assertEqual((len(data), sha(data)), (reference["bytes"], reference["sha256"]))
+        self.assertTrue(publication["bundles"][0]["voice_retrieval"].endswith("/voice-retrieval.json"))
         self.assertEqual(publication["bundles"][0]["repository_evidence"], REPOSITORY_INDEX)
 
     def test_phone_demo_binds_small_text_and_copyable_evidence_to_one_snapshot(self):

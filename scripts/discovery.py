@@ -303,7 +303,8 @@ Read the [coverage and verification report]({base}coverage.json) for sitting dat
     (site / "llms.txt").write_text("\n".join([
         "# " + title, "", "> " + coverage, "", "## Start here", "",
         f"- [Hansard collection]({SITE}november/hansard.json): Start here for all captured sittings and historical matches.",
-        f"- [Ask your AI about Hansard]({SITE}november/ask.md): Copy the voice prompt and find evidence.",
+        f"- [Ask your AI about Hansard]({SITE}november/ask.md): Copy the full-collection voice setup or selected evidence.",
+        f"- [Voice retrieval contract]({SITE}november/voice-retrieval.json): Spoken shortcut, skill and protocols.",
         f"- [OKF 0.3 Markdown index]({base}okf/index.md): Open the Markdown source for this view.",
         f"- [Machine directory]({base}okf-public-access.json): Coverage, endpoints and SHA-256 digests.",
         f"- [Core source-path inventory and non-record Markdown]({base}graph/{CORE_SOURCE_DETAILS_PATH}): Plain JSON bound by the full-graph descriptor and checksum catalogue.",
