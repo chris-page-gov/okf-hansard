@@ -329,7 +329,7 @@ def main():
     modern_stdio = check_stdio(command, expected, PROTOCOL)
     workspace = args.out.resolve().parent if args.out else Path.cwd() / ".work"
     workspace.mkdir(parents=True, exist_ok=True)
-    with serve(command) as url, tempfile.TemporaryDirectory(dir=workspace, prefix="hansard-client-") as scratch:
+    with serve(command) as url, tempfile.TemporaryDirectory(prefix="hansard-client-") as scratch:
         http = check_http(url, expected)
         check(http == stdio, "HTTP and stdio evidence differ.")
         modern_http = check_http(url, expected, PROTOCOL)

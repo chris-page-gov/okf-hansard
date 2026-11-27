@@ -118,7 +118,7 @@ def write(release, destination, database, cache, *, older_database=None, focused
         for key in sorted(keys):
             if key in extra_entities:
                 dump(assets / f"{key}.json", sorted(extra_postings[key], key=lambda row: (row[0], row[4], row[5]),
-                                                   reverse=True))
+                                                   reverse=True), compact=True)
                 results[key] = extra_entities[key]
                 continue
             package = index.backfill_for(key)
@@ -146,9 +146,9 @@ def write(release, destination, database, cache, *, older_database=None, focused
                     entry.append(row["contribution"])
                 entries.append(entry)
             entries.sort(key=lambda row: (row[0], row[4] or "", row[5] or 0), reverse=True)
-            dump(assets / (key + ".json"), entries)
+            dump(assets / (key + ".json"), entries, compact=focused_views)
             if focused_views:
-                dump(assets / (key + ".month.json"), [row for row in entries if len(row) == 7])
+                dump(assets / (key + ".month.json"), [row for row in entries if len(row) == 7], compact=True)
             results[key] = {**index.history["entities"][key], "archive_count": archive_count,
                             "search_count": sum(row[4] is None for row in entries),
                             "search_windows": package["search_windows"] if package else [],
@@ -168,7 +168,7 @@ def write(release, destination, database, cache, *, older_database=None, focused
         for route, row in anchors.items():
             daily[row["date"]][route] = row
         for day, records in daily.items():
-            dump(assets / "days" / f"{day}.json", records)
+            dump(assets / "days" / f"{day}.json", records, compact=True)
         view["focused_views"] = True
         view["month_entity_shards"] = True
     else:

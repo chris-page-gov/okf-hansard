@@ -14,6 +14,8 @@
   Keep the GitHub and pasted evidence routes available on the same finder.
 - Bind recorded capacity assertions to the original Hansard attribution field.
   Retain the cleaned speaker label for display.
+- Compact the full collection's plain JSON mention and day files to reduce
+  transfer and make room for the new verified sittings on Pages.
 
 ## Unreleased — check cached November builds before backfill
 
