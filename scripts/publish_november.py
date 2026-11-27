@@ -29,7 +29,9 @@ from query import DEFAULT_DB, DEEP_DB, Index
 from refresh import refresh
 from stage_contribution_views import stage
 from verify import check, verify_build_artifacts
+from mcp_skills import NAME as SKILL_NAME, SKILL
 from voice_evidence import EVIDENCE
+from voice_pages import RETRIEVAL
 
 FIRST = date(2026, 11, 1)
 LAST = date(2026, 11, 30)
@@ -46,7 +48,8 @@ REQUIRED_NOVEMBER_ASSETS = (
     "core-walkthrough.svg", "core-walkthrough-mobile.svg", "okf/index.md", "okf/sittings.md",
     "okf-public-access.json", "checksums.json", "okf-bundle.yamlld.gz", ".well-known/okf.json",
     "llms.txt", "historical-downloads.html", "historical-downloads.json",
-    "hansard.json", "ask.html", "ask.md", "ask.js",
+    "hansard.json", "ask.html", "ask.md", "ask.js", RETRIEVAL,
+    *(f"skills/{SKILL_NAME}/{name}" for name in SKILL["files"]),
 )
 
 
@@ -54,7 +57,7 @@ def builder_fingerprint(root=ROOT):
     """Hash Python generators, profiles and static inputs used to render a site."""
     root = Path(root)
     paths = set((root / "scripts").rglob("*.py"))
-    for directory in (root / "profile", root / "docs/pages"):
+    for directory in (root / "profile", root / "docs/pages", root / "skills" / SKILL_NAME):
         paths.update(path for path in directory.rglob("*") if path.is_file())
     paths.update(path for path in (
         root / "docs/pages/site.css", root / "profile/domain.yaml", root / "profile/hansard-domain-v2.json",

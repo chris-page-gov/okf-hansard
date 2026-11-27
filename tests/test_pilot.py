@@ -189,9 +189,10 @@ class ModelTests(unittest.TestCase):
 
             division = section("vote", "Deferred vote", [{"ItemType": "Division", "ItemId": 3}], [])
             division_group = section("deferred", "Deferred divisions", [], [division])
-            chamber = section("root", "Commons Chamber",
-                              [{"ItemType": "Contribution", "ItemId": 1, "Value": "A statement."}],
-                              [division_group])
+            attribution = "  The Minister  "
+            chamber = section("root", "Commons Chamber", [{
+                "ItemType": "Contribution", "ItemId": 1, "Value": "A statement.", "AttributedTo": attribution,
+            }], [division_group])
             dump(root / "chamber.json", chamber)
             source = {"section": "Debate", "path": "chamber.json", "url": "https://hansard-api.parliament.uk/",
                       "retrieved_at": day + "T20:00:00Z", "sha256": sha((root / "chamber.json").read_bytes())}
@@ -214,6 +215,9 @@ class ModelTests(unittest.TestCase):
             self.assertTrue(all(edge["source_iri"].startswith("urn:okf:hansard:record:")
                                 and edge["target_iri"].startswith("urn:okf:hansard:record:")
                                 for edge in edges))
+            capacity, = (edge for edge in edges if edge["predicate"].endswith(":hasRecordedCapacity"))
+            self.assertEqual(sha(attribution.encode()), capacity["evidence"][0]["source_value_sha256"])
+            self.assertTrue(corpus["nodes"][capacity["source"]]["title"].startswith("The Minister ·"))
             vote, = (edge for edge in edges if edge["kind"] == "is division in")
             self.assertEqual("Deferred vote", corpus["nodes"][vote["target"]]["title"])
             self.assertEqual("/ChildDebates/0/ChildDebates/0/Items/0/ItemId", vote["evidence"][0]["source_field"])

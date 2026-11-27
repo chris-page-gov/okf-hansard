@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 import re
 import sqlite3
-from urllib.parse import urlencode, urlsplit
+from urllib.parse import quote, urlencode, urlsplit
 
 from capture import sha
 from model import read_sittings
@@ -15,6 +15,7 @@ from model import read_sittings
 
 HOME = "https://chris-page-gov.github.io/okf-hansard/"
 NOVEMBER = HOME + "november/"
+EXPLORER = "https://chris-page-gov.github.io/okf-explorer/explore/"
 BUNDLE_ID = "urn:okf:hansard"
 ENTITY = re.compile(r"[a-zA-Z0-9_-]+\Z")
 WORDS = re.compile(r"[^\W_]+", re.UNICODE)
@@ -39,6 +40,12 @@ def snapshot_id(site, graph):
     parts = [graph["snapshot"].encode(), (site / "coverage.json").read_bytes(),
              (site / "history/index.json").read_bytes()]
     return "hansard-collection-sha256-" + sha(b"\0".join(parts))
+
+
+def graph_view(route):
+    focus = f"dataset/{route}"
+    query = urlencode({"bundle": NOVEMBER + "graph/okf-explorer.json", "view": "graph", "graph.center": focus})
+    return EXPLORER + "?" + query + "#" + quote(focus, safe="/")
 
 
 def mention_postings(site, key, metadata, *, captured_only=False):
@@ -96,7 +103,8 @@ class Access:
             "limits": ["Historical mentions are retained literal name and alias matches for configured concepts.",
                        "Text search covers the captured sitting passages. Historical terms outside the profile need source searches."],
             "links": {"start": NOVEMBER + "ask.html", "coverage": NOVEMBER + "coverage.json",
-                      "directory": NOVEMBER + "hansard.json", "timeline": NOVEMBER + "history.html"},
+                      "directory": NOVEMBER + "hansard.json", "timeline": NOVEMBER + "history.html",
+                      "graph_descriptor": NOVEMBER + "graph/okf-explorer.json"},
         }
 
     def concepts(self, query, limit=8):
@@ -142,6 +150,7 @@ class Access:
                 "coverage": {"from": start if start != "0001-01-01" else None, "through": through, "house": house},
                 "method": "Retained literal alias matches in available capture and archive layers",
                 "timeline": NOVEMBER + "history.html?" + urlencode(query), "items": page,
+                **({"graph": graph_view(anchor["id"])} if anchor else {}),
                 "next_offset": offset + len(page) if offset + len(page) < len(entries) else None}
 
     def search(self, query, start=None, through=None, house=None, limit=10, offset=0):
@@ -173,7 +182,8 @@ class Access:
         return {"snapshot": self.snapshot, "total": count, "method": "Captured passage full-text search",
                 "items": [{"id": route, "date": day, "house": house, "title": title, "speaker": speaker,
                            "hansard": official(url), "excerpt": excerpt,
-                           "timeline": NOVEMBER + "history.html?" + urlencode({"day": day, "anchor": route})}
+                           "timeline": NOVEMBER + "history.html?" + urlencode({"day": day, "anchor": route}),
+                           "graph": graph_view(route)}
                           for route, day, house, title, speaker, url, excerpt in results],
                 "next_offset": offset + limit if offset + limit < count else None}
 

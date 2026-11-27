@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased — bring your own AI to Hansard
+
+- Add beginner guides to Hansard and OKF 0.3, a full mobile demonstration and
+  a maintainer guide covering vocabulary, algorithms and zero-token publishing.
+- Publish a small, source-linked Read OKF+ skill and a retrieval contract.
+  Add MCP 2026-07-28 and beta skill discovery and delivery to the read-only
+  connector. Preserve legacy protocol support and the separate OAuth briefing.
+- Test modern and legacy MCP retrieval across both transports, validate the
+  skill files by digest and probe local Claude Code and Gemini CLI separately
+  from spoken answers.
+- Add a copyable full-collection voice setup and optional spoken shortcut.
+  Keep the GitHub and pasted evidence routes available on the same finder.
+- Bind recorded capacity assertions to the original Hansard attribution field.
+  Retain the cleaned speaker label for display.
+
 ## Unreleased — check cached November builds before backfill
 
 - Check the native build receipt, OKF version and artefact digests before a

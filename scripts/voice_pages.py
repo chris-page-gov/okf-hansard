@@ -8,6 +8,7 @@ from urllib.parse import urlencode
 from capture import dump, sha
 from evidence_index import REPOSITORY_INDEX
 from hansard_access import BUNDLE_ID, HOME, NOVEMBER, read, snapshot_id
+from mcp_skills import CONTRACT, NAME as SKILL_NAME, SKILL, stage_skill
 from okf_core import CORE_SPEC, CORE_VERSION
 from voice_evidence import CONCEPT, EVIDENCE, human_date as day, write_evidence
 
@@ -18,6 +19,31 @@ PROMPT = (f"Read HANSARD-EVIDENCE.md directly from the main branch of chris-page
           "Give the verified capture-through date and snapshot from the file. "
           "Use the excerpts and exact Hansard links in the file to answer. "
           "If you cannot open it, ask me to paste its text.")
+
+
+VOICE = read(CONTRACT)
+RETRIEVAL = CONTRACT.name
+SKILL_PATH = f"skills/{SKILL_NAME}/SKILL.md"
+DOCS = "https://github.com/chris-page-gov/okf-hansard/blob/main/docs/"
+LAUNCH = (f"When I say ‘{VOICE['alias']}’, use the approved Hansard connection and the read-okf-plus "
+          f"skill if available. Otherwise open {VOICE['collection']}. "
+          "Check the verified snapshot and latest sitting before answering. Use my context to choose public topics "
+          "and send only the terms and dates needed. Ask if my portfolio is unclear. Give a short spoken answer "
+          "and put the exact Hansard links and a graph or timeline link in chat. "
+          f"If you cannot read the collection, try {REPOSITORY_INDEX} or ask me for pasted evidence. "
+          "Explain the scope of the evidence you could access.")
+WORKED_QUESTION = ("What changed in the discussion of the Synergy programme? "
+                   "Show the source passages and give me the timeline.")
+
+
+def publish_retrieval(site):
+    stage_skill(site)
+    files = {}
+    for relative in SKILL["files"]:
+        path = f"skills/{SKILL_NAME}/{relative}"
+        raw = (site / path).read_bytes()
+        files[relative] = {"url": NOVEMBER + path, "bytes": len(raw), "sha256": sha(raw)}
+    dump(site / RETRIEVAL, {**VOICE, "skill": {**SKILL, "public_files": files}})
 
 
 def publish_voice(site, release, capture=None):
@@ -68,6 +94,7 @@ def publish_voice(site, release, capture=None):
                             "semantic_graph": reference("okf-bundle.yamlld.gz")},
             "concept_index": NOVEMBER + "concepts.json", "voice_quick_start": NOVEMBER + "ask.md",
             "repository_evidence": REPOSITORY_INDEX,
+            "voice_retrieval": NOVEMBER + RETRIEVAL,
             **({"voice_evidence": evidence} if evidence else {}),
             "historical_exports": NOVEMBER + "historical-downloads.html",
             "mention_resources": {"recent_and_search": NOVEMBER + "history/{concept}.json",
@@ -80,6 +107,7 @@ def publish_voice(site, release, capture=None):
         key: {**record, "aliases": profile.get(key, {}).get("aliases", [])}
         for key, record in history["entities"].items()
     }})
+    publish_retrieval(site)
     write_finder(site, scope, evidence)
     shutil.copyfile(PAGE, site / "ask.js")
 
@@ -89,6 +117,8 @@ def refresh_finder(site):
     directory = read(site / "hansard.json")
     bundle = directory["bundles"][0]
     bundle["repository_evidence"] = REPOSITORY_INDEX
+    bundle["voice_retrieval"] = NOVEMBER + RETRIEVAL
+    publish_retrieval(site)
     write_finder(site, directory["scope"], bundle.get("voice_evidence", {}))
     dump(site / "hansard.json", directory)
 
@@ -107,7 +137,7 @@ def write_finder(site, scope, evidence):
         evidence_details = f"""<p><a href="{escape(url, quote=True)}">Read the Synergy evidence and passages</a></p>
 <details><summary>Copy the Synergy evidence if your AI cannot open the link</summary>
 <label for="synergy-evidence">Synergy evidence</label>
-<textarea id="synergy-evidence" readonly rows="8" style="display:block;width:100%;font:inherit">{escape(content)}</textarea>
+<textarea id="synergy-evidence" readonly rows="8">{escape(content)}</textarea>
 <button type="button" data-copy="synergy-evidence">Copy Synergy evidence</button>
 </details>"""
     prompt = PROMPT + "\n" + question
@@ -117,17 +147,32 @@ def write_finder(site, scope, evidence):
 
 {scope}
 
-1. Copy the GitHub prompt into your AI chat and start voice if available.
-2. If the assistant cannot open GitHub, copy the worked example or selected evidence from the finder.
-3. Check that the answer cites specific Hansard contributions and gives the date range used.
+## Use the full collection
+
+Paste the following instruction into your assistant once. If your assistant supports saved preferences, you can ask it to remember the shortcut. Otherwise paste it in each new chat. Switch to voice and say “{VOICE['alias']}”.
+
+> {LAUNCH}
+
+Try asking “{WORKED_QUESTION}”
+
+## Use the small evidence index
+
+When the assistant cannot open the full collection, paste this prompt. If it cannot open GitHub either, paste the selected evidence from the finder.
 
 {markdown_prompt}
+
+Check the date range and open one exact Hansard link.
+
 
 - [Open the GitHub evidence index]({REPOSITORY_INDEX})
 {evidence_link}- [Find and copy evidence]({NOVEMBER}ask.html)
 - [Hansard collection directory]({NOVEMBER}hansard.json)
 - [Capture and historical coverage]({NOVEMBER}coverage.json)
 - [OKF 0.3 source index]({NOVEMBER}okf/index.md)
+- [Read the OKF+ skill]({NOVEMBER}{SKILL_PATH})
+- [Retrieval contract]({NOVEMBER}{RETRIEVAL})
+- [Full phone demonstration]({DOCS}mobile-demonstration.md)
+- [Learn OKF 0.3 with Hansard]({DOCS}learn-hansard-okf.md)
 """, encoding="utf-8")
     (site / "ask.html").write_text(f"""<!doctype html>
 <html lang="en-GB">
@@ -137,15 +182,26 @@ def write_finder(site, scope, evidence):
 <link rel="stylesheet" href="site.css"><link rel="describedby" href="hansard.json" type="application/json">
 <script src="ask.js" defer></script>
 </head>
-<body><main class="guide">
+<body><main class="guide finder">
 <nav aria-label="Hansard"><a href="./">November in Parliament</a></nav>
 <h1>Ask your AI about Hansard</h1>
 <p id="coverage-summary">{escape(scope)}</p>
 <h2>Try it on your phone</h2>
-<p>Copy the GitHub prompt into your AI chat, then use voice if your app offers it.</p>
+<ol>
+<li>Copy the full collection instructions into your own AI chat. Save them as a preference if your app supports it.</li>
+<li>Start voice and say “{escape(VOICE['alias'])}”. Ask it to confirm the snapshot and latest sitting.</li>
+<li>Ask a question, then open a cited contribution and its graph or timeline from the chat.</li>
+</ol>
+<label for="launch-prompt">Full collection instructions</label>
+<textarea id="launch-prompt" readonly rows="7">{escape(LAUNCH)}</textarea>
+<button type="button" data-copy="launch-prompt">Copy full collection instructions</button>
+<p>Try “{escape(WORKED_QUESTION)}”</p>
+<p><a href="{DOCS}mobile-demonstration.md">Follow the full phone demonstration</a> · <a href="{DOCS}learn-hansard-okf.md">Learn OKF 0.3 with Hansard</a></p>
+<h2>If the full collection is unavailable</h2>
+<p>Copy the GitHub prompt to use the small evidence index. You can also paste evidence directly from this page.</p>
 <p><a href="{REPOSITORY_INDEX}">Open the GitHub evidence index</a></p>
 <label for="prompt">GitHub prompt</label>
-<textarea id="prompt" readonly rows="6" style="display:block;width:100%;font:inherit">{escape(prompt)}</textarea>
+<textarea id="prompt" readonly rows="6">{escape(prompt)}</textarea>
 <button type="button" data-copy="prompt">Copy GitHub prompt</button>
 {evidence_details}
 <h2>Find and copy evidence</h2>
@@ -159,9 +215,9 @@ def write_finder(site, scope, evidence):
 <p id="count"></p><p id="timeline"></p><ol id="links"></ol>
 <button type="button" id="previous">Previous matches</button><button type="button" id="next">Next matches</button>
 <p><label for="evidence">Evidence to paste into your AI chat</label></p>
-<textarea id="evidence" readonly rows="10" style="display:block;width:100%;font:inherit"></textarea>
+<textarea id="evidence" readonly rows="10"></textarea>
 <button type="button" data-copy="evidence">Copy evidence</button>
 </section>
-<p><a href="ask.md">Plain-text guide</a> · <a href="hansard.json">Collection directory</a> · <a href="history.html">Contribution timeline</a> · <a href="coverage.json">Coverage</a></p>
+<p><a href="ask.md">Plain-text guide</a> · <a href="hansard.json">Collection directory</a> · <a href="history.html">Contribution timeline</a> · <a href="coverage.json">Coverage</a> · <a href="{SKILL_PATH}">Read the OKF+ skill</a> · <a href="{RETRIEVAL}">Retrieval contract</a></p>
 </main></body></html>
 """, encoding="utf-8")

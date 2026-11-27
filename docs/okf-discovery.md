@@ -1,5 +1,7 @@
 # Discover and demonstrate the Hansard bundle
 
+Start with the [beginner’s guide to OKF 0.3](learn-hansard-okf.md) or the [phone demonstration](mobile-demonstration.md). For the agent workflow, use the [retrieval contract](../profile/voice-retrieval.json) and [read-okf-plus skill](../skills/read-okf-plus/SKILL.md).
+
 ## Run the demonstration
 
 Open the AI guide beside the companion. Give your assistant the Railways Bill prompt or attach the Markdown evidence. Follow the recorded stages from the Commons to the Lords and check the timeline against the official Bill record and Hansard. [AI guide](https://chris-page-gov.github.io/okf-hansard/use-with-ai.html) · [Railways Bill evidence](https://chris-page-gov.github.io/okf-hansard/okf/railways-bill.md)

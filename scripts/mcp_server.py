@@ -10,13 +10,18 @@ from jsonschema import Draft202012Validator, ValidationError
 
 from briefing_auth import AuthFailure, Authorizer
 from hansard_access import Access
+from mcp_protocol import (CAPABILITIES_KEY, LEGACY, PROTOCOL, PROTOCOLS, cache_fields, complete,
+                          error, protocol_error, request_version)
+from mcp_skills import EXTENSION, URI as SKILL_URI, result_for
 from passages import Passages
 from people import member_as_of
 from query import DEFAULT_DB, DEFAULT_RELEASE, Index, view_for
 from roles import resolve
 
-PROTOCOL = "2025-11-25"
-PROTOCOLS = {PROTOCOL, "2025-06-18", "2025-03-26", "2024-11-05"}
+INSTRUCTIONS = ("Use official source links, distinguish aliases from identity proof and disclose coverage. "
+                f"Read the Hansard workflow at {SKILL_URI} after host approval.")
+RESOURCE_METHODS = {"resources/list", "resources/templates/list", "resources/read"}
+SKILL_METHODS = {"skills/list", "skills/get"}
 STRING = {"type": "string", "maxLength": 400}
 LIMIT = {"type": "integer", "minimum": 1, "maximum": 30}
 OFFSET = {"type": "integer", "minimum": 0, "maximum": 100000000}
@@ -106,18 +111,45 @@ def rpc(request, index, people, passages, access=None, account=None):
     if "id" not in request:
         return None
     response = {"jsonrpc": "2.0", "id": request_id}
-    params = request.get("params") or {}
-    if method == "initialize":
+    params = request.get("params", {})
+    if not isinstance(method, str) or not isinstance(params, dict):
+        return error(request, -32600, "Invalid MCP request.")
+    version = request_version(request)
+    modern = version == PROTOCOL
+    if version is not None and not isinstance(version, str):
+        return error(request, -32602, "Invalid protocol version metadata.")
+    if version is not None and version not in PROTOCOLS:
+        return protocol_error(request, version)
+    if (modern and not isinstance(params["_meta"].get(CAPABILITIES_KEY), dict)) or (
+            version is None and method in SKILL_METHODS | {"server/discover"}):
+        return error(request, -32602, "Modern MCP requests require protocol and client capability metadata.")
+
+    capabilities = {"tools": {}, "resources": {}}
+    if method == "server/discover" and modern:
+        result = {"supportedVersions": list(PROTOCOLS),
+                  "capabilities": {**capabilities, "extensions": {EXTENSION: {}}},
+                  "instructions": INSTRUCTIONS, **cache_fields()}
+    elif method == "initialize" and not modern:
         requested = params.get("protocolVersion")
-        result = {"protocolVersion": requested if requested in PROTOCOLS else PROTOCOL,
-                  "capabilities": {"tools": {"listChanged": False}},
-                  "serverInfo": {"name": "okf-hansard", "version": "0.1.0"},
-                  "instructions": "Use official source links, distinguish aliases from identity proof and disclose coverage."}
+        result = {"protocolVersion": requested if requested in LEGACY else LEGACY[0],
+                  "capabilities": capabilities, "serverInfo": {"name": "okf-hansard", "version": "0.3.0"},
+                  "instructions": INSTRUCTIONS}
     elif method == "ping":
         result = {}
+    elif method in RESOURCE_METHODS or (modern and method in SKILL_METHODS):
+        try:
+            result = result_for(method, params)
+        except ValueError:
+            return error(request, -32602, "Unknown Hansard skill or resource URI.")
+        if modern:
+            result.update(cache_fields())
     elif method == "tools/list":
-        result = {"tools": list(TOOLS.values()) + (list(ACCESS_TOOLS.values()) if access else [])
-                  + ([BRIEFING_TOOL] if access and account else [])}
+        tools = list(TOOLS.values()) + (list(ACCESS_TOOLS.values()) if access else [])
+        if access and account:
+            tools.append(BRIEFING_TOOL)
+        result = {"tools": sorted(tools, key=lambda row: row["name"]) if modern else tools}
+        if modern:
+            result.update(cache_fields(private=bool(account)))
     elif method == "tools/call" and access and account and params.get("name") == BRIEFING_TOOL["name"]:
         from briefings import briefing
 
@@ -147,8 +179,8 @@ def rpc(request, index, people, passages, access=None, account=None):
         except (ValueError, ValidationError, OSError, KeyError, IndexError) as exc:
             result = tool_result({"status": "unavailable", "message": str(exc)[:350]}, error=True)
     else:
-        return {**response, "error": {"code": -32601, "message": "Method or tool unavailable"}}
-    return {**response, "result": result}
+        return error(request, -32601, "Method or tool unavailable.")
+    return {**response, "result": complete(**result) if modern else result}
 
 
 def verified_dispatch(pointer, open_tools):
@@ -201,14 +233,14 @@ def main():
     if authorizer:
         from mcp_http import serve
 
-        serve(args.http, PROTOCOLS, verified_dispatch(args.publication, open_tools), authorizer)
+        serve(args.http, verified_dispatch(args.publication, open_tools), authorizer)
         return
 
     index, people, passages, access = open_tools()
     if args.http is not None:
         from mcp_http import serve
 
-        serve(args.http, PROTOCOLS, lambda request: rpc(request, index, people, passages, access))
+        serve(args.http, lambda request: rpc(request, index, people, passages, access))
         return
     while raw := sys.stdin.buffer.readline(65537):
         if len(raw) > 65536:
