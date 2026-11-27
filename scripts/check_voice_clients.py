@@ -282,8 +282,10 @@ def installed_clients(url, scratch):
                        "GEMINI_CLI_TRUST_WORKSPACE": "true"}
                 added = probe(binary, ["mcp", "add", "--scope", "project", "--transport", "http", name, url], directory, env)
                 connected = probe(binary, ["mcp", "list"], directory, env) if not added.returncode else added
-                line = next((row for row in connected.stdout.splitlines() if name in row), "")
-                report["readiness"] = "MCP connected" if re.search(r"\bConnected\b", line) else "project MCP connection unconfirmed"
+                output = connected.stdout + connected.stderr
+                ready = not connected.returncode and any(
+                    name in row and re.search(r"\bConnected\b", row) for row in output.splitlines())
+                report["readiness"] = "MCP connected" if ready else "project MCP connection unconfirmed"
                 (directory / ".gemini/skills").mkdir(parents=True, exist_ok=True)
                 shutil.copytree(REPOSITORY / "skills" / SKILL_NAME, directory / ".gemini/skills" / SKILL_NAME)
                 skills = probe(binary, ["skills", "list"], directory, env)
