@@ -76,6 +76,7 @@ class EvidenceIndexTests(TestCase):
             steps = Mock()
             steps.publish.side_effect = RuntimeError("Pages size limit")
             with (patch("publish_november.datetime") as clock,
+                  patch("publish_november.verify_build_artifacts", return_value={"week_contributions_by_day": {day: 1}}),
                   patch("publish_november.validate_november_site", return_value={}),
                   patch("publish_november.publish", steps.publish)):
                 clock.now.return_value = datetime(2026, 11, 26, tzinfo=ZONE)

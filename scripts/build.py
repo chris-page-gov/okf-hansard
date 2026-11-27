@@ -24,6 +24,7 @@ RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 TITLE = "A week in Parliament"
 EXPLORER_BYTE_LIMIT = 64 * 1024 * 1024
 PAGES_BLOB_LIMIT = 100 * 1024 * 1024
+BUILD_ARTIFACTS = ("okf-bundle.json", "history.json", "okf-bundle.yamlld", "analysis-profile.json")
 FACETS = {
     "sitting": "Sitting date",
     "chamber": "House",
@@ -497,7 +498,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer, *, 
         compact(explorer_bundle, runtime(graph, meta, finished, first, bounded_history=True))
     write_release_markdown(out / "markdown", graph.records, first, last, title, CONTEXT)
     receipt["artifacts"] = {name: {"bytes": (out / name).stat().st_size, "sha256": sha((out / name).read_bytes())}
-                            for name in ("okf-bundle.json", "history.json", "okf-bundle.yamlld", "analysis-profile.json")}
+                            for name in BUILD_ARTIFACTS}
     dump(out / "receipt.json", receipt)
     if not sharded_reader and receipt["artifacts"]["okf-bundle.json"]["bytes"] >= EXPLORER_BYTE_LIMIT:
         raise ValueError("Explorer projection exceeds the reader byte ceiling")
