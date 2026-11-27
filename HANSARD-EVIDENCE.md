@@ -1,16 +1,16 @@
 # Hansard evidence index
 
-Verified capture through 2026-11-25.
-Latest sitting 2026-11-25.
-Snapshot `hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e`.
+Verified capture through 2026-11-26.
+Latest sitting 2026-11-26.
+Snapshot `hansard-collection-sha256-be2e4720b681c060cb9d19f47e36be09b957d60433a7473aba4ee148f90bf233`.
 
 Use the excerpts and exact Hansard links in this file to ground an answer. Give the sitting dates used and cite contributions for statements. This file contains selected evidence and counts from the public OKF+ 0.3 Hansard collection.
 
 ## Coverage
 
-19,715 text contributions from Commons and Lords sittings across 16 dates, from 2026-11-02 to 2026-11-25.
+20,706 text contributions from Commons and Lords sittings across 17 dates, from 2026-11-02 to 2026-11-26.
 
-Historical alias checks ran from 2007-01-01 to 2026-11-01 inclusive. 1,523 of 1,523 configured checks completed. A retained match records a name or alias. Check the linked passage for which subject it describes.
+Historical alias checks ran from 2007-01-01 to 2026-11-01 inclusive. 1,552 of 1,552 configured checks completed. A retained match records a name or alias. Check the linked passage for which subject it describes.
 
 A separate matching profile covers processed sittings from 2003-02-24 to 2006-12-19 with 0 recorded unresolved source gaps in that processed range.
 
@@ -32,23 +32,24 @@ A separate matching profile covers processed sittings from 2003-02-24 to 2006-12
 | 2026-11-23 | 846 | 454 |
 | 2026-11-24 | 1,561 | 430 |
 | 2026-11-25 | 688 | 663 |
+| 2026-11-26 | 782 | 209 |
 
-## Selected evidence from 2026-11-25
+## Selected evidence from 2026-11-26
 
 Up to three proceedings per House, ordered by the number of captured contributions. Each link opens the quoted contribution.
 
-- Commons. [Restoration and Renewal of the Palace of Westminster](https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-6E51F980-5079-4506-B2A4-262D22110BDB)
-  Madam Deputy Speaker (Ms Nusrat Ghani). “I inform the House that Mr Speaker has selected the amendment in the name of the Prime Minister. I call the shadow Leader of the House.”
-- Commons. [Nuclear Test Veterans](https://hansard.parliament.uk/Commons/2026-11-25/debates/614A2324-BFE2-40D7-A4A9-6A3E1AED8ED5/NuclearTestVeterans#contribution-5B293E5F-8CC1-4BDD-9124-A1BA377F357B)
-  The Prime Minister (Andy Burnham). “With permission, Mr Speaker, I would like to make a statement on nuclear test veterans. This day has taken far too long in coming. The only reason it has arrived is the sheer courage of thousands of ex-servicemen and their families who refused to give in. Our nuclear test veterans stand with all …”
-- Commons. [Engagements](https://hansard.parliament.uk/Commons/2026-11-25/debates/53075982-F523-4408-A7C7-2BBDA7734AB0/Engagements#contribution-210851D2-DC1E-4CC3-8F40-0376428BC45C)
-  The Prime Minister (Andy Burnham). “With your permission, Mr Speaker, I will make a statement after Prime Minister’s questions on our nuclear test veterans. Today is International Day for the Elimination of Violence Against Women and Girls. Recognising the growing concern in the country and the need to strengthen all possible …”
-- Lords. [Health Bill](https://hansard.parliament.uk/Lords/2026-11-25/debates/BC803094-624E-42B3-A9AF-370651F70F25/HealthBill#contribution-A8DFE96F-3F55-40CB-9BC4-55AE84235CFA)
-  Lord Lansley (Con). “My Lords, it is a pleasure to speak to my Amendment 177 and the related Amendment 290 in this group. This is the second occasion on which I have tabled amendments to seek to realise, as we discussed previously, the big opportunity that the Bill may present for improving the situation in relation to …”
-- Lords. [Health Bill](https://hansard.parliament.uk/Lords/2026-11-25/debates/3CB1723C-9AE0-42EA-BF3C-2440F4E35968/HealthBill#contribution-A7F91B72-DCEC-4937-956D-48DA1589F207)
-  Baroness Harding of Winscombe (Con). “My Lords, I will speak to my Amendments 137A and 137B. I thank my noble friend Lady Shawcross-Wolfson—who not only added her name to them but did most of the drafting—and the noble Lords, Lord Tarassenko and Lord Patel, who added their names as well. I am a big supporter of the concept of a single …”
-- Lords. [Health Bill](https://hansard.parliament.uk/Lords/2026-11-25/debates/669FCB10-88EF-4670-949B-AF2EEB59B8F5/HealthBill#contribution-7F648EA0-B01E-4070-ADF2-CFA457B64947)
-  Lord Clement-Jones (LD). “My Lords, I am particularly grateful to the noble Baroness, Lady Gerada, for adding her name to this amendment and for bringing her unrivalled clinical, educational and pastoral experience to this issue. She will follow me in this debate, and I know she will speak powerfully from her direct …”
+- Commons. [Financial Services and Markets Bill \[Lords\] (Fourth sitting)](https://hansard.parliament.uk/Commons/2026-11-26/debates/8d68d290-9006-4293-9856-ef64e4fa19b3/FinancialServicesandMarketsBillLords(Fourthsitting)#contribution-DFB70269-450B-47AE-A5E3-9742C8658F00)
+  The Chair. “With this it will be convenient to discuss the following: Clause stand part. Government new clause 18—Financial market infrastructure: changes in technology. Government amendment 35.”
+- Commons. [Business of the House](https://hansard.parliament.uk/Commons/2026-11-26/debates/0DC7DE1A-BBFD-4701-A89B-70BB574BA117/BusinessoftheHouse#contribution-D55575E7-E74C-44B7-9F7C-56FE35357287)
+  The Leader of the House of Commons (Sir Alan Campbell). “The business for next week includes: Monday 30 November—Committee of the whole House of the Finance Bill (day one). Tuesday 1 December—Committee of the whole House of the Finance Bill (day two). Wednesday 2 December—Opposition day (eighth allotted day). Debate on a motion in the name of the Liberal …”
+- Commons. [Financial Services and Markets Bill \[Lords\] (Third sitting)](https://hansard.parliament.uk/Commons/2026-11-26/debates/ab68d76e-a3f8-4779-a23a-f676d7e41fe4/FinancialServicesandMarketsBillLords(Thirdsitting)#contribution-6029598C-81DD-4FD3-ACC5-EB4D9D282447)
+  The Chair. “We are now sitting in public and the proceedings are being broadcast. I remind Members that the selection list, which is available in the room, shows how amendments and new clauses have been arranged for debate. Any Divisions take place in the order in which the items appear in the amendment paper. …”
+- Lords. [Creative Industries, Culture and the Arts](https://hansard.parliament.uk/Lords/2026-11-26/debates/34165315-DDA1-487F-A937-C592700F9B41/CreativeIndustries%2CCultureandtheArts#contribution-8DF73F9F-267F-47BB-A38B-5D1520C3FDD5)
+  Baroness Caine of Kentish Town. “That this House takes note of the contribution across the UK of the creative industries, culture and the arts to the economy, place and social cohesion.”
+- Lords. [EU-UK Relationship](https://hansard.parliament.uk/Lords/2026-11-26/debates/57C0B5AB-3C3F-4376-A0ED-9F032AC2C838/EU-UKRelationship#contribution-B387820B-6B47-4874-980D-26AE9C42D4BF)
+  Lord Liddle. “That this House takes note of the outcome of the 20 November EU-UK summit and the options for developing a closer EU-UK relationship.”
+- Lords. [Nuclear Test Veterans](https://hansard.parliament.uk/Lords/2026-11-26/debates/986C6C8A-614A-4B5D-8CF8-EA159AA0CDFD/NuclearTestVeterans#contribution-65612F7C-08D7-466D-B094-037BCE97D0A5)
+  Lord Parkinson of Whitley Bay (Con). “My Lords, we on these Benches welcome the Government’s announcement of an independent panel to establish the truth about the treatment of our nuclear test veterans. These men—I think they were all men—who served their country did so in extraordinary circumstances. Their service contributed to the …”
 
 ## Worked example — Synergy programme
 
