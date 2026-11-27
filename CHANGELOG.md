@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — check cached November builds before backfill
+
+- Check the native build receipt, OKF version and artefact digests before a
+  cached November candidate can resume historical collection.
+
 ## Unreleased — GitHub evidence index, 26 November 2026
 
 - Add a small Markdown evidence index on the repository's main branch for

@@ -28,7 +28,7 @@ from publish_demo_week import GIT_AUTH, PAGES_REMOTE, ZONE, git, matches_remote,
 from query import DEFAULT_DB, DEEP_DB, Index
 from refresh import refresh
 from stage_contribution_views import stage
-from verify import check
+from verify import check, verify_build_artifacts
 from voice_evidence import EVIDENCE
 
 FIRST = date(2026, 11, 1)
@@ -434,7 +434,9 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
         current = prepare(work, previous, limit, today, initial_capture)
         prepared_path = work / "prepared.json"
     release = Path(current["release"])
-    days = set(read(release / "receipt.json")["week_contributions_by_day"])
+    receipt = (verify_build_artifacts(release, expected_version=CORE_VERSION)
+               if cached else read(release / "receipt.json"))
+    days = set(receipt["week_contributions_by_day"])
     previous_result = release / "backfill/manifest.json"
     if not previous_result.is_file() or read(previous_result)["exceptions"]:
         history = collect(release, DEFAULT_DB, CACHE / "search", days,

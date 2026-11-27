@@ -6,6 +6,7 @@ import unittest
 from unittest import mock
 
 import publish_november
+from build import BUILD_ARTIFACTS
 from descriptor_policy import MAX_DESCRIPTOR_BYTES
 
 
@@ -138,15 +139,40 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
             publish_november.dump(pointer, {"through": "2026-11-24", "provisional": False})
             publish_november.dump(work / "prepared.json", current)
             publish_november.dump(days / f"{through}.json", {"publication_status": "observed"})
-            publish_november.dump(release / "receipt.json", {"week_contributions_by_day": {through: 1}})
-            publish_november.dump(release / "backfill/manifest.json", {"exceptions": {}})
+            release.mkdir()
+            artifacts = {}
+            for name in BUILD_ARTIFACTS:
+                body = name.encode()
+                (release / name).write_bytes(body)
+                artifacts[name] = {"bytes": len(body), "sha256": publish_november.sha(body)}
+            receipt = {"schema": "hansard-build-receipt.v1", "okf_version": publish_november.CORE_VERSION,
+                       "week_contributions_by_day": {through: 1}, "artifacts": artifacts}
             catalogue = {"index.html": {"bytes": 10}}
             checkout = state / "pages-checkout"
             with mock.patch.object(publish_november, "datetime") as clock, \
                     mock.patch.object(publish_november, "prepare") as prepare, \
+                    mock.patch.object(publish_november, "collect") as collect, \
                     mock.patch.object(publish_november, "validate_november_site", return_value=catalogue), \
                     mock.patch.object(publish_november, "publish", return_value={"commit": "verified"}) as publish:
                 clock.now.return_value = datetime(2026, 11, 26, tzinfo=publish_november.ZONE)
+                bad_receipts = (
+                    ({**receipt, "okf_version": "0.2"}, "incompatible schema or OKF version"),
+                    ({**receipt, "artifacts": {}}, "missing required artefacts"),
+                )
+                for bad, diagnostic in bad_receipts:
+                    publish_november.dump(release / "receipt.json", bad)
+                    with self.assertRaisesRegex(ValueError, diagnostic):
+                        publish_november.run(state, checkout)
+                publish_november.dump(release / "receipt.json", receipt)
+                artifact = release / "okf-bundle.json"
+                artifact.write_bytes(b"x" * artifact.stat().st_size)
+                with self.assertRaisesRegex(ValueError, "Artefact integrity mismatch"):
+                    publish_november.run(state, checkout)
+                prepare.assert_not_called()
+                collect.assert_not_called()
+                publish.assert_not_called()
+                artifact.write_bytes(artifact.name.encode())
+                publish_november.dump(release / "backfill/manifest.json", {"exceptions": {}})
                 publish_november.run(state, checkout)
             prepare.assert_not_called()
             publish.assert_called_once_with(site, checkout, through, catalogue, release, identity)
