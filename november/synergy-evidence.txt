@@ -1,12 +1,12 @@
 Synergy programme in Hansard
-Snapshot hansard-collection-sha256-7037268c07ff36c7636469c07cf06c315d7e7da241c9353758cb8afc73fff15e
-Latest sitting 2026-11-25
+Snapshot hansard-collection-sha256-be2e4720b681c060cb9d19f47e36be09b957d60433a7473aba4ee148f90bf233
+Latest sitting 2026-11-26
 17 distinct retained Hansard links. 6 captured contributions and 11 historical alias matches.
 
-Capture contains 19,715 text contributions on 16 sitting dates from 2 November 2026 to 25 November 2026.
-Sitting dates (ISO) 2026-11-02, 2026-11-03, 2026-11-04, 2026-11-09, 2026-11-10, 2026-11-11, 2026-11-12, 2026-11-13, 2026-11-16, 2026-11-17, 2026-11-18, 2026-11-19, 2026-11-20, 2026-11-23, 2026-11-24, 2026-11-25.
+Capture contains 20,706 text contributions on 17 sitting dates from 2 November 2026 to 26 November 2026.
+Sitting dates (ISO) 2026-11-02, 2026-11-03, 2026-11-04, 2026-11-09, 2026-11-10, 2026-11-11, 2026-11-12, 2026-11-13, 2026-11-16, 2026-11-17, 2026-11-18, 2026-11-19, 2026-11-20, 2026-11-23, 2026-11-24, 2026-11-25, 2026-11-26.
 A House marked ‘no calendar sitting’ had no sitting listed in the official parliamentary calendar for that date. Missing required sources for a scheduled House stop publication.
-Configured historical checks ran from 1 January 2007 to 1 November 2026 inclusive. 1,523 of 1,523 entity checks completed.
+Configured historical checks ran from 1 January 2007 to 1 November 2026 inclusive. 1,552 of 1,552 entity checks completed.
 The main local archive supplies matches from 8 November 2007 to 29 October 2026 for 565 entities in its matching profile. The official Hansard search fills the windows outside that span for those entities and checks the full historical window for entities outside the archive profile.
 A separate older index uses its own matching profile. Its processed House sittings span 24 February 2003 to 19 December 2006. It records 0 unresolved source gaps in that processed range.
 Source verification and capture scope are recorded in the coverage file linked below.

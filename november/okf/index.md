@@ -1,5 +1,5 @@
 ---
-{"okf_version":"0.3","title":"November in Parliament","description":"Hansard for both Houses. Captured sittings from 2026-11-02 to 2026-11-25.","license":"LICENSE.md","semantic_profile":"https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json","product_version":"0.3.0","x-hansard-specification":"https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md"}
+{"okf_version":"0.3","title":"November in Parliament","description":"Hansard for both Houses. Captured sittings from 2026-11-02 to 2026-11-26.","license":"LICENSE.md","semantic_profile":"https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json","product_version":"0.3.0","x-hansard-specification":"https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md"}
 ---
 
 # November in Parliament

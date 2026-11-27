@@ -58,5 +58,12 @@
     "url": "https://github.com/chris-page-gov/okf-hansard/releases/download/november-2026-history/history-through-2026-11-25-87997c83fa0b.tar",
     "bytes": 4771840,
     "sha256": "33331fef0fc9734651450a1eb829f5f912c842e6bc67a296744373da323d03fb"
+  },
+  {
+    "name": "history-through-2026-11-26-7f3528308726.tar",
+    "label": "Historical YAML-LD additions through 2026-11-26",
+    "url": "https://github.com/chris-page-gov/okf-hansard/releases/download/november-2026-history/history-through-2026-11-26-7f3528308726.tar",
+    "bytes": 3471360,
+    "sha256": "aa916b578195bb7eb30bb65551b23b58e7285674ab2fc2d586131568fadb3278"
   }
 ]

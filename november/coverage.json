@@ -1,9 +1,29 @@
 {
   "dates": [
     {
+      "date": "2026-11-26",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 5,
+          "contributions": 782
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 209
+        }
+      },
+      "sections": 62,
+      "divisions": 5
+    },
+    {
       "date": "2026-11-25",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -22,8 +42,8 @@
     },
     {
       "date": "2026-11-24",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -42,8 +62,8 @@
     },
     {
       "date": "2026-11-23",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -62,8 +82,8 @@
     },
     {
       "date": "2026-11-22",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -82,8 +102,8 @@
     },
     {
       "date": "2026-11-21",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -102,8 +122,8 @@
     },
     {
       "date": "2026-11-20",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -122,8 +142,8 @@
     },
     {
       "date": "2026-11-19",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -142,8 +162,8 @@
     },
     {
       "date": "2026-11-18",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -162,8 +182,8 @@
     },
     {
       "date": "2026-11-17",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -182,8 +202,8 @@
     },
     {
       "date": "2026-11-16",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -202,8 +222,8 @@
     },
     {
       "date": "2026-11-15",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -222,8 +242,8 @@
     },
     {
       "date": "2026-11-14",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -242,8 +262,8 @@
     },
     {
       "date": "2026-11-13",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -262,8 +282,8 @@
     },
     {
       "date": "2026-11-12",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:30+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -282,8 +302,8 @@
     },
     {
       "date": "2026-11-11",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -302,8 +322,8 @@
     },
     {
       "date": "2026-11-10",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -322,8 +342,8 @@
     },
     {
       "date": "2026-11-09",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -342,8 +362,8 @@
     },
     {
       "date": "2026-11-08",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -362,8 +382,8 @@
     },
     {
       "date": "2026-11-07",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -382,8 +402,8 @@
     },
     {
       "date": "2026-11-06",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -402,8 +422,8 @@
     },
     {
       "date": "2026-11-05",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -422,8 +442,8 @@
     },
     {
       "date": "2026-11-04",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -442,8 +462,8 @@
     },
     {
       "date": "2026-11-03",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -462,8 +482,8 @@
     },
     {
       "date": "2026-11-02",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -482,8 +502,8 @@
     },
     {
       "date": "2026-11-01",
-      "verified_at": "2026-11-26T07:17:45+00:00",
-      "as_published_at": "2026-11-26T07:15:11+00:00",
+      "verified_at": "2026-11-27T21:06:31+00:00",
+      "as_published_at": "2026-11-27T21:06:29+00:00",
       "publication_status": "observed",
       "houses": {
         "Commons": {
@@ -501,12 +521,12 @@
       "divisions": 0
     }
   ],
-  "contributions": 19715,
-  "graph_records": 28322,
-  "assertions": 65131,
+  "contributions": 20706,
+  "graph_records": 29500,
+  "assertions": 68590,
   "semantic_graph": {
-    "bytes": 196201417,
-    "sha256": "777d3c88bea27509b4e6e39ce503a39334f2ab5840549cfadf30317c7e2e16c4"
+    "bytes": 206526851,
+    "sha256": "75d4646f5d7bacd6a07e9330826553a411fa34f1231bb2072b01c56551fa33a6"
   },
   "backfill": {
     "schema": "hansard-backfill.v1",
@@ -526,7 +546,8 @@
       "2026-11-20",
       "2026-11-23",
       "2026-11-24",
-      "2026-11-25"
+      "2026-11-25",
+      "2026-11-26"
     ],
     "from": "2007-01-01",
     "through": "2026-11-01",
@@ -543,25 +564,25 @@
         2808
       ]
     },
-    "entities": 1523,
+    "entities": 1552,
     "archive_entities": 565,
-    "complete": 1523,
-    "search_matches": 505534,
+    "complete": 1552,
+    "search_matches": 518858,
     "exceptions": {}
   },
   "verification": {
     "schema": "hansard-verification.v1",
     "passed": true,
-    "assertions": 65131,
+    "assertions": 68590,
     "predicates": 11,
     "rdf_sample_triples": 520,
     "visible_facet_declarations": 12,
-    "contributions": 19715,
+    "contributions": 20706,
     "failures": [],
     "failure_examples": [],
     "okf_core": {
       "version": "0.3",
-      "concepts": 28321,
+      "concepts": 29499,
       "indexes": 8
     }
   }
