@@ -90,6 +90,52 @@ The earlier Bonsai-only run scored 1/10, 2/10 and 3/10 on the original questions
 
 No synthetic private value appeared in any of the 15 denial outputs. The TCP and second Unix socket probes were denied before, between and after the two stages. The test sink observed only the supervisor's one control request. The inputs fit in the 2,048-token context for each model, with at most 1,701 tokens for OpenJev and 1,699 prompt tokens for Bonsai. No paid credits or resets were used. [Sanitised replay receipt](../experiments/reference-consumer/results/2026-11-28-openjev-bonsai.json)
 
+## Paired citation replay on 28 November 2026
+
+OpenJev made 57 fresh decisions. Bonsai and Phi-4-mini-instruct each wrote
+an answer to every decision. The classifier got all 27 supported, 15
+insufficient and 15 denied decisions right. The run compared 14 questions
+across formats and repeated the five original questions at two seeds.
+The same writer evidence reached both models in every pair, including
+byte-identical synthetic records where the original access policy permitted them.
+The evidence IDs, order and byte counts also matched the earlier Bonsai run.
+
+| Format | Bonsai full passes | Phi full passes | Phi exact facts | Phi exact citations |
+| --- | ---: | ---: | ---: | ---: |
+| Markdown | 19/19 | 10/19 | 15/19 | 10/19 |
+| Core OKF 0.3 | 19/19 | 12/19 | 13/19 | 14/19 |
+| OKF+ | 19/19 | 11/19 | 15/19 | 13/19 |
+| **Total** | **57/57** | **33/57** | **43/57** | **37/57** |
+
+Bonsai supplied the expected facts and exact citations in all 57 answers,
+up from 51 strict passes before the citation changes. The prompt now asks
+for exact IDs and minimal supporting passages. The decoder constrains IDs
+to the evidence shown, with policy or question-title restrictions for denials
+and insufficient answers. The output check also rejects duplicates. On 27
+of the 57 cases, just one ID was eligible. The original exact-answer rubric
+stayed separate. These results measure the two models working with those rules.
+
+Both writers passed all 30 insufficient and denied cases. On the 27 supported
+cases, Bonsai passed 27 and Phi passed three. Phi returned the exact facts on
+13 and the exact citations on seven. On all 20 citation misses it included
+every required citation and added one or more unnecessary visible records.
+The local structural checks accepted these IDs. The independent grading key
+detected the lack of relevance. Median writer time, including local process
+startup, was 9.52 seconds for Bonsai and 1.63 seconds for Phi. Both ran on
+the same Mac with Metal and their native chat formats. Bonsai is the stronger
+writer on this fixed sample. Broader topical grounding needs held-out questions.
+
+The original three-public and three-private record caps, 5,600 evidence bytes,
+2,048-token contexts, 200-token writer cap and seeds were retained. Four
+kernel probes confirmed TCP and unrelated Unix sockets were denied before,
+between and after the models. The sink recorded only the supervisor's positive
+control request. The denial outputs contained no checked synthetic canaries.
+All inference ran locally without paid credits. The [sanitised paired
+receipt](../experiments/reference-consumer/results/2026-11-28-openjev-bonsai-phi-citations.json)
+contains per-case scores, model pins, eligible IDs, evidence hashes and
+network controls. The [runbook](../experiments/reference-consumer/README.md#compare-bonsai-with-phi-4-mini-instruct)
+explains the citation rules and reproduction steps.
+
 ## Research attachments
 
 The original and the Word version both contain the recommendation for this experiment. The Word file is a compressed document container. A visible-text comparison found roughly 10,300 words in the Word content and 9,700 in the Markdown body, with the original section structure represented and 58 numbered references in Word. This comparison did not find a missing substantive section. It does not validate each reference’s destination or interpretation. The attached reports were used as research context. The implementation follows the experiment explicitly requested in chat.

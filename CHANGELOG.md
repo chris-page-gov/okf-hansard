@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — check citations in a paired local writer comparison
+
+- Constrain citations to visible evidence IDs, reject duplicate or out-of-scope
+  references and retain independent strict grading against the original answer key.
+- Add a pinned Phi-4-mini-instruct writer alongside Bonsai, with shared OpenJev
+  decisions and per-case evidence hashes under the original isolation policy.
+
 ## Unreleased — combine citation writing with local decisions
 
 - Replay the complete Hansard benchmark and decision controls with OpenJev

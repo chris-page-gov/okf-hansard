@@ -44,7 +44,11 @@ def settings_for(contract, model_profile):
     if model_profile is None:
         return contract
     pin = read(model_profile)
-    if set(pin) != MODEL_PIN_FIELDS or pin["device"] not in {"cpu", "MTL0"} or not isinstance(
+    extras = set(pin) - MODEL_PIN_FIELDS
+    if (not MODEL_PIN_FIELDS <= set(pin) or extras - {"chat_template", "weights_repository"}
+            or pin.get("chat_template", "chatml") not in {"chatml", "phi4-mini"}):
+        raise ValueError("The model profile must pin artefacts and runtime options only.")
+    if pin["device"] not in {"cpu", "MTL0"} or not isinstance(
             pin["non_thinking_chatml"], bool):
         raise ValueError("The model profile must pin artefacts and runtime options only.")
     return {**contract, "model": {**contract["model"], **pin}}
@@ -103,14 +107,25 @@ def model_command(binary, weights, settings, seed):
             "-no-cnv", "--no-warmup", "--no-display-prompt", "--perf", "--log-colors", "off", "-f", "/dev/stdin"]
 
 
-def complete(binary, weights, settings, seed, question, evidence, directory, *, instructions=SYSTEM):
+def format_prompt(settings, question, evidence, instructions):
+    user = f"Question: {question}\n\nEvidence follows.\n{evidence}\n"
+    if settings.get("chat_template") == "phi4-mini":
+        return f"<|system|>{instructions}<|end|><|user|>{user}<|end|><|assistant|>"
     prompt = (f"<|im_start|>system\n{instructions}<|im_end|>\n<|im_start|>user\n"
-              f"Question: {question}\n\nEvidence follows.\n{evidence}\n<|im_end|>\n<|im_start|>assistant\n")
+              f"{user}<|im_end|>\n<|im_start|>assistant\n")
     if settings.get("non_thinking_chatml"):
         # Qwen's generation prefix when enable_thinking is false.
         prompt += "<think>\n\n</think>\n\n"
+    return prompt
+
+
+def complete(binary, weights, settings, seed, question, evidence, directory, *, instructions=SYSTEM, schema=None):
+    prompt = format_prompt(settings, question, evidence, instructions)
+    command = model_command(binary, weights, settings, seed)
+    if schema is not None:
+        command.extend(["--json-schema", json.dumps(schema, separators=(",", ":"))])
     started = monotonic()
-    result = subprocess.run(model_command(binary, weights, settings, seed), input=prompt,
+    result = subprocess.run(command, input=prompt,
                             cwd=directory, env=ENVIRONMENT, capture_output=True, text=True, timeout=75)
     elapsed = round((monotonic() - started) * 1000)
     if result.returncode:

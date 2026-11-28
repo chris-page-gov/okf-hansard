@@ -5,10 +5,38 @@ import unittest
 from acquire import CONTRACT, read
 from corpus import ARMS, Record, private_records
 from decide import DECISION_CONTRACT
-from hybrid import HYBRID_CONTRACT, grade_output, trial_plan, writer_evidence
+from evaluate import format_prompt
+from hybrid import HYBRID_CONTRACT, citation_scope, grade_output, trial_plan, writer_evidence, writer_schema
 
 
 class HybridTests(unittest.TestCase):
+    def test_citation_boundary_is_independent_of_the_grading_key(self):
+        records = [Record("A", "Water quality report", "First report", ""),
+                   Record("B", "Water quality review", "Second report", ""),
+                   Record("C", "Land use", "Unrelated", "")]
+        scope = citation_scope("When did the water quality decision happen?", records, "insufficient")
+        self.assertEqual(scope, {"A", "B"})
+        self.assertEqual(writer_schema(scope)["properties"]["citations"]["items"]["enum"], ["A", "B"])
+        case = {"id": "example", "status": "insufficient", "facts": {}, "citations": ["A"]}
+        for ids in ([], ["A", "A"], ["A", "UNKNOWN"], ["A", "C"]):
+            raw = json.dumps({"facts": {}, "citations": ids})
+            checked = grade_output(raw, "insufficient", case, ["A", "B", "C"], None, {}, scope=scope)
+            self.assertFalse(checked["citation_check_passed"])
+            self.assertFalse(checked["pass"])
+        raw = json.dumps({"facts": {}, "citations": ["B"]})
+        checked = grade_output(raw, "insufficient", case, ["A", "B", "C"], None, {}, scope=scope)
+        self.assertTrue(checked["citation_check_passed"])
+        self.assertFalse(checked["pass"])
+        self.assertEqual(citation_scope("What was decided?", records, "insufficient"), {"A", "B", "C"})
+        self.assertEqual(citation_scope("Anything?", records, "denied"), set())
+        with self.assertRaises(ValueError):
+            writer_schema(set())
+
+    def test_phi_uses_its_published_role_delimiters(self):
+        prompt = format_prompt({"chat_template": "phi4-mini"}, "When?", "Evidence", "Answer")
+        self.assertEqual(prompt, "<|system|>Answer<|end|><|user|>Question: When?\n\nEvidence follows."
+                         "\nEvidence\n<|end|><|assistant|>")
+
     def test_plan_preserves_original_questions_and_runs_every_control(self):
         baseline, decision, hybrid = read(CONTRACT), read(DECISION_CONTRACT), read(HYBRID_CONTRACT)
         plan = trial_plan(baseline, decision, hybrid)

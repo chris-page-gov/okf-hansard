@@ -102,3 +102,40 @@ The harness supplies synthetic authorisation outside the evidence. Its evidence 
 Both models run inside the same IP-denied macOS worker. The worker probes TCP denial and a second Unix socket path before inference, between models and after inference. Only OpenJev needs the permitted private Unix socket. Raw answers stay inside the restricted local run directory. The report contains scores, evidence IDs, exact public Hansard URLs and trace digests. It omits raw responses and synthetic facts.
 
 The reporting compares work per trial and per fully supported answer. The publisher serves fixed public files once per acquisition. Local inference and hardware use still have a cost. This experiment measures time, bytes and token counts. A claim about total cost at scale needs data from the target workload and deployment.
+
+### Compare Bonsai with Phi-4-mini-instruct
+
+Use the hybrid command above with a fresh output directory and append the
+following option. Provision the public weights on the SSD before the sealed
+run. The runner verifies all three weight files and both executables.
+
+```sh
+--phi-weights /Volumes/ExtSSD-Data/okf-hansard-cache/reference-consumer/Phi-4-mini-instruct-Q4_K_M.gguf
+```
+
+The [Phi profile](model-phi-4-mini-instruct.json) identifies the GGUF
+conversion, immutable revision, file size and SHA-256. The two writers run
+in sequence with their own chat templates. Each receives the same 57 fresh
+OpenJev decisions, ordered evidence, authorisation, question, seed, generation
+cap and citation rules. All four boundary probes cover the shared process
+tree. The report checks each pair's rendered evidence hash before accepting
+the run. Bonsai's results are at the top level and Phi's are under
+`paired_writer`. The restricted raw writer logs are separate. [Microsoft model
+card](https://huggingface.co/microsoft/Phi-4-mini-instruct) ·
+[Pinned GGUF](https://huggingface.co/bartowski/microsoft_Phi-4-mini-instruct-GGUF/tree/7ff82c2aaa4dde30121698a973765f39be5288c0)
+
+The decoder constrains the citation field to IDs supplied to the writer after
+the access check. For a denial, only a handling-policy record can be cited.
+For an insufficient answer, the harness looks for a pair of consecutive words
+shared by the question and a record title, after removing common English
+function words. If any title matches, only those matching records are eligible
+for citation. If none matches, all visible IDs remain eligible. The full
+retrieved text still reaches the writer. The same rule applies to all three
+formats and both models. The receipt records the eligible IDs for every case.
+
+An independent output check rejects an empty list, duplicate IDs and IDs
+outside the permitted scope. The original scoring key still requires the
+whole supporting citation set and correct facts. Neither the decoding schema
+nor the scope check receives the gold citations. Two records can be about the
+same subject and support different claims. The title check is a limited rule
+for the fixed English benchmark, and its effect is part of the measured system.
