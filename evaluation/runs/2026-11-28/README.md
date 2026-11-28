@@ -12,6 +12,22 @@ The answer earned **9 of 15**. It omitted an explicit House and a verifiable con
 
 The exact immutable SEND concept URL was then posted through the desktop browser into the same conversation. The chat acknowledged receipt. Its text reply reported recognising a one-line document but could extract neither of Whittome’s two identifiers. It explicitly abstained from web-search fallback. The assessor independently read both records in the 43,467-byte, 103-row file and verified its digest. This establishes a client retrieval failure in this attempt. The file layout is one hypothesis. No controlled layout comparison has been run. The URL-triggered text response is a separate observation from the spoken trial. [Retry response](assisted-retrieval.json)
 
+### Pixel JSON Lines retrieval and Mac handover
+
+On 28 November the operator decoded the QR code on a Pixel using Google Lens and sent the immutable JSON Lines URL into the existing Voice conversation. The chat cited the pinned file, reported 103 readable records and returned the three external identifiers below. All three match the downloaded file. The reported viewer positions were zero-based. This table uses one-based file lines. This was a single assisted run in the original chat. Network traffic and all 103 individual reads were not independently observed.
+
+| File line | Speaker | Contribution identifier | Order in official debate |
+|---:|---|---|---:|
+| 66 | Nadia Whittome | `8D89C7A1-FAB8-4774-B3B8-C73FB3B5A51C` | 1 |
+| 65 | Georgia Gould | `DC89FF3B-B014-4C96-8F3D-40137EC5A6BC` | 2 |
+| 64 | Nadia Whittome | `5FFDC8E3-7D76-4083-988B-955CEC19A2E9` | 3 |
+
+**Indexed retrieval passed.** The phone recovered both questions and a ministerial record. The earlier single-line attempt in this conversation had returned none. Both representations preserve identical records. The comparison involved different URLs and successive attempts.
+
+**Mac handover passed.** The same named conversation opened on the Mac and displayed the three identifiers from the phone response. The follow-up in that conversation correctly distinguished the two exchanges and said no independent appeal had been promised. The Mac chat cited the debate and left the exact identifier of the final reply unverified. An independent read of the official debate confirmed that the indexed Gould item answers Whittome’s opening question on reform. Her reply to the supplementary question on independent appeals is the next official item after the three listed above, `26F9FC36-CC1F-4442-B478-A22CB0E95CA4`. Gould described planned duties, standards, oversight and a consultation response. She gave no promise of an independent appeal. This wording check used official Hansard. The per-concept file contains locators and does not contain that fourth item or speech text. The original phone answer score is unchanged.
+
+[Immutable JSON Lines evidence](https://raw.githubusercontent.com/chris-page-gov/okf-hansard/2b75da6c216fa86b961fbdd0c31df2ed5f237ec2/evaluation/runs/2026-11-28/send-reform.month.jsonl) · [Official ordered debate](https://hansard-api.parliament.uk/debates/debate/13F7917B-36D3-4198-8908-7185E77DE84A.json) · [Gould’s reply on appeals](https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-26F9FC36-CC1F-4442-B478-A22CB0E95CA4)
+
 ## Local comparison
 
 All nine exact questions also ran once on Qwen2.5-3B-Instruct Q4_K_M on the Mac CPU, using selected evidence from the pinned bundle and linked primary sources. Each trial began with fresh context. The model received the question and its public evidence packet. It saw neither the scoring rubric nor the reference answers. The assessor selected the evidence in advance, so these results measure answering from supplied evidence. They give no measure of mobile usability or autonomous retrieval. [Inputs by question](questions.json) · [Evidence packets](evidence.json) · [Original answers and timings](local-answers.jsonl)
