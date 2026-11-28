@@ -1,0 +1,60 @@
+{
+  "pairs": 8,
+  "trials": 16,
+  "replayed_primary_rankings": 42,
+  "corpus_sha256": "82546eea85bffc8cccf6e00b6c65e6dfc20591a4fb173a62a67612e11c6e4e5f",
+  "questions_sha256": "a42bfa60e9ea696360c6bbd68b29d6331f7b84a3f3e3b6c0e3d68d688fd4180e",
+  "scores_sha256": "f9c0092deeba0464192039c889a785a9536b148c87eec02729afa9f61b5223f2",
+  "rankings_sha256": "628d8eae57b5252610850b0a57675ecadb144b629c86c7675f3d4eb594e1f9cf",
+  "answers_sha256": "f6153012094a38fec7b9c20ee13a4323c0b4b9a9c6b2bb65fb3bc3933dc7ba9e",
+  "index_network": {
+    "policy": "(version 1)(allow default)(deny network*)(allow system-socket (socket-domain AF_UNIX))(allow network-bind (local unix-socket (literal \"<private-socket>\")))(allow network-outbound (remote unix-socket (literal \"<private-socket>\")))",
+    "sink_trace_sha256": "7daf440f95b65f360afc2173bafc3ee29b27d68d1ecbfc866928d4eb6e7f855f",
+    "sealed_sink_requests": 0
+  },
+  "answer_network": {
+    "policy": "(version 1)(allow default)(deny network*)(allow system-socket (socket-domain AF_UNIX))(allow network-bind (local unix-socket (literal \"<private-socket>\")))(allow network-outbound (remote unix-socket (literal \"<private-socket>\")))",
+    "sink_trace_sha256": "7daf440f95b65f360afc2173bafc3ee29b27d68d1ecbfc866928d4eb6e7f855f",
+    "sealed_sink_requests": 0
+  },
+  "index_probes": [
+    {
+      "destination": "127.0.0.1",
+      "port": 49687,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 49687,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    }
+  ],
+  "answer_probes": [
+    {
+      "destination": "127.0.0.1",
+      "port": 49733,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 49733,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 49733,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    }
+  ],
+  "sealed_sink_requests": 0
+}

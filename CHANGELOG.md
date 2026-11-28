@@ -1,5 +1,9 @@
 # Changelog
 
+## 28 November 2026 · November search comparison
+
+- Compare SQLite FTS5 with FTS5 plus Microsoft E5 using fixed local OpenJev and Bonsai models. Publish the beginner report, question-by-question casebook and evidence for all 58 trials. [Results](experiments/november-retrieval/report.md) · [Offline replay](experiments/november-retrieval/REPLAY.md)
+
 ## 28 November 2026 · Persona walkthroughs
 
 - Record a real Android Voice trial and nine local text trials against the November Hansard evidence, with primary sources, retrieval limits and criterion-level scoring. [Walkthroughs](evaluation/runs/2026-11-28/README.md)

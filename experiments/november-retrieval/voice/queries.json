@@ -1,0 +1,58 @@
+[
+  {
+    "id": "worker-wait",
+    "question": "Someone earning forty grand who had already started the process of staying here permanently was used as an example. How many years would they now have to wait in total?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "release-date",
+    "question": "On what September date was the press release mentioned about taking action against unlawful settlements in the West Bank?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "prison-communication",
+    "question": "What proportion of people behind bars did an MP say had difficulty with speech, language or communication?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "treatment-gap",
+    "question": "How many people were said to know they had HIV but still be missing out on treatment?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "driving-plan",
+    "question": "Besides the government website, where could parliamentarians find the annual plan for the agency that oversees driving tests and vehicle standards?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "deportation-total",
+    "question": "What exact headcount did the quoted minister give for overseas offenders still here because of human-rights claims when the figures were discussed in the upper chamber?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "portable-qualifications",
+    "question": "Which profession seemed closest to getting its credentials accepted on both sides of the Channel after talks with the EU?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "committee-speaking-time",
+    "question": "How many minutes was the committee spokesperson allowed for the statement on getting legal help, before other MPs could put questions?",
+    "keys": [
+      "answer"
+    ]
+  }
+]

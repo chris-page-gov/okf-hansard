@@ -1,0 +1,20 @@
+{
+  "commit": "41a340e06ec02b7d5d4d5802e893534697328d32",
+  "chunk_words": 96,
+  "overlap_words": 16,
+  "candidates_per_channel": 100,
+  "rrf_k": 60,
+  "public_documents": 3,
+  "private_documents": 3,
+  "wrapper_byte_limit": 5600,
+  "context_tokens": 2048,
+  "output_tokens": 200,
+  "seed": 11,
+  "temperature": 0.2,
+  "fusion": "equal reciprocal ranks of FTS5 BM25 and exact E5 cosine, union of top 100 distinct passages in each list; retain the best passage per contribution during final packing",
+  "ranking": "FTS5 unicode61 porter OR terms after fixed English question stop list; title, speaker, date, house and passage body in both arms; stable passage ID tie-break",
+  "metric": "reference-route hit with matching span in delivered text; complete set and mean fraction; also report strict cited factual answers, insufficient handling and latency. Negative questions scored separately. No selection by outcomes.",
+  "question_sha256": "d9f0136ae53c90f031b2f4dc270d08d9da3910f8b354805daab5e7560af07e30",
+  "frozen_at": "2026-11-28T12:08:55.802335+00:00",
+  "corpus_sha256": "82546eea85bffc8cccf6e00b6c65e6dfc20591a4fb173a62a67612e11c6e4e5f"
+}
