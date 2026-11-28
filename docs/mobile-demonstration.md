@@ -8,6 +8,10 @@ Use calendar dates in Europe/London and include both ends. The interval `2026-11
 
 ## Hear a contribution in context
 
+Each turn prints its full Hansard address beside the passage. For an **Exact Hansard turn**, copy the whole address, including the part beginning with `#contribution-`. **Hansard section only** means the captured record supplies a debate link. Report that limit when citing the speaker.
+
+To test citation on a phone, give your assistant a context page for each date you want to check. Ask for one turn per date, its speaker and its printed Hansard address. Keep track of which pages you supplied. Check that each returned link opens the speaker’s turn. If you ask specifically about a topic, a checked day can have no matching turns.
+
 Open the [Hansard finder](https://chris-page-gov.github.io/okf-hansard/november/ask.html), find a concept and choose **Show this contribution in context** beside a captured November result. The same control appears when you select a contribution on the timeline. Copy the page address into your phone assistant and ask “Read the selected turn and tell me who spoke before and afterwards. Give me the Hansard links.” The number after `#turn-` identifies the selected turn when several appear on screen.
 
 Each page shows up to eight consecutive contributions in one debate section, with links to earlier or later turns. Open **Source evidence** for the record ID, source field and passage digest. Long passages have a link to their full wording. A reviewed reply has a separate link to the question it addresses. For an earlier historical match outside the sitting capture, use its official Hansard link.

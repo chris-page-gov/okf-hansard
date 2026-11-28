@@ -2,6 +2,7 @@
 
 ## 28 November 2026 · Contributions in context
 
+- Print the full official URL beside each turn so phone assistants can copy the citation. Mark records with a section-level source explicitly.
 - Open each captured November contribution in a small phone-readable page, with ordered turns, official sources, passage hashes and reviewed reply links. The finder, timeline, collection directory and read-only connector expose the same evidence.
 - Reduce repeated JSON-LD term definitions in the Markdown projection while retaining the published record addresses and RDF meaning.
 

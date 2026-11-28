@@ -109,18 +109,24 @@ def render_section(output, section, part, members, links, day_rows, snapshot):
                 raise ValueError("Context and finder disagree on the official contribution link.")
             day_rows[route]["context"] = "context/" + part["day"] + "/" + anchor(section, position)
             source = escape(turn["hansard"], quote=True)
+            exact_turn = urlsplit(turn["hansard"]).fragment.startswith("contribution-")
+            source_label = "Exact Hansard turn" if exact_turn else "Hansard section only"
+            link_label = "Read the full passage" if turn["truncated"] else "Read this contribution"
+            if not exact_turn:
+                link_label = "Read the section"
             name = escape(turn["speaker"] or "Speaker unlabelled")
             if isinstance(turn["member_id"], int) and turn["member_id"] > 0:
                 name = f'<a href="https://members.parliament.uk/member/{turn["member_id"]}/career">{name}</a>'
             uin = f' · Question {escape(str(turn["source_uin"]))}' if "source_uin" in turn else ""
             body.append(f'<article id="turn-{position}"><h2>Turn {position} · {name}{uin}</h2>'
                         f'<p>{escape(turn["text"])}</p><a href="{source}">'
-                        f'{"Read the full passage" if turn["truncated"] else "Read this contribution"} in Hansard</a>')
+                        f'{link_label} in Hansard</a>')
             for link in links.get(route, []):
                 target = positions[link["id"]]
                 body.append(f' · <a data-assertion="{escape(link["assertion"], quote=True)}" '
                             f'href="{anchor(section, target)}">{link["label"]} · turn {target}</a>')
-            body.append(f'<details><summary>Source evidence</summary><p>{escape(route)}<br>'
+            body.append(f'<p>{source_label}<br><code>{source}</code></p>'
+                        f'<details><summary>Source evidence</summary><p>{escape(route)}<br>'
                         f'{escape(turn["source_field"])}<br>Source value SHA-256 {turn["source_value_sha256"]}'
                         '</p></details></article>')
         body.append(f'<footer><a href="{escape(official(part["url"]), quote=True)}">Hansard section</a>'
