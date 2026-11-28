@@ -7,10 +7,13 @@ import json
 from pathlib import Path
 import re
 import sqlite3
+from threading import RLock
 from urllib.parse import quote, urlencode, urlsplit
 
 from capture import sha
 from model import read_sittings
+from query import StaleHistory
+from safe_paths import resolve_within
 
 
 HOME = "https://chris-page-gov.github.io/okf-hansard/"
@@ -85,6 +88,7 @@ class Access:
         self.snapshot = snapshot_id(self.site, proof)
         self._capture_rows = None
         self.search_db = None
+        self._search_lock = RLock()
 
     def describe(self):
         dates = self.history["days"]
@@ -133,7 +137,7 @@ class Access:
 
     def mentions(self, key, start=None, through=None, house=None, limit=20, offset=0, snapshot=None):
         if snapshot is not None and snapshot != self.snapshot:
-            raise ValueError("The publication changed. Restart from the first results page.")
+            raise StaleHistory("The publication changed. Restart from the first results page.")
         start = date.fromisoformat(start).isoformat() if start else "0001-01-01"
         through = date.fromisoformat(through).isoformat() if through else self.pointer["through"]
         if start > through:
@@ -161,40 +165,42 @@ class Access:
         through = date.fromisoformat(through).isoformat() if through else self.pointer["through"]
         if start > through:
             raise ValueError("The start date must be on or before the end date.")
-        if self.search_db is None:
-            parts, rows = self.capture_rows()
-            db = sqlite3.connect(":memory:")
-            db.execute("CREATE VIRTUAL TABLE passages USING fts5(text,title,speaker,day UNINDEXED,house UNINDEXED,route UNINDEXED,url UNINDEXED)")
-            db.executemany("INSERT INTO passages VALUES (?,?,?,?,?,?,?)", (
-                (row["text"], parts[row["part"]]["title"], row["attributed_to"], row["day"], row["house"], route, row["url"])
-                for route, row in rows.items()))
-            self.search_db = db
-        match = " AND ".join(f'"{word}"' for word in words)
-        where = "FROM passages WHERE passages MATCH ? AND day BETWEEN ? AND ?"
-        params = (match, start, through)
-        if house:
-            where += " AND house = ?"
-            params += (house,)
-        count = self.search_db.execute("SELECT count(*) " + where, params).fetchone()[0]
-        results = self.search_db.execute(
-            "SELECT route,day,house,title,speaker,url,snippet(passages,0,'','',' … ',25) " + where
-            + " ORDER BY rank, day DESC, route LIMIT ? OFFSET ?", (*params, limit, offset))
+        with self._search_lock:
+            if self.search_db is None:
+                parts, rows = self.capture_rows()
+                db = sqlite3.connect(":memory:", check_same_thread=False)
+                db.execute("CREATE VIRTUAL TABLE passages USING fts5(text,title,speaker,day UNINDEXED,house UNINDEXED,route UNINDEXED,url UNINDEXED)")
+                db.executemany("INSERT INTO passages VALUES (?,?,?,?,?,?,?)", (
+                    (row["text"], parts[row["part"]]["title"], row["attributed_to"], row["day"], row["house"], route, row["url"])
+                    for route, row in rows.items()))
+                self.search_db = db
+            match = " AND ".join(f'"{word}"' for word in words)
+            where = "FROM passages WHERE passages MATCH ? AND day BETWEEN ? AND ?"
+            params = (match, start, through)
+            if house:
+                where += " AND house = ?"
+                params += (house,)
+            count = self.search_db.execute("SELECT count(*) " + where, params).fetchone()[0]
+            results = self.search_db.execute(
+                "SELECT route,day,house,title,speaker,url,snippet(passages,0,'','',' … ',25) " + where
+                + " ORDER BY rank, day DESC, route LIMIT ? OFFSET ?", (*params, limit, offset)).fetchall()
         return {"snapshot": self.snapshot, "total": count, "method": "Captured passage full-text search",
                 "items": [{"id": route, "date": day, "house": house, "title": title, "speaker": speaker,
                            "hansard": official(url), "excerpt": excerpt,
                            "timeline": NOVEMBER + "history.html?" + urlencode({"day": day, "anchor": route}),
                            "graph": graph_view(route)}
                           for route, day, house, title, speaker, url, excerpt in results],
-                "next_offset": offset + limit if offset + limit < count else None}
+                "next_offset": offset + len(results) if offset + len(results) < count else None}
 
     def capture_rows(self):
         """Return the debate parts and text records from the verified capture."""
-        if self._capture_rows is None:
-            receipt = read(self.release / "receipt.json")
-            manifest = (self.capture / "manifest.json").read_bytes()
-            if sha(manifest) != receipt["manifest_sha256"]:
-                raise ValueError("The captured passages differ from the verified build.")
-            dates = set(self.history["days"])
-            parts, rows, _, _ = read_sittings(self.capture, json.loads(manifest), min(dates), max(dates))
-            self._capture_rows = parts, {route: row for route, row in rows.items() if row["day"] in dates}
-        return self._capture_rows
+        with self._search_lock:
+            if self._capture_rows is None:
+                receipt = read(self.release / "receipt.json")
+                manifest = resolve_within(self.capture, "manifest.json").read_bytes()
+                if sha(manifest) != receipt["manifest_sha256"]:
+                    raise ValueError("The captured passages differ from the verified build.")
+                dates = set(self.history["days"])
+                parts, rows, _, _ = read_sittings(self.capture, json.loads(manifest), min(dates), max(dates))
+                self._capture_rows = parts, {route: row for route, row in rows.items() if row["day"] in dates}
+            return self._capture_rows

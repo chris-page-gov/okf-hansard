@@ -153,7 +153,9 @@ class NovemberPublicationAssetsTests(unittest.TestCase):
                     mock.patch.object(publish_november, "prepare") as prepare, \
                     mock.patch.object(publish_november, "collect") as collect, \
                     mock.patch.object(publish_november, "validate_november_site", return_value=catalogue), \
-                    mock.patch.object(publish_november, "publish", return_value={"commit": "verified"}) as publish:
+                    mock.patch.object(publish_november, "publish", return_value={"commit": "verified"}) as publish, \
+                    mock.patch.object(publish_november, "write_current_receipt",
+                                      side_effect=lambda _, path, receipt: publish_november.dump(path, receipt)):
                 clock.now.return_value = datetime(2026, 11, 26, tzinfo=publish_november.ZONE)
                 bad_receipts = (
                     ({**receipt, "okf_version": "0.2"}, "incompatible schema or OKF version"),

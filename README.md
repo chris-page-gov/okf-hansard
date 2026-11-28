@@ -9,6 +9,7 @@ Explore what the UK Parliament said, follow related material over time and bring
 | Inspect the full collection | [Coverage, sittings and timeline](https://chris-page-gov.github.io/okf-hansard/november/) · [Full graph descriptor](https://chris-page-gov.github.io/okf-hansard/november/graph/okf-explorer.json) |
 | Connect an AI client | [Read OKF+ skill](skills/read-okf-plus/SKILL.md) · [Retrieval contract](profile/voice-retrieval.json) · [Repeatable client tests](docs/voice-acceptance.md) |
 | Maintain or reuse the project | [Architecture, algorithms, vocabulary and zero-token publishing](docs/maintainer-guide.md) · [Discovery and specifications](docs/okf-discovery.md) |
+| Explore how the project works | [Optional contributor tour](https://chris-page-gov.github.io/okf-hansard/contributor-tour.html) · [Software and data licences](NOTICE.md) |
 
 
 For the full capture, history and voice entry point, open the [Hansard collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) or [ask your AI about Hansard](https://chris-page-gov.github.io/okf-hansard/november/ask.html). The week examples are guided views into the project. See [voice and cross-client tests](docs/voice-acceptance.md) for connection setup, limits and repeatable checks.
@@ -162,6 +163,8 @@ Pass `--attempts-root` an existing directory on ExtSSD-Data to place new capture
 Built with OpenAI Codex. The retained build logs record the model and reasoning effort for each phase. The project owner set the scope and authorised publication.
 
 Contains Parliamentary information licensed under the Open Parliament Licence v3.0 where applicable. Follow the official record for the words and context. The graph’s matches are experimental and carry their own provenance. [Licence and exclusions](https://www.parliament.uk/site-information/copyright/open-parliament-licence/)
+
+Original project software is available under the [MIT Licence](LICENSE). See the [attribution notice](NOTICE.md) for the scope of the software and Parliamentary data licences.
 
 ## OKF standards and bundle discovery
 

@@ -12,10 +12,11 @@ from pathlib import Path
 import threading
 import time
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import Request
 
 from archive import unpack
 from capture import HOUSES, MAX_BYTES, dump, now, query, sha
+from http_policy import open_source
 from model import Entity, Matcher, NS, debate_url, plain
 from query import DEFAULT_DB, Index, canonical_digest
 
@@ -84,7 +85,7 @@ class Search:
                 self.next_request = time.monotonic() + .25
             self.check_deadline()
             try:
-                with urlopen(request, timeout=15) as response:
+                with open_source(request, timeout=15) as response:
                     wire = response.read(MAX_BYTES + 1)
                     raw = unpack(wire, response.headers.get("Content-Encoding", ""))
                 if max(len(wire), len(raw)) > MAX_BYTES:

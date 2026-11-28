@@ -79,7 +79,7 @@ checks every concept and core reference pair, complete frontmatter, displayed
 body, physical Markdown path, byte count, digest and embedded licence. The
 source import and the browser runner must record their pinned Reader revision.
 
-The `okf-hansard-ci` GitHub Actions check runs the locked Python tests and checks the browser scripts on pull requests to `main`. The release stagers and public verification check the larger captures and deployed views separately.
+The protected `okf-hansard-ci` check requires the locked Python and browser-script checks, a scan of the tracked tree for secrets, a Python dependency advisory check against the locked export, and a Chromium keyboard journey on the rendered contributor tour. The browser fixture checks the phone and desktop widths and the exact source destination. Release staging and public verification check the larger captures and deployed views separately.
 
 The source repository retains three small compatibility assets under
 `compatibility/public-assets/`, with the exact previous Pages revision and

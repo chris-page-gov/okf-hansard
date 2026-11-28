@@ -24,9 +24,11 @@ from okf_core import CORE_VERSION
 from passages import build_locators
 from people import declarations
 from prepare_demo_week import ROOT, carry_history, read
-from publish_demo_week import GIT_AUTH, PAGES_REMOTE, ZONE, git, matches_remote, pages_lock
+from publish_demo_week import (GIT_AUTH, PAGES_LIMIT, PAGES_REMOTE, ZONE, git, matches_remote,
+                               pages_lock, preflight_release, write_current_receipt)
 from query import DEFAULT_DB, DEEP_DB, Index
 from refresh import refresh
+from safe_paths import resolve_within
 from stage_contribution_views import stage
 from verify import check, verify_build_artifacts
 from mcp_skills import NAME as SKILL_NAME, SKILL
@@ -188,7 +190,7 @@ def calendar(output):
 
 
 def checkpoint_day(snapshot, day, calendars, output, provisional):
-    manifest = read(snapshot / "manifest.json")
+    manifest = read(resolve_within(snapshot, "manifest.json"))
     entries = {row["house"]: row for row in manifest["sittings"] if row["date"] == day}
     counts = {}
     for house in HOUSES:
@@ -238,10 +240,12 @@ def publish(site, checkout, through, assets, expected_release=None, expected_ide
     absent = [name for name in checks if name != "checksums.json" and name not in assets]
     if absent:
         raise ValueError("The November publication catalogue omits required assets: " + ", ".join(absent))
+    size = (site / "checksums.json").stat().st_size + sum(row["bytes"] for row in assets.values())
     with pages_lock():
         if git(checkout, "status", "--porcelain"):
             raise ValueError("The November Pages checkout contains other changes.")
         git(checkout, *GIT_AUTH, "fetch", PAGES_REMOTE, "gh-pages")
+        preflight_release(site, checkout, through, size, november=True)
         git(checkout, "checkout", "--detach", "FETCH_HEAD")
         target = checkout / "november"
         target.mkdir(exist_ok=True)
@@ -251,7 +255,7 @@ def publish(site, checkout, through, assets, expected_release=None, expected_ide
             git(checkout, "diff", "--cached", "--check")
             git(checkout, "commit", "-m", f"Publish November Hansard through {through}")
         total = sum(int(line.split()[3]) for line in git(checkout, "ls-tree", "-rl", "HEAD").splitlines())
-        if total >= 1_000_000_000:
+        if total >= PAGES_LIMIT:
             raise ValueError(f"The site exceeds the Pages size limit ({total:,} bytes).")
         commit = git(checkout, "rev-parse", "HEAD")
         git(checkout, *GIT_AUTH, "push", PAGES_REMOTE, "HEAD:refs/heads/gh-pages")
@@ -472,7 +476,7 @@ def run(state, checkout, initial_capture=None, through=None, *, attempts_root=No
             evidence_failure = exc
             print(f"{now()} Repository evidence index pending. Continuing with Pages publication.", flush=True)
     remote = publish(site, checkout, current["through"], assets, release, current.get("site_identity"))
-    dump(pointer, {**current, **remote, "provisional": provisional})
+    write_current_receipt(checkout, pointer, {**current, **remote, "provisional": provisional})
     print(f"{now()} Published and verified November through {current['through']}.", flush=True)
     if evidence_failure:
         raise RuntimeError("The verified publication needs a repository evidence index retry.") from evidence_failure

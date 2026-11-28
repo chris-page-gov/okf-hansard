@@ -18,6 +18,7 @@ from model import (
 )
 from okf_core import CORE_SPEC, CORE_VERSION, PROFILE, PRODUCT_VERSION, RESERVED, write_release_markdown
 from people import POST_SERIES, office_evidence
+from safe_paths import resolve_within
 
 OKF = "https://chris-page-gov.github.io/okf-explorer/ns#"
 RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -270,7 +271,7 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
 
 
 def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer, *, sharded_reader=False, title=TITLE):
-    raw = (snapshot / "manifest.json").read_bytes()
+    raw = resolve_within(snapshot, "manifest.json").read_bytes()
     manifest = json.loads(raw)
     finished = manifest["finished_at"]
     summaries = json.loads((Path(__file__).resolve().parents[1] / "profile" / "curated-summaries.json").read_text(encoding="utf-8"))

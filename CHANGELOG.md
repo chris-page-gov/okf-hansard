@@ -36,6 +36,53 @@
   network-denied worker. Record controlled network traces, supported answers,
   citation accuracy, model tokens and latency.
 
+## Unreleased — repeatable validation and safe source errors
+
+- Run source secret scanning, locked dependency checks and a Chromium
+  keyboard journey alongside the existing protected pull request checks.
+- Exercise the trace and accessible view even in a clean checkout.
+- Decline upstream redirects and return stable client messages for evidence
+  errors. Keep filesystem and implementation details out of tool replies.
+
+## Unreleased — historical trace evidence and passage freshness
+
+- Reconcile archive coverage per date and House. Keep distinct search matches
+  for incomplete sittings and identify them in the trace.
+- Page the combined history by sitting date and bind continuation to the
+  retained search evidence and archive sitting editions.
+- Bound source passage cache reuse and report when the source was observed.
+
+## Unreleased — bounded connector requests
+
+- Admit a bounded number of loopback MCP requests and enforce a size and
+  deadline for request bodies. Keep a verified snapshot pinned per request
+  and serialise use of its shared full-text search connection.
+- Send private non-storing HTTP responses on the authenticated route.
+  Exercise two synthetic accounts and unauthenticated access in tests.
+
+## Unreleased — capture and release paths
+
+- Confine capture and evidence reads and generated Markdown writes to their
+  configured directories. Validate identifiers used in routes and keep
+  operator-configured directory aliases working.
+
+## Unreleased — publication safeguards and historical retries
+
+- Check candidate coverage against the current Pages commit and forecast the
+  combined site size before replacing either published scope.
+- Verify the staged week catalogue and required entry points before writing
+  to Pages. Record verification only while the verified commit is current.
+- Checkpoint incomplete historical sittings for retry and retain earlier
+  matches until a complete observation is available. Reopen empty historical
+  records when the calendar confirms a sitting.
+
+## Unreleased — contributor tour and licences
+
+- Lead with the phone Voice demo on Pages and add a separate contributor
+  tour with source links visible on mobile and desktop.
+- Publish the MIT Licence for original project software and explain the
+  separate terms and attribution for Parliamentary information.
+
 ## Unreleased — bring your own AI to Hansard
 
 - Add beginner guides to Hansard and OKF 0.3, a full mobile demonstration and
