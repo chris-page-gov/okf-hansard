@@ -1,16 +1,16 @@
 # Hansard evidence index
 
-Verified capture through 2026-11-26.
-Latest sitting 2026-11-26.
-Snapshot `hansard-collection-sha256-be2e4720b681c060cb9d19f47e36be09b957d60433a7473aba4ee148f90bf233`.
+Verified capture through 2026-11-27.
+Latest sitting 2026-11-27.
+Snapshot `hansard-collection-sha256-1c125e3c885ed0ea883a29b4ba150171359fa1f34453fc35558d971c3d518f40`.
 
 Use the excerpts and exact Hansard links in this file to ground an answer. Give the sitting dates used and cite contributions for statements. This file contains selected evidence and counts from the public OKF+ 0.3 Hansard collection.
 
 ## Coverage
 
-20,706 text contributions from Commons and Lords sittings across 17 dates, from 2026-11-02 to 2026-11-26.
+20,900 text contributions from Commons and Lords sittings across 18 dates, from 2026-11-02 to 2026-11-27.
 
-Historical alias checks ran from 2007-01-01 to 2026-11-01 inclusive. 1,552 of 1,552 configured checks completed. A retained match records a name or alias. Check the linked passage for which subject it describes.
+Historical alias checks ran from 2007-01-01 to 2026-11-01 inclusive. 1,558 of 1,558 configured checks completed. A retained match records a name or alias. Check the linked passage for which subject it describes.
 
 A separate matching profile covers processed sittings from 2003-02-24 to 2006-12-19 with 0 recorded unresolved source gaps in that processed range.
 
@@ -33,23 +33,18 @@ A separate matching profile covers processed sittings from 2003-02-24 to 2006-12
 | 2026-11-24 | 1,561 | 430 |
 | 2026-11-25 | 688 | 663 |
 | 2026-11-26 | 782 | 209 |
+| 2026-11-27 | 194 | 0 |
 
-## Selected evidence from 2026-11-26
+## Selected evidence from 2026-11-27
 
 Up to three proceedings per House, ordered by the number of captured contributions. Each link opens the quoted contribution.
 
-- Commons. [Financial Services and Markets Bill \[Lords\] (Fourth sitting)](https://hansard.parliament.uk/Commons/2026-11-26/debates/8d68d290-9006-4293-9856-ef64e4fa19b3/FinancialServicesandMarketsBillLords(Fourthsitting)#contribution-DFB70269-450B-47AE-A5E3-9742C8658F00)
-  The Chair. “With this it will be convenient to discuss the following: Clause stand part. Government new clause 18—Financial market infrastructure: changes in technology. Government amendment 35.”
-- Commons. [Business of the House](https://hansard.parliament.uk/Commons/2026-11-26/debates/0DC7DE1A-BBFD-4701-A89B-70BB574BA117/BusinessoftheHouse#contribution-D55575E7-E74C-44B7-9F7C-56FE35357287)
-  The Leader of the House of Commons (Sir Alan Campbell). “The business for next week includes: Monday 30 November—Committee of the whole House of the Finance Bill (day one). Tuesday 1 December—Committee of the whole House of the Finance Bill (day two). Wednesday 2 December—Opposition day (eighth allotted day). Debate on a motion in the name of the Liberal …”
-- Commons. [Financial Services and Markets Bill \[Lords\] (Third sitting)](https://hansard.parliament.uk/Commons/2026-11-26/debates/ab68d76e-a3f8-4779-a23a-f676d7e41fe4/FinancialServicesandMarketsBillLords(Thirdsitting)#contribution-6029598C-81DD-4FD3-ACC5-EB4D9D282447)
-  The Chair. “We are now sitting in public and the proceedings are being broadcast. I remind Members that the selection list, which is available in the room, shows how amendments and new clauses have been arranged for debate. Any Divisions take place in the order in which the items appear in the amendment paper. …”
-- Lords. [Creative Industries, Culture and the Arts](https://hansard.parliament.uk/Lords/2026-11-26/debates/34165315-DDA1-487F-A937-C592700F9B41/CreativeIndustries%2CCultureandtheArts#contribution-8DF73F9F-267F-47BB-A38B-5D1520C3FDD5)
-  Baroness Caine of Kentish Town. “That this House takes note of the contribution across the UK of the creative industries, culture and the arts to the economy, place and social cohesion.”
-- Lords. [EU-UK Relationship](https://hansard.parliament.uk/Lords/2026-11-26/debates/57C0B5AB-3C3F-4376-A0ED-9F032AC2C838/EU-UKRelationship#contribution-B387820B-6B47-4874-980D-26AE9C42D4BF)
-  Lord Liddle. “That this House takes note of the outcome of the 20 November EU-UK summit and the options for developing a closer EU-UK relationship.”
-- Lords. [Nuclear Test Veterans](https://hansard.parliament.uk/Lords/2026-11-26/debates/986C6C8A-614A-4B5D-8CF8-EA159AA0CDFD/NuclearTestVeterans#contribution-65612F7C-08D7-466D-B094-037BCE97D0A5)
-  Lord Parkinson of Whitley Bay (Con). “My Lords, we on these Benches welcome the Government’s announcement of an independent panel to establish the truth about the treatment of our nuclear test veterans. These men—I think they were all men—who served their country did so in extraordinary circumstances. Their service contributed to the …”
+- Commons. [Strategic Litigation Against Public Participation (No. 2) Bill](https://hansard.parliament.uk/Commons/2026-11-27/debates/9C5D99C1-9DDC-434C-AF88-8D0F4885AF04/StrategicLitigationAgainstPublicParticipation(No2)Bill#contribution-015EC23E-004C-4812-8EE7-BAFDE7B08DC2)
+  Sir John Whittingdale (Maldon) (Con). “I beg to move, That the Bill be now read a Second time. It is a privilege to have the opportunity to introduce a private Member’s Bill. I have entered the ballot every year for 34 years, but this is the first time I have had the opportunity to move a Second Reading. Like, I am sure, all those hon. …”
+- Commons. [Ceramics (Country of Origin Marking) Bill](https://hansard.parliament.uk/Commons/2026-11-27/debates/C855BD15-2C3F-41E5-A45F-7D3E010D1E76/Ceramics(CountryofOriginMarking)Bill#contribution-448F84C4-3374-4A98-B14E-6868186172F5)
+  Gareth Snell (Stoke-on-Trent Central) (Lab/Co-op). “I beg to move, That the Bill be now read a Second time. I put on record my chairmanship of the all-party parliamentary group for ceramics and my membership of the GMB trade union, which is the recognised trade union for pottery workers. I also take this moment to formally thank Martin Allen, Finbar …”
+- Commons. [Business without Debate](https://hansard.parliament.uk/Commons/2026-11-27/debates/69E94492-922F-4D5B-B5C7-F83F78E37D68/BusinesswithoutDebate#contribution-2C5954DC-230F-478F-90D5-247FA85FEDA6)
+  Hon. Members. “Object. Bill to be read a Second time on Friday 23 April 2027. rural public transport BILL Motion made, That the Bill be now read a Second time.”
 
 ## Worked example — Synergy programme
 
