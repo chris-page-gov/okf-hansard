@@ -1,5 +1,17 @@
 # Demonstrate Hansard in your own phone assistant
 
+## Ask for a date range
+
+Say “Use Hansard for 23 to 25 November 2026. What did Parliament discuss?” The [collection](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) advertises URL templates. The [three-day catalogue](https://chris-page-gov.github.io/okf-hansard/november/context/ranges/2026-11-23/2026-11-25.json) gives the snapshot, counts and a link to each day's debate sections. The [monthly catalogue](https://chris-page-gov.github.io/okf-hansard/november/context/months/2026-11.json) also shows covered dates with zero contributions. Speech wording lives on the linked context pages.
+
+Use calendar dates in Europe/London and include both ends. The interval `2026-11-23/2026-11-25` uses the ISO 8601 start/end convention. The range URL uses those two dates as path segments. Split a request that crosses a month boundary into its covered monthly parts. The calendar lists available months. Say when part of the requested period falls outside published coverage. “Last month” means the previous calendar month and “last 30 days” is a rolling period ending today. [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) · [RFC 6570 URI templates](https://www.rfc-editor.org/rfc/rfc6570)
+
+## Hear a contribution in context
+
+Open the [Hansard finder](https://chris-page-gov.github.io/okf-hansard/november/ask.html), find a concept and choose **Show this contribution in context** beside a captured November result. The same control appears when you select a contribution on the timeline. Copy the page address into your phone assistant and ask “Read the selected turn and tell me who spoke before and afterwards. Give me the Hansard links.” The number after `#turn-` identifies the selected turn when several appear on screen.
+
+Each page shows up to eight consecutive contributions in one debate section, with links to earlier or later turns. Open **Source evidence** for the record ID, source field and passage digest. Long passages have a link to their full wording. A reviewed reply has a separate link to the question it addresses. For an earlier historical match outside the sitting capture, use its official Hansard link.
+
 Bring a phone and open the AI app you already use. You can open the public finder without a Hansard account. The phone conversation uses your assistant and its available memory, tools, speech and citation display. [Open the phone finder](https://chris-page-gov.github.io/okf-hansard/november/ask.html)
 
 ## Run the demonstration

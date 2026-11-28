@@ -89,9 +89,15 @@ def publish_voice(site, release, capture=None):
                         "sitting_dates": dates},
             "historical_search": {key: backfill[key] for key in ("from", "through", "method", "entities", "complete", "exceptions")},
             "older_archive": older,
-            "entrypoints": {"okf_index": reference("okf/index.md"), "coverage": reference("coverage.json"),
+            "entrypoints": {**({"contribution_context": reference("context/index.json")}
+                               if (site / "context/index.json").is_file() else {}),
+                            "okf_index": reference("okf/index.md"), "coverage": reference("coverage.json"),
                             "history_index": reference("history/index.json"), "timeline": reference("history.html"),
                             "semantic_graph": reference("okf-bundle.yamlld.gz")},
+            **({"date_templates": {"described_by": NOVEMBER + "context/index.json",
+                                   "month": NOVEMBER + "context/months/{month}.json",
+                                   "range": NOVEMBER + "context/ranges/{start}/{end}.json"}}
+               if (site / "context/index.json").is_file() else {}),
             "concept_index": NOVEMBER + "concepts.json", "voice_quick_start": NOVEMBER + "ask.md",
             "repository_evidence": REPOSITORY_INDEX,
             "voice_retrieval": NOVEMBER + RETRIEVAL,
@@ -161,7 +167,8 @@ When the assistant cannot open the full collection, paste this prompt. If it can
 
 {markdown_prompt}
 
-Check the date range and open one exact Hansard link.
+In the contribution timeline, select a turn and choose “Show this contribution in context”.
+For voice, ask “Who spoke around this contribution? Cite the turns you used.”
 
 
 - [Open the GitHub evidence index]({REPOSITORY_INDEX})

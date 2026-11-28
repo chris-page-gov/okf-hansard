@@ -1,5 +1,10 @@
 # Changelog
 
+## 28 November 2026 · Contributions in context
+
+- Open each captured November contribution in a small phone-readable page, with ordered turns, official sources, passage hashes and reviewed reply links. The finder, timeline, collection directory and read-only connector expose the same evidence.
+- Reduce repeated JSON-LD term definitions in the Markdown projection while retaining the published record addresses and RDF meaning.
+
 ## 28 November 2026 · November search comparison
 
 - Compare SQLite FTS5 with FTS5 plus Microsoft E5 using fixed local OpenJev and Bonsai models. Publish the beginner report, question-by-question casebook and evidence for all 58 trials. [Results](experiments/november-retrieval/report.md) · [Offline replay](experiments/november-retrieval/REPLAY.md)

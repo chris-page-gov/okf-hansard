@@ -49,7 +49,7 @@ REQUIRED_NOVEMBER_ASSETS = (
     "walkthrough.svg", "walkthrough-mobile.svg", "core-walkthrough.html", "core-walkthrough.json",
     "core-walkthrough.svg", "core-walkthrough-mobile.svg", "okf/index.md", "okf/sittings.md",
     "okf-public-access.json", "checksums.json", "okf-bundle.yamlld.gz", ".well-known/okf.json",
-    "llms.txt", "historical-downloads.html", "historical-downloads.json",
+    "llms.txt", "context/index.json", "historical-downloads.html", "historical-downloads.json",
     "hansard.json", "ask.html", "ask.md", "ask.js", RETRIEVAL,
     *(f"skills/{SKILL_NAME}/{name}" for name in SKILL["files"]),
 )

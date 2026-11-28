@@ -45,6 +45,44 @@ def index_link(label, target):
     return f"- [{escaped}]({quote(target, safe='/')})"
 
 
+def applicable_context(fields, context):
+    """Keep the document's term definitions and every prefix they depend on."""
+    selected = {key: context[key] for key in ("@version", "@vocab") if key in context}
+    # Compact IRIs can appear as values, notably in @type, so preserve all
+    # namespace definitions even when no property term directly uses them.
+    selected.update({key: value for key, value in context.items()
+                     if isinstance(value, str) and value.endswith(("/", "#", ":"))})
+
+    def keys(value):
+        if isinstance(value, dict):
+            for key, child in value.items():
+                yield key
+                definition = context.get(key)
+                if isinstance(definition, dict) and definition.get("@type") == "@json":
+                    continue
+                yield from keys(child)
+        elif isinstance(value, list):
+            for child in value:
+                yield from keys(child)
+
+    pending = [key for key in keys(fields) if key in context]
+    while pending:
+        term = pending.pop()
+        if term in selected:
+            continue
+        definition = context[term]
+        selected[term] = definition
+        values = [definition] if isinstance(definition, str) else (
+            list(definition.values()) if isinstance(definition, dict) else [])
+        for value in values:
+            if not isinstance(value, str) or value.startswith("@"):
+                continue
+            prefix, separator, _ = value.partition(":")
+            if separator and prefix in context and prefix not in selected:
+                pending.append(prefix)
+    return selected
+
+
 def write_release_markdown(root, records, first, last, title, context):
     root.mkdir(parents=True, exist_ok=True)
     listings = defaultdict(list)
@@ -55,10 +93,10 @@ def write_release_markdown(root, records, first, last, title, context):
             continue
         fields = {key: value for key, value in record.items()
                   if key != "body" and not key.startswith("hansard:")}
-        fields["@context"] = context
         if url := record.get("url"):
             fields["resource"] = url
             fields["sources"] = [{"id": "record", "resource": url}]
+        fields["@context"] = applicable_context(fields, context)
         write_document(target, fields, record.get("body", ""))
         entry = index_link(record["title"], relative.name)
         if description := record.get("description"):

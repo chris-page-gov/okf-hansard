@@ -2,7 +2,7 @@
 
 Verified capture through 2026-11-27.
 Latest sitting 2026-11-27.
-Snapshot `hansard-collection-sha256-1c125e3c885ed0ea883a29b4ba150171359fa1f34453fc35558d971c3d518f40`.
+Snapshot `hansard-collection-sha256-8b9b7448167f9c4ecfb7765a01ceb3126100d9c30e73d48ca5e68db286ec3fce`.
 
 Use the excerpts and exact Hansard links in this file to ground an answer. Give the sitting dates used and cite contributions for statements. This file contains selected evidence and counts from the public OKF+ 0.3 Hansard collection.
 

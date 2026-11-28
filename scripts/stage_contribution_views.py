@@ -12,6 +12,8 @@ from urllib.parse import urlencode
 from build_explorer_graph import build as build_graph
 from build_pages import BUILD_CREDIT
 from capture import dump
+from contribution_context import publish_context
+from hansard_access import snapshot_id
 from discovery import HEAD_LINKS, write_discovery
 from history_pages import write as write_history
 from okf_core import CORE_VERSION
@@ -125,6 +127,8 @@ def stage(release, checkpoints, output, database, older_database, cache, archive
     write_landing(output, coverage, archive_url)
     write_discovery(output, "November in Parliament", expected, max(row["verified_at"] for row in days),
                     "okf-bundle.yamlld.gz", month=True)
+    if snapshot is not None:
+        publish_context(output, release, snapshot, snapshot_id(output, read(graph / "okf-explorer.json")))
     publish_voice(output, release, snapshot)
     retain_public_assets(output, 'november')
 
