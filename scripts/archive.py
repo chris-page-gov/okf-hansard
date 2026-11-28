@@ -197,7 +197,10 @@ def collect_sitting(db, collector, matcher, day, house, links_only=False):
             metrics = observed[(day, house)]
         except (ValueError, KeyError, TypeError) as exc:
             entry["errors"].append(f"Normalisation: {exc}")
-    elif links_only and not entry["errors"]:
+    elif not entry["errors"]:
+        # This function is called only for dates advertised by the sitting
+        # calendar. An empty section index is therefore an incomplete source
+        # observation, not evidence that the sitting did not take place.
         entry["errors"].append("The calendar lists a sitting and its section index is empty.")
     link_counts = Counter(contribution_link(row) for row in records.values()) if links_only else {}
     bundles, mentions = [], []
@@ -224,7 +227,7 @@ def collect_sitting(db, collector, matcher, day, house, links_only=False):
             material = f"{route}|{predicate}|entity/{key}.md"
             assertion = NS + "assertion:" + sha(material.encode())[:36]
             mentions.append((key, day, route, brief({"assertion": assertion, "spans": spans})))
-    status = "source gap" if entry["errors"] else ("processed" if entry["roots"] else "no published sections")
+    status = "source gap" if entry["errors"] else "processed"
     entry["metrics"] = dict(metrics)
     # A retry that still has source errors is only a partial observation. Keep
     # the last successful postings and receipts intact until a complete capture
@@ -243,8 +246,9 @@ def collect_sitting(db, collector, matcher, day, house, links_only=False):
                   "last_retry_errors": entry["errors"]}
     with db:
         db.execute("INSERT OR REPLACE INTO sitting VALUES (?,?,?,?,?,?,?)",
-                   (day, house, status, attempts, len(records) if replace_postings else previous[2],
-                    len(bundles) if replace_postings else previous[3], brief(source)))
+                   (day, house, status, attempts,
+                    len(records) if replace_postings else (previous[2] if previous else 0),
+                    len(bundles) if replace_postings else (previous[3] if previous else 0), brief(source)))
         if replace_postings:
             # A complete repeat capture atomically replaces that sitting's postings.
             if previous:
@@ -256,6 +260,30 @@ def collect_sitting(db, collector, matcher, day, house, links_only=False):
     collector.telemetry["sittings_checked"] += 1
     if entry["errors"]:
         print(f"{day} {house} source gap ({attempts}): {'; '.join(entry['errors'])}", flush=True)
+
+
+def reconcile_calendar_sitting(db, day, house):
+    """Make legacy empty terminal rows retryable when the calendar lists them."""
+    with db:
+        return db.execute(
+            "UPDATE sitting SET status='source gap' WHERE day=? AND house=? "
+            "AND status='no published sections'", (day, house)
+        ).rowcount
+
+
+def reconcile_calendar_empty_sittings(db):
+    """Reconcile legacy terminal empty rows against calendars already cached."""
+    rows = db.execute(
+        "SELECT day,house FROM sitting WHERE status='no published sections'"
+    ).fetchall()
+    reconciled = 0
+    for day, house in rows:
+        calendar = db.execute(
+            "SELECT days FROM calendar WHERE month=? AND house=?", (day[:7], house)
+        ).fetchone()
+        if calendar and day in json.loads(calendar[0]):
+            reconciled += reconcile_calendar_sitting(db, day, house)
+    return reconciled
 
 
 def progress(db, collector, before, start_time, state, month=None):
@@ -313,6 +341,7 @@ def run(db, collector, matcher, before, floor, report, *, links_only=False, chec
                     calendar_gaps.append({"month": month.isoformat()[:7], "house": house, "error": str(exc)})
             for day, house in sorted(scheduled, reverse=True):
                 if floor.isoformat() <= day < before:
+                    reconcile_calendar_sitting(db, day, house)
                     collect_sitting(db, collector, matcher, day, house, links_only)
                     if time.monotonic() - last_checkpoint >= checkpoint_seconds:
                         last_checkpoint = time.monotonic()

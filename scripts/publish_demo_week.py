@@ -6,6 +6,7 @@ from contextlib import contextmanager
 from datetime import date, datetime, time, timedelta
 import fcntl
 from hashlib import sha256
+import json
 from pathlib import Path
 import subprocess
 import time as waiting
@@ -16,14 +17,22 @@ from zoneinfo import ZoneInfo
 
 from build_pages import SITE, SOURCE
 from capture import dump, now
-from descriptor_policy import validate_descriptor_size
 from prepare_demo_week import ROOT, prepare, read
 from query import DEFAULT_DB
+from verify_public import catalogue
 
 ZONE = ZoneInfo("Europe/London")
 PAGES_REMOTE = SOURCE + ".git"
 PAGES_LOCK = ROOT / ".work/pages-publication.lock"
 GIT_AUTH = ("-c", "credential.helper=", "-c", "credential.helper=!gh auth git-credential")
+PAGES_LIMIT = 1_000_000_000
+REQUIRED_WEEK_ASSETS = {
+    "index.html", "coverage.json", "site.css", "demo.html", "demo.js",
+    "use-with-ai.html", "beginners.html", "methodology.html", "contributor-tour.html",
+    "licences.html", "LICENSE", "NOTICE.md", "okf-public-access.json", "okf/index.md",
+    "core-walkthrough.html", "walkthrough.html", "graph/okf-explorer.json",
+    "llms.txt", "demo-evidence.md", "demo-timeline.json", "voice-microsoft-365.html",
+}
 
 
 @contextmanager
@@ -35,6 +44,70 @@ def pages_lock():
 
 def git(checkout, *command):
     return subprocess.check_output(["git", "-C", str(checkout), *command], text=True, timeout=300).strip()
+
+
+def publication_edition(coverage, *, november):
+    """Order releases by the verified window, status and observation time."""
+    if november:
+        latest = max(coverage["dates"], key=lambda row: row["date"])
+        day = latest["date"]
+        status = latest["publication_status"]
+        if status not in {"observed", "provisional"}:
+            raise ValueError("The November release has an unknown publication status.")
+        observed = latest["verified_at"]
+    else:
+        day = max(coverage["week_contributions_by_day"])
+        status = "observed"
+        observed = coverage["observed_at"]
+    edition = datetime.fromisoformat(observed)
+    if edition.utcoffset() is None:
+        raise ValueError("The Pages observation time must have a time zone.")
+    return date.fromisoformat(day), status == "observed", edition
+
+
+def observed_dates(coverage, *, november):
+    if november:
+        return {row["date"] for row in coverage["dates"] if row["publication_status"] == "observed"}
+    return set(coverage["week_contributions_by_day"])
+
+
+def preflight_release(site, checkout, through, size, *, november=False):
+    """Check the candidate against the just-fetched Pages commit under the shared lock."""
+    coverage_report = read(site / "coverage.json")
+    candidate = publication_edition(coverage_report, november=november)
+    if candidate[0] != date.fromisoformat(through):
+        raise ValueError("The candidate coverage differs from its declared through date.")
+    scope = "november/" if november else ""
+    coverage = scope + "coverage.json"
+    tree = {}
+    for entry in git(checkout, "ls-tree", "-rlz", "FETCH_HEAD").split("\0"):
+        if entry:
+            fields, name = entry.split("\t", 1)
+            tree[name] = int(fields.split()[-1])
+    if coverage in tree:
+        published = json.loads(git(checkout, "show", "FETCH_HEAD:" + coverage))
+        if candidate < publication_edition(published, november=november):
+            raise ValueError("Refusing to replace Pages with older or provisional Hansard coverage.")
+        if observed_dates(published, november=november) - observed_dates(coverage_report, november=november):
+            raise ValueError("The candidate would remove previously observed Hansard dates.")
+    elif any(scope + name in tree for name in ("index.html", "checksums.json")):
+        raise ValueError("The published Pages scope has no coverage report.")
+    preserved = sum(length for path, length in tree.items() if path.startswith("november/") != november)
+    total = preserved + size
+    if total >= PAGES_LIMIT:
+        raise ValueError(f"The candidate would exceed the Pages size limit ({total:,} bytes).")
+    print(f"Pages size forecast {total:,} bytes, with {PAGES_LIMIT - total:,} bytes of headroom.", flush=True)
+    return total
+
+
+def write_current_receipt(checkout, path, receipt):
+    """Record verified bytes only while their Pages commit is still current."""
+    with pages_lock():
+        ref = "refs/heads/gh-pages"
+        current = git(checkout, *GIT_AUTH, "ls-remote", "--exit-code", PAGES_REMOTE, ref)
+        if current.split() != [receipt["commit"], ref]:
+            raise RuntimeError("Pages advanced during verification; the existing publication receipt was kept.")
+        dump(path, receipt)
 
 
 def matches_remote(name, size, digest):
@@ -84,12 +157,22 @@ def verify_public(site, commit):
 def publish(prepared, checkout):
     descriptor = read(prepared / "prepared.json")
     site = prepared / "site"
-    validate_descriptor_size(site)
+    if site.is_symlink() or not site.is_dir():
+        raise ValueError("The week site must be a real directory.")
+    _, assets = catalogue(site)
+    missing = REQUIRED_WEEK_ASSETS - assets.keys()
+    if missing:
+        raise ValueError("The week release is missing required Pages assets: " + ", ".join(sorted(missing)))
+    if any(name == "november" or name.startswith("november/") for name in assets):
+        raise ValueError("A week release cannot contain November assets.")
     with pages_lock():
         if git(checkout, "branch", "--show-current") != "gh-pages" or git(checkout, "status", "--porcelain"):
             raise ValueError("The Pages checkout must be clean and on gh-pages.")
         git(checkout, *GIT_AUTH, "fetch", PAGES_REMOTE, "gh-pages")
-        git(checkout, "rebase", "FETCH_HEAD")
+        preflight_release(site, checkout, descriptor["through"], sum(row["bytes"] for row in assets.values()))
+        git(checkout, "merge", "--ff-only", "FETCH_HEAD")
+        if git(checkout, "rev-parse", "HEAD") != git(checkout, "rev-parse", "FETCH_HEAD"):
+            raise ValueError("The Pages checkout has unpublished commits.")
         subprocess.run(["rsync", "-rc", "--delete", "--exclude=/.git", "--exclude=/november/",
                         str(site) + "/", str(checkout) + "/"], check=True)
         git(checkout, "add", "--all")
@@ -99,8 +182,9 @@ def publish(prepared, checkout):
         commit = git(checkout, "rev-parse", "HEAD")
         git(checkout, *GIT_AUTH, "push", PAGES_REMOTE, "HEAD:refs/heads/gh-pages")
     verify_public(site, commit)
-    dump(prepared / "published.json", {"commit": commit, "through": descriptor["through"],
-                                        "verified_at": now(), "url": SITE + "demo.html"})
+    write_current_receipt(checkout, prepared / "published.json", {
+        "commit": commit, "through": descriptor["through"], "verified_at": now(), "url": SITE + "demo.html",
+    })
 
 
 def wait_until(when):

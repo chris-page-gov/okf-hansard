@@ -54,6 +54,49 @@ class ArchiveRetryTests(unittest.TestCase):
         self.assertEqual(saved["retry_attempts"][0]["sources"][0]["path"], "retry.json")
         self.assertEqual(saved["last_retry_errors"], entry["errors"])
 
+    def test_first_source_failure_is_saved_as_a_retryable_gap(self):
+        self.db.execute("DELETE FROM mention")
+        self.db.execute("DELETE FROM contribution")
+        self.db.execute("DELETE FROM sitting")
+        entry = {"date": "2006-04-18", "house": "Commons", "sources": [],
+                 "roots": [], "errors": ["Writtens: The read operation timed out"]}
+        with patch("archive.capture_day", return_value=entry):
+            archive.collect_sitting(self.db, IdleCollector(), self.matcher, "2006-04-18", "Commons", True)
+
+        self.assertEqual(self.db.execute(
+            "SELECT status,attempts,passages,retained FROM sitting"
+        ).fetchone(), ("source gap", 1, 0, 0))
+        self.assertEqual(self.db.execute("SELECT count(*) FROM contribution").fetchone(), (0,))
+        self.assertEqual(self.db.execute("SELECT count(*) FROM mention").fetchone(), (0,))
+        saved = json.loads(self.db.execute("SELECT source FROM sitting").fetchone()[0])
+        self.assertEqual(saved["errors"], entry["errors"])
+
+    def test_calendar_listed_empty_capture_is_retryable_for_normal_archive(self):
+        entry = {"date": "2006-04-18", "house": "Commons", "sources": [],
+                 "roots": [], "errors": []}
+        with patch("archive.capture_day", return_value=entry):
+            archive.collect_sitting(self.db, IdleCollector(), self.matcher, "2006-04-18", "Commons")
+
+        self.assertEqual(self.db.execute("SELECT status,attempts FROM sitting").fetchone(),
+                         ("source gap", 4))
+        saved = json.loads(self.db.execute("SELECT source FROM sitting").fetchone()[0])
+        self.assertTrue(saved["last_retry_errors"][0].startswith("The calendar lists a sitting"))
+
+    def test_calendar_reconciles_legacy_terminal_empty_row(self):
+        self.db.execute("UPDATE sitting SET status='no published sections'")
+        self.db.execute("INSERT INTO calendar VALUES (?,?,?,?)",
+                        ("2006-04", "Commons", '["2006-04-18"]', "{}"))
+        self.assertEqual(archive.reconcile_calendar_empty_sittings(self.db), 1)
+        self.assertEqual(self.db.execute("SELECT status FROM sitting").fetchone(), ("source gap",))
+
+    def test_calendar_reconciliation_leaves_unlisted_legacy_empty_row_alone(self):
+        self.db.execute("UPDATE sitting SET status='no published sections'")
+        self.db.execute("INSERT INTO calendar VALUES (?,?,?,?)",
+                        ("2006-04", "Commons", '["2006-04-19"]', "{}"))
+        self.assertEqual(archive.reconcile_calendar_empty_sittings(self.db), 0)
+        self.assertEqual(self.db.execute("SELECT status FROM sitting").fetchone(),
+                         ("no published sections",))
+
     def test_complete_retry_replaces_partial_postings_atomically(self):
         entry = {"date": "2006-04-18", "house": "Commons", "sources": [{"path": "complete.json"}],
                  "roots": [{"path": "root.json"}], "errors": []}
