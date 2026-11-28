@@ -35,6 +35,10 @@ def prompt(question, evidence):
 
 
 def main():
+    lines = (ROOT / 'send-reform.month.jsonl').read_bytes().splitlines()
+    assert len(lines) == 103 and all(len(json.loads(row)) == 7 for row in lines)
+    compact_source = b'[' + b','.join(lines) + b']\n'
+    assert hashlib.sha256(compact_source).hexdigest() == load('release.json')['sha256']['history/send-reform.month.json']
     questions = load('questions.json')
     answers = [json.loads(row) for row in (ROOT / 'local-answers.jsonl').read_text().splitlines()]
     scores = load('local-scores.json')

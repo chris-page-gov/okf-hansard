@@ -38,6 +38,8 @@ A correct summary and a working Hansard link can both come from ordinary web sea
 
 https://raw.githubusercontent.com/chris-page-gov/okf-hansard/41a340e06ec02b7d5d4d5802e893534697328d32/november/history/send-reform.month.json
 
+For the line-layout comparison, use the [JSON Lines edition of the same 103 records](send-reform.month.jsonl). The offline verifier reconstructs the original file from these lines and checks its published digest. Use the same retrieval question and record whether the client opened the supplied file and returned the two identifiers before consulting Hansard.
+
 Record the supplied URL, what the AI says it opened, any returned record identifiers, its original answer and visible source links. A retrieval claim alone is weaker than a fetch receipt. Allow a link-opening failure to stand. The assessor can check the answer against the references after the conversation.
 
 [Android Voice instructions](https://help.openai.com/en/articles/20001274-chatgpt-voice) · [Results and scoring](README.md)
