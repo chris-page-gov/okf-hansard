@@ -45,6 +45,8 @@ The [reviewed pairs](../../../profile/reviewed-replies.json) identify each contr
 
 The [capture cross-check](reviewed-replies-check.json) records a normal build from the original Commons chamber response held on the SSD. The source pointers are nested inside the original chamber tree. The independent [evidence ledger](evidence.json) used the individual debate endpoint. Both routes recover the same four IDs and passage hashes. The cross-check includes the two generated assertion IDs and the absent incorrect pair. The [offline CI tests](../../../tests/test_reviewed_replies.py) reproduce the cases without the SSD or a network connection.
 
+The [generated assertions](reviewed-replies-output.json) preserve the exact two YAML-LD assertion objects from the checked producer commit. The cross-check records the build output sizes and SHA-256 digests. These artefacts belong to the scoped producer run and can be inspected independently of the published November snapshot.
+
 ## Local comparison
 
 All nine exact questions also ran once on Qwen2.5-3B-Instruct Q4_K_M on the Mac CPU, using selected evidence from the pinned bundle and linked primary sources. Each trial began with fresh context. The model received the question and its public evidence packet. It saw neither the scoring rubric nor the reference answers. The assessor selected the evidence in advance, so these results measure answering from supplied evidence. They give no measure of mobile usability or autonomous retrieval. [Inputs by question](questions.json) · [Evidence packets](evidence.json) · [Original answers and timings](local-answers.jsonl)

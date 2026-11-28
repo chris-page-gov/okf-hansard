@@ -1,0 +1,130 @@
+[
+  {
+    "@id": "urn:okf:hansard:assertion:64962499f3a17d145e6ac4a32d273816fed4",
+    "@type": [
+      "rdf:Statement",
+      "okf:RelationshipAssertion"
+    ],
+    "source": {
+      "@id": "urn:okf:hansard:record:contribution:commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-8d89c7a1-fab8-4774-b3b8-c73fb3b5a51c"
+    },
+    "predicate": {
+      "@id": "urn:okf:hansard:vocab:answeredBy"
+    },
+    "target": {
+      "@id": "urn:okf:hansard:record:contribution:commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-dc89ff3b-b014-4c96-8f3d-40137ec5a6bc"
+    },
+    "source_route": "contribution/commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-8d89c7a1-fab8-4774-b3b8-c73fb3b5a51c.md",
+    "target_route": "contribution/commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-dc89ff3b-b014-4c96-8f3d-40137ec5a6bc.md",
+    "kind": "is answered by",
+    "label": "is answered by",
+    "inverse_label": "answers",
+    "assertion_status": "normalized",
+    "assertion_scope": "real-world",
+    "authority": {
+      "class": "derived",
+      "label": "OKF Hansard pilot",
+      "source": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json"
+    },
+    "derivation": "urn:okf:hansard:method:reviewed-question-answer",
+    "observed_at": "2026-11-18T03:33:08+00:00",
+    "evidence": [
+      {
+        "@id": "urn:okf:hansard:evidence:f523aaeac13babc8c576690b469364da",
+        "type": "Hansard source field",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-8D89C7A1-FAB8-4774-B3B8-C73FB3B5A51C",
+        "resource": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_artifact": "2026-11-16/Commons/Debate-65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_sha256": "6147a5c0c08adb6ed4c0cc1c72b2cb23a22de5908b6117cc0d55c0aee337fee9",
+        "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/0/Value",
+        "source_value_sha256": "30c5068354f60f9ae3583fbaea80d35f208b8a711e0ef9dd81b4ef240c30e231",
+        "source_value_hash_canonicalization": "utf8-string-v1",
+        "retrieved_at": "2026-11-18T03:33:08+00:00",
+        "field_provenance": "question",
+        "rationale": "Whittome asks about progress on SEND reform. Gould describes the consultation and the investment in inclusion."
+      },
+      {
+        "@id": "urn:okf:hansard:evidence:76f8d5e02240003143570dd3288861e6",
+        "type": "Hansard source field",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-DC89FF3B-B014-4C96-8F3D-40137EC5A6BC",
+        "resource": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_artifact": "2026-11-16/Commons/Debate-65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_sha256": "6147a5c0c08adb6ed4c0cc1c72b2cb23a22de5908b6117cc0d55c0aee337fee9",
+        "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/1/Value",
+        "source_value_sha256": "feaba523175744b7c1dbaca3ae4219796f73844362b3d9f1bdef620c8680240c",
+        "source_value_hash_canonicalization": "utf8-string-v1",
+        "retrieved_at": "2026-11-18T03:33:08+00:00",
+        "field_provenance": "answer",
+        "rationale": "Whittome asks about progress on SEND reform. Gould describes the consultation and the investment in inclusion."
+      }
+    ],
+    "rights": {
+      "source": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
+      "assertion": "Parliamentary source with Open Parliament Licence exclusions."
+    }
+  },
+  {
+    "@id": "urn:okf:hansard:assertion:bdde2501a78b670ff5e4f65e178176cccbeb",
+    "@type": [
+      "rdf:Statement",
+      "okf:RelationshipAssertion"
+    ],
+    "source": {
+      "@id": "urn:okf:hansard:record:contribution:commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-5ffdc8e3-7d76-4083-988b-955cec19a2e9"
+    },
+    "predicate": {
+      "@id": "urn:okf:hansard:vocab:answeredBy"
+    },
+    "target": {
+      "@id": "urn:okf:hansard:record:contribution:commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-26f9fc36-cc1f-4442-b478-a22cb0e95ca4"
+    },
+    "source_route": "contribution/commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-5ffdc8e3-7d76-4083-988b-955cec19a2e9.md",
+    "target_route": "contribution/commons-2026-11-16-debate-13f7917b-36d3-4198-8908-7185e77de84a-26f9fc36-cc1f-4442-b478-a22cb0e95ca4.md",
+    "kind": "is answered by",
+    "label": "is answered by",
+    "inverse_label": "answers",
+    "assertion_status": "normalized",
+    "assertion_scope": "real-world",
+    "authority": {
+      "class": "derived",
+      "label": "OKF Hansard pilot",
+      "source": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json"
+    },
+    "derivation": "urn:okf:hansard:method:reviewed-question-answer",
+    "observed_at": "2026-11-18T03:33:08+00:00",
+    "evidence": [
+      {
+        "@id": "urn:okf:hansard:evidence:cc63f7a23737b5731387536278c06577",
+        "type": "Hansard source field",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-5FFDC8E3-7D76-4083-988B-955CEC19A2E9",
+        "resource": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_artifact": "2026-11-16/Commons/Debate-65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_sha256": "6147a5c0c08adb6ed4c0cc1c72b2cb23a22de5908b6117cc0d55c0aee337fee9",
+        "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/2/Value",
+        "source_value_sha256": "144dea631d85c39d293e68bf0364ef2522fbfd0fb3b2f2536af6b82991705c15",
+        "source_value_hash_canonicalization": "utf8-string-v1",
+        "retrieved_at": "2026-11-18T03:33:08+00:00",
+        "field_provenance": "question",
+        "rationale": "Whittome asks how families could challenge a school. Gould addresses accountability and promises a full consultation response."
+      },
+      {
+        "@id": "urn:okf:hansard:evidence:da1518a7560392950d3e9f496f058b5c",
+        "type": "Hansard source field",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-26F9FC36-CC1F-4442-B478-A22CB0E95CA4",
+        "resource": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_artifact": "2026-11-16/Commons/Debate-65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+        "source_sha256": "6147a5c0c08adb6ed4c0cc1c72b2cb23a22de5908b6117cc0d55c0aee337fee9",
+        "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/3/Value",
+        "source_value_sha256": "0b11a48311f0e6bbde54d4b763762a6a14c95c6e9b32d07c9c3cc188a7fea778",
+        "source_value_hash_canonicalization": "utf8-string-v1",
+        "retrieved_at": "2026-11-18T03:33:08+00:00",
+        "field_provenance": "answer",
+        "rationale": "Whittome asks how families could challenge a school. Gould addresses accountability and promises a full consultation response."
+      }
+    ],
+    "rights": {
+      "source": "https://www.parliament.uk/site-information/copyright/open-parliament-licence/",
+      "assertion": "Parliamentary source with Open Parliament Licence exclusions."
+    }
+  }
+]

@@ -59,5 +59,28 @@
   "verified_projections": [
     "okf-bundle.yamlld",
     "okf-bundle.json"
-  ]
+  ],
+  "producer_commit": "42dc5ab1face1632e883e71990e289c3a6b63c3c",
+  "build_artifacts": {
+    "okf-bundle.json": {
+      "bytes": 4617970,
+      "sha256": "28af2dd20097b536b1f16db2a15baf56e5c407e76ec5484152f8024b977fd868"
+    },
+    "history.json": {
+      "bytes": 554535,
+      "sha256": "74bd6221e34a16c558dedc732f816ea7ae69aa6cdb0f81b6808fe5d68bdc0686"
+    },
+    "okf-bundle.yamlld": {
+      "bytes": 5150301,
+      "sha256": "3597924d0867fa2fa07a15cf2db3f84f1de8d0c2d5d4c33d84ce0afdbf4361b3"
+    },
+    "analysis-profile.json": {
+      "bytes": 10654,
+      "sha256": "a16b872e20cb832d5cef8d1a4fa2a83228dc787385eeb9b169aa00af3ffe85d5"
+    }
+  },
+  "retained_assertions": {
+    "path": "reviewed-replies-output.json",
+    "sha256": "fb0988d2f008e1795eabea067ec91f225d15500acea909cd21fe3e52262678ff"
+  }
 }
