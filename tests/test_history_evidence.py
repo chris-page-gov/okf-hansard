@@ -109,7 +109,7 @@ class PassageFreshnessTests(unittest.TestCase):
         response.read.side_effect = [b'{"version":1}', b'{"version":2}']
         passages.read_source.cache_clear()
         self.addCleanup(passages.read_source.cache_clear)
-        with mock.patch.object(passages, "urlopen", return_value=response) as fetch, \
+        with mock.patch.object(passages, "open_source", return_value=response) as fetch, \
                 mock.patch.object(passages.time, "monotonic", side_effect=[10, 20, 130]), \
                 mock.patch.object(passages, "now", side_effect=["first", "second"]):
             self.assertEqual(passages.retrievable(source), ({"version": 1}, "first"))

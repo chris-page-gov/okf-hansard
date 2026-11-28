@@ -10,7 +10,9 @@ import re
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+from urllib.request import Request
+
+from http_policy import open_source
 
 from safe_paths import resolve_within
 
@@ -43,7 +45,7 @@ def fetch(root, relative, url):
     request = Request(url, headers={"Accept": "application/json", "User-Agent": "OKF-Hansard-Pilot/0.1"})
     for attempt in range(3):
         try:
-            with urlopen(request, timeout=12) as response:
+            with open_source(request, timeout=12) as response:
                 raw = response.read(MAX_BYTES + 1)
             if len(raw) > MAX_BYTES:
                 raise ValueError(f"Response exceeds capture limit: {url}")

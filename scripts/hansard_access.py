@@ -12,6 +12,7 @@ from urllib.parse import quote, urlencode, urlsplit
 
 from capture import sha
 from model import read_sittings
+from query import StaleHistory
 from safe_paths import resolve_within
 
 
@@ -136,7 +137,7 @@ class Access:
 
     def mentions(self, key, start=None, through=None, house=None, limit=20, offset=0, snapshot=None):
         if snapshot is not None and snapshot != self.snapshot:
-            raise ValueError("The publication changed. Restart from the first results page.")
+            raise StaleHistory("The publication changed. Restart from the first results page.")
         start = date.fromisoformat(start).isoformat() if start else "0001-01-01"
         through = date.fromisoformat(through).isoformat() if through else self.pointer["through"]
         if start > through:

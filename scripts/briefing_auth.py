@@ -8,7 +8,9 @@ import os
 import re
 import time
 from urllib.parse import quote_plus, urlencode, urlsplit
-from urllib.request import HTTPRedirectHandler, Request, build_opener
+from urllib.request import Request, build_opener
+
+from http_policy import NoRedirect
 
 
 SCOPE = "hansard:briefing"
@@ -27,11 +29,6 @@ class AuthFailure(Exception):
     def __init__(self, status, error=None):
         self.status = status
         self.error = error
-
-
-class NoRedirect(HTTPRedirectHandler):
-    def redirect_request(self, request, file, code, message, headers, target):
-        return None
 
 
 def https_url(value):

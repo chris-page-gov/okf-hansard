@@ -421,7 +421,22 @@ class QueryTests(unittest.TestCase):
     def test_trace_context_and_accessible_view(self):
         path = Path("releases/current")
         if not path.exists():
-            self.skipTest("A built pilot release is required.")
+            fixture = tempfile.TemporaryDirectory()
+            self.addCleanup(fixture.cleanup)
+            path = Path(fixture.name)
+            dump(path / "history.json", {
+                "contributions": {"anchor": {"entities": ["palantir"], "date": "2026-11-18",
+                                              "part": "debate/anchor.md", "order": 2}},
+                "entities": {"palantir": {"route": "entity/palantir.md", "label": "Palantir",
+                                          "group": "Organisations"}},
+                "mentions": {"palantir": [{"contribution": "contribution/before.md", "date": "2026-11-17",
+                                           "part": "debate/before.md", "order": 1,
+                                           "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/example"}]},
+            })
+            dump(path / "analysis-profile.json", {"entities": {"palantir": {}}})
+            dump(path / "receipt.json", {"day_denominators": [{"date": "2026-11-17"}], "artifacts": {
+                name: {"sha256": sha((path / name).read_bytes())} for name in ("history.json", "analysis-profile.json")
+            }})
         index = Index(path)
         anchors = index.history["contributions"]
         route = next(key for key, row in anchors.items() if "palantir" in row["entities"])
