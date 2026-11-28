@@ -1,0 +1,524 @@
+[
+  {
+    "id": "holiday-clubs",
+    "question": "Across how many local authorities in England had the holiday food and activities programme delivered the days mentioned in the Lords?",
+    "answers": {
+      "answer": [
+        "153"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-02-debate-ffa5f78a-6d16-4aa8-80f3-564410bec19e-683527c2-d76f-4b1a-8f96-07e97d31f531.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/FFA5F78A-6D16-4AA8-80F3-564410BEC19E/SportingandPerformingArtsOpportunitiesforPupilsinStateSchools#contribution-683527C2-D76F-4B1A-8F96-07E97D31F531",
+        "day": "2026-11-02",
+        "house": "Lords",
+        "speaker": "Baroness Smith of Malvern (Lab)",
+        "title": "Sporting and Performing Arts Opportunities for Pupils in State Schools",
+        "needle": "153 local authorities"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "shared-housing",
+    "question": "On what August date did Matthew Pennycook say the new planning framework on concentrations of small HMOs was published?",
+    "answers": {
+      "answer": [
+        "17 August",
+        "17 August 2026",
+        "17th August",
+        "August 17",
+        "2026-08-17"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-02-debate-180376e2-ed2d-46ad-b86b-aae2eef5f4ae-52f5a7e2-9491-460e-8cb5-fddf327b87cf.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/180376E2-ED2D-46AD-B86B-AAE2EEF5F4AE/HousesinMultipleOccupation#contribution-52F5A7E2-9491-460E-8CB5-FDDF327B87CF",
+        "day": "2026-11-02",
+        "house": "Commons",
+        "speaker": "The Minister for Housing and Planning (Matthew Pennycook)",
+        "title": "Houses in Multiple Occupation",
+        "needle": "published on 17 August"
+      }
+    ],
+    "kind": "literal",
+    "status": "supported"
+  },
+  {
+    "id": "housing-chargers",
+    "question": "In the Social Housing Bill committee, how many months after passage would new clause 63 give the Secretary of State to make electric vehicle charging regulations?",
+    "answers": {
+      "answer": [
+        "6",
+        "six",
+        "6 months",
+        "six months"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-03-pbc-277fcd0d-142d-4465-96ae-777e92a823f7-bbd2e61b-9abd-4ee7-a052-15de073aede7.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/277fcd0d-142d-4465-96ae-777e92a823f7/SocialHousingBill(Fifthsitting)#contribution-BBD2E61B-9ABD-4EE7-A052-15DE073AEDE7",
+        "day": "2026-11-03",
+        "house": "Commons",
+        "speaker": "The Chair",
+        "title": "Social Housing Bill (Fifth sitting)",
+        "needle": "Within six months"
+      }
+    ],
+    "kind": "literal",
+    "status": "supported"
+  },
+  {
+    "id": "defence-wales",
+    "question": "How many defence jobs did the Wales minister say the country already had when discussing higher military spending?",
+    "answers": {
+      "answer": [
+        "20000",
+        "20 thousand",
+        "twenty thousand",
+        "20000 jobs"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-04-debate-098c3916-b368-448e-933b-1b42a66ff127-59fa4cbe-f5c6-4f17-89a1-4e8c1ecd93f5.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/098C3916-B368-448E-933B-1B42A66FF127/ImpactofDefenceSpending#contribution-59FA4CBE-F5C6-4F17-89A1-4E8C1ECD93F5",
+        "day": "2026-11-04",
+        "house": "Commons",
+        "speaker": "The Parliamentary Under-Secretary of State for Wales (Anna McMorrin)",
+        "title": "Impact of Defence Spending",
+        "needle": "20,000 defence jobs"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "water-shortfall",
+    "question": "By what percentage did Lord Roborough say water in storage was below the usual level for that time of year?",
+    "answers": {
+      "answer": [
+        "17%",
+        "17 per cent",
+        "17 percent",
+        "17"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-09-debate-57e23442-67de-4eec-b3f2-00776667bd8e-fb2a693f-c294-4f62-8b9f-963e1259d3f5.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-FB2A693F-C294-4F62-8B9F-963E1259D3F5",
+        "day": "2026-11-09",
+        "house": "Lords",
+        "speaker": "Lord Roborough (Con)",
+        "title": "Reservoirs and Water Supplies",
+        "needle": "17% beneath seasonal norms"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "battery-factory",
+    "question": "What sum did Baroness Dacres say Tata was investing in its UK gigafactory?",
+    "answers": {
+      "answer": [
+        "£4 billion",
+        "4 billion",
+        "£4bn",
+        "4bn",
+        "£4000000000",
+        "4000000000"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-10-debate-1ac4d053-8132-4e7d-961e-d47140f39254-e338b133-9697-45c3-8594-932459300418.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E338B133-9697-45C3-8594-932459300418",
+        "day": "2026-11-10",
+        "house": "Lords",
+        "speaker": "Baroness in Waiting/Government Whip (Baroness Dacres of Lewisham) (Lab)",
+        "title": "Automobile Industry: ZEV Mandate",
+        "needle": "Tata is investing £4 billion"
+      }
+    ],
+    "kind": "literal",
+    "status": "supported"
+  },
+  {
+    "id": "summer-heat",
+    "question": "How many heat-associated deaths did Olivia Blake say there were in the eight days in June?",
+    "answers": {
+      "answer": [
+        "2124",
+        "2124 deaths"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-11-westhall-c10ba528-a884-49f1-b9bb-967c88601774-d7eff46b-0f68-4ea8-b5f2-a577ef9454e0.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-11/debates/C10BA528-A884-49F1-B9BB-967C88601774/RosebankOilfieldGovernmentPolicy#contribution-D7EFF46B-0F68-4EA8-B5F2-A577EF9454E0",
+        "day": "2026-11-11",
+        "house": "Commons",
+        "speaker": "Olivia Blake",
+        "title": "Rosebank Oilfield: Government Policy",
+        "needle": "2,124 heat-associated deaths"
+      }
+    ],
+    "kind": "literal",
+    "status": "supported"
+  },
+  {
+    "id": "steel-operating-cost",
+    "question": "What daily cost to taxpayers for keeping British Steel running did Lord Fox attribute to the National Audit Office?",
+    "answers": {
+      "answer": [
+        "£1.3 million",
+        "£1.3 million a day",
+        "£1.3 million per day",
+        "1.3 million",
+        "£1.3m",
+        "£1300000",
+        "1300000"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-12-debate-a6a08ed8-5834-4386-9a80-ce0bb165e280-4e6c50b6-5c59-4e3e-9b96-a6506518b7d9.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/A6A08ED8-5834-4386-9A80-CE0BB165E280/BritishSteelNationalisation#contribution-4E6C50B6-5C59-4E3E-9B96-A6506518B7D9",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "speaker": "Lord Fox (LD)",
+        "title": "British Steel: Nationalisation",
+        "needle": "£1.3 million a day"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "island-heating",
+    "question": "How many households in Torcuil Crichton’s own constituency had been able to claim the £300 heating-oil support?",
+    "answers": {
+      "answer": [
+        "324",
+        "324 households"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-17-debate-da5a3992-d51b-4b64-a539-9e1824794080-fc140819-4f60-4813-99c3-78f23ddb6347.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/DA5A3992-D51B-4B64-A539-9E1824794080/Oil-firedHeating#contribution-FC140819-4F60-4813-99C3-78F23DDB6347",
+        "day": "2026-11-17",
+        "house": "Commons",
+        "speaker": "Torcuil Crichton (Na h-Eileanan an Iar) (Lab)",
+        "title": "Oil-fired Heating",
+        "needle": "only 324"
+      }
+    ],
+    "kind": "literal",
+    "status": "supported"
+  },
+  {
+    "id": "Welsh-community-care",
+    "question": "What share of their budgets were Welsh health boards to shift towards community services, according to Liz Saville Roberts?",
+    "answers": {
+      "answer": [
+        "0.5%",
+        "0.5 per cent",
+        "0.5 percent",
+        "half a per cent",
+        "0.5"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-18-westhall-b0c441d5-2a02-4e0e-ae5c-eba274d2c35b-e8ac7768-c58b-4b6b-b25f-2da21d2ee425.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/B0C441D5-2A02-4E0E-AE5C-EBA274D2C35B/CommunityHospitalsandStep-downCare#contribution-E8AC7768-C58B-4B6B-B25F-2DA21D2EE425",
+        "day": "2026-11-18",
+        "house": "Commons",
+        "speaker": "Liz Saville Roberts",
+        "title": "Community Hospitals and Step-down Care",
+        "needle": "0.5% of their budgets"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "charity-research",
+    "question": "How many people did Baroness Pidgeon say Cancer Research UK expected to take part in its trials over the following five years?",
+    "answers": {
+      "answer": [
+        "80000",
+        "80000 people",
+        "80 thousand",
+        "eighty thousand"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-19-debate-3710587d-93ba-4e02-b7b3-822b7e5c9ae3-9d27a3d8-2a30-4646-8009-10f0289c19b7.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/3710587D-93BA-4E02-B7B3-822B7E5C9AE3/AccesstoClinicalTrials#contribution-9D27A3D8-2A30-4646-8009-10F0289C19B7",
+        "day": "2026-11-19",
+        "house": "Lords",
+        "speaker": "Baroness Pidgeon (LD)",
+        "title": "Access to Clinical Trials",
+        "needle": "80,000 people"
+      }
+    ],
+    "kind": "literal",
+    "status": "supported"
+  },
+  {
+    "id": "paris-building",
+    "question": "What fraction of the Palace of Westminster’s floorspace did Marie Goldman say Notre-Dame occupied?",
+    "answers": {
+      "answer": [
+        "one twentieth",
+        "one-twentieth",
+        "1/20",
+        "5%",
+        "5 per cent",
+        "a twentieth",
+        "one twentieth of the size"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-25-debate-60bb272e-12a5-42f6-a4d9-677b3d516eb9-3f272954-66a5-4079-b7b8-fdf12d8c158c.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-3F272954-66A5-4079-B7B8-FDF12D8C158C",
+        "day": "2026-11-25",
+        "house": "Commons",
+        "speaker": "Marie Goldman (Chelmsford) (LD)",
+        "title": "Restoration and Renewal of the Palace of Westminster",
+        "needle": "one twentieth"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "technical-college",
+    "question": "Which further education college did Lord Wallace name when he discussed teenagers who might otherwise leave education?",
+    "answers": {
+      "answer": [
+        "Shipley College",
+        "Shipley"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-25-debate-50656398-ef47-49d1-9a5e-ba50f4f52d9a-feb37491-d55c-4c8e-acc5-47c1944541db.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-25/debates/50656398-EF47-49D1-9A5E-BA50F4F52D9A/TechnicalEducationSecondarySchools#contribution-FEB37491-D55C-4C8E-ACC5-47C1944541DB",
+        "day": "2026-11-25",
+        "house": "Lords",
+        "speaker": "Lord Wallace of Saltaire (LD)",
+        "title": "Technical Education: Secondary Schools",
+        "needle": "Shipley College"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "business-share",
+    "question": "What proportion of UK businesses did the Business Secretary say were small or medium-sized?",
+    "answers": {
+      "answer": [
+        "99%",
+        "99 per cent",
+        "99 percent",
+        "99"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-26-debate-3410c13d-b0ea-4694-afca-cda91b4330c1-054527b6-8e9c-477d-8960-ab471faeec63.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/3410C13D-B0EA-4694-AFCA-CDA91B4330C1/SmallandMedium-sizedEnterprises#contribution-054527B6-8E9C-477D-8960-AB471FAEEC63",
+        "day": "2026-11-26",
+        "house": "Commons",
+        "speaker": "The Secretary of State for Business, Innovation, Science and Trade (Jonathan Reynolds)",
+        "title": "Small and Medium-sized Enterprises",
+        "needle": "99% of businesses"
+      }
+    ],
+    "kind": "paraphrase",
+    "status": "supported"
+  },
+  {
+    "id": "health-record-notice",
+    "question": "In the Lords discussion about AI systems accessing NHS data, within how many hours did the minister say the Information Commission should be informed?",
+    "answers": {
+      "answer": [
+        "72",
+        "72 hours",
+        "seventy-two hours"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-26-debate-c7049943-4a40-4ac5-b1a5-b8f1a13be118-52373b70-61fd-470a-b330-96d854319b14.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/C7049943-4A40-4AC5-B1A5-B8F1A13BE118/AIsystemsNHSData#contribution-52373B70-61FD-470A-B330-96D854319B14",
+        "day": "2026-11-26",
+        "house": "Lords",
+        "speaker": "The Parliamentary Under-Secretary of State, Department for Business, Innovation, Science and Trade (Baroness Lloyd of Effra) (Lab)",
+        "title": "AI systems: NHS Data",
+        "needle": "within 72 hours"
+      }
+    ],
+    "kind": "literal",
+    "status": "supported"
+  },
+  {
+    "id": "arts-and-sport",
+    "question": "Give the name of the choir Lord Wallace said was rehearsing, and the name of the Tredegar park where Nick Smith thanked junior running volunteers.",
+    "answers": {
+      "choir": [
+        "Parliament Choir",
+        "the Parliament Choir"
+      ],
+      "park": [
+        "Parc Bryn Bach"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-04-debate-3780c38b-586a-431d-bde6-3defe74d9274-7378165b-e91b-4f74-9ea5-a0de950ce23c.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/3780C38B-586A-431D-BDE6-3DEFE74D9274/RepresentationofthePeopleBill#contribution-7378165B-E91B-4F74-9EA5-A0DE950CE23C",
+        "day": "2026-11-04",
+        "house": "Lords",
+        "speaker": "Lord Wallace of Saltaire (LD)",
+        "title": "Representation of the People Bill",
+        "needle": "Parliament Choir"
+      },
+      {
+        "route": "contribution/commons-2026-11-12-debate-8460d58b-023c-490f-90fb-37704a7936a4-af2e78c2-9dd0-4a37-be04-36d9769b726d.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/8460D58B-023C-490F-90FB-37704A7936A4/GrassrootsSportsFacilitiesforGirls#contribution-AF2E78C2-9DD0-4A37-BE04-36D9769B726D",
+        "day": "2026-11-12",
+        "house": "Commons",
+        "speaker": "Nick Smith (Blaenau Gwent and Rhymney) (Lab)",
+        "title": "Grassroots Sports: Facilities for Girls",
+        "needle": "Parc Bryn Bach"
+      }
+    ],
+    "kind": "two-source",
+    "status": "supported"
+  },
+  {
+    "id": "reservoir-pair",
+    "question": "In two different debates, how far below seasonal norms did Lord Roborough put stored water, and how many new reservoirs did Dan Jarvis say the UK was investing in?",
+    "answers": {
+      "shortfall": [
+        "17%",
+        "17 per cent",
+        "17 percent",
+        "17"
+      ],
+      "reservoirs": [
+        "9",
+        "nine",
+        "nine new reservoirs",
+        "9 reservoirs"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-09-debate-57e23442-67de-4eec-b3f2-00776667bd8e-fb2a693f-c294-4f62-8b9f-963e1259d3f5.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-FB2A693F-C294-4F62-8B9F-963E1259D3F5",
+        "day": "2026-11-09",
+        "house": "Lords",
+        "speaker": "Lord Roborough (Con)",
+        "title": "Reservoirs and Water Supplies",
+        "needle": "17% beneath seasonal norms"
+      },
+      {
+        "route": "contribution/commons-2026-11-19-debate-a4e27291-df2d-4ecb-83be-d976aed0fd4a-75ec630a-1400-4bfe-9bb6-83abfd786f0f.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-19/debates/A4E27291-DF2D-4ECB-83BE-D976AED0FD4A/ElNi%C3%B1oNationalResilience#contribution-75EC630A-1400-4BFE-9BB6-83ABFD786F0F",
+        "day": "2026-11-19",
+        "house": "Commons",
+        "speaker": "Dan Jarvis",
+        "title": "El Niño: National Resilience",
+        "needle": "nine new reservoirs"
+      }
+    ],
+    "kind": "two-source",
+    "status": "supported"
+  },
+  {
+    "id": "statistics-date",
+    "question": "What exact calendar date did Baroness Merron announce for publishing the 2026 annual abortion statistics in her Annual Report Bill reply?",
+    "answers": {},
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-20-debate-531f6dc9-0328-4e06-83be-56716d1f5c46-6894b5f3-4870-4672-8a70-0b4b128311a5.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-20/debates/531F6DC9-0328-4E06-83BE-56716D1F5C46/ComplicationsfromAbortions(AnnualReport)BillHL#contribution-6894B5F3-4870-4672-8A70-0B4B128311A5",
+        "day": "2026-11-20",
+        "house": "Lords",
+        "speaker": "Baroness Merron (Lab)",
+        "title": "Complications from Abortions (Annual Report) Bill [HL]",
+        "needle": "announced in due course"
+      }
+    ],
+    "kind": "unannounced",
+    "status": "insufficient"
+  },
+  {
+    "id": "mandate-date",
+    "question": "What exact day did Baroness Dacres announce for publishing the result of the ZEV mandate consultation in her November answer?",
+    "answers": {},
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-10-debate-1ac4d053-8132-4e7d-961e-d47140f39254-e338b133-9697-45c3-8594-932459300418.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E338B133-9697-45C3-8594-932459300418",
+        "day": "2026-11-10",
+        "house": "Lords",
+        "speaker": "Baroness in Waiting/Government Whip (Baroness Dacres of Lewisham) (Lab)",
+        "title": "Automobile Industry: ZEV Mandate",
+        "needle": "as soon as possible"
+      }
+    ],
+    "kind": "unannounced",
+    "status": "insufficient"
+  },
+  {
+    "id": "future-trial-total",
+    "question": "What final number of participants actually enrolled across the five years that Baroness Pidgeon said lay ahead for Cancer Research UK?",
+    "answers": {},
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-19-debate-3710587d-93ba-4e02-b7b3-822b7e5c9ae3-9d27a3d8-2a30-4646-8009-10f0289c19b7.md",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/3710587D-93BA-4E02-B7B3-822B7E5C9AE3/AccesstoClinicalTrials#contribution-9D27A3D8-2A30-4646-8009-10F0289C19B7",
+        "day": "2026-11-19",
+        "house": "Lords",
+        "speaker": "Baroness Pidgeon (LD)",
+        "title": "Access to Clinical Trials",
+        "needle": "expects 80,000"
+      }
+    ],
+    "kind": "future outcome",
+    "status": "insufficient"
+  },
+  {
+    "id": "future-board-saving",
+    "question": "What exact audited annual saving was achieved after the board disappeared, according to Dame Meg Hillier’s remarks about the Financial Services and Markets Bill?",
+    "answers": {},
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-10-debate-4ce6842a-ba2a-4d7c-9fc3-68b972190018-9057b4e3-3872-44bb-8a04-bd4038334e8c.md",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-9057B4E3-3872-44BB-8A04-BD4038334E8C",
+        "day": "2026-11-10",
+        "house": "Commons",
+        "speaker": "Dame Meg Hillier",
+        "title": "Financial Services and Markets Bill [Lords]",
+        "needle": "a saving of about £100,000"
+      }
+    ],
+    "kind": "forecast versus outcome",
+    "status": "insufficient"
+  }
+]

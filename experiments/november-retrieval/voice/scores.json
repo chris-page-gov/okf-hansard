@@ -1,0 +1,798 @@
+[
+  {
+    "id": "worker-wait",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": true,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2458,
+    "retrieval_ms": 34.21262500341982,
+    "writer": {
+      "milliseconds": 10237,
+      "prompt_tokens": 989,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3559
+    },
+    "answer": {
+      "facts": {
+        "answer": "10"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 959,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-A366D845-513B-4E40-BC6E-AC452E532A2F",
+        "pid": 18170,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-0E603082-E649-4472-BD28-C8025A54BDB3",
+        "pid": 33623,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-F2F12051-9CA0-47F9-8D15-5B316BE6F3EC",
+        "pid": 33685,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "worker-wait",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": true,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2308,
+    "retrieval_ms": 69.38954201177694,
+    "writer": {
+      "milliseconds": 8493,
+      "prompt_tokens": 967,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3409
+    },
+    "answer": {
+      "facts": {
+        "answer": "10"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 937,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-A366D845-513B-4E40-BC6E-AC452E532A2F",
+        "pid": 18170,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-EA26E8AE-064F-4DA2-A1C8-082062E63324",
+        "pid": 203,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-0E98DAB9-1849-4127-A952-6A4E5D235B3E",
+        "pid": 27,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "release-date",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2301,
+    "retrieval_ms": 45.58329100837,
+    "writer": {
+      "milliseconds": 8281,
+      "prompt_tokens": 899,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3355
+    },
+    "answer": {
+      "facts": {
+        "answer": "8 September"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 869,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/F48DFC05-504D-4356-9E19-2D3B6DBA4DA7/GlobalHumanRightsandInternationalHumanitarianLawSanctionsRegulations2026#contribution-CFC95324-5D7D-4091-8BCC-7FE24E23AFDF",
+        "pid": 36211,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/920376F3-251F-409D-BD8D-BA5A5B8A3D19/GazaHumanitarianSituation#contribution-5D9C556D-29AD-4F86-BECD-6505D8C6EDC8",
+        "pid": 12712,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/920376F3-251F-409D-BD8D-BA5A5B8A3D19/GazaHumanitarianSituation#contribution-18D2AE40-C77E-4890-9F5E-AD50390EF81D",
+        "pid": 12665,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "release-date",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2167,
+    "retrieval_ms": 28.358332987409085,
+    "writer": {
+      "milliseconds": 8150,
+      "prompt_tokens": 875,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3221
+    },
+    "answer": {
+      "facts": {
+        "answer": "8 September"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 845,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/F48DFC05-504D-4356-9E19-2D3B6DBA4DA7/GlobalHumanRightsandInternationalHumanitarianLawSanctionsRegulations2026#contribution-CFC95324-5D7D-4091-8BCC-7FE24E23AFDF",
+        "pid": 36211,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/920376F3-251F-409D-BD8D-BA5A5B8A3D19/GazaHumanitarianSituation#contribution-8AEA0092-216C-4D04-95E3-493EC3CABE29",
+        "pid": 12740,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-23/debates/3BE43254-7805-44E6-9E6A-456252FCC4CD/Myanmar#contribution-F9750D55-4D40-4377-B442-FA71F688AC20",
+        "pid": 23891,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "prison-communication",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": false,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2602,
+    "retrieval_ms": 24.692375009180978,
+    "writer": {
+      "milliseconds": 8717,
+      "prompt_tokens": 940,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3644
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1",
+        "R2",
+        "R3"
+      ]
+    },
+    "decision_input_tokens": 910,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-17/debates/21AE7296-CC4F-41C3-AECB-0519ED9DD23A/HealthBill#contribution-ED0D075D-A50C-4353-B9D4-96AA1EE9F26E",
+        "pid": 41741,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-19/debates/5DB59360-244B-442D-9B27-47D5E85E4894/DisabledChildrenAccesstoTherapy#contribution-E5D22800-ABAC-44C0-AD36-5C134C498DE3",
+        "pid": 23522,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-17/debates/76C6AC2B-F9E3-4FEC-98C9-3D12ECD1E27E/HealthBill#contribution-9FAE23E1-8F0A-4170-9036-EC0F308E1D02",
+        "pid": 42361,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "prison-communication",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2342,
+    "retrieval_ms": 37.06291603157297,
+    "writer": {
+      "milliseconds": 8896,
+      "prompt_tokens": 904,
+      "generated_tokens_reported": 39,
+      "prompt_bytes": 3381
+    },
+    "answer": {
+      "facts": {
+        "answer": "Over 60%"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 874,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/C620E704-423E-4AC6-BDD2-26DADF431CD5/TopicalQuestions#contribution-6127D140-8C81-4CD4-AA0F-B1BAD0B80118",
+        "pid": 9135,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-25/debates/669FCB10-88EF-4670-949B-AF2EEB59B8F5/HealthBill#contribution-FA22874C-BFFD-4563-9A2C-88F230D06F5C",
+        "pid": 48182,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-25/debates/669FCB10-88EF-4670-949B-AF2EEB59B8F5/HealthBill#contribution-69EE28FE-27CD-471D-9D6A-AF49A3EC2243",
+        "pid": 48041,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "treatment-gap",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2124,
+    "retrieval_ms": 49.2893340124283,
+    "writer": {
+      "milliseconds": 9178,
+      "prompt_tokens": 898,
+      "generated_tokens_reported": 40,
+      "prompt_bytes": 3142
+    },
+    "answer": {
+      "facts": {
+        "answer": "5,000"
+      },
+      "citations": [
+        "R2"
+      ]
+    },
+    "decision_input_tokens": 868,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-2429E93E-102F-4337-AC67-355A4DF76C9B",
+        "pid": 39589,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-4058E90B-99CE-48DD-9D35-AFE53B1BABEE",
+        "pid": 39592,
+        "reference": true
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-968C1B7A-2F02-491E-B473-107F1DED15C9",
+        "pid": 39605,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "treatment-gap",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": false,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2006,
+    "retrieval_ms": 35.836084018228576,
+    "writer": {
+      "milliseconds": 8880,
+      "prompt_tokens": 874,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3027
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1",
+        "R2",
+        "R3"
+      ]
+    },
+    "decision_input_tokens": 844,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-2429E93E-102F-4337-AC67-355A4DF76C9B",
+        "pid": 39589,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-8A04F020-3F40-4F9E-8B0A-0828E8267A9B",
+        "pid": 39604,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-968C1B7A-2F02-491E-B473-107F1DED15C9",
+        "pid": 39605,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "driving-plan",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": false,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2596,
+    "retrieval_ms": 30.336791009176522,
+    "writer": {
+      "milliseconds": 9468,
+      "prompt_tokens": 945,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3676
+    },
+    "answer": {
+      "facts": {
+        "answer": "the Libraries"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 915,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/26111750000012/DriverandVehicleStandardsAgencyBusinessPlan2026-27#contribution-FD732141-EFCF-4EF2-9EEA-93B829B8BAFF",
+        "pid": 17045,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/848AA805-BB39-4CCF-812C-DB2373B0B219/DriverlessRoadVehiclesRegulation#contribution-28506BE3-54EE-4186-BC62-F7032B7538F8",
+        "pid": 30104,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/B776C0FA-DD37-437F-910B-8E592493ADCF/SaleofElectricPersonalVehicles#contribution-2AC6125A-7FE5-4B1C-8FC7-E183DE0FD06E",
+        "pid": 29560,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "driving-plan",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": false,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2691,
+    "retrieval_ms": 45.48462500679307,
+    "writer": {
+      "milliseconds": 9826,
+      "prompt_tokens": 963,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3771
+    },
+    "answer": {
+      "facts": {
+        "answer": "the Libraries"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 933,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/26111750000012/DriverandVehicleStandardsAgencyBusinessPlan2026-27#contribution-FD732141-EFCF-4EF2-9EEA-93B829B8BAFF",
+        "pid": 17045,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/848AA805-BB39-4CCF-812C-DB2373B0B219/DriverlessRoadVehiclesRegulation#contribution-28506BE3-54EE-4186-BC62-F7032B7538F8",
+        "pid": 30101,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/D18CFED5-9F02-4C73-8B60-D61D31317043/CommunityTransportServicesMinibusDrivers#contribution-8AE120B3-EB95-4EA3-93BD-72B439BE318A",
+        "pid": 3314,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "deportation-total",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 1753,
+    "retrieval_ms": 53.417791990796104,
+    "writer": {
+      "milliseconds": 8517,
+      "prompt_tokens": 851,
+      "generated_tokens_reported": 25,
+      "prompt_bytes": 2857
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 821,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-3A92A9AD-68F4-4179-B1E0-B61546114DFB",
+        "pid": 42991,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-9A2E8A67-7BF0-420C-B79C-88BDFCCA159B",
+        "pid": 43001,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-f8e168b6-83e3-4d72-9236-990a40e02b82",
+        "pid": 6256,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "deportation-total",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2243,
+    "retrieval_ms": 36.595125013263896,
+    "writer": {
+      "milliseconds": 10204,
+      "prompt_tokens": 939,
+      "generated_tokens_reported": 25,
+      "prompt_bytes": 3347
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R2"
+      ]
+    },
+    "decision_input_tokens": 909,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/2DBCEF66-88BF-4B32-A89D-4FAF9C05D38D/UK-EURelations#contribution-05CD50CD-982D-45DB-9B4B-8F1D00A6CDA2",
+        "pid": 20485,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-3A92A9AD-68F4-4179-B1E0-B61546114DFB",
+        "pid": 42991,
+        "reference": true
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-9A2E8A67-7BF0-420C-B79C-88BDFCCA159B",
+        "pid": 43001,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "portable-qualifications",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": false,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 1876,
+    "retrieval_ms": 17.93491601711139,
+    "writer": {
+      "milliseconds": 9775,
+      "prompt_tokens": 827,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 2933
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1",
+        "R2",
+        "R3"
+      ]
+    },
+    "decision_input_tokens": 797,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-24/debates/4255A77A-7234-4B79-8D5E-C27BFEDE9609/RepresentationofthePeopleBill#contribution-30D468F2-0BEA-4D88-B048-518CEF465F6F",
+        "pid": 46521,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/F1866FF6-7D4B-4D4E-8240-11718228D5A0/SanitaryandPhytosanitaryChecksatEUBorders#contribution-F8C5BD98-1A1A-4B7A-982B-97F7ABCD8E1B",
+        "pid": 44207,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/57C0B5AB-3C3F-4376-A0ED-9F032AC2C838/EU-UKRelationship#contribution-04213FFB-C095-4645-B45E-6DF8EAEEFF0D",
+        "pid": 49405,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "portable-qualifications",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": false,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2417,
+    "retrieval_ms": 48.735249001765624,
+    "writer": {
+      "milliseconds": 11039,
+      "prompt_tokens": 963,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3474
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1",
+        "R2",
+        "R3"
+      ]
+    },
+    "decision_input_tokens": 933,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/2DBCEF66-88BF-4B32-A89D-4FAF9C05D38D/UK-EURelations#contribution-A067120D-F86E-4F6F-96B1-A66C99395071",
+        "pid": 20868,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/57C0B5AB-3C3F-4376-A0ED-9F032AC2C838/EU-UKRelationship#contribution-04213FFB-C095-4645-B45E-6DF8EAEEFF0D",
+        "pid": 49403,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/F1866FF6-7D4B-4D4E-8240-11718228D5A0/SanitaryandPhytosanitaryChecksatEUBorders#contribution-2F6536C7-47AD-4EE7-BB05-75E57E042460",
+        "pid": 43971,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "committee-speaking-time",
+    "kind": "voice-style",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2080,
+    "retrieval_ms": 50.229666027007625,
+    "writer": {
+      "milliseconds": 9098,
+      "prompt_tokens": 860,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3147
+    },
+    "answer": {
+      "facts": {
+        "answer": "10"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 830,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/D3C7FFCD-9417-4B15-BE3D-B584E5BD7CD8/AccesstoLegalServices#contribution-62392EDF-1BF4-49C5-ACC0-7149D39171CC",
+        "pid": 31323,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-24/debates/4C5B3F19-D15B-41DC-AD54-7745BB3E114F/ConstitutionalRoleofMPs#contribution-CF8A2B9B-2F4F-4CA5-A94A-D26B8A0CE06A",
+        "pid": 28482,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/ED21E31A-7A5A-4EBB-966B-CA2E3DF698F7/HeathrowExpansionNationalPolicyStatement#contribution-DD1893E0-7D61-4CF6-AA1D-013CFAB1F466",
+        "pid": 31464,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "committee-speaking-time",
+    "kind": "voice-style",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 1940,
+    "retrieval_ms": 36.130708002019674,
+    "writer": {
+      "milliseconds": 9250,
+      "prompt_tokens": 835,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3007
+    },
+    "answer": {
+      "facts": {
+        "answer": "10"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 805,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/D3C7FFCD-9417-4B15-BE3D-B584E5BD7CD8/AccesstoLegalServices#contribution-62392EDF-1BF4-49C5-ACC0-7149D39171CC",
+        "pid": 31323,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-24/debates/4C5B3F19-D15B-41DC-AD54-7745BB3E114F/ConstitutionalRoleofMPs#contribution-CF8A2B9B-2F4F-4CA5-A94A-D26B8A0CE06A",
+        "pid": 28482,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/5708DA12-B6F7-4BA2-9D11-9CC82BF9C410/WaterCompaniesPlanningApplications#contribution-5A055419-1790-429F-8FBC-E6CEA47C2666",
+        "pid": 21528,
+        "reference": false
+      }
+    ]
+  }
+]

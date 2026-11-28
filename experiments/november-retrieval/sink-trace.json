@@ -1,0 +1,7 @@
+[
+  {
+    "method": "GET",
+    "path": "/public-control",
+    "peer": "127.0.0.1"
+  }
+]

@@ -1,0 +1,690 @@
+[
+  {
+    "id": "worker-wait",
+    "method": "FTS5",
+    "seconds": 0.034212625003419816,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3-a366d845-513b-4e40-bc6e-ac452e532a2f.md",
+        "title": "Immigration and Asylum Bill",
+        "speaker": "Bell Ribeiro-Addy (Clapham and Brixton Hill) (Lab)",
+        "day": "2026-11-17",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-A366D845-513B-4E40-BC6E-AC452E532A2F",
+        "body": "do so for everyone else who came here on the same understanding? For almost everyone earning under £50,000, the wait for indefinite leave to remain will double from five years to 10, but someone earning over £125,000 will wait only three years. Settlement is not being earned; it is being bought and flogged to the highest bidder. I am old enough to remember the global pandemic, when low-paid workers were essential. Refugees will now wait 20 years, or thirty if they arrived by small boat. That punishes people for how they were forced to flee, which",
+        "chunk": 1,
+        "pid": 18170,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9-0e603082-e649-4472-bd28-c8025a54bdb3.md",
+        "title": "Immigration: Earned Settlement",
+        "speaker": "Lord Collins of Highbury (Lab)",
+        "day": "2026-11-02",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-0E603082-E649-4472-BD28-C8025A54BDB3",
+        "body": "have come here and played their part, and fair to the British citizens who are already here. I want to make that point before I address some of the other questions. Today, the Home Secretary set out a total transformation of settlement, which is no longer automatic and based on time served; instead, it is now earned, based on contribution to this country. As the noble Lord, Lord Foster, reminded us, we conducted a genuine consultation and we have set out a response that is fair to those people who came here and played their part",
+        "chunk": 1,
+        "pid": 33623,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-02-debate-5d3d04db-0971-4b22-b841-6414aafaa8c9-f2f12051-9ca0-47f9-8d15-5b316be6f3ec.md",
+        "title": "Immigration: Earned Settlement",
+        "speaker": "Lord Davies of Gower (Con)",
+        "day": "2026-11-02",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/5D3D04DB-0971-4B22-B841-6414AAFAA8C9/ImmigrationEarnedSettlement#contribution-F2F12051-9CA0-47F9-8D15-5B316BE6F3EC",
+        "body": "heard the arguments that this large cohort of migrants has “contributed” to our country, and, as such, they seem to have automatically earned the right to stay. But, of course, many of them have not contributed, at least not fiscally or economically. The Home Office itself has estimated the total cost of exempting care workers to be approximately £10 billion. If these workers intend to keep working in the sector, I would have thought there should be no issue with having to wait 10 to 15 years, like everyone else. It becomes an issue only if",
+        "chunk": 4,
+        "pid": 33685,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "worker-wait",
+    "method": "FTS5 + E5",
+    "seconds": 0.06938954201177694,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-17-debate-710e2102-ad6b-4646-8bae-087ac69569d3-a366d845-513b-4e40-bc6e-ac452e532a2f.md",
+        "title": "Immigration and Asylum Bill",
+        "speaker": "Bell Ribeiro-Addy (Clapham and Brixton Hill) (Lab)",
+        "day": "2026-11-17",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/710E2102-AD6B-4646-8BAE-087AC69569D3/ImmigrationandAsylumBill#contribution-A366D845-513B-4E40-BC6E-AC452E532A2F",
+        "body": "do so for everyone else who came here on the same understanding? For almost everyone earning under £50,000, the wait for indefinite leave to remain will double from five years to 10, but someone earning over £125,000 will wait only three years. Settlement is not being earned; it is being bought and flogged to the highest bidder. I am old enough to remember the global pandemic, when low-paid workers were essential. Refugees will now wait 20 years, or thirty if they arrived by small boat. That punishes people for how they were forced to flee, which",
+        "chunk": 1,
+        "pid": 18170,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e-ea26e8ae-064f-4da2-a1c8-082062e63324.md",
+        "title": "Immigration: Earned Settlement",
+        "speaker": "Chris Philp (Croydon South) (Con)",
+        "day": "2026-11-02",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-EA26E8AE-064F-4DA2-A1C8-082062E63324",
+        "body": "changes she has announced today. The Home Secretary now proposes to allow every single care worker and their dependants who arrived prior to May 2025—a number running into hundreds of thousands—to stay in this country beyond the expiry of their visa and, in the case of 75% of them, to stay permanently, even though she acknowledges that many of them arrived fraudulently. How can she justify allowing people who she acknowledges arrived in this country fraudulently to stay forever, at a cost that she herself has admitted is £10 billion? That is the cost of today’s",
+        "chunk": 3,
+        "pid": 203,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e-0e98dab9-1849-4127-a952-6a4e5d235b3e.md",
+        "title": "Immigration: Earned Settlement",
+        "speaker": "Sir Edward Leigh (Gainsborough) (Con)",
+        "day": "2026-11-02",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-0E98DAB9-1849-4127-A952-6A4E5D235B3E",
+        "body": "last point is that I agree with her that, if people come here illegally, they should not be allowed to claim an indefinite right to stay until after 20 years, but are we going to have people in hotels for 20 years? Surely this underlines the fact that we have to arrest people, detain them and return them, otherwise there is no deterrent.",
+        "chunk": 2,
+        "pid": 27,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "release-date",
+    "method": "FTS5",
+    "seconds": 0.028358332987409085,
+    "passages": [
+      {
+        "route": "contribution/lords-2026-11-04-debate-f48dfc05-504d-4356-9e19-2d3b6dba4da7-cfc95324-5d7d-4091-8bcc-7fe24e23afdf.md",
+        "title": "Global Human Rights and International Humanitarian Law Sanctions Regulations 2026",
+        "speaker": "Baroness Foster of Oxton (Con)",
+        "day": "2026-11-04",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/F48DFC05-504D-4356-9E19-2D3B6DBA4DA7/GlobalHumanRightsandInternationalHumanitarianLawSanctionsRegulations2026#contribution-CFC95324-5D7D-4091-8BCC-7FE24E23AFDF",
+        "body": "May I just bring to the attention of the Minister a press release that came out on 8 September, a week after Sir Keir Starmer resigned? It read: “UK to bring forward new powers to respond to moral emergency in Palestine, and target illegal settlement activity in the West Bank to protect the viability of a two-state solution”. I will happily give this document to the Minister when he has completed his response.",
+        "chunk": 0,
+        "pid": 36211,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-12-debate-920376f3-251f-409d-bd8d-ba5a5b8a3d19-8aea0092-216c-4d04-95e3-493ec3cabe29.md",
+        "title": "Gaza: Humanitarian Situation",
+        "speaker": "Stephen Doughty",
+        "day": "2026-11-12",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/920376F3-251F-409D-BD8D-BA5A5B8A3D19/GazaHumanitarianSituation#contribution-8AEA0092-216C-4D04-95E3-493EC3CABE29",
+        "body": "anywhere, not just in relation to Gaza and the west bank, but in Sudan, Yemen and many other conflicts that I know he cares about deeply. Perhaps he will explain at some point why his colleagues voted in that way. Lastly, the right hon. Gentleman mentioned Iran. He knows the Government’s position on Iran. He also knows of the very serious actions that we have taken against Iran, which include the huge package of sanctions against Iran announced on 8 September, action against Lebanese Hezbollah, and our condemnation of the proxy and partner groups it is",
+        "chunk": 4,
+        "pid": 12740,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-23-debate-3be43254-7805-44e6-9e6a-456252fcc4cd-f9750d55-4d40-4377-b442-fa71f688ac20.md",
+        "title": "Myanmar",
+        "speaker": "Mr Adnan Hussain (Blackburn) (Ind)",
+        "day": "2026-11-23",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-23/debates/3BE43254-7805-44E6-9E6A-456252FCC4CD/Myanmar#contribution-F9750D55-4D40-4377-B442-FA71F688AC20",
+        "body": "risk is known. Does the Foreign Secretary genuinely believe that sanctions against individuals and entities involved in violence and settlement activity on the west bank, alongside statements calling for humanitarian aid to enter Gaza, are sufficient to discharge that obligation? If not, what further action will the Government commit to?",
+        "chunk": 1,
+        "pid": 23891,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "release-date",
+    "method": "FTS5 + E5",
+    "seconds": 0.04558329100837,
+    "passages": [
+      {
+        "route": "contribution/lords-2026-11-04-debate-f48dfc05-504d-4356-9e19-2d3b6dba4da7-cfc95324-5d7d-4091-8bcc-7fe24e23afdf.md",
+        "title": "Global Human Rights and International Humanitarian Law Sanctions Regulations 2026",
+        "speaker": "Baroness Foster of Oxton (Con)",
+        "day": "2026-11-04",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/F48DFC05-504D-4356-9E19-2D3B6DBA4DA7/GlobalHumanRightsandInternationalHumanitarianLawSanctionsRegulations2026#contribution-CFC95324-5D7D-4091-8BCC-7FE24E23AFDF",
+        "body": "May I just bring to the attention of the Minister a press release that came out on 8 September, a week after Sir Keir Starmer resigned? It read: “UK to bring forward new powers to respond to moral emergency in Palestine, and target illegal settlement activity in the West Bank to protect the viability of a two-state solution”. I will happily give this document to the Minister when he has completed his response.",
+        "chunk": 0,
+        "pid": 36211,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-12-debate-920376f3-251f-409d-bd8d-ba5a5b8a3d19-5d9c556d-29ad-4f86-becd-6505d8c6edc8.md",
+        "title": "Gaza: Humanitarian Situation",
+        "speaker": "The Minister of State, Foreign, Commonwealth and Development Office (Stephen Doughty)",
+        "day": "2026-11-12",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/920376F3-251F-409D-BD8D-BA5A5B8A3D19/GazaHumanitarianSituation#contribution-5D9C556D-29AD-4F86-BECD-6505D8C6EDC8",
+        "body": "which I know are a matter of keen interest. In September, the Foreign Secretary announced further action in relation to Gaza and the west bank, including a new sanctions regime targeting illegal settlement activity. I can confirm that work is under way to prepare that regime, but in recent weeks we have also moved at pace to expand the global human rights sanctions regime to cover serious violations of international humanitarian law, including obstructing the delivery of or access to humanitarian aid. In recent weeks, we have also acted in other contexts. For example, in relation",
+        "chunk": 18,
+        "pid": 12712,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-12-debate-920376f3-251f-409d-bd8d-ba5a5b8a3d19-18d2ae40-c77e-4890-9f5e-ad50390ef81d.md",
+        "title": "Gaza: Humanitarian Situation",
+        "speaker": "Brian Mathew (Melksham and Devizes) (LD)",
+        "day": "2026-11-12",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/920376F3-251F-409D-BD8D-BA5A5B8A3D19/GazaHumanitarianSituation#contribution-18D2AE40-C77E-4890-9F5E-AD50390EF81D",
+        "body": "The situation in Gaza is intolerable, as is the situation in the west bank. Will the Government consider extending sanctions to Avi Bluth, the IDF general in charge of operations in the west bank, who has been observed by peace activists directing illegal settler militant action against the resident civilian population in Jericho?",
+        "chunk": 0,
+        "pid": 12665,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "prison-communication",
+    "method": "FTS5",
+    "seconds": 0.024692375009180978,
+    "passages": [
+      {
+        "route": "contribution/lords-2026-11-17-debate-21ae7296-cc4f-41c3-aecb-0519ed9dd23a-ed0d075d-a50c-4353-b9d4-96aa1ee9f26e.md",
+        "title": "Health Bill",
+        "speaker": "Baroness Benjamin (LD)",
+        "day": "2026-11-17",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-17/debates/21AE7296-CC4F-41C3-AECB-0519ED9DD23A/HealthBill#contribution-ED0D075D-A50C-4353-B9D4-96AA1EE9F26E",
+        "body": "well-being. They can also place enormous emotional and financial strain on families, with some feeling they have no option but to pay privately for support. One family described how their child experienced speech, language and communication difficulties from toddlerhood. Despite seeking early help, they faced repeated waiting times for assessment and therapy. With school approaching, and after around two years of waiting, they spent several thousand pounds of their own savings to access private assessment and speech and language therapy. Their daughter was diagnosed with a developmental language disorder and made good progress once support was",
+        "chunk": 2,
+        "pid": 41741,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-19-westhall-5db59360-244b-442d-9b27-47d5e85e4894-e5d22800-abac-44c0-ad36-5c134c498de3.md",
+        "title": "Disabled Children: Access to Therapy",
+        "speaker": "Gregory Stafford (Farnham and Bordon) (Con)",
+        "day": "2026-11-19",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-19/debates/5DB59360-244B-442D-9B27-47D5E85E4894/DisabledChildrenAccesstoTherapy#contribution-E5D22800-ABAC-44C0-AD36-5C134C498DE3",
+        "body": "not say who is responsible when a child is not seen. Fourthly, I am sorry to bang on about this to the Minister, but there is no workforce behind the plans. The 10-year health plan promised more speech and language support through Start for Life, but what has actually been delivered? The speech and language therapy action plan was promised more than a year ago, and we still have not seen it. In September, the Government declined to back an amendment to the Health Bill that would have required a strategy for speech and language therapy.",
+        "chunk": 10,
+        "pid": 23522,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-17-debate-76c6ac2b-f9e3-4fec-98c9-3d12ecd1e27e-9fae23e1-8f0a-4170-9036-ec0f308e1d02.md",
+        "title": "Health Bill",
+        "speaker": "Lord Bradley (Lab)",
+        "day": "2026-11-17",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-17/debates/76C6AC2B-F9E3-4FEC-98C9-3D12ECD1E27E/HealthBill#contribution-9FAE23E1-8F0A-4170-9036-EC0F308E1D02",
+        "body": "of the 14 allied health professionals. They support people of all ages—babies, children, young people and adults—who have communication disability, difficulty and differences, which are particularly relevant to eating, drinking and swallowing. They also support family members and carers of people with communication and swallowing needs, and the wider workforce supporting those people, through advice and training. Allied health professionals, including speech and language therapists, work across a range of settings such as education, health, justice and social care. It is in that context that I fully support Amendment 81A from the noble Baroness, Lady Finlay,",
+        "chunk": 1,
+        "pid": 42361,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "prison-communication",
+    "method": "FTS5 + E5",
+    "seconds": 0.03706291603157297,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-10-debate-c620e704-423e-4ac6-bdd2-26dadf431cd5-6127d140-8c81-4cd4-aa0f-b1bad0b80118.md",
+        "title": "Topical Questions",
+        "speaker": "Sonia Kumar (Dudley) (Lab)",
+        "day": "2026-11-10",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/C620E704-423E-4AC6-BDD2-26DADF431CD5/TopicalQuestions#contribution-6127D140-8C81-4CD4-AA0F-B1BAD0B80118",
+        "body": "Over 60% of people in prison have speech, language or communication needs. Effective rehabilitation must be holistic. To prevent reoffending and provide support, it is paramount that we address not only the offending behaviour, but the underlying communication, health, education and social needs. What steps is my hon. Friend the Minister taking to ensure that access to speech and language therapists and other allied health professionals is available in prison?",
+        "chunk": 0,
+        "pid": 9135,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-25-debate-669fcb10-88ef-4670-949b-af2eeb59b8f5-fa22874c-bffd-4563-9a2c-88f230d06f5c.md",
+        "title": "Health Bill",
+        "speaker": "Baroness Whitaker (Lab)",
+        "day": "2026-11-25",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-25/debates/669FCB10-88EF-4670-949B-AF2EEB59B8F5/HealthBill#contribution-FA22874C-BFFD-4563-9A2C-88F230D06F5C",
+        "body": "My Lords, I too support Amendment 279QL, so movingly explained by the noble Baroness, Lady Monckton of Dallington Forest. I declare my interests as a vice-president of the Royal College of Speech and Language Therapists, as a patron of the British Stammering Association, as a stammerer myself, and as a former member of the Tavistock and Portman NHS Trust. I will not repeat the arguments. The figures for children and young people who have these long-term speech and language communication problems are stark and disturbing. By the time that they are adults, the figure for the",
+        "chunk": 0,
+        "pid": 48182,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-25-debate-669fcb10-88ef-4670-949b-af2eeb59b8f5-69ee28fe-27cd-471d-9d6a-af49a3ec2243.md",
+        "title": "Health Bill",
+        "speaker": "Lord Evans of Rainow (Con)",
+        "day": "2026-11-25",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-25/debates/669FCB10-88EF-4670-949B-AF2EEB59B8F5/HealthBill#contribution-69EE28FE-27CD-471D-9D6A-AF49A3EC2243",
+        "body": "me to some wider questions that the Minister may wish to reflect on. The first is about language and communication. Good care depends on clear communication between clinician and patient. That matters most when the patient has a communication disability. We are fortunate to rely on many dedicated staff who trained overseas—and we owe them a great deal—but it is fair to ask whether there are any assessments of how language standards among staff, including those for whom English is not a first language, might contribute to miscommunication, particularly for patients who already struggle to be",
+        "chunk": 7,
+        "pid": 48041,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "treatment-gap",
+    "method": "FTS5",
+    "seconds": 0.035836084018228576,
+    "passages": [
+      {
+        "route": "contribution/lords-2026-11-12-debate-8615c30b-65eb-4f2f-b8ae-614cf6454880-2429e93e-102f-4337-ac67-355a4df76c9b.md",
+        "title": "Health: HIV",
+        "speaker": "Baroness Hyde of Bemerton (Lab)",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-2429E93E-102F-4337-AC67-355A4DF76C9B",
+        "body": "I pay tribute to the noble Lord, Lord Cashman, for all his work in this area. The HIV action plan committed £9 million over three years to establish that first retention and re-engagement initiative. It is a core part of the plan and is intended to support people diagnosed with HIV who, as the noble Lord said, are not currently retained in specialist care, and to help people re-engage where perhaps they have fallen out, and to restart effective treatment and achieve viral suppression. It will amplify existing work within local services and partner with the",
+        "chunk": 0,
+        "pid": 39589,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-12-debate-8615c30b-65eb-4f2f-b8ae-614cf6454880-8a04f020-3f40-4f9e-8b0a-0828e8267a9b.md",
+        "title": "Health: HIV",
+        "speaker": "Lord Doyle (Non-Afl)",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-8A04F020-3F40-4F9E-8B0A-0828E8267A9B",
+        "body": "My Lords, I thank my noble friend the Minister for reaffirming the Government’s commitment to ending new cases by 2030. This is an ambitious but essential goal for us to achieve. The action plan highlights the essential need to expand the amount of HIV testing, because we know that effective treatment is available once we have identified cases. What progress has been made on putting HIV testing on the NHS app? If the pilot is successful, will it be expanded?",
+        "chunk": 0,
+        "pid": 39604,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-12-debate-8615c30b-65eb-4f2f-b8ae-614cf6454880-968c1b7a-2f02-491e-b473-107f1ded15c9.md",
+        "title": "Health: HIV",
+        "speaker": "Baroness Pidgeon (LD)",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-968C1B7A-2F02-491E-B473-107F1DED15C9",
+        "body": "My Lords, according to the UKHSA, HIV testing in community settings fell by 33% between 2019 and 2024. Given the potential for community testing to reach people who might otherwise be missed, what are the Government doing to reverse this decline and expand access to testing closer to where people live?",
+        "chunk": 0,
+        "pid": 39605,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "treatment-gap",
+    "method": "FTS5 + E5",
+    "seconds": 0.0492893340124283,
+    "passages": [
+      {
+        "route": "contribution/lords-2026-11-12-debate-8615c30b-65eb-4f2f-b8ae-614cf6454880-2429e93e-102f-4337-ac67-355a4df76c9b.md",
+        "title": "Health: HIV",
+        "speaker": "Baroness Hyde of Bemerton (Lab)",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-2429E93E-102F-4337-AC67-355A4DF76C9B",
+        "body": "I pay tribute to the noble Lord, Lord Cashman, for all his work in this area. The HIV action plan committed £9 million over three years to establish that first retention and re-engagement initiative. It is a core part of the plan and is intended to support people diagnosed with HIV who, as the noble Lord said, are not currently retained in specialist care, and to help people re-engage where perhaps they have fallen out, and to restart effective treatment and achieve viral suppression. It will amplify existing work within local services and partner with the",
+        "chunk": 0,
+        "pid": 39589,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-12-debate-8615c30b-65eb-4f2f-b8ae-614cf6454880-4058e90b-99ce-48dd-9d35-afe53b1babee.md",
+        "title": "Health: HIV",
+        "speaker": "Lord Cashman (Non-Afl)",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-4058E90B-99CE-48DD-9D35-AFE53B1BABEE",
+        "body": "My Lords, I refer to my register of interests, particularly as a patron of the Terrence Higgins Trust. I congratulate the Government on their HIV Action Plan for England, 2025 to 2030—and previous Governments. This is an example of what we can achieve when we work together across the political spectrum. However, can the Minister say how we will connect with the 5,000 people who are currently living with diagnosed HIV but not accessing treatment? These people are at risk of becoming seriously ill—indeed, some already have. I look forward to the Minister’s reply on this",
+        "chunk": 0,
+        "pid": 39592,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-12-debate-8615c30b-65eb-4f2f-b8ae-614cf6454880-968c1b7a-2f02-491e-b473-107f1ded15c9.md",
+        "title": "Health: HIV",
+        "speaker": "Baroness Pidgeon (LD)",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-968C1B7A-2F02-491E-B473-107F1DED15C9",
+        "body": "My Lords, according to the UKHSA, HIV testing in community settings fell by 33% between 2019 and 2024. Given the potential for community testing to reach people who might otherwise be missed, what are the Government doing to reverse this decline and expand access to testing closer to where people live?",
+        "chunk": 0,
+        "pid": 39605,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "driving-plan",
+    "method": "FTS5",
+    "seconds": 0.030336791009176522,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-16-wms-26111750000012-fd732141-efcf-4ef2-9eea-93b829b8baff.md",
+        "title": "Driver and Vehicle Standards Agency: Business Plan 2026-27",
+        "speaker": "The Parliamentary Under-Secretary of State for Transport (Justin Madders)",
+        "day": "2026-11-16",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/26111750000012/DriverandVehicleStandardsAgencyBusinessPlan2026-27#contribution-FD732141-EFCF-4EF2-9EEA-93B829B8BAFF",
+        "body": "I am pleased to announce the publication of the 2026 to 2027 business plan for the Driver and Vehicle Standards Agency. DVSA’s business plan sets out the key business priorities the agency will deliver, including any significant changes it plans to make to its services, and performance indicators by which its performance will be assessed. This plan allows service users and members of the public to understand DVSA’s plans for delivering its core services and managing its finances. The business plan will be available electronically on www.gov.uk and a copy will be placed in the Libraries",
+        "chunk": 0,
+        "pid": 17045,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-25-westhall-848aa805-bb39-4ccf-812c-db2373b0b219-28506be3-54ee-4186-bc62-f7032b7538f8.md",
+        "title": "Driverless Road Vehicles: Regulation",
+        "speaker": "Siân Berry",
+        "day": "2026-11-25",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/848AA805-BB39-4CCF-812C-DB2373B0B219/DriverlessRoadVehiclesRegulation#contribution-28506BE3-54EE-4186-BC62-F7032B7538F8",
+        "body": "current situation for autonomous passenger services is that decisions are centralised at the Driver and Vehicle Standards Agency, with local areas able only to consent or not—they cannot put their own conditions on operators or mandate operator training, for example. That must change, because the widespread licensing of autonomous vehicles has implications for so many issues at a local government and mayoral level. The power must be passed down very quickly, so can the Minister assure us that that is the plan and say when that will happen? Along with the assembly, I have concerns about",
+        "chunk": 5,
+        "pid": 30104,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-25-debate-b776c0fa-dd37-437f-910b-8e592493adcf-2ac6125a-7fe5-4b1c-8fc7-e183de0fd06e.md",
+        "title": "Sale of Electric Personal Vehicles",
+        "speaker": "Lola McEvoy (Darlington) (Lab)",
+        "day": "2026-11-25",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/B776C0FA-DD37-437F-910B-8E592493ADCF/SaleofElectricPersonalVehicles#contribution-2AC6125A-7FE5-4B1C-8FC7-E183DE0FD06E",
+        "body": "the wrong side of the law. For the avoidance of doubt, I will provide the House with some real examples of this. Currently, the law states that if I buy a car, the seller must verify my identity and contact the Driver and Vehicle Licensing Agency to transfer ownership of that vehicle to me. The DVLA would then send out a V5C, and I could either apply for a statutory off road notification or tax, insure and drive my car in line with local traffic laws. I would face penalties for breaking speed limits regardless of",
+        "chunk": 5,
+        "pid": 29560,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "driving-plan",
+    "method": "FTS5 + E5",
+    "seconds": 0.04548462500679307,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-16-wms-26111750000012-fd732141-efcf-4ef2-9eea-93b829b8baff.md",
+        "title": "Driver and Vehicle Standards Agency: Business Plan 2026-27",
+        "speaker": "The Parliamentary Under-Secretary of State for Transport (Justin Madders)",
+        "day": "2026-11-16",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/26111750000012/DriverandVehicleStandardsAgencyBusinessPlan2026-27#contribution-FD732141-EFCF-4EF2-9EEA-93B829B8BAFF",
+        "body": "I am pleased to announce the publication of the 2026 to 2027 business plan for the Driver and Vehicle Standards Agency. DVSA’s business plan sets out the key business priorities the agency will deliver, including any significant changes it plans to make to its services, and performance indicators by which its performance will be assessed. This plan allows service users and members of the public to understand DVSA’s plans for delivering its core services and managing its finances. The business plan will be available electronically on www.gov.uk and a copy will be placed in the Libraries",
+        "chunk": 0,
+        "pid": 17045,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-25-westhall-848aa805-bb39-4ccf-812c-db2373b0b219-28506be3-54ee-4186-bc62-f7032b7538f8.md",
+        "title": "Driverless Road Vehicles: Regulation",
+        "speaker": "Siân Berry",
+        "day": "2026-11-25",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/848AA805-BB39-4CCF-812C-DB2373B0B219/DriverlessRoadVehiclesRegulation#contribution-28506BE3-54EE-4186-BC62-F7032B7538F8",
+        "body": "areas multiple times. The report has told those of us in governance and policy making that we need to get all the data from the companies about the testing of their vehicles on our own streets, and that this must include near-misses, malfunctions and odd behaviours—not just crashes. In my view, the data must be subject to independent analysis and research, not just research sponsored by the companies, and the companies need to be completely transparent about the risks and potential problems that they see in testing here. We need a higher standard than that of",
+        "chunk": 2,
+        "pid": 30101,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-03-debate-d18cfed5-9f02-4c73-8b60-d61d31317043-8ae120b3-eb95-4ea3-93bd-72b439be318a.md",
+        "title": "Community Transport Services: Minibus Drivers",
+        "speaker": "Freddie van Mierlo",
+        "day": "2026-11-03",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/D18CFED5-9F02-4C73-8B60-D61D31317043/CommunityTransportServicesMinibusDrivers#contribution-8AE120B3-EB95-4EA3-93BD-72B439BE318A",
+        "body": "a training-based upgrade accredited by the Driver and Vehicle Standards Agency, similar to the minibus driver awareness scheme, or MiDAS, which is a national programme of quality-assured education and training for the community transport sector. This approach was supported by respondents to the Government’s 2022 call for evidence. The CTA proposal requires an online theory test, a short practical session, and on-road and medical assessments, but, crucially, with a cost of under £300. The proposal allows the number of drivers to be increased in a safe way, using an established information and learning assessment. Will the",
+        "chunk": 2,
+        "pid": 3314,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "deportation-total",
+    "method": "FTS5",
+    "seconds": 0.036595125013263896,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-18-debate-2dbcef66-88bf-4b32-a89d-4faf9c05d38d-05cd50cd-982d-45db-9b4b-8f1d00a6cda2.md",
+        "title": "UK-EU Relations",
+        "speaker": "Priti Patel",
+        "day": "2026-11-18",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/2DBCEF66-88BF-4B32-A89D-4FAF9C05D38D/UK-EURelations#contribution-05CD50CD-982D-45DB-9B4B-8F1D00A6CDA2",
+        "body": "powers to Brussels would lead to lower prices are therefore not accurate, which is why the modelling is fundamental. I appreciate that the Minister is from the Foreign, Commonwealth and Development Office, but in this context we need to see the dynamic modelling from the Treasury, because the claims are not backed up by facts. The economic analyses, predictions and models that are often quoted are subject to huge variability, big caveats and questionable assumptions. For example, the 4% figure from the Office for Budget Responsibility, which is often quoted, is not an OBR forecast; it",
+        "chunk": 3,
+        "pid": 20485,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-18-debate-ad55a228-ea17-476f-b3fd-868ce95d719c-3a92a9ad-68f4-4179-b1e0-b61546114dfb.md",
+        "title": "Shabir Ahmed",
+        "speaker": "Viscount Goschen (Con)",
+        "day": "2026-11-18",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-3A92A9AD-68F4-4179-B1E0-B61546114DFB",
+        "body": "My Lords, on 15 October, in your Lordships’ House, my noble friend Lady Monckton asked the Minister: “How many of this cohort” of foreign national offenders “who are liable to deportation remain in the United Kingdom due to Article 8 claims and human rights claims?”.—[Official Report, 15/10/26; col. 337.] The Minister, the noble Lord, Lord Lemos, answered that that information was available but not yet in a form to be published. I wonder if the noble Lord could update the House on that.",
+        "chunk": 0,
+        "pid": 42991,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-18-debate-ad55a228-ea17-476f-b3fd-868ce95d719c-9a2e8a67-7bf0-420c-b79c-88bdfcca159b.md",
+        "title": "Shabir Ahmed",
+        "speaker": "Lord Collins of Highbury (Lab)",
+        "day": "2026-11-18",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-9A2E8A67-7BF0-420C-B79C-88BDFCCA159B",
+        "body": "We are pursuing every available option to deport Shabir Ahmed, and, as I say, it would be inappropriate to give a running commentary on those discussions. Since coming to power, this Government have returned nearly 12,000 foreign national offenders between 1 July 2024 and 31 July 2026. That figure includes both enforced and voluntary returns. Compared with the final two years of the previous Government, foreign national offender returns have increased by 41%.",
+        "chunk": 0,
+        "pid": 43001,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "deportation-total",
+    "method": "FTS5 + E5",
+    "seconds": 0.053417791990796104,
+    "passages": [
+      {
+        "route": "contribution/lords-2026-11-18-debate-ad55a228-ea17-476f-b3fd-868ce95d719c-3a92a9ad-68f4-4179-b1e0-b61546114dfb.md",
+        "title": "Shabir Ahmed",
+        "speaker": "Viscount Goschen (Con)",
+        "day": "2026-11-18",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-3A92A9AD-68F4-4179-B1E0-B61546114DFB",
+        "body": "My Lords, on 15 October, in your Lordships’ House, my noble friend Lady Monckton asked the Minister: “How many of this cohort” of foreign national offenders “who are liable to deportation remain in the United Kingdom due to Article 8 claims and human rights claims?”.—[Official Report, 15/10/26; col. 337.] The Minister, the noble Lord, Lord Lemos, answered that that information was available but not yet in a form to be published. I wonder if the noble Lord could update the House on that.",
+        "chunk": 0,
+        "pid": 42991,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-18-debate-ad55a228-ea17-476f-b3fd-868ce95d719c-9a2e8a67-7bf0-420c-b79c-88bdfcca159b.md",
+        "title": "Shabir Ahmed",
+        "speaker": "Lord Collins of Highbury (Lab)",
+        "day": "2026-11-18",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-9A2E8A67-7BF0-420C-B79C-88BDFCCA159B",
+        "body": "We are pursuing every available option to deport Shabir Ahmed, and, as I say, it would be inappropriate to give a running commentary on those discussions. Since coming to power, this Government have returned nearly 12,000 foreign national offenders between 1 July 2024 and 31 July 2026. That figure includes both enforced and voluntary returns. Compared with the final two years of the previous Government, foreign national offender returns have increased by 41%.",
+        "chunk": 0,
+        "pid": 43001,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-03-pbc-ede77973-c777-4d75-b83e-afe0f356321b-f8e168b6-83e3-4d72-9236-990a40e02b82.md",
+        "title": "Immigration and Asylum Bill (Sixteenth sitting)",
+        "speaker": "",
+        "day": "2026-11-03",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/ede77973-c777-4d75-b83e-afe0f356321b/ImmigrationandAsylumBill(Sixteenthsitting)#contribution-f8e168b6-83e3-4d72-9236-990a40e02b82",
+        "body": "(a) omit the definition of ‘human rights claim’;",
+        "chunk": 0,
+        "pid": 6256,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "portable-qualifications",
+    "method": "FTS5",
+    "seconds": 0.01793491601711139,
+    "passages": [
+      {
+        "route": "contribution/lords-2026-11-24-debate-4255a77a-7234-4b79-8d5e-c27bfede9609-30d468f2-0bea-4d88-b048-518cef465f6f.md",
+        "title": "Representation of the People Bill",
+        "speaker": "Lord Young of Acton (Con)",
+        "day": "2026-11-24",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-24/debates/4255A77A-7234-4B79-8D5E-C27BFEDE9609/RepresentationofthePeopleBill#contribution-30D468F2-0BEA-4D88-B048-518CEF465F6F",
+        "body": "last week says that the Government “intend to launch an EU-UK Digital Partnership … to enhance cooperation on digital and technology matters, in areas that could cover … digital wallets and credentials” and “online safety”. A government-backed digital wallet holding your verified credentials is digital ID by another name. The EU is rolling out its own digital identity wallet and wants the largest online platforms to accept it. You do not need to be a conspiracy theorist to see where this road could lead. If Parliament wants digital ID, Ministers should bring forward primary legislation, make",
+        "chunk": 6,
+        "pid": 46521,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-19-debate-f1866ff6-7d4b-4d4e-8240-11718228d5a0-f8c5bd98-1a1a-4b7a-982b-97f7abcd8e1b.md",
+        "title": "Sanitary and Phytosanitary Checks at EU Borders",
+        "speaker": "Lord Lilley (Con)",
+        "day": "2026-11-19",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/F1866FF6-7D4B-4D4E-8240-11718228D5A0/SanitaryandPhytosanitaryChecksatEUBorders#contribution-F8C5BD98-1A1A-4B7A-982B-97F7ABCD8E1B",
+        "body": "EU electricity market. These things are a common benefit—they suit both sides—so why should we pay?”—[Official Report, 26/2/26; col. 777.] Perhaps the Minister could tell us why we should pay for getting nothing.",
+        "chunk": 25,
+        "pid": 44207,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-26-debate-57c0b5ab-3c3f-4376-a0ed-9f032ac2c838-04213ffb-c095-4645-b45e-6df8eaeeff0d.md",
+        "title": "EU-UK Relationship",
+        "speaker": "Lord Tugendhat (Con)",
+        "day": "2026-11-26",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/57C0B5AB-3C3F-4376-A0ED-9F032AC2C838/EU-UKRelationship#contribution-04213FFB-C095-4645-B45E-6DF8EAEEFF0D",
+        "body": "that the circumstances are not propitious to the ultimate destination that some people have been talking about. We have a big enough challenge in completing agreements on a variety of discrete and sensible measures that are in the interests of both sides.",
+        "chunk": 4,
+        "pid": 49405,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "portable-qualifications",
+    "method": "FTS5 + E5",
+    "seconds": 0.048735249001765624,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-18-debate-2dbcef66-88bf-4b32-a89d-4faf9c05d38d-a067120d-f86e-4f6f-96b1-a66c99395071.md",
+        "title": "UK-EU Relations",
+        "speaker": "Tony Vaughan (Folkestone and Hythe) (Lab)",
+        "day": "2026-11-18",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/2DBCEF66-88BF-4B32-A89D-4FAF9C05D38D/UK-EURelations#contribution-A067120D-F86E-4F6F-96B1-A66C99395071",
+        "body": "When we talk about this issue, it is really important to look forwards—not back at the rights and wrongs of the 2016 referendum, but at how we get the best deal for Britain now, given that businesses are suffering all over the country. A good place to see the problems that have arisen from the Conservative Brexit deal is my constituency. We are the gateway to Europe; we have the channel tunnel and the M20 to the port of Dover. The access to Europe that my constituency provides determines whether a local business can get its",
+        "chunk": 0,
+        "pid": 20868,
+        "rank": 1
+      },
+      {
+        "route": "contribution/lords-2026-11-26-debate-57c0b5ab-3c3f-4376-a0ed-9f032ac2c838-04213ffb-c095-4645-b45e-6df8eaeeff0d.md",
+        "title": "EU-UK Relationship",
+        "speaker": "Lord Tugendhat (Con)",
+        "day": "2026-11-26",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/57C0B5AB-3C3F-4376-A0ED-9F032AC2C838/EU-UKRelationship#contribution-04213FFB-C095-4645-B45E-6DF8EAEEFF0D",
+        "body": "yesterday was very wise. We should try to make the best of Brexit and see where that leads. That is a big enough challenge in itself. To start talking about ultimate destinations is premature. There are many reasons for this. One is the situation on the other side of the channel. In the recent history of the European Union, the decision-making process has become extremely difficult, much more difficult than in the years when I and the noble Lords, Lord Hannay and Lord Kerr, were involved. It is hard to see the member states in the",
+        "chunk": 2,
+        "pid": 49403,
+        "rank": 2
+      },
+      {
+        "route": "contribution/lords-2026-11-19-debate-f1866ff6-7d4b-4d4e-8240-11718228d5a0-2f6536c7-47ad-4ee7-bb05-75e57e042460.md",
+        "title": "Sanitary and Phytosanitary Checks at EU Borders",
+        "speaker": "Lord Frost (Non-Afl)",
+        "day": "2026-11-19",
+        "house": "Lords",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/F1866FF6-7D4B-4D4E-8240-11718228D5A0/SanitaryandPhytosanitaryChecksatEUBorders#contribution-2F6536C7-47AD-4EE7-BB05-75E57E042460",
+        "body": "generally. In my experience, most negotiations involve giving something that benefits the other side in return for something that benefits you. This negotiation has involved asking for things that benefit the EU in return for conceding things that benefit the EU. It is a novel approach to negotiations. One must spare a thought for Maroš Šefčovič, my old sparring partner, who must have been a bit flummoxed by this. He has, after all, spent a career negotiating with people who actually wanted to get something from him. He was not in his current job between 2016",
+        "chunk": 1,
+        "pid": 43971,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "committee-speaking-time",
+    "method": "FTS5",
+    "seconds": 0.036130708002019674,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-26-debate-d3c7ffcd-9417-4b15-be3d-b584e5bd7cd8-62392edf-1bf4-49c5-acc0-7149d39171cc.md",
+        "title": "Access to Legal Services",
+        "speaker": "Madam Deputy Speaker (Judith Cummins)",
+        "day": "2026-11-26",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/D3C7FFCD-9417-4B15-BE3D-B584E5BD7CD8/AccesstoLegalServices#contribution-62392EDF-1BF4-49C5-ACC0-7149D39171CC",
+        "body": "We now come to the Select Committee statement on behalf of the Justice Committee. Catherine Atkinson will speak for up to 10 minutes, during which no interventions may be taken. At the conclusion of the statement, Members may ask questions on the subject of the statement. These should be brief questions, not full speeches.",
+        "chunk": 0,
+        "pid": 31323,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-24-westhall-4c5b3f19-d15b-41dc-ad54-7745bb3e114f-cf8a2b9b-2f4f-4ca5-a94a-d26b8a0ce06a.md",
+        "title": "Constitutional Role of MPs",
+        "speaker": "Mr Peter Bedford (Mid Leicestershire) (Con)",
+        "day": "2026-11-24",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-24/debates/4C5B3F19-D15B-41DC-AD54-7745BB3E114F/ConstitutionalRoleofMPs#contribution-CF8A2B9B-2F4F-4CA5-A94A-D26B8A0CE06A",
+        "body": "sitting days. The average UQ lasts about 40 minutes and ministerial statements about 50. Because they come straight after questions, the main business starts later, and it is very often legislative time that gets squeezed. Speeches are cut to a few minutes and amendments can go undebated. We could move urgent questions and statements to the end of a sitting day; Ministers would still be answerable to the House that same day, but scrutiny of legislation would come first. Thirdly, we should make sunset clauses the default for regulatory measures, so that as rules expire Parliament",
+        "chunk": 9,
+        "pid": 28482,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-18-westhall-5708da12-b6f7-4ba2-9d11-9cc82bf9c410-5a055419-1790-429f-8fbc-e6cea47c2666.md",
+        "title": "Water Companies: Planning Applications",
+        "speaker": "Paula Barker (in the Chair)",
+        "day": "2026-11-18",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/5708DA12-B6F7-4BA2-9D11-9CC82BF9C410/WaterCompaniesPlanningApplications#contribution-5A055419-1790-429F-8FBC-E6CEA47C2666",
+        "body": "Before I call the Minister, it may be helpful for Members to know that in an hour-long debate, the Opposition spokespersons’ speeches should be five minutes, and the Minister’s should be 10 minutes.",
+        "chunk": 0,
+        "pid": 21528,
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "id": "committee-speaking-time",
+    "method": "FTS5 + E5",
+    "seconds": 0.050229666027007625,
+    "passages": [
+      {
+        "route": "contribution/commons-2026-11-26-debate-d3c7ffcd-9417-4b15-be3d-b584e5bd7cd8-62392edf-1bf4-49c5-acc0-7149d39171cc.md",
+        "title": "Access to Legal Services",
+        "speaker": "Madam Deputy Speaker (Judith Cummins)",
+        "day": "2026-11-26",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/D3C7FFCD-9417-4B15-BE3D-B584E5BD7CD8/AccesstoLegalServices#contribution-62392EDF-1BF4-49C5-ACC0-7149D39171CC",
+        "body": "We now come to the Select Committee statement on behalf of the Justice Committee. Catherine Atkinson will speak for up to 10 minutes, during which no interventions may be taken. At the conclusion of the statement, Members may ask questions on the subject of the statement. These should be brief questions, not full speeches.",
+        "chunk": 0,
+        "pid": 31323,
+        "rank": 1
+      },
+      {
+        "route": "contribution/commons-2026-11-24-westhall-4c5b3f19-d15b-41dc-ad54-7745bb3e114f-cf8a2b9b-2f4f-4ca5-a94a-d26b8a0ce06a.md",
+        "title": "Constitutional Role of MPs",
+        "speaker": "Mr Peter Bedford (Mid Leicestershire) (Con)",
+        "day": "2026-11-24",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-24/debates/4C5B3F19-D15B-41DC-AD54-7745BB3E114F/ConstitutionalRoleofMPs#contribution-CF8A2B9B-2F4F-4CA5-A94A-D26B8A0CE06A",
+        "body": "sitting days. The average UQ lasts about 40 minutes and ministerial statements about 50. Because they come straight after questions, the main business starts later, and it is very often legislative time that gets squeezed. Speeches are cut to a few minutes and amendments can go undebated. We could move urgent questions and statements to the end of a sitting day; Ministers would still be answerable to the House that same day, but scrutiny of legislation would come first. Thirdly, we should make sunset clauses the default for regulatory measures, so that as rules expire Parliament",
+        "chunk": 9,
+        "pid": 28482,
+        "rank": 2
+      },
+      {
+        "route": "contribution/commons-2026-11-26-debate-ed21e31a-7a5a-4ebb-966b-ca2e3df698f7-dd1893e0-7d61-4cf6-aa1d-013cfab1f466.md",
+        "title": "Heathrow Expansion National Policy Statement",
+        "speaker": "Madam Deputy Speaker (Judith Cummins)",
+        "day": "2026-11-26",
+        "house": "Commons",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/ED21E31A-7A5A-4EBB-966B-CA2E3DF698F7/HeathrowExpansionNationalPolicyStatement#contribution-DD1893E0-7D61-4CF6-AA1D-013CFAB1F466",
+        "body": "We now come to the Select Committee statement on behalf of the Transport Committee. Ruth Cadbury will speak for up to 10 minutes, during which no interventions may be taken. At the conclusion of the statement, Members may ask questions on the subject of the statement. These should be brief questions, not full speeches.",
+        "chunk": 0,
+        "pid": 31464,
+        "rank": 3
+      }
+    ]
+  }
+]

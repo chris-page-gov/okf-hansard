@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Repeat the Hansard experiment</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; }
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; }
+code span.at { color: #7d9029; }
+code span.bn { color: #40a070; }
+code span.bu { color: #008000; }
+code span.cf { color: #007020; font-weight: bold; }
+code span.ch { color: #4070a0; }
+code span.cn { color: #880000; }
+code span.co { color: #60a0b0; font-style: italic; }
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; }
+code span.do { color: #ba2121; font-style: italic; }
+code span.dt { color: #902000; }
+code span.dv { color: #40a070; }
+code span.er { color: #ff0000; font-weight: bold; }
+code span.ex { }
+code span.fl { color: #40a070; }
+code span.fu { color: #06287e; }
+code span.im { color: #008000; font-weight: bold; }
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; }
+code span.kw { color: #007020; font-weight: bold; }
+code span.op { color: #666666; }
+code span.ot { color: #007020; }
+code span.pp { color: #bc7a00; }
+code span.sc { color: #4070a0; }
+code span.ss { color: #bb6688; }
+code span.st { color: #4070a0; }
+code span.va { color: #19177c; }
+code span.vs { color: #4070a0; }
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
+</style>
+  <style type="text/css">:root { color-scheme:light dark; font:100%/1.6 system-ui,sans-serif; }
+body { max-width:52rem; margin:0 auto; padding:1.2rem clamp(1rem,4vw,3rem) 4rem; }
+h1,h2,h3 { line-height:1.24; text-wrap:balance; }
+h1 { font-size:clamp(1.8rem,5vw,2.7rem); } h2 { margin-top:2rem; }
+a { color:#1857a1; text-underline-offset:0.14em; overflow-wrap:anywhere; }
+a:focus-visible { outline:3px solid #bf6407; outline-offset:3px; }
+table { display:block; overflow-x:auto; border-collapse:collapse; margin:1rem 0; }
+th,td { padding:.45em .6em; border-bottom:1px solid #aaa; text-align:left; }
+th { vertical-align:bottom; } tr { vertical-align:top; } code { overflow-wrap:anywhere; }
+@media (prefers-color-scheme:dark) { a { color:#9ecbff; } }
+@media print { body { max-width:100%; font-size:10pt; } h2,h3 { break-after:avoid; } tr {break-inside:avoid;} }
+</style>
+</head>
+<body>
+<h1 id="repeat-the-november-retrieval-experiment">Repeat the November
+retrieval experiment</h1>
+<h2 id="check-the-published-results">Check the published results</h2>
+<p>Read the <a href="report.html">beginner report</a> or follow a <a href="casebook.html">casebook question</a> to the original Hansard
+contributions. A clean checkout contains the frozen questions, the
+passages each search returned, the two models’ decisions and answers,
+and the scores for all 58 trials. To verify their checksums and
+reproduce the scores from those files, run the following command from
+the repository root with Python 3.12. This check runs offline, without
+the SSD or model weights.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-B</span> <span class="at">-m</span> unittest discover <span class="at">-s</span> tests <span class="at">-p</span> test_november_retrieval.py <span class="at">-v</span></span></code></pre></div>
+<h2 id="repeat-the-searches-and-model-inference">Repeat the searches and
+model inference</h2>
+<p>The full experiment runs on Apple Silicon. Phase one reads published
+parliamentary material and provisions pinned public model weights. In
+phase two the macOS network sandbox encloses the search, decision and
+writing processes. No API key is needed. Model files and derived indexes
+belong on a drive with sufficient space.</p>
+<ol type="1">
+<li><p>Start with the Hansard repository and the verified publication
+receipt at commit <code>41a340e06ec02b7d5d4d5802e893534697328d32</code>.
+Use its matching local capture, release and site directories. The
+published site provides coverage and source links. Reconstructing this
+exact full-text experiment also requires the hash-verified capture used
+to build that release.</p></li>
+<li><p>Extract <code>scripts</code> and
+<code>experiments/reference-consumer</code> from Hansard main commit
+<code>e374ed9f7702c81693851a273d4ce3aab9923099</code> to the
+<code>upstream</code> directory beside these scripts. This pins the
+capture reader, model profiles, status instructions, writer and sandbox
+supervisor. From the experiment directory in a clean checkout, run the
+following commands before importing the runners.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> upstream</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> <span class="at">-C</span> ../.. archive e374ed9f7702c81693851a273d4ce3aab9923099 scripts experiments/reference-consumer <span class="kw">|</span> <span class="fu">tar</span> <span class="at">-xf</span> <span class="at">-</span> <span class="at">-C</span> upstream</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> ../upstream voice/upstream</span></code></pre></div></li>
+<li><p>Install the versions in <a href="environment.txt">environment.txt</a> in a dedicated Python 3.12
+environment. Create an empty <code>&lt;store&gt;/model</code> directory
+on the SSD. Use <code>python provision_e5.py &lt;store&gt;/model</code>
+to acquire and verify the inference weights and tokenizer from the
+public E5 revision. The script checks each file against the <a href="e5-checksums.txt">public model-file checksums</a>. The weights use
+SHA-256. The smaller files use Git blob object IDs. The original
+llama.cpp b11556 binaries and OpenJev and Bonsai weights are specified
+in the upstream profiles.</p></li>
+<li><p>Use
+<code>prepare.py &lt;publication.json&gt; &lt;store&gt;</code> to create
+<code>corpus.jsonl</code>. It verifies the source files, full
+contribution count and per-House counts. Check the resulting digest
+against <a href="protocol.json">the frozen protocol</a>. Use the
+supplied <code>questions.json</code> and <code>queries.json</code> for
+an exact replay. Only <code>queries.json</code>, with no reference
+answers or source IDs, feeds search and answer generation.</p></li>
+<li><p>Run
+<code>python retrieval.py --store &lt;store&gt; --output &lt;store&gt;/index-02</code>
+with the E5 environment. Store the E5 files in
+<code>&lt;store&gt;/model</code>. It builds both indexes, encodes all
+passages, checks the vector norms and similarity range, runs both
+searches and records the isolated worker probes.</p></li>
+<li><p>Run
+<code>python answer.py --index &lt;store&gt;/index-02 --output &lt;store&gt;/answers-01 --binary &lt;llama-server&gt; --weights &lt;OpenJev-GGUF&gt; --writer-binary &lt;llama-completion&gt; --writer-weights &lt;Bonsai-GGUF&gt;</code>.
+The supervisor verifies the model and binary digests. It runs OpenJev,
+unloads it, then runs Bonsai. The underlying question, output fields,
+generation seed and rendering rules are shared across each pair. Unlike
+the earlier format test, each retrieval method can return different
+passages.</p></li>
+<li><p>Run
+<code>score.py &lt;index-directory&gt; &lt;answer-directory&gt;</code>
+to compare the outputs with the sealed-off answer key. The scoring
+program checks the frozen question file hash and writes
+<code>scores.json</code>.</p></li>
+</ol>
+<p>The supervised workers require a macOS session that permits Seatbelt
+and the supervisor’s one authorised loopback request per run. The
+benchmark stops on failed isolation checks or budget overruns. Under the
+previous test’s rules, a denial requires a handling-policy citation.
+This public corpus contains no private handling-policy record. A denial
+therefore withholds the writer output.</p>
+<p>The query set is source-led. The author inspected a deterministic
+sample of anchored contributions and wrote new questions before looking
+at either method’s rankings. The sample selected one record per
+available date and House from attributed contributions with 44–105
+words, a number in the text and a multiword debate title. It excluded
+several topics from the earlier benchmark. The choice within each
+eligible group minimised SHA-256 of “retrieval-round1” plus the source
+route. The questions are new to this experiment. A comparison of
+training corpora was outside its scope.</p>
+<p><a href="questions.json">Question selection and reference answers</a>
+· <a href="protocol.json">Original search and scoring plan</a> · <a href="https://huggingface.co/intfloat/e5-small-v2/tree/ffb93f3bd4047442299a41ebb6fa998a38507c52">Public
+E5 model</a> · <a href="https://github.com/chris-page-gov/okf-hansard/tree/e374ed9f7702c81693851a273d4ce3aab9923099/experiments/reference-consumer">Hansard
+runner and model profiles</a></p>
+<h2 id="additional-conversational-questions">Additional conversational
+questions</h2>
+<p>The primary retrieval results showed a ceiling on questions
+containing explicit speaker or institution clues. Before any further
+look-ups, eight new questions and their reference answers were frozen in
+<a href="voice/questions.json">voice/questions.json</a>. These used all
+eligible source records for an independent sample: every other sitting
+date in the primary date list, alternating Commons and Lords. The
+selection excluded titles in the first source sample. It used the same
+attributed, contribution-anchored, numeric-text eligibility rules with a
+42–105 word range and chose the smallest hash of “voice-holdout-1” plus
+the route. One date and House combination had no qualifying record.
+Questions omitted the speaker’s name and used a conversational style. No
+phone recording or speech transcription formed part of this search
+experiment.</p>
+<p>Run
+<code>followup_search.py --store &lt;store&gt; --output &lt;store&gt;/voice-index</code>
+using the second, numerically checked primary index at
+<code>&lt;store&gt;/index-02</code>. It opens the SQLite index
+read-only, memory-maps the saved E5 vectors, reproduces all 42 original
+top-three lists and then handles the new queries. Run
+<code>voice/answer.py</code> with the same model files and its own
+output directory, then <code>voice/score.py</code> with the new index
+and answers. The two answer runners and scoring programs are
+byte-identical. The score tables distinguish the two question sets.</p>
+<p>The primary run’s first vector multiplication emitted floating-point
+warnings on macOS. The second build explicitly summed each vector
+product and checked that all similarity values were finite and within
+the possible cosine range. It returned the same three passages in the
+same order for every original question and method. All reported answers
+use the checked build.</p>
+</body>
+</html>

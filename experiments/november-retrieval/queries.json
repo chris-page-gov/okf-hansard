@@ -1,0 +1,151 @@
+[
+  {
+    "id": "holiday-clubs",
+    "question": "Across how many local authorities in England had the holiday food and activities programme delivered the days mentioned in the Lords?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "shared-housing",
+    "question": "On what August date did Matthew Pennycook say the new planning framework on concentrations of small HMOs was published?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "housing-chargers",
+    "question": "In the Social Housing Bill committee, how many months after passage would new clause 63 give the Secretary of State to make electric vehicle charging regulations?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "defence-wales",
+    "question": "How many defence jobs did the Wales minister say the country already had when discussing higher military spending?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "water-shortfall",
+    "question": "By what percentage did Lord Roborough say water in storage was below the usual level for that time of year?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "battery-factory",
+    "question": "What sum did Baroness Dacres say Tata was investing in its UK gigafactory?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "summer-heat",
+    "question": "How many heat-associated deaths did Olivia Blake say there were in the eight days in June?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "steel-operating-cost",
+    "question": "What daily cost to taxpayers for keeping British Steel running did Lord Fox attribute to the National Audit Office?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "island-heating",
+    "question": "How many households in Torcuil Crichton’s own constituency had been able to claim the £300 heating-oil support?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "Welsh-community-care",
+    "question": "What share of their budgets were Welsh health boards to shift towards community services, according to Liz Saville Roberts?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "charity-research",
+    "question": "How many people did Baroness Pidgeon say Cancer Research UK expected to take part in its trials over the following five years?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "paris-building",
+    "question": "What fraction of the Palace of Westminster’s floorspace did Marie Goldman say Notre-Dame occupied?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "technical-college",
+    "question": "Which further education college did Lord Wallace name when he discussed teenagers who might otherwise leave education?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "business-share",
+    "question": "What proportion of UK businesses did the Business Secretary say were small or medium-sized?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "health-record-notice",
+    "question": "In the Lords discussion about AI systems accessing NHS data, within how many hours did the minister say the Information Commission should be informed?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "arts-and-sport",
+    "question": "Give the name of the choir Lord Wallace said was rehearsing, and the name of the Tredegar park where Nick Smith thanked junior running volunteers.",
+    "keys": [
+      "choir",
+      "park"
+    ]
+  },
+  {
+    "id": "reservoir-pair",
+    "question": "In two different debates, how far below seasonal norms did Lord Roborough put stored water, and how many new reservoirs did Dan Jarvis say the UK was investing in?",
+    "keys": [
+      "shortfall",
+      "reservoirs"
+    ]
+  },
+  {
+    "id": "statistics-date",
+    "question": "What exact calendar date did Baroness Merron announce for publishing the 2026 annual abortion statistics in her Annual Report Bill reply?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "mandate-date",
+    "question": "What exact day did Baroness Dacres announce for publishing the result of the ZEV mandate consultation in her November answer?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "future-trial-total",
+    "question": "What final number of participants actually enrolled across the five years that Baroness Pidgeon said lay ahead for Cancer Research UK?",
+    "keys": [
+      "answer"
+    ]
+  },
+  {
+    "id": "future-board-saving",
+    "question": "What exact audited annual saving was achieved after the board disappeared, according to Dame Meg Hillier’s remarks about the Financial Services and Markets Bill?",
+    "keys": [
+      "answer"
+    ]
+  }
+]

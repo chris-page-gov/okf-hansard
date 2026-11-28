@@ -1,0 +1,32 @@
+{
+  "device": "mps",
+  "torch": "2.9.1",
+  "sqlite": "3.47.1",
+  "chunks": 49919,
+  "contributions": 20900,
+  "lex_build_s": 1.2296995829965454,
+  "dense_build_s": 87.62329087499529,
+  "vectors_bytes": 76675712,
+  "sqlite_bytes": 42184704,
+  "query_sha256": "3c03613e8d8e1d6d06cfd9881698282093b24e41102ecd89dbb75e0969217d88",
+  "corpus_sha256": "82546eea85bffc8cccf6e00b6c65e6dfc20591a4fb173a62a67612e11c6e4e5f",
+  "protocol_sha256": "d0e72d53656371ba202b2554409f6cfa2add142ca4c3fcc5c3c7c9b898348d3f",
+  "probes": [
+    {
+      "destination": "127.0.0.1",
+      "port": 49687,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 49687,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    }
+  ],
+  "reused_index": true,
+  "original_rankings_reproduced": 42
+}
