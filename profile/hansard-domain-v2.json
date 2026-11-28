@@ -21,6 +21,7 @@
     "unit": "A source-linked text-bearing contribution, proceedings section, dated record, entity or sitting-day concept.",
     "identifiers": "Stable route-derived Hansard IRIs and assertion IDs; retain existing source identities across regeneration.",
     "evidence": "Every relationship assertion retains its source artifact digest, field pointer, source URL and retrieval timestamp where available.",
+    "reviewed_replies": "The producer emits hansard:answeredBy for registered exchanges after checking the House, sitting date, debate, contribution identities, speakers, source order and both passage digests. Each endpoint has its own Hansard link and source field. Coverage is limited to reviewed pairs.",
     "relationship_graph": "Generated assertions are evidence-bearing projections of captured sources and documented literal matching rules. They do not establish substantive agreement or causal relationships.",
     "navigation": "The virtual root index is a Reader navigation record, marked core_role navigation, and is not a Markdown concept or semantic domain assertion."
   },

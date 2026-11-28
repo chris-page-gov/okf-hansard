@@ -1,0 +1,35 @@
+[
+  {
+    "day": "2026-11-16",
+    "house": "Commons",
+    "debate_id": "13F7917B-36D3-4198-8908-7185E77DE84A",
+    "pairs": [
+      {
+        "question": {
+          "external_id": "8D89C7A1-FAB8-4774-B3B8-C73FB3B5A51C",
+          "member_id": 4869,
+          "value_sha256": "30c5068354f60f9ae3583fbaea80d35f208b8a711e0ef9dd81b4ef240c30e231"
+        },
+        "answer": {
+          "external_id": "DC89FF3B-B014-4C96-8F3D-40137EC5A6BC",
+          "member_id": 5305,
+          "value_sha256": "feaba523175744b7c1dbaca3ae4219796f73844362b3d9f1bdef620c8680240c"
+        },
+        "rationale": "Whittome asks about progress on SEND reform. Gould describes the consultation and the investment in inclusion."
+      },
+      {
+        "question": {
+          "external_id": "5FFDC8E3-7D76-4083-988B-955CEC19A2E9",
+          "member_id": 4869,
+          "value_sha256": "144dea631d85c39d293e68bf0364ef2522fbfd0fb3b2f2536af6b82991705c15"
+        },
+        "answer": {
+          "external_id": "26F9FC36-CC1F-4442-B478-A22CB0E95CA4",
+          "member_id": 5305,
+          "value_sha256": "0b11a48311f0e6bbde54d4b763762a6a14c95c6e9b32d07c9c3cc188a7fea778"
+        },
+        "rationale": "Whittome asks how families could challenge a school. Gould addresses accountability and promises a full consultation response."
+      }
+    ]
+  }
+]

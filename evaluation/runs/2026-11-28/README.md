@@ -28,11 +28,11 @@ On 28 November the operator decoded the QR code on a Pixel using Google Lens and
 
 [Immutable JSON Lines evidence](https://raw.githubusercontent.com/chris-page-gov/okf-hansard/2b75da6c216fa86b961fbdd0c31df2ed5f237ec2/evaluation/runs/2026-11-28/send-reform.month.jsonl) · [Official ordered debate](https://hansard-api.parliament.uk/debates/debate/13F7917B-36D3-4198-8908-7185E77DE84A.json) · [Gould’s reply on appeals](https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-26F9FC36-CC1F-4442-B478-A22CB0E95CA4)
 
-#### Open producer regression
+#### Producer regression
 
-The producer retains separate contribution identities, source positions and hashes. Its build does not emit an explicit question-to-answer relationship for this exchange. The observed misattribution occurred when interpreting the three retrieved records. The pinned index itself contains no assertion pairing the supplementary with the earlier reply.
+The phone retrieved three records. During interpretation, Gould’s opening answer was attributed to the supplementary about appeal rights. The immutable phone index contains no assertion pairing those contributions. Its score and the handover result are preserved above.
 
-A regression must exercise the producer's generated relationships for this debate. Use the four independently verified ledger entries as the expected result and retain the original three-record retrieval as a negative case.
+The producer now emits an explicit `hansard:answeredBy` link from each reviewed question to its answer. The reverse label in Explorer is **answers**. A concept search can return a question while omitting its reply if that reply uses different words. Follow the reviewed relationship to find the answer. Where the graph has no reviewed link, the attribution is unconfirmed.
 
 | Input | Required result |
 |---|---|
@@ -41,7 +41,9 @@ A regression must exercise the producer's generated relationships for this debat
 | Three-record projection with R missing | Leave the supplementary’s reply unresolved in that projection, or resolve R through its verified source locator. |
 | Source evidence | Each asserted pair must resolve to the verified endpoints with their official URLs, capture pointers and raw source-value SHA-256 digests. A changed source digest must trigger re-verification. |
 
-The positive cases require a producer change as well as a test. The published file and the historical run scores remain the baseline for comparison. [Four verified ledger entries](evidence.json)
+The [reviewed pairs](../../../profile/reviewed-replies.json) identify each contribution by House, date, debate and stable external ID. Each endpoint also pins the member ID and SHA-256 of the original API `Value` in UTF-8, including its HTML. A corrected passage or changed speaker requires a fresh review. The builder checks that both contributions belong to the same section and that the answer follows the question. It emits no link when an endpoint is absent. Parliament supplies the passages. The bundle supplies the reviewed attribution.
+
+The [capture cross-check](reviewed-replies-check.json) records a normal build from the original Commons chamber response held on the SSD. The source pointers are nested inside the original chamber tree. The independent [evidence ledger](evidence.json) used the individual debate endpoint. Both routes recover the same four IDs and passage hashes. The cross-check includes the two generated assertion IDs and the absent incorrect pair. The [offline CI tests](../../../tests/test_reviewed_replies.py) reproduce the cases without the SSD or a network connection.
 
 ## Local comparison
 

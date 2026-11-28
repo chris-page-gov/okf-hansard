@@ -3,6 +3,7 @@
 ## 28 November 2026 · Persona walkthroughs
 
 - Record a real Android Voice trial and nine local text trials against the November Hansard evidence, with primary sources, retrieval limits and criterion-level scoring. [Walkthroughs](evaluation/runs/2026-11-28/README.md)
+- Link the two reviewed questions from Nadia Whittome to Georgia Gould’s respective replies on SEND reform. The producer checks the speakers and passage digests and retains source evidence for each endpoint. [Producer regression](evaluation/runs/2026-11-28/README.md#producer-regression)
 
 ## Unreleased — check citations in a paired local writer comparison
 

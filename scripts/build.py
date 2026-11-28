@@ -26,6 +26,7 @@ TITLE = "A week in Parliament"
 EXPLORER_BYTE_LIMIT = 64 * 1024 * 1024
 PAGES_BLOB_LIMIT = 100 * 1024 * 1024
 BUILD_ARTIFACTS = ("okf-bundle.json", "history.json", "okf-bundle.yamlld", "analysis-profile.json")
+REVIEWED_REPLIES = Path(__file__).resolve().parents[1] / "profile/reviewed-replies.json"
 FACETS = {
     "sitting": "Sitting date",
     "chamber": "House",
@@ -49,6 +50,7 @@ PREDICATES = {
     "partOf": ("is recorded in", "records"),
     "sitting": ("took place on", "includes"),
     "spokenBy": ("is attributed to", "is attributed from"),
+    "answeredBy": ("is answered by", "answers"),
     "hasRecordedCapacity": ("has recorded capacity", "is used as capacity in"),
     "hasDatedRecord": ("has dated record", "relates to Member"),
     "appointmentTo": ("is appointment to", "has recorded appointment"),
@@ -97,6 +99,10 @@ def digest(value):
     return sha(value.encode("utf-8"))
 
 
+def assertion_id(source, predicate, target):
+    return NS + "assertion:" + digest(f"{source}|{predicate}|{target}")[:36]
+
+
 def safe_markdown(value):
     return re.sub(r"([\\\x60*_{}\[\]<>])", r"\\\1", value)
 
@@ -134,10 +140,13 @@ class Graph:
         return route
 
     def edge(self, source, predicate, target, receipt, url, field, value, spans=None, method="source-field"):
-        sid = NS + "assertion:" + digest(f"{source}|{predicate}|{target}")[:36]
+        sid = assertion_id(source, predicate, target)
+        observation = evidence(receipt, url, field, digest(canonical_field(value)), sid, spans, structured=not isinstance(value, str))
+        return self.add_assertion(sid, source, predicate, target, receipt, method, [observation])
+
+    def add_assertion(self, sid, source, predicate, target, receipt, method, observations):
         label, inverse = PREDICATES[predicate]
         pred = NS + f"vocab:{predicate}"
-        observation = evidence(receipt, url, field, digest(canonical_field(value)), sid, spans, structured=not isinstance(value, str))
         assertion = {
             "@id": sid, "@type": ["rdf:Statement", "okf:RelationshipAssertion"],
             "source": {"@id": iri(source)}, "predicate": {"@id": pred}, "target": {"@id": iri(target)},
@@ -145,7 +154,7 @@ class Graph:
             "inverse_label": inverse, "assertion_status": "normalized", "assertion_scope": "real-world",
             "authority": {"class": "derived", "label": "OKF Hansard pilot", "source": receipt["url"]},
             "derivation": NS + "method:" + method, "observed_at": receipt["retrieved_at"],
-            "evidence": [observation], "rights": {
+            "evidence": observations, "rights": {
                 "source": LICENCE, "assertion": "Parliamentary source with Open Parliament Licence exclusions."
             },
         }
@@ -153,6 +162,47 @@ class Graph:
         key = f"hansard:{predicate}"
         self.records[source].setdefault(key, []).append({"@id": iri(target)})
         return sid
+
+
+def add_reviewed_replies(graph, kept, records, parts):
+    reviews = json.loads(REVIEWED_REPLIES.read_bytes())
+    pinned_ids = {pair[role]["external_id"] for debate in reviews for pair in debate["pairs"]
+                  for role in ("question", "answer")}
+    endpoints = {}
+    for route in kept:
+        row = records[route]
+        if row["external_id"] in pinned_ids:
+            key = (row["day"], row["house"], parts[row["part"]]["ext_id"], row["external_id"])
+            if key in endpoints:
+                raise ValueError(f"Ambiguous reviewed reply endpoint: {key}")
+            endpoints[key] = route
+
+    for debate in reviews:
+        scope = (debate["day"], debate["house"], debate["debate_id"])
+        for pair in debate["pairs"]:
+            routes = []
+            for role in ("question", "answer"):
+                pin = pair[role]
+                route = endpoints.get((*scope, pin["external_id"]))
+                if route is None:
+                    continue
+                row = records[route]
+                if row["value_sha256"] != pin["value_sha256"] or row["member"] != pin["member_id"]:
+                    raise ValueError(f"Reviewed {role} has changed and needs review: {row['url']}")
+                routes.append(route)
+            if len(routes) != 2:
+                continue
+            question, answer = (records[route] for route in routes)
+            if question["part"] != answer["part"] or question["order"] >= answer["order"]:
+                raise ValueError(f"Invalid reviewed reply order or section: {answer['url']}")
+            sid = assertion_id(routes[0], "answeredBy", routes[1])
+            observations = [
+                {**evidence(row["capture"], row["url"], row["pointer"] + "/Value", row["value_sha256"], sid),
+                 "field_provenance": role, "rationale": pair["rationale"]}
+                for role, row in (("question", question), ("answer", answer))
+            ]
+            graph.add_assertion(sid, routes[0], "answeredBy", routes[1], question["capture"],
+                                "reviewed-question-answer", observations)
 
 
 def meta_for(first, last, dates, roots, title=TITLE):
@@ -237,8 +287,9 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
         if edge["source_route"] not in records or edge["target_route"] not in records:
             continue
         earlier = graph.records[edge["source_route"]].get("date", week_start) < week_start
-        omitted = {"source_artifact"}
-        if earlier:
+        reviewed_reply = edge["predicate"]["@id"] == NS + "vocab:answeredBy"
+        omitted = set() if reviewed_reply else {"source_artifact"}
+        if earlier and not reviewed_reply:
             omitted.update({"spans", "normalised_value_sha256", "normalization", "rationale",
                             "source_sha256", "source_value_hash_canonicalization"})
         relationship = {
@@ -252,7 +303,7 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
             "evidence": [{k: v for k, v in item.items() if k not in omitted}
                          for item in edge["evidence"]], "rights": edge["rights"],
         }
-        if bounded_history:
+        if bounded_history and not reviewed_reply:
             relationship["evidence"] = [
                 {key: item[key] for key in ("@id", "type", "url", "resource", "source_field",
                                             "source_value_sha256", "retrieved_at", "spans")
@@ -441,6 +492,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer, *, 
         graph.edge(node, "divisionIn", division["part"], division["capture"], part["url"],
                    division["pointer"] + field, division["id"])
 
+    add_reviewed_replies(graph, kept, records, parts)
     add_appointments(graph, entities, appointments, entity_node)
     index = {"schema": "hansard-history.v1", "contributions": trace, "entities": {
         key: {"label": entities[key].label, "type": entities[key].kind, "group": entities[key].group,
