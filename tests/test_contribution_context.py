@@ -1,5 +1,7 @@
 import json
+from html import unescape
 from pathlib import Path
+import re
 import tempfile
 import unittest
 
@@ -90,3 +92,19 @@ class ContextPageTests(unittest.TestCase):
         self.assertEqual(1, page.count("<article"))
         self.assertNotIn('rel="next"', page)
         self.assertNotIn('rel="prev"', page)
+
+    def test_prints_the_source_url_and_labels_its_precision_for_each_turn(self):
+        section = "debate/example.md"
+        members = sections(self.rows)[section]
+        route, row = members[1]
+        row["url"] = self.finder[route]["url"] = self.part["url"] + "?a=1&b=2"
+        render_section(self.root, section, self.part, members, {}, self.finder, "snapshot")
+        for position, (_, row) in enumerate(members, 1):
+            page = (self.root / anchor(section, position).split("#")[0]).read_text()
+            with self.subTest(position=position):
+                article, = re.findall(fr'<article id="turn-{position}">(.*?)</article>', page, re.DOTALL)
+                (label, printed), = re.findall(r'<p>([^<>]+)<br><code>([^<>]+)</code></p>', article)
+                self.assertEqual(label, "Hansard section only" if position == 2 else "Exact Hansard turn")
+                self.assertEqual(unescape(printed), row["url"])
+                link_label = "Read the section" if position == 2 else "Read the full passage"
+                self.assertIn(f'<a href="{printed}">{link_label} in Hansard</a>', article)
