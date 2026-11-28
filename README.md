@@ -22,6 +22,8 @@ The current producer candidate is version 0.3.0 and declares OKF core 0.3. The
 Hansard domain profile is versioned separately from core and from the inherited
 Bundle Wiki structures. Historical release assets keep their original identity.
 
+The [two-phase reference consumer experiment](docs/reference-consumer-experiment.md) compares plain Markdown, OKF 0.3 and OKF+ with matched evidence and a network-denied local model.
+
 ## Public snapshot
 
 Start with the Railways Bill and follow its stages from the Commons to the Lords. The companion also covers Palantir and the NHS and the Commons statement on the Microsoft 365 outage. [Use Hansard with AI](https://chris-page-gov.github.io/okf-hansard/use-with-ai.html) · [Railways Bill companion](https://chris-page-gov.github.io/okf-hansard/demo.html?example=railways-bill) · [November in Parliament](https://chris-page-gov.github.io/okf-hansard/november/)

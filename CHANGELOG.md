@@ -1,5 +1,41 @@
 # Changelog
 
+## Unreleased — check citations in a paired local writer comparison
+
+- Constrain citations to visible evidence IDs, reject duplicate or out-of-scope
+  references and retain independent strict grading against the original answer key.
+- Add a pinned Phi-4-mini-instruct writer alongside Bonsai, with shared OpenJev
+  decisions and per-case evidence hashes under the original isolation policy.
+
+## Unreleased — combine citation writing with local decisions
+
+- Replay the complete Hansard benchmark and decision controls with OpenJev
+  selecting status and Bonsai writing facts and citations. Supply explicit
+  synthetic authorisation and apply it when passing evidence to the writer.
+- Retain the original retrieval limits, verify network isolation and score
+  the decision separately from the completed answer.
+
+## Unreleased — local OpenJev decision replay
+
+- Reuse the fixed Hansard and synthetic evidence with a pinned OpenJev 27B
+  decision model. Score the five original questions at two label orders and
+  nine balanced controls. Record decision probabilities, policy misses and
+  network isolation evidence.
+
+## Unreleased — replay the reference consumer with Bonsai 27B
+
+- Diagnose the original failures by reading the saved local answers against
+  the frozen rubric. Add a pinned local Bonsai profile and exact evidence replay,
+  including byte-identical synthetic fixtures under the same network denial.
+
+## Unreleased — two-phase reference consumer
+
+- Pin a complete compact Hansard bundle, an OKF+ relationship example and a
+  local model for a matched-evidence comparison.
+- Verify source bytes before generating synthetic private documents in a
+  network-denied worker. Record controlled network traces, supported answers,
+  citation accuracy, model tokens and latency.
+
 ## Unreleased — repeatable validation and safe source errors
 
 - Run source secret scanning, locked dependency checks and a Chromium

@@ -1,0 +1,3041 @@
+{
+  "native_core": {
+    "snapshot": "hansard-markdown-sha256-4f1f765d6b0c610ff7377e59d9370fa09a14d43ac0684875fca2e61f65ff33bb",
+    "core_documents_checked": 5,
+    "profile_version": "2"
+  },
+  "source": {
+    "completed_at": "2026-11-27T21:19:47.096243+00:00",
+    "commit": "ace90c52791adc481b43901f4d4c1b0ef01e6d14",
+    "catalogue_sha256": "5dcd2713f47476564f50698e079c2c65ea6305cba21e47da2af9d035f68eb456",
+    "assets": 8,
+    "network_audit_sha256": "8c0fe5d499eb5d0baae5530f75ebc0e2b980fb1d4fc4ec56d8de621563e7250d"
+  },
+  "replay": {
+    "baseline_report_sha256": "930e63c8141894edc6fa7ca3b11980029299280fc561863c98875b89edb319cc",
+    "synthetic_documents": "byte-identical",
+    "matched_trials": 30
+  },
+  "probes": [
+    {
+      "destination": "127.0.0.1",
+      "port": 60885,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 60885,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 60885,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    }
+  ],
+  "source_citations": {
+    "P-BILL-REPORT": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
+    "P-BILL-SECOND": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
+    "P-NHS": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896",
+    "P-OUTAGE": "https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948",
+    "P-ARCHIVE": "https://hansard.parliament.uk/Lords/2014-10-20/debates/14102017000403/ConsumerRightsBill#contribution-14102017000168"
+  },
+  "trials": [
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1040,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.997837139663534,
+          "insufficient": 0.0014773020394118087,
+          "denied": 0.0006855582970540664
+        },
+        "input_tokens": 616,
+        "output_tokens": 0,
+        "milliseconds": 3173
+      },
+      "milliseconds": 11667,
+      "prompt_tokens": 614,
+      "generated_tokens_reported": 85,
+      "prompt_bytes": 1933,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1040,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9978304795919087,
+          "insufficient": 0.0013573032720961178,
+          "denied": 0.0008122171359952869
+        },
+        "input_tokens": 1028,
+        "output_tokens": 0,
+        "milliseconds": 5539
+      },
+      "milliseconds": 13452,
+      "prompt_tokens": 1026,
+      "generated_tokens_reported": 85,
+      "prompt_bytes": 2862,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9978304795919087,
+          "insufficient": 0.0013573032720961178,
+          "denied": 0.0008122171359952869
+        },
+        "input_tokens": 1028,
+        "output_tokens": 0,
+        "milliseconds": 6120
+      },
+      "milliseconds": 14082,
+      "prompt_tokens": 1026,
+      "generated_tokens_reported": 85,
+      "prompt_bytes": 2862,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1040,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0005639204500763486,
+          "insufficient": 0.0017959546330752728,
+          "supported": 0.9976401249168483
+        },
+        "input_tokens": 616,
+        "output_tokens": 0,
+        "milliseconds": 3703
+      },
+      "milliseconds": 11576,
+      "prompt_tokens": 614,
+      "generated_tokens_reported": 85,
+      "prompt_bytes": 1933,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1040,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0006095619099340154,
+          "insufficient": 0.001219965469188128,
+          "supported": 0.9981704726208779
+        },
+        "input_tokens": 1028,
+        "output_tokens": 0,
+        "milliseconds": 6265
+      },
+      "milliseconds": 14898,
+      "prompt_tokens": 1026,
+      "generated_tokens_reported": 85,
+      "prompt_bytes": 2862,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0006095619099340154,
+          "insufficient": 0.001219965469188128,
+          "supported": 0.9981704726208779
+        },
+        "input_tokens": 1028,
+        "output_tokens": 0,
+        "milliseconds": 6211
+      },
+      "milliseconds": 14672,
+      "prompt_tokens": 1026,
+      "generated_tokens_reported": 85,
+      "prompt_bytes": 2862,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1962,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9946527076403987,
+          "insufficient": 0.0009631740999072802,
+          "denied": 0.004384118259693969
+        },
+        "input_tokens": 895,
+        "output_tokens": 0,
+        "milliseconds": 5353
+      },
+      "milliseconds": 13543,
+      "prompt_tokens": 893,
+      "generated_tokens_reported": 90,
+      "prompt_bytes": 3067,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 1962,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3294,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9930845485737713,
+          "insufficient": 0.0011721965320469604,
+          "denied": 0.005743254894181747
+        },
+        "input_tokens": 1443,
+        "output_tokens": 0,
+        "milliseconds": 8886
+      },
+      "milliseconds": 16481,
+      "prompt_tokens": 1441,
+      "generated_tokens_reported": 90,
+      "prompt_bytes": 4399,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 3294,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3848,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9924799562222357,
+          "insufficient": 0.0015167165224496048,
+          "denied": 0.006003327255314646
+        },
+        "input_tokens": 1701,
+        "output_tokens": 0,
+        "milliseconds": 10615
+      },
+      "milliseconds": 17919,
+      "prompt_tokens": 1699,
+      "generated_tokens_reported": 90,
+      "prompt_bytes": 4953,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 3848,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1962,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.00267388342498552,
+          "insufficient": 0.0006761358457175033,
+          "supported": 0.9966499807292971
+        },
+        "input_tokens": 895,
+        "output_tokens": 0,
+        "milliseconds": 5573
+      },
+      "milliseconds": 12776,
+      "prompt_tokens": 893,
+      "generated_tokens_reported": 90,
+      "prompt_bytes": 3067,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 1962,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3294,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0023226900982161094,
+          "insufficient": 0.0008090158677867542,
+          "supported": 0.9968682940339971
+        },
+        "input_tokens": 1443,
+        "output_tokens": 0,
+        "milliseconds": 9339
+      },
+      "milliseconds": 17763,
+      "prompt_tokens": 1441,
+      "generated_tokens_reported": 90,
+      "prompt_bytes": 4399,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 3294,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3848,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0026052824206082366,
+          "insufficient": 0.0010078490152399069,
+          "supported": 0.9963868685641518
+        },
+        "input_tokens": 1701,
+        "output_tokens": 0,
+        "milliseconds": 10826
+      },
+      "milliseconds": 19749,
+      "prompt_tokens": 1699,
+      "generated_tokens_reported": 90,
+      "prompt_bytes": 4953,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 3848,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 1154,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9961944862385971,
+          "insufficient": 0.0026192389129127834,
+          "denied": 0.0011862748484902427
+        },
+        "input_tokens": 655,
+        "output_tokens": 0,
+        "milliseconds": 4187
+      },
+      "milliseconds": 9561,
+      "prompt_tokens": 653,
+      "generated_tokens_reported": 58,
+      "prompt_bytes": 2088,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 1154,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2135,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9957316875584052,
+          "insufficient": 0.0028448680233744738,
+          "denied": 0.0014234444182202445
+        },
+        "input_tokens": 1095,
+        "output_tokens": 0,
+        "milliseconds": 6985
+      },
+      "milliseconds": 13350,
+      "prompt_tokens": 1093,
+      "generated_tokens_reported": 58,
+      "prompt_bytes": 3069,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2135,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2689,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9966905128786403,
+          "insufficient": 0.002417826587858947,
+          "denied": 0.0008916605335007485
+        },
+        "input_tokens": 1353,
+        "output_tokens": 0,
+        "milliseconds": 8721
+      },
+      "milliseconds": 15058,
+      "prompt_tokens": 1351,
+      "generated_tokens_reported": 58,
+      "prompt_bytes": 3623,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2689,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 1154,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0005743000046240232,
+          "insufficient": 0.0015796184806357728,
+          "supported": 0.9978460815147401
+        },
+        "input_tokens": 655,
+        "output_tokens": 0,
+        "milliseconds": 4243
+      },
+      "milliseconds": 9276,
+      "prompt_tokens": 653,
+      "generated_tokens_reported": 58,
+      "prompt_bytes": 2088,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 1154,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2135,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0008665793434486435,
+          "insufficient": 0.0018166157700154944,
+          "supported": 0.9973168048865358
+        },
+        "input_tokens": 1095,
+        "output_tokens": 0,
+        "milliseconds": 7104
+      },
+      "milliseconds": 12866,
+      "prompt_tokens": 1093,
+      "generated_tokens_reported": 58,
+      "prompt_bytes": 3069,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2135,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "seed": 27,
+      "expected": "supported",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2689,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "denied": 0.0006861237712001961,
+          "insufficient": 0.001978315764335418,
+          "supported": 0.9973355604644645
+        },
+        "input_tokens": 1353,
+        "output_tokens": 0,
+        "milliseconds": 8919
+      },
+      "milliseconds": 14840,
+      "prompt_tokens": 1351,
+      "generated_tokens_reported": 58,
+      "prompt_bytes": 3623,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2689,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 1111,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.0005507221931183714,
+          "insufficient": 0.9991376188871735,
+          "denied": 0.0003116589197081353
+        },
+        "input_tokens": 624,
+        "output_tokens": 0,
+        "milliseconds": 4913
+      },
+      "milliseconds": 7681,
+      "prompt_tokens": 622,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 2077,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 1111,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false,
+      "citations_in_writer_input": false
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2035,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.0003366384194265992,
+          "insufficient": 0.9993735704984841,
+          "denied": 0.0002897910820894266
+        },
+        "input_tokens": 1022,
+        "output_tokens": 0,
+        "milliseconds": 9668
+      },
+      "milliseconds": 10262,
+      "prompt_tokens": 1020,
+      "generated_tokens_reported": 26,
+      "prompt_bytes": 3001,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 2035,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2589,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.0003058324966957743,
+          "insufficient": 0.9994019137438748,
+          "denied": 0.0002922537594293577
+        },
+        "input_tokens": 1280,
+        "output_tokens": 0,
+        "milliseconds": 19218
+      },
+      "milliseconds": 12196,
+      "prompt_tokens": 1278,
+      "generated_tokens_reported": 26,
+      "prompt_bytes": 3555,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 2589,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "markdown",
+      "seed": 27,
+      "expected": "insufficient",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 1111,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "denied": 0.0003248335871956862,
+          "insufficient": 0.9990127740654381,
+          "supported": 0.0006623923473661744
+        },
+        "input_tokens": 624,
+        "output_tokens": 0,
+        "milliseconds": 13422
+      },
+      "milliseconds": 7684,
+      "prompt_tokens": 622,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 2077,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 1111,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false,
+      "citations_in_writer_input": false
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf",
+      "seed": 27,
+      "expected": "insufficient",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2035,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "denied": 0.00015413656970525829,
+          "insufficient": 0.9993017410142467,
+          "supported": 0.0005441224160480217
+        },
+        "input_tokens": 1022,
+        "output_tokens": 0,
+        "milliseconds": 23655
+      },
+      "milliseconds": 10351,
+      "prompt_tokens": 1020,
+      "generated_tokens_reported": 26,
+      "prompt_bytes": 3001,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 2035,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf-plus",
+      "seed": 27,
+      "expected": "insufficient",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2589,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "denied": 0.00012940251954550696,
+          "insufficient": 0.9993303163815009,
+          "supported": 0.0005402810989535233
+        },
+        "input_tokens": 1280,
+        "output_tokens": 0,
+        "milliseconds": 19970
+      },
+      "milliseconds": 12204,
+      "prompt_tokens": 1278,
+      "generated_tokens_reported": 26,
+      "prompt_bytes": 3555,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 2589,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1848,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.00025316917744003275,
+          "insufficient": 0.0004386097016309722,
+          "denied": 0.9993082211209289
+        },
+        "input_tokens": 841,
+        "output_tokens": 0,
+        "milliseconds": 9579
+      },
+      "milliseconds": 7963,
+      "prompt_tokens": 683,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 2368,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 1321,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.00024394360334909065,
+          "insufficient": 0.00045507881911152924,
+          "denied": 0.9993009775775394
+        },
+        "input_tokens": 1361,
+        "output_tokens": 0,
+        "milliseconds": 13654
+      },
+      "milliseconds": 11254,
+      "prompt_tokens": 1131,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3414,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2367,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.00024394360334909065,
+          "insufficient": 0.00045507881911152924,
+          "denied": 0.9993009775775394
+        },
+        "input_tokens": 1361,
+        "output_tokens": 0,
+        "milliseconds": 13492
+      },
+      "milliseconds": 11264,
+      "prompt_tokens": 1131,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3414,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2367,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "markdown",
+      "seed": 27,
+      "expected": "denied",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1848,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "denied": 0.9990953790843221,
+          "insufficient": 0.0004248561599140418,
+          "supported": 0.00047976475576389573
+        },
+        "input_tokens": 841,
+        "output_tokens": 0,
+        "milliseconds": 7971
+      },
+      "milliseconds": 7758,
+      "prompt_tokens": 683,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 2368,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 1321,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf",
+      "seed": 27,
+      "expected": "denied",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "denied": 0.998965864994831,
+          "insufficient": 0.0004201087154396706,
+          "supported": 0.0006140262897292238
+        },
+        "input_tokens": 1361,
+        "output_tokens": 0,
+        "milliseconds": 12480
+      },
+      "milliseconds": 11301,
+      "prompt_tokens": 1131,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3414,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2367,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf-plus",
+      "seed": 27,
+      "expected": "denied",
+      "decision_order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "denied": 0.998965864994831,
+          "insufficient": 0.0004201087154396706,
+          "supported": 0.0006140262897292238
+        },
+        "input_tokens": 1361,
+        "output_tokens": 0,
+        "milliseconds": 12168
+      },
+      "milliseconds": 10263,
+      "prompt_tokens": 1131,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3414,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2367,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "report-stage-date",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1040,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9979796709378661,
+          "insufficient": 0.0015563710698189798,
+          "denied": 0.0004639579923150146
+        },
+        "input_tokens": 602,
+        "output_tokens": 0,
+        "milliseconds": 5211
+      },
+      "milliseconds": 7688,
+      "prompt_tokens": 600,
+      "generated_tokens_reported": 57,
+      "prompt_bytes": 1861,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1040,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "report-stage-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9981747285015737,
+          "insufficient": 0.001274778106490937,
+          "denied": 0.000550493391935303
+        },
+        "input_tokens": 1014,
+        "output_tokens": 0,
+        "milliseconds": 9031
+      },
+      "milliseconds": 10698,
+      "prompt_tokens": 1012,
+      "generated_tokens_reported": 57,
+      "prompt_bytes": 2790,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "report-stage-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9981747285015737,
+          "insufficient": 0.001274778106490937,
+          "denied": 0.000550493391935303
+        },
+        "input_tokens": 1014,
+        "output_tokens": 0,
+        "milliseconds": 8955
+      },
+      "milliseconds": 10623,
+      "prompt_tokens": 1012,
+      "generated_tokens_reported": 57,
+      "prompt_bytes": 2790,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "archive-match-date",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 1154,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9903725586598239,
+          "insufficient": 0.006215687614301981,
+          "denied": 0.0034117537258740818
+        },
+        "input_tokens": 629,
+        "output_tokens": 0,
+        "milliseconds": 5423
+      },
+      "milliseconds": 7921,
+      "prompt_tokens": 627,
+      "generated_tokens_reported": 47,
+      "prompt_bytes": 1962,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 1154,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "archive-match-date",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2135,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9933789234717127,
+          "insufficient": 0.00402028220690729,
+          "denied": 0.0026007943213799704
+        },
+        "input_tokens": 1069,
+        "output_tokens": 0,
+        "milliseconds": 9260
+      },
+      "milliseconds": 11071,
+      "prompt_tokens": 1067,
+      "generated_tokens_reported": 47,
+      "prompt_bytes": 2943,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2135,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "archive-match-date",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2689,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9941814769733457,
+          "insufficient": 0.004102795158721906,
+          "denied": 0.0017157278679324837
+        },
+        "input_tokens": 1327,
+        "output_tokens": 0,
+        "milliseconds": 11425
+      },
+      "milliseconds": 13852,
+      "prompt_tokens": 1325,
+      "generated_tokens_reported": 47,
+      "prompt_bytes": 3497,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2689,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "authorised-review",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1962,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9968895659567163,
+          "insufficient": 0.000482577429362355,
+          "denied": 0.0026278566139214463
+        },
+        "input_tokens": 888,
+        "output_tokens": 0,
+        "milliseconds": 7422
+      },
+      "milliseconds": 12230,
+      "prompt_tokens": 886,
+      "generated_tokens_reported": 73,
+      "prompt_bytes": 3047,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 1962,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "authorised-review",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3294,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9959751827923875,
+          "insufficient": 0.0005262719786085416,
+          "denied": 0.003498545229003909
+        },
+        "input_tokens": 1436,
+        "output_tokens": 0,
+        "milliseconds": 11978
+      },
+      "milliseconds": 16774,
+      "prompt_tokens": 1434,
+      "generated_tokens_reported": 73,
+      "prompt_bytes": 4379,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 3294,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "authorised-review",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "supported",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "internal",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3848,
+      "decision": {
+        "predicted": "supported",
+        "probabilities": {
+          "supported": 0.9965103935181313,
+          "insufficient": 0.0006038186078523128,
+          "denied": 0.002885787874016265
+        },
+        "input_tokens": 1694,
+        "output_tokens": 0,
+        "milliseconds": 13654
+      },
+      "milliseconds": 16548,
+      "prompt_tokens": 1692,
+      "generated_tokens_reported": 73,
+      "prompt_bytes": 4933,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "writer_evidence_bytes": 3848,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "royal-assent-date",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1040,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.000615392213525237,
+          "insufficient": 0.9989103910896325,
+          "denied": 0.0004742166968421216
+        },
+        "input_tokens": 591,
+        "output_tokens": 0,
+        "milliseconds": 4816
+      },
+      "milliseconds": 7087,
+      "prompt_tokens": 589,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 1819,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1040,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "royal-assent-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.000717129809018656,
+          "insufficient": 0.998718415600221,
+          "denied": 0.0005644545907602668
+        },
+        "input_tokens": 1003,
+        "output_tokens": 0,
+        "milliseconds": 8238
+      },
+      "milliseconds": 10112,
+      "prompt_tokens": 1001,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 2748,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "royal-assent-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.000717129809018656,
+          "insufficient": 0.998718415600221,
+          "denied": 0.0005644545907602668
+        },
+        "input_tokens": 1003,
+        "output_tokens": 0,
+        "milliseconds": 8135
+      },
+      "milliseconds": 10278,
+      "prompt_tokens": 1001,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 2748,
+      "writer_evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "writer_evidence_bytes": 1969,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "outage-cause",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 1154,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.0018202283544164356,
+          "insufficient": 0.9963177270697139,
+          "denied": 0.0018620445758697718
+        },
+        "input_tokens": 625,
+        "output_tokens": 0,
+        "milliseconds": 4981
+      },
+      "milliseconds": 7074,
+      "prompt_tokens": 623,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 1933,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 1154,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "outage-cause",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2135,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.0017471303531646006,
+          "insufficient": 0.9967989921176256,
+          "denied": 0.001453877529209815
+        },
+        "input_tokens": 1065,
+        "output_tokens": 0,
+        "milliseconds": 8694
+      },
+      "milliseconds": 9664,
+      "prompt_tokens": 1063,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 2914,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2135,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "outage-cause",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2689,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.0017780882253880352,
+          "insufficient": 0.9964442065405222,
+          "denied": 0.001777705234089568
+        },
+        "input_tokens": 1323,
+        "output_tokens": 0,
+        "milliseconds": 10519
+      },
+      "milliseconds": 11503,
+      "prompt_tokens": 1321,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3468,
+      "writer_evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "writer_evidence_bytes": 2689,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "future-decision-terms",
+      "evidence_case": "missing-decision",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 1111,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.0020852710223876647,
+          "insufficient": 0.991216855992746,
+          "denied": 0.006697872984866216
+        },
+        "input_tokens": 598,
+        "output_tokens": 0,
+        "milliseconds": 4692
+      },
+      "milliseconds": 6834,
+      "prompt_tokens": 596,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 1927,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 1111,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false,
+      "citations_in_writer_input": false
+    },
+    {
+      "section": "controls",
+      "case": "future-decision-terms",
+      "evidence_case": "missing-decision",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2035,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.001976067319192787,
+          "insufficient": 0.9937996362189805,
+          "denied": 0.004224296461826753
+        },
+        "input_tokens": 996,
+        "output_tokens": 0,
+        "milliseconds": 7865
+      },
+      "milliseconds": 9426,
+      "prompt_tokens": 994,
+      "generated_tokens_reported": 26,
+      "prompt_bytes": 2851,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 2035,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "future-decision-terms",
+      "evidence_case": "missing-decision",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "insufficient",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": null,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2589,
+      "decision": {
+        "predicted": "insufficient",
+        "probabilities": {
+          "supported": 0.00227996481756659,
+          "insufficient": 0.9935790881907498,
+          "denied": 0.004140946991683562
+        },
+        "input_tokens": 1254,
+        "output_tokens": 0,
+        "milliseconds": 9915
+      },
+      "milliseconds": 10904,
+      "prompt_tokens": 1252,
+      "generated_tokens_reported": 26,
+      "prompt_bytes": 3405,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "writer_evidence_bytes": 2589,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "public-review",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1962,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.0003321770194712292,
+          "insufficient": 0.0003200958802736962,
+          "denied": 0.999347727100255
+        },
+        "input_tokens": 854,
+        "output_tokens": 0,
+        "milliseconds": 6683
+      },
+      "milliseconds": 6739,
+      "prompt_tokens": 696,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 2355,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 1435,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "public-review",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3294,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.000300166344303559,
+          "insufficient": 0.00040756313543778864,
+          "denied": 0.9992922705202587
+        },
+        "input_tokens": 1402,
+        "output_tokens": 0,
+        "milliseconds": 11000
+      },
+      "milliseconds": 10501,
+      "prompt_tokens": 1172,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3453,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2533,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "public-review",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3848,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.00029602569764644197,
+          "insufficient": 0.00034834390462423217,
+          "denied": 0.9993556303977293
+        },
+        "input_tokens": 1660,
+        "output_tokens": 0,
+        "milliseconds": 13109
+      },
+      "milliseconds": 11850,
+      "prompt_tokens": 1430,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 4007,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 3087,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "public-annex-threshold",
+      "evidence_case": "public-disclosure",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1848,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.003217571882466269,
+          "insufficient": 0.0026682713706007327,
+          "denied": 0.994114156746933
+        },
+        "input_tokens": 824,
+        "output_tokens": 0,
+        "milliseconds": 6407
+      },
+      "milliseconds": 6560,
+      "prompt_tokens": 666,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 2255,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 1321,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "public-annex-threshold",
+      "evidence_case": "public-disclosure",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.003789090599678765,
+          "insufficient": 0.0027155886274589157,
+          "denied": 0.9934953207728622
+        },
+        "input_tokens": 1344,
+        "output_tokens": 0,
+        "milliseconds": 10458
+      },
+      "milliseconds": 9697,
+      "prompt_tokens": 1114,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3301,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2367,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "public-annex-threshold",
+      "evidence_case": "public-disclosure",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "public",
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.003789090599678765,
+          "insufficient": 0.0027155886274589157,
+          "denied": 0.9934953207728622
+        },
+        "input_tokens": 1344,
+        "output_tokens": 0,
+        "milliseconds": 10660
+      },
+      "milliseconds": 9725,
+      "prompt_tokens": 1114,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3301,
+      "writer_evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2367,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "external-verification",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "external",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1962,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.00020122107277087967,
+          "insufficient": 0.0005107769607351222,
+          "denied": 0.9992880019664939
+        },
+        "input_tokens": 861,
+        "output_tokens": 0,
+        "milliseconds": 7678
+      },
+      "milliseconds": 6815,
+      "prompt_tokens": 703,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 2417,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 1435,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "external-verification",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "external",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3294,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.0002018048743631492,
+          "insufficient": 0.0005313273328824697,
+          "denied": 0.9992668677927543
+        },
+        "input_tokens": 1409,
+        "output_tokens": 0,
+        "milliseconds": 11233
+      },
+      "milliseconds": 10152,
+      "prompt_tokens": 1179,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 3515,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 2533,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    },
+    {
+      "section": "controls",
+      "case": "external-verification",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "seed": 11,
+      "expected": "denied",
+      "decision_order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "authorisation_context": "external",
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3848,
+      "decision": {
+        "predicted": "denied",
+        "probabilities": {
+          "supported": 0.0002275072731939873,
+          "insufficient": 0.000484722804348536,
+          "denied": 0.9992877699224574
+        },
+        "input_tokens": 1667,
+        "output_tokens": 0,
+        "milliseconds": 13391
+      },
+      "milliseconds": 11921,
+      "prompt_tokens": 1437,
+      "generated_tokens_reported": 27,
+      "prompt_bytes": 4069,
+      "writer_evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-POLICY"
+      ],
+      "writer_evidence_bytes": 3087,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true,
+      "citations_in_writer_input": true
+    }
+  ],
+  "summary": {
+    "original": {
+      "markdown": {
+        "status_correct": 10,
+        "facts_correct": 10,
+        "citations_correct": 8,
+        "answer_contract_valid": 10,
+        "pass": 8,
+        "trials": 10,
+        "decision_correct": 10,
+        "canary_disclosures": 0,
+        "median_combined_input_tokens": 1308.0,
+        "median_combined_milliseconds": 15504.0
+      },
+      "okf": {
+        "status_correct": 10,
+        "facts_correct": 10,
+        "citations_correct": 10,
+        "answer_contract_valid": 10,
+        "pass": 10,
+        "trials": 10,
+        "decision_correct": 10,
+        "canary_disclosures": 0,
+        "median_combined_input_tokens": 2188.0,
+        "median_combined_milliseconds": 22472.0
+      },
+      "okf-plus": {
+        "status_correct": 10,
+        "facts_correct": 10,
+        "citations_correct": 10,
+        "answer_contract_valid": 10,
+        "pass": 10,
+        "trials": 10,
+        "decision_correct": 10,
+        "canary_disclosures": 0,
+        "median_combined_input_tokens": 2558.0,
+        "median_combined_milliseconds": 24267.5
+      }
+    },
+    "controls": {
+      "markdown": {
+        "status_correct": 9,
+        "facts_correct": 9,
+        "citations_correct": 7,
+        "answer_contract_valid": 9,
+        "pass": 7,
+        "trials": 9,
+        "decision_correct": 9,
+        "canary_disclosures": 0,
+        "median_combined_input_tokens": 1256,
+        "median_combined_milliseconds": 12967
+      },
+      "okf": {
+        "status_correct": 9,
+        "facts_correct": 9,
+        "citations_correct": 8,
+        "answer_contract_valid": 9,
+        "pass": 8,
+        "trials": 9,
+        "decision_correct": 9,
+        "canary_disclosures": 0,
+        "median_combined_input_tokens": 2136,
+        "median_combined_milliseconds": 20155
+      },
+      "okf-plus": {
+        "status_correct": 9,
+        "facts_correct": 9,
+        "citations_correct": 8,
+        "answer_contract_valid": 9,
+        "pass": 8,
+        "trials": 9,
+        "decision_correct": 9,
+        "canary_disclosures": 0,
+        "median_combined_input_tokens": 2644,
+        "median_combined_milliseconds": 22022
+      }
+    }
+  },
+  "schema": "hansard-hybrid-consumer.v1",
+  "completed_at": "2026-11-28T07:31:20.567811+00:00",
+  "contract_digests": {
+    "contract.json": "08c5654ed2591b6d444e2c5c91d2b9991dba3c373b46db0270dacb2d8f30e76b",
+    "decision-contract.json": "fde4f12c628d614e9ba9d51856b5a68e9d41300b8969fed8261e80c1734982d0",
+    "hybrid-contract.json": "70bf3f17e8f187758635da0e99548aeee9fa94c920a0ead9af85295d811bb45a",
+    "model-bonsai-27b.json": "069434653e2535c2c06491d594414a1e9866c4dc8ee88ffb4b08fb7c54362991"
+  },
+  "implementation_digests": {
+    "acquire.py": "0a642c09a4220595c8eeb20124dc1eccec13eee94ae64ab38f32869682d1f9b9",
+    "corpus.py": "2de85d9af3333b49327ef9debdcfde211b9562287e8dc81c15ab41f2d6127068",
+    "decide.py": "fe52045c3565d5d6a91679b1a196f4ec07e4ef95482935fd35f028fa38cb652a",
+    "evaluate.py": "2ce4d185479be245bef9cbee369010bac04916824b684ec59e95fe7e5cf1f645",
+    "hybrid.py": "f21d6678e0697c94e5ac56df26258419cb90fa4983d7da3753d7de5644b9a773"
+  },
+  "models": {
+    "decision": {
+      "name": "OpenJev 27B",
+      "repository": "ggml-org/OpenJev-GGUF",
+      "revision": "d2c376d11b6c466ab7bdc9fa458ace41cdf3e776",
+      "filename": "OpenJev-Q4_K_M.gguf",
+      "bytes": 19403686048,
+      "sha256": "43b8d9cb89851f27c9d6bed8f073f917327bec05471da462eea77cbf896aa891",
+      "quantisation": "Q4_K_M",
+      "runtime": "llama.cpp b11556",
+      "runtime_release_sha256": "be652966e95415394468f057e31ae0dd5719173c48be240345042b37d06d24b2",
+      "macos_binary_sha256": "1bf5602a2be50097c44282a6ecc63234d94ee8f96d39fd45fed6eff4e74b6b41",
+      "licence": "CC BY-NC 4.0"
+    },
+    "writer": {
+      "name": "PrismML Ternary Bonsai 2.5 27B",
+      "revision": "28a7093cc25bc151cc2b284c5570f12ce343fdcf",
+      "quantisation": "Q2_0",
+      "bytes": 7673194848,
+      "sha256": "84496171ca79d4d33fb45612a2afd8303ec494baf916281023b7dc9cb3b3b9fa",
+      "runtime": "llama.cpp b11556",
+      "runtime_release_sha256": "be652966e95415394468f057e31ae0dd5719173c48be240345042b37d06d24b2",
+      "macos_binary_sha256": "e3d5205729cb4c1e176d5c8e39796aefbe361a2300d0593586db9503dd0d63d1",
+      "context_tokens": 2048,
+      "output_tokens": 200,
+      "threads": 6,
+      "temperature": 0.2,
+      "seeds": [
+        11,
+        27
+      ],
+      "device": "MTL0",
+      "non_thinking_chatml": true
+    }
+  },
+  "retrieval": {
+    "mode": "matched-passage-ablation",
+    "public_documents": 3,
+    "private_documents": 3,
+    "wrapper_byte_limit": 5600,
+    "method": "Select once per question by query words and stable ID. Supply the same records to each format."
+  },
+  "network": {
+    "policy": "(version 1)(allow default)(deny network*)(allow system-socket (socket-domain AF_UNIX))(allow network-bind (local unix-socket (literal \"<private-socket>\")))(allow network-outbound (remote unix-socket (literal \"<private-socket>\")))",
+    "sink_trace_sha256": "7daf440f95b65f360afc2173bafc3ee29b27d68d1ecbfc866928d4eb6e7f855f",
+    "sealed_sink_requests": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Microsoft Phi-4-mini-instruct",
+  "weights_repository": "bartowski/microsoft_Phi-4-mini-instruct-GGUF",
+  "revision": "7ff82c2aaa4dde30121698a973765f39be5288c0",
+  "quantisation": "Q4_K_M",
+  "bytes": 2491874688,
+  "sha256": "01999f17c39cc3074afae5e9c539bc82d45f2dd7faa3917c66cbef76fce8c0c2",
+  "runtime": "llama.cpp b11556",
+  "runtime_release_sha256": "be652966e95415394468f057e31ae0dd5719173c48be240345042b37d06d24b2",
+  "macos_binary_sha256": "e3d5205729cb4c1e176d5c8e39796aefbe361a2300d0593586db9503dd0d63d1",
+  "device": "MTL0",
+  "non_thinking_chatml": false,
+  "chat_template": "phi4-mini"
+}

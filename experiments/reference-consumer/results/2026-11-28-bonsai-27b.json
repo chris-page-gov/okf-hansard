@@ -1,0 +1,795 @@
+{
+  "native_core": {
+    "snapshot": "hansard-markdown-sha256-4f1f765d6b0c610ff7377e59d9370fa09a14d43ac0684875fca2e61f65ff33bb",
+    "core_documents_checked": 5,
+    "profile_version": "2"
+  },
+  "replay": {
+    "baseline_report_sha256": "930e63c8141894edc6fa7ca3b11980029299280fc561863c98875b89edb319cc",
+    "synthetic_documents": "byte-identical",
+    "matched_trials": 30
+  },
+  "closed_at": "2026-11-28T06:06:06.331676+00:00",
+  "probes": [
+    {
+      "destination": "127.0.0.1",
+      "port": 56822,
+      "result": "kernel-denied",
+      "errno": 1
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 56822,
+      "result": "kernel-denied",
+      "errno": 1
+    }
+  ],
+  "source_citations": {
+    "P-BILL-SECOND": "https://hansard.parliament.uk/Lords%E2%80%8F/2026-07-07/debates/28bb8967-c343-4820-9833-f7340b982762/LordsChamber",
+    "P-BILL-REPORT": "https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill",
+    "P-OUTAGE": "https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948",
+    "P-ARCHIVE": "https://hansard.parliament.uk/Lords/2014-10-20/debates/14102017000403/ConsumerRightsBill#contribution-14102017000168",
+    "P-NHS": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896"
+  },
+  "trials": [
+    {
+      "case": "bill-stages",
+      "arm": "markdown",
+      "seed": 11,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1040,
+      "milliseconds": 7507,
+      "prompt_tokens": 650,
+      "generated_tokens_reported": 93,
+      "prompt_bytes": 2125,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true
+    },
+    {
+      "case": "bill-stages",
+      "arm": "okf",
+      "seed": 11,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "milliseconds": 9862,
+      "prompt_tokens": 1062,
+      "generated_tokens_reported": 94,
+      "prompt_bytes": 3054,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "bill-stages",
+      "arm": "okf-plus",
+      "seed": 11,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "milliseconds": 10076,
+      "prompt_tokens": 1062,
+      "generated_tokens_reported": 94,
+      "prompt_bytes": 3054,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "bill-stages",
+      "arm": "okf",
+      "seed": 27,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "milliseconds": 10251,
+      "prompt_tokens": 1062,
+      "generated_tokens_reported": 94,
+      "prompt_bytes": 3054,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "bill-stages",
+      "arm": "okf-plus",
+      "seed": 27,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1969,
+      "milliseconds": 10330,
+      "prompt_tokens": 1062,
+      "generated_tokens_reported": 94,
+      "prompt_bytes": 3054,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "bill-stages",
+      "arm": "markdown",
+      "seed": 27,
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "retrieved_bytes": 1040,
+      "milliseconds": 8060,
+      "prompt_tokens": 650,
+      "generated_tokens_reported": 94,
+      "prompt_bytes": 2125,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "private-join",
+      "arm": "okf",
+      "seed": 11,
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3294,
+      "milliseconds": 10922,
+      "prompt_tokens": 1449,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 4447,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": false,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "private-join",
+      "arm": "okf-plus",
+      "seed": 11,
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3848,
+      "milliseconds": 12454,
+      "prompt_tokens": 1707,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 5001,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": false,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "private-join",
+      "arm": "markdown",
+      "seed": 11,
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1962,
+      "milliseconds": 8314,
+      "prompt_tokens": 901,
+      "generated_tokens_reported": 52,
+      "prompt_bytes": 3115,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": false,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "private-join",
+      "arm": "okf-plus",
+      "seed": 27,
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3848,
+      "milliseconds": 12592,
+      "prompt_tokens": 1707,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 5001,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": false,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "private-join",
+      "arm": "markdown",
+      "seed": 27,
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1962,
+      "milliseconds": 7983,
+      "prompt_tokens": 901,
+      "generated_tokens_reported": 52,
+      "prompt_bytes": 3115,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": false,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "private-join",
+      "arm": "okf",
+      "seed": 27,
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3294,
+      "milliseconds": 10830,
+      "prompt_tokens": 1449,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 4447,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": false,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "alias-limit",
+      "arm": "okf-plus",
+      "seed": 11,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2689,
+      "milliseconds": 11463,
+      "prompt_tokens": 1387,
+      "generated_tokens_reported": 66,
+      "prompt_bytes": 3815,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true
+    },
+    {
+      "case": "alias-limit",
+      "arm": "markdown",
+      "seed": 11,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 1154,
+      "milliseconds": 7874,
+      "prompt_tokens": 689,
+      "generated_tokens_reported": 67,
+      "prompt_bytes": 2280,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "alias-limit",
+      "arm": "okf",
+      "seed": 11,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2135,
+      "milliseconds": 11028,
+      "prompt_tokens": 1129,
+      "generated_tokens_reported": 67,
+      "prompt_bytes": 3261,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "alias-limit",
+      "arm": "markdown",
+      "seed": 27,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 1154,
+      "milliseconds": 8716,
+      "prompt_tokens": 689,
+      "generated_tokens_reported": 67,
+      "prompt_bytes": 2280,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "alias-limit",
+      "arm": "okf",
+      "seed": 27,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2135,
+      "milliseconds": 14005,
+      "prompt_tokens": 1129,
+      "generated_tokens_reported": 67,
+      "prompt_bytes": 3261,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "alias-limit",
+      "arm": "okf-plus",
+      "seed": 27,
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "retrieved_bytes": 2689,
+      "milliseconds": 16862,
+      "prompt_tokens": 1387,
+      "generated_tokens_reported": 67,
+      "prompt_bytes": 3815,
+      "answer_contract_valid": true,
+      "status_correct": false,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "missing-decision",
+      "arm": "markdown",
+      "seed": 11,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 1111,
+      "milliseconds": 11660,
+      "prompt_tokens": 658,
+      "generated_tokens_reported": 45,
+      "prompt_bytes": 2266,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "missing-decision",
+      "arm": "okf",
+      "seed": 11,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2035,
+      "milliseconds": 13492,
+      "prompt_tokens": 1056,
+      "generated_tokens_reported": 35,
+      "prompt_bytes": 3190,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true
+    },
+    {
+      "case": "missing-decision",
+      "arm": "okf-plus",
+      "seed": 11,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2589,
+      "milliseconds": 15742,
+      "prompt_tokens": 1314,
+      "generated_tokens_reported": 35,
+      "prompt_bytes": 3744,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true
+    },
+    {
+      "case": "missing-decision",
+      "arm": "okf",
+      "seed": 27,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2035,
+      "milliseconds": 12506,
+      "prompt_tokens": 1056,
+      "generated_tokens_reported": 35,
+      "prompt_bytes": 3190,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true
+    },
+    {
+      "case": "missing-decision",
+      "arm": "okf-plus",
+      "seed": 27,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 2589,
+      "milliseconds": 15261,
+      "prompt_tokens": 1314,
+      "generated_tokens_reported": 35,
+      "prompt_bytes": 3744,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": true,
+      "public_answer_canaries": [],
+      "pass": true
+    },
+    {
+      "case": "missing-decision",
+      "arm": "markdown",
+      "seed": 27,
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "retrieved_bytes": 1111,
+      "milliseconds": 9163,
+      "prompt_tokens": 658,
+      "generated_tokens_reported": 45,
+      "prompt_bytes": 2266,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "public-disclosure",
+      "arm": "okf",
+      "seed": 11,
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "milliseconds": 14605,
+      "prompt_tokens": 1377,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 4264,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "public-disclosure",
+      "arm": "okf-plus",
+      "seed": 11,
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "milliseconds": 15252,
+      "prompt_tokens": 1377,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 4264,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "public-disclosure",
+      "arm": "markdown",
+      "seed": 11,
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1848,
+      "milliseconds": 9522,
+      "prompt_tokens": 857,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 2984,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "public-disclosure",
+      "arm": "okf-plus",
+      "seed": 27,
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "milliseconds": 14080,
+      "prompt_tokens": 1377,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 4264,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "public-disclosure",
+      "arm": "markdown",
+      "seed": 27,
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 1848,
+      "milliseconds": 9990,
+      "prompt_tokens": 857,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 2984,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    },
+    {
+      "case": "public-disclosure",
+      "arm": "okf",
+      "seed": 27,
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "retrieved_bytes": 3128,
+      "milliseconds": 13771,
+      "prompt_tokens": 1377,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 4264,
+      "answer_contract_valid": true,
+      "status_correct": true,
+      "facts_correct": true,
+      "citations_correct": false,
+      "public_answer_canaries": [],
+      "pass": false
+    }
+  ],
+  "summary": {
+    "markdown": {
+      "answer_contract_valid": 10,
+      "status_correct": 5,
+      "facts_correct": 8,
+      "citations_correct": 4,
+      "pass": 1,
+      "trials": 10,
+      "median_milliseconds": 8515.0,
+      "median_prompt_tokens": 689.0,
+      "median_generated_tokens_reported": 52.0,
+      "mean_retrieved_bytes": 1423.0,
+      "public_answer_canaries": 0
+    },
+    "okf": {
+      "answer_contract_valid": 10,
+      "status_correct": 4,
+      "facts_correct": 8,
+      "citations_correct": 6,
+      "pass": 2,
+      "trials": 10,
+      "median_milliseconds": 11767.0,
+      "median_prompt_tokens": 1129.0,
+      "median_generated_tokens_reported": 44.0,
+      "mean_retrieved_bytes": 2512.2,
+      "public_answer_canaries": 0
+    },
+    "okf-plus": {
+      "answer_contract_valid": 10,
+      "status_correct": 5,
+      "facts_correct": 8,
+      "citations_correct": 6,
+      "pass": 3,
+      "trials": 10,
+      "median_milliseconds": 13336.0,
+      "median_prompt_tokens": 1377.0,
+      "median_generated_tokens_reported": 44.0,
+      "mean_retrieved_bytes": 2844.6,
+      "public_answer_canaries": 0
+    }
+  },
+  "schema": "hansard-reference-consumer.v1",
+  "source": {
+    "completed_at": "2026-11-27T21:19:47.096243+00:00",
+    "commit": "ace90c52791adc481b43901f4d4c1b0ef01e6d14",
+    "catalogue_sha256": "5dcd2713f47476564f50698e079c2c65ea6305cba21e47da2af9d035f68eb456",
+    "assets": 8,
+    "network_audit_sha256": "8c0fe5d499eb5d0baae5530f75ebc0e2b980fb1d4fc4ec56d8de621563e7250d"
+  },
+  "contract_sha256": "08c5654ed2591b6d444e2c5c91d2b9991dba3c373b46db0270dacb2d8f30e76b",
+  "implementations": {
+    "acquire.py": "0a642c09a4220595c8eeb20124dc1eccec13eee94ae64ab38f32869682d1f9b9",
+    "corpus.py": "2de85d9af3333b49327ef9debdcfde211b9562287e8dc81c15ab41f2d6127068",
+    "evaluate.py": "382482e8355094707a53176b0cdfe430259859d9c309fa59a23585c6f617dfe7"
+  },
+  "model": {
+    "name": "PrismML Ternary Bonsai 2.5 27B",
+    "revision": "28a7093cc25bc151cc2b284c5570f12ce343fdcf",
+    "quantisation": "Q2_0",
+    "bytes": 7673194848,
+    "sha256": "84496171ca79d4d33fb45612a2afd8303ec494baf916281023b7dc9cb3b3b9fa",
+    "runtime": "llama.cpp b11556",
+    "runtime_release_sha256": "be652966e95415394468f057e31ae0dd5719173c48be240345042b37d06d24b2",
+    "macos_binary_sha256": "e3d5205729cb4c1e176d5c8e39796aefbe361a2300d0593586db9503dd0d63d1",
+    "context_tokens": 2048,
+    "output_tokens": 200,
+    "threads": 6,
+    "temperature": 0.2,
+    "seeds": [
+      11,
+      27
+    ],
+    "device": "MTL0",
+    "non_thinking_chatml": true
+  },
+  "retrieval": {
+    "mode": "matched-passage-ablation",
+    "public_documents": 3,
+    "private_documents": 3,
+    "wrapper_byte_limit": 5600,
+    "method": "Select once per question by query words and stable ID. Supply the same records to each format."
+  },
+  "model_profile_sha256": "069434653e2535c2c06491d594414a1e9866c4dc8ee88ffb4b08fb7c54362991",
+  "network": {
+    "phase_a": "fixed HTTPS acquisition journal and response byte counts",
+    "phase_b": {
+      "macos_profile": "(version 1)(allow default)(deny network*)",
+      "positive_loopback_requests": 1,
+      "sealed_sink_requests": 0,
+      "model_network_tools": 0,
+      "trace_sha256": "7daf440f95b65f360afc2173bafc3ee29b27d68d1ecbfc866928d4eb6e7f855f"
+    }
+  }
+}
