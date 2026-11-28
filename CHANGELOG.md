@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — historical trace evidence and passage freshness
+
+- Reconcile archive coverage per date and House. Keep distinct search matches
+  for incomplete sittings and identify them in the trace.
+- Page the combined history by sitting date and bind continuation to the
+  retained search evidence and archive sitting editions.
+- Bound source passage cache reuse and report when the source was observed.
+
 ## Unreleased — bounded connector requests
 
 - Admit a bounded number of loopback MCP requests and enforce a size and

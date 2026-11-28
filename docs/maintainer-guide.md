@@ -39,7 +39,9 @@ When changing the vocabulary:
 3. Regenerate the analysis profile. Use a compatible archive database or rebuild against the appropriate profile. Keep older profile and index identities in historical artefacts.
 4. Verify both the new relationship and its exact span and source. Inspect exclusions, the effect on alias coverage, changed counts and the graph and timeline before publishing.
 
-An **inverted index** maps an entity or term to a list of matching records. This list is often called a postings list. The browser and MCP use these lists for chronological mention retrieval. A captured full-text query uses SQLite FTS5, a searchable local text index. It matches normalised search tokens with an AND query and returns a bounded result page with text snippets, source anchors and dates. A search result is a textual match. Read the contribution and surrounding debate to determine its meaning.
+An **inverted index** maps an entity or term to a list of matching records. This list is often called a postings list. The browser and MCP use these lists for chronological mention retrieval. The local trace chooses archive or fallback search evidence separately for each date and House. Where a sitting is incomplete, it labels retained search results and removes duplicates with the same contribution anchor. It counts indexed records by day and reads the full archive records needed for the requested page. A captured full-text query uses SQLite FTS5, a searchable local text index. It matches normalised search tokens with an AND query and returns a bounded result page with text snippets, source anchors and dates. A search result is a textual match. Read the contribution and surrounding debate to determine its meaning.
+
+The on-demand passage tool returns the official source observation time alongside the two hashes it uses to compare current and recorded text. It reuses a response only within its two-minute cache window.
 
 ## Run, recover and check
 
