@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — bounded connector requests
+
+- Admit a bounded number of loopback MCP requests and enforce a size and
+  deadline for request bodies. Keep a verified snapshot pinned per request
+  and serialise use of its shared full-text search connection.
+- Send private non-storing HTTP responses on the authenticated route.
+  Exercise two synthetic accounts and unauthenticated access in tests.
+
 ## Unreleased — capture and release paths
 
 - Confine capture and evidence reads and generated Markdown writes to their
