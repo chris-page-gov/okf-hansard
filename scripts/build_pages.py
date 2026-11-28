@@ -30,7 +30,10 @@ BUILD_CREDIT = "Built with OpenAI Codex."
 GUIDES = {
     "beginners.html": "Beginner’s guide",
     "methodology.html": "Methodology and prompts",
+    "contributor-tour.html": "Contributor tour",
+    "licences.html": "Licences and attribution",
 }
+LEGAL_FILES = ("LICENSE", "NOTICE.md")
 PUBLIC_FILES = (
     "okf-bundle.json",
     "okf-bundle.yamlld",
@@ -232,8 +235,8 @@ def index_page(coverage, semantic_file, graph_anchor):
 <p class="date">House of Commons and House of Lords · {dates}</p>
 <h1>A week in Parliament</h1>
 <p class="intro">Follow a Hansard contribution through related people, offices, organisations, places and legislation. This experimental OKF+ bundle contains {total:,} passages and {assertions:,} source-linked relationships.</p>
-<p class="actions"><a class="primary" href="demo.html?example=railways-bill">Follow the Railways Bill</a>
-<a href="november/ask.html">Ask your AI about Hansard</a>
+<p class="actions"><a class="primary" href="november/ask.html">Try the phone Voice demo</a>
+<a href="demo.html?example=railways-bill">Follow the Railways Bill</a>
 <a href="{escape(READER + '?' + query, quote=True)}">Open in OKF Explorer</a>
 <a href="beginners.html">Beginner’s guide</a></p>
 <div class="grid">
@@ -265,13 +268,14 @@ def index_page(coverage, semantic_file, graph_anchor):
 <ul>
 <li><a href="coverage.json">Coverage and verification</a></li>
 <li><a href="methodology.html">Methodology and prompts</a></li>
+<li><a href="contributor-tour.html">Take the contributor tour</a></li>
 <li><a href="{SOURCE}">Source repository and research notes</a></li>
 </ul>
 </section>
 </div>
 <footer>
 <p>{BUILD_CREDIT}</p>
-<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>
+<p>{ATTRIBUTION} <a href="licences.html">Software and data licences</a>.</p>
 <p>This independent pilot links to the official record. Earlier matches use a fixed vocabulary of names and aliases.</p>
 </footer>
 </main>
@@ -289,20 +293,29 @@ def guide_page(name, title):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(title)} | A week in Parliament</title>
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="data:,">
 </head>
 <body>
 <main class="guide">
-<nav aria-label="Project"><a href="./">A week in Parliament</a></nav>
+<nav class="actions" aria-label="Project"><a href="./">A week in Parliament</a>
+<a href="november/ask.html">Phone Voice demo</a></nav>
 <h1>{escape(title)}</h1>
 {content}
 <footer>
 <p>{BUILD_CREDIT}</p>
-<p>{ATTRIBUTION} <a href="{LICENCE}">Licence and exclusions</a>.</p>
+<p>{ATTRIBUTION} <a href="licences.html">Software and data licences</a>.</p>
 </footer>
 </main>
 </body>
 </html>
 """
+
+
+def stage_guides(destination):
+    for name, title in GUIDES.items():
+        (destination / name).write_text(guide_page(name, title), encoding="utf-8")
+    for name in LEGAL_FILES:
+        (destination / name).write_bytes((ROOT / name).read_bytes())
 
 
 def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_demo=None, history_cache=None,
@@ -358,8 +371,7 @@ def stage(release, coverage_path, destination, database=DEFAULT_DB, baseline_dem
     (destination / "coverage.json").write_text(json.dumps(public_coverage, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     build_explorer_graph(release, destination / "graph")
     (destination / "index.html").write_text(index_page(public_coverage, semantic_file, sample["anchor"]["id"]), encoding="utf-8")
-    for name, title in GUIDES.items():
-        (destination / name).write_text(guide_page(name, title), encoding="utf-8")
+    stage_guides(destination)
     for name in DEMO_ASSETS:
         raw = (ROOT / "docs" / "pages" / name).read_bytes()
         if name == "demo.html" and "history_backfill" in final:

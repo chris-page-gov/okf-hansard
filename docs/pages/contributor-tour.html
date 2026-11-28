@@ -1,0 +1,80 @@
+<p class="intro">Follow one Railways Bill question from the phone Voice demo to the
+  evidence, the source code and the checks that run before publication.</p>
+
+<nav class="tour-links" aria-labelledby="tour-steps">
+  <h2 id="tour-steps">On this tour</h2>
+  <ol>
+    <li><a href="#ask">Ask about the Railways Bill</a></li>
+    <li><a href="#retrieve">Find the evidence your AI used</a></li>
+    <li><a href="#trace">Follow a link back to Parliament</a></li>
+    <li><a href="#verify">Check how the bundle was verified</a></li>
+    <li><a href="#reuse">Reuse the bundle or contribute</a></li>
+  </ol>
+</nav>
+
+<section aria-labelledby="ask">
+  <h2 id="ask">1. Ask about the Railways Bill</h2>
+  <p>Ask your AI which House considered Bill 4030 at Report stage on 18 November
+    2026, and ask it for the exact Hansard link. The worked evidence identifies
+    the House of Lords and records debate on that day.</p>
+  <ul class="tour-links">
+    <li><a href="demo.html?example=railways-bill">Open the Railways Bill companion</a></li>
+    <li><a href="https://hansard.parliament.uk/Lords/2026-11-18/debates/5EE3BF1A-449E-4D6D-A0CE-F725CE734996/RailwaysBill">Read the official Lords Report stage debate</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/docs/mobile-demonstration.md">Read the phone demo guide in the repository</a></li>
+  </ul>
+</section>
+
+<section aria-labelledby="retrieve">
+  <h2 id="retrieve">2. Find the evidence your AI used</h2>
+  <p>The public collection describes what is available and where to find the
+    records. The Read OKF+ skill guides compatible clients to open the coverage
+    and relevant passages before answering. If an assistant cannot open links,
+    copy evidence from the phone finder into the conversation.</p>
+  <ul class="tour-links">
+    <li><a href="november/ask.html">Find and copy public evidence</a></li>
+    <li><a href="november/hansard.json">Read the machine-readable collection directory</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/skills/read-okf-plus/SKILL.md">Inspect the Read OKF+ skill source</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/profile/voice-retrieval.json">Inspect the retrieval contract</a></li>
+  </ul>
+</section>
+
+<section aria-labelledby="trace">
+  <h2 id="trace">3. Follow a link back to Parliament</h2>
+  <p>Capture code reads the official records for each House. The history index
+    stores source locators for earlier matches. The read-only MCP server uses the
+    query index so an assistant can open the exact passage. A match by name or alias
+    is evidence of a mention and needs context to establish a stronger claim.</p>
+  <ul class="tour-links">
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/scripts/capture.py">Inspect the sitting capture code</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/scripts/archive.py">Inspect the historical index code</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/scripts/query.py">Inspect the evidence query code</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/scripts/mcp_server.py">Inspect the read-only MCP server</a></li>
+  </ul>
+</section>
+
+<section aria-labelledby="verify">
+  <h2 id="verify">4. Check how the bundle was verified</h2>
+  <p>The November publisher checks the sitting capture and graph assertions
+    before replacing the public files. Read the coverage report for the dated
+    snapshot and verification result. The checksum list lets clients compare the
+    published bytes with those checked by the publisher.</p>
+  <ul class="tour-links">
+    <li><a href="november/coverage.json">Read the published coverage and verification report</a></li>
+    <li><a href="november/checksums.json">Check the November file hashes</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/scripts/verify.py">Inspect the verification code</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/scripts/publish_november.py">Inspect the November publisher</a></li>
+  </ul>
+</section>
+
+<section aria-labelledby="reuse">
+  <h2 id="reuse">5. Reuse the bundle or contribute</h2>
+  <p>Open the OKF 0.3 Markdown to see portable concepts and source links. Use
+    OKF Explorer to follow parliamentary relationships and dates. The repository
+    guide explains how to reproduce the build and check your work.</p>
+  <ul class="tour-links">
+    <li><a href="november/okf/index.md">Read the November OKF Markdown index</a></li>
+    <li><a href="november/history.html">Explore the November timeline and earlier mentions</a></li>
+    <li><a href="https://github.com/chris-page-gov/okf-hansard/blob/main/docs/maintainer-guide.md">Read the maintainer guide</a></li>
+    <li><a href="licences.html">Read the software and data licence notices</a></li>
+  </ul>
+</section>
