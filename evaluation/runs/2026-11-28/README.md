@@ -6,7 +6,11 @@ Start with the [phone walkthrough](phone.md). The release covers 20,900 contribu
 
 The operator spoke the first parent question. Voice recognised Nadia Whittome, accurately described the question and Georgia Gould’s response and identified the lack of an explicit appeal commitment. Its written companion cited official Hansard. The phone used the **live homepage** for discovery and reported using **official Hansard web search** to answer. The reported date and contribution count matched the release. The phone supplied no bundle record or digest for this answer. Its earlier description of the homepage as pinned was incorrect.
 
-The answer earned **9 of 15**. It omitted an explicit House and a verifiable contribution locator. The exported transcript contained a Hansard citation label whose destination could not be checked. The assessor verified the answer from the two official passages. The initial trial took 16.45 seconds from recorded turn start to completion. The remaining eight phone answers and the assisted SEND retry await handset evidence. Their phone scores are unassigned. [Phone transcript excerpt and criterion scores](android-P1-Q1.json) · [Primary-source references](primary-source-checks.md)
+The answer earned **9 of 15**. It omitted an explicit House and a verifiable contribution locator. The exported transcript contained a Hansard citation label whose destination could not be checked. The assessor verified the answer from the two official passages. The initial trial took 16.45 seconds from recorded turn start to completion. The remaining eight phone questions await handset evidence. Their phone scores are unassigned. [Phone transcript excerpt and criterion scores](android-P1-Q1.json) · [Primary-source references](primary-source-checks.md)
+
+### Assisted retrieval in the same chat
+
+The exact immutable SEND concept URL was then posted through the desktop browser into the same conversation. The chat acknowledged receipt. Its text reply reported recognising a one-line document but could extract neither of Whittome’s two identifiers. It explicitly abstained from web-search fallback. The assessor independently read both records in the 43,467-byte, 103-row file and verified its digest. This establishes a client retrieval failure in this attempt. The file layout is one hypothesis. No controlled layout comparison has been run. The URL-triggered text response is a separate observation from the spoken trial. [Retry response](assisted-retrieval.json)
 
 ## Local comparison
 

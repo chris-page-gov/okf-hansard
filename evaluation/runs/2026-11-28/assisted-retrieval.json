@@ -1,0 +1,12 @@
+{
+  "scenario": "P1-Q1 assisted retrieval retry",
+  "date": "2026-11-28",
+  "mode": "Text URL sent from the desktop browser into the same ChatGPT conversation used on Android. No subsequent Android speech turn is evidenced by this record.",
+  "url": "https://raw.githubusercontent.com/chris-page-gov/okf-hansard/41a340e06ec02b7d5d4d5802e893534697328d32/november/history/send-reform.month.json",
+  "requested_use": "Inspect the pre-existing public concept file before relying on official Hansard. Extract both Whittome contribution identifiers from the file.",
+  "outcome": "The conversation acknowledged the exact URL. It reported that its retriever recognised a one-line plain-text document but did not expose the records or return the identifiers. It disclosed the failure and avoided a fallback. The transport cause is undiagnosed.",
+  "response": "The pinned evidence URL has arrived successfully. I'll test direct retrieval from that exact Git commit before consulting official Hansard, so we can distinguish the two evidence routes.\n\n**The URL opened, but the evidence retrieval is incomplete.**\n\nThe retrieval service recognised the pinned JSON file as a plain-text document containing one line. However, it did not expose the contents, even when I searched within it for Whittome.\n\nFor the Codex evaluation:\n\n| Test | Result |\n|--------|--------|\n| Pinned URL received | Pass |\n| URL opened | Pass |\n| JSON contents retrieved | Not demonstrated |\n| Two contribution IDs extracted | Not achieved |\n| Independent OKF+ grounding | Not demonstrated |\n\nI have deliberately avoided falling back to official Hansard or inventing the contribution IDs.\n\nOne possible issue is the presentation of the JSON as a single line. A useful next experiment would be to publish the same evidence as formatted JSON or Markdown and repeat the test.",
+  "score": "Separate retrieval observation. The original Android answer score is unchanged.",
+  "verification": "The assessor downloaded and verified the same 43,467-byte file by SHA-256 and confirmed that its 103 rows include both expected identifiers.",
+  "sha256": "cb3a65c674688aa9b5fe31e58630e9c8d25c846739410eba2b2f573c31c4f706"
+}
