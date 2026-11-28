@@ -72,6 +72,24 @@ The three formats produced identical labels on this fixed evidence sample. Markd
 
 The macOS worker and model server had no IP network access. They could communicate over one private Unix socket. TCP egress and a second Unix socket path were denied before and after the replay. The test sink saw only the supervisor's authorised control request. The run used local inference with no paid credits or resets.
 
+## OpenJev and Bonsai replay on 28 November 2026
+
+OpenJev chose the status and Bonsai wrote the facts and citation IDs. The runner assembled the two outputs and scored the result against the original strict rubric. The five original questions ran twice per format. The nine decision controls ran once per format with an explicit answer rubric. The private questions received trusted synthetic authorisation and destination labels. [Hybrid contract](../experiments/reference-consumer/hybrid-contract.json) · [Replay instructions](../experiments/reference-consumer/README.md#run-openjev-and-bonsai-together)
+
+The evidence snapshot, synthetic record bytes, retrieval selections and caps matched the earlier run. Bonsai received factual private records only for a supported request from an explicitly authorised internal reviewer. For public and external requests, it received the public material and the handling policy. OpenJev evaluated the full selected evidence inside the closed worker, including the conflicting request in the untrusted annex.
+
+| Format | Correct decisions | Original full passes | Control full passes | Median input tokens across both stages for original questions |
+| --- | ---: | ---: | ---: | ---: |
+| Plain Markdown | 19/19 | 8/10 | 7/9 | 1,308 |
+| Core OKF 0.3 | 19/19 | 10/10 | 8/9 | 2,188 |
+| OKF+ | 19/19 | 10/10 | 8/9 | 2,558 |
+
+OpenJev selected all 57 expected statuses, including all 15 denials. Bonsai returned the expected facts or empty facts object on all 57 trials. There were 51 full passes. All six failures were citation errors on insufficient-evidence answers. Three cited an unknown ID in place of the relevant Palantir record. The three Royal Assent controls cited the relevant Bill stages and added an unrelated record. The two structured formats tied on strict accuracy. On the Office 365 question, Bonsai correctly classified the 20 October 2014 reference as a historical mention and cited the exact contribution. [Exact Hansard contribution](https://hansard.parliament.uk/Lords/2014-10-20/debates/14102017000403/ConsumerRightsBill#contribution-14102017000168)
+
+The earlier Bonsai-only run scored 1/10, 2/10 and 3/10 on the original questions. The hybrid changes the status handling, the private request context, the evidence supplied to Bonsai and its output contract. The difference measures the combined design changes. The fixed cases and repeated evidence give a limited test of how reliably the formats generalise. Citation IDs still need to be checked against the evidence before presenting a cited answer.
+
+No synthetic private value appeared in any of the 15 denial outputs. The TCP and second Unix socket probes were denied before, between and after the two stages. The test sink observed only the supervisor's one control request. The inputs fit in the 2,048-token context for each model, with at most 1,701 tokens for OpenJev and 1,699 prompt tokens for Bonsai. No paid credits or resets were used. [Sanitised replay receipt](../experiments/reference-consumer/results/2026-11-28-openjev-bonsai.json)
+
 ## Research attachments
 
 The original and the Word version both contain the recommendation for this experiment. The Word file is a compressed document container. A visible-text comparison found roughly 10,300 words in the Word content and 9,700 in the Markdown body, with the original section structure represented and 58 numbered references in Word. This comparison did not find a missing substantive section. It does not validate each reference’s destination or interpretation. The attached reports were used as research context. The implementation follows the experiment explicitly requested in chat.

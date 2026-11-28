@@ -3,6 +3,7 @@
 import argparse
 from collections import Counter
 from contextlib import contextmanager
+from dataclasses import dataclass
 from datetime import UTC, datetime
 from errno import EACCES, EPERM
 from http.client import HTTPConnection
@@ -23,6 +24,13 @@ from evaluate import ENVIRONMENT, PROFILE, SinkHandler, connectivity, disclosure
 
 DECISION_CONTRACT = CONTRACT.with_name("decision-contract.json")
 SECTIONS = ("original", "controls")
+
+
+@dataclass(frozen=True)
+class Evidence:
+    text: str
+    ids: tuple[str, ...]
+    size: int
 
 
 class UnixHTTPConnection(HTTPConnection):
@@ -124,11 +132,13 @@ def matching_evidence(args, contract):
     budget = contract["retrieval"]
     earlier = {(row["case"], row["arm"], row["seed"]): row for row in baseline["trials"]}
     editions = {}
+    selections = {}
     for case in contract["cases"]:
         selected = select(case["question"], records, budget["public_documents"])
         if case["id"] in {"private-join", "public-disclosure"}:
             selected += select(case["question"], private, budget["private_documents"])
         evidence_ids = [row.id for row in selected]
+        selections[case["id"]] = selected
         for arm in ARMS:
             text = render(arm, selected, assertion)
             size = len(text.encode())
@@ -138,10 +148,10 @@ def matching_evidence(args, contract):
                 row = earlier.pop((case["id"], arm, seed))
                 if row["evidence_ids"] != evidence_ids or row["retrieved_bytes"] != size:
                     raise ValueError("The rendered state differs from the previous trial.")
-            editions[(case["id"], arm)] = (text, evidence_ids, size)
+            editions[(case["id"], arm)] = Evidence(text, tuple(evidence_ids), size)
     if earlier:
         raise ValueError("The baseline includes extra evidence trials.")
-    return editions, values, source, acquisition, digest(baseline_bytes)
+    return editions, selections, assertion, values, source, acquisition, digest(baseline_bytes)
 
 
 def assessment(payload, labels, capacity):
@@ -169,6 +179,21 @@ def text_fields(payload):
     elif isinstance(payload, list):
         for item in payload:
             yield from text_fields(item)
+
+
+def classify(path, state, question, order, decision, capacity, values):
+    body = {"state": state, "questions": {"status": {
+        "type": "choice", "instructions": decision["instruction"] + "\n\nQuestion: " + question,
+        "criteria": {label: decision["criteria"][label] for label in order},
+    }}}
+    start = monotonic()
+    answer = request(path, "/v1/systemone", body)
+    elapsed_ms = round((monotonic() - start) * 1000)
+    label, probabilities, used = assessment(answer, order, capacity)
+    if any(disclosures(text, values) for text in text_fields(answer)):
+        raise ValueError("A synthetic marker appeared in native decision output.")
+    return {"predicted": label, "probabilities": probabilities, "input_tokens": used,
+            "output_tokens": 0, "milliseconds": elapsed_ms}
 
 
 def tasks(contract, decision):
@@ -202,27 +227,17 @@ def score(trials):
 
 def worker(args, contract, decision):
     probes = [probe_boundary(args.port, args.socket)]
-    editions, values, source, acquisition, baseline_hash = matching_evidence(args, contract)
+    editions, _, _, values, source, acquisition, baseline_hash = matching_evidence(args, contract)
     trials = []
     capacity = contract["model"]["context_tokens"]
     with server(args, contract), open(args.output / "decisions.jsonl", "x", encoding="utf-8", opener=private_open) as log:
         for section, key, evidence_case, instruction, expected, order in tasks(contract, decision):
             for arm in ARMS:
-                text, evidence_ids, size = editions[(evidence_case, arm)]
-                body = {"state": text, "questions": {"status": {
-                    "type": "choice", "instructions": decision["instruction"] + "\n\nQuestion: " + instruction,
-                    "criteria": {label: decision["criteria"][label] for label in order},
-                }}}
-                start = monotonic()
-                answer = request(args.socket, "/v1/systemone", body)
-                elapsed_ms = round((monotonic() - start) * 1000)
-                selected, probabilities, used = assessment(answer, order, capacity)
-                if any(disclosures(text, values) for text in text_fields(answer)):
-                    raise ValueError("A synthetic marker appeared in native decision output.")
+                evidence = editions[(evidence_case, arm)]
+                result = classify(args.socket, evidence.text, instruction, order, decision, capacity, values)
                 row = {"section": section, "case": key, "evidence_case": evidence_case, "arm": arm,
-                       "order": order, "expected": expected, "predicted": selected, "correct": expected == selected,
-                       "probabilities": probabilities, "evidence_ids": evidence_ids, "evidence_bytes": size,
-                       "input_tokens": used, "output_tokens": 0, "milliseconds": elapsed_ms}
+                       "order": order, "expected": expected, "correct": expected == result["predicted"],
+                       "evidence_ids": evidence.ids, "evidence_bytes": evidence.size, **result}
                 trials.append(row)
                 log.write(json.dumps(row) + "\n")
                 log.flush()
@@ -232,11 +247,9 @@ def worker(args, contract, decision):
                                             "probes": probes, "trials": trials, "summary": score(trials)})
 
 
-def run(args, contract, decision):
+def run_isolated(args, entrypoint, fields, timeout):
     if sys.platform != "darwin":
         raise RuntimeError("This replay requires the verified Apple Seatbelt isolation path.")
-    args.output.mkdir(mode=0o700, parents=True, exist_ok=False)
-    verify_model(args.weights, args.binary, decision["model"])
     with (TemporaryDirectory(dir="/private/tmp", prefix="hansard-decision-") as private,
           HTTPServer(("127.0.0.1", 0), SinkHandler) as sink):
         sink.events = []
@@ -244,28 +257,35 @@ def run(args, contract, decision):
         thread.start()
         address = Path(private) / "model.sock"
         profile = seatbelt(address)
-        command = ["/usr/bin/sandbox-exec", "-p", profile, sys.executable, str(Path(__file__).resolve()),
+        command = ["/usr/bin/sandbox-exec", "-p", profile, sys.executable, str(entrypoint.resolve()),
                    "--_sealed-port", str(sink.server_port), "--_socket", str(address)]
-        for field in ("public", "output", "binary", "weights", "replay"):
-            command.extend(["--" + field, str(getattr(args, field))])
+        for field in fields:
+            command.extend(["--" + field.replace("_", "-"), str(getattr(args, field))])
         try:
             positive_control(sink.server_port)
-            subprocess.run(command, env=ENVIRONMENT, check=True, timeout=1800)
+            subprocess.run(command, env=ENVIRONMENT, check=True, timeout=timeout)
             if sink.events != [{"method": "GET", "path": "/public-control", "peer": "127.0.0.1"}]:
                 raise RuntimeError("Unexpected requests reached the authorised control sink.")
         finally:
             sink.shutdown()
             thread.join()
             write_json(args.output / "sink-trace.json", sink.events)
+    return {"policy": profile.replace(str(address), "<private-socket>"),
+            "sink_trace_sha256": digest((args.output / "sink-trace.json").read_bytes()),
+            "sealed_sink_requests": 0}
+
+
+def run(args, contract, decision):
+    args.output.mkdir(mode=0o700, parents=True, exist_ok=False)
+    verify_model(args.weights, args.binary, decision["model"])
+    network = run_isolated(args, Path(__file__), ("public", "output", "binary", "weights", "replay"), 1800)
     report = read(args.output / "worker.json")
     report.update({"schema": decision["schema"], "completed_at": datetime.now(UTC).isoformat(),
                    "decision_contract_sha256": digest(DECISION_CONTRACT.read_bytes()),
                    "baseline_contract_sha256": digest(CONTRACT.read_bytes()),
                    "model": decision["model"], "retrieval": contract["retrieval"],
                    "context_tokens": contract["model"]["context_tokens"], "output_tokens": 0,
-                   "network": {"policy": profile.replace(str(address), "<private-socket>"),
-                               "sink_trace_sha256": digest((args.output / "sink-trace.json").read_bytes()),
-                               "sealed_sink_requests": 0}})
+                   "network": network})
     write_json(args.output / "report.json", report)
     print(json.dumps(report["summary"], indent=2))
 

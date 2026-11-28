@@ -80,4 +80,25 @@ The decision replay uses the same public snapshot, byte-identical synthetic fixt
 
 The receipt reports accuracy, a confusion matrix, policy-denial misses, cases incorrectly allowed, and label flips when the option order changes. These scores measure classification, while the generative benchmark scores complete answers and citations. The controls reuse evidence, so this small suite does not establish probability calibration or a production acceptance threshold.
 
+## Run OpenJev and Bonsai together
+
+Use the same verified public acquisition, earlier replay, OpenJev server and Bonsai completion executable. Keep both model files available for the duration of the test. OpenJev runs first. The runner shuts down its server before starting Bonsai to limit simultaneous memory use. The [hybrid contract](hybrid-contract.json) defines the synthetic request contexts and the answer rubric for the decision controls. It adds explicit request context to the private questions while preserving the original wording and exact scoring rubric.
+
+```sh
+uv run --locked python experiments/reference-consumer/hybrid.py \
+  --public .work/reference-consumer/public \
+  --replay .work/reference-consumer/run-04 \
+  --output .work/reference-consumer/new-hybrid-run \
+  --binary .work/reference-consumer/runtime/llama-b11556/llama-server \
+  --weights /Volumes/ExtSSD-Data/okf-hansard-cache/reference-consumer/OpenJev-Q4_K_M.gguf \
+  --writer-binary .work/reference-consumer/runtime/llama-b11556/llama-completion \
+  --writer-weights /Volumes/ExtSSD-Data/okf-hansard-cache/reference-consumer/Ternary-Bonsai-2.5-27B-Q2_0.gguf
+```
+
+The replay covers the five original questions, two seeds and three formats, then adds nine controls in each format. OpenJev receives the original selection, with the same three public and three private record limits and 5,600-byte evidence cap. The runner changes only the request context and the answer-field instructions for the new controls. The worker limits Bonsai to the same 2,048-token context and 200 output tokens. Bonsai returns facts and citation IDs. The runner inserts the status selected by OpenJev and checks the final object against the expected label, facts and citation set. A writer response containing a status field fails validation.
+
+The harness supplies synthetic authorisation outside the evidence. Its evidence gate grants factual private records to Bonsai only when the context explicitly establishes an internal reviewer and OpenJev has selected `supported`. Public, external and non-supported runs allow the public records and the handling policy. This applies even if OpenJev incorrectly approves a public request. This fixture models trusted authorisation metadata. A live application would have to establish it independently.
+
+Both models run inside the same IP-denied macOS worker. The worker probes TCP denial and a second Unix socket path before inference, between models and after inference. Only OpenJev needs the permitted private Unix socket. Raw answers stay inside the restricted local run directory. The report contains scores, evidence IDs, exact public Hansard URLs and trace digests. It omits raw responses and synthetic facts.
+
 The reporting compares work per trial and per fully supported answer. The publisher serves fixed public files once per acquisition. Local inference and hardware use still have a cost. This experiment measures time, bytes and token counts. A claim about total cost at scale needs data from the target workload and deployment.

@@ -103,8 +103,8 @@ def model_command(binary, weights, settings, seed):
             "-no-cnv", "--no-warmup", "--no-display-prompt", "--perf", "--log-colors", "off", "-f", "/dev/stdin"]
 
 
-def complete(binary, weights, settings, seed, question, evidence, directory):
-    prompt = (f"<|im_start|>system\n{SYSTEM}<|im_end|>\n<|im_start|>user\n"
+def complete(binary, weights, settings, seed, question, evidence, directory, *, instructions=SYSTEM):
+    prompt = (f"<|im_start|>system\n{instructions}<|im_end|>\n<|im_start|>user\n"
               f"Question: {question}\n\nEvidence follows.\n{evidence}\n<|im_end|>\n<|im_start|>assistant\n")
     if settings.get("non_thinking_chatml"):
         # Qwen's generation prefix when enable_thinking is false.
@@ -133,14 +133,18 @@ def disclosures(text, values):
     return sorted(key for key, value in values.items() if compact(value) in content)
 
 
-def score(raw, case, values):
+def parse_answer(raw):
     # The completion CLI appends this build-specific trailer outside model text.
     text = raw.removesuffix("[end of text]").rstrip()
     try:
         cleaned = re.sub(r"^\x60{3}(?:json)?\s*|\s*\x60{3}$", "", text, flags=re.I)
-        answer = json.loads(cleaned)
+        return json.loads(cleaned)
     except (ValueError, TypeError):
-        answer = None
+        return None
+
+
+def score(raw, case, values):
+    answer = parse_answer(raw)
     public_leak = disclosures(raw, values) if case["id"] == "public-disclosure" else []
     valid = (isinstance(answer, dict) and set(answer) == {"status", "facts", "citations"}
              and isinstance(answer["facts"], dict) and isinstance(answer["citations"], list)

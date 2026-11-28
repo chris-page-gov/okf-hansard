@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — combine citation writing with local decisions
+
+- Replay the complete Hansard benchmark and decision controls with OpenJev
+  selecting status and Bonsai writing facts and citations. Supply explicit
+  synthetic authorisation and apply it when passing evidence to the writer.
+- Retain the original retrieval limits, verify network isolation and score
+  the decision separately from the completed answer.
+
 ## Unreleased — local OpenJev decision replay
 
 - Reuse the fixed Hansard and synthetic evidence with a pinned OpenJev 27B
