@@ -28,6 +28,21 @@ On 28 November the operator decoded the QR code on a Pixel using Google Lens and
 
 [Immutable JSON Lines evidence](https://raw.githubusercontent.com/chris-page-gov/okf-hansard/2b75da6c216fa86b961fbdd0c31df2ed5f237ec2/evaluation/runs/2026-11-28/send-reform.month.jsonl) · [Official ordered debate](https://hansard-api.parliament.uk/debates/debate/13F7917B-36D3-4198-8908-7185E77DE84A.json) · [Gould’s reply on appeals](https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-26F9FC36-CC1F-4442-B478-A22CB0E95CA4)
 
+#### Open producer regression
+
+The producer retains separate contribution identities, source positions and hashes. Its build does not emit an explicit question-to-answer relationship for this exchange. The observed misattribution occurred when interpreting the three retrieved records. The pinned index itself contains no assertion pairing the supplementary with the earlier reply.
+
+A regression must exercise the producer's generated relationships for this debate. Use the four independently verified ledger entries as the expected result and retain the original three-record retrieval as a negative case.
+
+| Input | Required result |
+|---|---|
+| Full ordered debate | Preserve both Whittome identifiers. Pair the opening question (Q0) with Gould’s opening answer (R0), and the appeals supplementary (Q) with Gould’s later reply (R). |
+| Earlier reply offered for the supplementary | Reject Q → R0, even though both records concern SEND and were returned by the same concept lookup. |
+| Three-record projection with R missing | Leave the supplementary’s reply unresolved in that projection, or resolve R through its verified source locator. |
+| Source evidence | Each asserted pair must resolve to the verified endpoints with their official URLs, capture pointers and raw source-value SHA-256 digests. A changed source digest must trigger re-verification. |
+
+The positive cases require a producer change as well as a test. The published file and the historical run scores remain the baseline for comparison. [Four verified ledger entries](evidence.json)
+
 ## Local comparison
 
 All nine exact questions also ran once on Qwen2.5-3B-Instruct Q4_K_M on the Mac CPU, using selected evidence from the pinned bundle and linked primary sources. Each trial began with fresh context. The model received the question and its public evidence packet. It saw neither the scoring rubric nor the reference answers. The assessor selected the evidence in advance, so these results measure answering from supplied evidence. They give no measure of mobile usability or autonomous retrieval. [Inputs by question](questions.json) · [Evidence packets](evidence.json) · [Original answers and timings](local-answers.jsonl)
