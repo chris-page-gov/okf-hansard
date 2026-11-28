@@ -1,11 +1,13 @@
 """Inspect exact, source-linked matches in the frozen week and rolling history."""
 
 import argparse
-from datetime import date
+from collections import defaultdict
+from datetime import date, timedelta
 import hashlib
 import json
 from pathlib import Path
 import sqlite3
+from urllib.parse import urlsplit
 
 DEFAULT_RELEASE = Path("releases/current")
 DEFAULT_DB = Path("/Volumes/ExtSSD-Data/okf-hansard-cache/history-v1.sqlite")
@@ -16,6 +18,26 @@ DEEP_BEFORE = "2007-01-01"
 def canonical_digest(value):
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
                                      separators=(",", ":")).encode()).hexdigest()
+
+
+def source_identity(row):
+    url = urlsplit(row.get("url") or "")
+    path = url.path.split("/")
+    if (url.hostname == "hansard.parliament.uk" and len(path) >= 5
+            and path[3].casefold() == "debates" and url.fragment.casefold().startswith("contribution-")):
+        return row["date"], row.get("house"), path[4].casefold(), url.fragment.casefold()
+    return row["contribution"],
+
+
+def day_after(day):
+    return (date.fromisoformat(day) + timedelta(days=1)).isoformat()
+
+
+def sitting_states(db):
+    if db is None:
+        return {}
+    return {(day, house): (status, attempts, retained) for day, house, status, attempts, retained in
+            db.execute("SELECT day,house,status,attempts,retained FROM sitting")}
 
 
 class Index:
@@ -113,6 +135,64 @@ class Index:
                  **json.loads(document), **json.loads(proof)}
                 for route, day, house, debate, ordinal, document, proof in rows]
 
+    def history_page(self, key, captured, archives, limit, offset):
+        by_day = defaultdict(list)
+        for row in captured:
+            by_day[row["date"]].append(row)
+        archived_days = {}
+        for db, since, before, states in archives:
+            for day, count in db.execute("""
+                SELECT day,count(*) FROM mention WHERE entity=? AND day>=? AND day<? GROUP BY day
+            """, (key, since, before)):
+                archived_days[day] = db, count, states
+
+        page = []
+        for day in sorted(by_day.keys() | archived_days.keys(), reverse=True):
+            retained = by_day[day]
+            db, count, states = archived_days.get(day, (None, 0, {}))
+            if offset >= len(retained) + count:
+                offset -= len(retained) + count
+                continue
+            page.extend(retained[offset:offset + limit - len(page)])
+            if db and len(page) < limit:
+                for row in self.archive_rows(db, key, day_after(day), limit - len(page),
+                                             max(0, offset - len(retained)), day):
+                    state = states.get((day, row["house"]), ("not recorded", 0, 0))[0]
+                    page.append({**row, "archive_sitting_status": state})
+            if len(page) >= limit:
+                break
+            offset = 0
+        return page
+
+    def search_fallback(self, key, search, captured, archives, prior):
+        """Retain fallback evidence where the applicable archive lacks a complete sitting."""
+        seen = {source_identity(row) for row in captured}
+        matched_days = {}
+        retained = []
+        for row in search:
+            if not prior(row):
+                continue
+            identity = source_identity(row)
+            if identity in seen:
+                continue
+            day = row["date"]
+            status = "not indexed"
+            duplicate = False
+            for db, since, before, states in archives:
+                if since <= day < before:
+                    status, _, existing = states.get((day, row["house"]), ("not indexed", 0, 0))
+                    if status != "processed" and existing:
+                        if day not in matched_days:
+                            matches = self.archive_rows(db, key, day_after(day), -1, 0, day)
+                            matched_days[day] = {source_identity(match) for match in matches}
+                        duplicate = identity in matched_days[day]
+                    break
+            if status == "processed" or duplicate:
+                continue
+            seen.add(identity)
+            retained.append({**row, "history_source": "Hansard search", "archive_sitting_status": status})
+        return retained
+
     def find(self, term="", day=None, house=None, limit=20, offset=0):
         if self.source_records is None:
             bundle = json.loads((self.release / "okf-bundle.json").read_bytes())
@@ -182,6 +262,8 @@ class Index:
                     SELECT status,min(day),max(day),count(*) FROM sitting WHERE day<? GROUP BY status
                 """, (deep_before,))
             }
+        current_states, older_states = sitting_states(db), sitting_states(deep)
+        evidence_versions = {}
 
         def prior(row):
             return row["date"] < anchor["date"] or (
@@ -196,28 +278,22 @@ class Index:
             use_deep = deep and key in deep_keys
             backfill = self.backfill_for(key)
             supplemental = None if backfill else self.auxiliary.get(key)
-            if supplemental and not use_archive:
-                prior_base.extend(row for row in supplemental["items"] if prior(row)
-                                  and (not use_deep or row["date"] >= deep_before))
-            earlier_search = []
-            if backfill:
-                for row in backfill["items"]:
-                    if not prior(row) or (use_deep and row["date"] < deep_before):
-                        continue
-                    if not use_archive or row["date"] > extension_latest:
-                        prior_base.append(row)
-                    elif row["date"] < extension_earliest:
-                        earlier_search.append(row)
-            count = 0
+            archives = []
             archive_since = deep_before if use_deep else "0001-01-01"
             if use_archive:
-                count = db.execute("SELECT count(*) FROM mention WHERE entity=? AND day>=? AND day<?",
-                                   (key, archive_since, anchor["date"])).fetchone()[0]
+                archives.append((db, archive_since, anchor["date"], current_states))
+            if use_deep:
+                archives.append((deep, "0001-01-01", deep_before, older_states))
+            package = backfill or supplemental
+            fallback = self.search_fallback(key, package["items"], prior_base, archives, prior) if package else []
+            if fallback:
+                evidence_versions[key] = canonical_digest(fallback)
+            count = db.execute("SELECT count(*) FROM mention WHERE entity=? AND day>=? AND day<?",
+                               (key, archive_since, anchor["date"])).fetchone()[0] if use_archive else 0
             deep_count = deep.execute("SELECT count(*) FROM mention WHERE entity=? AND day<?",
                                       (key, deep_before)).fetchone()[0] if use_deep else 0
-            recent_count = len(prior_base) + count + len(earlier_search)
             summaries.append({"id": key, **self.history["entities"][key],
-                              "earlier": recent_count + deep_count,
+                              "earlier": len(prior_base) + len(fallback) + count + deep_count,
                               "same_day_order_unknown": same_day,
                               "extension_applied": bool(use_archive),
                               **({"older_archive_applied": bool(use_deep), "older_archive_matches": deep_count}
@@ -229,25 +305,10 @@ class Index:
                               "supplemental_coverage": (
                                   {"from": supplemental["from"], "through": supplemental["through"],
                                    "method": supplemental["method"], "retrieved_at": supplemental["retrieved_at"]}
-                                  if supplemental and not use_archive else None
+                                  if supplemental and fallback else None
                               )})
-            if key != entity:
-                continue
-            remaining = limit
-            if offset < len(prior_base):
-                actual_items.extend(prior_base[offset:offset + remaining])
-                remaining = limit - len(actual_items)
-            if use_archive and remaining:
-                actual_items.extend(self.archive_rows(db, key, anchor["date"], remaining,
-                                                      max(0, offset - len(prior_base)), archive_since))
-            remaining = limit - len(actual_items)
-            if earlier_search and remaining:
-                start = max(0, offset - len(prior_base) - count)
-                actual_items.extend(earlier_search[start:start + remaining])
-            remaining = limit - len(actual_items)
-            if use_deep and remaining:
-                actual_items.extend(self.archive_rows(deep, key, deep_before, remaining,
-                                                      max(0, offset - recent_count)))
+            if key == entity:
+                actual_items = self.history_page(key, prior_base + fallback, archives, limit, offset)
         scope = {"base_from": min(row["date"] for row in self.receipt["day_denominators"]),
                  "base_through": anchor["date"], "extension_from": extension_earliest,
                  "extension_through": extension_latest, "extension_processed_sittings": extension_count,
@@ -258,7 +319,8 @@ class Index:
             scope["older_archive"] = {"available": bool(deep), "exclusive_before": deep_before,
                                       "sittings": deep_status, "profile_sha256": deep_sha}
         context = canonical_digest({"bundle": self.bundle_sha256, "scope": scope,
-                                    "contribution": route, "entities": summaries})
+                                    "contribution": route, "entities": summaries, "search_evidence": evidence_versions,
+                                    "sitting_editions": [sorted(states.items()) for states in (current_states, older_states)]})
         if expected_context and expected_context != context:
             raise ValueError("History was updated. Start again at offset zero for a consistent evidence page.")
         selected = next((row for row in summaries if row["id"] == entity), None)
