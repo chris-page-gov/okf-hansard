@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased — publication safeguards and historical retries
+
+- Check candidate coverage against the current Pages commit and forecast the
+  combined site size before replacing either published scope.
+- Verify the staged week catalogue and required entry points before writing
+  to Pages. Record verification only while the verified commit is current.
+- Checkpoint incomplete historical sittings for retry and retain earlier
+  matches until a complete observation is available. Reopen empty historical
+  records when the calendar confirms a sitting.
+
 ## Unreleased — contributor tour and licences
 
 - Lead with the phone Voice demo on Pages and add a separate contributor

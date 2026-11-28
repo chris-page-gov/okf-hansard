@@ -10,7 +10,8 @@ import signal
 import sqlite3
 import time
 
-from archive import Collector, collect_sitting, open_database, run
+from archive import (Collector, collect_sitting, open_database, reconcile_calendar_empty_sittings,
+                     run)
 from capture import dump, now
 from model import Entity, Matcher
 from query import DEEP_BEFORE, DEEP_DB, DEFAULT_DB
@@ -71,6 +72,7 @@ def retry_gaps(args):
             raise ValueError("The staged archive has unexpected collection settings.")
         if db.execute("SELECT 1 FROM sitting WHERE day>=? LIMIT 1", (DEEP_BEFORE,)).fetchone():
             raise ValueError("The staged archive overlaps the current history window.")
+        reconcile_calendar_empty_sittings(db)
         gaps = [(day, house) for day, house in db.execute(
             "SELECT day,house FROM sitting WHERE status='source gap' ORDER BY day,house")]
         for day, house in gaps:
