@@ -20,6 +20,7 @@ class DateRangeTests(unittest.TestCase):
             self.assertEqual(["2026-10", "2026-11"], list(index["calendar"]["months"]))
             path = root / index["calendar"]["range"].format(start="2026-10-30", end="2026-10-31")
             record = json.loads(path.read_bytes())
+            self.assertGreater(len(path.read_text().splitlines()), len(record["dates"]))
             self.assertEqual("2026-10-30/2026-10-31", record["interval"])
             self.assertEqual(1, record["contributions"])
             self.assertEqual((root / "2026-10-30/index.html").as_uri(),

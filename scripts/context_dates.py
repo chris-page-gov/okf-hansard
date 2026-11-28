@@ -38,10 +38,10 @@ def publish_dates(root, index, coverage):
                     "dates": [{"date": day.isoformat(), "status": status, "contributions": count,
                                **({"sections": f"{up}{day}/index.html"} if count else {})}
                               for day, count, status in rows]}
-        dump(root / "months" / (month + ".json"), catalogue(dates, "../"), compact=True)
+        dump(root / "months" / (month + ".json"), catalogue(dates, "../"))
         for first, (start, _, _) in enumerate(dates):
             for last, (end, _, _) in enumerate(dates[first:], first):
                 if (end - start).days != last - first:
                     break
                 path = root / "ranges" / start.isoformat() / (end.isoformat() + ".json")
-                dump(path, catalogue(dates[first:last + 1], "../../"), compact=True)
+                dump(path, catalogue(dates[first:last + 1], "../../"))

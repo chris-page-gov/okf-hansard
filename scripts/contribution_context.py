@@ -126,7 +126,7 @@ def render_section(output, section, part, members, links, day_rows, snapshot):
         body.append(f'<footer><a href="{escape(official(part["url"]), quote=True)}">Hansard section</a>'
                     f' · <a href="{LICENCE}">Open Parliament Licence</a><details><summary>Capture and snapshot</summary>'
                     f'<p>Source file SHA-256 {part["capture"]["sha256"]}<br>{escape(snapshot)}</p></details></footer>')
-        raw = document(title, "".join(body)).encode()
+        raw = document(title, "\n".join(body)).encode()
         if len(raw) > PAGE_BYTES:
             raise ValueError("Contribution context page exceeds the phone download limit.")
         path = output / page_name(section, start)
@@ -164,7 +164,7 @@ def publish_context(site, release, capture, snapshot):
             entries.append(f'<li><a href="{anchor(section, 1)}">{escape(part["title"])}</a>'
                            f' · {escape(part["house"])} · {len(members)} turns</li>')
         (day_site / "index.html").write_text(document(day, f'<h1>Contributions on {day}</h1><ul>'
-                                                       + "".join(entries) + "</ul>"), encoding="utf-8")
+                                                       + "\n".join(entries) + "</ul>"), encoding="utf-8")
         dump(day_site / "turns.json", {"snapshot": snapshot, "page_turns": PAGE_TURNS, "sections": lookup}, compact=True)
         dump(path, finder, compact=True)
         index["days"][day] = {"url": f"{day}/index.html", "turn_lookup": f"{day}/turns.json", "contributions": expected}
