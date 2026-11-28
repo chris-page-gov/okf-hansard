@@ -8,8 +8,8 @@
     "sha256": "4548c85c6320819c8a98987ad152cf00b3d85300402724d4ca7343a2b41a0c11"
   },
   "beginners.html": {
-    "bytes": 3146,
-    "sha256": "40bcd0ebaf431f159bcdf28febba613fa990420abc6ed5d73ae3306297ee01f7"
+    "bytes": 3528,
+    "sha256": "843360819316e69d1abe7d63b1a65f0fb1afdef38ddb7bfc34774a6df383cc1c"
   },
   "core-walkthrough-mobile.svg": {
     "bytes": 1422,
@@ -10572,16 +10572,16 @@
     "sha256": "51c1a792473bbbb631c3c91d5d173ce7d11b46b64445ac8c49c43208ec78c794"
   },
   "index.html": {
-    "bytes": 3683,
-    "sha256": "57435dc30c90e9637017105f5364c2bca95aa778173672aacb5c5d781d958dd8"
+    "bytes": 3693,
+    "sha256": "444a2befc5c34d881e88d59c8e3e0240f5ed7337c4a12f533b8c3efce029d9fc"
   },
   "llms.txt": {
     "bytes": 1305,
     "sha256": "7e3bf1ad7ad1c96feb80b98759f046220f98982f4351c6df78a8e70b51825f93"
   },
   "methodology.html": {
-    "bytes": 6460,
-    "sha256": "063696193c5b39b3d2063a643febdd9a332a1291af0d2c5d69f451e756ba0511"
+    "bytes": 6465,
+    "sha256": "92a81b8a7d0b02872a2106b996cb1a0841ccae83c8c847debdb2d4f976f088a7"
   },
   "okf/LICENSE.md": {
     "bytes": 216,
@@ -10628,8 +10628,8 @@
     "sha256": "73c0d0cb59cd5eed13f0144f465169684a3008abb0c58ecbe8aefc86ac4ddbcd"
   },
   "site.css": {
-    "bytes": 3110,
-    "sha256": "86d36070286949429ce43f9b62defaa5239b341a0eacdab7b72d7e712130f3b9"
+    "bytes": 3613,
+    "sha256": "df389929574695e9d765ed9f662b22db0ebc0b57dc75886997e1ed44a4173b95"
   },
   "use-with-ai.html": {
     "bytes": 2520,
@@ -10662,5 +10662,21 @@
   "walkthrough.svg": {
     "bytes": 967,
     "sha256": "e853dc108e60b2af842dbfcbda1355b9531f42466f0e1e093256357760dc2b94"
+  },
+  "LICENSE": {
+    "bytes": 1066,
+    "sha256": "aef6c7f947fb61ecd37c698407914bc9c9bc91537d673c18d8cc03d9c3cdd4f3"
+  },
+  "NOTICE.md": {
+    "bytes": 1502,
+    "sha256": "5f8defb78483ab34dbb5f0a58708886ab49554df2cf4c1c807c19c87a93c302e"
+  },
+  "contributor-tour.html": {
+    "bytes": 5639,
+    "sha256": "22a27506242b2a5d4bf228c758aa473da859ba3f7c5e584007e45c6934f7a437"
+  },
+  "licences.html": {
+    "bytes": 1766,
+    "sha256": "1aee183debf6d342103a3a9e4d7989a22363b8a0e0c09883c665c268436fbe5a"
   }
 }
