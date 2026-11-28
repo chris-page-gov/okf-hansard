@@ -11,6 +11,7 @@ from urllib.request import Request, urlopen
 
 from capture import MAX_BYTES, dump, fetch, now, sha
 from model import checked_json, read_sittings, tokens
+from safe_paths import resolve_within
 
 MEMBERS_API = "https://members-api.parliament.uk/api"
 POST_SERIES = {"governmentPosts": "Government post", "oppositionPosts": "Opposition post",
@@ -36,7 +37,7 @@ def biography(snapshot, member_id):
 
 
 def declarations(snapshot, source, first, last, previous=None):
-    manifest = json.loads((source / "manifest.json").read_bytes())
+    manifest = json.loads(resolve_within(source, "manifest.json").read_bytes())
     _, records, _, _ = read_sittings(source, manifest, first, last)
     member_ids = sorted({r["member"] for r in records.values()
                          if r["scope"] == "Pilot week" and r["member"]})
@@ -47,7 +48,7 @@ def declarations(snapshot, source, first, last, previous=None):
         _, receipt = fetch(snapshot, f"people/{name}.json", f"{MEMBERS_API}/Posts/{name}")
         manifest["registers"][name] = receipt
 
-    previous_assets = (json.loads((previous / "manifest.json").read_bytes())["biographies"]
+    previous_assets = (json.loads(resolve_within(previous, "manifest.json").read_bytes())["biographies"]
                        if previous else {})
 
     def retrieve(member_id):
@@ -55,9 +56,9 @@ def declarations(snapshot, source, first, last, previous=None):
             previous_asset = previous_assets.get(str(member_id))
             if previous_asset:
                 checked_json(previous, previous_asset)
-                destination = snapshot / previous_asset["path"]
+                destination = resolve_within(snapshot, previous_asset["path"])
                 destination.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(previous / previous_asset["path"], destination)
+                shutil.copyfile(resolve_within(previous, previous_asset["path"]), destination)
                 return str(member_id), previous_asset, None
             _, receipt = biography(snapshot, member_id)
             return str(member_id), receipt, None
@@ -78,7 +79,7 @@ def declarations(snapshot, source, first, last, previous=None):
 def office_evidence(snapshot):
     if snapshot is None:
         return {}, [], None
-    manifest = json.loads((snapshot / "manifest.json").read_bytes())
+    manifest = json.loads(resolve_within(snapshot, "manifest.json").read_bytes())
     offices, appointments = {}, []
     for name, receipt in manifest["registers"].items():
         series = "governmentPosts" if name == "GovernmentPosts" else "oppositionPosts"
@@ -134,7 +135,7 @@ def member_as_of(snapshot, member_id, day):
     current = datetime.now(timezone.utc)
     if requested > current.date():
         raise ValueError("The requested effective date is in the future.")
-    manifest = json.loads((snapshot / "manifest.json").read_bytes())
+    manifest = json.loads(resolve_within(snapshot, "manifest.json").read_bytes())
     receipt = manifest["biographies"].get(str(member_id))
     if receipt and receipt["retrieved_at"][:10] >= day:
         data = checked_json(snapshot, receipt)

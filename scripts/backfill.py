@@ -12,10 +12,11 @@ from pathlib import Path
 import threading
 import time
 from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
+from urllib.request import Request
 
 from archive import unpack
 from capture import HOUSES, MAX_BYTES, dump, now, query, sha
+from http_policy import open_source
 from model import Entity, Matcher, NS, debate_url, plain
 from query import DEFAULT_DB, Index, canonical_digest
 
@@ -84,7 +85,7 @@ class Search:
                 self.next_request = time.monotonic() + .25
             self.check_deadline()
             try:
-                with urlopen(request, timeout=15) as response:
+                with open_source(request, timeout=15) as response:
                     wire = response.read(MAX_BYTES + 1)
                     raw = unpack(wire, response.headers.get("Content-Encoding", ""))
                 if max(len(wire), len(raw)) > MAX_BYTES:
@@ -121,9 +122,9 @@ class Search:
                         skip=offset, take=PAGE_SIZE, outputType="List")
             try:
                 data, evidence = self.request(url)
-            except TimeoutError:
+            except (TimeoutError, URLError) as exc:
                 self.check_deadline()
-                if (last - first).days >= 30:
+                if not isinstance(exc, HTTPError) and (last - first).days >= 30:
                     return divide()
                 raise
             count = data["TotalResultCount"]
@@ -178,7 +179,10 @@ class Search:
 def collect(release, database, cache, days, deadline=None):
     index = Index(release, database)
     anchors = [r for r in index.history["contributions"].values() if r["date"] in days]
-    keys = sorted({key for row in anchors for key in row["entities"]})
+    latest = {}
+    for row in sorted(anchors, key=lambda row: row["date"]):
+        latest.update(dict.fromkeys(row["entities"], row["date"]))
+    keys = sorted(latest, key=lambda key: (latest[key], key), reverse=True)
     specifications = index.profile["entities"]
     matcher = Matcher({key: Entity(key=key, **spec) for key, spec in specifications.items()})
     aliases = search_aliases(matcher)
@@ -197,7 +201,8 @@ def collect(release, database, cache, days, deadline=None):
     def run(key):
         use_archive = set(ranges) == set(HOUSES) and key in index.archive_keys
         saved = index.backfill_for(key)
-        if saved and not saved["errors"] and saved["through"] == through and (use_archive or not saved["archive"]):
+        if (saved and not saved["errors"] and saved["through"] == through
+                and saved["search_terms"] == aliases.get(key, []) and (use_archive or not saved["archive"])):
             return key, len(saved["items"]), 0, saved["archive"]
         periods = gaps if use_archive else full
         items, sources, failures = {}, [], []
@@ -238,7 +243,11 @@ def collect(release, database, cache, days, deadline=None):
         return key, len(items), len(failures), use_archive
 
     with ThreadPoolExecutor(max_workers=6) as workers:
-        rows = list(workers.map(run, keys))
+        rows = []
+        for row in workers.map(run, keys):
+            rows.append(row)
+            if len(rows) % 25 == 0:
+                print(f"History verified or attempted for {len(rows)} of {len(keys)} entities.", flush=True)
     summary = {"schema": SCHEMA, "dates": sorted(days), "from": FLOOR.isoformat(),
                "through": through, "method": METHOD,
                "archive": ranges, "entities": len(keys),

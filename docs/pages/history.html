@@ -15,8 +15,8 @@
   <a href="demo.html">Demonstration companion</a>
   <a href="methodology.html">Methodology</a>
 </nav>
-<h1>Earlier mentions</h1>
-<p class="intro">Select a sitting or contribution, then follow a person, office, place or subject back through Hansard.</p>
+<h1 id="heading">Earlier mentions</h1>
+<p id="intro" class="intro">Select a sitting or contribution, then follow a person, office, place or subject back through Hansard.</p>
 <p id="status" role="status">Loading the history index…</p>
 <section id="controls" hidden aria-label="Filter earlier mentions">
   <div class="filters">
@@ -26,8 +26,10 @@
     <label>Entity <select id="entity"></select></label>
   </div>
   <p id="anchor-source"></p>
+  <p id="history-export" hidden></p>
   <p id="scope"></p>
   <div class="filters">
+    <label id="period-control" hidden>Period <select id="period"><option value="month">This month</option><option value="earlier">Earlier mentions</option><option value="all">All dates</option></select></label>
     <label>Year <select id="year"></select></label>
     <label>House <select id="house"></select></label>
   </div>

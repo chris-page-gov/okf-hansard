@@ -17,6 +17,7 @@ from passages import build_locators
 from people import declarations
 from query import DEFAULT_DB, Index
 from refresh import refresh
+from safe_paths import resolve_within
 from verify import check
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,13 +86,13 @@ def prepare(args):
         if args.reuse_capture:
             if not args.snapshot or not args.people:
                 raise ValueError("Pass both the retrieved sitting and Member snapshots.")
-            people_receipt = read(people / "manifest.json")
+            people_receipt = read(resolve_within(people, "manifest.json"))
         else:
             capture = args.out / "capture"
             if not refresh(snapshot, capture, added):
                 raise ValueError("One or more advertised sources could not be retrieved.")
             snapshot = capture
-        manifest = read(snapshot / "manifest.json")
+        manifest = read(resolve_within(snapshot, "manifest.json"))
         if any(item["errors"] for item in manifest["sittings"]):
             raise ValueError("The sitting snapshot lists source errors.")
         observed = {(item["date"], item["house"]) for item in manifest["sittings"] if item["roots"]}

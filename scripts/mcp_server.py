@@ -1,23 +1,37 @@
-"""Local, read-only MCP stdio interface for the Hansard OKF+ pilot."""
+"""Serve verified Hansard evidence over MCP stdio or Streamable HTTP."""
 
 import argparse
 from datetime import date
 import json
+import logging
 from pathlib import Path
 import sys
+from threading import RLock
 
 from jsonschema import Draft202012Validator, ValidationError
 
+from briefing_auth import AuthFailure, Authorizer
+from hansard_access import Access
+from mcp_protocol import (CAPABILITIES_KEY, LEGACY, PROTOCOL, PROTOCOLS, cache_fields, complete,
+                          error, protocol_error, request_version)
+from mcp_skills import EXTENSION, URI as SKILL_URI, result_for
 from passages import Passages
 from people import member_as_of
-from query import DEFAULT_DB, DEFAULT_RELEASE, Index, view_for
+from query import DEFAULT_DB, DEFAULT_RELEASE, Index, StaleHistory, view_for
 from roles import resolve
 
-PROTOCOL = "2025-11-25"
+INSTRUCTIONS = ("Use official source links, distinguish aliases from identity proof and disclose coverage. "
+                f"Read the Hansard workflow at {SKILL_URI} after host approval.")
+LOGGER = logging.getLogger(__name__)
+RESOURCE_METHODS = {"resources/list", "resources/templates/list", "resources/read"}
+SKILL_METHODS = {"skills/list", "skills/get"}
 STRING = {"type": "string", "maxLength": 400}
 LIMIT = {"type": "integer", "minimum": 1, "maximum": 30}
 OFFSET = {"type": "integer", "minimum": 0, "maximum": 100000000}
 HASH = {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+DAY = {"type": "string", "format": "date"}
+HOUSE = {"enum": ["Commons", "Lords"]}
+WINDOW = {"start": DAY, "through": DAY, "house": HOUSE, "limit": LIMIT, "offset": OFFSET}
 
 
 def tool(name, description, properties, required=()):
@@ -49,6 +63,25 @@ TOOLS = {
               "limit": {"type": "integer", "minimum": 1, "maximum": 8000}}, ("contribution",)),
     ]
 }
+ACCESS_TOOLS = {
+    item["name"]: item for item in (
+        tool("hansard_describe_bundle", "Start here. Report the verified snapshot, captured sittings, history coverage and source gaps.", {}),
+        tool("hansard_resolve_concept", "Resolve a spoken label, alias or concept ID before requesting indexed mentions.",
+             {"query": STRING, "limit": LIMIT}, ("query",)),
+        tool("hansard_mentions", "Page all retained mentions for a resolved concept within optional dates and House. Distinct source links, not every historical use of the phrase.",
+             {**WINDOW, "key": {"type": "string", "maxLength": 100, "pattern": "^[A-Za-z0-9_-]+$"},
+              "snapshot": {"type": "string", "maxLength": 160}}, ("key",)),
+        tool("hansard_search_passages", "Search full text in the captured sittings. Return excerpts, exact Hansard links and timeline links.",
+             {**WINDOW, "query": STRING}, ("query",)),
+    )
+}
+BRIEFING_TOOL = tool(
+    "hansard_my_briefing",
+    "Summarise what the Houses discussed about the signed-in person's verified portfolio. "
+    "Use the returned source passages when speaking. The default covers the seven days ending at the latest "
+    "verified sitting. Dates are optional. Identity and portfolio are assigned by the secure connector.",
+    {"start": DAY, "through": DAY},
+)
 
 
 def tool_result(value, error=False):
@@ -75,40 +108,157 @@ def invoke(name, args, index, people, passages):
                          args.get("expected_sha256"))
 
 
-def rpc(request, index, people, passages):
+def tool_failure(name, exc):
+    if isinstance(exc, StaleHistory):
+        detail = {"status": "stale evidence page", "message": "Evidence changed. Restart at the first page."}
+    elif isinstance(exc, ValidationError):
+        detail = {"status": "invalid arguments", "message": "Check the tool's allowed arguments and values."}
+    else:
+        LOGGER.warning("Hansard tool %s failed (%s)", name, type(exc).__name__)
+        detail = {"status": "unavailable", "message": "The requested Hansard evidence could not be read."}
+    return tool_result(detail, error=True)
+
+
+def rpc(request, index, people, passages, access=None, account=None):
     method = request.get("method")
     request_id = request.get("id")
     if "id" not in request:
         return None
     response = {"jsonrpc": "2.0", "id": request_id}
-    params = request.get("params") or {}
-    if method == "initialize":
-        result = {"protocolVersion": PROTOCOL, "capabilities": {"tools": {"listChanged": False}},
-                  "serverInfo": {"name": "okf-hansard", "version": "0.1.0"},
-                  "instructions": "Use official source links, distinguish aliases from identity proof and disclose coverage."}
+    params = request.get("params", {})
+    if not isinstance(method, str) or not isinstance(params, dict):
+        return error(request, -32600, "Invalid MCP request.")
+    version = request_version(request)
+    modern = version == PROTOCOL
+    if version is not None and not isinstance(version, str):
+        return error(request, -32602, "Invalid protocol version metadata.")
+    if version is not None and version not in PROTOCOLS:
+        return protocol_error(request, version)
+    if (modern and not isinstance(params["_meta"].get(CAPABILITIES_KEY), dict)) or (
+            version is None and method in SKILL_METHODS | {"server/discover"}):
+        return error(request, -32602, "Modern MCP requests require protocol and client capability metadata.")
+
+    capabilities = {"tools": {}, "resources": {}}
+    if method == "server/discover" and modern:
+        result = {"supportedVersions": list(PROTOCOLS),
+                  "capabilities": {**capabilities, "extensions": {EXTENSION: {}}},
+                  "instructions": INSTRUCTIONS, **cache_fields()}
+    elif method == "initialize" and not modern:
+        requested = params.get("protocolVersion")
+        result = {"protocolVersion": requested if requested in LEGACY else LEGACY[0],
+                  "capabilities": capabilities, "serverInfo": {"name": "okf-hansard", "version": "0.3.0"},
+                  "instructions": INSTRUCTIONS}
     elif method == "ping":
         result = {}
+    elif method in RESOURCE_METHODS or (modern and method in SKILL_METHODS):
+        try:
+            result = result_for(method, params)
+        except ValueError:
+            return error(request, -32602, "Unknown Hansard skill or resource URI.")
+        if modern:
+            result.update(cache_fields())
     elif method == "tools/list":
-        result = {"tools": list(TOOLS.values())}
+        tools = list(TOOLS.values()) + (list(ACCESS_TOOLS.values()) if access else [])
+        if access and account:
+            tools.append(BRIEFING_TOOL)
+        result = {"tools": sorted(tools, key=lambda row: row["name"]) if modern else tools}
+        if modern:
+            result.update(cache_fields(private=bool(account)))
+    elif method == "tools/call" and access and account and params.get("name") == BRIEFING_TOOL["name"]:
+        from briefings import briefing
+
+        try:
+            arguments = params.get("arguments", {})
+            Draft202012Validator(BRIEFING_TOOL["inputSchema"]).validate(arguments)
+            result = tool_result(briefing(access, account.member_id, account.portfolio, **arguments))
+        except (ValueError, ValidationError):
+            result = tool_result({"status": "invalid briefing request",
+                                  "message": "Use a start and through date in YYYY-MM-DD order."}, error=True)
+        except (OSError, TypeError, KeyError):
+            result = tool_result({"status": "source unavailable",
+                                  "message": "The verified Hansard briefing could not be read."}, error=True)
+    elif method == "tools/call" and access and params.get("name") in ACCESS_TOOLS:
+        name = params["name"]
+        arguments = params.get("arguments", {})
+        try:
+            Draft202012Validator(ACCESS_TOOLS[name]["inputSchema"]).validate(arguments)
+            handler = {"hansard_describe_bundle": access.describe, "hansard_resolve_concept": access.concepts,
+                       "hansard_mentions": access.mentions, "hansard_search_passages": access.search}[name]
+            result = tool_result(handler(**arguments))
+        except (OSError, TypeError, ValueError, KeyError, ValidationError) as exc:
+            result = tool_failure(name, exc)
     elif method == "tools/call" and params.get("name") in TOOLS:
         try:
             result = tool_result(invoke(params["name"], params.get("arguments", {}), index, people, passages))
         except (ValueError, ValidationError, OSError, KeyError, IndexError) as exc:
-            result = tool_result({"status": "unavailable", "message": str(exc)[:350]}, error=True)
+            result = tool_failure(params["name"], exc)
     else:
-        return {**response, "error": {"code": -32601, "message": "Method or tool unavailable"}}
-    return {**response, "result": result}
+        return error(request, -32601, "Method or tool unavailable.")
+    return {**response, "result": complete(**result) if modern else result}
+
+
+def verified_dispatch(pointer, open_tools):
+    """Read a new verified snapshot when the publisher atomically replaces its receipt."""
+    state = None
+    lock = RLock()
+
+    def refresh():
+        nonlocal state
+        with lock:
+            stat = pointer.stat()
+            identity = stat.st_dev, stat.st_ino, stat.st_mtime_ns, stat.st_size
+            if state is None or state[0] != identity:
+                # Publish the identity and its complete context in one immutable
+                # tuple, so concurrent requests cannot observe a mixed refresh.
+                state = identity, open_tools()
+            return state[1]
+
+    refresh()
+
+    def dispatch(request, account):
+        try:
+            request_context = refresh()
+        except (OSError, ValueError, KeyError) as exc:
+            raise AuthFailure(503) from exc
+        return rpc(request, *request_context, account=account)
+
+    return dispatch
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--release", type=Path, default=DEFAULT_RELEASE)
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--release", type=Path)
+    source.add_argument("--publication", type=Path, help="Pin the latest verified release from a publication receipt at startup.")
+    parser.add_argument("--http", type=int, metavar="PORT", help="Listen on 127.0.0.1 at /mcp using Streamable HTTP.")
+    parser.add_argument("--authorisation", type=Path, help="Private OAuth settings for the secured HTTP connector.")
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--older-database", type=Path, help="Read a verified, separate pre-2007 archive.")
-    parser.add_argument("--people", type=Path, default=Path(".snapshots/members-current"))
+    parser.add_argument("--people", type=Path)
     args = parser.parse_args()
-    index = Index(args.release, args.database, args.older_database)
-    passages = Passages(index)
+    if args.authorisation and (args.http is None or not args.publication):
+        parser.error("The private connector requires --http and a verified --publication receipt.")
+    authorizer = Authorizer.load(args.authorisation) if args.authorisation else None
+
+    def open_tools():
+        access = Access(args.publication) if args.publication else None
+        release = access.release if access else args.release or DEFAULT_RELEASE
+        people = args.people or (Path(access.pointer["people"]) if access else Path(".snapshots/members-current"))
+        index = Index(release, args.database, args.older_database)
+        return index, people, Passages(index), access
+
+    if authorizer:
+        from mcp_http import serve
+
+        serve(args.http, verified_dispatch(args.publication, open_tools), authorizer)
+        return
+
+    index, people, passages, access = open_tools()
+    if args.http is not None:
+        from mcp_http import serve
+
+        serve(args.http, lambda request: rpc(request, index, people, passages, access))
+        return
     while raw := sys.stdin.buffer.readline(65537):
         if len(raw) > 65536:
             print(json.dumps({"jsonrpc": "2.0", "id": None, "error": {
@@ -120,7 +270,7 @@ def main():
             request = json.loads(raw)
             if not isinstance(request, dict) or request.get("jsonrpc") != "2.0":
                 raise ValueError("Invalid request")
-            response = rpc(request, index, args.people, passages)
+            response = rpc(request, index, people, passages, access)
         except (TypeError, AttributeError, ValueError):
             response = {"jsonrpc": "2.0", "id": None, "error": {"code": -32600, "message": "Invalid request"}}
         if response is not None:

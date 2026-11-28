@@ -3,12 +3,15 @@
 import argparse
 from collections import Counter, defaultdict
 import gzip
+from hashlib import file_digest
 import json
 from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
 from capture import sha
+from build_core_projection import document as read_core_document
+from okf_core import PRODUCT_VERSION
 
 PROFILE = Path(__file__).resolve().parents[1] / "profile"
 RECORDS_PER_CHUNK = 32
@@ -19,6 +22,7 @@ MAX_ROUTE_ROWS = 100_000
 MAX_ROUTE_COMPRESSED_BYTES = 64 * 1024 * 1024
 MAX_ROUTE_RETAINED_TEXT_UNITS = 32 * 1024 * 1024
 MAX_ROW_RETAINED_TEXT_UNITS = 32 * 1024
+CORE_SOURCE_DETAILS_PATH = "core-source-binding.json"
 PLANE = "recorded"
 PLANE_IRI = "urn:okf:hansard:relationship-plane:recorded"
 
@@ -48,7 +52,7 @@ def fnv_bucket(route):
     return f"{value >> 24:02x}"
 
 
-def publish_records(root, records, snapshot):
+def publish_records(root, records, snapshot, core_documents):
     locations = defaultdict(dict)
     chunks = []
     for start in range(0, len(records), RECORDS_PER_CHUNK):
@@ -56,11 +60,16 @@ def publish_records(root, records, snapshot):
         ordinal = len(chunks)
         for index, (identifier, source) in enumerate(records[start:start + RECORDS_PER_CHUNK]):
             route = dataset_route(identifier)
+            core = core_documents.get(identifier)
             row = {
                 "name": identifier, "route": route, "title": source["title"],
                 "record_type": source["type"], "notes": source.get("body") or source.get("description") or "",
                 "resource_count": 0, "tags": [], "formats": [],
+                "core_role": core["role"] if core else "extension",
             }
+            if core:
+                row.update({"source_markdown": core["markdown"], "source_frontmatter": core["frontmatter"],
+                            "source_sha256": core["sha256"], "source_bytes": core["bytes"]})
             for field in ("url", "hansard_proceedings", "hansard_summary", "semantic_id"):
                 if field in source:
                     row[field] = source[field]
@@ -207,19 +216,92 @@ def build(release, root):
     if receipt["artifacts"]["okf-bundle.json"] != {"sha256": digest, "bytes": len(raw)}:
         raise ValueError("Explorer input differs from the release receipt")
     bundle = json.loads(raw)
-    corpus = bundle["corpora"]["hansard"]
     title = bundle["meta"]["title"]
     generated = bundle["generated_at"]
+    semantic_path = release / "okf-bundle.yamlld"
+    with semantic_path.open("rb") as stream:
+        semantic_digest = file_digest(stream, "sha256").hexdigest()
+    with semantic_path.open(encoding="utf-8") as stream:
+        context_line = stream.readline()
+        meta_line = stream.readline()
+        graph_marker = stream.readline().strip()
+        if not context_line.startswith('"@context": ') or graph_marker != '"@graph":':
+            raise ValueError("Full YAML-LD graph has an unexpected serialisation")
+        json.loads(context_line.split(": ", 1)[1])
+        semantic_meta = json.loads(meta_line.removeprefix("meta: "))
+        if semantic_meta["okf_core"]["version"] != "0.3":
+            raise ValueError("Full YAML-LD graph is not an OKF 0.3 source")
+        source_nodes, source_edges = [], []
+        for line in stream:
+            if not line.startswith("- "):
+                raise ValueError("Full YAML-LD graph has a non-JSON graph row")
+            row = json.loads(line[2:])
+            (source_edges if "source_route" in row else source_nodes).append(row)
+    if semantic_meta["okf_core"]["version"] != "0.3":
+        raise ValueError("Full YAML-LD graph is not an OKF 0.3 source")
     snapshot = f"hansard-sha256-{digest}"
-    nodes, edges = corpus["nodes"], corpus["relationships"]
+    nodes = {}
+    iri_by_route = {}
+    for source in source_nodes:
+        route = source["route"]
+        iri_by_route[route] = source["@id"]
+        nodes[route] = {
+            "title": source["title"], "type": source["type"], "body": source.get("body", ""),
+            "semantic_id": source["@id"], "url": source.get("url"), "date": source.get("date"),
+            "hansard_proceedings": source.get("hansard_proceedings"),
+            "hansard_summary": source.get("hansard_summary"),
+        }
+        nodes[route] = {key: value for key, value in nodes[route].items() if value is not None}
+    edges = []
+    for row in source_edges:
+        edges.append({
+            "id": row["@id"], "source": row["source_route"], "target": row["target_route"],
+            "source_iri": row["source"]["@id"], "target_iri": row["target"]["@id"],
+            "predicate": row["predicate"]["@id"], "kind": row["kind"], "label": row["label"],
+            "inverse_label": row["inverse_label"], "assertion_status": row["assertion_status"],
+            "assertion_scope": row["assertion_scope"], "observed_at": row["observed_at"],
+            "derivation": row["derivation"], "authority": row["authority"],
+            "evidence": row["evidence"], "rights": row["rights"],
+        })
+    if len(edges) != len(source_edges) or any(edge["source"] not in nodes or edge["target"] not in nodes for edge in edges):
+        raise ValueError("Full YAML-LD relationships reference missing source nodes")
+    markdown_root = release / "markdown"
+    source_paths = sorted(markdown_root.rglob("*.md"), key=lambda path: path.relative_to(markdown_root).as_posix())
+    core_documents = {path.relative_to(markdown_root).as_posix(): read_core_document(path, markdown_root)
+                      for path in source_paths}
+    source_only_concepts = [item for item in core_documents.values()
+                            if item["role"] == "concept" and item["path"] not in nodes]
+    support_documents = [item for item in core_documents.values()
+                         if item["path"] not in nodes and item["role"] != "concept"]
+    core_manifest = [{"path": item["path"], "role": item["role"], "sha256": item["sha256"],
+                      "bytes": item["bytes"],
+                      "record_route": dataset_route(item["path"]) if item["role"] == "concept" or item["path"] in nodes else None,
+                      "access": "record_chunks" if item["role"] == "concept" or item["path"] in nodes else "source_manifest"}
+                     for item in (core_documents[path] for path in sorted(core_documents))]
+    core_snapshot = sha(json_bytes(core_manifest))
+    source_only_rows = []
+    for item in source_only_concepts:
+        fields = item["frontmatter"]
+        source_only_rows.append((item["path"], {
+            "title": fields.get("title", item["path"]), "type": fields.get("type", "Core concept"),
+            "body": item["body"], "semantic_id": fields.get("@id"),
+            "url": fields.get("url"), "date": fields.get("date"),
+        }))
+    record_rows = [*nodes.items(), *source_only_rows]
     root.mkdir(parents=True, exist_ok=False)
     (root / "schemas").mkdir()
     for name in ("semantic-assertion.schema.json", "relationship-runtime-row.schema.json"):
         (root / "schemas" / name).write_bytes((PROFILE / name).read_bytes())
-    write(root, "source.json", {"snapshot": snapshot, "artifacts": receipt["artifacts"]})
-    chunks, record_locator = publish_records(root, sorted(nodes.items()), snapshot)
+    write(root, "source.json", {"snapshot": snapshot, "artifacts": receipt["artifacts"],
+                               "full_semantic_source": {"path": "okf-bundle.yamlld",
+                                                        "sha256": semantic_digest,
+                                                        "bytes": semantic_path.stat().st_size,
+                                                        "assertions": len(edges),
+                                                        "records": len(nodes)}})
+    chunks, record_locator = publish_records(root, sorted(record_rows), snapshot, core_documents)
     relationship_runtime = publish_relationships(root, nodes, edges, snapshot, generated)
-    counts = {"datasets": len(nodes), "records": len(nodes), "resources": 0, "publishers": 0, "relationships": len(edges)}
+    counts = {"datasets": len(record_rows), "records": len(record_rows), "resources": 0,
+              "publishers": 0, "relationships": len(edges)}
     overview = write(root, "overview.json", {"title": title, "snapshot": snapshot, "counts": counts})
     manifest = write(root, "manifest.json", {
         "title": title, "snapshot": snapshot, "generated_at": generated, "counts": counts,
@@ -227,9 +309,43 @@ def build(release, root):
         "chunks": {"datasets": [chunk["path"] for chunk in chunks], "relationships": [], "publishers": [], "resources": []},
         "shards": {"datasets": chunks},
     })
+    support_manifest = [{key: item[key] for key in
+                         ("path", "role", "sha256", "bytes", "markdown", "frontmatter", "body")}
+                        for item in support_documents]
+    details_document = {
+        "schema": "okf-core-source-binding-details.v1",
+        "snapshot": "hansard-markdown-sha256-" + core_snapshot,
+        "documents": core_manifest,
+        "support_documents": support_manifest,
+    }
+    details_schema = json.loads((PROFILE / "core-source-binding-details.schema.json").read_bytes())
+    Draft202012Validator(details_schema).validate(details_document)
+    source_details = write(root, CORE_SOURCE_DETAILS_PATH, details_document)
+    source_details.update({"media_type": "application/json", "content_encoding": "identity"})
+    core_source = {
+        "schema": "okf-core-source-binding.v2", "snapshot": "hansard-markdown-sha256-" + core_snapshot,
+        "core_specification": bundle["meta"]["okf_core"]["specification"],
+        "semantic_profile": bundle["meta"].get("profile"),
+        "source_documents": len(core_manifest),
+        "concepts": sum(item["role"] == "concept" for item in core_manifest),
+        "concept_records": sum(item["role"] == "concept" for item in core_manifest),
+        "source_only_concept_records": len(source_only_concepts),
+        "navigation_documents": sum(item["role"] == "navigation" for item in core_manifest),
+        "extension_documents": sum(item["role"] == "extension" for item in core_manifest),
+        "extension_records_without_markdown": len(set(nodes) - set(core_documents)),
+        "relationship_assertions": len(edges), "detail_resource": "record_chunks",
+        "source_manifest": source_details,
+        "relationship_limit": "All concepts, navigation documents and extensions are preserved as exact Markdown in record detail shards. The existing graph relationship shards retain the complete assertion set.",
+    }
+    binding_schema = json.loads((PROFILE / "core-source-binding.schema.json").read_bytes())
+    Draft202012Validator(binding_schema).validate(core_source)
     write(root, "okf-explorer.json", {
         "schema": "okf-explorer-large-corpus.v1", "kind": "okf-large-corpus",
+        "id": "urn:okf:hansard:bundle:" + "".join(ch.lower() if ch.isalnum() else "-" for ch in title).strip("-"),
+        "version": PRODUCT_VERSION,
+        "okf_version": bundle["okf_version"],
         "title": title, "snapshot": snapshot, "counts": counts,
+        "core_source": core_source,
         "entrypoints": {"data_manifest": manifest, "overview_index": overview,
                         "record_locator": record_locator, "relationship_runtime": relationship_runtime},
     })

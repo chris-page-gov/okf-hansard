@@ -16,13 +16,16 @@ from model import (
     Entity, LICENCE, Matcher, NS, PROFILE, TERM_TYPES, WEB, capacity, display,
     load_entities, mention_roles, read_sittings,
 )
+from okf_core import CORE_SPEC, CORE_VERSION, PROFILE, PRODUCT_VERSION, RESERVED, write_release_markdown
 from people import POST_SERIES, office_evidence
+from safe_paths import resolve_within
 
 OKF = "https://chris-page-gov.github.io/okf-explorer/ns#"
 RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 TITLE = "A week in Parliament"
 EXPLORER_BYTE_LIMIT = 64 * 1024 * 1024
 PAGES_BLOB_LIMIT = 100 * 1024 * 1024
+BUILD_ARTIFACTS = ("okf-bundle.json", "history.json", "okf-bundle.yamlld", "analysis-profile.json")
 FACETS = {
     "sitting": "Sitting date",
     "chamber": "House",
@@ -59,7 +62,8 @@ CONTEXT = {
     "@version": 1.1, "@vocab": NS + "field:", "hansard": NS + "vocab:",
     "rdf": RDF, "okf": OKF, "prov": "http://www.w3.org/ns/prov#",
     "dct": "http://purl.org/dc/terms/", "skos": "http://www.w3.org/2004/02/skos/core#",
-    "title": "dct:title", "date": {"@id": "dct:date", "@type": "http://www.w3.org/2001/XMLSchema#date"},
+    "title": "dct:title", "core_role": "okf:coreRole",
+    "date": {"@id": "dct:date", "@type": "http://www.w3.org/2001/XMLSchema#date"},
     "source": {"@id": "rdf:subject", "@type": "@id"},
     "predicate": {"@id": "rdf:predicate", "@type": "@id"},
     "target": {"@id": "rdf:object", "@type": "@id"},
@@ -151,13 +155,15 @@ class Graph:
         return sid
 
 
-def meta_for(first, last, dates, roots):
+def meta_for(first, last, dates, roots, title=TITLE):
     return {
-        "title": TITLE, "default_corpus": "hansard", "corpus_order": ["hansard"],
-        "profile": PROFILE, "semantic_descriptor": "okf-bundle.yamlld",
+        "title": title, "default_corpus": "hansard", "corpus_order": ["hansard"],
+        "profile": PROFILE, "product_version": PRODUCT_VERSION,
+        "semantic_descriptor": "okf-bundle.yamlld",
+        "okf_core": {"version": CORE_VERSION, "specification": CORE_SPEC},
         "learning_presentation": {
             "schema": "okf-learning-presentation.v1",
-            "title": TITLE, "start_route": "index.md",
+            "title": title, "start_route": "index.md",
             "introduction": f"Westminster proceedings from {first} to {last}, with earlier matched mentions.",
             "groups": [{"title": d, "routes": [roots[d]]} for d in dates],
             "facets": [{"key": key, "label": label} for key, label in FACETS.items() if key != "period"],
@@ -188,7 +194,17 @@ def hansard_proceedings(part, section_route, contribution=None):
     return info
 
 
+def assign_core_roles(graph, week_start):
+    for route, record in graph.records.items():
+        record["core_role"] = (
+            "navigation" if Path(route).name in RESERVED else
+            "extension" if record.get("date") and record["date"] < week_start else
+            "concept"
+        )
+
+
 def runtime(graph, meta, finished, week_start, bounded_history=False):
+    assign_core_roles(graph, week_start)
     examples = set()
     if bounded_history:
         by_entity = defaultdict(list)
@@ -214,6 +230,7 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
             fields["body"] = link(record["url"], "Read the earlier passage in Hansard")
         records[route] = {**fields, "id": route, "semantic_id": record["@id"],
                           "section": record.get("section", "Index"),
+                          "core_role": record["core_role"],
                           "status": "draft", "trust_tier": "working"}
     relationships = []
     for edge in graph.edges:
@@ -226,6 +243,8 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
                             "source_sha256", "source_value_hash_canonicalization"})
         relationship = {
             "id": edge["@id"], "source": edge["source_route"], "target": edge["target_route"],
+            "source_iri": graph.records[edge["source_route"]]["@id"],
+            "target_iri": graph.records[edge["target_route"]]["@id"],
             "predicate": edge["predicate"]["@id"], "kind": edge["kind"], "label": edge["label"],
             "inverse_label": edge["inverse_label"], "assertion_status": edge["assertion_status"],
             "assertion_scope": edge["assertion_scope"], "observed_at": edge["observed_at"],
@@ -242,34 +261,17 @@ def runtime(graph, meta, finished, week_start, bounded_history=False):
             ]
         relationships.append(relationship)
     return {
-        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle", "okf_version": "0.2",
+        "schema": "okf-explorer-bundle.v0", "kind": "okf-bundle",
+        "version": PRODUCT_VERSION, "okf_version": CORE_VERSION,
         "generated_at": finished, "meta": meta,
-        "corpora": {"hansard": {"id": "hansard", "title": TITLE, "root": "index.md",
+        "corpora": {"hansard": {"id": "hansard", "title": meta.get("title", TITLE), "root": "index.md",
                                "assertion_scope": "real-world", "nodes": records,
                                "relationships": relationships}},
     }
 
 
-def write_markdown(out, graph, first, last):
-    for route, record in graph.records.items():
-        # The Explorer and YAML-LD planes contain all records. Markdown
-        # provides portable entry points for the week and vocabulary.
-        if record.get("date", first) < first:
-            continue
-        fields = {k: v for k, v in record.items() if k != "body" and not k.startswith("hansard:")}
-        fields["@context"] = CONTEXT if route == "index.md" else [PROFILE + "context.jsonld",
-                                                                  {"hansard": NS + "vocab:"}]
-        if route == "index.md":
-            fields["okf_version"] = "0.2"
-            fields["description"] = f"Westminster proceedings from {first} to {last}."
-        path = out / "markdown" / route
-        path.parent.mkdir(parents=True, exist_ok=True)
-        fm = json.dumps(fields, ensure_ascii=False, separators=(",", ":"))
-        path.write_text("---\n" + fm + "\n---\n\n" + record.get("body", "") + "\n", encoding="utf-8")
-
-
-def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
-    raw = (snapshot / "manifest.json").read_bytes()
+def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer, *, sharded_reader=False, title=TITLE):
+    raw = resolve_within(snapshot, "manifest.json").read_bytes()
     manifest = json.loads(raw)
     finished = manifest["finished_at"]
     summaries = json.loads((Path(__file__).resolve().parents[1] / "profile" / "curated-summaries.json").read_text(encoding="utf-8"))
@@ -293,8 +295,8 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
     postings = defaultdict(list)
     trace = {}
     day_routes = {}
-    graph.node("index.md", "Index", TITLE, body=(
-        f"# {TITLE}\n\n"
+    graph.node("index.md", "Index", title, body=(
+        f"# {title}\n\n"
         "Explore the Commons and Lords contribution records and follow named entities back through earlier sittings.\n\n"
         "Each textual match is a discovery aid. Follow its evidence to read the contribution in context."
     ))
@@ -323,9 +325,9 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
 
     for route in sorted(used_parts):
         part = parts[route]
-        title = part["title"] or "Untitled proceedings"
-        graph.node(route, "Proceedings section", title, date=part["day"], section="Proceedings",
-                   url=part["url"], body=f"# {safe_markdown(title)}\n\n" + link(part["url"], "Read in Hansard"),
+        part_title = part["title"] or "Untitled proceedings"
+        graph.node(route, "Proceedings section", part_title, date=part["day"], section="Proceedings",
+                   url=part["url"], body=f"# {safe_markdown(part_title)}\n\n" + link(part["url"], "Read in Hansard"),
                    **({"hansard_proceedings": hansard_proceedings(part, route)} if part["day"] >= first else {}),
                    details={"date": part["day"], "house": part["house"], "venue": part["section"],
                             "external_id": part["ext_id"], "source_version": part["source_version"]})
@@ -346,9 +348,9 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
         row = records[route]
         part = parts[row["part"]]
         matched = {key: spans for key, spans in matches[route].items() if key in focus}
-        title = f"{row['attributed_to'] or row['kind']} · {part['title']}"
+        record_title = f"{row['attributed_to'] or row['kind']} · {part['title']}"
         if route not in current:
-            title += f" · {row['order'] + 1}"
+            record_title += f" · {row['order'] + 1}"
         person_key = f"member-{row['member']}"
         if row["member"] and person_key not in entities:
             entities[person_key] = Entity(person_key, "Parliamentarian", row["attributed_to"] or person_key,
@@ -376,7 +378,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
             notes += "\n".join(f"- **{group}** — {', '.join(labels)}" for group, labels in sorted(grouped.items()))
         else:
             notes += "The pilot vocabulary found no textual matches in this passage."
-        body = (f"# {safe_markdown(title)}\n\n"
+        body = (f"# {safe_markdown(record_title)}\n\n"
                 f"{row['day']} · {row['house']} · {VENUES.get(row['section'], row['section'])}\n\n"
                 f"{link(row['url'], 'Read the recorded passage')} · {link(row['capture']['url'], 'API source')}\n\n"
                 f"{notes}")
@@ -393,7 +395,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
             presentation["hansard_proceedings"] = hansard_proceedings(part, row["part"], row)
         if row["url"] in summaries:
             presentation["hansard_summary"] = {"text": summaries[row["url"]], "source": row["url"]}
-        graph.node(route, "Contribution", title, date=row["day"], section=row["scope"], url=row["url"],
+        graph.node(route, "Contribution", record_title, date=row["day"], section=row["scope"], url=row["url"],
                    body=body, description=f"{part['title']} · {row['house']}", details=details,
                    learning_facets=facets, **presentation)
         graph.edge(route, "partOf", row["part"], row["capture"], row["url"],
@@ -413,7 +415,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
             graph.node(role, "Recorded capacity", actor_label, section="Offices and roles",
                        body=f"# {safe_markdown(actor_label)}\n\nCapacity recorded by Hansard.")
             graph.edge(route, "hasRecordedCapacity", role, row["capture"], row["url"],
-                       row["pointer"] + "/AttributedTo", row["attributed_to"])
+                       row["pointer"] + "/AttributedTo", row["raw_attribution"])
         if route in current:
             trace[route] = {"entities": sorted(matched), "date": row["day"], "part": row["part"],
                             "order": row["order"], "url": row["url"]}
@@ -427,6 +429,7 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
             postings[key].append({
                 "contribution": route, "date": row["day"], "part": row["part"], "order": row["order"],
                 "assertion": aid, "url": row["url"], "spans": spans, "house": row["house"],
+                "attributed_to": row["attributed_to"],
             })
 
     for route, division in sorted(divisions.items()):
@@ -444,12 +447,14 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
               "route": entities[key].route} for key in sorted(postings)
     }, "mentions": {key: sorted(value, key=lambda r: (r["date"], r["part"], r["order"]))
                     for key, value in sorted(postings.items())}}
-    meta = meta_for(first, last, sorted(day_routes), day_routes)
+    meta = meta_for(first, last, sorted(day_routes), day_routes, title)
+    assign_core_roles(graph, first)
     checked = validate(graph, explorer)
     breakdown = [{"date": day, "house": house, **dict(counts)} for (day, house), counts in sorted(metrics.items())]
     counts = Counter(row["day"] for route, row in records.items() if route in current)
     receipt = {
         "schema": "hansard-build-receipt.v1", "status": "local-pilot", "capture": snapshot.name,
+        "okf_version": CORE_VERSION,
         "manifest_sha256": sha(raw), "capture_finished_at": finished,
         "people_capture": people_snapshot.name if people_snapshot else None,
         "people_source_errors": people_manifest["errors"] if people_manifest else {},
@@ -475,24 +480,28 @@ def build(snapshot, people_snapshot, out, vocabulary, first, last, explorer):
                                              "ambiguities": matcher.ambiguities})
     # JSON syntax is a YAML 1.2 subset. Flow entries keep this YAML-LD
     # serialisation small while preserving a real, self-contained @context.
+    # The Reader retains a virtual navigation record. Reserved Markdown
+    # filenames are directories and logs in the core and semantic graph.
+    semantic_records = [record for route, record in graph.records.items() if Path(route).name not in RESERVED]
+    receipt["semantic_records"] = len(semantic_records)
     semantic = out / "okf-bundle.yamlld"
     with semantic.open("w", encoding="utf-8") as stream:
         stream.write('"@context": ' + json.dumps(CONTEXT, ensure_ascii=False) + "\n")
         stream.write("meta: " + json.dumps(meta, ensure_ascii=False) + "\n")
         stream.write('"@graph":\n')
-        for item in list(graph.records.values()) + graph.edges:
+        for item in (*semantic_records, *graph.edges):
             stream.write("- " + json.dumps(item, ensure_ascii=False, separators=(",", ":")) + "\n")
     if semantic.stat().st_size >= PAGES_BLOB_LIMIT:
         meta = {**meta, "semantic_descriptor": "okf-bundle.yamlld.gz"}
     explorer_bundle = out / "okf-bundle.json"
     compact(explorer_bundle, runtime(graph, meta, finished, first))
-    if explorer_bundle.stat().st_size >= EXPLORER_BYTE_LIMIT:
+    if not sharded_reader and explorer_bundle.stat().st_size >= EXPLORER_BYTE_LIMIT:
         compact(explorer_bundle, runtime(graph, meta, finished, first, bounded_history=True))
-    write_markdown(out, graph, first, last)
+    write_release_markdown(out / "markdown", graph.records, first, last, title, CONTEXT)
     receipt["artifacts"] = {name: {"bytes": (out / name).stat().st_size, "sha256": sha((out / name).read_bytes())}
-                            for name in ("okf-bundle.json", "history.json", "okf-bundle.yamlld", "analysis-profile.json")}
+                            for name in BUILD_ARTIFACTS}
     dump(out / "receipt.json", receipt)
-    if receipt["artifacts"]["okf-bundle.json"]["bytes"] >= EXPLORER_BYTE_LIMIT:
+    if not sharded_reader and receipt["artifacts"]["okf-bundle.json"]["bytes"] >= EXPLORER_BYTE_LIMIT:
         raise ValueError("Explorer projection exceeds the reader byte ceiling")
     print(json.dumps({k: receipt[k] for k in ("week_contributions_by_day", "earlier_matched_contributions",
                                              "anchor_entities", "graph_records", "assertions", "artifacts")}, indent=2))
@@ -551,9 +560,12 @@ def main():
     parser.add_argument("--explorer", type=Path, default=Path("../okf-explorer"))
     parser.add_argument("--first", type=date.fromisoformat, required=True)
     parser.add_argument("--last", type=date.fromisoformat, required=True)
+    parser.add_argument("--title", default=TITLE)
+    parser.add_argument("--sharded-reader", action="store_true",
+                        help="Retain the full runtime input for a route-sharded Explorer build.")
     args = parser.parse_args()
     build(args.snapshot, args.people, args.out, args.vocabulary, args.first.isoformat(),
-          args.last.isoformat(), args.explorer)
+          args.last.isoformat(), args.explorer, sharded_reader=args.sharded_reader, title=args.title)
 
 
 if __name__ == "__main__":

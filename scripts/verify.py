@@ -3,14 +3,17 @@
 import argparse
 from collections import Counter
 from functools import lru_cache
+from hashlib import file_digest
 import json
 from pathlib import Path
 
 from rdflib import Graph, RDF, URIRef
 
-from build import canonical_field, digest
+from build import BUILD_ARTIFACTS, canonical_field, digest
 from capture import dump, sha
 from model import plain
+from okf_core import CORE_VERSION, RESERVED, check_markdown
+from safe_paths import resolve_within
 
 
 def pointer(value, ref):
@@ -19,16 +22,39 @@ def pointer(value, ref):
     return value
 
 
-def check(release, source, people, report):
-    receipt = json.loads((release / "receipt.json").read_bytes())
-    for name, facts in receipt["artifacts"].items():
-        raw = (release / name).read_bytes()
-        if len(raw) != facts["bytes"] or sha(raw) != facts["sha256"]:
+def verify_build_artifacts(release, *, expected_version=None):
+    path = release / "receipt.json"
+    if path.is_symlink() or not path.is_file():
+        raise ValueError("Missing regular Hansard build receipt.")
+    receipt = json.loads(path.read_bytes())
+    if not isinstance(receipt, dict):
+        raise ValueError("The Hansard build receipt is not an object.")
+    artifacts = receipt.get("artifacts")
+    if not isinstance(artifacts, dict):
+        raise ValueError("The Hansard build receipt has no artefact inventory.")
+    if expected_version is not None:
+        if receipt.get("schema") != "hansard-build-receipt.v1" or receipt.get("okf_version") != expected_version:
+            raise ValueError("The cached Hansard build receipt has an incompatible schema or OKF version.")
+        if not set(BUILD_ARTIFACTS) <= artifacts.keys():
+            raise ValueError("The cached Hansard build receipt is missing required artefacts.")
+    for name, facts in artifacts.items():
+        artifact = release / name
+        if not name or Path(name).name != name or "\\" in name or artifact.is_symlink() or not artifact.is_file():
+            raise ValueError(f"Unsafe or missing Hansard build artefact: {name}")
+        if not isinstance(facts, dict) or artifact.stat().st_size != facts.get("bytes"):
             raise ValueError(f"Artefact integrity mismatch: {name}")
+        with artifact.open("rb") as stream:
+            if file_digest(stream, "sha256").hexdigest() != facts.get("sha256"):
+                raise ValueError(f"Artefact integrity mismatch: {name}")
+    return receipt
+
+
+def check(release, source, people, report):
+    receipt = verify_build_artifacts(release)
 
     @lru_cache(maxsize=64)
     def resource(root, path, expected):
-        raw = (root / path).read_bytes()
+        raw = resolve_within(root, path).read_bytes()
         if sha(raw) != expected:
             raise ValueError(f"Capture file digest mismatch: {path}")
         return json.loads(raw)
@@ -40,7 +66,8 @@ def check(release, source, people, report):
     samples = {}
     with (release / "okf-bundle.yamlld").open(encoding="utf-8") as stream:
         context = json.loads(stream.readline().split(": ", 1)[1])
-        if not stream.readline().startswith("meta: ") or stream.readline().strip() != '"@graph":':
+        header = stream.readline()
+        if not header.startswith("meta: ") or stream.readline().strip() != '"@graph":':
             raise ValueError("Unexpected YAML-LD layout")
         for line in stream:
             row = json.loads(line.removeprefix("- "))
@@ -94,6 +121,13 @@ def check(release, source, people, report):
               "contributions": len(week), "failures": [{"predicate": k, "error": e, "count": n}
                                                        for (k, e), n in failed.items()],
               "failure_examples": failures}
+    if receipt.get("okf_version") == CORE_VERSION:
+        if (bundle.get("okf_version") != CORE_VERSION
+                or json.loads(header.removeprefix("meta: "))["okf_core"]["version"] != CORE_VERSION
+                or len(graph_rows) != receipt["semantic_records"]
+                or any(Path(row["route"]).name in RESERVED for row in graph_rows.values())):
+            raise ValueError("OKF 0.3 version or semantic concept count differs from the build receipt")
+        result["okf_core"] = check_markdown(release / "markdown")
     dump(report, result)
     print(json.dumps({k: v for k, v in result.items() if k != "failure_examples"}, indent=2))
     return not failed

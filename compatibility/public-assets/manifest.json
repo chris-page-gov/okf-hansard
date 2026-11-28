@@ -1,0 +1,26 @@
+{
+  "schema": "hansard-retained-public-assets.v1",
+  "source_commit": "6d0e6a2da7a76545c851e165594cc71850d0ddec",
+  "source_branch": "gh-pages",
+  "scope": "Frozen compatibility assets from the previous public site. These preserve existing URLs and historical archive references; they are not part of the active OKF 0.3 graph or new source acquisition.",
+  "assets": [
+    {
+      "publication": "week",
+      "path": "history/office-governmentposts-1286.older.json.gz",
+      "bytes": 60,
+      "sha256": "682b915bb3cf66f0baeb5c896058aaf660dbdaca8a027d8c4a7d1e59dc8fdc6e"
+    },
+    {
+      "publication": "november",
+      "path": "historical-downloads.json",
+      "bytes": 1571,
+      "sha256": "d758bac19f60fdd859aed92e572579e6ed4379e796c7edb1276d9d569b271f2d"
+    },
+    {
+      "publication": "november",
+      "path": "historical-downloads.html",
+      "bytes": 1352,
+      "sha256": "c261a27df0d6f5f31a2f543c51f8457ca592bd849b538fb7899bd9bd789b2208"
+    }
+  ]
+}

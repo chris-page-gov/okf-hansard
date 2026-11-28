@@ -14,9 +14,10 @@ import sqlite3
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
-from urllib.request import Request, urlopen
+from urllib.request import Request
 
 from capture import HOUSES, MAX_BYTES, capture_day, dump, now, query, sha
+from http_policy import open_source
 from model import Entity, Matcher, NS, mention_roles, read_sittings
 
 HANDLED_HOST = "hansard-api.parliament.uk"
@@ -94,11 +95,12 @@ class Collector:
             self.next_request = time.monotonic() + self.minimum_interval
             self.telemetry["requests"] += 1
             try:
-                # Some historical Written Answers trees are assembled slowly.
-                # Give those roots time without reducing the remaining deadline.
+                # Some historical Written Answers roots take over a minute
+                # to assemble. Their 35s timeout produced retryable gaps even
+                # when the official API returned a complete response.
                 written_root = Path(relative).name.startswith("Writtens-") and "/debates/debate/" in url
                 remaining = max(0.05, (self.deadline - datetime.now(UTC)).total_seconds())
-                with urlopen(request, timeout=min(35 if written_root else 10, remaining)) as response:
+                with open_source(request, timeout=min(120 if written_root else 10, remaining)) as response:
                     target = urlparse(response.url)
                     if target.scheme != "https" or target.hostname != HANDLED_HOST:
                         raise ValueError(f"Unexpected redirect for {url}")
@@ -170,7 +172,8 @@ def contribution_link(record):
 
 
 def collect_sitting(db, collector, matcher, day, house, links_only=False):
-    previous = db.execute("SELECT status, attempts FROM sitting WHERE day=? AND house=?", (day, house)).fetchone()
+    previous = db.execute("SELECT status, attempts, passages, retained FROM sitting WHERE day=? AND house=?",
+                          (day, house)).fetchone()
     if previous and previous[0] in ("processed", "no published sections"):
         collector.telemetry["sittings_reused"] += 1
         return
@@ -195,7 +198,10 @@ def collect_sitting(db, collector, matcher, day, house, links_only=False):
             metrics = observed[(day, house)]
         except (ValueError, KeyError, TypeError) as exc:
             entry["errors"].append(f"Normalisation: {exc}")
-    elif links_only and not entry["errors"]:
+    elif not entry["errors"]:
+        # This function is called only for dates advertised by the sitting
+        # calendar. An empty section index is therefore an incomplete source
+        # observation, not evidence that the sitting did not take place.
         entry["errors"].append("The calendar lists a sitting and its section index is empty.")
     link_counts = Counter(contribution_link(row) for row in records.values()) if links_only else {}
     bundles, mentions = [], []
@@ -222,22 +228,63 @@ def collect_sitting(db, collector, matcher, day, house, links_only=False):
             material = f"{route}|{predicate}|entity/{key}.md"
             assertion = NS + "assertion:" + sha(material.encode())[:36]
             mentions.append((key, day, route, brief({"assertion": assertion, "spans": spans})))
-    status = "source gap" if entry["errors"] else ("processed" if entry["roots"] else "no published sections")
+    status = "source gap" if entry["errors"] else "processed"
     entry["metrics"] = dict(metrics)
+    # A retry that still has source errors is only a partial observation. Keep
+    # the last successful postings and receipts intact until a complete capture
+    # can replace them atomically. This also keeps network timeouts retryable.
+    replace_postings = not entry["errors"]
+    source = entry
+    if previous:
+        old = db.execute("SELECT source FROM sitting WHERE day=? AND house=?", (day, house)).fetchone()
+        prior_source = json.loads(old[0]) if old else {}
+        attempts_history = list(prior_source.get("retry_attempts", []))
+        attempts_history.append(entry)
+        source = {**prior_source,
+                  "sources": prior_source.get("sources", []) + entry.get("sources", []),
+                  "roots": prior_source.get("roots", []) + entry.get("roots", []),
+                  "errors": entry["errors"], "retry_attempts": attempts_history,
+                  "last_retry_errors": entry["errors"]}
     with db:
         db.execute("INSERT OR REPLACE INTO sitting VALUES (?,?,?,?,?,?,?)",
-                   (day, house, status, attempts, len(records), len(bundles), brief(entry)))
-        # Preserve successful sections of a partially available sitting. Any
-        # repeat capture atomically replaces that sitting's postings.
-        if previous:
-            db.execute("""DELETE FROM mention WHERE route IN (
-                SELECT route FROM contribution WHERE day=? AND house=?)""", (day, house))
-            db.execute("DELETE FROM contribution WHERE day=? AND house=?", (day, house))
-        db.executemany("INSERT INTO contribution VALUES (?,?,?,?,?,?)", bundles)
-        db.executemany("INSERT INTO mention VALUES (?,?,?,?)", mentions)
+                   (day, house, status, attempts,
+                    len(records) if replace_postings else (previous[2] if previous else 0),
+                    len(bundles) if replace_postings else (previous[3] if previous else 0), brief(source)))
+        if replace_postings:
+            # A complete repeat capture atomically replaces that sitting's postings.
+            if previous:
+                db.execute("""DELETE FROM mention WHERE route IN (
+                    SELECT route FROM contribution WHERE day=? AND house=?)""", (day, house))
+                db.execute("DELETE FROM contribution WHERE day=? AND house=?", (day, house))
+            db.executemany("INSERT INTO contribution VALUES (?,?,?,?,?,?)", bundles)
+            db.executemany("INSERT INTO mention VALUES (?,?,?,?)", mentions)
     collector.telemetry["sittings_checked"] += 1
     if entry["errors"]:
         print(f"{day} {house} source gap ({attempts}): {'; '.join(entry['errors'])}", flush=True)
+
+
+def reconcile_calendar_sitting(db, day, house):
+    """Make legacy empty terminal rows retryable when the calendar lists them."""
+    with db:
+        return db.execute(
+            "UPDATE sitting SET status='source gap' WHERE day=? AND house=? "
+            "AND status='no published sections'", (day, house)
+        ).rowcount
+
+
+def reconcile_calendar_empty_sittings(db):
+    """Reconcile legacy terminal empty rows against calendars already cached."""
+    rows = db.execute(
+        "SELECT day,house FROM sitting WHERE status='no published sections'"
+    ).fetchall()
+    reconciled = 0
+    for day, house in rows:
+        calendar = db.execute(
+            "SELECT days FROM calendar WHERE month=? AND house=?", (day[:7], house)
+        ).fetchone()
+        if calendar and day in json.loads(calendar[0]):
+            reconciled += reconcile_calendar_sitting(db, day, house)
+    return reconciled
 
 
 def progress(db, collector, before, start_time, state, month=None):
@@ -295,6 +342,7 @@ def run(db, collector, matcher, before, floor, report, *, links_only=False, chec
                     calendar_gaps.append({"month": month.isoformat()[:7], "house": house, "error": str(exc)})
             for day, house in sorted(scheduled, reverse=True):
                 if floor.isoformat() <= day < before:
+                    reconcile_calendar_sitting(db, day, house)
                     collect_sitting(db, collector, matcher, day, house, links_only)
                     if time.monotonic() - last_checkpoint >= checkpoint_seconds:
                         last_checkpoint = time.monotonic()

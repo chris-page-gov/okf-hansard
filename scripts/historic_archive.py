@@ -10,7 +10,8 @@ import signal
 import sqlite3
 import time
 
-from archive import Collector, open_database, run
+from archive import (Collector, collect_sitting, open_database, reconcile_calendar_empty_sittings,
+                     run)
 from capture import dump, now
 from model import Entity, Matcher
 from query import DEEP_BEFORE, DEEP_DB, DEFAULT_DB
@@ -45,6 +46,48 @@ def run_extension(args):
         except (OSError, ValueError, sqlite3.Error) as exc:
             retire(state, "failed", str(exc))
             raise
+
+
+def retry_gaps(args):
+    """Retry saved source gaps in an isolated copy of the archive database."""
+    source = args.database.resolve()
+    staged = args.staged_database.resolve()
+    if source == DEFAULT_DB.resolve() or source == staged:
+        raise ValueError("Choose a separate source archive and staged database.")
+    raw = args.profile.read_bytes()
+    staged.parent.mkdir(parents=True, exist_ok=True)
+    if not staged.exists():
+        with closing(sqlite3.connect(f"file:{source}?mode=ro", uri=True)) as original, \
+                closing(sqlite3.connect(staged)) as copy:
+            original.backup(copy)
+    spec = json.loads(raw)
+    entities = {key: Entity(key=key, **row) for key, row in spec["entities"].items()}
+    matcher = Matcher(entities, spec["ambiguities"])
+    matcher.entity_groups = {key: entity.group for key, entity in entities.items()}
+    collector = Collector(args.deadline, args.pause_file, args.interval)
+    with closing(open_database(staged, raw)) as db:
+        metadata = dict(db.execute("SELECT key,value FROM metadata"))
+        expected = {"contribution_link_policy": "unique-fragment-v1", "exclusive_before": DEEP_BEFORE}
+        if any(metadata.get(key) != value for key, value in expected.items()):
+            raise ValueError("The staged archive has unexpected collection settings.")
+        if db.execute("SELECT 1 FROM sitting WHERE day>=? LIMIT 1", (DEEP_BEFORE,)).fetchone():
+            raise ValueError("The staged archive overlaps the current history window.")
+        reconcile_calendar_empty_sittings(db)
+        gaps = [(day, house) for day, house in db.execute(
+            "SELECT day,house FROM sitting WHERE status='source gap' ORDER BY day,house")]
+        for day, house in gaps:
+            collector.check()
+            collect_sitting(db, collector, matcher, day, house, links_only=True)
+        remaining = db.execute("SELECT day,house,attempts,source FROM sitting WHERE status='source gap' ORDER BY day,house").fetchall()
+        report = {"schema": "hansard-historic-repair.v1", "state": "complete" if not remaining else "source gaps remain",
+                  "staged_database": str(staged), "retried": len(gaps),
+                  "remaining": [{"date": day, "house": house, "attempts": attempts,
+                                 "errors": json.loads(source).get("last_retry_errors",
+                                                                  json.loads(source).get("errors", []))}
+                                for day, house, attempts, source in remaining],
+                  "this_run": dict(collector.telemetry), "finished_at": now()}
+        dump(args.report, report)
+        return report
 
 
 def collect(args, state, database):
@@ -113,9 +156,21 @@ def main():
     parser.add_argument("--quiet-from", type=datetime.fromisoformat)
     parser.add_argument("--quiet-until", type=datetime.fromisoformat)
     parser.add_argument("--interval", type=float, default=.66)
+    parser.add_argument("--retry-gaps", action="store_true",
+                        help="Retry source-gap sittings in a separate staged database copy.")
+    parser.add_argument("--staged-database", type=Path,
+                        help="Isolated output database required with --retry-gaps.")
+    parser.add_argument("--report", type=Path, default=Path(".work/historic-history/repair.json"))
+    parser.add_argument("--deadline", type=datetime.fromisoformat)
+    parser.add_argument("--pause-file", type=Path, default=Path(".work/pause-history"))
     args = parser.parse_args()
     if args.interval < .25:
         parser.error("Use a request interval of at least 0.25 seconds.")
+    if args.retry_gaps:
+        if not args.staged_database or not args.deadline or not args.deadline.tzinfo:
+            parser.error("--retry-gaps requires --staged-database and a --deadline with an explicit time-zone offset.")
+        retry_gaps(args)
+        return
     if args.quiet_from or args.quiet_until:
         if not args.quiet_from or not args.quiet_until or not args.quiet_from.tzinfo or not args.quiet_until.tzinfo:
             parser.error("Use both pause times with explicit time-zone offsets.")

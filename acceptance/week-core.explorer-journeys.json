@@ -1,0 +1,39 @@
+{
+  "schema": "okf-explorer-journeys.v1",
+  "bundle_descriptor": "okf-core.json",
+  "expected_identity": {
+    "schema": "okf-explorer-bundle.v0",
+    "id": "urn:okf:hansard:public-core:a-week-in-parliament",
+    "version": "0.3.0",
+    "snapshot": "hansard-markdown-sha256-4f1f765d6b0c610ff7377e59d9370fa09a14d43ac0684875fca2e61f65ff33bb"
+  },
+  "journeys": [
+    {
+      "id": "week-core-source-linked-question",
+      "actions": [
+        {
+          "type": "goto",
+          "hash": "#railways-bill.md"
+        },
+        {
+          "type": "wait_for",
+          "selector": ".right-panel h2:has-text(\"Railways Bill\")"
+        }
+      ],
+      "assertions": [
+        {
+          "type": "text",
+          "selector": ".right-panel",
+          "includes": "Bill 4030"
+        },
+        {
+          "type": "console_clean"
+        },
+        {
+          "type": "requested",
+          "includes": "/bundle/okf-core.json"
+        }
+      ]
+    }
+  ]
+}

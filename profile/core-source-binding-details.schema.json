@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chris-page-gov.github.io/okf-hansard/profile/core-source-binding-details.schema.json",
+  "title": "Hansard Core source binding details",
+  "type": "object",
+  "properties": {
+    "schema": {"const": "okf-core-source-binding-details.v1"},
+    "snapshot": {"type": "string", "minLength": 1},
+    "documents": {"type": "array", "items": {"$ref": "#/$defs/document"}},
+    "support_documents": {"type": "array", "items": {"$ref": "#/$defs/supportDocument"}}
+  },
+  "required": ["schema", "snapshot", "documents", "support_documents"],
+  "additionalProperties": false,
+  "$defs": {
+    "document": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "role": {"enum": ["concept", "navigation", "extension"]},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "record_route": {"type": ["string", "null"]},
+        "access": {"enum": ["record_chunks", "source_manifest"]}
+      },
+      "required": ["path", "role", "sha256", "bytes", "record_route", "access"],
+      "additionalProperties": false
+    },
+    "supportDocument": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "role": {"enum": ["concept", "navigation", "extension"]},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bytes": {"type": "integer", "minimum": 0},
+        "markdown": {"type": "string"},
+        "frontmatter": {"type": "object"},
+        "body": {"type": "string"}
+      },
+      "required": ["path", "role", "sha256", "bytes", "markdown", "frontmatter", "body"],
+      "additionalProperties": false
+    }
+  }
+}

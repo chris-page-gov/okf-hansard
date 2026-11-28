@@ -1,0 +1,46 @@
+{
+  "$id": "https://chris-page-gov.github.io/okf-hansard/profile/hansard-domain-v2.json",
+  "schema": "hansard-domain-semantic-profile.v2",
+  "profile_version": "2",
+  "title": "Hansard domain semantic profile v2",
+  "status": "experimental",
+  "okf_core": {
+    "version": "0.3",
+    "specification": "https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/SPEC.md"
+  },
+  "inherits": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v2/",
+  "domain_source": "https://chris-page-gov.github.io/okf-hansard/profile/domain.yaml",
+  "domain_source_media_type": "text/yaml",
+  "structural_dependencies": {
+    "assertion_schema": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/semantic-assertion.schema.json",
+    "relationship_runtime_row_schema": "https://chris-page-gov.github.io/okf-explorer/profile/bundle-wiki/v1/relationship-runtime-row.schema.json",
+    "policy": "These frozen v1 schemas remain byte-identical structural dependencies; they do not declare the core version or the Hansard domain profile."
+  },
+  "source_model": {
+    "authority": "UK Parliament",
+    "unit": "A source-linked text-bearing contribution, proceedings section, dated record, entity or sitting-day concept.",
+    "identifiers": "Stable route-derived Hansard IRIs and assertion IDs; retain existing source identities across regeneration.",
+    "evidence": "Every relationship assertion retains its source artifact digest, field pointer, source URL and retrieval timestamp where available.",
+    "relationship_graph": "Generated assertions are evidence-bearing projections of captured sources and documented literal matching rules. They do not establish substantive agreement or causal relationships.",
+    "navigation": "The virtual root index is a Reader navigation record, marked core_role navigation, and is not a Markdown concept or semantic domain assertion."
+  },
+  "competency_questions": [
+    "Which Commons and Lords contribution records were available on a selected sitting day?",
+    "What mentions in earlier sittings can I follow from this contribution, by entity and facet?",
+    "Which person is named, which office is referenced and who held that office on the day?",
+    "Can I open an official source for each result and see whether it still matches the captured version?",
+    "Can the same result drive a spoken answer, accessible table and source-linked chart?"
+  ],
+  "facets": [
+    "sitting", "chamber", "venue", "business", "speaker_role", "people", "offices",
+    "places", "organisations", "things", "legislation", "subjects"
+  ],
+  "interpretation_limits": [
+    "Name and alias matches are discovery leads; they do not establish that a passage is substantively about the matched entity.",
+    "The fixed alias profile has no measured recall across the archive.",
+    "Same-day matches in separate sections have unknown order.",
+    "A reference to an office and a dated appointment record have distinct identities and assertion types.",
+    "A claim, opinion or forecast records what was said in a source context; it does not establish the claim as fact.",
+    "Coverage in a bundle is limited to the exact captured dates and source completeness recorded in its verification receipt."
+  ]
+}

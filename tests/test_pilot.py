@@ -11,17 +11,36 @@ from urllib.parse import parse_qs, urlsplit
 from archive import Collector, StopRun, contribution_link, open_database
 from backfill import Search, search_aliases, search_periods
 from build import Graph, build, hansard_proceedings, runtime
-from build_explorer_graph import HUB_MINIMUM_INCIDENT_ASSERTIONS, ordered_relationships
-from build_pages import voice_coverage_note, voice_speaker_links
+from build_explorer_graph import CORE_SOURCE_DETAILS_PATH, HUB_MINIMUM_INCIDENT_ASSERTIONS, fnv_bucket, ordered_relationships
+from build_explorer_graph import build as build_explorer_graph
+from build_core_projection import build as build_core_projection
+from build_walkthrough import svg as walkthrough_svg
+from build_pages import index_page, voice_coverage_note, voice_speaker_links
 from capture import dump, sha
 from demo import record, write_timeline
+from discovery import core_source_reference
 from model import Entity, Matcher, plain, read_sittings
+from okf_core import check_markdown
 from people import active_on
 from query import Index, view_for
 from render_view import render
 
 
 class ModelTests(unittest.TestCase):
+    def test_week_walkthrough_svg_is_noninteractive_and_keeps_source_links_separate(self):
+        case = {"sources": [
+            {"date": "2026-06-10", "house": "Commons", "title": "Railways Bill · Third Reading",
+             "url": "https://hansard.parliament.uk/Commons/2026-06-10/debates/example"},
+            {"date": "2026-07-07", "house": "Lords", "title": "Railways Bill · Second Reading",
+             "url": "https://hansard.parliament.uk/Lords/2026-07-07/debates/example"},
+            {"date": "2026-11-18", "house": "Lords", "title": "Railways Bill · Report stage",
+             "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/example"},
+        ]}
+        visual = walkthrough_svg(case, False)
+        self.assertIn('role="img" aria-labelledby="title desc"', visual)
+        self.assertNotIn("<a ", visual)
+        self.assertNotIn("each marker opens", visual)
+
     def test_voice_companion_distinguishes_the_speaker_and_statement_links(self):
         source = "https://hansard.parliament.uk/Commons/2026-11-16/debates/example#contribution-1"
         profile = "https://members.parliament.uk/member/3966/career"
@@ -170,9 +189,10 @@ class ModelTests(unittest.TestCase):
 
             division = section("vote", "Deferred vote", [{"ItemType": "Division", "ItemId": 3}], [])
             division_group = section("deferred", "Deferred divisions", [], [division])
-            chamber = section("root", "Commons Chamber",
-                              [{"ItemType": "Contribution", "ItemId": 1, "Value": "A statement."}],
-                              [division_group])
+            attribution = "  The Minister  "
+            chamber = section("root", "Commons Chamber", [{
+                "ItemType": "Contribution", "ItemId": 1, "Value": "A statement.", "AttributedTo": attribution,
+            }], [division_group])
             dump(root / "chamber.json", chamber)
             source = {"section": "Debate", "path": "chamber.json", "url": "https://hansard-api.parliament.uk/",
                       "retrieved_at": day + "T20:00:00Z", "sha256": sha((root / "chamber.json").read_bytes())}
@@ -184,14 +204,161 @@ class ModelTests(unittest.TestCase):
             output = root / "release"
             with patch("build.validate", side_effect=lambda graph, _explorer: len(graph.edges)):
                 build(root, None, output, vocabulary, day, day, root)
-            corpus = json.loads((output / "okf-bundle.json").read_bytes())["corpora"]["hansard"]
+            bundle = json.loads((output / "okf-bundle.json").read_bytes())
+            self.assertEqual("0.3", bundle["okf_version"])
+            self.assertEqual("0.3", check_markdown(output / "markdown")["version"])
+            semantic = (output / "okf-bundle.yamlld").read_text(encoding="utf-8").splitlines()[3:]
+            self.assertNotIn("index.md", [json.loads(line[2:]).get("route") for line in semantic])
+            corpus = bundle["corpora"]["hansard"]
+            self.assertEqual("navigation", corpus["nodes"]["index.md"]["core_role"])
             edges = corpus["relationships"]
+            self.assertTrue(all(edge["source_iri"].startswith("urn:okf:hansard:record:")
+                                and edge["target_iri"].startswith("urn:okf:hansard:record:")
+                                for edge in edges))
+            capacity, = (edge for edge in edges if edge["predicate"].endswith(":hasRecordedCapacity"))
+            self.assertEqual(sha(attribution.encode()), capacity["evidence"][0]["source_value_sha256"])
+            self.assertTrue(corpus["nodes"][capacity["source"]]["title"].startswith("The Minister ·"))
             vote, = (edge for edge in edges if edge["kind"] == "is division in")
             self.assertEqual("Deferred vote", corpus["nodes"][vote["target"]]["title"])
             self.assertEqual("/ChildDebates/0/ChildDebates/0/Items/0/ItemId", vote["evidence"][0]["source_field"])
             parent, = (edge for edge in edges
                        if edge["source"] == vote["target"] and edge["predicate"].endswith(":partOf"))
             self.assertEqual("Deferred divisions", corpus["nodes"][parent["target"]]["title"])
+
+    def test_core_reader_projection_preserves_exact_markdown_and_separates_navigation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            output = root / "public"
+            source = output / "okf"
+            source.mkdir(parents=True)
+            index = b'---\n{"okf_version":"0.3","title":"Example","license":"LICENSE.md"}\n---\n\n# Example\n'
+            concept = b'---\n{"type":"Evidence trail","title":"Example trail","resource":"https://example.test/source"}\n---\n\n# Evidence\n\nSource-linked body.\n'
+            (source / "index.md").write_bytes(index)
+            (source / "trail.md").write_bytes(concept)
+            support = b"# Licence\n\nSource rights information.\n"
+            (source / "LICENSE.md").write_bytes(support)
+            result = build_core_projection(source, output)
+            descriptor = json.loads((output / "okf-core.json").read_bytes())
+            nodes = descriptor["corpora"]["hansard"]["nodes"]
+            self.assertEqual({"concepts": 1, "indexes": 1, "documents": 3},
+                             {key: result[key] for key in ("concepts", "indexes", "documents")})
+            self.assertEqual("navigation", nodes["index.md"]["core_role"])
+            self.assertEqual("concept", nodes["trail.md"]["core_role"])
+            self.assertEqual("extension", nodes["LICENSE.md"]["core_role"])
+            self.assertEqual(concept.decode(), nodes["trail.md"]["source_markdown"])
+            self.assertEqual(sha(concept), nodes["trail.md"]["source_sha256"])
+            self.assertEqual("okf/", descriptor["source_root"])
+            self.assertEqual("okf/trail.md", nodes["trail.md"]["source_path"])
+            self.assertEqual("LICENSE.md", descriptor["meta"]["license"])
+            self.assertEqual("LICENSE.md", descriptor["meta"]["license_asset"])
+            import base64
+            self.assertEqual(support, base64.b64decode(descriptor["meta"]["assets"]["LICENSE.md"]))
+            for row in descriptor["source_documents"]:
+                data = (output / row["source_path"]).read_bytes()
+                self.assertEqual((len(data), sha(data)), (row["bytes"], row["sha256"]))
+            self.assertEqual([], descriptor["corpora"]["hansard"]["relationships"])
+            self.assertIsNone(build_core_projection(source, output, check=True).get("error"))
+
+    def test_large_reader_record_shards_bind_exact_core_markdown_and_roles(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            release = root / "release"
+            markdown = release / "markdown"
+            markdown.mkdir(parents=True)
+            subindex = markdown / "section/index.md"
+            subindex.parent.mkdir(parents=True)
+            subindex.write_bytes(b"# Section index\n\nA separate navigation source.\n")
+            index = b'---\n{"okf_version":"0.3","title":"Example"}\n---\n\n# Example\n'
+            concept = b'---\n{"type":"Evidence trail","title":"Example trail"}\n---\n\n# Evidence\nSource body.\n'
+            extension = b"# Licence\n\nRights information.\n"
+            (markdown / "index.md").write_bytes(index)
+            (markdown / "trail.md").write_bytes(concept)
+            (markdown / "LICENSE.md").write_bytes(extension)
+            bundle = {"okf_version": "0.3", "generated_at": "2026-11-20T08:00:00Z",
+                      "meta": {"title": "Example", "profile": "https://example.test/profile",
+                               "okf_core": {"version": "0.3", "specification": "https://example.test/spec"}},
+                      "corpora": {"hansard": {"nodes": {
+                          "index.md": {"title": "Example", "type": "Index", "body": "# Example"},
+                          "trail.md": {"title": "Example trail", "type": "Evidence trail", "body": "Source body."},
+                          "LICENSE.md": {"title": "Licence", "type": "Licence", "body": "Rights information."},
+                      }, "relationships": []}}}
+            raw = json.dumps(bundle, ensure_ascii=False, separators=(",", ":")).encode()
+            (release / "okf-bundle.json").write_bytes(raw)
+            semantic_graph = [
+                {"@id": f"urn:example:{route}", "route": route, **record}
+                for route, record in bundle["corpora"]["hansard"]["nodes"].items()
+            ]
+            semantic_bytes = ('"@context": {}\n'
+                              'meta: {"okf_core":{"version":"0.3"}}\n'
+                              '"@graph":\n'
+                              + "".join("- " + json.dumps(row, ensure_ascii=False, separators=(",", ":")) + "\n"
+                                       for row in semantic_graph))
+            (release / "okf-bundle.yamlld").write_text(semantic_bytes, encoding="utf-8")
+            dump(release / "receipt.json", {"artifacts": {"okf-bundle.json": {"sha256": sha(raw), "bytes": len(raw)}}})
+            site = root / "site"
+            site.mkdir()
+            output = site / "graph"
+            build_explorer_graph(release, output)
+            descriptor_raw = (output / "okf-explorer.json").read_bytes()
+            self.assertLess(len(descriptor_raw), 16 * 1024 * 1024)
+            descriptor = json.loads(descriptor_raw)
+            source = descriptor["core_source"]
+            self.assertEqual((4, 1, 2, 1), (source["source_documents"], source["concepts"],
+                                           source["navigation_documents"], source["extension_documents"]))
+            self.assertEqual("okf-explorer-large-corpus.v1", descriptor["schema"])
+            self.assertEqual("okf-core-source-binding.v2", source["schema"])
+            self.assertNotIn("documents", source)
+            self.assertNotIn("support_documents", source)
+            reference = source["source_manifest"]
+            self.assertEqual(CORE_SOURCE_DETAILS_PATH, reference["path"])
+            detail_raw = (output / reference["path"]).read_bytes()
+            self.assertEqual((len(detail_raw), sha(detail_raw)), (reference["bytes"], reference["sha256"]))
+            self.assertEqual("application/json", reference["media_type"])
+            self.assertEqual("identity", reference["content_encoding"])
+            access_reference = core_source_reference(site, "https://example.test/november/", source)
+            self.assertEqual(reference["sha256"], access_reference["sha256"])
+            self.assertEqual("identity", access_reference["content_encoding"])
+            detail = json.loads(detail_raw)
+            self.assertEqual("okf-core-source-binding-details.v1", detail["schema"])
+            self.assertEqual(source["snapshot"], detail["snapshot"])
+            self.assertEqual(4, len(detail["documents"]))
+            self.assertTrue(all(row["access"] == "record_chunks"
+                                for row in detail["documents"] if row["role"] == "concept"))
+            self.assertEqual("source_manifest", next(row["access"] for row in detail["documents"]
+                                                      if row["path"] == "section/index.md"))
+            self.assertEqual(["section/index.md"], [row["path"] for row in detail["support_documents"]])
+            support_source = detail["support_documents"][0]
+            self.assertEqual(subindex.read_text(encoding="utf-8"), support_source["markdown"])
+            self.assertEqual(sha(subindex.read_bytes()), support_source["sha256"])
+            self.assertEqual(sha(extension), next(row["sha256"] for row in detail["documents"]
+                                                  if row["path"] == "LICENSE.md"))
+            (output / reference["path"]).write_bytes(b"tampered")
+            with self.assertRaisesRegex(ValueError, "differs from its descriptor reference"):
+                core_source_reference(site, "https://example.test/november/", source)
+            self.assertEqual(0, source["relationship_assertions"])
+            concept_reference = next(item for item in detail["documents"] if item["path"] == "trail.md")
+            self.assertEqual(sha(concept), concept_reference["sha256"])
+            locator = json.loads((output / "records/locator.json").read_bytes())
+            bucket = locator["buckets"][fnv_bucket("dataset/trail.md")]
+            location = json.loads((output / bucket["path"]).read_bytes())["dataset/trail.md"]
+            rows = json.loads((output / locator["record_chunks"][location[0]]).read_bytes())
+            record = rows[location[1]]
+            self.assertEqual("concept", record["core_role"])
+            self.assertEqual(concept.decode(), record["source_markdown"])
+            self.assertEqual({"type": "Evidence trail", "title": "Example trail"}, record["source_frontmatter"])
+            self.assertEqual(sha(concept), record["source_sha256"])
+
+    def test_week_landing_page_discloses_the_historical_search_gap(self):
+        coverage = {
+            "week_contributions_by_day": {"2026-11-16": 1250},
+            "pilot_graph": {"assertions": 40943, "visible_facet_declarations": 12},
+            "archive": {"ranges": {"Commons": {"from": "2007-11-08"}}},
+            "history_backfill": {"through": "2026-11-01"},
+            "history_backfill_gap": {"from": "2026-11-02", "through": "2026-11-15"},
+        }
+        page = index_page(coverage, "okf-bundle.yamlld.gz", "entity/bill-4030.md")
+        self.assertIn("2 November 2026 to 15 November 2026", page)
+        self.assertIn('<a href="november/ask.html">Search these dates in the Hansard collection</a>', page)
 
     def test_closed_appointment_dates(self):
         self.assertTrue(active_on("2026-07-20", None, "2026-11-17"))
@@ -254,7 +421,22 @@ class QueryTests(unittest.TestCase):
     def test_trace_context_and_accessible_view(self):
         path = Path("releases/current")
         if not path.exists():
-            self.skipTest("A built pilot release is required.")
+            fixture = tempfile.TemporaryDirectory()
+            self.addCleanup(fixture.cleanup)
+            path = Path(fixture.name)
+            dump(path / "history.json", {
+                "contributions": {"anchor": {"entities": ["palantir"], "date": "2026-11-18",
+                                              "part": "debate/anchor.md", "order": 2}},
+                "entities": {"palantir": {"route": "entity/palantir.md", "label": "Palantir",
+                                          "group": "Organisations"}},
+                "mentions": {"palantir": [{"contribution": "contribution/before.md", "date": "2026-11-17",
+                                           "part": "debate/before.md", "order": 1,
+                                           "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/example"}]},
+            })
+            dump(path / "analysis-profile.json", {"entities": {"palantir": {}}})
+            dump(path / "receipt.json", {"day_denominators": [{"date": "2026-11-17"}], "artifacts": {
+                name: {"sha256": sha((path / name).read_bytes())} for name in ("history.json", "analysis-profile.json")
+            }})
         index = Index(path)
         anchors = index.history["contributions"]
         route = next(key for key, row in anchors.items() if "palantir" in row["entities"])
