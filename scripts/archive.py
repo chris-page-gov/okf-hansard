@@ -14,9 +14,10 @@ import sqlite3
 import time
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlparse
-from urllib.request import Request, urlopen
+from urllib.request import Request
 
 from capture import HOUSES, MAX_BYTES, capture_day, dump, now, query, sha
+from http_policy import open_source
 from model import Entity, Matcher, NS, mention_roles, read_sittings
 
 HANDLED_HOST = "hansard-api.parliament.uk"
@@ -99,7 +100,7 @@ class Collector:
                 # when the official API returned a complete response.
                 written_root = Path(relative).name.startswith("Writtens-") and "/debates/debate/" in url
                 remaining = max(0.05, (self.deadline - datetime.now(UTC)).total_seconds())
-                with urlopen(request, timeout=min(120 if written_root else 10, remaining)) as response:
+                with open_source(request, timeout=min(120 if written_root else 10, remaining)) as response:
                     target = urlparse(response.url)
                     if target.scheme != "https" or target.hostname != HANDLED_HOST:
                         raise ValueError(f"Unexpected redirect for {url}")

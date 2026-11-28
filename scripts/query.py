@@ -15,6 +15,10 @@ DEEP_DB = DEFAULT_DB.with_name("history-before-2007.sqlite")
 DEEP_BEFORE = "2007-01-01"
 
 
+class StaleHistory(ValueError):
+    """The requested page belongs to an earlier evidence selection."""
+
+
 def canonical_digest(value):
     return hashlib.sha256(json.dumps(value, ensure_ascii=False, sort_keys=True,
                                      separators=(",", ":")).encode()).hexdigest()
@@ -322,7 +326,7 @@ class Index:
                                     "contribution": route, "entities": summaries, "search_evidence": evidence_versions,
                                     "sitting_editions": [sorted(states.items()) for states in (current_states, older_states)]})
         if expected_context and expected_context != context:
-            raise ValueError("History was updated. Start again at offset zero for a consistent evidence page.")
+            raise StaleHistory("History was updated. Start again at offset zero for a consistent evidence page.")
         selected = next((row for row in summaries if row["id"] == entity), None)
         total = selected["earlier"] if selected else None
         next_offset = offset + len(actual_items) if total is not None and offset + len(actual_items) < total else None

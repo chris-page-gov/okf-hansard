@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased — repeatable validation and safe source errors
+
+- Run source secret scanning, locked dependency checks and a Chromium
+  keyboard journey alongside the existing protected pull request checks.
+- Exercise the trace and accessible view even in a clean checkout.
+- Decline upstream redirects and return stable client messages for evidence
+  errors. Keep filesystem and implementation details out of tool replies.
+
 ## Unreleased — historical trace evidence and passage freshness
 
 - Reconcile archive coverage per date and House. Keep distinct search matches

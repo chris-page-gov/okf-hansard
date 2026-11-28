@@ -3,6 +3,7 @@
 import argparse
 from datetime import date
 import json
+import logging
 from pathlib import Path
 import sys
 from threading import RLock
@@ -16,11 +17,12 @@ from mcp_protocol import (CAPABILITIES_KEY, LEGACY, PROTOCOL, PROTOCOLS, cache_f
 from mcp_skills import EXTENSION, URI as SKILL_URI, result_for
 from passages import Passages
 from people import member_as_of
-from query import DEFAULT_DB, DEFAULT_RELEASE, Index, view_for
+from query import DEFAULT_DB, DEFAULT_RELEASE, Index, StaleHistory, view_for
 from roles import resolve
 
 INSTRUCTIONS = ("Use official source links, distinguish aliases from identity proof and disclose coverage. "
                 f"Read the Hansard workflow at {SKILL_URI} after host approval.")
+LOGGER = logging.getLogger(__name__)
 RESOURCE_METHODS = {"resources/list", "resources/templates/list", "resources/read"}
 SKILL_METHODS = {"skills/list", "skills/get"}
 STRING = {"type": "string", "maxLength": 400}
@@ -106,6 +108,17 @@ def invoke(name, args, index, people, passages):
                          args.get("expected_sha256"))
 
 
+def tool_failure(name, exc):
+    if isinstance(exc, StaleHistory):
+        detail = {"status": "stale evidence page", "message": "Evidence changed. Restart at the first page."}
+    elif isinstance(exc, ValidationError):
+        detail = {"status": "invalid arguments", "message": "Check the tool's allowed arguments and values."}
+    else:
+        LOGGER.warning("Hansard tool %s failed (%s)", name, type(exc).__name__)
+        detail = {"status": "unavailable", "message": "The requested Hansard evidence could not be read."}
+    return tool_result(detail, error=True)
+
+
 def rpc(request, index, people, passages, access=None, account=None):
     method = request.get("method")
     request_id = request.get("id")
@@ -173,12 +186,12 @@ def rpc(request, index, people, passages, access=None, account=None):
                        "hansard_mentions": access.mentions, "hansard_search_passages": access.search}[name]
             result = tool_result(handler(**arguments))
         except (OSError, TypeError, ValueError, KeyError, ValidationError) as exc:
-            result = tool_result({"message": str(exc)[:350]}, error=True)
+            result = tool_failure(name, exc)
     elif method == "tools/call" and params.get("name") in TOOLS:
         try:
             result = tool_result(invoke(params["name"], params.get("arguments", {}), index, people, passages))
         except (ValueError, ValidationError, OSError, KeyError, IndexError) as exc:
-            result = tool_result({"status": "unavailable", "message": str(exc)[:350]}, error=True)
+            result = tool_failure(params["name"], exc)
     else:
         return error(request, -32601, "Method or tool unavailable.")
     return {**response, "result": complete(**result) if modern else result}

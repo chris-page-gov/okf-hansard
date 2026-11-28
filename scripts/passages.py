@@ -7,10 +7,11 @@ from pathlib import Path
 import re
 import time
 from urllib.parse import urlparse
-from urllib.request import Request, urlopen
+from urllib.request import Request
 
 from archive import unpack
 from capture import HANSARD, MAX_BYTES, now, sha
+from http_policy import open_source
 from model import plain, read_sittings
 from query import DEFAULT_RELEASE, Index
 from safe_paths import resolve_within
@@ -120,8 +121,9 @@ def retrievable(url, timeout=12):
 @lru_cache(maxsize=6)
 def read_source(url, timeout, window):
     # The monotonic window bounds reuse. The response keeps its own observation time.
-    with urlopen(Request(url, headers={"Accept": "application/json", "Accept-Encoding": "gzip",
-                                       "User-Agent": "OKF-Hansard-Pilot/0.1"}), timeout=timeout) as response:
+    request = Request(url, headers={"Accept": "application/json", "Accept-Encoding": "gzip",
+                                    "User-Agent": "OKF-Hansard-Pilot/0.1"})
+    with open_source(request, timeout=timeout) as response:
         if response.url != url:
             raise ValueError("The official endpoint redirected.")
         raw = unpack(response.read(MAX_BYTES + 1), response.headers.get("Content-Encoding", ""))
