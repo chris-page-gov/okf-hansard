@@ -1,0 +1,33 @@
+{
+  "snapshot": "hansard-collection-sha256-8b9b7448167f9c4ecfb7765a01ceb3126100d9c30e73d48ca5e68db286ec3fce",
+  "interval": "2026-11-05/2026-11-09",
+  "contributions": 334,
+  "dates": [
+    {
+      "date": "2026-11-05",
+      "status": "observed",
+      "contributions": 0
+    },
+    {
+      "date": "2026-11-06",
+      "status": "observed",
+      "contributions": 0
+    },
+    {
+      "date": "2026-11-07",
+      "status": "observed",
+      "contributions": 0
+    },
+    {
+      "date": "2026-11-08",
+      "status": "observed",
+      "contributions": 0
+    },
+    {
+      "date": "2026-11-09",
+      "status": "observed",
+      "contributions": 334,
+      "sections": "../../2026-11-09/index.html"
+    }
+  ]
+}

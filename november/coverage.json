@@ -543,10 +543,10 @@
   ],
   "contributions": 20900,
   "graph_records": 29717,
-  "assertions": 69284,
+  "assertions": 69286,
   "semantic_graph": {
-    "bytes": 208618238,
-    "sha256": "2c888327cda0c3bfbdf50cba97555d87ba41a9363666ea18d9d73d7e6f9333db"
+    "bytes": 208625152,
+    "sha256": "12e61303e53066d30afebd5e4e38bb0070457848ab80de9c3c0d8e302c66ed5a"
   },
   "backfill": {
     "schema": "hansard-backfill.v1",
@@ -594,9 +594,9 @@
   "verification": {
     "schema": "hansard-verification.v1",
     "passed": true,
-    "assertions": 69284,
-    "predicates": 11,
-    "rdf_sample_triples": 520,
+    "assertions": 69286,
+    "predicates": 12,
+    "rdf_sample_triples": 594,
     "visible_facet_declarations": 12,
     "contributions": 20900,
     "failures": [],

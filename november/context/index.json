@@ -1,0 +1,113 @@
+{
+  "schema": "hansard-contribution-context.v1",
+  "snapshot": "hansard-collection-sha256-8b9b7448167f9c4ecfb7765a01ceb3126100d9c30e73d48ca5e68db286ec3fce",
+  "page_turns": 8,
+  "max_page_bytes": 65536,
+  "excerpt_characters": 900,
+  "contributions": 20900,
+  "days": {
+    "2026-11-02": {
+      "url": "2026-11-02/index.html",
+      "turn_lookup": "2026-11-02/turns.json",
+      "contributions": 969
+    },
+    "2026-11-03": {
+      "url": "2026-11-03/index.html",
+      "turn_lookup": "2026-11-03/turns.json",
+      "contributions": 3760
+    },
+    "2026-11-04": {
+      "url": "2026-11-04/index.html",
+      "turn_lookup": "2026-11-04/turns.json",
+      "contributions": 872
+    },
+    "2026-11-09": {
+      "url": "2026-11-09/index.html",
+      "turn_lookup": "2026-11-09/turns.json",
+      "contributions": 334
+    },
+    "2026-11-10": {
+      "url": "2026-11-10/index.html",
+      "turn_lookup": "2026-11-10/turns.json",
+      "contributions": 1076
+    },
+    "2026-11-11": {
+      "url": "2026-11-11/index.html",
+      "turn_lookup": "2026-11-11/turns.json",
+      "contributions": 1183
+    },
+    "2026-11-12": {
+      "url": "2026-11-12/index.html",
+      "turn_lookup": "2026-11-12/turns.json",
+      "contributions": 1345
+    },
+    "2026-11-13": {
+      "url": "2026-11-13/index.html",
+      "turn_lookup": "2026-11-13/turns.json",
+      "contributions": 265
+    },
+    "2026-11-16": {
+      "url": "2026-11-16/index.html",
+      "turn_lookup": "2026-11-16/turns.json",
+      "contributions": 1250
+    },
+    "2026-11-17": {
+      "url": "2026-11-17/index.html",
+      "turn_lookup": "2026-11-17/turns.json",
+      "contributions": 1945
+    },
+    "2026-11-18": {
+      "url": "2026-11-18/index.html",
+      "turn_lookup": "2026-11-18/turns.json",
+      "contributions": 1131
+    },
+    "2026-11-19": {
+      "url": "2026-11-19/index.html",
+      "turn_lookup": "2026-11-19/turns.json",
+      "contributions": 869
+    },
+    "2026-11-20": {
+      "url": "2026-11-20/index.html",
+      "turn_lookup": "2026-11-20/turns.json",
+      "contributions": 74
+    },
+    "2026-11-23": {
+      "url": "2026-11-23/index.html",
+      "turn_lookup": "2026-11-23/turns.json",
+      "contributions": 1300
+    },
+    "2026-11-24": {
+      "url": "2026-11-24/index.html",
+      "turn_lookup": "2026-11-24/turns.json",
+      "contributions": 1991
+    },
+    "2026-11-25": {
+      "url": "2026-11-25/index.html",
+      "turn_lookup": "2026-11-25/turns.json",
+      "contributions": 1351
+    },
+    "2026-11-26": {
+      "url": "2026-11-26/index.html",
+      "turn_lookup": "2026-11-26/turns.json",
+      "contributions": 991
+    },
+    "2026-11-27": {
+      "url": "2026-11-27/index.html",
+      "turn_lookup": "2026-11-27/turns.json",
+      "contributions": 194
+    }
+  },
+  "calendar": {
+    "time_zone": "Europe/London",
+    "bounds": "inclusive sitting dates",
+    "templates_relative_to": "this index",
+    "template_standard": "RFC 6570",
+    "month": "months/{month}.json",
+    "day": "{date}/index.html",
+    "range": "ranges/{start}/{end}.json",
+    "availability": "Use YYYY-MM or YYYY-MM-DD. Range endpoints must be covered and in the same month. Split longer intervals by calendar month. Day pages exist for dates with captured turns.",
+    "months": {
+      "2026-11": "months/2026-11.json"
+    }
+  }
+}

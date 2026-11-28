@@ -33,6 +33,26 @@ function timeline(key, anchor) {
   return url.href;
 }
 
+async function openContext(row, button) {
+  const [day, , , , section, order] = row;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) throw new Error('Invalid sitting date.');
+  button.disabled = true;
+  try {
+    const lookup = await json('context/' + day + '/turns.json');
+    if (lookup.snapshot !== selected.snapshot) throw new Error('The collection changed. Reload the finder and try again.');
+    const entry = lookup.sections[section];
+    const turn = (entry?.order.indexOf(order) ?? -1) + 1;
+    if (!turn || !/^[a-f0-9]{20}$/.test(entry.stem) || !Number.isSafeInteger(lookup.page_turns)
+        || lookup.page_turns < 1) {
+      throw new Error('Context is unavailable for this snapshot. Open the Hansard link for this contribution.');
+    }
+    const page = Math.ceil(turn / lookup.page_turns);
+    location.assign(new URL(`context/${day}/${entry.stem}-${page}.html#turn-${turn}`, root));
+  } finally {
+    button.disabled = false;
+  }
+}
+
 function render() {
   const offset = page * hitsPerPage;
   const rows = matches.slice(offset, offset + hitsPerPage);
@@ -43,9 +63,17 @@ function render() {
     ? `${record.label}. Showing ${offset + 1} to ${offset + rows.length} of ${matches.length.toLocaleString('en-GB')} distinct Hansard links.`
     : `${record.label}. This bundle returned no retained matches.`;
   $('timeline').replaceChildren(link('Open the contribution timeline', view));
-  $('links').replaceChildren(...rows.map(([date, house, url, speaker]) => {
+  $('links').replaceChildren(...rows.map((row) => {
+    const [date, house, url, speaker] = row;
     const li = document.createElement('li');
     li.append(link([date, house, speaker].filter(Boolean).join(' · '), url));
+    if (row.length === 7) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = 'Show this contribution in context';
+      button.addEventListener('click', () => openContext(row, button).catch(showError));
+      li.append(' ', button);
+    }
     return li;
   }));
   $('previous').disabled = page === 0;

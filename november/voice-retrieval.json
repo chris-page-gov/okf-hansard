@@ -21,8 +21,8 @@
       },
       "references/retrieval.md": {
         "url": "https://chris-page-gov.github.io/okf-hansard/november/skills/read-okf-plus/references/retrieval.md",
-        "bytes": 2093,
-        "sha256": "553993b2002482371a1592a157b93a879d9ab07a0f58195574b31dabe5ed1dd3"
+        "bytes": 3219,
+        "sha256": "a3c0585fee143361c846579740e70bfa6d8baa365fbf1e77f227fcbdd0dac9a0"
       }
     }
   },
@@ -35,6 +35,7 @@
       "2024-11-05"
     ],
     "describe_tool": "hansard_describe_bundle",
+    "context_tool": "hansard_contribution_context",
     "search_tool": "hansard_search_passages",
     "resolve_tool": "hansard_resolve_concept",
     "mentions_tool": "hansard_mentions"

@@ -18,11 +18,12 @@ When the assistant cannot open the full collection, paste this prompt. If it can
 > Give the verified capture-through date and snapshot from the file. Use the excerpts and exact Hansard links in the file to answer. If you cannot open it, ask me to paste its text.
 > Explain what Synergy is, how the discussion changed, and which statements were commitments. Distinguish historical alias matches from captured contributions.
 
-Check the date range and open one exact Hansard link.
+In the contribution timeline, select a turn and choose “Show this contribution in context”.
+For voice, ask “Who spoke around this contribution? Cite the turns you used.”
 
 
 - [Open the GitHub evidence index](https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md)
-- [Read the Synergy evidence and passages](https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-1c125e3c885ed0ea883a29b4ba150171359fa1f34453fc35558d971c3d518f40)
+- [Read the Synergy evidence and passages](https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-8b9b7448167f9c4ecfb7765a01ceb3126100d9c30e73d48ca5e68db286ec3fce)
 - [Find and copy evidence](https://chris-page-gov.github.io/okf-hansard/november/ask.html)
 - [Hansard collection directory](https://chris-page-gov.github.io/okf-hansard/november/hansard.json)
 - [Capture and historical coverage](https://chris-page-gov.github.io/okf-hansard/november/coverage.json)
