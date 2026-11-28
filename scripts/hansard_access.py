@@ -11,6 +11,7 @@ from urllib.parse import quote, urlencode, urlsplit
 
 from capture import sha
 from model import read_sittings
+from safe_paths import resolve_within
 
 
 HOME = "https://chris-page-gov.github.io/okf-hansard/"
@@ -191,7 +192,7 @@ class Access:
         """Return the debate parts and text records from the verified capture."""
         if self._capture_rows is None:
             receipt = read(self.release / "receipt.json")
-            manifest = (self.capture / "manifest.json").read_bytes()
+            manifest = resolve_within(self.capture, "manifest.json").read_bytes()
             if sha(manifest) != receipt["manifest_sha256"]:
                 raise ValueError("The captured passages differ from the verified build.")
             dates = set(self.history["days"])

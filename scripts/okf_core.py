@@ -7,6 +7,7 @@ import re
 from urllib.parse import quote, unquote, urlsplit
 
 import yaml
+from safe_paths import resolve_within
 
 
 CORE_VERSION = "0.3"
@@ -25,12 +26,15 @@ def write_document(path, fields, body):
 
 
 def write_index(root, title, description, body):
-    write_document(root / "index.md", {
+    root.mkdir(parents=True, exist_ok=True)
+    index = resolve_within(root, "index.md")
+    licence = resolve_within(root, "LICENSE.md")
+    write_document(index, {
         "okf_version": CORE_VERSION, "title": title, "description": description,
         "license": "LICENSE.md", "semantic_profile": PROFILE,
         "product_version": PRODUCT_VERSION, "x-hansard-specification": CORE_SPEC,
     }, body)
-    (root / "LICENSE.md").write_text(
+    licence.write_text(
         "# Open Parliament Licence\n\n"
         "Contains Parliamentary information licensed under the Open Parliament Licence v3.0.\n\n"
         f"[Licence and exclusions]({LICENCE})\n", encoding="utf-8")
@@ -42,8 +46,10 @@ def index_link(label, target):
 
 
 def write_release_markdown(root, records, first, last, title, context):
+    root.mkdir(parents=True, exist_ok=True)
     listings = defaultdict(list)
     for route, record in records.items():
+        target = resolve_within(root, route)
         relative = Path(route)
         if relative.name in RESERVED or record.get("date", first) < first:
             continue
@@ -53,7 +59,7 @@ def write_release_markdown(root, records, first, last, title, context):
         if url := record.get("url"):
             fields["resource"] = url
             fields["sources"] = [{"id": "record", "resource": url}]
-        write_document(root / relative, fields, record.get("body", ""))
+        write_document(target, fields, record.get("body", ""))
         entry = index_link(record["title"], relative.name)
         if description := record.get("description"):
             entry += " - " + " ".join(description.split())
@@ -75,7 +81,8 @@ def write_release_markdown(root, records, first, last, title, context):
             description = f"Westminster proceedings from {first} to {last}."
             write_index(root, title, description, content)
         else:
-            (root / folder / "index.md").write_text(content + "\n", encoding="utf-8")
+            index = resolve_within(root, folder.as_posix() + "/index.md")
+            index.write_text(content + "\n", encoding="utf-8")
 
 
 def check_markdown(root):

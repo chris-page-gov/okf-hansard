@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — capture and release paths
+
+- Confine capture and evidence reads and generated Markdown writes to their
+  configured directories. Validate identifiers used in routes and keep
+  operator-configured directory aliases working.
+
 ## Unreleased — publication safeguards and historical retries
 
 - Check candidate coverage against the current Pages commit and forecast the

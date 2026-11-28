@@ -12,12 +12,13 @@ from archive import unpack
 from capture import HANSARD, MAX_BYTES, sha
 from model import plain, read_sittings
 from query import DEFAULT_RELEASE, Index
+from safe_paths import resolve_within
 
 LOCATOR_FIELDS = ("external_id", "source_item_id", "value_sha256", "pointer", "url", "section")
 
 
 def build_locators(snapshot, release):
-    manifest = json.loads((snapshot / "manifest.json").read_bytes())
+    manifest = json.loads(resolve_within(snapshot, "manifest.json").read_bytes())
     history = json.loads((release / "history.json").read_bytes())
     dates = [row["date"] for row in history["contributions"].values()]
     _, records, _, _ = read_sittings(snapshot, manifest, min(dates), max(dates))
