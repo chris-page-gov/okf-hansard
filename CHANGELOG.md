@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — contributor tour and licences
+
+- Lead with the phone Voice demo on Pages and add a separate contributor
+  tour with source links visible on mobile and desktop.
+- Publish the MIT Licence for original project software and explain the
+  separate terms and attribution for Parliamentary information.
+
 ## Unreleased — bring your own AI to Hansard
 
 - Add beginner guides to Hansard and OKF 0.3, a full mobile demonstration and
