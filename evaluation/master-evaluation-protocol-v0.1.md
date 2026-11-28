@@ -2,6 +2,8 @@
 
 Date: 19 November 2026. **Status: design implemented in documentation; evidence verification, benchmarking and site implementation NOT completed.** This file is the entry point for the proposed Hansard OKF+ evaluation. It does not assert that a measured baseline exists.
 
+The [28 November walkthroughs](runs/2026-11-28/README.md) report observed trials separately from this original design.
+
 ## 1. Scope and linked specifications
 
 - [Personas and questions](personas-and-questions-v0.1.md): 3 personas × 3 questions; API-Q1–3 and GRAPH-Q1–4.

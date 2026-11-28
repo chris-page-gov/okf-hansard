@@ -1,0 +1,404 @@
+{
+  "Q": {
+    "id": "Q",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-5FFDC8E3-7D76-4083-988B-955CEC19A2E9",
+    "speaker": "Nadia Whittome",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/13F7917B-36D3-4198-8908-7185E77DE84A.json",
+    "item_index": 2,
+    "item_id": 51044946,
+    "captured_item_id": 51044946,
+    "numeric_id_changed": false,
+    "source_value_sha256": "144dea631d85c39d293e68bf0364ef2522fbfd0fb3b2f2536af6b82991705c15",
+    "passages": [
+      "Under the Government’s plans to reform the SEND system, millions of pupils will be given individual support plans agreed between parents and schools, but, unlike education, health and care plans, those will not be subject to independent legal appeal. Campaigners and my constituents are worried that parents may be left with no legal route to challenge a school if a child is not getting the right support. Can the Minister reassure them that that will not be the case?"
+    ],
+    "assertion": "urn:okf:hansard:assertion:5d0e18e9415edae6681ca9d50c61f33d6abe",
+    "predicate": "urn:okf:hansard:vocab:mentions",
+    "target": "entity/send-reform.md",
+    "matched_spans": [
+      {
+        "start": 43,
+        "end": 54,
+        "exact": "SEND system"
+      }
+    ]
+  },
+  "R": {
+    "id": "R",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-26F9FC36-CC1F-4442-B478-A22CB0E95CA4",
+    "speaker": "Georgia Gould",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/13F7917B-36D3-4198-8908-7185E77DE84A.json",
+    "item_index": 3,
+    "item_id": 51044947,
+    "captured_item_id": 51044947,
+    "numeric_id_changed": false,
+    "source_value_sha256": "0b11a48311f0e6bbde54d4b763762a6a14c95c6e9b32d07c9c3cc188a7fea778",
+    "passages": [
+      "Legal duties on schools to identify and support children’s needs are getting stronger. We are developing new national standards for the first time, with new duties on schools to develop individual support plans with families and young people and a stronger role for Ofsted in overseeing inclusion. We want to build a system based on partnership with families and young people at its heart. We have been working closely with families and young people, listening to their reflections on our plans, and we have heard clearly from families how important accountability is. That is why we are taking the time to ensure that we are getting the plans right. We will publish a full response to the consultation."
+    ]
+  },
+  "Q0": {
+    "id": "Q0",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-8D89C7A1-FAB8-4774-B3B8-C73FB3B5A51C",
+    "speaker": "Nadia Whittome (Nottingham East) (Lab)",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/13F7917B-36D3-4198-8908-7185E77DE84A.json",
+    "item_index": 0,
+    "item_id": 51044944,
+    "captured_item_id": 51044944,
+    "numeric_id_changed": false,
+    "source_value_sha256": "30c5068354f60f9ae3583fbaea80d35f208b8a711e0ef9dd81b4ef240c30e231",
+    "passages": [
+      "3. What progress her Department has made on reforming the SEND system."
+    ],
+    "assertion": "urn:okf:hansard:assertion:a071d038b1f577fb264d19f4d58a5fa4b3af",
+    "predicate": "urn:okf:hansard:vocab:mentions",
+    "target": "entity/send-reform.md",
+    "matched_spans": [
+      {
+        "start": 58,
+        "end": 69,
+        "exact": "SEND system"
+      }
+    ]
+  },
+  "R0": {
+    "id": "R0",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-DC89FF3B-B014-4C96-8F3D-40137EC5A6BC",
+    "speaker": "The Minister for School Standards (Georgia Gould)",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/13F7917B-36D3-4198-8908-7185E77DE84A.json",
+    "item_index": 1,
+    "item_id": 51044945,
+    "captured_item_id": 51044945,
+    "numeric_id_changed": false,
+    "source_value_sha256": "feaba523175744b7c1dbaca3ae4219796f73844362b3d9f1bdef620c8680240c",
+    "passages": [
+      "The Department is investing £4 billion over this year and the next two years to help children and young people with special educational needs and disabilities to receive support. We are training teachers, investing in new specialist places and mainstream schools, rolling out experts at hand and strengthening local partnerships. We are continuing to carefully consider responses to the consultation and engaging widely. We will publish our consultation response and bring forward legislation early in the new year."
+    ],
+    "assertion": "urn:okf:hansard:assertion:1514fbed74f512d7bee5174c8e8f51d3e806",
+    "predicate": "urn:okf:hansard:vocab:mentions",
+    "target": "entity/send-reform.md",
+    "matched_spans": [
+      {
+        "start": 116,
+        "end": 158,
+        "exact": "special educational needs and disabilities"
+      }
+    ]
+  },
+  "C": {
+    "id": "C",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/75C8A826-17E0-47BD-A4C3-A2DCD01144FB/Engagements#contribution-4760FED4-3618-4534-92D6-94027A74F645",
+    "speaker": "Chris Coghlan (Dorking and Horley) (LD)",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/75C8A826-17E0-47BD-A4C3-A2DCD01144FB.json",
+    "item_index": 35,
+    "item_id": 51059113,
+    "captured_item_id": 50995420,
+    "numeric_id_changed": true,
+    "source_value_sha256": "343e5d688beda24cd7cb179655ab4a10ba7c2962394030e245abab4a473a99bc",
+    "passages": [
+      "ildren’s deaths, do the Government still plan to weaken children’s legal protections, especially at tribunal, in the SEND reforms?"
+    ],
+    "assertion": "urn:okf:hansard:assertion:5fc4d857bddc4de8286582207ea79b611837",
+    "predicate": "urn:okf:hansard:vocab:mentions",
+    "target": "entity/send-reform.md",
+    "matched_spans": [
+      {
+        "start": 295,
+        "end": 337,
+        "exact": "special educational needs and disabilities"
+      },
+      {
+        "start": 553,
+        "end": 557,
+        "exact": "SEND"
+      }
+    ]
+  },
+  "H": {
+    "id": "H",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/75C8A826-17E0-47BD-A4C3-A2DCD01144FB/Engagements#contribution-F677B711-9BC3-417C-AAE9-7B2C991219E9",
+    "speaker": "Louise Haigh",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/75C8A826-17E0-47BD-A4C3-A2DCD01144FB.json",
+    "item_index": 36,
+    "item_id": 51059114,
+    "captured_item_id": 50995421,
+    "numeric_id_changed": true,
+    "source_value_sha256": "7010d6e9d53860e9daf687f715ee8a5395b7cc20365963a9becf4311b1a79653",
+    "passages": [
+      "e system. Parents will continue to be involved in decisions about their children’s support, and the tribunal will remain a key legal backstop. My right hon. Friend is more than happy to meet the hon. Gentleman to discuss this issue and the very sad case he raises."
+    ],
+    "assertion": "urn:okf:hansard:assertion:22f213481a4cf2e0c825172da261d749aac4",
+    "predicate": "urn:okf:hansard:vocab:mentions",
+    "target": "entity/send-reform.md",
+    "matched_spans": [
+      {
+        "start": 188,
+        "end": 192,
+        "exact": "SEND"
+      }
+    ]
+  },
+  "F": {
+    "id": "F",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/74A239AE-6ACF-4988-847E-F7B819989918/BudgetResolutions#contribution-D9855BBA-E5DC-478B-9D87-050E5019FD12",
+    "speaker": "Zöe Franklin",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/74A239AE-6ACF-4988-847E-F7B819989918.json",
+    "item_index": 44,
+    "item_id": 50893187,
+    "captured_item_id": 50893187,
+    "numeric_id_changed": false,
+    "source_value_sha256": "e2258ebdd9bf309b1f14b5cbcec361d9fe394d2535413ae545b293ecb70f7bc3",
+    "passages": [
+      "vernment finances, which is causing enormous problems for local councils. Returning to the issue of SEND, families do not lie awake worrying about governance models. They worry about whether their child will receive the support they need, about delays to assessments and about whether an education, health and care plan will be delivered in time. I welcome the"
+    ],
+    "assertion": "urn:okf:hansard:assertion:493af052d70a869f154ad96a2946aedd9c0d",
+    "predicate": "urn:okf:hansard:vocab:mentions",
+    "target": "entity/send-reform.md",
+    "matched_spans": [
+      {
+        "start": 251,
+        "end": 255,
+        "exact": "SEND"
+      }
+    ]
+  },
+  "M": {
+    "id": "M",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/52FEDF8F-7F19-47A6-9FB7-1930054C9061/Microsoft365Outage#contribution-45B429D6-0079-4FC6-838E-899E1380B948",
+    "speaker": "The Minister for Creative Industries, Media and Online Safety (Ian Murray)",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/52FEDF8F-7F19-47A6-9FB7-1930054C9061.json",
+    "item_index": 2,
+    "item_id": 51045145,
+    "captured_item_id": 51045145,
+    "numeric_id_changed": false,
+    "source_value_sha256": "0ce43a8b6249accc0db05b00c786d4c2bd81f3aa1a63e874358a64ac701ae14f",
+    "passages": [
+      "or a lot of people and businesses. Microsoft initially explained that the incident was caused by an elevated load on its infrastructure and later provided further details of the three main issues that led to the outage. The company said there is no indication that the incident was caused by malicious activity. In the UK, the incident affected individuals, bu",
+      "sector. There were impacts on the health sector and other public services, but key services such as 999 remained operational. There were no major critical service impacts, and public sector resilience plans were in place. The incident could have been more serious if it had lasted longer or affected wider parts of Microsoft’s infrastructure. It reinforces the",
+      "s such as 999 remained operational. There were no major critical service impacts, and public sector resilience plans were in place. The incident could have been more serious if it had lasted longer or affected wider parts of Microsoft’s infrastructure. It reinforces the importance of promoting and improving our digital resilience—something that the Governmen"
+    ]
+  },
+  "C1": {
+    "id": "C1",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/C22E2354-AACD-439E-9CF3-EA0109FEEC76/Digital%2CCulture%2CMediaandSport#contribution-94427F31-7F2C-4BB8-B4D3-0496995DAD28",
+    "speaker": "Ian Murray",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/C22E2354-AACD-439E-9CF3-EA0109FEEC76.json",
+    "item_index": 4,
+    "item_id": 51128531,
+    "captured_item_id": 51047555,
+    "numeric_id_changed": true,
+    "source_value_sha256": "47707b947851a5a9c95c24249e8190ae1bdc730253ff2636226a348995c7928d",
+    "passages": [
+      "…There was another completely unrelated issue, which was that 14% of server capacity was also down."
+    ]
+  },
+  "C2": {
+    "id": "C2",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/C22E2354-AACD-439E-9CF3-EA0109FEEC76/Digital%2CCulture%2CMediaandSport#contribution-D2804F55-6509-4651-9B5E-26BF5849B17A",
+    "speaker": "Ian Murray",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/C22E2354-AACD-439E-9CF3-EA0109FEEC76.json",
+    "item_index": 7,
+    "item_id": 51128534,
+    "captured_item_id": 51047558,
+    "numeric_id_changed": true,
+    "source_value_sha256": "8409a3cb00a6ebd97528e9afaa4b63cc5a5fe015c71de6c33c238324b86e3766",
+    "passages": [
+      "… Only two NHS trusts declared critical incidents , but they called them off relatively quickly."
+    ]
+  },
+  "O1": {
+    "id": "O1",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/C22E2354-AACD-439E-9CF3-EA0109FEEC76/Digital%2CCulture%2CMediaandSport#contribution-DBA2D99F-0912-4CF3-9913-10AB3F0CA0EE",
+    "speaker": "Ian Murray",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/C22E2354-AACD-439E-9CF3-EA0109FEEC76.json",
+    "item_index": 3,
+    "item_id": 51128530,
+    "captured_item_id": 51047554,
+    "numeric_id_changed": true,
+    "source_value_sha256": "d8ec5f40a4b3bb975684e08f1a0dd6ad8c0b158acba92b57c88d42881a32950b",
+    "passages": [
+      "o the fore. There was another completely unrelated issue, which was that a server that accounts for 14% of capacity was also down for maintenance at the time. [ Official Report , 16 November 2026; Vol. 793, c. 575.] Written correction submitted by the Minister for Creative Industries, Media and Online Safety, the right hon. Member for Edinburgh South (Ian Mu"
+    ]
+  },
+  "O2": {
+    "id": "O2",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/C22E2354-AACD-439E-9CF3-EA0109FEEC76/Digital%2CCulture%2CMediaandSport#contribution-111C5FA2-2EE6-4D62-A0CE-8D9DC38C1F0A",
+    "speaker": "Ian Murray",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/C22E2354-AACD-439E-9CF3-EA0109FEEC76.json",
+    "item_index": 6,
+    "item_id": 51128533,
+    "captured_item_id": 51047557,
+    "numeric_id_changed": true,
+    "source_value_sha256": "55bdcb702339a52d404adc7b5811f782933e9b9b7b112377040f9a55218119f1",
+    "passages": [
+      "I am glad that my hon. Friend managed to talk to his NHS trust and resolve that issue over the weekend. Only two NHS trusts stood up an incident response unit, but it was no longer required so they stood it back down relatively quickly. [ Official Report , 16 November 2026; Vol. 793, c. 578.] Written correction submitted by the Minister for Creative Industries, Media and Online Safety:"
+    ]
+  },
+  "N": {
+    "id": "N",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/FBAAF525-AB23-4118-9750-2BC93FF9B428/HealthandCareDigitalCapability#contribution-3337A55C-2E13-4A0C-80F8-2F35E4DF8827",
+    "speaker": "The Parliamentary Under-Secretary of State for Health and Social Care (Mr James Frith)",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/FBAAF525-AB23-4118-9750-2BC93FF9B428.json",
+    "item_index": 2,
+    "item_id": 51045199,
+    "captured_item_id": 51045199,
+    "numeric_id_changed": false,
+    "source_value_sha256": "e1de8ad2bc54dd04a4d73ae80d753fe87572fe71f1bdae5c13e19b4431b978e2",
+    "passages": [
+      "buying the technology of the future, we want it to help create the market for it. That is where the federated data platform comes in. Fragmented information stops the NHS from providing patients with effective and emotionally intelligent care. A hospital can have beds available, but struggle to match them with patients waiting to be admitted. A clinical team",
+      "oducts across the NHS, such as cancer cell detection. The Government have committed to using public procurement as a strategic lever to back British industry and ensure communities benefit from growth and good jobs. We will evolve NHS procurement processes in line with that aim. Within a fair and open competition framework, we will use our purchasing power t",
+      "ty, including those yet to sign up or fulfil its potential for them. The contract will end in March 2029, when we intend to complete the transition to the new FDP with the additional capabilities. We will ensure the necessary controls and conditions are in place to do so without disrupting patient care. There are many advantages to having a diverse group of "
+    ]
+  },
+  "W": {
+    "id": "W",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-1D0760AC-15CE-49C7-981F-0A987478B896",
+    "speaker": "Martin Wrigley (Newton Abbot) (LD)",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/D1EA4BF2-2796-48DD-A144-B9675E614F2A.json",
+    "item_index": 3,
+    "item_id": 51128357,
+    "captured_item_id": 51047382,
+    "numeric_id_changed": true,
+    "source_value_sha256": "9a8cc61ff02b21a6e02fc21310ef9fdb91440ba6e73346d175f47709a76d2056",
+    "passages": [
+      "rty parliamentary group for UK innovation startups and SMEs. I thank the Minister for his statement yesterday, which answered so many of the asks I made in my April debate in Westminster Hall, but this is still an important issue that we have to discuss. It is not simply a question about one NHS contract, but a test of whether the Government are serious abou",
+      "es that the NHS medium-term planning framework would not be used to force the continued roll-out of Palantir’s federated data platform across the NHS. At yesterday’s statement, I welcomed the investment being directed towards interoperability, common standards and future NHS digital capability, rather than simply extending the life of what increasingly appea"
+    ]
+  },
+  "T": {
+    "id": "T",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/D1EA4BF2-2796-48DD-A144-B9675E614F2A/NHSFederatedDataPlatformPalantir#contribution-B19AFCF2-B061-4EB6-AFA1-6A1F4EEBC1D7",
+    "speaker": "Mr Frith",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/D1EA4BF2-2796-48DD-A144-B9675E614F2A.json",
+    "item_index": 28,
+    "item_id": 51128381,
+    "captured_item_id": 51047406,
+    "numeric_id_changed": true,
+    "source_value_sha256": "80b8fe951943d77ee41bbac5563152026cc281be303bdb5a85ce461011a6cdfd",
+    "passages": [
+      "e data remains NHS, as does the intellectual property, and there is no lock-in. In the announcement yesterday, I confirmed to the House that we are beginning a new procurement process, and I will come on to confirm more details of that. I will now try to make a bit of progress. In making this decision, we deliver on two objectives: continuing the use of tech"
+    ]
+  },
+  "BC": {
+    "id": "BC",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+    "titles": [
+      "House of Commons",
+      "Oral Answers to Questions",
+      "MOD Bicester: Asylum Accommodation",
+      "Microsoft 365 Outage",
+      "Health and Care: Digital Capability",
+      "Point of Order: Rectification Procedure",
+      "Point of Order",
+      "Visitor Levy (England) Bill",
+      "Business without Debate",
+      "High-control Religious Groups:  Support for Victims"
+    ]
+  },
+  "BL": {
+    "id": "BL",
+    "url": "https://hansard.parliament.uk/Lords/2026-11-16",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/55f23bba-01a8-4b4b-a4e1-f131f440a552.json",
+    "titles": [
+      "House of Lords",
+      "Ofcom: News Impartiality",
+      "Drone Attack Risks",
+      "Farm Profitability",
+      "Jewish Community Buildings: Security",
+      "Microsoft Outage: Resilience",
+      "Courts and Tribunals Bill",
+      "Commonwealth Heads of  Government Meeting",
+      "Courts and Tribunals Bill"
+    ]
+  },
+  "BW": {
+    "id": "BW",
+    "url": "https://hansard.parliament.uk/Commons/2026-11-16",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/8f946513-0cc8-43d8-b24c-d5ee733c620d.json",
+    "titles": [
+      "Westminster Hall",
+      "UK-wide Briefing on Climate and Nature Risks"
+    ]
+  },
+  "D": {
+    "id": "D",
+    "url": "https://raw.githubusercontent.com/chris-page-gov/okf-hansard/41a340e06ec02b7d5d4d5802e893534697328d32/november/coverage.json",
+    "day": {
+      "date": "2026-11-16",
+      "verified_at": "2026-11-28T07:15:08+00:00",
+      "as_published_at": "2026-11-28T07:15:07+00:00",
+      "publication_status": "observed",
+      "houses": {
+        "Commons": {
+          "status": "captured",
+          "roots": 5,
+          "contributions": 791
+        },
+        "Lords": {
+          "status": "captured",
+          "roots": 1,
+          "contributions": 459
+        }
+      },
+      "sections": 59,
+      "divisions": 1
+    },
+    "scope": "Text-bearing contribution records; layout, standalone timestamps and separately recorded divisions excluded from the contribution count."
+  },
+  "S": {
+    "id": "S",
+    "url": "https://hansard.parliament.uk/Lords/2026-05-19/debates/9B9FB90B-6A43-4100-8BBD-BA2E33C169F9/KingsSpeech#contribution-4CDC9F45-3B7F-4835-9BE1-C3D5F9EF92C8",
+    "speaker": "The Minister of State, Department for Education and Department for Work and Pensions (Baroness Smith of Malvern) (Lab)",
+    "source_api": "https://hansard-api.parliament.uk/debates/debate/9B9FB90B-6A43-4100-8BBD-BA2E33C169F9.json",
+    "item_index": 151,
+    "item_id": 49518566,
+    "source_value_sha256": "1c34e9da52a0a1e00f5e0081ecdaa031055f785df57d6d9c36e287a9c1f58c96",
+    "passages": [
+      "We will reform the role of the SEND tribunal, encouraging greater use of mediation before appeals, including placement appeals. There will be a continued right of appeal to the SEND tribunal for key decisions about education, health and care needs, assessment plans and placements. We will ensure that children with the most complex needs receive high-quality,"
+    ],
+    "located_in_pinned_archive": true
+  },
+  "L51": {
+    "id": "L51",
+    "url": "https://www.legislation.gov.uk/ukpga/2014/6/section/51",
+    "source_api": "https://www.legislation.gov.uk/ukpga/2014/6/section/51/data.xml",
+    "sha256": "2368e65b1d15e087ec7a99d720005faeff70ed2ca776c9062be1f737372625cf",
+    "version": "revised XML retrieved on 28 November 2026",
+    "passages": [
+      "51 1 A child's parent or a young person may appeal to the First-tier Tribunal against the matters set out in subsection (2), subject to section 55 (mediation). 2 The matters are— a a decision of a local authority not to secure an EHC needs assessment for the child or young person; b a decision of a local authority, following an EHC needs assessment, that it is not necessary for special educational provision to be made for the child or young person in accordance with an EHC plan; c where an EHC plan is maintained for the child or young person— i the child's or young person's special educational needs as specified in the plan; ii the special educational provision specified in the plan; iii the school or other institution named in the plan, or the type of school or other institution specified in the plan; iv if no school or other institution is named in the plan, that fact; d a decision of a local authority not to secure a re-assessment of the needs of the child or young person under section 44 following a request to do so; e a decision of a local authority not to secure the amendment or replacement of an EHC plan it maintains for the child or young person following a review or re-assessment under section 44; f a decision of a local authority under section 45 to cease to maintain an EHC plan for the child or young person. 3 A child's parent or a young person may appeal to the First-tier Tribunal under subsection (2)(c)— a when an EHC plan is first finalised for the child or young person, and b following an amendment or replacement of the plan. 4 Regulations may make provision about appeals to the First-tier Tribunal in respect of EHC needs assessments and EHC plans, in particular about— a other matters relating to EHC plans against which appeals may be brought; b making and determining appeals; c the powers of the First-tier Tribunal on determining an appeal; d unopposed appeals. 5 Regulations under subsection (4)(c) ma"
+    ]
+  },
+  "L55": {
+    "id": "L55",
+    "url": "https://www.legislation.gov.uk/ukpga/2014/6/section/55",
+    "source_api": "https://www.legislation.gov.uk/ukpga/2014/6/section/55/data.xml",
+    "sha256": "fe2b31e091e194daa1e21802fabe8d42808de636d152e2e03b390ff42833bc26",
+    "version": "revised XML retrieved on 28 November 2026",
+    "passages": [
+      "55 1 This section applies where a child's parent or young person intends to appeal to the First-tier Tribunal under section 51 or regulations made under that section in respect of— a a decision of a local authority, or b the content of an EHC plan maintained by a local authority. 2 But this section does not apply in respect of an appeal concerning only— a the school or other institution named in an EHC plan; b the type of school or other institution specified in an EHC plan; c the fact that an EHC plan does not name a school or other institution. 3 The parent or young person may make the appeal only if a mediation adviser has issued a certificate to him or her under subsection (4) or (5). 4 A mediation adviser must issue a certificate under this subsection to the parent or young person if— a the adviser has provided him or her with information and advice about pursuing mediation under section 53 or 54, and b the parent or young person has informed the adviser that he or she does not wish to pursue mediation. 5 A mediation adviser must issue a certificate under this subsection to the parent or young person if the adviser has provided him or her with information and advice about purs"
+    ]
+  },
+  "ISP": {
+    "id": "ISP",
+    "url": "https://www.gov.uk/government/consultations/send-reform-putting-children-and-young-people-first/send-reform-putting-children-and-young-people-first-html-version",
+    "sha256": "cdfbe6f0137b6a56a5da73f422a7611b9392cfd1e8198f37f30c7526cd8ac9da",
+    "passages": [
+      "We will place a duty on schools (including maintained nursery schools and school-based nurseries) and colleges to produce an ISP for any child or young person with SEND. We will work with private, voluntary and independent early years providers to understand how ISPs could work in their settings. The ISP will be tailored in line with the layers of support, with guidance to support settings in creating high-quality plans. We will set out the information that the ISP must include, such as the child or young person’s identified barriers to learning, their provision, any reasonable adjustments, and intended outcomes, and clarify that this should be developed with parents. ISPs will be standardised across settings to facilitate transitions. For children receiving Targeted support, ISPs should include evidence-based interventions from the National Inclusion Standards. They will then be used to communicate provision to parents and to document actions taken between parents and educators, supporting the relationship between home and the setting. This will help parents to work collaboratively with settings and enable them to take an active role in supporting their child’s educational progress.",
+      "All schools are required to have a complaints procedure. This should be used where parents have a complaint relating to SEND provision or support. When initial stages of that procedure have not achieved resolution, the complaint should be considered by a panel, none of whom should have had prior involvement with the complaint. We propose, when a school complaint relates to SEND provision, as set out in the Code of Practice, the complaints panel must include a SEND specialist, such as a Special Educational Needs Coordinator (SENCO), inclusion lead or senior school leader with SEND experience, who is independent of the school and, if relevant, trust. We will encourage more families to use local authority-commissioned disagreement resolution services for any disagreements that cannot be resolved using a setting or local authority complaints process.",
+      "Parents and young people will be able to appeal to the Tribunal against a decision that the child or young person has not met the threshold for one of the new Specialist Provision Packages, and therefore an EHCP.",
+      "Information about a child or young person’s special educational needs (SEN) or special educational provision (SEP) will be considered as part of appeals about Specialist Provision Packages or placements as appropriate, rather than being separate. We want the Tribunal to focus on the key questions of the child or young person’s package or placement, recognising that SEN and SEP will frequently be a central part of the evidence for these appeals. For example, the local authority will need to consider the child or young person’s SEN when deciding whether he or she meets the threshold for a package, so a child’s SEN is likely to form part of the parent or young person’s evidence when appealing about this decision to the Tribunal. Similarly, information about a child or young person’s SEN or SEP is expected to form part of the evidence for a placement appeal as appropriate. At present, the great majority of appeals relating to SEN or SEP are combined with an appeal about the child or young person’s placement.[footnote 110] Moreover, detailed information about the child or young person’s specific SEP will in future be included in new setting-led Individual Support Plans that are developed following a child being placed on a package and worked-up with the teachers and staff working with the child day-to-day, so are not part of the EHCP. For these reasons, we think it is better for SEN and SEP to be included in other appeals to the Tribunal rather than kept separate."
+    ]
+  },
+  "FILTER": {
+    "id": "FILTER",
+    "url": "https://raw.githubusercontent.com/chris-page-gov/okf-hansard/41a340e06ec02b7d5d4d5802e893534697328d32/november/history/send-reform.month.json",
+    "rule": "Before 16 November in the captured month, screen each linked primary passage for tribunal|appeal|legal right (case-insensitive). This is a vocabulary-limited candidate screen.",
+    "screened": 37,
+    "matched": [
+      "https://hansard.parliament.uk/Commons/2026-11-04/debates/75C8A826-17E0-47BD-A4C3-A2DCD01144FB/Engagements#contribution-F677B711-9BC3-417C-AAE9-7B2C991219E9",
+      "https://hansard.parliament.uk/Commons/2026-11-04/debates/75C8A826-17E0-47BD-A4C3-A2DCD01144FB/Engagements#contribution-4760FED4-3618-4534-92D6-94027A74F645"
+    ],
+    "older_index_rows": 9489
+  }
+}

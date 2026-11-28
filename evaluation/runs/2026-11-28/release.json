@@ -1,0 +1,15 @@
+{
+  "pages_commit": "41a340e06ec02b7d5d4d5802e893534697328d32",
+  "source_commit": "9bcfb5134625c005ac94a5dbceaade8ad41de50b",
+  "directory": "https://raw.githubusercontent.com/chris-page-gov/okf-hansard/41a340e06ec02b7d5d4d5802e893534697328d32/november/hansard.json",
+  "sha256": {
+    "hansard.json": "13532ce4806c3ca657b1e52a440031a8d74b2628f57253e8d76ef7dd30095510",
+    "coverage.json": "25b16669f08d1426b9fd464f2d6d4c339864a030763eec92c34079d797251a1d",
+    "graph/okf-explorer.json": "e4dfec394ba190781de4cf88cb670b6b61ec530ad91582377b6ce326a7bf78dc",
+    "history/send-reform.month.json": "cb3a65c674688aa9b5fe31e58630e9c8d25c846739410eba2b2f573c31c4f706",
+    "history/send-reform.archive.json.gz": "ec939aa68e28b4aa89281a6af3ece573d17be5230ae310f2ad94b1b669889eed",
+    "okf-bundle.yamlld.gz": "8b3f66594aa8592f5286e532d29f5f563865a9071d3b67e0d990d30eb31d5c69"
+  },
+  "collection": "hansard-collection-sha256-1c125e3c885ed0ea883a29b4ba150171359fa1f34453fc35558d971c3d518f40",
+  "captured_through": "2026-11-27"
+}

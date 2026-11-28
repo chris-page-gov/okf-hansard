@@ -1,5 +1,9 @@
 # Changelog
 
+## 28 November 2026 · Persona walkthroughs
+
+- Record a real Android Voice trial and nine local text trials against the November Hansard evidence, with primary sources, retrieval limits and criterion-level scoring. [Walkthroughs](evaluation/runs/2026-11-28/README.md)
+
 ## Unreleased — check citations in a paired local writer comparison
 
 - Constrain citations to visible evidence IDs, reject duplicate or out-of-scope

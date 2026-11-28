@@ -74,6 +74,8 @@ Start the read-only MCP stdio server with a verified November publication receip
 
 The tools are **hansard_find**, **hansard_trace**, **hansard_roles_as_of**, **hansard_member_as_of** and **hansard_read_passage**. A source-linked passage returns its Member ID where available. The member tool returns effective representations, posts, memberships and party records as of the requested day from cached biographies or the Members API. The passage tool reads the official Hansard API. No AI API key or model calls are needed. A voice-enabled host can speak a short answer and pass the digest-bound view to a companion screen. See the [UI study](docs/voice-and-visual-ui.md) for host-specific support and limits.
 
+Try the nine [phone persona questions](evaluation/runs/2026-11-28/phone.md) or inspect the [recorded answers, sources and scores](evaluation/runs/2026-11-28/README.md).
+
 ## Extend the collection
 
 Capture to a fresh directory. The archive uses Parliament’s calendars to avoid polling non-sitting dates. It hashes the matching profile, indexes one House and sitting at a time and reuses processed sittings on restart. The default index path is on ExtSSD-Data. Use another database path when changing the matching profile. The active release can bind an older index by retaining its exact profile. Each entity’s response states whether the extension applies.

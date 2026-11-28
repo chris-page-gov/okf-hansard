@@ -1,0 +1,69 @@
+{
+  "id": "P1-Q1",
+  "client": "ChatGPT Voice on Android, operator-reported device",
+  "model_version": null,
+  "app_version": null,
+  "date": "2026-11-28",
+  "provenance": "User-designated synced chat transcript. Spoken and companion text are separate transcript items. No audio or HTTP trace was inspected.",
+  "input_url": "https://chris-page-gov.github.io/okf-hansard/",
+  "observed_snapshot": "The preceding response reported 20,900 contributions through 27 November 2026. No immutable digest was returned by the phone.",
+  "duration_seconds": 16.45,
+  "timing": "Recorded turn timestamps. Includes tool and response time and does not measure time to first audio.",
+  "spoken_question_as_transcribed": "What did Nadia Whit-Whittam ask about parents' independent school appeal rights on 16th November 2026, and what did the minister actually answer",
+  "spoken_response_as_transcribed": "I've found it in the November 16th 2026 debate on SEND reform. Nadia Whittome asked if parents would keep an independent legal route to challenge schools where children aren't getting the right support, because the proposed individual support plans don't have the same appeal rights as current EHCPs. The minister, Georgia Gould, talked about stronger legal duties, new national standards and Ofsted oversight, but didn't commit to a specific legal right of appeal. She said they'd respond fully to the consultation, but didn't answer that point directly. I'm pulling this particular exchange from official Hansard, not your OKF+ graph yet.",
+  "companion_response": "I've located the precise exchange in Hansard on 16 November 2026, under the debate **SEND System: Reform**.\n\nNadia Whittome, Labour MP for Nottingham East, asked whether parents would retain an independent legal route to challenge schools when their children were not receiving appropriate special educational needs support.\n\nHer concern was that the proposed individual support plans, unlike existing education, health and care plans (EHCPs), would not carry independent legal appeal rights.\n\nGeorgia Gould, the Minister for School Standards, responded by describing:\n\n- Stronger legal duties on schools to identify and support children's needs.\n- New national standards.\n- Duties to develop individual support plans with families.\n- Stronger Ofsted oversight of inclusion.\n- A forthcoming full response to the consultation.\n\n**Crucially, the minister did not commit to providing parents with an independent legal right of appeal.** She acknowledged the importance of accountability but left the specific question unresolved.\n\nThat is my assessment of the actual exchange, rather than an inference about government intentions.\n\nSource: [Official Hansard – 16 November 2026; citation destination unavailable in the transcript export].\n\nFor our technical experiment, I successfully accessed your OKF+ landing page, but retrieved this particular exchange directly from official Hansard through web search. Therefore, we have verified the parliamentary answer, but not yet demonstrated independent retrieval through your OKF+ knowledge graph.",
+  "website_discovery": "Client reported access to the live public homepage. Coverage figures agree with the pin.",
+  "answer_grounding": "Client explicitly attributed this answer to official Hansard web search. No bundle record retrieval or immutable snapshot was demonstrated.",
+  "assessor_evidence": [
+    "Q",
+    "R",
+    "Q0",
+    "R0"
+  ],
+  "critical_failures": [],
+  "rubric": "additive-scoring-v0.2",
+  "score": [
+    {
+      "id": "P1-Q1.1",
+      "earned": 1,
+      "note": "Identified Whittome despite the transcription."
+    },
+    {
+      "id": "P1-Q1.2",
+      "earned": 0,
+      "note": "Correct date. The answer did not explicitly name the House."
+    },
+    {
+      "id": "P1-Q1.3",
+      "earned": 0,
+      "note": "No verifiable contribution URL or external ID in the retained result."
+    },
+    {
+      "id": "P1-Q1.4",
+      "earned": 2,
+      "note": "Accurately described the independent challenge sought."
+    },
+    {
+      "id": "P1-Q1.5",
+      "earned": 2,
+      "note": "Accurately summarised Gould’s own follow-up answer."
+    },
+    {
+      "id": "P1-Q1.6",
+      "earned": 3,
+      "note": "Explicitly distinguished consultation and oversight from an appeal commitment."
+    },
+    {
+      "id": "P1-Q1.7",
+      "earned": 0,
+      "note": "Official Hansard appeared as a citation label. Its target was unavailable for checking in this export."
+    },
+    {
+      "id": "P1-Q1.8",
+      "earned": 1,
+      "note": "Identified the unresolved legal question and disclosed the reliance on direct official search."
+    }
+  ],
+  "earned": 9,
+  "possible": 15
+}

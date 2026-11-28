@@ -1,0 +1,96 @@
+[
+  {
+    "id": "P1-Q1",
+    "question": "What did Nadia Whittome ask about parents' independent appeal rights on 16 November 2026, and what did the Minister actually answer?",
+    "evidence_ids": [
+      "Q",
+      "R",
+      "Q0",
+      "R0"
+    ]
+  },
+  {
+    "id": "P1-Q2",
+    "question": "Which appeal rights under the existing EHCP framework are in force, and which aspects of Individual Support Plans remain proposals? Cite primary legal and parliamentary sources; mark any external sources.",
+    "evidence_ids": [
+      "L51",
+      "L55",
+      "ISP",
+      "Q",
+      "R"
+    ]
+  },
+  {
+    "id": "P1-Q3",
+    "question": "Which earlier parliamentary contributions specifically address SEND appeal rights, and how do their positions compare with the 16 November exchange?",
+    "evidence_ids": [
+      "Q",
+      "R",
+      "C",
+      "H",
+      "S",
+      "F",
+      "FILTER"
+    ]
+  },
+  {
+    "id": "P2-Q1",
+    "question": "Locate the exact 16 November contribution on SEND appeal rights and return its speaker, date, House, stable contribution identifier and source link.",
+    "evidence_ids": [
+      "Q",
+      "Q0",
+      "R"
+    ]
+  },
+  {
+    "id": "P2-Q2",
+    "question": "Trace backwards from that contribution to earlier discussions of independent SEND appeal rights. For each link, identify the matching entity/predicate and quote or locate the supporting evidence span.",
+    "evidence_ids": [
+      "Q",
+      "C",
+      "H",
+      "S",
+      "FILTER"
+    ]
+  },
+  {
+    "id": "P2-Q3",
+    "question": "Which apparent historical links are only lexical mentions of SEND, EHCPs or appeals rather than evidence of the same legal question? Explain exclusions and coverage gaps.",
+    "evidence_ids": [
+      "Q",
+      "C",
+      "F",
+      "FILTER"
+    ]
+  },
+  {
+    "id": "P3-Q1",
+    "question": "What were the main subjects covered in both Houses on Monday 16 November 2026, and what is the completeness boundary of this summary?",
+    "evidence_ids": [
+      "BC",
+      "BL",
+      "BW",
+      "D"
+    ]
+  },
+  {
+    "id": "P3-Q2",
+    "question": "What was said in the Commons about the Microsoft 365 outage on 16 November, by whom, and what was established versus merely asserted?",
+    "evidence_ids": [
+      "M",
+      "O1",
+      "C1",
+      "O2",
+      "C2"
+    ]
+  },
+  {
+    "id": "P3-Q3",
+    "question": "How does Monday's discussion of NHS digital capability connect to Tuesday's Palantir/Federated Data Platform debate? Distinguish explicit references from shared entity mentions.",
+    "evidence_ids": [
+      "N",
+      "W",
+      "T"
+    ]
+  }
+]
