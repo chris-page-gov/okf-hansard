@@ -2,9 +2,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
 
-from acquire import digest, safe_path, verify_public, write_json
-from corpus import ARMS, Record, render, select
-from evaluate import score
+from acquire import CONTRACT, digest, read, safe_path, verify_public, write_json
+from corpus import ARMS, Record, render, select, synthetic
+from evaluate import score, settings_for
 
 
 class ReferenceConsumerTests(unittest.TestCase):
@@ -36,6 +36,34 @@ class ReferenceConsumerTests(unittest.TestCase):
         self.assertEqual(["P-CASE"], [record.id for record in chosen])
         for arm in ARMS:
             self.assertIn(chosen[0].prose(), render(arm, chosen, None))
+
+    def test_replay_reuses_exact_synthetic_input_and_rejects_tampering(self):
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            first = root / "first"
+            second = root / "second"
+            first.mkdir()
+            second.mkdir()
+            self.assertEqual(synthetic(first), synthetic(second, replay=first))
+            annex = first / "synthetic/S-ANNEX.md"
+            annex.write_text(annex.read_text() + "Unapproved edit.", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "documents differ"):
+                synthetic(second, replay=first)
+
+    def test_model_profile_preserves_the_benchmark_budgets_and_cases(self):
+        frozen = read(CONTRACT)
+        profile = CONTRACT.with_name("model-bonsai-27b.json")
+        updated = settings_for(frozen, profile)
+        for field in ("source", "retrieval", "cases"):
+            self.assertEqual(frozen[field], updated[field])
+        for field in ("context_tokens", "output_tokens", "seeds", "temperature"):
+            self.assertEqual(frozen["model"][field], updated["model"][field])
+        self.assertNotEqual(frozen["model"]["sha256"], updated["model"]["sha256"])
+        with TemporaryDirectory() as directory:
+            modified = Path(directory) / "pin.json"
+            write_json(modified, {**read(profile), "output_tokens": 400})
+            with self.assertRaisesRegex(ValueError, "runtime options only"):
+                settings_for(frozen, modified)
 
     def test_runtime_trailer_is_removed_without_changing_answer(self):
         case = {"id": "case", "status": "supported", "facts": {"key": "recorded"}, "citations": ["P-TEST"]}

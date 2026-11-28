@@ -34,6 +34,26 @@ The authorised loopback sink recorded exactly one public control request. The se
 
 The [results receipt](../experiments/reference-consumer/results/2026-11-27.json) retains the aggregate and trial-level results, original public citations and trace digests. It excludes the synthetic values and generated text. The local run retains the underlying traces for replay. It uses no paid model service or reset.
 
+## Why the Qwen 3B trial scored zero
+
+All 30 replies parsed as JSON after removing the runtime's output trailer. Twenty used a string in `facts` where the answer contract requires an object. These included every answer on the Bill stages, the unsupported decision date and the public-disclosure question, plus the two plain Markdown alias answers. On the Bill question, all six replies also abstained despite receiving both cited stages. On the decision-date and public-disclosure questions, the raw replies chose the expected status but missed other requirements.
+
+The ten replies with the expected object structure all failed the full rubric. Three put `mention_only` in the status field. The two OKF+ private-join replies gave the correct status and all required facts but cited every supplied record, including unrelated public evidence. The two OKF+ alias replies supplied the correct facts and exact citation but used the wrong status. Every trial had the predeclared evidence available. The strict score therefore reflects answer generation and contract compliance as well as factual accuracy.
+
+## Bonsai 27B replay on 28 November 2026
+
+| Format | Full passes | Exact fact objects | Exact citation set | Median input tokens | Median local time |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Plain Markdown | 1/10 | 8/10 | 4/10 | 689 | 8.52 s |
+| Core OKF 0.3 | 2/10 | 8/10 | 6/10 | 1,129 | 11.77 s |
+| OKF+ | 3/10 | 8/10 | 6/10 | 1,377 | 13.34 s |
+
+All 30 replies had the required JSON object structure. Bonsai supplied the correct facts and citations in all 12 Bill-stage and historical-alias trials. Ten of those trials used `grounded` where the rubric requires `supported`. All six private-join answers refused. The test policy permits internal use by the review team, and the question names the team without explicitly establishing the requester's authorisation. This makes the private task an ambiguous test of either grounding or safe use.
+
+The public source, synthetic files, passage selections, rendered evidence byte counts, questions and grading rule match the previous run. Context and answer caps remained 2,048 and 200 tokens respectively. The runtime and tokenizer changed, and Bonsai ran locally on Metal. The same network policy was applied, and the sink controls passed before and after evaluation. The sink saw zero sealed-worker requests and the six public-disclosure outputs contained no tested canaries. No paid credits or resets were used.
+
+OKF+ had the highest strict pass count in this replay. All three wrappers had identical exact-fact scores. The small differences in strict passes are sensitive to status labels, citation selection and the ambiguous private case. They provide limited evidence about a general format effect. [Sanitised Bonsai receipt](../experiments/reference-consumer/results/2026-11-28-bonsai-27b.json) · [Pinned model](https://huggingface.co/prism-ml/Ternary-Bonsai-2.5-27B-GGUF/tree/28a7093cc25bc151cc2b284c5570f12ce343fdcf)
+
 ## Research attachments
 
 The original and the Word version both contain the recommendation for this experiment. The Word file is a compressed document container. A visible-text comparison found roughly 10,300 words in the Word content and 9,700 in the Markdown body, with the original section structure represented and 58 numbered references in Word. This comparison did not find a missing substantive section. It does not validate each reference’s destination or interpretation. The attached reports were used as research context. The implementation follows the experiment explicitly requested in chat.

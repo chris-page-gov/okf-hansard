@@ -48,4 +48,17 @@ The network evidence combines the acquisition HTTPS journal, kernel-denied socke
 uv run --locked python -m unittest discover -s experiments/reference-consumer -v
 ```
 
+## Replay with Bonsai 27B
+
+The [Bonsai profile](model-bonsai-27b.json) pins PrismML's Ternary Bonsai 2.5 27B Q2_0 weights and the compatible Apple Silicon llama.cpp b11556 build. The model file is 7.67 GB. Keep it on a volume with sufficient free space, and verify its SHA-256 and the runtime archive hash before running. The runner checks the model and executable again. [Pinned model files](https://huggingface.co/prism-ml/Ternary-Bonsai-2.5-27B-GGUF/tree/28a7093cc25bc151cc2b284c5570f12ce343fdcf) · [Pinned runtime release](https://github.com/ggml-org/llama.cpp/releases/tag/b11556)
+
+Use the same evaluation command with these additional options and the Bonsai executable and weights:
+
+```sh
+--model-profile experiments/reference-consumer/model-bonsai-27b.json \
+--replay .work/reference-consumer/run-04
+```
+
+Supply a fresh output directory. The replay checks the previous receipt, checksums, policy and selected evidence for all 30 trials. It reads the earlier synthetic fixtures within the network-denied worker and verifies their exact bytes before reuse. The model profile changes the runtime, tokenizer and acceleration. It keeps the questions, system text, rubric, retrieved passages, byte budget, 2,048-token context, 200-token output cap, temperature and seeds. Bonsai uses Metal and its ChatML prefix with thinking disabled in all three arms. Compare latency and token counts across models with those runtime and tokenisation differences in mind.
+
 The reporting compares work per trial and per fully supported answer. The publisher serves fixed public files once per acquisition. Local inference and hardware use still have a cost. This experiment measures time, bytes and token counts. A claim about total cost at scale needs data from the target workload and deployment.

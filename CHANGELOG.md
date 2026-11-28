@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — replay the reference consumer with Bonsai 27B
+
+- Diagnose the original failures by reading the saved local answers against
+  the frozen rubric. Add a pinned local Bonsai profile and exact evidence replay,
+  including byte-identical synthetic fixtures under the same network denial.
+
 ## Unreleased — two-phase reference consumer
 
 - Pin a complete compact Hansard bundle, an OKF+ relationship example and a

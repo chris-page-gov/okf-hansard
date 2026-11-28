@@ -1,0 +1,12 @@
+{
+  "name": "PrismML Ternary Bonsai 2.5 27B",
+  "revision": "28a7093cc25bc151cc2b284c5570f12ce343fdcf",
+  "quantisation": "Q2_0",
+  "bytes": 7673194848,
+  "sha256": "84496171ca79d4d33fb45612a2afd8303ec494baf916281023b7dc9cb3b3b9fa",
+  "runtime": "llama.cpp b11556",
+  "runtime_release_sha256": "be652966e95415394468f057e31ae0dd5719173c48be240345042b37d06d24b2",
+  "macos_binary_sha256": "e3d5205729cb4c1e176d5c8e39796aefbe361a2300d0593586db9503dd0d63d1",
+  "device": "MTL0",
+  "non_thinking_chatml": true
+}

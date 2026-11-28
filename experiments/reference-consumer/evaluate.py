@@ -35,7 +35,20 @@ status, facts and citations. Facts are strings keyed exactly as requested. Citat
 an array of the shortest relevant evidence IDs shown in document headings. Include every
 ID needed to support the answer and omit unrelated IDs."""
 PROMPT_STATS = re.compile(r"prompt eval time =\s*[\d.]+ ms /\s*(\d+) tokens")
-GEN_STATS = re.compile(r"^.*?:\s+eval time =\s*[\d.]+ ms /\s*(\d+) runs", re.M)
+GEN_STATS = re.compile(r"^.*?:\s+eval time =\s*[\d.]+ ms /\s*(\d+) (?:runs|tokens)", re.M)
+MODEL_PIN_FIELDS = {"name", "revision", "quantisation", "bytes", "sha256", "runtime",
+                    "runtime_release_sha256", "macos_binary_sha256", "device", "non_thinking_chatml"}
+
+
+def settings_for(contract, model_profile):
+    if model_profile is None:
+        return contract
+    pin = read(model_profile)
+    if set(pin) != MODEL_PIN_FIELDS or pin["device"] not in {"cpu", "MTL0"} or not isinstance(
+            pin["non_thinking_chatml"], bool):
+        raise ValueError("The model profile must pin artefacts and runtime options only.")
+    return {**contract, "model": {**contract["model"], **pin}}
+
 
 
 def verify_model(model_path, binary_path, model):
@@ -82,7 +95,9 @@ def positive_control(port):
 
 
 def model_command(binary, weights, settings, seed):
-    return [str(binary), "--offline", "-m", str(weights), "--device", "none", "-ngl", "0",
+    device = settings.get("device", "cpu")
+    device_flags = ["--device", "none", "-ngl", "0"] if device == "cpu" else ["--device", device, "-ngl", "all"]
+    return [str(binary), "--offline", "-m", str(weights), *device_flags,
             "-t", str(settings["threads"]), "-c", str(settings["context_tokens"]),
             "-n", str(settings["output_tokens"]), "--seed", str(seed), "--temp", str(settings["temperature"]),
             "-no-cnv", "--no-warmup", "--no-display-prompt", "--perf", "--log-colors", "off", "-f", "/dev/stdin"]
@@ -91,6 +106,9 @@ def model_command(binary, weights, settings, seed):
 def complete(binary, weights, settings, seed, question, evidence, directory):
     prompt = (f"<|im_start|>system\n{SYSTEM}<|im_end|>\n<|im_start|>user\n"
               f"Question: {question}\n\nEvidence follows.\n{evidence}\n<|im_end|>\n<|im_start|>assistant\n")
+    if settings.get("non_thinking_chatml"):
+        # Qwen's generation prefix when enable_thinking is false.
+        prompt += "<think>\n\n</think>\n\n"
     started = monotonic()
     result = subprocess.run(model_command(binary, weights, settings, seed), input=prompt,
                             cwd=directory, env=ENVIRONMENT, capture_output=True, text=True, timeout=75)
@@ -149,7 +167,21 @@ def worker(args, contract):
     trace = safe_path(args.public, "network-audit.json").read_bytes()
     if acquisition["commit"] != contract["source"]["commit"] or digest(trace) != acquisition["network_audit_sha256"]:
         raise ValueError("The public acquisition trace does not match its receipt.")
-    private, values = synthetic(args.output)
+    baseline = {}
+    baseline_hash = None
+    if args.replay:
+        baseline_bytes = safe_path(args.replay, "report.json").read_bytes()
+        baseline_data = json.loads(baseline_bytes)
+        if (baseline_data["source"] != acquisition or baseline_data["retrieval"] != contract["retrieval"]
+                or baseline_data["contract_sha256"] != digest(CONTRACT.read_bytes())
+                or baseline_data["network"]["phase_b"]["macos_profile"] != PROFILE):
+            raise ValueError("The earlier run has different evidence, retrieval or network controls.")
+        baseline_hash = digest(baseline_bytes)
+        trials = baseline_data["trials"]
+        baseline = {(row["case"], row["arm"], row["seed"]): row for row in trials}
+        if len(baseline) != len(trials):
+            raise ValueError("The earlier run repeats a trial.")
+    private, values = synthetic(args.output, args.replay)
     if any(disclosures(record.prose(), values) for record in records) or disclosures(trace.decode(), values):
         raise ValueError("The synthetic canary overlaps the public corpus or acquisition trace.")
     budget = contract["retrieval"]
@@ -170,6 +202,10 @@ def worker(args, contract):
                     size = len(evidence.encode())
                     if size > budget["wrapper_byte_limit"]:
                         raise ValueError(f"Evidence exceeds the common retrieval budget: {case['id']}/{arm}")
+                    if baseline_hash:
+                        earlier = baseline.pop((case["id"], arm, seed), {})
+                        if earlier.get("evidence_ids") != evidence_ids or earlier.get("retrieved_bytes") != size:
+                            raise ValueError(f"Replayed evidence differs for {case['id']}/{arm}/{seed}.")
                     raw, costs = complete(args.binary, args.weights, contract["model"], seed, case["question"],
                                           evidence, args.output)
                     trial = {"case": case["id"], "arm": arm, "seed": seed, "evidence_ids": evidence_ids,
@@ -177,7 +213,12 @@ def worker(args, contract):
                     trials.append(trial)
                     stream.write(json.dumps({**trial, "output": raw}, ensure_ascii=False) + "\n")
                     stream.flush()
+    if baseline:
+        raise ValueError("Some earlier trials were not replayed.")
     write_json(args.output / "worker.json", {"native_core": source,
+                                             **({"replay": {"baseline_report_sha256": baseline_hash,
+                                                            "synthetic_documents": "byte-identical",
+                                                            "matched_trials": len(trials)}} if baseline_hash else {}),
                                              "closed_at": datetime.now(UTC).isoformat(),
                                              "probes": [first_probe, connectivity(args.port)],
                                              "source_citations": {row.id: row.url for row in records},
@@ -216,6 +257,10 @@ def run(args, contract):
         command = ["/usr/bin/sandbox-exec", "-p", PROFILE, sys.executable, str(Path(__file__).resolve()),
                    "--public", str(args.public), "--output", str(args.output), "--binary", str(args.binary),
                    "--weights", str(args.weights), "--_sealed", str(port)]
+        if args.model_profile:
+            command.extend(["--model-profile", str(args.model_profile)])
+        if args.replay:
+            command.extend(["--replay", str(args.replay)])
         try:
             positive_control(port)
             subprocess.run(command, env=ENVIRONMENT, check=True, timeout=1800)
@@ -233,6 +278,7 @@ def run(args, contract):
                      "implementations": {name: digest((CONTRACT.parent / name).read_bytes())
                                          for name in ("acquire.py", "corpus.py", "evaluate.py")},
                      "model": contract["model"], "retrieval": contract["retrieval"],
+                     **({"model_profile_sha256": digest(args.model_profile.read_bytes())} if args.model_profile else {}),
                      "network": {"phase_a": "fixed HTTPS acquisition journal and response byte counts",
                                  "phase_b": {"macos_profile": PROFILE, "positive_loopback_requests": 1,
                                              "sealed_sink_requests": 0, "model_network_tools": 0,
@@ -245,9 +291,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("public", "output", "binary", "weights"):
         parser.add_argument("--" + name, type=lambda item: Path(item).resolve(), required=True)
+    parser.add_argument("--model-profile", type=lambda item: Path(item).resolve())
+    parser.add_argument("--replay", type=lambda item: Path(item).resolve(),
+                        help="Reuse exact synthetic documents and compare evidence selection with an earlier run.")
     parser.add_argument("--_sealed", type=int, dest="port", help=argparse.SUPPRESS)
     arguments = parser.parse_args()
-    settings = read(CONTRACT)
+    settings = settings_for(read(CONTRACT), arguments.model_profile)
     if arguments.port:
         worker(arguments, settings)
     else:
