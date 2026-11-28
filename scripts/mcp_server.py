@@ -5,6 +5,7 @@ from datetime import date
 import json
 from pathlib import Path
 import sys
+from threading import RLock
 
 from jsonschema import Draft202012Validator, ValidationError
 
@@ -185,25 +186,28 @@ def rpc(request, index, people, passages, access=None, account=None):
 
 def verified_dispatch(pointer, open_tools):
     """Read a new verified snapshot when the publisher atomically replaces its receipt."""
-    loaded = None
-    context = None
+    state = None
+    lock = RLock()
 
     def refresh():
-        nonlocal loaded, context
-        stat = pointer.stat()
-        identity = stat.st_dev, stat.st_ino, stat.st_mtime_ns, stat.st_size
-        if loaded != identity:
-            context = open_tools()
-            loaded = identity
+        nonlocal state
+        with lock:
+            stat = pointer.stat()
+            identity = stat.st_dev, stat.st_ino, stat.st_mtime_ns, stat.st_size
+            if state is None or state[0] != identity:
+                # Publish the identity and its complete context in one immutable
+                # tuple, so concurrent requests cannot observe a mixed refresh.
+                state = identity, open_tools()
+            return state[1]
 
     refresh()
 
     def dispatch(request, account):
         try:
-            refresh()
+            request_context = refresh()
         except (OSError, ValueError, KeyError) as exc:
             raise AuthFailure(503) from exc
-        return rpc(request, *context, account=account)
+        return rpc(request, *request_context, account=account)
 
     return dispatch
 
