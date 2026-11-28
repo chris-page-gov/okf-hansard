@@ -23,6 +23,20 @@ The opening phrase is a personal alias. The user can store it in memory, instruc
 
 A web service may block a provider's retrieval even when the page opens in your browser. A cached index may still refer to an older snapshot. Check the date and snapshot at the beginning of the conversation. Keep the evidence from each snapshot together. For a demonstration on an unprepared phone, the pasted route works whenever the app can read chat text. The full-capture test above requires evidence from the full collection. [Collection directory](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) · [GitHub evidence index](../HANSARD-EVIDENCE.md)
 
+## Try a fresh chat with only the collection address
+
+The [upstream OKF 0.3 reader](https://github.com/open-knowledge-format/open-knowledge-format/blob/527e81aff55992be21507e97004286789126f88c/skills/okf-consume/SKILL.md) starts at the bundle’s Markdown index. It follows relevant concepts, checks the trust, status and freshness declared for each one, and cites the supporting sources. A phone can follow these links without running the optional scan script.
+
+The [Hansard reader](https://chris-page-gov.github.io/okf-hansard/november/skills/read-okf-plus/SKILL.md) adds a collection snapshot, sitting coverage, concept aliases, earlier mentions, and links to individual contributions. Installing a skill on a Mac does not establish that a phone loaded it. The public [retrieval contract](https://chris-page-gov.github.io/okf-hansard/november/voice-retrieval.json) advertises readable HTTPS copies of the skill and its reference. A phone with web access can read them. Record native skill activation separately if the app reports it.
+
+The existing finder copies a fuller setup into the conversation. The following trial tests whether the assistant can discover the same resources from one address. Start a fresh chat with prior Hansard context and saved shortcuts disabled where possible. Supply only the [collection address](https://chris-page-gov.github.io/okf-hansard/november/hansard.json) and say **“Connect to OKF Hansard. What does this collection cover, and how current is it?”**
+
+1. **Discovery.** Ask for the coverage link and snapshot in writing. Compare them with the collection you open directly. Record which provider, app mode and route actually returned the information.
+2. **Retrieval.** Ask a new question about a parliamentary exchange, without supplying names, identifiers or expected answers. Ask for the contribution and the evidence used. An answer from an independent Hansard search can be checked separately. It does not demonstrate bundle retrieval.
+3. **Attribution.** Ask which contribution answers the question and what the respondent committed to. A graph pass requires the relation, its direction and both evidence links in the tested snapshot. Read the reply to verify the wording. A matching debate title, a list of mentions or an Explorer link alone does not establish who answered whom. An explicit report that the relation is absent is the correct outcome for an unsupported pairing.
+
+Repeat the trial with the shorthand **“Connect to OKF Hansard”** only after an address-only preference has been saved in that assistant. Keep the public address in memory and read the snapshot afresh on each connection. Keep the same snapshot for follow-up questions. If an app cannot retrieve a resource, record the last successful step before trying the GitHub or pasted-evidence route. Score assisted retrieval separately.
+
 ## App readiness
 
 - **ChatGPT.** Live supports web search, memory and connected apps where available to that account. Check Live availability, the chosen workspace and the actual connector before presenting native tool use as passed. [ChatGPT Voice](https://help.openai.com/en/articles/20001274-chatgpt-voice)

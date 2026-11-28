@@ -1,0 +1,507 @@
+{
+  "P1-Q1": {
+    "possible": 15,
+    "earned": 3,
+    "evidence_ids": [
+      "Q",
+      "R",
+      "Q0",
+      "R0"
+    ],
+    "raw_answer": "local-answers.jsonl#P1-Q1",
+    "reviewer": "Codex, single assessor",
+    "notes": "Identifies Whittome and the concern. Attributes the claimed absence of an appeal to Gould. Omits date and House, exact links, the commitment to respond to consultation and the limit of the answer. [ID]R is malformed.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P1-Q1.1",
+        "criterion": "Who asked",
+        "possible": 1,
+        "earned": 1
+      },
+      {
+        "id": "P1-Q1.2",
+        "criterion": "date/House",
+        "possible": 1,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q1.3",
+        "criterion": "precise contribution link",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q1.4",
+        "criterion": "appeal concern",
+        "possible": 2,
+        "earned": 2
+      },
+      {
+        "id": "P1-Q1.5",
+        "criterion": "minister response",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q1.6",
+        "criterion": "distinguish non-answer from commitment",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q1.7",
+        "criterion": "evidence links",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q1.8",
+        "criterion": "gaps",
+        "possible": 1,
+        "earned": 0
+      }
+    ]
+  },
+  "P1-Q2": {
+    "possible": 15,
+    "earned": 2,
+    "evidence_ids": [
+      "L51",
+      "L55",
+      "ISP",
+      "Q",
+      "R"
+    ],
+    "raw_answer": "local-answers.jsonl#P1-Q2",
+    "reviewer": "Codex, single assessor",
+    "notes": "Correctly identifies the proposed school-led plan. Invents an Act title, overstates the mediation requirement and tells families there is no legal route. Gives no accurate, complete list of appealable decisions or versioned statutory citation.",
+    "critical_failures": [
+      "fabricated citation",
+      "unsupported legal advice"
+    ],
+    "criteria": [
+      {
+        "id": "P1-Q2.1",
+        "criterion": "Identify existing EHCP law",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q2.2",
+        "criterion": "enumerate appealable decisions",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q2.3",
+        "criterion": "source statute/version",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q2.4",
+        "criterion": "identify proposed ISP",
+        "possible": 2,
+        "earned": 2
+      },
+      {
+        "id": "P1-Q2.5",
+        "criterion": "separate law/proposal",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q2.6",
+        "criterion": "qualification",
+        "possible": 2,
+        "earned": 0
+      }
+    ]
+  },
+  "P1-Q3": {
+    "possible": 15,
+    "earned": 0,
+    "evidence_ids": [
+      "Q",
+      "R",
+      "C",
+      "H",
+      "S",
+      "F",
+      "FILTER"
+    ],
+    "raw_answer": "local-answers.jsonl#P1-Q3",
+    "reviewer": "Codex, single assessor",
+    "notes": "Names relevant speakers, but supplies no dated source, resolvable locator or substantive comparison that survives its incorrect chronology. Omits the lexical exclusion and search limits.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P1-Q3.1",
+        "criterion": "Earlier dated source",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q3.2",
+        "criterion": "second independent relevant source",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q3.3",
+        "criterion": "exact locators",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q3.4",
+        "criterion": "substantive comparison",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q3.5",
+        "criterion": "lexical false-positive exclusion",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P1-Q3.6",
+        "criterion": "gaps",
+        "possible": 2,
+        "earned": 0
+      }
+    ]
+  },
+  "P2-Q1": {
+    "possible": 12,
+    "earned": 7,
+    "evidence_ids": [
+      "Q",
+      "Q0",
+      "R"
+    ],
+    "raw_answer": "local-answers.jsonl#P2-Q1",
+    "reviewer": "Codex, single assessor",
+    "notes": "Names Whittome and the Commons. Gives the exact external identifier and [Q], which resolves to the precise source. Gives day and month without year and omits the identity comparison with the opening question and any limits.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P2-Q1.1",
+        "criterion": "Speaker",
+        "possible": 1,
+        "earned": 1
+      },
+      {
+        "id": "P2-Q1.2",
+        "criterion": "date",
+        "possible": 1,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q1.3",
+        "criterion": "House",
+        "possible": 1,
+        "earned": 1
+      },
+      {
+        "id": "P2-Q1.4",
+        "criterion": "stable contribution ID",
+        "possible": 3,
+        "earned": 3
+      },
+      {
+        "id": "P2-Q1.5",
+        "criterion": "exact link",
+        "possible": 2,
+        "earned": 2
+      },
+      {
+        "id": "P2-Q1.6",
+        "criterion": "source identity check",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q1.7",
+        "criterion": "confidence/gaps",
+        "possible": 1,
+        "earned": 0
+      }
+    ]
+  },
+  "P2-Q2": {
+    "possible": 19,
+    "earned": 4,
+    "evidence_ids": [
+      "Q",
+      "C",
+      "H",
+      "S",
+      "FILTER"
+    ],
+    "raw_answer": "local-answers.jsonl#P2-Q2",
+    "reviewer": "Codex, single assessor",
+    "notes": "Correctly identifies the two earlier Commons contributions by their complete external identifiers. Omits the initial locator, full graph assertion identifiers, dates and coverage. A single SEND match does not locate the evidence spans for both legal positions. The answer stops mid-identifier at the output limit.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P2-Q2.1",
+        "criterion": "Start anchor",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q2.2",
+        "criterion": "earlier contribution",
+        "possible": 2,
+        "earned": 2
+      },
+      {
+        "id": "P2-Q2.3",
+        "criterion": "second earlier contribution",
+        "possible": 2,
+        "earned": 2
+      },
+      {
+        "id": "P2-Q2.4",
+        "criterion": "predicate and assertion ID",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q2.5",
+        "criterion": "evidence spans",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q2.6",
+        "criterion": "temporal ordering",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q2.7",
+        "criterion": "lexical/semantic distinction",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q2.8",
+        "criterion": "coverage",
+        "possible": 2,
+        "earned": 0
+      }
+    ]
+  },
+  "P2-Q3": {
+    "possible": 15,
+    "earned": 0,
+    "evidence_ids": [
+      "Q",
+      "C",
+      "F",
+      "FILTER"
+    ],
+    "raw_answer": "local-answers.jsonl#P2-Q3",
+    "reviewer": "Codex, single assessor",
+    "notes": "Calls the whole set lexical, overlooking the two verified tribunal contributions. Names no concrete counterexample, gives no denominator and provides no evidence or coverage boundary.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P2-Q3.1",
+        "criterion": "Identify lexical candidate",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q3.2",
+        "criterion": "demonstrate false positive with source",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q3.3",
+        "criterion": "identify true relevant case",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q3.4",
+        "criterion": "distinguish predicate types",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q3.5",
+        "criterion": "quantify inspected denominator",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P2-Q3.6",
+        "criterion": "gaps",
+        "possible": 2,
+        "earned": 0
+      }
+    ]
+  },
+  "P3-Q1": {
+    "possible": 15,
+    "earned": 12,
+    "evidence_ids": [
+      "BC",
+      "BL",
+      "BW",
+      "D"
+    ],
+    "raw_answer": "local-answers.jsonl#P3-Q1",
+    "reviewer": "Codex, single assessor",
+    "notes": "Gives representative business in both Houses, the correct date, the text-bearing unit and the scope exclusions. Omits Education and Westminster Hall. The strings [ID]BC, [ID]BL and [ID]D do not resolve as citations.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P3-Q1.1",
+        "criterion": "Commons main business",
+        "possible": 3,
+        "earned": 3
+      },
+      {
+        "id": "P3-Q1.2",
+        "criterion": "Lords main business",
+        "possible": 3,
+        "earned": 3
+      },
+      {
+        "id": "P3-Q1.3",
+        "criterion": "source links",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q1.4",
+        "criterion": "accurate date/sitting",
+        "possible": 1,
+        "earned": 1
+      },
+      {
+        "id": "P3-Q1.5",
+        "criterion": "distinguish proceedings from contributions",
+        "possible": 2,
+        "earned": 2
+      },
+      {
+        "id": "P3-Q1.6",
+        "criterion": "completeness bounds",
+        "possible": 3,
+        "earned": 3
+      }
+    ]
+  },
+  "P3-Q2": {
+    "possible": 15,
+    "earned": 2,
+    "evidence_ids": [
+      "M",
+      "O1",
+      "C1",
+      "O2",
+      "C2"
+    ],
+    "raw_answer": "local-answers.jsonl#P3-Q2",
+    "reviewer": "Codex, single assessor",
+    "notes": "[M] resolves to the opening Commons statement. Identifies the minister but places the outage on 16 November. The correct dates were 12–13 November. Omits corrections and the boundary between Microsoft’s account, the ministerial report and an independent technical finding.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P3-Q2.1",
+        "criterion": "Minister/date",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q2.2",
+        "criterion": "outage account",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q2.3",
+        "criterion": "Hansard anchor",
+        "possible": 2,
+        "earned": 2
+      },
+      {
+        "id": "P3-Q2.4",
+        "criterion": "distinguish attributed claims",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q2.5",
+        "criterion": "subsequent correction checked",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q2.6",
+        "criterion": "accurate limits",
+        "possible": 2,
+        "earned": 0
+      }
+    ]
+  },
+  "P3-Q3": {
+    "possible": 15,
+    "earned": 0,
+    "evidence_ids": [
+      "N",
+      "W",
+      "T"
+    ],
+    "raw_answer": "local-answers.jsonl#P3-Q3",
+    "reviewer": "Codex, single assessor",
+    "notes": "Recognises a common topic. Omits both source locators, the speakers, the procurement relationship, the explicit back-reference and the supporting spans.",
+    "critical_failures": [],
+    "criteria": [
+      {
+        "id": "P3-Q3.1",
+        "criterion": "Monday source",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q3.2",
+        "criterion": "Tuesday source",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q3.3",
+        "criterion": "named actors",
+        "possible": 2,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q3.4",
+        "criterion": "FDP/Palantir relationship",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q3.5",
+        "criterion": "explicit vs alias distinction",
+        "possible": 3,
+        "earned": 0
+      },
+      {
+        "id": "P3-Q3.6",
+        "criterion": "source spans",
+        "possible": 3,
+        "earned": 0
+      }
+    ]
+  }
+}

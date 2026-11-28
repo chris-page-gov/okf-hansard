@@ -26,6 +26,7 @@ source_contract:
   extension_order: Reverse calendar order, both Houses, closed historical dates
   coverage_denominator: Advertised House and date sections, section-tree IDs and API item counts
   correction_policy: Use immutable capture receipts and compare recorded with current source hashes on read
+  reviewed_replies: reviewed-replies.json
   source_licence: https://www.parliament.uk/site-information/copyright/open-parliament-licence/
   publication: Local review
   text_retention: Historical source responses remain in process memory. Retain source references, digests and matching spans.
@@ -68,5 +69,6 @@ limits:
   - The matching profile is a fixed dictionary of names and aliases. It has no measured recall across the archive.
   - A populated facet describes the evidence found or recorded. Unrecorded means missing or unmatched.
   - Source order supports a before relationship within the same section. Same-day matches in separate sections are reported as unordered.
+  - answeredBy links only reviewed questions and replies. Each endpoint must match its registered speaker and passage digest in the named debate.
   - A reference to an office and an appointment record have different identities and assertion types.
   - A stated opinion, claim or forecast is evidence of what was said in a recorded context.

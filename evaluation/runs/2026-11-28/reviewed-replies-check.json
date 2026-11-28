@@ -1,0 +1,86 @@
+{
+  "capture_through": "2026-11-27",
+  "scope": "One unchanged Commons chamber root, using the normal producer and project vocabulary without directory supplements.",
+  "date": "2026-11-16",
+  "house": "Commons",
+  "source": "https://hansard-api.parliament.uk/debates/debate/65582f53-2b5c-4607-8cd5-7821f6fdc289.json",
+  "source_sha256": "6147a5c0c08adb6ed4c0cc1c72b2cb23a22de5908b6117cc0d55c0aee337fee9",
+  "retrieved_at": "2026-11-18T03:33:08+00:00",
+  "captured_contributions": 537,
+  "reviewed_pairs": [
+    {
+      "assertion_id": "urn:okf:hansard:assertion:64962499f3a17d145e6ac4a32d273816fed4",
+      "endpoints": [
+        {
+          "role": "question",
+          "external_id": "8D89C7A1-FAB8-4774-B3B8-C73FB3B5A51C",
+          "member_id": 4869,
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-8D89C7A1-FAB8-4774-B3B8-C73FB3B5A51C",
+          "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/0/Value",
+          "source_value_sha256": "30c5068354f60f9ae3583fbaea80d35f208b8a711e0ef9dd81b4ef240c30e231"
+        },
+        {
+          "role": "answer",
+          "external_id": "DC89FF3B-B014-4C96-8F3D-40137EC5A6BC",
+          "member_id": 5305,
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-DC89FF3B-B014-4C96-8F3D-40137EC5A6BC",
+          "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/1/Value",
+          "source_value_sha256": "feaba523175744b7c1dbaca3ae4219796f73844362b3d9f1bdef620c8680240c"
+        }
+      ]
+    },
+    {
+      "assertion_id": "urn:okf:hansard:assertion:bdde2501a78b670ff5e4f65e178176cccbeb",
+      "endpoints": [
+        {
+          "role": "question",
+          "external_id": "5FFDC8E3-7D76-4083-988B-955CEC19A2E9",
+          "member_id": 4869,
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-5FFDC8E3-7D76-4083-988B-955CEC19A2E9",
+          "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/2/Value",
+          "source_value_sha256": "144dea631d85c39d293e68bf0364ef2522fbfd0fb3b2f2536af6b82991705c15"
+        },
+        {
+          "role": "answer",
+          "external_id": "26F9FC36-CC1F-4442-B478-A22CB0E95CA4",
+          "member_id": 5305,
+          "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-26F9FC36-CC1F-4442-B478-A22CB0E95CA4",
+          "source_field": "/ChildDebates/1/ChildDebates/0/ChildDebates/2/Items/3/Value",
+          "source_value_sha256": "0b11a48311f0e6bbde54d4b763762a6a14c95c6e9b32d07c9c3cc188a7fea778"
+        }
+      ]
+    }
+  ],
+  "rejected_pair": {
+    "question": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-5FFDC8E3-7D76-4083-988B-955CEC19A2E9",
+    "answer": "https://hansard.parliament.uk/Commons/2026-11-16/debates/13F7917B-36D3-4198-8908-7185E77DE84A/SENDSystemReform#contribution-DC89FF3B-B014-4C96-8F3D-40137EC5A6BC",
+    "present": false
+  },
+  "verified_projections": [
+    "okf-bundle.yamlld",
+    "okf-bundle.json"
+  ],
+  "producer_commit": "42dc5ab1face1632e883e71990e289c3a6b63c3c",
+  "build_artifacts": {
+    "okf-bundle.json": {
+      "bytes": 4617970,
+      "sha256": "28af2dd20097b536b1f16db2a15baf56e5c407e76ec5484152f8024b977fd868"
+    },
+    "history.json": {
+      "bytes": 554535,
+      "sha256": "74bd6221e34a16c558dedc732f816ea7ae69aa6cdb0f81b6808fe5d68bdc0686"
+    },
+    "okf-bundle.yamlld": {
+      "bytes": 5150301,
+      "sha256": "3597924d0867fa2fa07a15cf2db3f84f1de8d0c2d5d4c33d84ce0afdbf4361b3"
+    },
+    "analysis-profile.json": {
+      "bytes": 10654,
+      "sha256": "a16b872e20cb832d5cef8d1a4fa2a83228dc787385eeb9b169aa00af3ffe85d5"
+    }
+  },
+  "retained_assertions": {
+    "path": "reviewed-replies-output.json",
+    "sha256": "fb0988d2f008e1795eabea067ec91f225d15500acea909cd21fe3e52262678ff"
+  }
+}
