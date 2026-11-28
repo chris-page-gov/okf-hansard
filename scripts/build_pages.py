@@ -293,6 +293,7 @@ def guide_page(name, title):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{escape(title)} | A week in Parliament</title>
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="data:,">
 </head>
 <body>
 <main class="guide">
