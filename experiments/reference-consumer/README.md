@@ -61,4 +61,23 @@ Use the same evaluation command with these additional options and the Bonsai exe
 
 Supply a fresh output directory. The replay checks the previous receipt, checksums, policy and selected evidence for all 30 trials. It reads the earlier synthetic fixtures within the network-denied worker and verifies their exact bytes before reuse. The model profile changes the runtime, tokenizer and acceleration. It keeps the questions, system text, rubric, retrieved passages, byte budget, 2,048-token context, 200-token output cap, temperature and seeds. Bonsai uses Metal and its ChatML prefix with thinking disabled in all three arms. Compare latency and token counts across models with those runtime and tokenisation differences in mind.
 
+## Test OpenJev as a decision model
+
+The [decision contract](decision-contract.json) pins OpenJev 27B Q4_K_M and the Apple Silicon llama.cpp server. Provision its 19.4 GB text weights on a volume with sufficient free space. The runner validates the weights and executable digests and uses the official `/v1/systemone` endpoint. The model returns a distribution over the supplied status labels, with no generated text. [Pinned OpenJev weights](https://huggingface.co/ggml-org/OpenJev-GGUF/tree/d2c376d11b6c466ab7bdc9fa458ace41cdf3e776) · [Pinned endpoint documentation](https://github.com/ggml-org/llama.cpp/blob/b11556/tools/server/README.md#post-v1systemone-typesafe-compatible-system-one-api)
+
+```sh
+uv run --locked python experiments/reference-consumer/decide.py \
+  --public .work/reference-consumer/public \
+  --replay .work/reference-consumer/run-04 \
+  --output .work/reference-consumer/new-decision-run \
+  --binary .work/reference-consumer/runtime/llama-b11556/llama-server \
+  --weights /Volumes/ExtSSD-Data/okf-hansard-cache/reference-consumer/OpenJev-Q4_K_M.gguf
+```
+
+Run from a macOS session that permits `sandbox-exec`. The supervisor and worker follow the original two-phase pattern. The server and client share one path in a private temporary directory over a Unix socket. TCP is denied. The worker checks TCP and another Unix socket path before opening private fixtures and after the model shuts down. The control sink must see only the supervisor's one positive request. The model process receives no provider credentials or network tools.
+
+The decision replay uses the same public snapshot, byte-identical synthetic fixtures, ordered evidence IDs, rendered evidence sizes, 5,600-byte wrapper limit, and 2,048-token context as the generative benchmark. The five original questions are unchanged and run with two label orders in each format. The nine control questions reuse those same evidence selections and include three examples of each expected status. A private question names an authorised internal audience for one control and a public or external audience for paired controls. The original question with implicit authorisation is retained for comparison.
+
+The receipt reports accuracy, a confusion matrix, policy-denial misses, cases incorrectly allowed, and label flips when the option order changes. These scores measure classification, while the generative benchmark scores complete answers and citations. The controls reuse evidence, so this small suite does not establish probability calibration or a production acceptance threshold.
+
 The reporting compares work per trial and per fully supported answer. The publisher serves fixed public files once per acquisition. Local inference and hardware use still have a cost. This experiment measures time, bytes and token counts. A claim about total cost at scale needs data from the target workload and deployment.

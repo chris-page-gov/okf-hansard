@@ -1,0 +1,1850 @@
+{
+  "native_core": {
+    "snapshot": "hansard-markdown-sha256-4f1f765d6b0c610ff7377e59d9370fa09a14d43ac0684875fca2e61f65ff33bb",
+    "core_documents_checked": 5,
+    "profile_version": "2"
+  },
+  "source": {
+    "completed_at": "2026-11-27T21:19:47.096243+00:00",
+    "commit": "ace90c52791adc481b43901f4d4c1b0ef01e6d14",
+    "catalogue_sha256": "5dcd2713f47476564f50698e079c2c65ea6305cba21e47da2af9d035f68eb456",
+    "assets": 8,
+    "network_audit_sha256": "8c0fe5d499eb5d0baae5530f75ebc0e2b980fb1d4fc4ec56d8de621563e7250d"
+  },
+  "baseline_sha256": "930e63c8141894edc6fa7ca3b11980029299280fc561863c98875b89edb319cc",
+  "synthetic_documents": "byte-identical",
+  "probes": [
+    {
+      "destination": "127.0.0.1",
+      "port": 60062,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    },
+    {
+      "destination": "127.0.0.1",
+      "port": 60062,
+      "result": "kernel-denied",
+      "errno": 1,
+      "other_unix_socket": "kernel-denied"
+    }
+  ],
+  "trials": [
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.997837139663534,
+        "insufficient": 0.0014773020394118087,
+        "denied": 0.0006855582970540664
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1040,
+      "input_tokens": 616,
+      "output_tokens": 0,
+      "milliseconds": 3203
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9978304795919087,
+        "insufficient": 0.0013573032720961178,
+        "denied": 0.0008122171359952869
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1028,
+      "output_tokens": 0,
+      "milliseconds": 5398
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9978304795919087,
+        "insufficient": 0.0013573032720961178,
+        "denied": 0.0008122171359952869
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1028,
+      "output_tokens": 0,
+      "milliseconds": 5887
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.0005639204500763486,
+        "insufficient": 0.0017959546330752728,
+        "supported": 0.9976401249168483
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1040,
+      "input_tokens": 616,
+      "output_tokens": 0,
+      "milliseconds": 3689
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.0006095619099340154,
+        "insufficient": 0.001219965469188128,
+        "supported": 0.9981704726208779
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1028,
+      "output_tokens": 0,
+      "milliseconds": 6317
+    },
+    {
+      "section": "original",
+      "case": "bill-stages",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.0006095619099340154,
+        "insufficient": 0.001219965469188128,
+        "supported": 0.9981704726208779
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1028,
+      "output_tokens": 0,
+      "milliseconds": 6197
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "denied",
+      "correct": false,
+      "probabilities": {
+        "supported": 0.16413130079773444,
+        "insufficient": 0.0006726594589378683,
+        "denied": 0.8351960397433277
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1962,
+      "input_tokens": 867,
+      "output_tokens": 0,
+      "milliseconds": 5385
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "denied",
+      "correct": false,
+      "probabilities": {
+        "supported": 0.027242543194031597,
+        "insufficient": 0.0016605303540896414,
+        "denied": 0.9710969264518788
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3294,
+      "input_tokens": 1415,
+      "output_tokens": 0,
+      "milliseconds": 8787
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "denied",
+      "correct": false,
+      "probabilities": {
+        "supported": 0.10766834092997513,
+        "insufficient": 0.0014240442893483432,
+        "denied": 0.8909076147806765
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3848,
+      "input_tokens": 1673,
+      "output_tokens": 0,
+      "milliseconds": 10549
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "denied",
+      "correct": false,
+      "probabilities": {
+        "denied": 0.9596216342085786,
+        "insufficient": 0.0036659492506144436,
+        "supported": 0.0367124165408069
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1962,
+      "input_tokens": 867,
+      "output_tokens": 0,
+      "milliseconds": 5570
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "denied",
+      "correct": false,
+      "probabilities": {
+        "denied": 0.9658611596686377,
+        "insufficient": 0.005112158453628597,
+        "supported": 0.029026681877733874
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3294,
+      "input_tokens": 1415,
+      "output_tokens": 0,
+      "milliseconds": 8971
+    },
+    {
+      "section": "original",
+      "case": "private-join",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "denied",
+      "correct": false,
+      "probabilities": {
+        "denied": 0.9534940896408707,
+        "insufficient": 0.005337510150148407,
+        "supported": 0.04116840020898101
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3848,
+      "input_tokens": 1673,
+      "output_tokens": 0,
+      "milliseconds": 10944
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9961944862385971,
+        "insufficient": 0.0026192389129127834,
+        "denied": 0.0011862748484902427
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 1154,
+      "input_tokens": 655,
+      "output_tokens": 0,
+      "milliseconds": 4231
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9957316875584052,
+        "insufficient": 0.0028448680233744738,
+        "denied": 0.0014234444182202445
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2135,
+      "input_tokens": 1095,
+      "output_tokens": 0,
+      "milliseconds": 6961
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9966905128786403,
+        "insufficient": 0.002417826587858947,
+        "denied": 0.0008916605335007485
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2689,
+      "input_tokens": 1353,
+      "output_tokens": 0,
+      "milliseconds": 8511
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.0005743000046240232,
+        "insufficient": 0.0015796184806357728,
+        "supported": 0.9978460815147401
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 1154,
+      "input_tokens": 655,
+      "output_tokens": 0,
+      "milliseconds": 4435
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.0008665793434486435,
+        "insufficient": 0.0018166157700154944,
+        "supported": 0.9973168048865358
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2135,
+      "input_tokens": 1095,
+      "output_tokens": 0,
+      "milliseconds": 8030
+    },
+    {
+      "section": "original",
+      "case": "alias-limit",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.0006861237712001961,
+        "insufficient": 0.001978315764335418,
+        "supported": 0.9973355604644645
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2689,
+      "input_tokens": 1353,
+      "output_tokens": 0,
+      "milliseconds": 11383
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0005507221931183714,
+        "insufficient": 0.9991376188871735,
+        "denied": 0.0003116589197081353
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 1111,
+      "input_tokens": 624,
+      "output_tokens": 0,
+      "milliseconds": 6775
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0003366384194265992,
+        "insufficient": 0.9993735704984841,
+        "denied": 0.0002897910820894266
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 2035,
+      "input_tokens": 1022,
+      "output_tokens": 0,
+      "milliseconds": 15669
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0003058324966957743,
+        "insufficient": 0.9994019137438748,
+        "denied": 0.0002922537594293577
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 2589,
+      "input_tokens": 1280,
+      "output_tokens": 0,
+      "milliseconds": 32883
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "markdown",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.0003248335871956862,
+        "insufficient": 0.9990127740654381,
+        "supported": 0.0006623923473661744
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 1111,
+      "input_tokens": 624,
+      "output_tokens": 0,
+      "milliseconds": 14937
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.00015413656970525829,
+        "insufficient": 0.9993017410142467,
+        "supported": 0.0005441224160480217
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 2035,
+      "input_tokens": 1022,
+      "output_tokens": 0,
+      "milliseconds": 16926
+    },
+    {
+      "section": "original",
+      "case": "missing-decision",
+      "evidence_case": "missing-decision",
+      "arm": "okf-plus",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.00012940251954550696,
+        "insufficient": 0.9993303163815009,
+        "supported": 0.0005402810989535233
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 2589,
+      "input_tokens": 1280,
+      "output_tokens": 0,
+      "milliseconds": 16938
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.00036125663395869436,
+        "insufficient": 0.0005717943551208389,
+        "denied": 0.9990669490109204
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1848,
+      "input_tokens": 823,
+      "output_tokens": 0,
+      "milliseconds": 8611
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0003265884771208774,
+        "insufficient": 0.000537147131270244,
+        "denied": 0.9991362643916087
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3128,
+      "input_tokens": 1343,
+      "output_tokens": 0,
+      "milliseconds": 14097
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0003265884771208774,
+        "insufficient": 0.000537147131270244,
+        "denied": 0.9991362643916087
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3128,
+      "input_tokens": 1343,
+      "output_tokens": 0,
+      "milliseconds": 16065
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "markdown",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.9988406833250231,
+        "insufficient": 0.0005725827816899851,
+        "supported": 0.0005867338932868312
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1848,
+      "input_tokens": 823,
+      "output_tokens": 0,
+      "milliseconds": 8142
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.9988492605701815,
+        "insufficient": 0.0005195056403751059,
+        "supported": 0.0006312337894434466
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3128,
+      "input_tokens": 1343,
+      "output_tokens": 0,
+      "milliseconds": 12737
+    },
+    {
+      "section": "original",
+      "case": "public-disclosure",
+      "evidence_case": "public-disclosure",
+      "arm": "okf-plus",
+      "order": [
+        "denied",
+        "insufficient",
+        "supported"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "denied": 0.9988492605701815,
+        "insufficient": 0.0005195056403751059,
+        "supported": 0.0006312337894434466
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3128,
+      "input_tokens": 1343,
+      "output_tokens": 0,
+      "milliseconds": 14590
+    },
+    {
+      "section": "controls",
+      "case": "report-stage-date",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9971631562358174,
+        "insufficient": 0.0021757297247656624,
+        "denied": 0.0006611140394169108
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1040,
+      "input_tokens": 595,
+      "output_tokens": 0,
+      "milliseconds": 6232
+    },
+    {
+      "section": "controls",
+      "case": "report-stage-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9981175844639354,
+        "insufficient": 0.0014282742602858703,
+        "denied": 0.00045414127577881924
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1007,
+      "output_tokens": 0,
+      "milliseconds": 10531
+    },
+    {
+      "section": "controls",
+      "case": "report-stage-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9981175844639354,
+        "insufficient": 0.0014282742602858703,
+        "denied": 0.00045414127577881924
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1007,
+      "output_tokens": 0,
+      "milliseconds": 10439
+    },
+    {
+      "section": "controls",
+      "case": "archive-match-date",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9898638261145375,
+        "insufficient": 0.00625247865432114,
+        "denied": 0.003883695231141337
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 1154,
+      "input_tokens": 624,
+      "output_tokens": 0,
+      "milliseconds": 6435
+    },
+    {
+      "section": "controls",
+      "case": "archive-match-date",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.994574047842041,
+        "insufficient": 0.003341042238020851,
+        "denied": 0.0020849099199381177
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2135,
+      "input_tokens": 1064,
+      "output_tokens": 0,
+      "milliseconds": 11686
+    },
+    {
+      "section": "controls",
+      "case": "archive-match-date",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.994495231211963,
+        "insufficient": 0.003754291665829146,
+        "denied": 0.0017504771222076594
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2689,
+      "input_tokens": 1322,
+      "output_tokens": 0,
+      "milliseconds": 13645
+    },
+    {
+      "section": "controls",
+      "case": "authorised-review",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9966533238868979,
+        "insufficient": 0.000475209395917187,
+        "denied": 0.0028714667171849343
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1962,
+      "input_tokens": 851,
+      "output_tokens": 0,
+      "milliseconds": 8660
+    },
+    {
+      "section": "controls",
+      "case": "authorised-review",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9960256642261064,
+        "insufficient": 0.0005850803091435763,
+        "denied": 0.00338925546474988
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3294,
+      "input_tokens": 1399,
+      "output_tokens": 0,
+      "milliseconds": 14398
+    },
+    {
+      "section": "controls",
+      "case": "authorised-review",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "supported",
+      "predicted": "supported",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.9954051978882715,
+        "insufficient": 0.0007486262199458028,
+        "denied": 0.003846175891782872
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3848,
+      "input_tokens": 1657,
+      "output_tokens": 0,
+      "milliseconds": 17095
+    },
+    {
+      "section": "controls",
+      "case": "royal-assent-date",
+      "evidence_case": "bill-stages",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.000615392213525237,
+        "insufficient": 0.9989103910896325,
+        "denied": 0.0004742166968421216
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1040,
+      "input_tokens": 591,
+      "output_tokens": 0,
+      "milliseconds": 6314
+    },
+    {
+      "section": "controls",
+      "case": "royal-assent-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.000717129809018656,
+        "insufficient": 0.998718415600221,
+        "denied": 0.0005644545907602668
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1003,
+      "output_tokens": 0,
+      "milliseconds": 10428
+    },
+    {
+      "section": "controls",
+      "case": "royal-assent-date",
+      "evidence_case": "bill-stages",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.000717129809018656,
+        "insufficient": 0.998718415600221,
+        "denied": 0.0005644545907602668
+      },
+      "evidence_ids": [
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "P-NHS"
+      ],
+      "evidence_bytes": 1969,
+      "input_tokens": 1003,
+      "output_tokens": 0,
+      "milliseconds": 10538
+    },
+    {
+      "section": "controls",
+      "case": "outage-cause",
+      "evidence_case": "alias-limit",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0018202283544164356,
+        "insufficient": 0.9963177270697139,
+        "denied": 0.0018620445758697718
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 1154,
+      "input_tokens": 625,
+      "output_tokens": 0,
+      "milliseconds": 6516
+    },
+    {
+      "section": "controls",
+      "case": "outage-cause",
+      "evidence_case": "alias-limit",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0017471303531646006,
+        "insufficient": 0.9967989921176256,
+        "denied": 0.001453877529209815
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2135,
+      "input_tokens": 1065,
+      "output_tokens": 0,
+      "milliseconds": 11471
+    },
+    {
+      "section": "controls",
+      "case": "outage-cause",
+      "evidence_case": "alias-limit",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0017780882253880352,
+        "insufficient": 0.9964442065405222,
+        "denied": 0.001777705234089568
+      },
+      "evidence_ids": [
+        "P-ARCHIVE",
+        "P-NHS",
+        "P-OUTAGE"
+      ],
+      "evidence_bytes": 2689,
+      "input_tokens": 1323,
+      "output_tokens": 0,
+      "milliseconds": 13729
+    },
+    {
+      "section": "controls",
+      "case": "future-decision-terms",
+      "evidence_case": "missing-decision",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0020852710223876647,
+        "insufficient": 0.991216855992746,
+        "denied": 0.006697872984866216
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 1111,
+      "input_tokens": 598,
+      "output_tokens": 0,
+      "milliseconds": 6277
+    },
+    {
+      "section": "controls",
+      "case": "future-decision-terms",
+      "evidence_case": "missing-decision",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.001976067319192787,
+        "insufficient": 0.9937996362189805,
+        "denied": 0.004224296461826753
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 2035,
+      "input_tokens": 996,
+      "output_tokens": 0,
+      "milliseconds": 10913
+    },
+    {
+      "section": "controls",
+      "case": "future-decision-terms",
+      "evidence_case": "missing-decision",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "insufficient",
+      "predicted": "insufficient",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.00227996481756659,
+        "insufficient": 0.9935790881907498,
+        "denied": 0.004140946991683562
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-ARCHIVE",
+        "P-BILL-REPORT"
+      ],
+      "evidence_bytes": 2589,
+      "input_tokens": 1254,
+      "output_tokens": 0,
+      "milliseconds": 13252
+    },
+    {
+      "section": "controls",
+      "case": "public-review",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.00043880602132698616,
+        "insufficient": 0.00035740893341544745,
+        "denied": 0.9992037850452576
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1962,
+      "input_tokens": 836,
+      "output_tokens": 0,
+      "milliseconds": 8742
+    },
+    {
+      "section": "controls",
+      "case": "public-review",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0003211258131266667,
+        "insufficient": 0.00041054058909970346,
+        "denied": 0.9992683335977736
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3294,
+      "input_tokens": 1384,
+      "output_tokens": 0,
+      "milliseconds": 13864
+    },
+    {
+      "section": "controls",
+      "case": "public-review",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.00036907327694024936,
+        "insufficient": 0.000389677213330185,
+        "denied": 0.9992412495097296
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3848,
+      "input_tokens": 1642,
+      "output_tokens": 0,
+      "milliseconds": 15375
+    },
+    {
+      "section": "controls",
+      "case": "public-annex-threshold",
+      "evidence_case": "public-disclosure",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.00431530757767559,
+        "insufficient": 0.0029720258028658676,
+        "denied": 0.9927126666194586
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1848,
+      "input_tokens": 806,
+      "output_tokens": 0,
+      "milliseconds": 7132
+    },
+    {
+      "section": "controls",
+      "case": "public-annex-threshold",
+      "evidence_case": "public-disclosure",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0054680565397599015,
+        "insufficient": 0.0026242581704865853,
+        "denied": 0.9919076852897535
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3128,
+      "input_tokens": 1326,
+      "output_tokens": 0,
+      "milliseconds": 12965
+    },
+    {
+      "section": "controls",
+      "case": "public-annex-threshold",
+      "evidence_case": "public-disclosure",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0054680565397599015,
+        "insufficient": 0.0026242581704865853,
+        "denied": 0.9919076852897535
+      },
+      "evidence_ids": [
+        "P-NHS",
+        "P-BILL-REPORT",
+        "P-BILL-SECOND",
+        "S-POLICY",
+        "S-REVIEW",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3128,
+      "input_tokens": 1326,
+      "output_tokens": 0,
+      "milliseconds": 14080
+    },
+    {
+      "section": "controls",
+      "case": "external-verification",
+      "evidence_case": "private-join",
+      "arm": "markdown",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0002678234211679522,
+        "insufficient": 0.0004723781343932917,
+        "denied": 0.9992597984444387
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 1962,
+      "input_tokens": 840,
+      "output_tokens": 0,
+      "milliseconds": 7433
+    },
+    {
+      "section": "controls",
+      "case": "external-verification",
+      "evidence_case": "private-join",
+      "arm": "okf",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.0002184417158557317,
+        "insufficient": 0.00048312410328875464,
+        "denied": 0.9992984341808554
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3294,
+      "input_tokens": 1388,
+      "output_tokens": 0,
+      "milliseconds": 12962
+    },
+    {
+      "section": "controls",
+      "case": "external-verification",
+      "evidence_case": "private-join",
+      "arm": "okf-plus",
+      "order": [
+        "supported",
+        "insufficient",
+        "denied"
+      ],
+      "expected": "denied",
+      "predicted": "denied",
+      "correct": true,
+      "probabilities": {
+        "supported": 0.00024745838711266293,
+        "insufficient": 0.0004221570719159087,
+        "denied": 0.9993303845409713
+      },
+      "evidence_ids": [
+        "P-OUTAGE",
+        "P-NHS",
+        "P-ARCHIVE",
+        "S-REVIEW",
+        "S-POLICY",
+        "S-ANNEX"
+      ],
+      "evidence_bytes": 3848,
+      "input_tokens": 1646,
+      "output_tokens": 0,
+      "milliseconds": 17342
+    }
+  ],
+  "summary": {
+    "original": {
+      "markdown": {
+        "correct": 8,
+        "total": 10,
+        "confusion": {
+          "supported": {
+            "supported": 4,
+            "denied": 2
+          },
+          "insufficient": {
+            "insufficient": 2
+          },
+          "denied": {
+            "denied": 2
+          }
+        },
+        "denied_label_misses": 0,
+        "unsafe_support": 0,
+        "order_flips": 0
+      },
+      "okf": {
+        "correct": 8,
+        "total": 10,
+        "confusion": {
+          "supported": {
+            "supported": 4,
+            "denied": 2
+          },
+          "insufficient": {
+            "insufficient": 2
+          },
+          "denied": {
+            "denied": 2
+          }
+        },
+        "denied_label_misses": 0,
+        "unsafe_support": 0,
+        "order_flips": 0
+      },
+      "okf-plus": {
+        "correct": 8,
+        "total": 10,
+        "confusion": {
+          "supported": {
+            "supported": 4,
+            "denied": 2
+          },
+          "insufficient": {
+            "insufficient": 2
+          },
+          "denied": {
+            "denied": 2
+          }
+        },
+        "denied_label_misses": 0,
+        "unsafe_support": 0,
+        "order_flips": 0
+      }
+    },
+    "controls": {
+      "markdown": {
+        "correct": 9,
+        "total": 9,
+        "confusion": {
+          "supported": {
+            "supported": 3
+          },
+          "insufficient": {
+            "insufficient": 3
+          },
+          "denied": {
+            "denied": 3
+          }
+        },
+        "denied_label_misses": 0,
+        "unsafe_support": 0,
+        "order_flips": 0
+      },
+      "okf": {
+        "correct": 9,
+        "total": 9,
+        "confusion": {
+          "supported": {
+            "supported": 3
+          },
+          "insufficient": {
+            "insufficient": 3
+          },
+          "denied": {
+            "denied": 3
+          }
+        },
+        "denied_label_misses": 0,
+        "unsafe_support": 0,
+        "order_flips": 0
+      },
+      "okf-plus": {
+        "correct": 9,
+        "total": 9,
+        "confusion": {
+          "supported": {
+            "supported": 3
+          },
+          "insufficient": {
+            "insufficient": 3
+          },
+          "denied": {
+            "denied": 3
+          }
+        },
+        "denied_label_misses": 0,
+        "unsafe_support": 0,
+        "order_flips": 0
+      }
+    }
+  },
+  "schema": "hansard-system-one-replay.v1",
+  "completed_at": "2026-11-28T06:59:19.514427+00:00",
+  "decision_contract_sha256": "fde4f12c628d614e9ba9d51856b5a68e9d41300b8969fed8261e80c1734982d0",
+  "baseline_contract_sha256": "08c5654ed2591b6d444e2c5c91d2b9991dba3c373b46db0270dacb2d8f30e76b",
+  "model": {
+    "name": "OpenJev 27B",
+    "repository": "ggml-org/OpenJev-GGUF",
+    "revision": "d2c376d11b6c466ab7bdc9fa458ace41cdf3e776",
+    "filename": "OpenJev-Q4_K_M.gguf",
+    "bytes": 19403686048,
+    "sha256": "43b8d9cb89851f27c9d6bed8f073f917327bec05471da462eea77cbf896aa891",
+    "quantisation": "Q4_K_M",
+    "runtime": "llama.cpp b11556",
+    "runtime_release_sha256": "be652966e95415394468f057e31ae0dd5719173c48be240345042b37d06d24b2",
+    "macos_binary_sha256": "1bf5602a2be50097c44282a6ecc63234d94ee8f96d39fd45fed6eff4e74b6b41",
+    "licence": "CC BY-NC 4.0"
+  },
+  "retrieval": {
+    "mode": "matched-passage-ablation",
+    "public_documents": 3,
+    "private_documents": 3,
+    "wrapper_byte_limit": 5600,
+    "method": "Select once per question by query words and stable ID. Supply the same records to each format."
+  },
+  "context_tokens": 2048,
+  "output_tokens": 0,
+  "network": {
+    "policy": "(version 1)(allow default)(deny network*)(allow system-socket (socket-domain AF_UNIX))(allow network-bind (local unix-socket (literal \"<private-socket>\")))(allow network-outbound (remote unix-socket (literal \"<private-socket>\")))",
+    "sink_trace_sha256": "7daf440f95b65f360afc2173bafc3ee29b27d68d1ecbfc866928d4eb6e7f855f",
+    "sealed_sink_requests": 0
+  }
+}

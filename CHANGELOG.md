@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — local OpenJev decision replay
+
+- Reuse the fixed Hansard and synthetic evidence with a pinned OpenJev 27B
+  decision model. Score the five original questions at two label orders and
+  nine balanced controls. Record decision probabilities, policy misses and
+  network isolation evidence.
+
 ## Unreleased — replay the reference consumer with Bonsai 27B
 
 - Diagnose the original failures by reading the saved local answers against

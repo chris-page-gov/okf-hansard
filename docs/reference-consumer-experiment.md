@@ -54,6 +54,24 @@ The public source, synthetic files, passage selections, rendered evidence byte c
 
 OKF+ had the highest strict pass count in this replay. All three wrappers had identical exact-fact scores. The small differences in strict passes are sensitive to status labels, citation selection and the ambiguous private case. They provide limited evidence about a general format effect. [Sanitised Bonsai receipt](../experiments/reference-consumer/results/2026-11-28-bonsai-27b.json) · [Pinned model](https://huggingface.co/prism-ml/Ternary-Bonsai-2.5-27B-GGUF/tree/28a7093cc25bc151cc2b284c5570f12ce343fdcf)
 
+## OpenJev 27B decision replay on 28 November 2026
+
+OpenJev 27B Q4_K_M used llama.cpp b11556's native System One choice endpoint to select `supported`, `insufficient` or `denied`. The model returned a label and probabilities, with zero generated answer tokens. These scores measure status classification only. The generative trials above also required correct facts and exact citations. [Pinned model](https://huggingface.co/ggml-org/OpenJev-GGUF/tree/d2c376d11b6c466ab7bdc9fa458ace41cdf3e776) · [Decision contract](../experiments/reference-consumer/decision-contract.json)
+
+All three formats used the same pinned public snapshot, byte-identical synthetic fixtures, ordered evidence IDs and retrieval limits. Each question retained at most three public and three private records, 5,600 evidence bytes and a 2,048-token context. Five original questions ran with two label orders per format. Nine additional questions reused the original evidence selections, with three controls per expected status. The controls specify the requester's authorisation or destination where relevant.
+
+| Format | Original questions | Balanced controls | Correct denials | Median input tokens | Median decision time |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Plain Markdown | 8/10 | 9/9 | 5/5 | 655 | 6.44 s |
+| Core OKF 0.3 | 8/10 | 9/9 | 5/5 | 1,095 | 11.47 s |
+| OKF+ | 8/10 | 9/9 | 5/5 | 1,326 | 13.65 s |
+
+The classifier got 51 of 57 decisions right under the fixed rubric. It correctly identified all 15 insufficient-evidence cases and all 15 policy denials. It selected `supported` for 21 of 27 expected approvals. The six disagreements came from one original question across formats and label orders. The question left the requester's authorisation implicit, and the model denied it every time. With the same evidence it selected `supported` for an explicitly authorised internal request and `denied` for the public and external requests. Reversing the label order on the original questions changed no decisions.
+
+The three formats produced identical labels on this fixed evidence sample. Markdown used fewer input tokens, and the largest prompt consumed 1,673 tokens. Server logs showed no truncation. Decision times include request processing on the local server after startup, with possible prompt-cache reuse between cases. The nine controls reuse evidence and the original questions were repeated, so the observations are correlated. The replay supports using the model to distinguish these statuses on this evidence. Application policy still needs verified requester and audience information to decide access. [Sanitised decision receipt](../experiments/reference-consumer/results/2026-11-28-openjev-27b.json)
+
+The macOS worker and model server had no IP network access. They could communicate over one private Unix socket. TCP egress and a second Unix socket path were denied before and after the replay. The test sink saw only the supervisor's authorised control request. The run used local inference with no paid credits or resets.
+
 ## Research attachments
 
 The original and the Word version both contain the recommendation for this experiment. The Word file is a compressed document container. A visible-text comparison found roughly 10,300 words in the Word content and 9,700 in the Markdown body, with the original section structure represented and 58 numbered references in Word. This comparison did not find a missing substantive section. It does not validate each reference’s destination or interpretation. The attached reports were used as research context. The implementation follows the experiment explicitly requested in chat.
