@@ -11,6 +11,7 @@ from threading import RLock
 from urllib.parse import quote, urlencode, urlsplit
 
 from capture import sha
+from contribution_context import CONTEXT_PATH, SCHEMA, official, reviewed_links, sections, turn_record
 from model import read_sittings
 from query import StaleHistory
 from safe_paths import resolve_within
@@ -30,13 +31,6 @@ def read(path):
 
 def terms(text):
     return WORDS.findall(text.casefold())
-
-
-def official(url):
-    parsed = urlsplit(url)
-    if parsed.scheme != "https" or parsed.netloc != "hansard.parliament.uk":
-        raise ValueError("The retained evidence has an unexpected source URL.")
-    return url
 
 
 def snapshot_id(site, graph):
@@ -87,6 +81,9 @@ class Access:
             raise ValueError("The staged coverage and publication receipt disagree.")
         self.snapshot = snapshot_id(self.site, proof)
         self._capture_rows = None
+        self._section_rows = None
+        self._context_index = None
+        self._context_days = {}
         self.search_db = None
         self._search_lock = RLock()
 
@@ -188,7 +185,7 @@ class Access:
                 "items": [{"id": route, "date": day, "house": house, "title": title, "speaker": speaker,
                            "hansard": official(url), "excerpt": excerpt,
                            "timeline": NOVEMBER + "history.html?" + urlencode({"day": day, "anchor": route}),
-                           "graph": graph_view(route)}
+                           "graph": graph_view(route), **({"context": link} if (link := self.context_link(route, day)) else {})}
                           for route, day, house, title, speaker, url, excerpt in results],
                 "next_offset": offset + len(results) if offset + len(results) < count else None}
 
@@ -204,3 +201,80 @@ class Access:
                 parts, rows, _, _ = read_sittings(self.capture, json.loads(manifest), min(dates), max(dates))
                 self._capture_rows = parts, {route: row for route, row in rows.items() if row["day"] in dates}
             return self._capture_rows
+
+    def _public_context_day(self, day):
+        """Read one published context day at most once; packets are static per release."""
+        if day in self._context_days:
+            return self._context_days[day]
+        if self._context_index is None:
+            index_path = self.site / "context" / "index.json"
+            try:
+                index = read(index_path)
+                if index.get("schema") != SCHEMA or index.get("snapshot") != self.snapshot:
+                    index = False
+            except (OSError, ValueError, AttributeError):
+                index = False
+            self._context_index = index
+        index = self._context_index
+        if not index:
+            self._context_days[day] = {}
+            return {}
+        # The day files are the published route-to-link map. Resolve the fixed
+        # date path beneath the site root and ignore malformed/untrusted entries.
+        try:
+            data = read(resolve_within(self.site, f"history/days/{day}.json"))
+            if not isinstance(data, dict):
+                data = {}
+        except (OSError, ValueError):
+            data = {}
+        self._context_days[day] = data
+        return data
+
+    def context_link(self, route, day=None):
+        """Return an advertised public context URL for a route, if present."""
+        if day is None:
+            _, rows = self.capture_rows()
+            day = rows.get(route, {}).get("day")
+        if not day or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", day):
+            return None
+        value = self._public_context_day(day).get(route)
+        href = value.get("context") if isinstance(value, dict) else None
+        match = CONTEXT_PATH.fullmatch(href) if isinstance(href, str) else None
+        return NOVEMBER + href if match and match[1] == day else None
+
+    def contribution_context(self, contribution, snapshot=None):
+        """Read the captured neighbouring turns for one contribution route."""
+        if snapshot is not None and snapshot != self.snapshot:
+            raise StaleHistory("The publication changed. Restart from the first results page.")
+        parts, rows = self.capture_rows()
+        if contribution not in rows:
+            raise ValueError("Choose a contribution route in the captured sittings.")
+        with self._search_lock:
+            if self._section_rows is None:
+                groups = sections(rows)
+                positions = {route: index for group in groups.values() for index, (route, _) in enumerate(group)}
+                replies = reviewed_links(self.release, read(self.release / "receipt.json"))
+                self._section_rows = groups, positions, replies
+            groups, positions, replies = self._section_rows
+        target = rows[contribution]
+        section = groups[target["part"]]
+        position = positions[contribution]
+        start, stop = max(0, position - 2), min(len(section), position + 3)
+        turns = [turn_record(route, row, index + 1) for index, (route, row) in enumerate(section[start:stop], start=start)]
+        for turn in turns:
+            turn["reviewed_relationships"] = replies.get(turn["id"], [])
+        result = {"schema": SCHEMA, "snapshot": self.snapshot,
+                  "contribution": contribution, "section": target["part"], "section_title": parts[target["part"]]["title"],
+                  "position": position + 1, "section_turns": len(section), "source_position": target.get("order"), "turns": turns,
+                  "more_before": start > 0, "more_after": stop < len(section),
+                  "hansard": official(target["url"]),
+                  "source_value_sha256": target.get("value_sha256"),
+                  "source_field": target.get("pointer", "") + "/Value",
+                  "excerpt": turns[position - start]["text"],
+                  "evidence": {"url": official(target["url"]), "source_field": target.get("pointer", "") + "/Value",
+                               "source_value_sha256": target.get("value_sha256")}}
+        if target.get("uint") is not None:
+            result["uin"] = target["uint"]
+        if link := self.context_link(contribution, target["day"]):
+            result["public_context"] = link
+        return result

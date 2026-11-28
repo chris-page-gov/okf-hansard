@@ -1,5 +1,10 @@
 # Changelog
 
+## 28 November 2026 · Contributions in context
+
+- Open each captured November contribution in a small phone-readable page, with ordered turns, official sources, passage hashes and reviewed reply links. The finder, timeline, collection directory and read-only connector expose the same evidence.
+- Reduce repeated JSON-LD term definitions in the Markdown projection while retaining the published record addresses and RDF meaning.
+
 ## 28 November 2026 · Persona walkthroughs
 
 - Record a real Android Voice trial and nine local text trials against the November Hansard evidence, with primary sources, retrieval limits and criterion-level scoring. [Walkthroughs](evaluation/runs/2026-11-28/README.md)

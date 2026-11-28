@@ -73,6 +73,8 @@ ACCESS_TOOLS = {
               "snapshot": {"type": "string", "maxLength": 160}}, ("key",)),
         tool("hansard_search_passages", "Search full text in the captured sittings. Return excerpts, exact Hansard links and timeline links.",
              {**WINDOW, "query": STRING}, ("query",)),
+        tool("hansard_contribution_context", "Read a captured contribution with up to two neighbouring turns in its section, source positions and evidence links.",
+             {"contribution": STRING, "snapshot": {"type": "string", "maxLength": 160}}, ("contribution",)),
     )
 }
 BRIEFING_TOOL = tool(
@@ -182,9 +184,10 @@ def rpc(request, index, people, passages, access=None, account=None):
         arguments = params.get("arguments", {})
         try:
             Draft202012Validator(ACCESS_TOOLS[name]["inputSchema"]).validate(arguments)
-            handler = {"hansard_describe_bundle": access.describe, "hansard_resolve_concept": access.concepts,
-                       "hansard_mentions": access.mentions, "hansard_search_passages": access.search}[name]
-            result = tool_result(handler(**arguments))
+            operation = {"hansard_describe_bundle": "describe", "hansard_resolve_concept": "concepts",
+                         "hansard_mentions": "mentions", "hansard_search_passages": "search",
+                         "hansard_contribution_context": "contribution_context"}[name]
+            result = tool_result(getattr(access, operation)(**arguments))
         except (OSError, TypeError, ValueError, KeyError, ValidationError) as exc:
             result = tool_failure(name, exc)
     elif method == "tools/call" and params.get("name") in TOOLS:

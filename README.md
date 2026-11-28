@@ -1,5 +1,8 @@
 # GTM Hansard
 
+On a phone, open the [Hansard finder](https://chris-page-gov.github.io/okf-hansard/november/ask.html) and choose **Show this contribution in context** on a captured result. Your assistant can read the surrounding turns and cite their official sources. [Phone walkthrough](docs/mobile-demonstration.md#hear-a-contribution-in-context)
+
+
 Explore what the UK Parliament said, follow related material over time and bring your own AI to the evidence. The full November collection is the main entry point. The original week remains a set of guided examples.
 
 | Start here | Guide |

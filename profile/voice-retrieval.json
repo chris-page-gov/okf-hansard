@@ -15,6 +15,7 @@
     "revision": "2026-07-28",
     "compatibility_revisions": ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"],
     "describe_tool": "hansard_describe_bundle",
+    "context_tool": "hansard_contribution_context",
     "search_tool": "hansard_search_passages",
     "resolve_tool": "hansard_resolve_concept",
     "mentions_tool": "hansard_mentions"

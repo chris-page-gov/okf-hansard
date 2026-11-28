@@ -80,6 +80,9 @@ function selectAnchor(wantedEntity) {
   $("anchor-source").replaceChildren();
   if (anchor) {
     $("anchor-source").append(link(anchor.url, "Read the selected contribution in Hansard"));
+    if (/^context\/\d{4}-\d{2}-\d{2}\/[a-f0-9]{20}-[1-9]\d*\.html#turn-[1-9]\d*$/.test(anchor.context)) {
+      $("anchor-source").append(" · ", viewLink(new URL(anchor.context, window.location), "Show this contribution in context"));
+    }
     if (index.focused_views) $("anchor-source").append(" · ", graphLink(route));
   }
   const groups = [...new Set(eligible().map((key) => index.entities[key].group))].sort();

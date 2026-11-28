@@ -13,6 +13,8 @@ class HansardAccessConcurrencyTests(unittest.TestCase):
         access.snapshot = "fixture-snapshot"
         access.pointer = {"through": "2026-11-18"}
         access.history = {"days": ["2026-11-18"]}
+        access._context_index = False
+        access._context_days = {}
         access._capture_rows = (
             {"debate-1": {"title": "Budget debate"}},
             {"route-1": {"text": "The budget was discussed.", "attributed_to": "Example MP",
