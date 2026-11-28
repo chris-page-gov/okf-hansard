@@ -65,6 +65,8 @@ The default publisher tracks dates through 30 November 2026. Scheduling is exter
 
 ## Trust boundaries
 
+Capture manifests and evidence must use relative paths inside the configured capture directory. The build checks path components before opening a file, then checks the source digest. Parliamentary identifiers remain in their source fields and must fit a single path component when used in a generated route. Markdown records, indexes and the licence are written under the release directory. An operator may configure the root directory through a symbolic link. The reader and writer reject links below that root.
+
 The public pages and skill contain evidence and instructions for using it. The skill exports only its declared Markdown files through an allowlist and binds each file by digest. It ships no code or credentials. The server listens on loopback. An operator needs an approved HTTPS deployment and the relevant host permissions for mobile MCP. Text from a source may contain apparent instructions and must remain evidence.
 
 A phone assistant can select public topics from context it already has. Restrict outbound public tool arguments to the needed terms, dates and source scope. Never submit a private portfolio description as a public search query. The separate signed-in briefing validates OAuth tokens and maps the verified subject to authorised dated topics. Its output belongs to that account. [Protected briefing](secure-briefing.md) · [Mobile routes and user checks](mobile-demonstration.md)

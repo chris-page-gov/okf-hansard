@@ -9,10 +9,11 @@ import shutil
 
 from capture import HOUSES, capture_day, dump, fetch, now
 from model import checked_json
+from safe_paths import resolve_within
 
 
 def refresh(base, output, days):
-    manifest = json.loads((base / "manifest.json").read_bytes())
+    manifest = json.loads(resolve_within(base, "manifest.json").read_bytes())
     output.mkdir(parents=True, exist_ok=False)
     inherited = set()
     started = now()
@@ -22,9 +23,9 @@ def refresh(base, output, days):
         if relative in inherited:
             return
         checked_json(base, asset)
-        destination = output / relative
+        destination = resolve_within(output, relative)
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(base / relative, destination)
+        shutil.copyfile(resolve_within(base, relative), destination)
         inherited.add(relative)
 
     def copy_and_return(asset):

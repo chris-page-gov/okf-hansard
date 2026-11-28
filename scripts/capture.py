@@ -12,6 +12,8 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
+from safe_paths import resolve_within
+
 HANSARD = "https://hansard-api.parliament.uk"
 MEMBERS = "https://members-api.parliament.uk/api/Members/Search"
 BILLS = "https://bills-api.parliament.uk/api/v1/Bills"
@@ -36,7 +38,8 @@ def sha(raw):
 
 
 def fetch(root, relative, url):
-    path = root / relative
+    root.mkdir(parents=True, exist_ok=True)
+    path = resolve_within(root, relative)
     request = Request(url, headers={"Accept": "application/json", "User-Agent": "OKF-Hansard-Pilot/0.1"})
     for attempt in range(3):
         try:

@@ -9,6 +9,7 @@ from urllib.parse import quote
 
 import yaml
 from okf_core import PROFILE
+from safe_paths import resolve_within, safe_component
 
 from capture import HANSARD, sha
 
@@ -80,7 +81,7 @@ def display(value):
 
 
 def checked_json(snapshot, source):
-    raw = (snapshot / source["path"]).read_bytes()
+    raw = resolve_within(snapshot, source["path"]).read_bytes()
     if sha(raw) != source["sha256"]:
         raise ValueError(f"Capture digest mismatch for {source['path']}")
     return json.loads(raw)
@@ -261,7 +262,7 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
 
     def visit(day, house, section, reference, tree, pointer, parent):
         overview = tree["Overview"]
-        ext_id = str(overview["ExtId"])
+        ext_id = safe_component(overview["ExtId"])
         key = f"{house.lower()}-{day}-{section.lower()}-{ext_id.lower()}"
         title = plain(overview["Title"])
         url = debate_url(house, day, ext_id, title)
@@ -274,7 +275,7 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
                    and tree["ChildDebates"] == previous["ChildDebates"] for previous_title, previous in prior):
                 metrics[(day, house)]["repeated_section_copies"] += 1
                 return
-            origin = overview.get("Id") or sha(pointer.encode())[:16]
+            origin = safe_component(overview.get("Id") or sha(pointer.encode())[:16])
             key = f"{key}-section-{origin}"
             metrics[(day, house)]["shared_section_public_ids"] += 1
         prior.append((title, tree))
@@ -298,7 +299,7 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
             if item_type == "Division":
                 division_id = item.get("ExternalId") or item["ItemId"]
                 if scope == "Pilot week":
-                    divisions[f"division/{key}-{division_id}.md"] = {
+                    divisions[f"division/{key}-{safe_component(division_id)}.md"] = {
                         "part": route, "id": division_id, "capture": reference,
                         "pointer": f"{pointer}/Items/{index}", "item": item,
                     }
@@ -315,14 +316,14 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
             ext = item.get("ExternalId")
             item_id = item.get("ItemId")
             locator = f"{pointer}/Items/{index}"
-            identifier = str(ext or item_id or sha(locator.encode())[:16]).lower()
+            identifier = safe_component(ext or item_id or sha(locator.encode())[:16]).lower()
             entry = f"contribution/{key}-{identifier}.md"
             if entry in records:
                 # Real source can return repeated external IDs within a debate.
                 # Preserve the distinct occurrence at its stable API item ID.
                 if not item_id:
                     raise ValueError(f"Repeated contribution without API item ID: {entry}")
-                entry = f"contribution/{key}-{identifier}-{item_id}.md"
+                entry = f"contribution/{key}-{identifier}-{safe_component(item_id)}.md"
                 if entry in records:
                     raise ValueError(f"Reused contribution identity: {entry}")
                 metrics[(day, house)]["repeated_external_id"] += 1
@@ -347,8 +348,10 @@ def read_sittings(snapshot, manifest, first_day, last_day, loader=checked_json):
             visit(day, house, section, reference, child, f"{pointer}/ChildDebates/{index}", route)
 
     for sitting in manifest["sittings"]:
-        metrics[(sitting["date"], sitting["house"])]
+        day = safe_component(sitting["date"])
+        house = safe_component(sitting["house"])
+        metrics[(day, house)]
         for root in sitting["roots"]:
-            visit(sitting["date"], sitting["house"], root["section"], root,
+            visit(day, house, safe_component(root["section"]), root,
                   loader(snapshot, root), "", None)
     return parts, records, divisions, metrics

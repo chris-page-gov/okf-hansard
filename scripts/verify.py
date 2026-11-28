@@ -13,6 +13,7 @@ from build import BUILD_ARTIFACTS, canonical_field, digest
 from capture import dump, sha
 from model import plain
 from okf_core import CORE_VERSION, RESERVED, check_markdown
+from safe_paths import resolve_within
 
 
 def pointer(value, ref):
@@ -53,7 +54,7 @@ def check(release, source, people, report):
 
     @lru_cache(maxsize=64)
     def resource(root, path, expected):
-        raw = (root / path).read_bytes()
+        raw = resolve_within(root, path).read_bytes()
         if sha(raw) != expected:
             raise ValueError(f"Capture file digest mismatch: {path}")
         return json.loads(raw)

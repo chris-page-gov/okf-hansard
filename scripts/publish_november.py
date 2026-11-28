@@ -28,6 +28,7 @@ from publish_demo_week import (GIT_AUTH, PAGES_LIMIT, PAGES_REMOTE, ZONE, git, m
                                pages_lock, preflight_release, write_current_receipt)
 from query import DEFAULT_DB, DEEP_DB, Index
 from refresh import refresh
+from safe_paths import resolve_within
 from stage_contribution_views import stage
 from verify import check, verify_build_artifacts
 from mcp_skills import NAME as SKILL_NAME, SKILL
@@ -189,7 +190,7 @@ def calendar(output):
 
 
 def checkpoint_day(snapshot, day, calendars, output, provisional):
-    manifest = read(snapshot / "manifest.json")
+    manifest = read(resolve_within(snapshot, "manifest.json"))
     entries = {row["house"]: row for row in manifest["sittings"] if row["date"] == day}
     counts = {}
     for house in HOUSES:
