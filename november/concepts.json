@@ -1,5 +1,5 @@
 {
-  "snapshot": "hansard-collection-sha256-be2e4720b681c060cb9d19f47e36be09b957d60433a7473aba4ee148f90bf233",
+  "snapshot": "hansard-collection-sha256-1c125e3c885ed0ea883a29b4ba150171359fa1f34453fc35558d971c3d518f40",
   "concepts": {
     "activity-000f0db6c03fca2ef65747f4": {
       "label": "Susan Murray",
@@ -1833,6 +1833,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-1f406c95912d22ae117bd0d3": {
+      "label": "House of Commons",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-debate-6614086f-8ac4-4ff3-a2e8-95a72070cc45.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-1f417b57365ac4cbc1f52853": {
       "label": "Kevin Bonavia",
       "group": "Speakers",
@@ -2878,6 +2886,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-1892.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-31903224e5224a5e2f99904b": {
+      "label": "Business without Debate",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-debate-69e94492-922f-4d5b-b5c7-f83f78e37d68.md",
       "captured_only": true,
       "aliases": []
     },
@@ -4830,6 +4846,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-03-pbc-318cb654-588f-490d-9002-078b4eff5ce8.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-532b4347fceed4a68190ed0b": {
+      "label": "Digital, Culture, Media and Sport",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-correction-6d76e88f-1eea-49dd-9155-039be4065a7e.md",
       "captured_only": true,
       "aliases": []
     },
@@ -8241,6 +8265,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-8eb383eea0dc19c5f827acd9": {
+      "label": "Water Customer Support and Advocacy",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-wms-26112718000007.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-8eb8485c389614fdf6657ac9": {
       "label": "Pamela Nash",
       "group": "Speakers",
@@ -8262,6 +8294,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-13-wms-26111351000006.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-8edfd622fd0960ee5c563a9a": {
+      "label": "EU-UK Relations",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-debate-b33596f4-d926-4752-8f9e-4aa4c1faf037.md",
       "captured_only": true,
       "aliases": []
     },
@@ -9257,6 +9297,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-a2bb84d0839a01e05e00f92f": {
+      "label": "Other Correction",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-correction-26112719000002.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-a2c9534118fe254fc07dc0d0": {
       "label": "Westminster Hall",
       "group": "Proceedings",
@@ -9862,6 +9910,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-18-westhall-b19ea89f-b6be-4488-89b8-09c073965f22.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-ad083500d5996722a0067bd5": {
+      "label": "Small Businesses in Railway Arches",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-debate-c9ff6d28-c91b-4374-bd56-c9615ff87e5b.md",
       "captured_only": true,
       "aliases": []
     },
@@ -10929,6 +10985,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-be6bc78e2e693de5399ef81d": {
+      "label": "Rough Sleeping Programme: Funding Allocations",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-wms-26112718000008.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-be7816568731bf2bc3a2c732": {
       "label": "International Day for the Elimination of Violence against Women",
       "group": "Proceedings",
@@ -11825,6 +11889,14 @@
       "captured_only": true,
       "aliases": []
     },
+    "activity-ce4691ee3699bf9e5b7a15ed": {
+      "label": "Ceramics (Country of Origin Marking) Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-debate-c855bd15-2c3f-41e5-a45f-7d3e010d1e76.md",
+      "captured_only": true,
+      "aliases": []
+    },
     "activity-ce60b9b113c17770a2e094e4": {
       "label": "Stephen Morgan",
       "group": "Speakers",
@@ -11990,6 +12062,14 @@
       "group": "Speakers",
       "type": "Peer",
       "route": "entity/member-3187.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-d12479d133f9928b45b0ee64": {
+      "label": "Comprehensive and Progressive Agreement for Trans-Pacific Partnership",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-wms-26112718000006.md",
       "captured_only": true,
       "aliases": []
     },
@@ -12334,6 +12414,14 @@
       "group": "Proceedings",
       "type": "Proceedings section",
       "route": "debate/commons-2026-11-25-debate-51301b95-d2dc-496a-8bd2-f46fa2cd2553.md",
+      "captured_only": true,
+      "aliases": []
+    },
+    "activity-d70003ddcec6002b37291a65": {
+      "label": "Strategic Litigation Against Public Participation (No. 2) Bill",
+      "group": "Proceedings",
+      "type": "Proceedings section",
+      "route": "debate/commons-2026-11-27-debate-9c5d99c1-9ddc-434c-af88-8d0f4885af04.md",
       "captured_only": true,
       "aliases": []
     },
@@ -15012,6 +15100,40 @@
       "errors": 0,
       "aliases": []
     },
+    "bill-4165": {
+      "label": "Emergency and Life-saving Skills (Schools) Bill",
+      "type": "Bill",
+      "group": "Legislation",
+      "route": "entity/bill-4165.md",
+      "archive_count": 0,
+      "search_count": 2,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "bill-4167": {
+      "label": "Northern Ireland Troubles (Criminal Investigations etc) Bill",
+      "type": "Bill",
+      "group": "Legislation",
+      "route": "entity/bill-4167.md",
+      "archive_count": 0,
+      "search_count": 5,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
     "bill-4172": {
       "label": "Cancer (Reporting and Strategy) Bill",
       "type": "Bill",
@@ -15325,6 +15447,23 @@
       "route": "entity/bill-4228.md",
       "archive_count": 0,
       "search_count": 16,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "bill-4248": {
+      "label": "Rural Public Transport Bill",
+      "type": "Bill",
+      "group": "Legislation",
+      "route": "entity/bill-4248.md",
+      "archive_count": 0,
+      "search_count": 1,
       "search_windows": [
         [
           "2007-01-01",
@@ -17753,6 +17892,23 @@
         ],
         [
           "2026-10-30",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": []
+    },
+    "constituency-3991": {
+      "label": "Colchester",
+      "type": "Constituency",
+      "group": "Places",
+      "route": "entity/constituency-3991.md",
+      "archive_count": 0,
+      "search_count": 904,
+      "search_windows": [
+        [
+          "2007-01-01",
           "2026-11-01"
         ]
       ],
@@ -36839,6 +36995,26 @@
         "Shaun Davies"
       ]
     },
+    "member-5042": {
+      "label": "Pam Cox",
+      "type": "MP",
+      "group": "People",
+      "route": "entity/member-5042.md",
+      "archive_count": 0,
+      "search_count": 42,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "Pam Cox MP",
+        "Pam Cox"
+      ]
+    },
     "member-5043": {
       "label": "Lillian Jones",
       "type": "MP",
@@ -42635,6 +42811,25 @@
       "aliases": [
         "David Pinto-Duschinsky MP",
         "David Pinto-Duschinsky"
+      ]
+    },
+    "member-5364": {
+      "label": "Lord Timpson",
+      "type": "Peer",
+      "group": "People",
+      "route": "entity/member-5364.md",
+      "archive_count": 0,
+      "search_count": 224,
+      "search_windows": [
+        [
+          "2007-01-01",
+          "2026-11-01"
+        ]
+      ],
+      "complete": true,
+      "errors": 0,
+      "aliases": [
+        "The Lord Timpson OBE DL"
       ]
     },
     "member-5365": {

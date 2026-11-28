@@ -2,18 +2,18 @@
   "schema": "hansard-compact-core-question.v1",
   "id": "hansard-november-compact-core",
   "question": "What dates does the compact November entry point declare, can this one-record bundle establish which House debated Bill 4030, and where must I go to check those claims?",
-  "answer": "The sitting entry point declares captured sittings from 2026-11-02 to 2026-11-26. It has one typed evidence index and no graph relationships. It links to the coverage report, contribution finder and full graph. The compact record alone cannot establish which House debated Bill 4030 or that the Bill passed; those questions require separately retrieved evidence.",
+  "answer": "The sitting entry point declares captured sittings from 2026-11-02 to 2026-11-27. It has one typed evidence index and no graph relationships. It links to the coverage report, contribution finder and full graph. The compact record alone cannot establish which House debated Bill 4030 or that the Bill passed; those questions require separately retrieved evidence.",
   "negative_controls": [
     "A linked coverage report is not evidence already read from this compact record.",
     "No Bill or House relationship can be inferred from its zero-edge core graph."
   ],
   "bundle_descriptor": "okf-core.json",
-  "descriptor_sha256": "bda8bfafbeab7f0bcbbaa464be70503e9c2e7d96e693c80a13bd4a2341fba497",
+  "descriptor_sha256": "e9d1885efff5bec288fbacff8606e2e3890be64c2ed8c3f5c13b22f0d393f968",
   "expected_identity": {
     "schema": "okf-explorer-bundle.v0",
     "id": "urn:okf:hansard:public-core:november-in-parliament",
     "version": "0.3.0",
-    "snapshot": "hansard-markdown-sha256-07830b485b42c13a6c1d42e8eb351991b98a6fc0968b7dcba29ecdd67f200a24"
+    "snapshot": "hansard-markdown-sha256-e46344ccf641bbdb07c94afe6ad1059e89934cdf6d12192b917a349d10decb99"
   },
   "typed_concepts": 1,
   "graph_relationships": 0,
@@ -28,14 +28,14 @@
     {
       "path": "okf/index.md",
       "route": "index.md",
-      "sha256": "eacffd11ffb8b99eb42d0c63b88c2b9808969b7e7bc131512522c629a29d2b28",
+      "sha256": "a93b48160ec9853d1cadd242005932d59e1923181a67848d1c7894cb4e6cd45a",
       "bytes": 1708,
       "role": "navigation"
     },
     {
       "path": "okf/sittings.md",
       "route": "sittings.md",
-      "sha256": "4f6052b4bbfd19b9a9e84531f904960cba61dc49b1ba4b9e07811ae83e63fe72",
+      "sha256": "80df6228c507c5aa8823e78e40322807f3ad1ed266f2e39bd76d53a3037989df",
       "bytes": 1124,
       "role": "concept"
     }

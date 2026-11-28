@@ -1,6 +1,6 @@
 # Ask your AI about Hansard
 
-20,706 contributions from Commons and Lords sittings, 2 November 2026 to 26 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.
+20,900 contributions from Commons and Lords sittings, 2 November 2026 to 27 November 2026. Historical searches for configured entities cover 1 January 2007 to 1 November 2026 inclusive. The older indexed archive spans 24 February 2003 to 19 December 2006 and lists 0 source gaps. Counts of historical matches depend on the configured names and aliases.
 
 ## Use the full collection
 
@@ -22,7 +22,7 @@ Check the date range and open one exact Hansard link.
 
 
 - [Open the GitHub evidence index](https://github.com/chris-page-gov/okf-hansard/blob/main/HANSARD-EVIDENCE.md)
-- [Read the Synergy evidence and passages](https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-be2e4720b681c060cb9d19f47e36be09b957d60433a7473aba4ee148f90bf233)
+- [Read the Synergy evidence and passages](https://chris-page-gov.github.io/okf-hansard/november/synergy-evidence.txt?snapshot=hansard-collection-sha256-1c125e3c885ed0ea883a29b4ba150171359fa1f34453fc35558d971c3d518f40)
 - [Find and copy evidence](https://chris-page-gov.github.io/okf-hansard/november/ask.html)
 - [Hansard collection directory](https://chris-page-gov.github.io/okf-hansard/november/hansard.json)
 - [Capture and historical coverage](https://chris-page-gov.github.io/okf-hansard/november/coverage.json)
