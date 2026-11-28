@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-GB" xml:lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Finding Hansard evidence in a phone-style conversation</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+</style>
+  <style type="text/css">:root { color-scheme:light dark; font:100%/1.6 system-ui,sans-serif; }
+body { max-width:52rem; margin:0 auto; padding:1.2rem clamp(1rem,4vw,3rem) 4rem; }
+h1,h2,h3 { line-height:1.24; text-wrap:balance; }
+h1 { font-size:clamp(1.8rem,5vw,2.7rem); } h2 { margin-top:2rem; }
+a { color:#1857a1; text-underline-offset:0.14em; overflow-wrap:anywhere; }
+a:focus-visible { outline:3px solid #bf6407; outline-offset:3px; }
+table { display:block; overflow-x:auto; border-collapse:collapse; margin:1rem 0; }
+th,td { padding:.45em .6em; border-bottom:1px solid #aaa; text-align:left; }
+th { vertical-align:bottom; } tr { vertical-align:top; } code { overflow-wrap:anywhere; }
+@media (prefers-color-scheme:dark) { a { color:#9ecbff; } }
+@media print { body { max-width:100%; font-size:10pt; } h2,h3 { break-after:avoid; } tr {break-inside:avoid;} }
+</style>
+</head>
+<body>
+<h1 id="finding-hansard-evidence-in-a-phone-style-conversation">Finding
+Hansard evidence in a phone-style conversation</h1>
+<p><strong>Microsoft E5 helped when speakers’ names were left
+out.</strong> On eight fresh conversational questions, adding E5 to
+SQLite search found the complete reference passage for 5 questions,
+compared with 3 for word search alone. With the same local models
+deciding and writing, 5 hybrid answers and 3 word-search answers passed
+the full fact-and-citation check.</p>
+<p>On the original 21 questions, often rich in names and institutional
+clues, both systems produced <strong>17 fully correct cited
+answers</strong>. The faster word search retrieved the complete
+reference evidence for 20 questions, and the hybrid found it for 19. For
+this Hansard collection, keep word search as the baseline for precise
+look-ups. The evidence supports trying hybrid search for loosely worded
+conversation and checking that the delivered passage includes the whole
+answer.</p>
+<h2 id="results-at-a-glance">Results at a glance</h2>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr>
+<th>Question set</th>
+<th style="text-align: right;">All sources found, FTS5</th>
+<th style="text-align: right;">All sources found, hybrid</th>
+<th style="text-align: right;">Full answers, FTS5</th>
+<th style="text-align: right;">Full answers, hybrid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original, 21 questions</td>
+<td style="text-align: right;">20/21</td>
+<td style="text-align: right;">19/21</td>
+<td style="text-align: right;">17/21</td>
+<td style="text-align: right;">17/21</td>
+</tr>
+<tr>
+<td>Conversational follow-up, 8 questions</td>
+<td style="text-align: right;">3/8</td>
+<td style="text-align: right;">5/8</td>
+<td style="text-align: right;">3/8</td>
+<td style="text-align: right;">5/8</td>
+</tr>
+</tbody>
+</table>
+<p>“All sources found” requires the supporting words inside the
+delivered excerpt. A link to the correct speech can still leave the
+answer outside the evidence window. A “full answer” also requires the
+expected answer status, facts and exact citations. The follow-up was
+designed after seeing the first search results and was frozen before
+running its own searches. It is reported separately.</p>
+<p><strong>What was searched.</strong> The pinned release contains
+<strong>20,900 contributions</strong>, 15,125 from the Commons and 5,775
+from the Lords, on <strong>18 sitting dates from 2 to 27 November
+2026</strong>. Both engines indexed all 49,919 passages derived from
+those contributions. The official-source capture files were verified
+against their checksums. The local coverage, graph descriptor and
+history directory also matched the public files at the pinned Git
+revision. Earlier historical mentions and later sittings fall outside
+this test. <a href="https://raw.githubusercontent.com/chris-page-gov/okf-hansard/41a340e06ec02b7d5d4d5802e893534697328d32/november/coverage.json">Published
+coverage</a> · <a href="capture.json">Capture counts by date and
+House</a></p>
+<h2 id="what-changed-for-a-reader">What changed for a reader</h2>
+<ul>
+<li><strong>A colloquial question found the right speaker.</strong> When
+asked what proportion of people “behind bars” had speech, language or
+communication needs, FTS5 returned related passages about therapy and
+children. The hybrid ranked Sonia Kumar’s Commons contribution first.
+She gave the figure as <strong>over 60%</strong>. <a href="https://hansard.parliament.uk/Commons/2026-11-10/debates/C620E704-423E-4AC6-BDD2-26DADF431CD5/TopicalQuestions#contribution-6127D140-8C81-4CD4-AA0F-B1BAD0B80118">Read
+the exact contribution</a></li>
+<li><strong>A debate title alone was insufficient.</strong> When asked
+how many people knew they had HIV and were still missing treatment, FTS5
+found relevant contributions in the correct debate. E5 brought Lord
+Cashman’s question containing <strong>5,000</strong> into second place.
+Both questions concern what was said in Parliament. <a href="https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-4058E90B-99CE-48DD-9D35-AFE53B1BABEE">Read
+Lord Cashman’s question</a></li>
+<li><strong>Both systems lost the end of a sentence.</strong> They
+ranked the right driving agency statement first. The excerpt stopped at
+“the Libraries”, just before “of both Houses”. The scoring rule caught
+the missing detail. Selecting sentence boundaries or including the
+neighbouring passage within the same byte limit is a concrete next test.
+<a href="https://hansard.parliament.uk/Commons/2026-11-16/debates/26111750000012/DriverandVehicleStandardsAgencyBusinessPlan2026-27#contribution-FD732141-EFCF-4EF2-9EEA-93B829B8BAFF">Read
+the complete statement</a></li>
+<li><strong>Finding the passage did not settle the claim.</strong> Both
+searches found Dame Meg Hillier’s forecast of about £100,000 in board
+savings. Both answering pipelines treated it as supporting a question
+about a later <em>audited</em> saving. The forecast does not establish
+that outcome. <a href="https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-9057B4E3-3872-44BB-8A04-BD4038334E8C">Read
+the forecast</a></li>
+</ul>
+<h2 id="how-the-comparison-was-kept-fair">How the comparison was kept
+fair</h2>
+<p>The primary questions were written for this experiment from a
+deterministic sample of source contributions. They included 15
+single-source factual questions, two requiring two contributions, and
+four asking for a fact the reference material did not establish. The
+follow-up used new contributions and eight questions without speaker
+names. Seven have a supported answer, and one asks for an unpublished
+figure. “Unseen” means held out from this evaluation: the questions and
+source-based answers were frozen before their retrieval runs. The two
+hybrid gains in the follow-up were both changes from abstention to a
+correctly cited answer. These were typed, speech-like questions. The
+phone microphone, speech recognition and a hosted personal assistant
+were outside the experiment.</p>
+<p>Only the search method varied within each pair. Both used the
+original pinned OpenJev and Bonsai models, the same prompts, one seed
+(11), the same question and answer fields, identical limits and local
+network isolation. Each got the evidence its own search selected. Model
+inputs used one plain-text format throughout. The test bundled related
+evidence from the same publication, so the scores compare search methods
+across the capture and provide no independent ranking of Markdown, core
+OKF and OKF+.</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr>
+<th>Set and search</th>
+<th style="text-align: right;">Reference passages delivered</th>
+<th style="text-align: right;">Strict answers on answerable
+questions</th>
+<th style="text-align: right;">Correct status on insufficient
+questions</th>
+<th style="text-align: right;">Strict answers on insufficient
+questions</th>
+<th style="text-align: right;">Median search time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original · FTS5</td>
+<td style="text-align: right;">22/23</td>
+<td style="text-align: right;">15/17</td>
+<td style="text-align: right;">3/4</td>
+<td style="text-align: right;">2/4</td>
+<td style="text-align: right;">38.5 ms</td>
+</tr>
+<tr>
+<td>Original · FTS5 + E5</td>
+<td style="text-align: right;">21/23</td>
+<td style="text-align: right;">15/17</td>
+<td style="text-align: right;">3/4</td>
+<td style="text-align: right;">2/4</td>
+<td style="text-align: right;">69.2 ms</td>
+</tr>
+<tr>
+<td>Conversational · FTS5</td>
+<td style="text-align: right;">3/8</td>
+<td style="text-align: right;">2/7</td>
+<td style="text-align: right;">1/1</td>
+<td style="text-align: right;">1/1</td>
+<td style="text-align: right;">32.3 ms</td>
+</tr>
+<tr>
+<td>Conversational · FTS5 + E5</td>
+<td style="text-align: right;">5/8</td>
+<td style="text-align: right;">4/7</td>
+<td style="text-align: right;">1/1</td>
+<td style="text-align: right;">1/1</td>
+<td style="text-align: right;">49.0 ms</td>
+</tr>
+</tbody>
+</table>
+<p>The original set included 19 required source passages across 17
+answerable questions, because two questions needed two sources. For the
+four questions with insufficient evidence, we also recorded the
+parliamentary passage that establishes what was missing. Each question
+counts once in the headline answer score.</p>
+<h2 id="costs-and-interpretation">Costs and interpretation</h2>
+<p>The SQLite index took <strong>1.23 seconds</strong> to build and
+occupied <strong>40.2 MiB</strong>. E5 added <strong>87.6
+seconds</strong> of model loading and passage encoding, a <strong>73.1
+MiB</strong> vector file, and <strong>127.3 MiB</strong> of model
+weights. Both methods used the same Mac and SSD. These figures exclude
+environment installation and the shared corpus. Latencies in the table
+are elapsed search times on an already built index; the hybrid timing
+includes the lexical search. Query caching, device load and file caches
+can affect subsequent runs.</p>
+<p>The strict rubric occasionally penalises a sound answer. Both systems
+returned “0.5% of their budgets” with the correct Welsh community-care
+contribution. The accepted answer list contained “0.5%”, so both missed
+the fixed wording check. In the reservoir question, FTS5 supplied a
+different speaker who also mentioned nine reservoirs. That supported the
+number but did not establish what Dan Jarvis, the person named in the
+question, had said. The original scores are retained. <a href="https://hansard.parliament.uk/Commons/2026-11-18/debates/B0C441D5-2A02-4E0E-AE5C-EBA274D2C35B/CommunityHospitalsandStep-downCare#contribution-E8AC7768-C58B-4B6B-B25F-2DA21D2EE425">Welsh
+community-care contribution</a> · <a href="https://hansard.parliament.uk/Commons/2026-11-19/debates/A4E27291-DF2D-4ECB-83BE-D976AED0FD4A/ElNi%C3%B1oNationalResilience#contribution-75EC630A-1400-4BFE-9BB6-83ABFD786F0F">Dan
+Jarvis’s contribution</a></p>
+<p>The sample is small and source-led. The initial questions often reuse
+distinctive names, which makes them favourable to word search. The
+follow-up probes a different style and was motivated by that first
+result. A different speech can also provide valid evidence. These
+features limit how far the observed advantage transfers to actual
+callers. For a deployment decision, the next useful comparison would use
+independently authored user questions, check alternative valid sources
+and measure success within the same three-passage cap.</p>
+<h2 id="how-a-question-becomes-a-cited-answer">How a question becomes a
+cited answer</h2>
+<p>Imagine asking which profession was closest to having its
+qualifications recognised on both sides of the Channel. A search engine
+has to connect your wording to a particular speech. “Credentials
+accepted” and “mutual recognition of qualifications” can describe the
+same idea. Once the speeches arrive, the reader still has to identify
+the profession, check who made the remark and cite the correct
+contribution.</p>
+<ol type="1">
+<li><strong>Build the searchable collection.</strong> Hansard is
+Parliament’s official written record. A <em>contribution</em> is one
+text-bearing item, such as an MP’s question or a ministerial reply. This
+experiment checked a frozen copy of the November collection against its
+publication receipt and counted each date and House. Longer
+contributions were split into passages of up to 96 words, with 16 words
+repeated at the boundary. This lets either method surface words from the
+middle of a speech. Both searched the same passage text, debate titles,
+speaker labels, dates and Houses.</li>
+<li><strong>Find three pieces of evidence.</strong> Each system chose up
+to three passages from different contributions. Every passage kept its
+Hansard source link. The models saw the actual retrieved words. The
+reference answers and source identifiers chosen by the evaluator stayed
+separate.</li>
+<li><strong>Decide whether the question can be answered.</strong>
+OpenJev read the evidence and chose one of three labels.
+<em>Supported</em> means the supplied material establishes the answer.
+<em>Insufficient</em> means it leaves a necessary fact open.
+<em>Denied</em> is for a handling policy that forbids an answer. This
+public-record test has no expected denials.</li>
+<li><strong>Write and check the answer.</strong> Bonsai received the
+decision and the same passages. It returned short facts and IDs for the
+passages it cited. A separate scoring program checked the status,
+accepted answer wording and exact citations against the frozen key. A
+correct number attributed to the wrong speaker can therefore fail.</li>
+</ol>
+<h2 id="the-names-in-the-experiment">The names in the experiment</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>What it does here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SQLite FTS5</strong></td>
+<td>SQLite is a database that runs on the computer. FTS5 means
+<em>Full-Text Search 5</em>. It builds a word index so a question can be
+matched against thousands of passages. <a href="https://www.sqlite.org/fts5.html">SQLite documentation</a></td>
+</tr>
+<tr>
+<td><strong>BM25</strong></td>
+<td>The FTS5 rule used to order matches. It weighs the words in the
+question by how distinctive they are and takes passage length into
+account. We searched for any of the remaining terms after removing
+common question words and applied English word stemming. This is an
+experimental FTS5 baseline. The existing Hansard service has its own
+query policy. <a href="https://www.sqlite.org/fts5.html#the_bm25_function">SQLite ranking
+documentation</a></td>
+</tr>
+<tr>
+<td><strong>Microsoft E5-small-v2</strong></td>
+<td>A small English-language model from the Microsoft Research E5 work.
+It represents a question or passage as a list of 384 numbers, called an
+<em>embedding</em>. Similar numerical directions suggest related
+meaning. E5 ranked every passage using <em>cosine similarity</em>, a
+measure of that directional agreement. It did not write the answers. <a href="https://huggingface.co/intfloat/e5-small-v2">Model and usage
+instructions</a></td>
+</tr>
+<tr>
+<td><strong>Reciprocal rank fusion</strong></td>
+<td>The hybrid system combined the top 100 FTS5 passages and top 100 E5
+passages. Each list awarded a score of 1/(60 + position), so the
+first-ranked passage received 1/61. Scores for the same passage were
+added. A passage ranked highly by both methods tends to rise. <a href="https://cormack.uwaterloo.ca/cormacksigir09-rrf.pdf">Original
+research paper</a></td>
+</tr>
+<tr>
+<td><strong>OpenJev</strong></td>
+<td>The local 27-billion-parameter model that chose the answer status.
+It read only the question and retrieved evidence. “27B” describes its
+approximate number of learned parameters. <a href="https://huggingface.co/ggml-org/OpenJev-GGUF/tree/d2c376d11b6c466ab7bdc9fa458ace41cdf3e776">Decision
+model</a></td>
+</tr>
+<tr>
+<td><strong>Bonsai</strong></td>
+<td>Ternary Bonsai 2.5 27B wrote each cited answer. The experiment
+reused the same compressed model weights and local llama.cpp software as
+the earlier comparison. <em>Quantisation</em> stores model weights more
+compactly so they take less memory. <a href="https://huggingface.co/prism-ml/Ternary-Bonsai-2.5-27B-GGUF/tree/28a7093cc25bc151cc2b284c5570f12ce343fdcf">Writer
+model</a></td>
+</tr>
+<tr>
+<td><strong>Evidence budget and tokens</strong></td>
+<td>A budget limits what reaches the answering models. The previous
+experiment allowed three public and three private records, 5,600
+evidence bytes, 2,048 tokens of context per model and up to 200 tokens
+of generated answer. A <em>token</em> is a piece of text handled by a
+model. This experiment used public records only.</td>
+</tr>
+<tr>
+<td><strong>OKF 0.3 and OKF+</strong></td>
+<td>The Hansard bundle organises documents, source identities and
+relationships for reuse by different readers. Both methods drew from the
+same publication and used the same plain-text evidence rendering. This
+isolates the choice of search method. <a href="https://raw.githubusercontent.com/chris-page-gov/okf-hansard/41a340e06ec02b7d5d4d5802e893534697328d32/november/hansard.json">Pinned
+publication directory</a></td>
+</tr>
+<tr>
+<td><strong>Network isolation</strong></td>
+<td>macOS denied network access to the worker and its model processes.
+OpenJev used one permitted local Unix socket, a private communications
+path on the computer. Control requests checked that other connections
+were blocked. The public evidence, software and weights were acquired
+before sealed inference.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How to read the scores.</strong> A source counts as
+<em>found</em> when one of the three supplied passages has the reference
+contribution ID and contains the words that establish the relevant
+point. <em>Complete retrieval</em> means all the question’s reference
+sources arrived. <em>Strict answer</em> adds the expected status,
+accepted fact values and exactly the supporting citations. For questions
+about a missing fact, the reference is the passage that establishes the
+limit, such as a minister saying that a date will be announced later. An
+equivalent answer from a different contribution can miss this strict
+score. Actual links and model answers are retained so readers can
+inspect such cases.</p>
+<p><strong>What “local” means.</strong> SQLite ran on the Mac. E5 used
+Apple’s Metal GPU support through PyTorch. The two answering models were
+loaded from GGUF files, a model format the local llama.cpp runtime can
+read. Search latency measures the look-up with indexes already built.
+Model time to decide and write an answer is a separate cost. The
+experiment used a local computer, SSD storage and electricity, with zero
+paid model credits.</p>
+<h2 id="evidence-and-replay">Evidence and replay</h2>
+<p>The verified primary search and the follow-up both used the original
+network-denial policy. The classifier and writer ran inside their own
+supervised worker with the same policy. The authorised control request
+reached its loopback sink, and none of the sealed workers did. These
+checks apply to the local process trees in this experiment. The tests
+used zero paid credits.</p>
+<p>The trial records retain official links for all 174 supplied passage
+slots. Parliamentary material is attributed to UK Parliament. <a href="https://www.parliament.uk/site-information/copyright/open-parliament-licence/">Open
+Parliament Licence</a></p>
+<p><a href="casebook.html">All 29 questions, actual model answers and
+Hansard citations</a> · <a href="retrieved-passages.json">Exact passages
+shown for the original questions</a> · <a href="voice/retrieved-passages.json">Exact passages shown for the
+conversational questions</a> · <a href="replay.html">Reproduction
+instructions</a> · <a href="scores.json">Primary trial scores</a> · <a href="voice/scores.json">Conversational trial scores</a> · <a href="verification.json">Primary verification</a> · <a href="voice/verification.json">Conversational verification</a></p>
+</body>
+</html>

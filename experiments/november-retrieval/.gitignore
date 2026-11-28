@@ -1,0 +1,15 @@
+# Local model and full-capture replay artefacts
+upstream
+corpus.jsonl
+*.sqlite
+*.sqlite-*
+*.npy
+*.gguf
+*.safetensors
+/model/
+/venv/
+/uv-cache/
+/index-*/
+/answers-*/
+/voice-index/
+/voice-answers/

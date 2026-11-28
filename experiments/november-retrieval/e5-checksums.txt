@@ -1,0 +1,6 @@
+c5aba64a4d8f4c631ef0beddc89704232d2e649d  config.json
+45bfa60070649aae2244fbc9d508537779b93b6f353c17b0f95ceccb1c5116c1  model.safetensors
+a8b3208c2884c4efb86e49300fdd3dc877220cdf  special_tokens_map.json
+688882a79f44442ddc1f60d70334a7ff5df0fb47  tokenizer.json
+8046d4d4aff4529a10e0ad47043bdabd6304fb58  tokenizer_config.json
+fb140275c155a9c7c5a3b3e0e77a9e839594a938  vocab.txt

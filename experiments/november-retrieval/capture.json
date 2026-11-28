@@ -1,0 +1,199 @@
+{
+  "commit": "41a340e06ec02b7d5d4d5802e893534697328d32",
+  "snapshot": "hansard-collection-sha256-1c125e3c885ed0ea883a29b4ba150171359fa1f34453fc35558d971c3d518f40",
+  "through": "2026-11-27",
+  "verified_at": "2026-11-28T07:24:12+00:00",
+  "capture": {
+    "from": "2026-11-02",
+    "through": "2026-11-27",
+    "sitting_dates": [
+      "2026-11-02",
+      "2026-11-03",
+      "2026-11-04",
+      "2026-11-09",
+      "2026-11-10",
+      "2026-11-11",
+      "2026-11-12",
+      "2026-11-13",
+      "2026-11-16",
+      "2026-11-17",
+      "2026-11-18",
+      "2026-11-19",
+      "2026-11-20",
+      "2026-11-23",
+      "2026-11-24",
+      "2026-11-25",
+      "2026-11-26",
+      "2026-11-27"
+    ],
+    "contributions": 20900,
+    "houses": [
+      "Commons",
+      "Lords"
+    ]
+  },
+  "digest": "82546eea85bffc8cccf6e00b6c65e6dfc20591a4fb173a62a67612e11c6e4e5f",
+  "manifest_sha256": "a334e4874f31bc552c0d0fd71afe9b33546bc54c81c4258b1205b86adf9d109b",
+  "counts": [
+    {
+      "day": "2026-11-02",
+      "house": "Commons",
+      "contributions": 617
+    },
+    {
+      "day": "2026-11-02",
+      "house": "Lords",
+      "contributions": 352
+    },
+    {
+      "day": "2026-11-03",
+      "house": "Commons",
+      "contributions": 3400
+    },
+    {
+      "day": "2026-11-03",
+      "house": "Lords",
+      "contributions": 360
+    },
+    {
+      "day": "2026-11-04",
+      "house": "Commons",
+      "contributions": 490
+    },
+    {
+      "day": "2026-11-04",
+      "house": "Lords",
+      "contributions": 382
+    },
+    {
+      "day": "2026-11-09",
+      "house": "Lords",
+      "contributions": 334
+    },
+    {
+      "day": "2026-11-10",
+      "house": "Commons",
+      "contributions": 698
+    },
+    {
+      "day": "2026-11-10",
+      "house": "Lords",
+      "contributions": 378
+    },
+    {
+      "day": "2026-11-11",
+      "house": "Commons",
+      "contributions": 766
+    },
+    {
+      "day": "2026-11-11",
+      "house": "Lords",
+      "contributions": 417
+    },
+    {
+      "day": "2026-11-12",
+      "house": "Commons",
+      "contributions": 1172
+    },
+    {
+      "day": "2026-11-12",
+      "house": "Lords",
+      "contributions": 173
+    },
+    {
+      "day": "2026-11-13",
+      "house": "Commons",
+      "contributions": 265
+    },
+    {
+      "day": "2026-11-16",
+      "house": "Commons",
+      "contributions": 791
+    },
+    {
+      "day": "2026-11-16",
+      "house": "Lords",
+      "contributions": 459
+    },
+    {
+      "day": "2026-11-17",
+      "house": "Commons",
+      "contributions": 1497
+    },
+    {
+      "day": "2026-11-17",
+      "house": "Lords",
+      "contributions": 448
+    },
+    {
+      "day": "2026-11-18",
+      "house": "Commons",
+      "contributions": 685
+    },
+    {
+      "day": "2026-11-18",
+      "house": "Lords",
+      "contributions": 446
+    },
+    {
+      "day": "2026-11-19",
+      "house": "Commons",
+      "contributions": 673
+    },
+    {
+      "day": "2026-11-19",
+      "house": "Lords",
+      "contributions": 196
+    },
+    {
+      "day": "2026-11-20",
+      "house": "Lords",
+      "contributions": 74
+    },
+    {
+      "day": "2026-11-23",
+      "house": "Commons",
+      "contributions": 846
+    },
+    {
+      "day": "2026-11-23",
+      "house": "Lords",
+      "contributions": 454
+    },
+    {
+      "day": "2026-11-24",
+      "house": "Commons",
+      "contributions": 1561
+    },
+    {
+      "day": "2026-11-24",
+      "house": "Lords",
+      "contributions": 430
+    },
+    {
+      "day": "2026-11-25",
+      "house": "Commons",
+      "contributions": 688
+    },
+    {
+      "day": "2026-11-25",
+      "house": "Lords",
+      "contributions": 663
+    },
+    {
+      "day": "2026-11-26",
+      "house": "Commons",
+      "contributions": 782
+    },
+    {
+      "day": "2026-11-26",
+      "house": "Lords",
+      "contributions": 209
+    },
+    {
+      "day": "2026-11-27",
+      "house": "Commons",
+      "contributions": 194
+    }
+  ]
+}

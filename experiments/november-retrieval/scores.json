@@ -1,0 +1,2096 @@
+[
+  {
+    "id": "holiday-clubs",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2864,
+    "retrieval_ms": 42.826666991459206,
+    "writer": {
+      "milliseconds": 12065,
+      "prompt_tokens": 1002,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3930
+    },
+    "answer": {
+      "facts": {
+        "answer": "153"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 972,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/FFA5F78A-6D16-4AA8-80F3-564410BEC19E/SportingandPerformingArtsOpportunitiesforPupilsinStateSchools#contribution-683527C2-D76F-4B1A-8F96-07E97D31F531",
+        "pid": 34021,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-13/debates/26111351000005/YouthOpportunitiesandDormantAssetsFunding#contribution-1C60FF03-A6A7-4170-911B-D83E65B7EB8B",
+        "pid": 15298,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/FFA5F78A-6D16-4AA8-80F3-564410BEC19E/SportingandPerformingArtsOpportunitiesforPupilsinStateSchools#contribution-783A77C0-6C68-43E8-86DC-66193E1F1DAA",
+        "pid": 34023,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "holiday-clubs",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2571,
+    "retrieval_ms": 98.22900098515674,
+    "writer": {
+      "milliseconds": 10040,
+      "prompt_tokens": 980,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3637
+    },
+    "answer": {
+      "facts": {
+        "answer": "153"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 950,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/FFA5F78A-6D16-4AA8-80F3-564410BEC19E/SportingandPerformingArtsOpportunitiesforPupilsinStateSchools#contribution-683527C2-D76F-4B1A-8F96-07E97D31F531",
+        "pid": 34021,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/FFA5F78A-6D16-4AA8-80F3-564410BEC19E/SportingandPerformingArtsOpportunitiesforPupilsinStateSchools#contribution-783A77C0-6C68-43E8-86DC-66193E1F1DAA",
+        "pid": 34023,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-02/debates/FFA5F78A-6D16-4AA8-80F3-564410BEC19E/SportingandPerformingArtsOpportunitiesforPupilsinStateSchools#contribution-407E25F8-83D8-4B5E-85CF-D5D376630338",
+        "pid": 34015,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "shared-housing",
+    "kind": "literal",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2550,
+    "retrieval_ms": 56.69487500563264,
+    "writer": {
+      "milliseconds": 9616,
+      "prompt_tokens": 905,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3602
+    },
+    "answer": {
+      "facts": {
+        "answer": "17 August"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 875,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/180376E2-ED2D-46AD-B86B-AAE2EEF5F4AE/HousesinMultipleOccupation#contribution-52F5A7E2-9491-460E-8CB5-FDDF327B87CF",
+        "pid": 265,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/180376E2-ED2D-46AD-B86B-AAE2EEF5F4AE/HousesinMultipleOccupation#contribution-948EF524-6E79-43C3-BDC8-DD6AB069DA3E",
+        "pid": 270,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-13/debates/F01EA2A9-5310-4C68-AD2F-665F2ED0E5CC/HomesandPlanningBill#contribution-A55A80DC-3C43-4681-85EB-AC633CD2D8FD",
+        "pid": 15146,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "shared-housing",
+    "kind": "literal",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2420,
+    "retrieval_ms": 20.900000003166497,
+    "writer": {
+      "milliseconds": 9433,
+      "prompt_tokens": 909,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3472
+    },
+    "answer": {
+      "facts": {
+        "answer": "17 August"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 879,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/180376E2-ED2D-46AD-B86B-AAE2EEF5F4AE/HousesinMultipleOccupation#contribution-52F5A7E2-9491-460E-8CB5-FDDF327B87CF",
+        "pid": 265,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/180376E2-ED2D-46AD-B86B-AAE2EEF5F4AE/HousesinMultipleOccupation#contribution-948EF524-6E79-43C3-BDC8-DD6AB069DA3E",
+        "pid": 270,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-13/debates/F01EA2A9-5310-4C68-AD2F-665F2ED0E5CC/HomesandPlanningBill#contribution-41A7FE15-FF15-47B6-A529-C208B14F7E9C",
+        "pid": 14981,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "housing-chargers",
+    "kind": "literal",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2619,
+    "retrieval_ms": 65.44037497951649,
+    "writer": {
+      "milliseconds": 10271,
+      "prompt_tokens": 973,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 3714
+    },
+    "answer": {
+      "facts": {
+        "answer": "six"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 943,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/277fcd0d-142d-4465-96ae-777e92a823f7/SocialHousingBill(Fifthsitting)#contribution-BBD2E61B-9ABD-4EE7-A052-15DE073AEDE7",
+        "pid": 4020,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/277fcd0d-142d-4465-96ae-777e92a823f7/SocialHousingBill(Fifthsitting)#contribution-BEE9AE40-65E5-4457-883D-27B267C7F78B",
+        "pid": 4033,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/277fcd0d-142d-4465-96ae-777e92a823f7/SocialHousingBill(Fifthsitting)#contribution-816F6C05-6FD6-4492-B889-BEC469E737F9",
+        "pid": 3863,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "housing-chargers",
+    "kind": "literal",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2619,
+    "retrieval_ms": 106.33895796490833,
+    "writer": {
+      "milliseconds": 10060,
+      "prompt_tokens": 973,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 3714
+    },
+    "answer": {
+      "facts": {
+        "answer": "six"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 943,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/277fcd0d-142d-4465-96ae-777e92a823f7/SocialHousingBill(Fifthsitting)#contribution-BBD2E61B-9ABD-4EE7-A052-15DE073AEDE7",
+        "pid": 4020,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/277fcd0d-142d-4465-96ae-777e92a823f7/SocialHousingBill(Fifthsitting)#contribution-BEE9AE40-65E5-4457-883D-27B267C7F78B",
+        "pid": 4033,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/277fcd0d-142d-4465-96ae-777e92a823f7/SocialHousingBill(Fifthsitting)#contribution-816F6C05-6FD6-4492-B889-BEC469E737F9",
+        "pid": 3863,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "defence-wales",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2493,
+    "retrieval_ms": 62.316291994648054,
+    "writer": {
+      "milliseconds": 10661,
+      "prompt_tokens": 943,
+      "generated_tokens_reported": 41,
+      "prompt_bytes": 3540
+    },
+    "answer": {
+      "facts": {
+        "answer": "20,000"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 913,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/098C3916-B368-448E-933B-1B42A66FF127/ImpactofDefenceSpending#contribution-59FA4CBE-F5C6-4F17-89A1-4E8C1ECD93F5",
+        "pid": 6956,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/098C3916-B368-448E-933B-1B42A66FF127/ImpactofDefenceSpending#contribution-6B7D999D-5C5B-4A40-A28A-A14C321038B7",
+        "pid": 6957,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/D333D2C1-8516-43B8-B120-B26603DF2017/RoleinUKsDefence#contribution-6B8AF386-BD1C-4F82-A61A-EC9A26484B6D",
+        "pid": 7406,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "defence-wales",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2535,
+    "retrieval_ms": 29.687250003917143,
+    "writer": {
+      "milliseconds": 10446,
+      "prompt_tokens": 950,
+      "generated_tokens_reported": 41,
+      "prompt_bytes": 3582
+    },
+    "answer": {
+      "facts": {
+        "answer": "20,000"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 920,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/098C3916-B368-448E-933B-1B42A66FF127/ImpactofDefenceSpending#contribution-59FA4CBE-F5C6-4F17-89A1-4E8C1ECD93F5",
+        "pid": 6956,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/098C3916-B368-448E-933B-1B42A66FF127/ImpactofDefenceSpending#contribution-6B7D999D-5C5B-4A40-A28A-A14C321038B7",
+        "pid": 6957,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/6BA90508-6E3E-49E8-9FC0-EAFDD956FCD1/LobbyingTransparencyandPublicConfidence#contribution-871BB57E-E96C-4AF6-9CB1-A0AB1A96DA23",
+        "pid": 30031,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "water-shortfall",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2615,
+    "retrieval_ms": 40.270541998324916,
+    "writer": {
+      "milliseconds": 10878,
+      "prompt_tokens": 974,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3655
+    },
+    "answer": {
+      "facts": {
+        "answer": "17%"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 944,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-FB2A693F-C294-4F62-8B9F-963E1259D3F5",
+        "pid": 36287,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-11/debates/E76C5436-8351-4452-8D95-7C923D33AB28/SurvivingDrought(EnvironmentandClimateChangeCommitteeReport)#contribution-B83A8C98-C559-4735-AD3D-841827331EB4",
+        "pid": 39442,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-1665D38C-264A-45B3-BF6E-31012691C84A",
+        "pid": 36259,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "water-shortfall",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2615,
+    "retrieval_ms": 53.17958400701173,
+    "writer": {
+      "milliseconds": 10796,
+      "prompt_tokens": 974,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3655
+    },
+    "answer": {
+      "facts": {
+        "answer": "17%"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 944,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-FB2A693F-C294-4F62-8B9F-963E1259D3F5",
+        "pid": 36287,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-1665D38C-264A-45B3-BF6E-31012691C84A",
+        "pid": 36259,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-11/debates/E76C5436-8351-4452-8D95-7C923D33AB28/SurvivingDrought(EnvironmentandClimateChangeCommitteeReport)#contribution-B83A8C98-C559-4735-AD3D-841827331EB4",
+        "pid": 39442,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "battery-factory",
+    "kind": "literal",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2299,
+    "retrieval_ms": 34.334708034293726,
+    "writer": {
+      "milliseconds": 10223,
+      "prompt_tokens": 925,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3306
+    },
+    "answer": {
+      "facts": {
+        "answer": "£4 billion"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 895,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E338B133-9697-45C3-8594-932459300418",
+        "pid": 37065,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E3DBFFAE-91E4-45C2-BF53-AD90C8D122E8",
+        "pid": 37066,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-0FB4AD84-1D24-4E61-ACF1-FD1FE9AE0F54",
+        "pid": 37049,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "battery-factory",
+    "kind": "literal",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2394,
+    "retrieval_ms": 20.73320801719092,
+    "writer": {
+      "milliseconds": 10414,
+      "prompt_tokens": 949,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3401
+    },
+    "answer": {
+      "facts": {
+        "answer": "£4 billion"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 919,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E338B133-9697-45C3-8594-932459300418",
+        "pid": 37065,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-24/debates/963ABEEC-2E39-4E6A-845D-9EF967A445FD/COP31#contribution-9E76A20F-6867-4A26-95B5-470BC8F5D466",
+        "pid": 25951,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E3DBFFAE-91E4-45C2-BF53-AD90C8D122E8",
+        "pid": 37066,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "summer-heat",
+    "kind": "literal",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 1779,
+    "retrieval_ms": 11.248042021179572,
+    "writer": {
+      "milliseconds": 9038,
+      "prompt_tokens": 810,
+      "generated_tokens_reported": 40,
+      "prompt_bytes": 2802
+    },
+    "answer": {
+      "facts": {
+        "answer": "2,124"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 780,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-11/debates/C10BA528-A884-49F1-B9BB-967C88601774/RosebankOilfieldGovernmentPolicy#contribution-D7EFF46B-0F68-4EA8-B5F2-A577EF9454E0",
+        "pid": 11854,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-11/debates/C10BA528-A884-49F1-B9BB-967C88601774/RosebankOilfieldGovernmentPolicy#contribution-5BB72D99-F392-4256-A99A-CC88EE4BAAB5",
+        "pid": 11736,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-11/debates/C10BA528-A884-49F1-B9BB-967C88601774/RosebankOilfieldGovernmentPolicy#contribution-B2BA8A34-437F-4A74-B642-487A39CD8A3D",
+        "pid": 11835,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "summer-heat",
+    "kind": "literal",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2335,
+    "retrieval_ms": 23.44070904655382,
+    "writer": {
+      "milliseconds": 9638,
+      "prompt_tokens": 947,
+      "generated_tokens_reported": 40,
+      "prompt_bytes": 3358
+    },
+    "answer": {
+      "facts": {
+        "answer": "2,124"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 917,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-11/debates/C10BA528-A884-49F1-B9BB-967C88601774/RosebankOilfieldGovernmentPolicy#contribution-D7EFF46B-0F68-4EA8-B5F2-A577EF9454E0",
+        "pid": 11854,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-11/debates/C10BA528-A884-49F1-B9BB-967C88601774/RosebankOilfieldGovernmentPolicy#contribution-5BB72D99-F392-4256-A99A-CC88EE4BAAB5",
+        "pid": 11736,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/47C0AD97-997B-46C5-AE63-98BA98009669/UK-wideBriefingonClimateandNatureRisks#contribution-868F2086-94F8-403C-A764-5D8964A93260",
+        "pid": 16796,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "steel-operating-cost",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2005,
+    "retrieval_ms": 74.85683399136178,
+    "writer": {
+      "milliseconds": 8862,
+      "prompt_tokens": 841,
+      "generated_tokens_reported": 40,
+      "prompt_bytes": 3053
+    },
+    "answer": {
+      "facts": {
+        "answer": "£1.3 million"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 811,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/A6A08ED8-5834-4386-9A80-CE0BB165E280/BritishSteelNationalisation#contribution-4E6C50B6-5C59-4E3E-9B96-A6506518B7D9",
+        "pid": 39627,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/A6A08ED8-5834-4386-9A80-CE0BB165E280/BritishSteelNationalisation#contribution-7D59B536-1F31-49AD-B245-C7A69FA9ED5A",
+        "pid": 39633,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/A6A08ED8-5834-4386-9A80-CE0BB165E280/BritishSteelNationalisation#contribution-4A715B19-CAD0-44D6-9D0F-2C32B435A12E",
+        "pid": 39625,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "steel-operating-cost",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 1945,
+    "retrieval_ms": 38.5227499937173,
+    "writer": {
+      "milliseconds": 8866,
+      "prompt_tokens": 835,
+      "generated_tokens_reported": 40,
+      "prompt_bytes": 2993
+    },
+    "answer": {
+      "facts": {
+        "answer": "£1.3 million"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 805,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/A6A08ED8-5834-4386-9A80-CE0BB165E280/BritishSteelNationalisation#contribution-4E6C50B6-5C59-4E3E-9B96-A6506518B7D9",
+        "pid": 39627,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/A6A08ED8-5834-4386-9A80-CE0BB165E280/BritishSteelNationalisation#contribution-7D59B536-1F31-49AD-B245-C7A69FA9ED5A",
+        "pid": 39633,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/A6A08ED8-5834-4386-9A80-CE0BB165E280/BritishSteelNationalisation#contribution-48EB5E81-103F-458B-8F1F-A1BEF145459F",
+        "pid": 39624,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "island-heating",
+    "kind": "literal",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 1935,
+    "retrieval_ms": 29.49079201789573,
+    "writer": {
+      "milliseconds": 9217,
+      "prompt_tokens": 899,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 2982
+    },
+    "answer": {
+      "facts": {
+        "answer": "324"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 869,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/DA5A3992-D51B-4B64-A539-9E1824794080/Oil-firedHeating#contribution-FC140819-4F60-4813-99C3-78F23DDB6347",
+        "pid": 18572,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/BE4A6660-AD64-45FB-BC09-880616CA9F26/HeatingOilPricesRuralAreas#contribution-90C54F1E-815B-40C0-B36D-CD930D1E601E",
+        "pid": 7827,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/BE4A6660-AD64-45FB-BC09-880616CA9F26/HeatingOilPricesRuralAreas#contribution-D445DF5E-F486-43C2-BCF2-B1B13BB172AA",
+        "pid": 7879,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "island-heating",
+    "kind": "literal",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2347,
+    "retrieval_ms": 69.20175004051998,
+    "writer": {
+      "milliseconds": 9777,
+      "prompt_tokens": 993,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3394
+    },
+    "answer": {
+      "facts": {
+        "answer": "324"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 963,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-17/debates/DA5A3992-D51B-4B64-A539-9E1824794080/Oil-firedHeating#contribution-FC140819-4F60-4813-99C3-78F23DDB6347",
+        "pid": 18572,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/BE4A6660-AD64-45FB-BC09-880616CA9F26/HeatingOilPricesRuralAreas#contribution-90C54F1E-815B-40C0-B36D-CD930D1E601E",
+        "pid": 7829,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/BE4A6660-AD64-45FB-BC09-880616CA9F26/HeatingOilPricesRuralAreas#contribution-95BA2175-1D85-46A0-9CAD-4C58B90CC1AC",
+        "pid": 7831,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "Welsh-community-care",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": false,
+    "citations_ok": true,
+    "strict": false,
+    "evidence_bytes": 2073,
+    "retrieval_ms": 46.86241698800586,
+    "writer": {
+      "milliseconds": 9159,
+      "prompt_tokens": 886,
+      "generated_tokens_reported": 42,
+      "prompt_bytes": 3129
+    },
+    "answer": {
+      "facts": {
+        "answer": "0.5% of their budgets"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 856,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/B0C441D5-2A02-4E0E-AE5C-EBA274D2C35B/CommunityHospitalsandStep-downCare#contribution-E8AC7768-C58B-4B6B-B25F-2DA21D2EE425",
+        "pid": 21870,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/B0C441D5-2A02-4E0E-AE5C-EBA274D2C35B/CommunityHospitalsandStep-downCare#contribution-08F51579-DDA3-4E6C-9C91-CF76F97FD516",
+        "pid": 21748,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/DEAEF138-3C36-4401-8113-BE62A760A307/PrisonsRehabilitativeProgrammes#contribution-9C175E52-2ABA-45A1-B0CC-A71A96E5B446",
+        "pid": 9194,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "Welsh-community-care",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": false,
+    "citations_ok": true,
+    "strict": false,
+    "evidence_bytes": 1576,
+    "retrieval_ms": 29.562292009359226,
+    "writer": {
+      "milliseconds": 8407,
+      "prompt_tokens": 774,
+      "generated_tokens_reported": 42,
+      "prompt_bytes": 2632
+    },
+    "answer": {
+      "facts": {
+        "answer": "0.5% of their budgets"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 744,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-18/debates/B0C441D5-2A02-4E0E-AE5C-EBA274D2C35B/CommunityHospitalsandStep-downCare#contribution-E8AC7768-C58B-4B6B-B25F-2DA21D2EE425",
+        "pid": 21870,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-04/debates/F7A2DA42-093A-4C6E-B46B-9FD7E91DDCB8/Budget2026#contribution-9D215317-9F71-490C-B696-2AF34F55899C",
+        "pid": 7466,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/DEAEF138-3C36-4401-8113-BE62A760A307/PrisonsRehabilitativeProgrammes#contribution-9C175E52-2ABA-45A1-B0CC-A71A96E5B446",
+        "pid": 9194,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "charity-research",
+    "kind": "literal",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2406,
+    "retrieval_ms": 49.69541699392721,
+    "writer": {
+      "milliseconds": 9671,
+      "prompt_tokens": 976,
+      "generated_tokens_reported": 41,
+      "prompt_bytes": 3465
+    },
+    "answer": {
+      "facts": {
+        "answer": "80,000"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 946,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/3710587D-93BA-4E02-B7B3-822B7E5C9AE3/AccesstoClinicalTrials#contribution-9D27A3D8-2A30-4646-8009-10F0289C19B7",
+        "pid": 43640,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/B9F22EA9-6BCA-4535-9A6A-311B66D15349/HealthBill#contribution-E520E4DE-F770-442A-9502-25E6633F29C0",
+        "pid": 36953,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/5E92FBE3-82F0-41AD-B565-56FDA0D130AD/HealthPancreaticCancer#contribution-7E74D2EC-D437-47B8-B456-0909E72CDDC4",
+        "pid": 49733,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "charity-research",
+    "kind": "literal",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2310,
+    "retrieval_ms": 88.44724998925813,
+    "writer": {
+      "milliseconds": 9643,
+      "prompt_tokens": 955,
+      "generated_tokens_reported": 41,
+      "prompt_bytes": 3369
+    },
+    "answer": {
+      "facts": {
+        "answer": "80,000"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 925,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/3710587D-93BA-4E02-B7B3-822B7E5C9AE3/AccesstoClinicalTrials#contribution-9D27A3D8-2A30-4646-8009-10F0289C19B7",
+        "pid": 43640,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/B9F22EA9-6BCA-4535-9A6A-311B66D15349/HealthBill#contribution-E520E4DE-F770-442A-9502-25E6633F29C0",
+        "pid": 36953,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/B9F22EA9-6BCA-4535-9A6A-311B66D15349/HealthBill#contribution-A18ABF1C-773A-4814-9E7A-53F72FD2E05D",
+        "pid": 36802,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "paris-building",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2249,
+    "retrieval_ms": 38.75554198748432,
+    "writer": {
+      "milliseconds": 9288,
+      "prompt_tokens": 949,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 3282
+    },
+    "answer": {
+      "facts": {
+        "answer": "5%"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 919,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-3F272954-66A5-4079-B7B8-FDF12D8C158C",
+        "pid": 29052,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-AE5DFB23-BD1E-4D52-8C25-C4EE0125E986",
+        "pid": 29236,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-5D02622D-725B-427C-892F-A0E4B64E7544",
+        "pid": 29117,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "paris-building",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2181,
+    "retrieval_ms": 20.996791979996487,
+    "writer": {
+      "milliseconds": 9129,
+      "prompt_tokens": 921,
+      "generated_tokens_reported": 36,
+      "prompt_bytes": 3214
+    },
+    "answer": {
+      "facts": {
+        "answer": "5%"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 891,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-3F272954-66A5-4079-B7B8-FDF12D8C158C",
+        "pid": 29052,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-54C6E9B2-5851-4E6D-B118-2BC57EE23A99",
+        "pid": 29095,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-AE5DFB23-BD1E-4D52-8C25-C4EE0125E986",
+        "pid": 29236,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "technical-college",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2140,
+    "retrieval_ms": 38.294625002890825,
+    "writer": {
+      "milliseconds": 9019,
+      "prompt_tokens": 874,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3191
+    },
+    "answer": {
+      "facts": {
+        "answer": "Shipley College"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 844,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-25/debates/50656398-EF47-49D1-9A5E-BA50F4F52D9A/TechnicalEducationSecondarySchools#contribution-FEB37491-D55C-4C8E-ACC5-47C1944541DB",
+        "pid": 47899,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/98613592-F423-48FD-B9EB-DC5634565143/TechnicalandVocationalEducationPathways#contribution-3F2DB8C7-673C-4705-9B28-C917F72C8691",
+        "pid": 16118,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-23/debates/D15F8B4E-7B02-42A6-8435-7D78EF43F25B/LevelsofWelfareSpending#contribution-C0A507C6-C4D0-4EC8-9789-46F33356C2FF",
+        "pid": 24873,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "technical-college",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2247,
+    "retrieval_ms": 82.22366700647399,
+    "writer": {
+      "milliseconds": 8875,
+      "prompt_tokens": 882,
+      "generated_tokens_reported": 38,
+      "prompt_bytes": 3298
+    },
+    "answer": {
+      "facts": {
+        "answer": "Shipley College"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 852,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-25/debates/50656398-EF47-49D1-9A5E-BA50F4F52D9A/TechnicalEducationSecondarySchools#contribution-FEB37491-D55C-4C8E-ACC5-47C1944541DB",
+        "pid": 47899,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-23/debates/DA88F22E-0A9B-4AC8-9D3B-49BA5BEA2B6A/SupportintoEmploymentYoungPeople#contribution-04181790-A696-4CCE-BC2F-5C578E9AC005",
+        "pid": 24876,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/98613592-F423-48FD-B9EB-DC5634565143/TechnicalandVocationalEducationPathways#contribution-3F2DB8C7-673C-4705-9B28-C917F72C8691",
+        "pid": 16118,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "business-share",
+    "kind": "paraphrase",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2303,
+    "retrieval_ms": 62.57762399036437,
+    "writer": {
+      "milliseconds": 8788,
+      "prompt_tokens": 865,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3327
+    },
+    "answer": {
+      "facts": {
+        "answer": "99%"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 835,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/3410C13D-B0EA-4694-AFCA-CDA91B4330C1/SmallandMedium-sizedEnterprises#contribution-054527B6-8E9C-477D-8960-AB471FAEEC63",
+        "pid": 30767,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/2C179153-E038-44F3-9B46-DE2C515D2C51/SmallBusinessesBexleyheathandCrayford#contribution-15DA8595-0E4D-453D-ABD1-172268CA7E3A",
+        "pid": 1543,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/3410C13D-B0EA-4694-AFCA-CDA91B4330C1/SmallandMedium-sizedEnterprises#contribution-BE7AD29B-2396-4F6F-9349-C1A2074AAB6C",
+        "pid": 30785,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "business-share",
+    "kind": "paraphrase",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2303,
+    "retrieval_ms": 22.38666597986594,
+    "writer": {
+      "milliseconds": 8978,
+      "prompt_tokens": 865,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3327
+    },
+    "answer": {
+      "facts": {
+        "answer": "99%"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 835,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/3410C13D-B0EA-4694-AFCA-CDA91B4330C1/SmallandMedium-sizedEnterprises#contribution-054527B6-8E9C-477D-8960-AB471FAEEC63",
+        "pid": 30767,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/3410C13D-B0EA-4694-AFCA-CDA91B4330C1/SmallandMedium-sizedEnterprises#contribution-BE7AD29B-2396-4F6F-9349-C1A2074AAB6C",
+        "pid": 30785,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-03/debates/2C179153-E038-44F3-9B46-DE2C515D2C51/SmallBusinessesBexleyheathandCrayford#contribution-15DA8595-0E4D-453D-ABD1-172268CA7E3A",
+        "pid": 1543,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "health-record-notice",
+    "kind": "literal",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 1966,
+    "retrieval_ms": 59.661292005330324,
+    "writer": {
+      "milliseconds": 8951,
+      "prompt_tokens": 842,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3049
+    },
+    "answer": {
+      "facts": {
+        "answer": "72"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 812,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/C7049943-4A40-4AC5-B1A5-B8F1A13BE118/AIsystemsNHSData#contribution-52373B70-61FD-470A-B330-96D854319B14",
+        "pid": 49870,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/C7049943-4A40-4AC5-B1A5-B8F1A13BE118/AIsystemsNHSData#contribution-C4B7DF4F-2736-43E3-82DA-6426F937329D",
+        "pid": 49881,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/C7049943-4A40-4AC5-B1A5-B8F1A13BE118/AIsystemsNHSData#contribution-3B47ADBC-B4FF-4551-B424-2FF44E5356E5",
+        "pid": 49868,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "health-record-notice",
+    "kind": "literal",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2317,
+    "retrieval_ms": 77.59479200467467,
+    "writer": {
+      "milliseconds": 9282,
+      "prompt_tokens": 925,
+      "generated_tokens_reported": 37,
+      "prompt_bytes": 3400
+    },
+    "answer": {
+      "facts": {
+        "answer": "72"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 895,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/C7049943-4A40-4AC5-B1A5-B8F1A13BE118/AIsystemsNHSData#contribution-52373B70-61FD-470A-B330-96D854319B14",
+        "pid": 49870,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/C7049943-4A40-4AC5-B1A5-B8F1A13BE118/AIsystemsNHSData#contribution-C4B7DF4F-2736-43E3-82DA-6426F937329D",
+        "pid": 49881,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/C7049943-4A40-4AC5-B1A5-B8F1A13BE118/AIsystemsNHSData#contribution-5A06F77D-6043-4007-8E47-0585E15DB4D9",
+        "pid": 49872,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "arts-and-sport",
+    "kind": "two-source",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 2,
+    "found": 2,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 1875,
+    "retrieval_ms": 88.06529099820182,
+    "writer": {
+      "milliseconds": 9891,
+      "prompt_tokens": 846,
+      "generated_tokens_reported": 57,
+      "prompt_bytes": 2959
+    },
+    "answer": {
+      "facts": {
+        "choir": "Parliament Choir",
+        "park": "Parc Bryn Bach"
+      },
+      "citations": [
+        "R2",
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 816,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/8460D58B-023C-490F-90FB-37704A7936A4/GrassrootsSportsFacilitiesforGirls#contribution-AF2E78C2-9DD0-4A37-BE04-36D9769B726D",
+        "pid": 12653,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/3780C38B-586A-431D-BDE6-3DEFE74D9274/RepresentationofthePeopleBill#contribution-7378165B-E91B-4F74-9EA5-A0DE950CE23C",
+        "pid": 35506,
+        "reference": true
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-25/debates/60BB272E-12A5-42F6-A4D9-677B3D516EB9/RestorationandRenewalofthePalaceofWestminster#contribution-7E4251CB-DAF6-41AE-B33B-EF0C837AF441",
+        "pid": 29189,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "arts-and-sport",
+    "kind": "two-source",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 2,
+    "found": 2,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2286,
+    "retrieval_ms": 39.36424999847077,
+    "writer": {
+      "milliseconds": 10314,
+      "prompt_tokens": 925,
+      "generated_tokens_reported": 57,
+      "prompt_bytes": 3370
+    },
+    "answer": {
+      "facts": {
+        "choir": "Parliament Choir",
+        "park": "Parc Bryn Bach"
+      },
+      "citations": [
+        "R2",
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 895,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/8460D58B-023C-490F-90FB-37704A7936A4/GrassrootsSportsFacilitiesforGirls#contribution-AF2E78C2-9DD0-4A37-BE04-36D9769B726D",
+        "pid": 12653,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/3780C38B-586A-431D-BDE6-3DEFE74D9274/RepresentationofthePeopleBill#contribution-7378165B-E91B-4F74-9EA5-A0DE950CE23C",
+        "pid": 35506,
+        "reference": true
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-12/debates/E58E6EB3-F2D4-4E7C-A8C8-029FE03D8F18/BusinessoftheHouse#contribution-13DD2D35-07C8-446C-8BBC-AB054D6B0050",
+        "pid": 12873,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "reservoir-pair",
+    "kind": "two-source",
+    "method": "FTS5",
+    "status": "supported",
+    "decision": "supported",
+    "required": 2,
+    "found": 1,
+    "all_found": false,
+    "facts_ok": true,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2450,
+    "retrieval_ms": 55.675749987130985,
+    "writer": {
+      "milliseconds": 10768,
+      "prompt_tokens": 959,
+      "generated_tokens_reported": 54,
+      "prompt_bytes": 3561
+    },
+    "answer": {
+      "facts": {
+        "shortfall": "17%",
+        "reservoirs": "nine"
+      },
+      "citations": [
+        "R1",
+        "R3"
+      ]
+    },
+    "decision_input_tokens": 929,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-FB2A693F-C294-4F62-8B9F-963E1259D3F5",
+        "pid": 36287,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-11/debates/E76C5436-8351-4452-8D95-7C923D33AB28/SurvivingDrought(EnvironmentandClimateChangeCommitteeReport)#contribution-B83A8C98-C559-4735-AD3D-841827331EB4",
+        "pid": 39442,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/D0416C4D-44C4-4D88-A816-D3996FB843E1/ClimateChangeResilience#contribution-A1456B99-8181-44BA-B8C3-7F00E8547C19",
+        "pid": 37376,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "reservoir-pair",
+    "kind": "two-source",
+    "method": "FTS5 + E5",
+    "status": "supported",
+    "decision": "insufficient",
+    "required": 2,
+    "found": 1,
+    "all_found": false,
+    "facts_ok": false,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2554,
+    "retrieval_ms": 96.78820797125809,
+    "writer": {
+      "milliseconds": 10155,
+      "prompt_tokens": 985,
+      "generated_tokens_reported": 31,
+      "prompt_bytes": 3668
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1",
+        "R2"
+      ]
+    },
+    "decision_input_tokens": 955,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-FB2A693F-C294-4F62-8B9F-963E1259D3F5",
+        "pid": 36287,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-11/debates/E76C5436-8351-4452-8D95-7C923D33AB28/SurvivingDrought(EnvironmentandClimateChangeCommitteeReport)#contribution-B83A8C98-C559-4735-AD3D-841827331EB4",
+        "pid": 39446,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/57E23442-67DE-4EEC-B3F2-00776667BD8E/ReservoirsandWaterSupplies#contribution-1665D38C-264A-45B3-BF6E-31012691C84A",
+        "pid": 36259,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "statistics-date",
+    "kind": "unannounced",
+    "method": "FTS5 + E5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2724,
+    "retrieval_ms": 114.93474899907596,
+    "writer": {
+      "milliseconds": 9636,
+      "prompt_tokens": 1034,
+      "generated_tokens_reported": 25,
+      "prompt_bytes": 3797
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 1004,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-20/debates/531F6DC9-0328-4E06-83BE-56716D1F5C46/ComplicationsfromAbortions(AnnualReport)BillHL#contribution-6894B5F3-4870-4672-8A70-0B4B128311A5",
+        "pid": 44822,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-20/debates/531F6DC9-0328-4E06-83BE-56716D1F5C46/ComplicationsfromAbortions(AnnualReport)BillHL#contribution-F04514CE-9584-485B-84F0-EF12BA270768",
+        "pid": 44898,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-20/debates/531F6DC9-0328-4E06-83BE-56716D1F5C46/ComplicationsfromAbortions(AnnualReport)BillHL#contribution-563A360F-54EE-4AD7-91BB-C41EE1054489",
+        "pid": 44784,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "statistics-date",
+    "kind": "unannounced",
+    "method": "FTS5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2632,
+    "retrieval_ms": 75.5518329970073,
+    "writer": {
+      "milliseconds": 9185,
+      "prompt_tokens": 995,
+      "generated_tokens_reported": 25,
+      "prompt_bytes": 3705
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 965,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-20/debates/531F6DC9-0328-4E06-83BE-56716D1F5C46/ComplicationsfromAbortions(AnnualReport)BillHL#contribution-6894B5F3-4870-4672-8A70-0B4B128311A5",
+        "pid": 44822,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-20/debates/531F6DC9-0328-4E06-83BE-56716D1F5C46/ComplicationsfromAbortions(AnnualReport)BillHL#contribution-F04514CE-9584-485B-84F0-EF12BA270768",
+        "pid": 44899,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-20/debates/531F6DC9-0328-4E06-83BE-56716D1F5C46/ComplicationsfromAbortions(AnnualReport)BillHL#contribution-563A360F-54EE-4AD7-91BB-C41EE1054489",
+        "pid": 44784,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "mandate-date",
+    "kind": "unannounced",
+    "method": "FTS5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 2066,
+    "retrieval_ms": 23.859917011577636,
+    "writer": {
+      "milliseconds": 8733,
+      "prompt_tokens": 892,
+      "generated_tokens_reported": 31,
+      "prompt_bytes": 3127
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1",
+        "R3"
+      ]
+    },
+    "decision_input_tokens": 862,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E338B133-9697-45C3-8594-932459300418",
+        "pid": 37065,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-E161F920-DD4C-4631-873C-31A061C93210",
+        "pid": 37064,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-809A5849-B654-42DA-BF67-8AD9B429071C",
+        "pid": 37056,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "mandate-date",
+    "kind": "unannounced",
+    "method": "FTS5 + E5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 0,
+    "all_found": false,
+    "facts_ok": true,
+    "citations_ok": false,
+    "strict": false,
+    "evidence_bytes": 1785,
+    "retrieval_ms": 42.08083401317708,
+    "writer": {
+      "milliseconds": 8416,
+      "prompt_tokens": 836,
+      "generated_tokens_reported": 25,
+      "prompt_bytes": 2846
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R2"
+      ]
+    },
+    "decision_input_tokens": 806,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-0C0B9DF6-402B-4CAE-B52C-898B5B6B4B5B",
+        "pid": 37048,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-809A5849-B654-42DA-BF67-8AD9B429071C",
+        "pid": 37056,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-10/debates/1AC4D053-8132-4E7D-961E-D47140F39254/AutomobileIndustryZEVMandate#contribution-7EFB6944-FD69-4774-911E-7FD171CC874C",
+        "pid": 37055,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "future-trial-total",
+    "kind": "future outcome",
+    "method": "FTS5 + E5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2310,
+    "retrieval_ms": 56.30054100765847,
+    "writer": {
+      "milliseconds": 8705,
+      "prompt_tokens": 954,
+      "generated_tokens_reported": 25,
+      "prompt_bytes": 3380
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R2"
+      ]
+    },
+    "decision_input_tokens": 924,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/B9F22EA9-6BCA-4535-9A6A-311B66D15349/HealthBill#contribution-E520E4DE-F770-442A-9502-25E6633F29C0",
+        "pid": 36953,
+        "reference": false
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/3710587D-93BA-4E02-B7B3-822B7E5C9AE3/AccesstoClinicalTrials#contribution-9D27A3D8-2A30-4646-8009-10F0289C19B7",
+        "pid": 43640,
+        "reference": true
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/B9F22EA9-6BCA-4535-9A6A-311B66D15349/HealthBill#contribution-A18ABF1C-773A-4814-9E7A-53F72FD2E05D",
+        "pid": 36802,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "future-trial-total",
+    "kind": "future outcome",
+    "method": "FTS5",
+    "status": "insufficient",
+    "decision": "insufficient",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": true,
+    "citations_ok": true,
+    "strict": true,
+    "evidence_bytes": 2406,
+    "retrieval_ms": 39.220458013005555,
+    "writer": {
+      "milliseconds": 8826,
+      "prompt_tokens": 975,
+      "generated_tokens_reported": 25,
+      "prompt_bytes": 3476
+    },
+    "answer": {
+      "facts": {},
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 945,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-19/debates/3710587D-93BA-4E02-B7B3-822B7E5C9AE3/AccesstoClinicalTrials#contribution-9D27A3D8-2A30-4646-8009-10F0289C19B7",
+        "pid": 43640,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-09/debates/B9F22EA9-6BCA-4535-9A6A-311B66D15349/HealthBill#contribution-E520E4DE-F770-442A-9502-25E6633F29C0",
+        "pid": 36953,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-26/debates/5E92FBE3-82F0-41AD-B565-56FDA0D130AD/HealthPancreaticCancer#contribution-7E74D2EC-D437-47B8-B456-0909E72CDDC4",
+        "pid": 49733,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "future-board-saving",
+    "kind": "forecast versus outcome",
+    "method": "FTS5",
+    "status": "insufficient",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": false,
+    "citations_ok": true,
+    "strict": false,
+    "evidence_bytes": 1431,
+    "retrieval_ms": 63.601166009902954,
+    "writer": {
+      "milliseconds": 8048,
+      "prompt_tokens": 768,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 2527
+    },
+    "answer": {
+      "facts": {
+        "answer": "about £100,000"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 738,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-9057B4E3-3872-44BB-8A04-BD4038334E8C",
+        "pid": 8607,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-F01B0F9D-8716-430B-AD0F-5411F210ECB8",
+        "pid": 8719,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-024C5709-1661-48F7-8ABD-3B0B6297377F",
+        "pid": 8293,
+        "reference": false
+      }
+    ]
+  },
+  {
+    "id": "future-board-saving",
+    "kind": "forecast versus outcome",
+    "method": "FTS5 + E5",
+    "status": "insufficient",
+    "decision": "supported",
+    "required": 1,
+    "found": 1,
+    "all_found": true,
+    "facts_ok": false,
+    "citations_ok": true,
+    "strict": false,
+    "evidence_bytes": 2368,
+    "retrieval_ms": 100.81912399618886,
+    "writer": {
+      "milliseconds": 9446,
+      "prompt_tokens": 940,
+      "generated_tokens_reported": 44,
+      "prompt_bytes": 3464
+    },
+    "answer": {
+      "facts": {
+        "answer": "about £100,000"
+      },
+      "citations": [
+        "R1"
+      ]
+    },
+    "decision_input_tokens": 910,
+    "matches": [
+      {
+        "id": "R1",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-9057B4E3-3872-44BB-8A04-BD4038334E8C",
+        "pid": 8607,
+        "reference": true
+      },
+      {
+        "id": "R2",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-DCAD963A-F942-400F-AEC5-4E0041CF9625",
+        "pid": 8697,
+        "reference": false
+      },
+      {
+        "id": "R3",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/4CE6842A-BA2A-4D7C-9FC3-68B972190018/FinancialServicesandMarketsBillLords#contribution-F01B0F9D-8716-430B-AD0F-5411F210ECB8",
+        "pid": 8715,
+        "reference": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,198 @@
+[
+  {
+    "id": "worker-wait",
+    "question": "Someone earning forty grand who had already started the process of staying here permanently was used as an example. How many years would they now have to wait in total?",
+    "kind": "voice-style",
+    "status": "supported",
+    "answers": {
+      "answer": [
+        "10",
+        "ten",
+        "ten years",
+        "10 years"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-02-debate-09f388d2-539e-4b0a-abe2-d3195b14af0e-dbbd3e36-31a4-4bf5-b2e6-39c0e75a6e6e.md",
+        "day": "2026-11-02",
+        "house": "Commons",
+        "speaker": "Shockat Adam (Leicester South) (Ind)",
+        "title": "Immigration: Earned Settlement",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-02/debates/09F388D2-539E-4B0A-ABE2-D3195B14AF0E/ImmigrationEarnedSettlement#contribution-DBBD3E36-31A4-4BF5-B2E6-39C0E75A6E6E",
+        "needle": "five to 10 years"
+      }
+    ]
+  },
+  {
+    "id": "release-date",
+    "question": "On what September date was the press release mentioned about taking action against unlawful settlements in the West Bank?",
+    "kind": "voice-style",
+    "status": "supported",
+    "answers": {
+      "answer": [
+        "8 September",
+        "8 September 2026",
+        "8th September",
+        "September 8",
+        "2026-09-08"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-04-debate-f48dfc05-504d-4356-9e19-2d3b6dba4da7-cfc95324-5d7d-4091-8bcc-7fe24e23afdf.md",
+        "day": "2026-11-04",
+        "house": "Lords",
+        "speaker": "Baroness Foster of Oxton (Con)",
+        "title": "Global Human Rights and International Humanitarian Law Sanctions Regulations 2026",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-04/debates/F48DFC05-504D-4356-9E19-2D3B6DBA4DA7/GlobalHumanRightsandInternationalHumanitarianLawSanctionsRegulations2026#contribution-CFC95324-5D7D-4091-8BCC-7FE24E23AFDF",
+        "needle": "press release that came out on 8 September"
+      }
+    ]
+  },
+  {
+    "id": "prison-communication",
+    "question": "What proportion of people behind bars did an MP say had difficulty with speech, language or communication?",
+    "kind": "voice-style",
+    "status": "supported",
+    "answers": {
+      "answer": [
+        "over 60%",
+        "more than 60%",
+        "over 60 per cent",
+        "more than sixty per cent",
+        "greater than 60%",
+        ">60%"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-10-debate-c620e704-423e-4ac6-bdd2-26dadf431cd5-6127d140-8c81-4cd4-aa0f-b1bad0b80118.md",
+        "day": "2026-11-10",
+        "house": "Commons",
+        "speaker": "Sonia Kumar (Dudley) (Lab)",
+        "title": "Topical Questions",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-10/debates/C620E704-423E-4AC6-BDD2-26DADF431CD5/TopicalQuestions#contribution-6127D140-8C81-4CD4-AA0F-B1BAD0B80118",
+        "needle": "Over 60%"
+      }
+    ]
+  },
+  {
+    "id": "treatment-gap",
+    "question": "How many people were said to know they had HIV but still be missing out on treatment?",
+    "kind": "voice-style",
+    "status": "supported",
+    "answers": {
+      "answer": [
+        "5000",
+        "5000 people",
+        "five thousand"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-12-debate-8615c30b-65eb-4f2f-b8ae-614cf6454880-4058e90b-99ce-48dd-9d35-afe53b1babee.md",
+        "day": "2026-11-12",
+        "house": "Lords",
+        "speaker": "Lord Cashman (Non-Afl)",
+        "title": "Health: HIV",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-12/debates/8615C30B-65EB-4F2F-B8AE-614CF6454880/HealthHIV#contribution-4058E90B-99CE-48DD-9D35-AFE53B1BABEE",
+        "needle": "5,000 people"
+      }
+    ]
+  },
+  {
+    "id": "driving-plan",
+    "question": "Besides the government website, where could parliamentarians find the annual plan for the agency that oversees driving tests and vehicle standards?",
+    "kind": "voice-style",
+    "status": "supported",
+    "answers": {
+      "answer": [
+        "the Libraries of both Houses",
+        "Libraries of both Houses",
+        "in the Libraries of both Houses",
+        "the libraries of both Houses of Parliament",
+        "both Houses’ libraries"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-16-wms-26111750000012-fd732141-efcf-4ef2-9eea-93b829b8baff.md",
+        "day": "2026-11-16",
+        "house": "Commons",
+        "speaker": "The Parliamentary Under-Secretary of State for Transport (Justin Madders)",
+        "title": "Driver and Vehicle Standards Agency: Business Plan 2026-27",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-16/debates/26111750000012/DriverandVehicleStandardsAgencyBusinessPlan2026-27#contribution-FD732141-EFCF-4EF2-9EEA-93B829B8BAFF",
+        "needle": "Libraries of both Houses"
+      }
+    ]
+  },
+  {
+    "id": "deportation-total",
+    "question": "What exact headcount did the quoted minister give for overseas offenders still here because of human-rights claims when the figures were discussed in the upper chamber?",
+    "kind": "voice-style",
+    "status": "insufficient",
+    "answers": {},
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-18-debate-ad55a228-ea17-476f-b3fd-868ce95d719c-3a92a9ad-68f4-4179-b1e0-b61546114dfb.md",
+        "day": "2026-11-18",
+        "house": "Lords",
+        "speaker": "Viscount Goschen (Con)",
+        "title": "Shabir Ahmed",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-18/debates/AD55A228-EA17-476F-B3FD-868CE95D719C/ShabirAhmed#contribution-3A92A9AD-68F4-4179-B1E0-B61546114DFB",
+        "needle": "not yet in a form to be published"
+      }
+    ]
+  },
+  {
+    "id": "portable-qualifications",
+    "question": "Which profession seemed closest to getting its credentials accepted on both sides of the Channel after talks with the EU?",
+    "kind": "voice-style",
+    "status": "supported",
+    "answers": {
+      "answer": [
+        "architects",
+        "architects only",
+        "architecture"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/lords-2026-11-24-debate-4c1ffb0c-0bce-4d08-aac6-245ebcbc6a49-4b4cfbe4-3f80-4127-8b8b-d15a6d0740c2.md",
+        "day": "2026-11-24",
+        "house": "Lords",
+        "speaker": "The Earl of Kinnoull (CB)",
+        "title": "UK-EU Summit",
+        "url": "https://hansard.parliament.uk/Lords/2026-11-24/debates/4C1FFB0C-0BCE-4D08-AAC6-245EBCBC6A49/UK-EUSummit#contribution-4B4CFBE4-3F80-4127-8B8B-D15A6D0740C2",
+        "needle": "only architects"
+      }
+    ]
+  },
+  {
+    "id": "committee-speaking-time",
+    "question": "How many minutes was the committee spokesperson allowed for the statement on getting legal help, before other MPs could put questions?",
+    "kind": "voice-style",
+    "status": "supported",
+    "answers": {
+      "answer": [
+        "10",
+        "10 minutes",
+        "ten minutes",
+        "up to 10 minutes",
+        "up to ten minutes"
+      ]
+    },
+    "witnesses": [
+      {
+        "route": "contribution/commons-2026-11-26-debate-d3c7ffcd-9417-4b15-be3d-b584e5bd7cd8-62392edf-1bf4-49c5-acc0-7149d39171cc.md",
+        "day": "2026-11-26",
+        "house": "Commons",
+        "speaker": "Madam Deputy Speaker (Judith Cummins)",
+        "title": "Access to Legal Services",
+        "url": "https://hansard.parliament.uk/Commons/2026-11-26/debates/D3C7FFCD-9417-4B15-BE3D-B584E5BD7CD8/AccesstoLegalServices#contribution-62392EDF-1BF4-49C5-ACC0-7149D39171CC",
+        "needle": "up to 10 minutes"
+      }
+    ]
+  }
+]
